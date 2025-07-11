@@ -138,3 +138,114 @@ body {
 	font-weight: 600;
 	line-height: 1.2;
 }
+
+/* Semantic Color Classes */
+.bg-success {
+	background-color: var(--color-success-200);
+}
+
+.bg-warning {
+	background-color: var(--color-warning-200);
+}
+
+.bg-error {
+	background-color: var(--color-error-200);
+}
+
+.bg-neutral {
+	background-color: var(--color-neutral-500);
+}
+
+.bg-neutral-200 {
+	background-color: var(--color-neutral-200);
+}
+
+.bg-highlight {
+	background-color: var(--color-highlight-400);
+}
+
+.bg-highlight-hover {
+	background-color: var(--color-highlight-300);
+}
+
+.bg-highlight-light {
+	background-color: var(--color-highlight-50);
+}
+
+.text-success {
+	color: var(--color-success-200);
+}
+
+.text-warning {
+	color: var(--color-warning-200);
+}
+
+.text-error {
+	color: var(--color-error-200);
+}
+
+.text-neutral {
+	color: var(--color-neutral-500);
+}
+
+.text-neutral-600 {
+	color: var(--color-neutral-600);
+}
+
+.text-highlight {
+	color: var(--color-highlight-400);
+}
+
+.border-success {
+	border-color: var(--color-success-200);
+}
+
+.border-warning {
+	border-color: var(--color-warning-200);
+}
+
+.border-error {
+	border-color: var(--color-error-200);
+}
+
+.border-neutral {
+	border-color: var(--color-neutral-500);
+}
+
+.border-highlight {
+	border-color: var(--color-highlight-400);
+}
+
+/* Additional semantic classes for components */
+.bg-neutral-disabled {
+	background-color: var(--color-neutral-400);
+}
+
+.text-neutral-disabled {
+	color: var(--color-neutral-600);
+}
+
+.text-neutral-light {
+	color: var(--color-neutral-500);
+}
+
+.border-neutral-disabled {
+	border-color: var(--color-neutral-400);
+}
+
+/* Hover states */
+.hover\:bg-highlight-hover:hover {
+	background-color: var(--color-highlight-300);
+}
+
+.hover\:bg-highlight-light:hover {
+	background-color: var(--color-highlight-50);
+}
+
+.border-highlight-light {
+	border-color: var(--color-highlight-200);
+}
+
+.hover\:border-highlight-light:hover {
+	border-color: var(--color-highlight-200);
+}

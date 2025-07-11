@@ -12,7 +12,7 @@
     argTypes: {
       size: {
         control: { type: 'select' },
-        options: ['small', 'medium', 'large', 'xlarge'],
+        options: ['xs', 'small', 'medium', 'large'],
         description: 'Avatar size'
       },
       status: {
@@ -64,20 +64,46 @@
   {/snippet}
 </Story>
 
+<Story name="With SVG" args={{ alt: '' }}>
+  {#snippet template(args)}
+    <Avatar {...args} />
+  {/snippet}
+</Story>
+
 <Story name="All Sizes">
-  <div class="flex gap-4 items-center">
-    <Avatar size="small" initials="S" alt="Small" />
-    <Avatar size="medium" initials="M" alt="Medium" />
-    <Avatar size="large" initials="L" alt="Large" />
-    <Avatar size="xlarge" initials="XL" alt="Extra Large" />
-  </div>
+  {#snippet template()}
+    <div class="space-y-4">
+      <div class="flex gap-4 items-center">
+        <Avatar size="xs" initials="XS" alt="Extra Small" />
+        <Avatar size="small" initials="S" alt="Small" />
+        <Avatar size="medium" initials="M" alt="Medium" />
+        <Avatar size="large" initials="L" alt="Large" />
+      </div>
+      <div class="flex gap-4 items-center">
+        <Avatar size="xs" initials="XS" alt="Extra Small" status="online" />
+        <Avatar size="small" initials="S" alt="Small" status="online" />
+        <Avatar size="medium" initials="M" alt="Medium" status="online" />
+        <Avatar size="large" initials="L" alt="Large" status="online" />
+      </div>
+    </div>
+  {/snippet}
 </Story>
 
 <Story name="All Status">
-  <div class="flex gap-4 items-center">
-    <Avatar initials="ON" alt="Online" status="online" />
-    <Avatar initials="OF" alt="Offline" status="offline" />
-    <Avatar initials="AW" alt="Away" status="away" />
-    <Avatar initials="BS" alt="Busy" status="busy" />
-  </div>
+  {#snippet template()}
+    <div class="space-y-4">
+      <div class="flex gap-4 items-center">
+        <Avatar initials="ON" alt="Online" status="online" />
+        <Avatar initials="OF" alt="Offline" status="offline" />
+        <Avatar initials="AW" alt="Away" status="away" />
+        <Avatar initials="BS" alt="Busy" status="busy" />
+      </div>
+      <div class="flex gap-4 items-center">
+        <Avatar size="xs" initials="ON" alt="Online" status="online" />
+        <Avatar size="xs" initials="OF" alt="Offline" status="offline" />
+        <Avatar size="xs" initials="AW" alt="Away" status="away" />
+        <Avatar size="xs" initials="BS" alt="Busy" status="busy" />
+      </div>
+    </div>
+  {/snippet}
 </Story>

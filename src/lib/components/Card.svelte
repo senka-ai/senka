@@ -33,7 +33,7 @@
       large: 'p-6'
     };
     
-    const interactive = clickable ? 'cursor-pointer hover:shadow-md hover:border-[var(--color-highlight-200)] focus:outline-none focus:ring-2 focus:ring-[var(--color-highlight-200)] focus:ring-offset-2' : '';
+    const interactive = clickable ? 'cursor-pointer hover:shadow-md hover:border-highlight-light focus:outline-none' : '';
     
     return `${base} ${variants[variant]} ${paddings[padding]} ${interactive} ${className}`;
   });
@@ -50,10 +50,14 @@
       }
     }}
   >
-    {@render children?.()}
+    {#if children}
+      {@render children()}
+    {/if}
   </button>
 {:else}
   <div class={cardClasses}>
-    {@render children?.()}
+    {#if children}
+      {@render children()}
+    {/if}
   </div>
 {/if}

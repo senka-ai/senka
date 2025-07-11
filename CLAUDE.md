@@ -203,6 +203,168 @@ When editing components, stories, or any TypeScript files, you **MUST** run thes
 - Define all props that are used in the component, including HTML attributes
 - Use proper Svelte 5 patterns: `$state()`, `$props()`, `$derived.by()`
 
+## Design System & Component Architecture Principles
+
+### Color System Architecture
+**Problem**: Using verbose CSS variable syntax like `bg-[var(--color-success-200)]` throughout components is hard to maintain and read.
+
+**Solution**: Create semantic CSS utility classes in `app.css`:
+```css
+/* Semantic Color Classes */
+.bg-success { background-color: var(--color-success-200); }
+.bg-warning { background-color: var(--color-warning-200); }
+.bg-error { background-color: var(--color-error-200); }
+.text-highlight { color: var(--color-highlight-400); }
+.border-highlight { border-color: var(--color-highlight-400); }
+```
+
+**Benefits**:
+- Much cleaner component code: `bg-success` vs `bg-[var(--color-success-200)]`
+- Centralized color management
+- Better IDE support and autocomplete
+- Easier theme switching
+- Self-documenting semantic names
+
+### SVG Icon Architecture
+**Principle**: Always organize SVG icons as reusable Svelte components in a dedicated folder.
+
+**Structure**:
+```
+src/lib/icons/
+├── PersonIcon.svelte
+├── ChevronIcon.svelte
+└── index.ts  # Barrel exports
+```
+
+**Icon Component Pattern**:
+```svelte
+<script lang="ts">
+  interface Props {
+    class?: string;
+    size?: number | string;
+  }
+  
+  let { class: className = '', size = 24 }: Props = $props();
+</script>
+
+<svg class={className} width={size} height={size} viewBox="0 0 24 24">
+  <!-- SVG content -->
+</svg>
+```
+
+**Benefits**:
+- Reusable across the app
+- Customizable with props
+- Type-safe
+- Easy to maintain and update
+- Clean imports: `import { PersonIcon } from '../icons'`
+
+### Avatar Component Design Patterns
+**Multi-fallback Pattern**: Components should gracefully handle missing data with multiple fallbacks:
+1. Primary content (image)
+2. Generated content (initials from name)
+3. Generic fallback (SVG icon)
+
+**Consistent Masking**: All avatar content types (image, initials, SVG) must use the same border radius masking:
+```svelte
+<!-- Image -->
+<img class="h-full w-full object-cover {imageBorderRadius}" />
+
+<!-- SVG -->
+<PersonIcon class="h-full w-full {imageBorderRadius}" />
+```
+
+**Size-Proportional Styling**: Different avatar sizes need proportional styling:
+```svelte
+const sizes = {
+  xs: 'h-8 w-8 text-body-s rounded-lg',
+  small: 'h-10 w-10 text-body-s rounded-xl',
+  medium: 'h-14 w-14 text-body-m rounded-xl',
+  large: 'h-20 w-20 text-body-l rounded-2xl'
+};
+```
+
+### Storybook Best Practices
+**Multi-example Stories**: When creating "All Sizes" or "All Variants" stories, use proper template structure:
+```svelte
+<Story name="All Sizes">
+  {#snippet template()}
+    <div class="space-y-4">
+      <div class="flex gap-4 items-center">
+        <Component size="small" />
+        <Component size="medium" />
+        <Component size="large" />
+      </div>
+    </div>
+  {/snippet}
+</Story>
+```
+
+**Always use `{#snippet template()}` for multi-component stories** - direct component usage can cause rendering issues.
+
+**Fallback Testing**: Create specific stories to test fallback states:
+```svelte
+<Story name="With SVG" args={{ alt: '' }}>
+  {#snippet template(args)}
+    <Avatar {...args} />
+  {/snippet}
+</Story>
+```
+
+### Component State Management
+**Derived Values**: Use `$derived.by()` for complex computations:
+```svelte
+let avatarClasses = $derived.by(() => {
+  const base = 'relative inline-flex items-center justify-center';
+  const variants = { /* ... */ };
+  return `${base} ${variants[variant]} ${className}`;
+});
+```
+
+**Conditional Rendering Logic**: Structure component logic with clear fallback hierarchy:
+```svelte
+{#if primaryContent}
+  <!-- Primary content -->
+{:else if secondaryContent}
+  <!-- Secondary content -->
+{:else}
+  <!-- Fallback content -->
+{/if}
+```
+
+### CSS Integration Best Practices
+**Tailwind + CSS Variables**: When using Tailwind CSS v4 with CSS variables, create semantic utility classes rather than using arbitrary values throughout components.
+
+**Component-Specific Styling**: Use CSS custom properties for component-specific styling that needs to be theme-aware:
+```css
+/* In app.css */
+.bg-neutral-200 { background-color: var(--color-neutral-200); }
+.text-neutral-600 { color: var(--color-neutral-600); }
+```
+
+**SVG Color Integration**: Use CSS variables in SVG components to maintain theme consistency:
+```svelte
+<rect fill="var(--color-highlight-50)" />
+<path fill="var(--color-highlight-100)" />
+```
+
+### Development Workflow Principles
+**Incremental Development**: Build components incrementally:
+1. Create basic component structure
+2. Add TypeScript interfaces
+3. Implement core functionality
+4. Add Storybook stories
+5. Test all variants and edge cases
+6. Refactor for maintainability
+
+**Type Safety First**: Always run type checking after component changes:
+```bash
+yarn typecheck  # Catch type errors early
+yarn check      # Svelte-specific checking
+```
+
+**Component Testing Strategy**: Test components in isolation via Storybook before integrating into the main app.
+
 ## Educational App Domain
 
 This app serves the Romanian educational system with three user types:

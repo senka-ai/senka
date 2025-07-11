@@ -263,6 +263,7 @@
 		gap: 0.5rem;
 		flex-wrap: wrap;
 		justify-content: center;
+		align-items: flex-start;
 	}
 
 	footer {

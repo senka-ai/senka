@@ -31,12 +31,12 @@
   }: Props = $props();
   
   let buttonClasses = $derived.by(() => {
-    const base = 'inline-flex items-center justify-center gap-2 font-medium transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2';
+    const base = 'inline-flex items-center justify-center gap-2 font-medium transition-all duration-200 focus:outline-none';
     
     const variants = {
-      primary: 'bg-[var(--color-highlight-400)] text-white hover:bg-[var(--color-highlight-300)] focus:ring-[var(--color-highlight-200)] disabled:bg-[var(--color-neutral-400)] disabled:text-[var(--color-neutral-600)]',
-      secondary: 'bg-transparent text-[var(--color-highlight-400)] border-2 border-[var(--color-highlight-400)] hover:bg-[var(--color-highlight-50)] focus:ring-[var(--color-highlight-200)] disabled:border-[var(--color-neutral-400)] disabled:text-[var(--color-neutral-500)]',
-      tertiary: 'bg-transparent text-[var(--color-highlight-400)] hover:bg-[var(--color-highlight-50)] focus:ring-[var(--color-highlight-200)] disabled:text-[var(--color-neutral-500)]'
+      primary: 'bg-highlight text-white hover:bg-highlight-hover disabled:bg-neutral-disabled disabled:text-neutral-disabled',
+      secondary: 'bg-transparent text-highlight border-2 border-highlight hover:bg-highlight-light disabled:border-neutral-disabled disabled:text-neutral-light',
+      tertiary: 'bg-transparent text-highlight hover:bg-highlight-light disabled:text-neutral-light'
     };
     
     const sizes = {
@@ -70,7 +70,9 @@
     </span>
   {/if}
   
-  {@render children?.()}
+  {#if children}
+    {@render children()}
+  {/if}
   
   {#if rightIcon && !loading}
     <span class="flex items-center">

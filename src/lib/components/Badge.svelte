@@ -30,10 +30,10 @@
     const base = 'inline-flex items-center justify-center font-medium';
     
     const variants = {
-      default: 'bg-[var(--color-highlight-400)] text-white',
-      success: 'bg-[var(--color-success-200)] text-white',
-      warning: 'bg-[var(--color-warning-200)] text-white',
-      error: 'bg-[var(--color-error-200)] text-white'
+      default: 'bg-highlight text-white',
+      success: 'bg-success text-white',
+      warning: 'bg-warning text-white',
+      error: 'bg-error text-white'
     };
     
     const sizes = {
