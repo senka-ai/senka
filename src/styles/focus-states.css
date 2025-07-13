@@ -1,0 +1,94 @@
+/* ===========================================
+   FOCUS STATES & RING UTILITIES
+   =========================================== */
+
+
+/* Focus border states */
+.focus\:border-highlight-50:focus { border-color: var(--color-highlight-50); }
+.focus\:border-highlight-100:focus { border-color: var(--color-highlight-100); }
+.focus\:border-highlight-200:focus { border-color: var(--color-highlight-200); }
+.focus\:border-highlight-300:focus { border-color: var(--color-highlight-300); }
+.focus\:border-highlight-400:focus { border-color: var(--color-highlight-400); }
+.focus\:border-highlight:focus { border-color: var(--color-highlight-400); }
+
+.focus\:border-neutral-50:focus { border-color: var(--color-neutral-50); }
+.focus\:border-neutral-100:focus { border-color: var(--color-neutral-100); }
+.focus\:border-neutral-200:focus { border-color: var(--color-neutral-200); }
+.focus\:border-neutral-300:focus { border-color: var(--color-neutral-300); }
+.focus\:border-neutral-400:focus { border-color: var(--color-neutral-400); }
+.focus\:border-neutral-500:focus { border-color: var(--color-neutral-500); }
+.focus\:border-neutral-600:focus { border-color: var(--color-neutral-600); }
+.focus\:border-neutral-700:focus { border-color: var(--color-neutral-700); }
+.focus\:border-neutral-800:focus { border-color: var(--color-neutral-800); }
+.focus\:border-neutral-900:focus { border-color: var(--color-neutral-900); }
+
+.focus\:border-success-50:focus { border-color: var(--color-success-50); }
+.focus\:border-success-100:focus { border-color: var(--color-success-100); }
+.focus\:border-success-200:focus { border-color: var(--color-success-200); }
+.focus\:border-success:focus { border-color: var(--color-success-200); }
+
+.focus\:border-warning-50:focus { border-color: var(--color-warning-50); }
+.focus\:border-warning-100:focus { border-color: var(--color-warning-100); }
+.focus\:border-warning-200:focus { border-color: var(--color-warning-200); }
+.focus\:border-warning:focus { border-color: var(--color-warning-200); }
+
+.focus\:border-error-50:focus { border-color: var(--color-error-50); }
+.focus\:border-error-100:focus { border-color: var(--color-error-100); }
+.focus\:border-error-200:focus { border-color: var(--color-error-200); }
+.focus\:border-error:focus { border-color: var(--color-error-200); }
+
+
+/* Ring colors */
+.ring-highlight-50 { --tw-ring-color: var(--color-highlight-50); }
+.ring-highlight-100 { --tw-ring-color: var(--color-highlight-100); }
+.ring-highlight-200 { --tw-ring-color: var(--color-highlight-200); }
+.ring-highlight-300 { --tw-ring-color: var(--color-highlight-300); }
+.ring-highlight-400 { --tw-ring-color: var(--color-highlight-400); }
+.ring-highlight { --tw-ring-color: var(--color-highlight-400); }
+.ring-highlight-light { --tw-ring-color: var(--color-highlight-200); }
+
+.ring-neutral-50 { --tw-ring-color: var(--color-neutral-50); }
+.ring-neutral-100 { --tw-ring-color: var(--color-neutral-100); }
+.ring-neutral-200 { --tw-ring-color: var(--color-neutral-200); }
+.ring-neutral-300 { --tw-ring-color: var(--color-neutral-300); }
+.ring-neutral-400 { --tw-ring-color: var(--color-neutral-400); }
+.ring-neutral-500 { --tw-ring-color: var(--color-neutral-500); }
+.ring-neutral-600 { --tw-ring-color: var(--color-neutral-600); }
+.ring-neutral-700 { --tw-ring-color: var(--color-neutral-700); }
+.ring-neutral-800 { --tw-ring-color: var(--color-neutral-800); }
+.ring-neutral-900 { --tw-ring-color: var(--color-neutral-900); }
+
+.ring-success-50 { --tw-ring-color: var(--color-success-50); }
+.ring-success-100 { --tw-ring-color: var(--color-success-100); }
+.ring-success-200 { --tw-ring-color: var(--color-success-200); }
+.ring-success { --tw-ring-color: var(--color-success-200); }
+
+.ring-warning-50 { --tw-ring-color: var(--color-warning-50); }
+.ring-warning-100 { --tw-ring-color: var(--color-warning-100); }
+.ring-warning-200 { --tw-ring-color: var(--color-warning-200); }
+.ring-warning { --tw-ring-color: var(--color-warning-200); }
+
+.ring-error-50 { --tw-ring-color: var(--color-error-50); }
+.ring-error-100 { --tw-ring-color: var(--color-error-100); }
+.ring-error-200 { --tw-ring-color: var(--color-error-200); }
+.ring-error { --tw-ring-color: var(--color-error-200); }
+.ring-error-light { --tw-ring-color: var(--color-error-100); }
+
+/* Focus ring colors */
+.focus\:ring-highlight-50:focus { --tw-ring-color: var(--color-highlight-50); }
+.focus\:ring-highlight-100:focus { --tw-ring-color: var(--color-highlight-100); }
+.focus\:ring-highlight-200:focus { --tw-ring-color: var(--color-highlight-200); }
+.focus\:ring-highlight-300:focus { --tw-ring-color: var(--color-highlight-300); }
+.focus\:ring-highlight-400:focus { --tw-ring-color: var(--color-highlight-400); }
+.focus\:ring-highlight:focus { --tw-ring-color: var(--color-highlight-400); }
+
+.focus\:ring-error-50:focus { --tw-ring-color: var(--color-error-50); }
+.focus\:ring-error-100:focus { --tw-ring-color: var(--color-error-100); }
+.focus\:ring-error-200:focus { --tw-ring-color: var(--color-error-200); }
+.focus\:ring-error:focus { --tw-ring-color: var(--color-error-200); }
+
+/* Disabled states */
+.disabled\:bg-neutral-disabled:disabled { background-color: var(--color-neutral-400); }
+.disabled\:text-neutral-disabled:disabled { color: var(--color-neutral-600); }
+.disabled\:border-neutral-disabled:disabled { border-color: var(--color-neutral-400); }
+.disabled\:text-neutral-light:disabled { color: var(--color-neutral-500); }

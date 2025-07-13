@@ -64,16 +64,13 @@
 
 	let inputClasses = $derived.by(() => {
 		const base =
-			'w-full px-3 py-2 text-body-l bg-white border rounded-lg transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-offset-1'
+			'w-full px-3.25 py-3.25 text-slim-m bg-white border rounded-xl transition-all duration-200 focus:outline-none focus:ring-offset-0 placeholder:text-neutral-500'
 
 		const states = {
-			default:
-				'border-[var(--color-neutral-300)] focus:border-[var(--color-highlight-400)] focus:ring-[var(--color-highlight-200)]',
-			focused: 'border-[var(--color-highlight-400)] ring-2 ring-[var(--color-highlight-200)]',
-			error:
-				'border-[var(--color-error-200)] focus:border-[var(--color-error-200)] focus:ring-[var(--color-error-100)]',
-			disabled:
-				'border-[var(--color-neutral-300)] bg-[var(--color-neutral-100)] text-[var(--color-neutral-500)] cursor-not-allowed',
+			default: 'border-neutral-400 focus:border-highlight focus:ring-1 focus:ring-highlight-200',
+			focused: 'border-highlight ring-1 ring-highlight-400',
+			error: 'border-error focus:border-error focus:ring-1 focus:ring-error-100',
+			disabled: 'border-neutral-300 bg-neutral-100 text-neutral-500 cursor-not-allowed',
 		}
 
 		const leftPadding = leftIcon && showIcon ? 'pl-10' : ''
@@ -83,14 +80,14 @@
 	})
 
 	let labelClasses = $derived.by(() => {
-		const base = 'block text-body-m font-medium mb-1'
-		const color = currentState === 'error' ? 'text-[var(--color-error-200)]' : 'text-[var(--color-neutral-700)]'
+		const base = 'block text-thick-s mb-1.5'
+		const color = disabled ? 'text-neutral-500' : 'text-neutral-800'
 		return `${base} ${color}`
 	})
 
 	let helperTextClasses = $derived.by(() => {
-		const base = 'text-body-s mt-1'
-		const color = currentState === 'error' ? 'text-[var(--color-error-200)]' : 'text-[var(--color-neutral-600)]'
+		const base = 'text-slim-s mt-1'
+		const color = currentState === 'error' ? 'text-error' : 'text-neutral-600'
 		return `${base} ${color}`
 	})
 </script>
@@ -104,7 +101,7 @@
 
 	<div class="relative">
 		{#if leftIcon && showIcon}
-			<div class="absolute top-1/2 left-3 -translate-y-1/2 transform text-[var(--color-neutral-500)]">
+			<div class="absolute top-1/2 left-3 -translate-y-1/2 transform text-neutral-500">
 				{leftIcon}
 			</div>
 		{/if}
@@ -124,11 +121,11 @@
 		/>
 
 		{#if rightIcon && showIcon}
-			<div class="absolute top-1/2 right-3 -translate-y-1/2 transform text-[var(--color-neutral-500)]">
+			<div class="absolute top-1/2 right-3 -translate-y-1/2 transform text-neutral-500">
 				{rightIcon}
 			</div>
 		{:else if unit && showUnit}
-			<div class="text-body-m absolute top-1/2 right-3 -translate-y-1/2 transform text-[var(--color-neutral-600)]">
+			<div class="text-body-m absolute top-1/2 right-3 -translate-y-1/2 transform text-neutral-600">
 				{unit}
 			</div>
 		{/if}

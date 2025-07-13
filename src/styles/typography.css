@@ -1,0 +1,153 @@
+/* ===========================================
+   TYPOGRAPHY CLASSES
+   =========================================== */
+
+/* Heading styles */
+.text-h1 {
+	font-size: 1.5rem; /* 24px */
+	font-weight: 800;
+	line-height: 1.2;
+}
+
+.text-h2 {
+	font-size: 1.125rem; /* 18px */
+	font-weight: 800;
+	line-height: 1.2;
+}
+
+.text-h3 {
+	font-size: 1rem; /* 16px */
+	font-weight: 800;
+	line-height: 1.2;
+}
+
+.text-h4 {
+	font-size: 0.875rem; /* 14px */
+	font-weight: 700;
+	line-height: 1.2;
+}
+
+.text-h5 {
+	font-size: 0.75rem; /* 12px */
+	font-weight: 700;
+	line-height: 1.2;
+}
+
+/* Body text styles */
+.text-body-xl {
+	font-size: 1.125rem; /* 18px */
+	font-weight: 400;
+	line-height: 1.4;
+}
+
+.text-body-l {
+	font-size: 1rem; /* 16px */
+	font-weight: 400;
+	line-height: 1.4;
+}
+
+.text-body-m {
+	font-size: 0.875rem; /* 14px */
+	font-weight: 400;
+	line-height: 1.4;
+}
+
+.text-body-s {
+	font-size: 0.75rem; /* 12px */
+	font-weight: 400;
+	line-height: 1.4;
+}
+
+.text-body-xs {
+	font-size: 0.625rem; /* 10px */
+	font-weight: 500;
+	line-height: 1.4;
+}
+
+/* Slim text styles */
+.text-slim-xl {
+	font-size: 1.125rem; /* 18px */
+	font-weight: 300;
+	line-height: 1.4;
+}
+
+.text-slim-l {
+	font-size: 1rem; /* 16px */
+	font-weight: 300;
+	line-height: 1.4;
+}
+
+.text-slim-m {
+	font-size: 0.875rem; /* 14px */
+	font-weight: 300;
+	line-height: 1.4;
+}
+
+.text-slim-s {
+	font-size: 0.75rem; /* 12px */
+	font-weight: 300;
+	line-height: 1.4;
+}
+
+.text-slim-xs {
+	font-size: 0.625rem; /* 10px */
+	font-weight: 500;
+	line-height: 1.4;
+}
+
+/* Thick text styles */
+.text-thick-xl {
+	font-size: 1.125rem; /* 18px */
+	font-weight: 600;
+	line-height: 1.4;
+}
+
+.text-thick-l {
+	font-size: 1rem; /* 16px */
+	font-weight: 600;
+	line-height: 1.4;
+}
+
+.text-thick-m {
+	font-size: 0.875rem; /* 14px */
+	font-weight: 600;
+	line-height: 1.4;
+}
+
+.text-thick-s {
+	font-size: 0.75rem; /* 12px */
+	font-weight: 600;
+	line-height: 1.4;
+}
+
+.text-thick-xs {
+	font-size: 0.625rem; /* 10px */
+	font-weight: 500;
+	line-height: 1.4;
+}
+
+/* Action/button text styles */
+.text-action-l {
+	font-size: 0.875rem; /* 14px */
+	font-weight: 600;
+	line-height: 1.2;
+}
+
+.text-action-m {
+	font-size: 0.75rem; /* 12px */
+	font-weight: 600;
+	line-height: 1.2;
+}
+
+.text-action-s {
+	font-size: 0.625rem; /* 10px */
+	font-weight: 600;
+	line-height: 1.2;
+}
+
+/* Caption text styles */
+.text-caption-m {
+	font-size: 0.625rem; /* 10px */
+	font-weight: 600;
+	line-height: 1.2;
+}

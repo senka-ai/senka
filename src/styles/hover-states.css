@@ -1,0 +1,108 @@
+/* ===========================================
+   HOVER STATES
+   =========================================== */
+
+/* Background hover states */
+.hover\:bg-highlight-50:hover { background-color: var(--color-highlight-50); }
+.hover\:bg-highlight-100:hover { background-color: var(--color-highlight-100); }
+.hover\:bg-highlight-200:hover { background-color: var(--color-highlight-200); }
+.hover\:bg-highlight-300:hover { background-color: var(--color-highlight-300); }
+.hover\:bg-highlight-400:hover { background-color: var(--color-highlight-400); }
+.hover\:bg-highlight:hover { background-color: var(--color-highlight-400); }
+.hover\:bg-highlight-hover:hover { background-color: var(--color-highlight-300); }
+.hover\:bg-highlight-light:hover { background-color: var(--color-highlight-50); }
+
+.hover\:bg-neutral-50:hover { background-color: var(--color-neutral-50); }
+.hover\:bg-neutral-100:hover { background-color: var(--color-neutral-100); }
+.hover\:bg-neutral-200:hover { background-color: var(--color-neutral-200); }
+.hover\:bg-neutral-300:hover { background-color: var(--color-neutral-300); }
+.hover\:bg-neutral-400:hover { background-color: var(--color-neutral-400); }
+.hover\:bg-neutral-500:hover { background-color: var(--color-neutral-500); }
+.hover\:bg-neutral-600:hover { background-color: var(--color-neutral-600); }
+.hover\:bg-neutral-700:hover { background-color: var(--color-neutral-700); }
+.hover\:bg-neutral-800:hover { background-color: var(--color-neutral-800); }
+.hover\:bg-neutral-900:hover { background-color: var(--color-neutral-900); }
+
+.hover\:bg-success-50:hover { background-color: var(--color-success-50); }
+.hover\:bg-success-100:hover { background-color: var(--color-success-100); }
+.hover\:bg-success-200:hover { background-color: var(--color-success-200); }
+.hover\:bg-success:hover { background-color: var(--color-success-200); }
+
+.hover\:bg-warning-50:hover { background-color: var(--color-warning-50); }
+.hover\:bg-warning-100:hover { background-color: var(--color-warning-100); }
+.hover\:bg-warning-200:hover { background-color: var(--color-warning-200); }
+.hover\:bg-warning:hover { background-color: var(--color-warning-200); }
+
+.hover\:bg-error-50:hover { background-color: var(--color-error-50); }
+.hover\:bg-error-100:hover { background-color: var(--color-error-100); }
+.hover\:bg-error-200:hover { background-color: var(--color-error-200); }
+.hover\:bg-error:hover { background-color: var(--color-error-200); }
+
+/* Text hover states */
+.hover\:text-highlight-50:hover { color: var(--color-highlight-50); }
+.hover\:text-highlight-100:hover { color: var(--color-highlight-100); }
+.hover\:text-highlight-200:hover { color: var(--color-highlight-200); }
+.hover\:text-highlight-300:hover { color: var(--color-highlight-300); }
+.hover\:text-highlight-400:hover { color: var(--color-highlight-400); }
+.hover\:text-highlight:hover { color: var(--color-highlight-400); }
+
+.hover\:text-neutral-50:hover { color: var(--color-neutral-50); }
+.hover\:text-neutral-100:hover { color: var(--color-neutral-100); }
+.hover\:text-neutral-200:hover { color: var(--color-neutral-200); }
+.hover\:text-neutral-300:hover { color: var(--color-neutral-300); }
+.hover\:text-neutral-400:hover { color: var(--color-neutral-400); }
+.hover\:text-neutral-500:hover { color: var(--color-neutral-500); }
+.hover\:text-neutral-600:hover { color: var(--color-neutral-600); }
+.hover\:text-neutral-700:hover { color: var(--color-neutral-700); }
+.hover\:text-neutral-800:hover { color: var(--color-neutral-800); }
+.hover\:text-neutral-900:hover { color: var(--color-neutral-900); }
+
+.hover\:text-success-50:hover { color: var(--color-success-50); }
+.hover\:text-success-100:hover { color: var(--color-success-100); }
+.hover\:text-success-200:hover { color: var(--color-success-200); }
+.hover\:text-success:hover { color: var(--color-success-200); }
+
+.hover\:text-warning-50:hover { color: var(--color-warning-50); }
+.hover\:text-warning-100:hover { color: var(--color-warning-100); }
+.hover\:text-warning-200:hover { color: var(--color-warning-200); }
+.hover\:text-warning:hover { color: var(--color-warning-200); }
+
+.hover\:text-error-50:hover { color: var(--color-error-50); }
+.hover\:text-error-100:hover { color: var(--color-error-100); }
+.hover\:text-error-200:hover { color: var(--color-error-200); }
+.hover\:text-error:hover { color: var(--color-error-200); }
+
+/* Border hover states */
+.hover\:border-highlight-50:hover { border-color: var(--color-highlight-50); }
+.hover\:border-highlight-100:hover { border-color: var(--color-highlight-100); }
+.hover\:border-highlight-200:hover { border-color: var(--color-highlight-200); }
+.hover\:border-highlight-300:hover { border-color: var(--color-highlight-300); }
+.hover\:border-highlight-400:hover { border-color: var(--color-highlight-400); }
+.hover\:border-highlight:hover { border-color: var(--color-highlight-400); }
+.hover\:border-highlight-light:hover { border-color: var(--color-highlight-200); }
+
+.hover\:border-neutral-50:hover { border-color: var(--color-neutral-50); }
+.hover\:border-neutral-100:hover { border-color: var(--color-neutral-100); }
+.hover\:border-neutral-200:hover { border-color: var(--color-neutral-200); }
+.hover\:border-neutral-300:hover { border-color: var(--color-neutral-300); }
+.hover\:border-neutral-400:hover { border-color: var(--color-neutral-400); }
+.hover\:border-neutral-500:hover { border-color: var(--color-neutral-500); }
+.hover\:border-neutral-600:hover { border-color: var(--color-neutral-600); }
+.hover\:border-neutral-700:hover { border-color: var(--color-neutral-700); }
+.hover\:border-neutral-800:hover { border-color: var(--color-neutral-800); }
+.hover\:border-neutral-900:hover { border-color: var(--color-neutral-900); }
+
+.hover\:border-success-50:hover { border-color: var(--color-success-50); }
+.hover\:border-success-100:hover { border-color: var(--color-success-100); }
+.hover\:border-success-200:hover { border-color: var(--color-success-200); }
+.hover\:border-success:hover { border-color: var(--color-success-200); }
+
+.hover\:border-warning-50:hover { border-color: var(--color-warning-50); }
+.hover\:border-warning-100:hover { border-color: var(--color-warning-100); }
+.hover\:border-warning-200:hover { border-color: var(--color-warning-200); }
+.hover\:border-warning:hover { border-color: var(--color-warning-200); }
+
+.hover\:border-error-50:hover { border-color: var(--color-error-50); }
+.hover\:border-error-100:hover { border-color: var(--color-error-100); }
+.hover\:border-error-200:hover { border-color: var(--color-error-200); }
+.hover\:border-error:hover { border-color: var(--color-error-200); }

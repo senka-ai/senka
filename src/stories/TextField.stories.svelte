@@ -47,8 +47,8 @@
 <Story
 	name="Default"
 	args={{
-		label: 'Email',
-		placeholder: 'Enter your email',
+		label: 'Title',
+		placeholder: 'Placeholder',
 	}}
 >
 	{#snippet template(args)}
@@ -109,11 +109,13 @@
 </Story>
 
 <Story name="All States">
-	<div class="max-w-md space-y-4">
-		<TextField label="Default" placeholder="Enter text" />
-		<TextField label="With Helper Text" placeholder="Enter text" helperText="This is helper text" />
-		<TextField label="With Error" placeholder="Enter text" error="This field is required" />
-		<TextField label="Disabled" placeholder="Enter text" disabled />
-		<TextField label="With Unit" placeholder="0.00" unit="€" />
-	</div>
+	{#snippet template()}
+		<div class="max-w-md space-y-4">
+			<TextField label="Default" placeholder="Enter text" />
+			<TextField label="With Helper Text" placeholder="Enter text" helperText="This is helper text" />
+			<TextField label="With Error" placeholder="Enter text" error="This field is required" />
+			<TextField label="Disabled" placeholder="Enter text" disabled />
+			<TextField label="With Unit" placeholder="0.00" unit="€" />
+		</div>
+	{/snippet}
 </Story>
