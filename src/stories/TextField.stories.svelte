@@ -1,6 +1,7 @@
 <script module>
 	import { defineMeta } from '@storybook/addon-svelte-csf'
 	import TextField from '../lib/components/TextField.svelte'
+	import EyeInvisibleIcon from '../lib/icons/EyeInvisibleIcon.svelte'
 
 	const { Story } = defineMeta({
 		title: 'Components/TextField',
@@ -105,6 +106,23 @@
 >
 	{#snippet template(args)}
 		<TextField {...args} />
+	{/snippet}
+</Story>
+
+<Story
+	name="With Password"
+	args={{
+		label: 'Password',
+		placeholder: 'Enter your password',
+		type: 'password',
+	}}
+>
+	{#snippet template(args)}
+		{#snippet eyeIcon()}<EyeInvisibleIcon size={20} />{/snippet}
+		<TextField 
+			{...args} 
+			rightIcon={eyeIcon} 
+		/>
 	{/snippet}
 </Story>
 

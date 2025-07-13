@@ -4,7 +4,7 @@
 		helperText?: string
 		error?: string
 		leftIcon?: string
-		rightIcon?: string
+		rightIcon?: any
 		unit?: string
 		inputState?: 'default' | 'focused' | 'error' | 'disabled'
 		fullWidth?: boolean
@@ -101,7 +101,7 @@
 
 	<div class="relative">
 		{#if leftIcon && showIcon}
-			<div class="absolute top-1/2 left-3 -translate-y-1/2 transform text-neutral-500">
+			<div class="absolute top-1/2 left-3.25 -translate-y-1/2 transform text-neutral-500">
 				{leftIcon}
 			</div>
 		{/if}
@@ -121,11 +121,11 @@
 		/>
 
 		{#if rightIcon && showIcon}
-			<div class="absolute top-1/2 right-3 -translate-y-1/2 transform text-neutral-500">
-				{rightIcon}
+			<div class="absolute top-1/2 right-3.25 -translate-y-1/2 transform text-neutral-500">
+				{@render rightIcon?.()}
 			</div>
 		{:else if unit && showUnit}
-			<div class="text-body-m absolute top-1/2 right-3 -translate-y-1/2 transform text-neutral-600">
+			<div class="text-body-m absolute top-1/2 right-3.25 -translate-y-1/2 transform text-neutral-600">
 				{unit}
 			</div>
 		{/if}
