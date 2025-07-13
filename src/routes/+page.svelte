@@ -1,21 +1,17 @@
 <script>
-	import Card from '$lib/components/Card.svelte';
-	import Badge from '$lib/components/Badge.svelte';
-	import Button from '$lib/components/Button.svelte';
+	import Card from '$lib/components/Card.svelte'
+	import Badge from '$lib/components/Badge.svelte'
+	import Button from '$lib/components/Button.svelte'
 
 	function handleCardClick(cardType) {
-		alert(
-			`${cardType} card clicked! Check this component in Storybook for more interactive examples.`
-		);
+		alert(`${cardType} card clicked! Check this component in Storybook for more interactive examples.`)
 	}
 </script>
 
 <main>
 	<header>
 		<h1>Senka - Storybook Integration Demo</h1>
-		<p>
-			This page demonstrates custom Svelte components that are documented and tested in Storybook.
-		</p>
+		<p>This page demonstrates custom Svelte components that are documented and tested in Storybook.</p>
 
 		<div class="storybook-info">
 			<Badge type="number" value={1} variant="success" />
@@ -26,20 +22,12 @@
 	<section class="demo-section">
 		<h2>Card Components</h2>
 		<div class="cards-grid">
-			<Card
-				variant="default"
-				clickable={true}
-				onclick={() => handleCardClick('Default')}
-			>
+			<Card variant="default" clickable={true} onclick={() => handleCardClick('Default')}>
 				<h3>Default Card</h3>
 				<p>A basic card component with clean styling.</p>
 			</Card>
 
-			<Card
-				variant="elevated"
-				clickable={true}
-				onclick={() => handleCardClick('Elevated')}
-			>
+			<Card variant="elevated" clickable={true} onclick={() => handleCardClick('Elevated')}>
 				<h3>Elevated Card</h3>
 				<p>A card with elevation for important content.</p>
 				<div class="card-extra">
@@ -47,9 +35,7 @@
 				</div>
 			</Card>
 
-			<Card
-				variant="outlined"
-			>
+			<Card variant="outlined">
 				<h3>Outlined Card</h3>
 				<p>A card with outlined styling for supporting content.</p>
 				<div class="card-extra">
