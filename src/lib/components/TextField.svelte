@@ -20,6 +20,7 @@
 		type?: string
 		value?: string
 		name?: string
+		iconSize?: number
 	}
 
 	let {
@@ -43,6 +44,7 @@
 		type = 'text',
 		name,
 		value = $bindable(),
+		iconSize = 16,
 		...restProps
 	}: Props = $props()
 
@@ -122,7 +124,7 @@
 
 		{#if rightIcon && showIcon}
 			<div class="absolute top-1/2 right-3.25 -translate-y-1/2 transform text-neutral-500">
-				{@render rightIcon?.()}
+				{@render rightIcon?.(iconSize)}
 			</div>
 		{:else if unit && showUnit}
 			<div class="text-body-m absolute top-1/2 right-3.25 -translate-y-1/2 transform text-neutral-600">

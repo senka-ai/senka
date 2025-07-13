@@ -60,8 +60,8 @@
 <Story
 	name="With Helper Text"
 	args={{
-		label: 'Password',
-		placeholder: 'Enter your password',
+		label: 'Website',
+		placeholder: 'URL',
 		helperText: 'Must be at least 8 characters',
 	}}
 >
@@ -118,11 +118,8 @@
 	}}
 >
 	{#snippet template(args)}
-		{#snippet eyeIcon()}<EyeInvisibleIcon size={20} />{/snippet}
-		<TextField 
-			{...args} 
-			rightIcon={eyeIcon} 
-		/>
+		{#snippet eyeIcon(size)}<EyeInvisibleIcon {size} />{/snippet}
+		<TextField {...args} rightIcon={eyeIcon} />
 	{/snippet}
 </Story>
 
@@ -134,6 +131,8 @@
 			<TextField label="With Error" placeholder="Enter text" error="This field is required" />
 			<TextField label="Disabled" placeholder="Enter text" disabled />
 			<TextField label="With Unit" placeholder="0.00" unit="€" />
+			{#snippet passwordIcon(size)}<EyeInvisibleIcon {size} />{/snippet}
+			<TextField label="With Password" placeholder="Enter your password" type="password" rightIcon={passwordIcon} />
 		</div>
 	{/snippet}
 </Story>
