@@ -37,7 +37,7 @@
 	<!-- Main app layout with responsive navigation -->
 	<div class="app-layout" class:mobile={isMobile}>
 		{#if isMobile}
-			<!-- Mobile layout: content + bottom tabs -->
+			<!-- Mobile layout: content with fixed bottom tabs -->
 			<main class="mobile-content">
 				{@render children()}
 			</main>
@@ -62,9 +62,10 @@
 	}
 
 	.app-layout {
-		min-height: 100vh;
+		height: 100vh;
 		display: grid;
 		background: var(--color-background);
+		overflow: hidden;
 	}
 
 	.app-layout:not(.mobile) {
@@ -74,11 +75,9 @@
 	}
 
 	.app-layout.mobile {
-		/* Mobile layout: content over tabs */
-		grid-template-rows: 1fr auto;
-		grid-template-areas: 
-			'content'
-			'nav';
+		/* Mobile layout: content only (nav is fixed) */
+		grid-template-rows: 1fr;
+		grid-template-areas: 'content';
 	}
 
 	.desktop-content {
@@ -91,7 +90,9 @@
 		grid-area: content;
 		padding: 1rem;
 		overflow-y: auto;
-		padding-bottom: 80px; /* Space for bottom tabs */
+		overflow-x: hidden;
+		height: calc(100vh - 80px); /* Full height minus navigation height */
+		box-sizing: border-box;
 	}
 
 	/* Responsive adjustments */
