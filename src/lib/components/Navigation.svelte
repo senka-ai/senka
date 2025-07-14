@@ -92,6 +92,11 @@
 		background: var(--color-surface);
 		border-top: 1px solid var(--color-border);
 		height: 80px;
+		position: fixed;
+		bottom: 0;
+		left: 0;
+		right: 0;
+		z-index: 100;
 	}
 
 	.mobile-nav .nav-item {
