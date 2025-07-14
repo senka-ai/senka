@@ -46,6 +46,8 @@ The goal is to develop an educational app named **Senka**, designed to support s
       - Modify class composition (add/remove students).
       - Assign specific roles to students (e.g., edit math homework, update timetable).
 - **Supported Languages**: Romanian and English.
+- **Supported modes**: Mobile and desktop: web app that shows like a mobile app - tab based - on mobiles/narrow screens,
+  and like a full desktop app on desktops/wide screens (with a sidebar for navigation).
 
 ## Long-Term Plan
 

@@ -1,155 +1,63 @@
-<script>
-	import Card from '$lib/components/Card.svelte'
-	import Badge from '$lib/components/Badge.svelte'
-	import Button from '$lib/components/Button.svelte'
+<script lang="ts">
 	import ThemeToggle from '$lib/components/ThemeToggle.svelte'
-
-	function handleCardClick(cardType) {
-		alert(`${cardType} card clicked! Check this component in Storybook for more interactive examples.`)
-	}
+	import Card from '$lib/components/Card.svelte'
 </script>
 
-<main>
-	<header>
+<div class="homepage">
+	<header class="homepage-header">
 		<div class="header-top">
-			<h1>Senka - Storybook Integration Demo</h1>
+			<h1>Senka</h1>
 			<ThemeToggle />
 		</div>
-		<p>This page demonstrates custom Svelte components that are documented and tested in Storybook.</p>
-
-		<div class="storybook-info">
-			<Badge type="number" value={1} variant="success" />
-			<span>Run <code>npm run storybook</code> to explore these components interactively!</span>
-		</div>
+		<p>Aplicația educațională pentru elevi, profesori și părinți</p>
 	</header>
 
-	<section class="demo-section">
-		<h2>Card Components</h2>
-		<div class="cards-grid">
-			<Card variant="default" clickable={true} onclick={() => handleCardClick('Default')}>
-				<h3>Default Card</h3>
-				<p>A basic card component with clean styling.</p>
-			</Card>
-
-			<Card variant="elevated" clickable={true} onclick={() => handleCardClick('Elevated')}>
-				<h3>Elevated Card</h3>
-				<p>A card with elevation for important content.</p>
-				<div class="card-extra">
-					<Badge type="number" value={5} variant="success" size="small" />
-				</div>
-			</Card>
-
-			<Card variant="outlined">
-				<h3>Outlined Card</h3>
-				<p>A card with outlined styling for supporting content.</p>
-				<div class="card-extra">
-					<Badge type="dot" variant="warning" size="small" />
-					<Badge type="icon" variant="default" size="small" />
-				</div>
-			</Card>
-		</div>
-	</section>
-
-	<section class="demo-section">
-		<h2>Badge Components</h2>
-		<div class="badges-showcase">
-			<div class="badge-group">
-				<h3>Status Badges</h3>
-				<Badge type="number" value={1} variant="success" />
-				<Badge type="number" value={2} variant="warning" />
-				<Badge type="number" value={3} variant="error" />
-				<Badge type="number" value={4} variant="default" />
-			</div>
-
-			<div class="badge-group">
-				<h3>Size Variations</h3>
-				<Badge type="number" value={5} size="small" variant="default" />
-				<Badge type="number" value={10} size="medium" variant="default" />
-				<Badge type="number" value={15} size="large" variant="default" />
-			</div>
-		</div>
-	</section>
-
-	<section class="demo-section">
-		<h2>Button Components</h2>
-		<div class="counters-grid">
-			<div class="counter-demo">
-				<h3>Button Variants</h3>
-				<div class="button-group">
-					<Button variant="primary">
-						{#snippet children()}Primary{/snippet}
-					</Button>
-					<Button variant="secondary">
-						{#snippet children()}Secondary{/snippet}
-					</Button>
-					<Button variant="tertiary">
-						{#snippet children()}Tertiary{/snippet}
-					</Button>
-				</div>
-			</div>
-
-			<div class="counter-demo">
-				<h3>Button Sizes</h3>
-				<div class="button-group">
-					<Button size="small">
-						{#snippet children()}Small{/snippet}
-					</Button>
-					<Button size="medium">
-						{#snippet children()}Medium{/snippet}
-					</Button>
-					<Button size="large">
-						{#snippet children()}Large{/snippet}
-					</Button>
-				</div>
-			</div>
-
-			<div class="counter-demo">
-				<h3>Button States</h3>
-				<div class="button-group">
-					<Button>
-						{#snippet children()}Normal{/snippet}
-					</Button>
-					<Button disabled>
-						{#snippet children()}Disabled{/snippet}
-					</Button>
-					<Button loading>
-						{#snippet children()}Loading{/snippet}
-					</Button>
-				</div>
-			</div>
-		</div>
-	</section>
-
-	<footer>
+	<section class="welcome-section">
 		<Card variant="elevated">
-			<h3>Storybook Integration</h3>
-			<p>All components on this page are fully documented in Storybook with:</p>
+			<h2>Bine ai venit!</h2>
+			<p>Aceasta este pagina principală a aplicației Senka. Aici vei putea vedea:</p>
 			<ul>
-				<li>Interactive controls for all props</li>
-				<li>Multiple story variations</li>
-				<li>Live code examples</li>
-				<li>Accessibility testing</li>
+				<li>Orarele și programul zilnic</li>
+				<li>Temele și sarcinile primite</li>
+				<li>Lecțiile și materialele educaționale</li>
+				<li>Comunicarea cu profesorii și colegii</li>
 			</ul>
-			<div style="margin-top: 1rem;">
-				<Badge type="icon" variant="success" />
-				<Badge type="icon" variant="success" />
-				<Badge type="icon" variant="success" />
-			</div>
 		</Card>
-	</footer>
-</main>
+	</section>
+
+	<section class="quick-actions">
+		<h2>Acțiuni rapide</h2>
+		<div class="actions-grid">
+			<Card variant="default" clickable={true}>
+				<h3>📅 Orarul zilei</h3>
+				<p>Vezi programul pentru astăzi</p>
+			</Card>
+			<Card variant="default" clickable={true}>
+				<h3>📚 Temele</h3>
+				<p>Verifică temele și sarcinile</p>
+			</Card>
+			<Card variant="default" clickable={true}>
+				<h3>📖 Lecții</h3>
+				<p>Accesează materialele de studiu</p>
+			</Card>
+			<Card variant="default" clickable={true}>
+				<h3>⚙️ Setări</h3>
+				<p>Configurează aplicația</p>
+			</Card>
+		</div>
+	</section>
+</div>
 
 <style>
-	main {
+	.homepage {
 		max-width: 1200px;
 		margin: 0 auto;
-		padding: 2rem;
-		font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+		padding: 0;
 	}
 
-	header {
+	.homepage-header {
 		text-align: center;
-		margin-bottom: 3rem;
+		margin-bottom: 2rem;
 	}
 
 	.header-top {
@@ -164,133 +72,77 @@
 		color: var(--color-text-primary);
 		margin: 0;
 		font-size: 2.5rem;
+		font-weight: 700;
 	}
 
-	header p {
+	.homepage-header p {
 		color: var(--color-text-secondary);
 		font-size: 1.1rem;
-		margin-bottom: 1rem;
+		margin: 0;
 	}
 
-	.storybook-info {
-		display: flex;
-		align-items: center;
-		justify-content: center;
-		gap: 0.5rem;
-		padding: 1rem;
-		background: #f0f9ff;
-		border: 1px solid #0ea5e9;
-		border-radius: 8px;
-		margin-top: 1rem;
-	}
-
-	.storybook-info code {
-		background: #1f2937;
-		color: #f9fafb;
-		padding: 0.25rem 0.5rem;
-		border-radius: 4px;
-		font-family: 'Monaco', 'Menlo', monospace;
-	}
-
-	.demo-section {
-		margin-bottom: 3rem;
-	}
-
-	.demo-section h2 {
-		color: var(--color-text-primary);
-		margin-bottom: 1.5rem;
-		font-size: 1.75rem;
-	}
-
-	.cards-grid {
-		display: grid;
-		grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-		gap: 1.5rem;
+	.welcome-section {
 		margin-bottom: 2rem;
 	}
 
-	.card-extra {
-		margin-top: 1rem;
-		display: flex;
-		gap: 0.5rem;
-		flex-wrap: wrap;
-	}
-
-	.badges-showcase {
-		display: grid;
-		grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-		gap: 2rem;
-	}
-
-	.badge-group {
-		padding: 1.5rem;
-		border: 1px solid var(--color-border);
-		border-radius: 8px;
-		background: var(--color-surface);
-	}
-
-	.badge-group h3 {
-		margin: 0 0 1rem 0;
+	.welcome-section h2 {
 		color: var(--color-text-primary);
-		font-size: 1.1rem;
-	}
-
-	.badge-group :global(.badge) {
-		margin-right: 0.5rem;
-		margin-bottom: 0.5rem;
-	}
-
-	.counters-grid {
-		display: grid;
-		grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-		gap: 2rem;
-	}
-
-	.counter-demo {
-		text-align: center;
-	}
-
-	.counter-demo h3 {
 		margin-bottom: 1rem;
-		color: var(--color-text-primary);
-		font-size: 1.1rem;
+		font-size: 1.5rem;
 	}
 
-	.button-group {
-		display: flex;
-		gap: 0.5rem;
-		flex-wrap: wrap;
-		justify-content: center;
-		align-items: flex-start;
+	.welcome-section p {
+		color: var(--color-text-secondary);
+		margin-bottom: 1rem;
+		line-height: 1.6;
 	}
 
-	footer {
-		margin-top: 4rem;
-	}
-
-	footer ul {
+	.welcome-section ul {
+		color: var(--color-text-secondary);
 		margin: 1rem 0;
 		padding-left: 1.5rem;
 	}
 
-	footer li {
+	.welcome-section li {
 		margin-bottom: 0.5rem;
+		line-height: 1.5;
+	}
+
+	.quick-actions h2 {
+		color: var(--color-text-primary);
+		margin-bottom: 1rem;
+		font-size: 1.5rem;
+	}
+
+	.actions-grid {
+		display: grid;
+		grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+		gap: 1rem;
+	}
+
+	.actions-grid h3 {
+		color: var(--color-text-primary);
+		margin-bottom: 0.5rem;
+		font-size: 1.1rem;
+	}
+
+	.actions-grid p {
 		color: var(--color-text-secondary);
+		margin: 0;
+		font-size: 0.9rem;
 	}
 
 	@media (max-width: 768px) {
-		main {
-			padding: 1rem;
+		.homepage {
+			padding: 0;
 		}
 
-		.cards-grid,
-		.counters-grid {
+		.actions-grid {
 			grid-template-columns: 1fr;
 		}
 
-		.storybook-info {
-			flex-direction: column;
-			text-align: center;
+		h1 {
+			font-size: 2rem;
 		}
 	}
 </style>

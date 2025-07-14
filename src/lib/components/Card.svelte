@@ -18,12 +18,12 @@
 	}: Props = $props()
 
 	let cardClasses = $derived.by(() => {
-		const base = 'bg-white rounded-xl transition-all duration-200'
+		const base = 'bg-surface-elevated rounded-xl transition-all duration-200'
 
 		const variants = {
-			default: 'border border-[var(--color-neutral-200)]',
-			outlined: 'border-2 border-[var(--color-neutral-300)]',
-			elevated: 'shadow-lg border border-[var(--color-neutral-200)]',
+			default: 'border border-neutral-200',
+			outlined: 'border-2 border-neutral-300',
+			elevated: 'shadow-lg border border-neutral-200',
 		}
 
 		const paddings = {
