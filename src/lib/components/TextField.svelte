@@ -66,7 +66,7 @@
 
 	let inputClasses = $derived.by(() => {
 		const base =
-			'w-full px-3.25 py-3.25 text-slim-m bg-white border rounded-xl transition-all duration-200 focus:outline-none focus:ring-offset-0 placeholder:text-neutral-500'
+			'w-full px-3.25 py-3.25 text-slim-m text-neutral-900 bg-neutral-50 border rounded-xl transition-all duration-200 focus:outline-none focus:ring-offset-0 placeholder:text-neutral-500'
 
 		const states = {
 			default: 'border-neutral-400 focus:border-highlight focus:ring-1 focus:ring-highlight-200',

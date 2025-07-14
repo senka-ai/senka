@@ -2,6 +2,7 @@
 	import Card from '$lib/components/Card.svelte'
 	import Badge from '$lib/components/Badge.svelte'
 	import Button from '$lib/components/Button.svelte'
+	import ThemeToggle from '$lib/components/ThemeToggle.svelte'
 
 	function handleCardClick(cardType) {
 		alert(`${cardType} card clicked! Check this component in Storybook for more interactive examples.`)
@@ -10,7 +11,10 @@
 
 <main>
 	<header>
-		<h1>Senka - Storybook Integration Demo</h1>
+		<div class="header-top">
+			<h1>Senka - Storybook Integration Demo</h1>
+			<ThemeToggle />
+		</div>
 		<p>This page demonstrates custom Svelte components that are documented and tested in Storybook.</p>
 
 		<div class="storybook-info">
@@ -148,14 +152,22 @@
 		margin-bottom: 3rem;
 	}
 
-	h1 {
-		color: #1f2937;
+	.header-top {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		gap: 1rem;
 		margin-bottom: 0.5rem;
+	}
+
+	h1 {
+		color: var(--color-text-primary);
+		margin: 0;
 		font-size: 2.5rem;
 	}
 
 	header p {
-		color: #6b7280;
+		color: var(--color-text-secondary);
 		font-size: 1.1rem;
 		margin-bottom: 1rem;
 	}
@@ -185,7 +197,7 @@
 	}
 
 	.demo-section h2 {
-		color: #374151;
+		color: var(--color-text-primary);
 		margin-bottom: 1.5rem;
 		font-size: 1.75rem;
 	}
@@ -212,14 +224,14 @@
 
 	.badge-group {
 		padding: 1.5rem;
-		border: 1px solid #e5e7eb;
+		border: 1px solid var(--color-border);
 		border-radius: 8px;
-		background: #f9fafb;
+		background: var(--color-surface);
 	}
 
 	.badge-group h3 {
 		margin: 0 0 1rem 0;
-		color: #374151;
+		color: var(--color-text-primary);
 		font-size: 1.1rem;
 	}
 
@@ -240,7 +252,7 @@
 
 	.counter-demo h3 {
 		margin-bottom: 1rem;
-		color: #374151;
+		color: var(--color-text-primary);
 		font-size: 1.1rem;
 	}
 
@@ -263,7 +275,7 @@
 
 	footer li {
 		margin-bottom: 0.5rem;
-		color: #4b5563;
+		color: var(--color-text-secondary);
 	}
 
 	@media (max-width: 768px) {

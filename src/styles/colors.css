@@ -133,3 +133,21 @@
 .border-error-100 { border-color: var(--color-error-100); }
 .border-error-200 { border-color: var(--color-error-200); }
 .border-error { border-color: var(--color-error-200); }
+
+/* ===========================================
+   SEMANTIC COLORS (THEME-AWARE)
+   =========================================== */
+
+/* Background semantic colors */
+.bg-background { background-color: var(--color-background); }
+.bg-surface { background-color: var(--color-surface); }
+.bg-surface-elevated { background-color: var(--color-surface-elevated); }
+
+/* Text semantic colors */
+.text-primary { color: var(--color-text-primary); }
+.text-secondary { color: var(--color-text-secondary); }
+.text-muted { color: var(--color-text-muted); }
+
+/* Border semantic colors */
+.border-default { border-color: var(--color-border); }
+.border-strong { border-color: var(--color-border-strong); }
