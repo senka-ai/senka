@@ -2,7 +2,7 @@ import type { StorybookConfig } from '@storybook/sveltekit'
 import tailwindcss from '@tailwindcss/vite'
 
 const config: StorybookConfig = {
-	stories: ['../src/**/*.mdx', '../src/**/*.stories.@(js|ts|svelte)'],
+	stories: ['../src/**/*.stories.@(js|ts|svelte)'],
 	addons: [
 		{
 			name: '@storybook/addon-svelte-csf',
