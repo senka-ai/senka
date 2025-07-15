@@ -1,5 +1,4 @@
 <script lang="ts">
-	import Card from '$lib/components/Card.svelte'
 	import Button from '$lib/components/Button.svelte'
 
 	type ViewMode = 'day' | 'week'
@@ -50,7 +49,7 @@
 	</header>
 
 	{#if viewMode === 'day'}
-		<Card variant="default" class="day-schedule">
+		<div class="card">
 			<h2>Programul zilei - Astăzi</h2>
 			<div class="schedule-list">
 				{#each schedule.day as item}
@@ -65,11 +64,11 @@
 					</div>
 				{/each}
 			</div>
-		</Card>
+		</div>
 	{:else}
 		<div class="week-schedule">
 			{#each schedule.week as daySchedule}
-				<Card variant="default" class="day-card">
+				<div class="card">
 					<h2>{daySchedule.day}</h2>
 					<div class="subjects-list">
 						{#each daySchedule.subjects as subject, index}
@@ -79,7 +78,7 @@
 							</div>
 						{/each}
 					</div>
-				</Card>
+				</div>
 			{/each}
 		</div>
 	{/if}

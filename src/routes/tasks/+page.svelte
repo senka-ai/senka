@@ -1,5 +1,4 @@
 <script lang="ts">
-	import Card from '$lib/components/Card.svelte'
 	import Badge from '$lib/components/Badge.svelte'
 	import Button from '$lib/components/Button.svelte'
 
@@ -95,7 +94,7 @@
 
 	<div class="tasks-grid">
 		{#each tasks as task}
-			<Card variant="default" class="task-card">
+			<div class="card">
 				<div class="task-header">
 					<div class="task-type">
 						{getTypeBadge(task.type).icon}
@@ -130,19 +129,19 @@
 						</Button>
 					</div>
 				</div>
-			</Card>
+			</div>
 		{/each}
 	</div>
 
 	{#if tasks.length === 0}
 		<div class="empty-state">
-			<Card variant="default" class="empty-card">
+			<div class="card">
 				<div class="empty-content">
 					<div class="empty-icon">📝</div>
 					<h2>Nu ai sarcini în acest moment</h2>
 					<p>Când profesorii îți vor da teme sau teste, acestea vor apărea aici.</p>
 				</div>
-			</Card>
+			</div>
 		</div>
 	{/if}
 </div>

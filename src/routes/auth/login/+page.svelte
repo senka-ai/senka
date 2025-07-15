@@ -1,5 +1,4 @@
 <script lang="ts">
-	import Card from '$lib/components/Card.svelte'
 	import Button from '$lib/components/Button.svelte'
 	import TextField from '$lib/components/TextField.svelte'
 	import ThemeToggle from '$lib/components/ThemeToggle.svelte'
@@ -18,7 +17,7 @@
 		<ThemeToggle />
 	</div>
 
-	<Card variant="elevated" class="login-card">
+	<div class="card">
 		<div class="login-header">
 			<h1>Senka</h1>
 			<h2>Conectează-te</h2>
@@ -51,7 +50,7 @@
 			<p>Nu ai cont? <a href="/auth/signup">Înregistrează-te</a></p>
 			<p><a href="/auth/forgot-password">Ai uitat parola?</a></p>
 		</div>
-	</Card>
+	</div>
 </div>
 
 <style>

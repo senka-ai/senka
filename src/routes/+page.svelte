@@ -1,6 +1,5 @@
 <script lang="ts">
 	import ThemeToggle from '$lib/components/ThemeToggle.svelte'
-	import Card from '$lib/components/Card.svelte'
 </script>
 
 <div class="homepage">
@@ -13,7 +12,7 @@
 	</header>
 
 	<section class="welcome-section">
-		<Card variant="elevated">
+		<div class="welcome-card">
 			<h2>Bine ai venit!</h2>
 			<p>Aceasta este pagina principală a aplicației Senka. Aici vei putea vedea:</p>
 			<ul>
@@ -22,28 +21,28 @@
 				<li>Lecțiile și materialele educaționale</li>
 				<li>Comunicarea cu profesorii și colegii</li>
 			</ul>
-		</Card>
+		</div>
 	</section>
 
 	<section class="quick-actions">
 		<h2>Acțiuni rapide</h2>
 		<div class="actions-grid">
-			<Card variant="default" clickable={true}>
+			<div class="action-card">
 				<h3>📅 Orarul zilei</h3>
 				<p>Vezi programul pentru astăzi</p>
-			</Card>
-			<Card variant="default" clickable={true}>
+			</div>
+			<div class="action-card">
 				<h3>📚 Temele</h3>
 				<p>Verifică temele și sarcinile</p>
-			</Card>
-			<Card variant="default" clickable={true}>
+			</div>
+			<div class="action-card">
 				<h3>📖 Lecții</h3>
 				<p>Accesează materialele de studiu</p>
-			</Card>
-			<Card variant="default" clickable={true}>
+			</div>
+			<div class="action-card">
 				<h3>⚙️ Setări</h3>
 				<p>Configurează aplicația</p>
-			</Card>
+			</div>
 		</div>
 	</section>
 </div>
@@ -83,6 +82,27 @@
 
 	.welcome-section {
 		margin-bottom: 2rem;
+	}
+
+	.welcome-card {
+		background: var(--color-surface-elevated);
+		border-radius: 12px;
+		padding: 1.5rem;
+		box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+	}
+
+	.action-card {
+		background: var(--color-surface-default);
+		border-radius: 12px;
+		padding: 1.5rem;
+		cursor: pointer;
+		transition: all 0.2s ease;
+		border: 1px solid var(--color-border-subtle);
+	}
+
+	.action-card:hover {
+		transform: translateY(-2px);
+		box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
 	}
 
 	.welcome-section h2 {

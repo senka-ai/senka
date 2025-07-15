@@ -1,5 +1,4 @@
 <script lang="ts">
-	import Card from '$lib/components/Card.svelte'
 	import Button from '$lib/components/Button.svelte'
 	import TextField from '$lib/components/TextField.svelte'
 	import ThemeToggle from '$lib/components/ThemeToggle.svelte'
@@ -37,7 +36,7 @@
 	</header>
 
 	<div class="settings-grid">
-		<Card variant="default" class="profile-settings">
+		<div class="card">
 			<div class="section-header">
 				<h2>Profil personal</h2>
 				<Button 
@@ -96,9 +95,9 @@
 					</div>
 				{/if}
 			</div>
-		</Card>
+		</div>
 
-		<Card variant="default" class="appearance-settings">
+		<div class="card">
 			<h2>Aspect și afișare</h2>
 			
 			<div class="setting-item">
@@ -119,9 +118,9 @@
 					<option value="en">English</option>
 				</select>
 			</div>
-		</Card>
+		</div>
 
-		<Card variant="default" class="notification-settings">
+		<div class="card">
 			<h2>Notificări</h2>
 			
 			<div class="setting-item">
@@ -147,9 +146,9 @@
 				</div>
 				<input type="checkbox" class="setting-checkbox" />
 			</div>
-		</Card>
+		</div>
 
-		<Card variant="default" class="account-settings">
+		<div class="card">
 			<h2>Cont</h2>
 			
 			<div class="account-actions">
@@ -165,7 +164,7 @@
 					{#snippet children()}Șterge contul{/snippet}
 				</Button>
 			</div>
-		</Card>
+		</div>
 	</div>
 </div>
 

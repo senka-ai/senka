@@ -1,5 +1,4 @@
 <script lang="ts">
-	import Card from '$lib/components/Card.svelte'
 	import Button from '$lib/components/Button.svelte'
 	import ThemeToggle from '$lib/components/ThemeToggle.svelte'
 
@@ -23,7 +22,7 @@
 		<ThemeToggle />
 	</div>
 
-	<Card variant="elevated" class="onboarding-card">
+	<div class="card">
 		<div class="onboarding-header">
 			<h1>Senka</h1>
 			<h2>Ce ești?</h2>
@@ -73,7 +72,7 @@
 				{#snippet children()}Continuă{/snippet}
 			</Button>
 		</div>
-	</Card>
+	</div>
 </div>
 
 <style>

@@ -1,5 +1,4 @@
 <script lang="ts">
-	import Card from '$lib/components/Card.svelte'
 	import Badge from '$lib/components/Badge.svelte'
 	import Button from '$lib/components/Button.svelte'
 
@@ -89,7 +88,7 @@
 
 	<div class="lessons-grid">
 		{#each lessons as lesson}
-			<Card variant="default" class="lesson-card">
+			<div class="card">
 				<div class="lesson-header">
 					<div class="lesson-subject">
 						<Badge type="dot" variant="default" size="small" />
@@ -151,19 +150,19 @@
 						</Button>
 					{/if}
 				</div>
-			</Card>
+			</div>
 		{/each}
 	</div>
 
 	{#if lessons.length === 0}
 		<div class="empty-state">
-			<Card variant="default" class="empty-card">
+			<div class="card">
 				<div class="empty-content">
 					<div class="empty-icon">📖</div>
 					<h2>Nu ai lecții disponibile</h2>
 					<p>Când profesorii vor adăuga lecții noi, acestea vor apărea aici.</p>
 				</div>
-			</Card>
+			</div>
 		</div>
 	{/if}
 </div>

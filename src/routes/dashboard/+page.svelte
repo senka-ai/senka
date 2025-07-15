@@ -1,5 +1,4 @@
 <script lang="ts">
-	import Card from '$lib/components/Card.svelte'
 	import Badge from '$lib/components/Badge.svelte'
 </script>
 
@@ -10,7 +9,7 @@
 	</header>
 
 	<div class="dashboard-grid">
-		<Card variant="elevated" class="quick-stats">
+		<div class="quick-stats card-elevated">
 			<h2>Statistici rapide</h2>
 			<div class="stats-grid">
 				<div class="stat-item">
@@ -26,9 +25,9 @@
 					<div class="stat-label">Teste programate</div>
 				</div>
 			</div>
-		</Card>
+		</div>
 
-		<Card variant="default" class="recent-activity">
+		<div class="recent-activity card-default">
 			<h2>Activitate recentă</h2>
 			<div class="activity-list">
 				<div class="activity-item">
@@ -53,9 +52,9 @@
 					</div>
 				</div>
 			</div>
-		</Card>
+		</div>
 
-		<Card variant="default" class="upcoming-tasks">
+		<div class="upcoming-tasks card-default">
 			<h2>Sarcini apropiate</h2>
 			<div class="tasks-list">
 				<div class="task-item">
@@ -80,7 +79,7 @@
 					<Badge type="number" value={3} variant="default" />
 				</div>
 			</div>
-		</Card>
+		</div>
 	</div>
 </div>
 
@@ -111,6 +110,20 @@
 		display: grid;
 		grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
 		gap: 1.5rem;
+	}
+
+	.card-elevated {
+		background: var(--color-surface-elevated);
+		border-radius: 12px;
+		padding: 1.5rem;
+		box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+	}
+
+	.card-default {
+		background: var(--color-surface-default);
+		border-radius: 12px;
+		padding: 1.5rem;
+		border: 1px solid var(--color-border-subtle);
 	}
 
 	:global(.quick-stats) {
