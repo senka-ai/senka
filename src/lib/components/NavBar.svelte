@@ -43,7 +43,7 @@
 	</div>
 
 	<div class="absolute left-1/2 -translate-x-1/2 transform">
-		<h1 class="text-thick-s truncate font-semibold text-neutral-900">
+		<h1 class="text-thick-m truncate">
 			{title}
 		</h1>
 	</div>

@@ -95,6 +95,37 @@
 	line-height: 1.4;
 }
 
+/* Medium text styles */
+.text-medium-xl {
+	font-size: 1.125rem; /* 18px */
+	font-weight: 500;
+	line-height: 1.4;
+}
+
+.text-medium-l {
+	font-size: 1rem; /* 16px */
+	font-weight: 500;
+	line-height: 1.4;
+}
+
+.text-medium-m {
+	font-size: 0.875rem; /* 14px */
+	font-weight: 500;
+	line-height: 1.4;
+}
+
+.text-medium-s {
+	font-size: 0.75rem; /* 12px */
+	font-weight: 500;
+	line-height: 1.4;
+}
+
+.text-medium-xs {
+	font-size: 0.625rem; /* 10px */
+	font-weight: 500;
+	line-height: 1.4;
+}
+
 /* Thick text styles */
 .text-thick-xl {
 	font-size: 1.125rem; /* 18px */
