@@ -34,7 +34,8 @@
 }
 
 /* Light Theme (default) */
-:root, [data-theme="light"] {
+:root,
+[data-theme='light'] {
 	/* Neutral Colors - Light Theme */
 	--color-neutral-50: #ffffff;
 	--color-neutral-100: #f8f9fe;
@@ -59,7 +60,7 @@
 }
 
 /* Dark Theme */
-[data-theme="dark"] {
+[data-theme='dark'] {
 	/* Neutral Colors - Dark Theme (inverted) */
 	--color-neutral-50: #1f2024;
 	--color-neutral-100: #2f3036;
@@ -95,12 +96,15 @@ body {
 	font-family: var(--font-family);
 	color: var(--color-text-primary);
 	background-color: var(--color-background);
-	transition: color 0.2s ease, background-color 0.2s ease;
+	transition:
+		color 0.2s ease,
+		background-color 0.2s ease;
 }
 
 /* Mobile scrolling behavior - prevent whole page scroll */
 @media (max-width: 767px) {
-	html, body {
+	html,
+	body {
 		overflow: hidden;
 		height: 100vh;
 	}

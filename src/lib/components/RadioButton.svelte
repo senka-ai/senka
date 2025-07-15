@@ -1,0 +1,95 @@
+<script lang="ts">
+	interface Props {
+		checked?: boolean
+		size?: 'small' | 'medium' | 'large'
+		disabled?: boolean
+		class?: string
+		id?: string
+		name?: string
+		value?: string
+		onchange?: (checked: boolean) => void
+	}
+
+	let {
+		checked = false,
+		size = 'medium',
+		disabled = false,
+		class: className = '',
+		id,
+		name,
+		value,
+		onchange,
+	}: Props = $props()
+
+	let localChecked = $state(checked)
+
+	$effect(() => {
+		localChecked = checked
+	})
+
+	function handleChange() {
+		if (!disabled) {
+			localChecked = true
+			onchange?.(true)
+		}
+	}
+
+	function handleKeydown(event: KeyboardEvent) {
+		if (event.key === ' ' || event.key === 'Enter') {
+			event.preventDefault()
+			handleChange()
+		}
+	}
+
+	let radioClasses = $derived.by(() => {
+		const base = 'relative inline-flex items-center justify-center cursor-pointer transition-all duration-200'
+
+		const sizes = {
+			small: 'h-4 w-4',
+			medium: 'h-6 w-6',
+			large: 'h-8 w-8',
+		}
+
+		const states = localChecked
+			? 'bg-highlight border-2 border-highlight'
+			: 'bg-surface border-2 border-neutral-300 hover:border-neutral-400'
+
+		const disabledStyles = disabled ? 'opacity-50 cursor-not-allowed hover:border-neutral-300' : ''
+
+		return `${base} ${sizes[size]} ${states} ${disabledStyles} rounded-full ${className}`
+	})
+
+	let dotSizes = $derived.by(() => {
+		const sizes = {
+			small: 'h-1.5 w-1.5',
+			medium: 'h-2.5 w-2.5',
+			large: 'h-3.5 w-3.5',
+		}
+		return sizes[size]
+	})
+</script>
+
+<div
+	role="radio"
+	aria-checked={localChecked}
+	aria-disabled={disabled}
+	tabindex={disabled ? -1 : 0}
+	class={radioClasses}
+	{id}
+	onclick={handleChange}
+	onkeydown={handleKeydown}
+>
+	<input
+		type="radio"
+		checked={localChecked}
+		{disabled}
+		{name}
+		{value}
+		class="sr-only"
+		tabindex="-1"
+		onchange={handleChange}
+	/>
+	{#if localChecked}
+		<div class="rounded-full bg-white {dotSizes}"></div>
+	{/if}
+</div>

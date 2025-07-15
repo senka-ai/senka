@@ -39,7 +39,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ### Storybook
 
-- `yarn storybook` - Start Storybook development server on port 6006
+- `yarn story` - Start Storybook development server on port 6006
 - `yarn build-storybook` - Build Storybook for production
 
 ## Architecture
