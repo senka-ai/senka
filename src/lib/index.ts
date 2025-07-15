@@ -15,6 +15,7 @@ export { default as Image } from './components/Image.svelte'
 export { default as Video } from './components/Video.svelte'
 export { default as Tag } from './components/Tag.svelte'
 export { default as ListTitle } from './components/ListTitle.svelte'
+export { default as ListItem } from './components/ListItem.svelte'
 
 // Theme Management (Runes-based)
 export { getTheme, setTheme, toggleTheme, useTheme } from './theme.svelte'
