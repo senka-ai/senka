@@ -31,7 +31,8 @@
 		<Accordion {...args}>
 			{#snippet children()}
 				<p class="text-body-m text-secondary">
-					This is the content inside the accordion. It can contain any HTML elements like text, images, or other components.
+					This is the content inside the accordion. It can contain any HTML elements like text, images, or other
+					components.
 				</p>
 			{/snippet}
 		</Accordion>
@@ -59,15 +60,13 @@
 					<p class="text-body-m text-secondary">
 						This accordion contains multiple elements including headings, paragraphs, and lists.
 					</p>
-					<ul class="list-disc pl-6 space-y-1">
+					<ul class="list-disc space-y-1 pl-6">
 						<li class="text-body-s text-secondary">First item in the list</li>
 						<li class="text-body-s text-secondary">Second item in the list</li>
 						<li class="text-body-s text-secondary">Third item in the list</li>
 					</ul>
-					<div class="mt-3 p-3 bg-neutral-100 rounded-lg">
-						<p class="text-body-s text-secondary">
-							This is a highlighted section within the accordion content.
-						</p>
+					<div class="mt-3 rounded-lg bg-neutral-100 p-3">
+						<p class="text-body-s text-secondary">This is a highlighted section within the accordion content.</p>
 					</div>
 				</div>
 			{/snippet}
@@ -79,9 +78,7 @@
 	{#snippet template(args)}
 		<Accordion {...args}>
 			{#snippet children()}
-				<p class="text-body-m text-secondary">
-					This accordion is disabled and cannot be toggled.
-				</p>
+				<p class="text-body-m text-secondary">This accordion is disabled and cannot be toggled.</p>
 			{/snippet}
 		</Accordion>
 	{/snippet}
@@ -104,12 +101,10 @@
 		<div class="space-y-4">
 			<Accordion title="First Section" open={true}>
 				{#snippet children()}
-					<p class="text-body-m text-secondary">
-						This is the content of the first accordion section. It starts open.
-					</p>
+					<p class="text-body-m text-secondary">This is the content of the first accordion section. It starts open.</p>
 				{/snippet}
 			</Accordion>
-			
+
 			<Accordion title="Second Section" open={false}>
 				{#snippet children()}
 					<p class="text-body-m text-secondary">
@@ -117,7 +112,7 @@
 					</p>
 				{/snippet}
 			</Accordion>
-			
+
 			<Accordion title="Third Section" open={false}>
 				{#snippet children()}
 					<p class="text-body-m text-secondary">
@@ -133,7 +128,7 @@
 	{#snippet template()}
 		<div class="space-y-4">
 			<h2 class="text-thick-l text-primary mb-4">Frequently Asked Questions</h2>
-			
+
 			<Accordion title="What is your return policy?" open={false}>
 				{#snippet children()}
 					<p class="text-body-m text-secondary">
@@ -141,101 +136,34 @@
 					</p>
 				{/snippet}
 			</Accordion>
-			
+
 			<Accordion title="How long does shipping take?" open={false}>
 				{#snippet children()}
 					<div class="space-y-2">
 						<p class="text-body-m text-secondary">Shipping times depend on your location:</p>
-						<ul class="list-disc pl-6 space-y-1">
+						<ul class="list-disc space-y-1 pl-6">
 							<li class="text-body-s text-secondary">Domestic: 3-5 business days</li>
 							<li class="text-body-s text-secondary">International: 7-14 business days</li>
 						</ul>
 					</div>
 				{/snippet}
 			</Accordion>
-			
+
 			<Accordion title="Do you offer customer support?" open={false}>
 				{#snippet children()}
 					<p class="text-body-m text-secondary">
-						Yes! Our customer support team is available 24/7 via email at support@example.com or through our live chat system.
+						Yes! Our customer support team is available 24/7 via email at support@example.com or through our live chat
+						system.
 					</p>
 				{/snippet}
 			</Accordion>
-			
+
 			<Accordion title="Can I track my order?" open={false}>
 				{#snippet children()}
 					<p class="text-body-m text-secondary">
-						Absolutely! Once your order ships, you'll receive a tracking number via email. You can also track your order in the "My Orders" section of your account.
+						Absolutely! Once your order ships, you'll receive a tracking number via email. You can also track your order
+						in the "My Orders" section of your account.
 					</p>
-				{/snippet}
-			</Accordion>
-		</div>
-	{/snippet}
-</Story>
-
-<Story name="Settings Panel Example">
-	{#snippet template()}
-		<div class="space-y-4">
-			<h2 class="text-thick-l text-primary mb-4">Settings</h2>
-			
-			<Accordion title="Account Settings" open={true}>
-				{#snippet children()}
-					<div class="space-y-3">
-						<div class="flex items-center justify-between">
-							<span class="text-body-m text-primary">Email notifications</span>
-							<input type="checkbox" class="rounded" />
-						</div>
-						<div class="flex items-center justify-between">
-							<span class="text-body-m text-primary">Two-factor authentication</span>
-							<input type="checkbox" class="rounded" />
-						</div>
-						<div class="flex items-center justify-between">
-							<span class="text-body-m text-primary">Profile visibility</span>
-							<select class="rounded border border-neutral-200 px-2 py-1">
-								<option>Public</option>
-								<option>Private</option>
-								<option>Friends only</option>
-							</select>
-						</div>
-					</div>
-				{/snippet}
-			</Accordion>
-			
-			<Accordion title="Privacy Settings" open={false}>
-				{#snippet children()}
-					<div class="space-y-3">
-						<div class="flex items-center justify-between">
-							<span class="text-body-m text-primary">Data collection</span>
-							<input type="checkbox" class="rounded" />
-						</div>
-						<div class="flex items-center justify-between">
-							<span class="text-body-m text-primary">Analytics tracking</span>
-							<input type="checkbox" class="rounded" />
-						</div>
-						<div class="flex items-center justify-between">
-							<span class="text-body-m text-primary">Cookie preferences</span>
-							<button class="text-highlight text-body-s">Configure</button>
-						</div>
-					</div>
-				{/snippet}
-			</Accordion>
-			
-			<Accordion title="Notification Settings" open={false}>
-				{#snippet children()}
-					<div class="space-y-3">
-						<div class="flex items-center justify-between">
-							<span class="text-body-m text-primary">Push notifications</span>
-							<input type="checkbox" class="rounded" />
-						</div>
-						<div class="flex items-center justify-between">
-							<span class="text-body-m text-primary">Email digest</span>
-							<select class="rounded border border-neutral-200 px-2 py-1">
-								<option>Daily</option>
-								<option>Weekly</option>
-								<option>Never</option>
-							</select>
-						</div>
-					</div>
 				{/snippet}
 			</Accordion>
 		</div>

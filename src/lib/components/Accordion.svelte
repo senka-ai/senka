@@ -30,7 +30,7 @@
 
 	let headerClasses = $derived.by(() => {
 		const base = 'flex items-center justify-between w-full px-4 py-3 text-left transition-colors duration-200'
-		const interactive = !disabled ? 'cursor-pointer hover:bg-neutral-100' : 'cursor-not-allowed'
+		const interactive = !disabled ? 'cursor-pointer' : 'cursor-not-allowed'
 		const disabledStyles = disabled ? 'opacity-50' : ''
 		return `${base} ${interactive} ${disabledStyles}`
 	})
@@ -62,7 +62,7 @@
 	}
 </script>
 
-<div class="overflow-hidden rounded-lg border border-neutral-200 bg-white {className}" {id} {...restProps}>
+<div class="overflow-hidden {className}" {id} {...restProps}>
 	<button
 		class={headerClasses}
 		onclick={toggle}
@@ -89,7 +89,7 @@
 		aria-labelledby={id ? `${id}-header` : undefined}
 	>
 		{#if isOpen && children}
-			<div class="p-4">
+			<div class="p-4 pt-1">
 				{@render children()}
 			</div>
 		{/if}
