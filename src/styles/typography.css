@@ -60,7 +60,7 @@
 
 .text-body-xs {
 	font-size: 0.625rem; /* 10px */
-	font-weight: 500;
+	font-weight: 400;
 	line-height: 1.4;
 }
 
@@ -91,7 +91,7 @@
 
 .text-slim-xs {
 	font-size: 0.625rem; /* 10px */
-	font-weight: 500;
+	font-weight: 300;
 	line-height: 1.4;
 }
 
@@ -122,7 +122,7 @@
 
 .text-thick-xs {
 	font-size: 0.625rem; /* 10px */
-	font-weight: 500;
+	font-weight: 600;
 	line-height: 1.4;
 }
 

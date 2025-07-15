@@ -10,6 +10,7 @@ export { default as RadioButton } from './components/RadioButton.svelte'
 export { default as Toggle } from './components/Toggle.svelte'
 export { default as TextArea } from './components/TextArea.svelte'
 export { default as Dropdown } from './components/Dropdown.svelte'
+export { default as TabBar } from './components/TabBar.svelte'
 
 // Theme Management (Runes-based)
 export { getTheme, setTheme, toggleTheme, useTheme } from './theme.svelte'
