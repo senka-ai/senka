@@ -9,3 +9,4 @@ bun.lockb
 src/styles/colors.css
 src/styles/hover-states.css
 src/styles/focus-states.css
+src/styles/typography.css
