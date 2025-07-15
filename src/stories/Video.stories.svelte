@@ -1,0 +1,340 @@
+<script module>
+	import { defineMeta } from '@storybook/addon-svelte-csf'
+	import Video from '../lib/components/Video.svelte'
+
+	const { Story } = defineMeta({
+		title: 'Components/Video',
+		component: Video,
+		args: {
+			src: 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4',
+			aspectRatio: '16:9',
+			controls: true,
+			autoplay: false,
+			muted: false,
+			loop: false,
+			preload: 'metadata',
+			rounded: 'none',
+		},
+		argTypes: {
+			src: {
+				control: { type: 'text' },
+				description: 'Video source URL',
+			},
+			poster: {
+				control: { type: 'text' },
+				description: 'Poster image URL',
+			},
+			width: {
+				control: { type: 'number' },
+				description: 'Video width',
+			},
+			height: {
+				control: { type: 'number' },
+				description: 'Video height',
+			},
+			aspectRatio: {
+				control: { type: 'select' },
+				options: ['square', '16:9', '4:3', '3:2', 'auto'],
+				description: 'Aspect ratio constraint',
+			},
+			controls: {
+				control: { type: 'boolean' },
+				description: 'Show video controls',
+			},
+			autoplay: {
+				control: { type: 'boolean' },
+				description: 'Auto-play video',
+			},
+			muted: {
+				control: { type: 'boolean' },
+				description: 'Mute video',
+			},
+			loop: {
+				control: { type: 'boolean' },
+				description: 'Loop video',
+			},
+			preload: {
+				control: { type: 'select' },
+				options: ['none', 'metadata', 'auto'],
+				description: 'Preload behavior',
+			},
+			placeholder: {
+				control: { type: 'text' },
+				description: 'Placeholder content while loading',
+			},
+			rounded: {
+				control: { type: 'select' },
+				options: ['none', 'sm', 'md', 'lg', 'xl', '2xl', '3xl', 'full'],
+				description: 'Border radius',
+			},
+		},
+	})
+</script>
+
+<Story name="Default">
+	{#snippet template(args)}
+		<div class="w-80">
+			<Video {...args} />
+		</div>
+	{/snippet}
+</Story>
+
+<Story
+	name="With Poster"
+	args={{
+		poster: 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/images/BigBuckBunny.jpg',
+	}}
+>
+	{#snippet template(args)}
+		<div class="w-80">
+			<Video {...args} />
+		</div>
+	{/snippet}
+</Story>
+
+<Story name="Square Aspect Ratio" args={{ aspectRatio: 'square' }}>
+	{#snippet template(args)}
+		<div class="w-80">
+			<Video {...args} />
+		</div>
+	{/snippet}
+</Story>
+
+<Story name="No Controls" args={{ controls: false }}>
+	{#snippet template(args)}
+		<div class="w-80">
+			<Video {...args} />
+		</div>
+	{/snippet}
+</Story>
+
+<Story name="Autoplay Muted" args={{ autoplay: true, muted: true }}>
+	{#snippet template(args)}
+		<div class="w-80">
+			<Video {...args} />
+		</div>
+	{/snippet}
+</Story>
+
+<Story name="Rounded" args={{ rounded: 'lg' }}>
+	{#snippet template(args)}
+		<div class="w-80">
+			<Video {...args} />
+		</div>
+	{/snippet}
+</Story>
+
+<Story name="With Placeholder" args={{ placeholder: 'Loading video...' }}>
+	{#snippet template(args)}
+		<div class="w-80">
+			<Video {...args} />
+		</div>
+	{/snippet}
+</Story>
+
+<Story name="Error State" args={{ src: 'https://invalid-url.com/video.mp4' }}>
+	{#snippet template(args)}
+		<div class="w-80">
+			<Video {...args} />
+		</div>
+	{/snippet}
+</Story>
+
+<Story name="Fixed Size" args={{ width: 400, height: 225 }}>
+	{#snippet template(args)}
+		<Video {...args} />
+	{/snippet}
+</Story>
+
+<Story name="All Aspect Ratios">
+	{#snippet template()}
+		<div class="space-y-6">
+			<div>
+				<h3 class="mb-2 text-neutral-800">Square (1:1)</h3>
+				<div class="w-60">
+					<Video
+						src="https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4"
+						aspectRatio="square"
+						controls={true}
+					/>
+				</div>
+			</div>
+
+			<div>
+				<h3 class="mb-2 text-neutral-800">Video (16:9)</h3>
+				<div class="w-80">
+					<Video
+						src="https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4"
+						aspectRatio="16:9"
+						controls={true}
+					/>
+				</div>
+			</div>
+
+			<div>
+				<h3 class="mb-2 text-neutral-800">Traditional (4:3)</h3>
+				<div class="w-80">
+					<Video
+						src="https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4"
+						aspectRatio="4:3"
+						controls={true}
+					/>
+				</div>
+			</div>
+
+			<div>
+				<h3 class="mb-2 text-neutral-800">Photo (3:2)</h3>
+				<div class="w-80">
+					<Video
+						src="https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4"
+						aspectRatio="3:2"
+						controls={true}
+					/>
+				</div>
+			</div>
+		</div>
+	{/snippet}
+</Story>
+
+<Story name="All Rounded Variants">
+	{#snippet template()}
+		<div class="grid grid-cols-2 gap-4">
+			<div>
+				<h4 class="mb-2 text-neutral-700">None</h4>
+				<div class="w-32">
+					<Video
+						src="https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4"
+						aspectRatio="square"
+						rounded="none"
+						controls={true}
+					/>
+				</div>
+			</div>
+
+			<div>
+				<h4 class="mb-2 text-neutral-700">Small</h4>
+				<div class="w-32">
+					<Video
+						src="https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4"
+						aspectRatio="square"
+						rounded="sm"
+						controls={true}
+					/>
+				</div>
+			</div>
+
+			<div>
+				<h4 class="mb-2 text-neutral-700">Medium</h4>
+				<div class="w-32">
+					<Video
+						src="https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4"
+						aspectRatio="square"
+						rounded="md"
+						controls={true}
+					/>
+				</div>
+			</div>
+
+			<div>
+				<h4 class="mb-2 text-neutral-700">Large</h4>
+				<div class="w-32">
+					<Video
+						src="https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4"
+						aspectRatio="square"
+						rounded="lg"
+						controls={true}
+					/>
+				</div>
+			</div>
+
+			<div>
+				<h4 class="mb-2 text-neutral-700">Extra Large</h4>
+				<div class="w-32">
+					<Video
+						src="https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4"
+						aspectRatio="square"
+						rounded="xl"
+						controls={true}
+					/>
+				</div>
+			</div>
+
+			<div>
+				<h4 class="mb-2 text-neutral-700">2X Large</h4>
+				<div class="w-32">
+					<Video
+						src="https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4"
+						aspectRatio="square"
+						rounded="2xl"
+						controls={true}
+					/>
+				</div>
+			</div>
+		</div>
+	{/snippet}
+</Story>
+
+<Story name="Video Gallery">
+	{#snippet template()}
+		<div class="grid grid-cols-2 gap-4">
+			{#each Array(4) as _, i}
+				<div class="aspect-video">
+					<Video
+						src="https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4"
+						poster="https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/images/BigBuckBunny.jpg"
+						aspectRatio="16:9"
+						rounded="lg"
+						controls={true}
+						placeholder="Loading video..."
+					/>
+				</div>
+			{/each}
+		</div>
+	{/snippet}
+</Story>
+
+<Story name="Interactive Features">
+	{#snippet template()}
+		<div class="space-y-6">
+			<div>
+				<h3 class="mb-2 text-neutral-800">Auto-play with Muted</h3>
+				<div class="w-80">
+					<Video
+						src="https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4"
+						aspectRatio="16:9"
+						autoplay={true}
+						muted={true}
+						loop={true}
+						controls={true}
+					/>
+				</div>
+			</div>
+
+			<div>
+				<h3 class="mb-2 text-neutral-800">Custom Controls (Hidden)</h3>
+				<div class="w-80">
+					<Video
+						src="https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4"
+						poster="https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/images/BigBuckBunny.jpg"
+						aspectRatio="16:9"
+						controls={false}
+						muted={true}
+					/>
+				</div>
+			</div>
+
+			<div>
+				<h3 class="mb-2 text-neutral-800">With Poster Image</h3>
+				<div class="w-80">
+					<Video
+						src="https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4"
+						poster="https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/images/BigBuckBunny.jpg"
+						aspectRatio="16:9"
+						controls={true}
+						preload="none"
+					/>
+				</div>
+			</div>
+		</div>
+	{/snippet}
+</Story>

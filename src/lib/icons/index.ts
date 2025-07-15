@@ -43,6 +43,7 @@ export { default as StarOutlinedIcon } from './StarOutlinedIcon.svelte'
 export { default as StoreIcon } from './StoreIcon.svelte'
 export { default as SuccessIcon } from './SuccessIcon.svelte'
 export { default as WarningIcon } from './WarningIcon.svelte'
+export { default as VideoIcon } from './VideoIcon.svelte'
 
 // Theme icons
 export { default as MoonIcon } from './MoonIcon.svelte'

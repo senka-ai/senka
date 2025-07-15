@@ -45,6 +45,7 @@
 		StarOutlinedIcon,
 		StoreIcon,
 		SuccessIcon,
+		VideoIcon,
 		WarningIcon,
 	} from '../lib/icons'
 
@@ -70,7 +71,7 @@
 
 <Story name="Icon Gallery">
 	{#snippet template(args)}
-		<div class="grid grid-cols-4 md:grid-cols-6 lg:grid-cols-8 gap-2 p-6">
+		<div class="grid grid-cols-4 gap-2 p-6 md:grid-cols-6 lg:grid-cols-8">
 			<div class="flex flex-col items-center gap-2">
 				<AddIcon {...args} />
 				<span class="text-xs text-neutral-600">AddIcon</span>
@@ -248,6 +249,10 @@
 				<span class="text-xs text-neutral-600">SuccessIcon</span>
 			</div>
 			<div class="flex flex-col items-center gap-2">
+				<VideoIcon {...args} />
+				<span class="text-xs text-neutral-600">VideoIcon</span>
+			</div>
+			<div class="flex flex-col items-center gap-2">
 				<WarningIcon {...args} />
 				<span class="text-xs text-neutral-600">WarningIcon</span>
 			</div>
@@ -259,28 +264,28 @@
 	{#snippet template()}
 		<div class="space-y-2">
 			<div class="flex items-center gap-4">
-				<span class="text-sm font-medium w-16">16px:</span>
+				<span class="w-16 text-sm font-medium">16px:</span>
 				<AddIcon size={16} class="text-neutral-700" />
 				<SearchIcon size={16} class="text-neutral-700" />
 				<SettingsIcon size={16} class="text-neutral-700" />
 				<ProfileIcon size={16} class="text-neutral-700" />
 			</div>
 			<div class="flex items-center gap-4">
-				<span class="text-sm font-medium w-16">24px:</span>
+				<span class="w-16 text-sm font-medium">24px:</span>
 				<AddIcon size={24} class="text-neutral-700" />
 				<SearchIcon size={24} class="text-neutral-700" />
 				<SettingsIcon size={24} class="text-neutral-700" />
 				<ProfileIcon size={24} class="text-neutral-700" />
 			</div>
 			<div class="flex items-center gap-4">
-				<span class="text-sm font-medium w-16">32px:</span>
+				<span class="w-16 text-sm font-medium">32px:</span>
 				<AddIcon size={32} class="text-neutral-700" />
 				<SearchIcon size={32} class="text-neutral-700" />
 				<SettingsIcon size={32} class="text-neutral-700" />
 				<ProfileIcon size={32} class="text-neutral-700" />
 			</div>
 			<div class="flex items-center gap-4">
-				<span class="text-sm font-medium w-16">48px:</span>
+				<span class="w-16 text-sm font-medium">48px:</span>
 				<AddIcon size={48} class="text-neutral-700" />
 				<SearchIcon size={48} class="text-neutral-700" />
 				<SettingsIcon size={48} class="text-neutral-700" />
@@ -294,35 +299,35 @@
 	{#snippet template()}
 		<div class="space-y-2">
 			<div class="flex items-center gap-4">
-				<span class="text-sm font-medium w-20">Neutral:</span>
+				<span class="w-20 text-sm font-medium">Neutral:</span>
 				<AddIcon size={24} class="text-neutral-500" />
 				<SearchIcon size={24} class="text-neutral-500" />
 				<SettingsIcon size={24} class="text-neutral-500" />
 				<ProfileIcon size={24} class="text-neutral-500" />
 			</div>
 			<div class="flex items-center gap-4">
-				<span class="text-sm font-medium w-20">Highlight:</span>
+				<span class="w-20 text-sm font-medium">Highlight:</span>
 				<AddIcon size={24} class="text-highlight-400" />
 				<SearchIcon size={24} class="text-highlight-400" />
 				<SettingsIcon size={24} class="text-highlight-400" />
 				<ProfileIcon size={24} class="text-highlight-400" />
 			</div>
 			<div class="flex items-center gap-4">
-				<span class="text-sm font-medium w-20">Success:</span>
+				<span class="w-20 text-sm font-medium">Success:</span>
 				<AddIcon size={24} class="text-success-200" />
 				<SearchIcon size={24} class="text-success-200" />
 				<SettingsIcon size={24} class="text-success-200" />
 				<ProfileIcon size={24} class="text-success-200" />
 			</div>
 			<div class="flex items-center gap-4">
-				<span class="text-sm font-medium w-20">Warning:</span>
+				<span class="w-20 text-sm font-medium">Warning:</span>
 				<AddIcon size={24} class="text-warning-200" />
 				<SearchIcon size={24} class="text-warning-200" />
 				<SettingsIcon size={24} class="text-warning-200" />
 				<ProfileIcon size={24} class="text-warning-200" />
 			</div>
 			<div class="flex items-center gap-4">
-				<span class="text-sm font-medium w-20">Error:</span>
+				<span class="w-20 text-sm font-medium">Error:</span>
 				<AddIcon size={24} class="text-error-200" />
 				<SearchIcon size={24} class="text-error-200" />
 				<SettingsIcon size={24} class="text-error-200" />
@@ -339,15 +344,15 @@
 				<ArrowUpIcon size={32} class="text-neutral-700" />
 				<span class="text-xs text-neutral-600">Up</span>
 			</div>
-			<div class="flex flex-col items-center gap-2 mt-2">
+			<div class="mt-2 flex flex-col items-center gap-2">
 				<ArrowDownIcon size={32} class="text-neutral-700" />
 				<span class="text-xs text-neutral-600">Down</span>
 			</div>
-			<div class="flex flex-col items-center gap-2 mt-2">
+			<div class="mt-2 flex flex-col items-center gap-2">
 				<ArrowLeftIcon size={32} class="text-neutral-700" />
 				<span class="text-xs text-neutral-600">Left</span>
 			</div>
-			<div class="flex flex-col items-center gap-2 mt-2">
+			<div class="mt-2 flex flex-col items-center gap-2">
 				<ArrowRightIcon size={32} class="text-neutral-700" />
 				<span class="text-xs text-neutral-600">Right</span>
 			</div>
