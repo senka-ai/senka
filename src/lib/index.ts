@@ -11,6 +11,7 @@ export { default as Toggle } from './components/Toggle.svelte'
 export { default as TextArea } from './components/TextArea.svelte'
 export { default as Dropdown } from './components/Dropdown.svelte'
 export { default as TabBar } from './components/TabBar.svelte'
+export { default as Image } from './components/Image.svelte'
 
 // Theme Management (Runes-based)
 export { getTheme, setTheme, toggleTheme, useTheme } from './theme.svelte'
