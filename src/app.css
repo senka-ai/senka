@@ -101,6 +101,28 @@ body {
 		background-color 0.2s ease;
 }
 
+/* Card components - these are temporary and should be removed in the future when a card component is added */
+.card {
+	background: var(--color-surface-default);
+	border-radius: 12px;
+	padding: 1.5rem;
+	border: 1px solid var(--color-border-subtle);
+}
+
+.card-elevated {
+	background: var(--color-surface-elevated);
+	border-radius: 12px;
+	padding: 1.5rem;
+	box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.card-default {
+	background: var(--color-surface-default);
+	border-radius: 12px;
+	padding: 1.5rem;
+	border: 1px solid var(--color-border-subtle);
+}
+
 /* Mobile scrolling behavior - prevent whole page scroll */
 @media (max-width: 767px) {
 	html,
