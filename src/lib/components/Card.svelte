@@ -46,26 +46,28 @@
 	}: Props = $props()
 
 	let cardClasses = $derived.by(() => {
-		const base = 'bg-white border border-neutral-200 transition-all duration-200'
-		const interactive = onclick && !disabled ? 'cursor-pointer hover:shadow-md hover:border-neutral-300' : ''
+		const base = 'overflow-hidden transition-all duration-200'
+		const interactive = onclick && !disabled ? 'cursor-pointer hover:shadow-md' : ''
 		const disabledStyles = disabled ? 'opacity-50 cursor-not-allowed' : ''
 		
 		const variants = {
-			default: 'rounded-2xl p-6',
-			compact: 'rounded-xl p-4'
+			default: 'rounded-2xl',
+			compact: 'rounded-xl'
 		}
 
 		return `${base} ${variants[variant]} ${interactive} ${disabledStyles} ${className}`
 	})
 
-	let imageClasses = $derived.by(() => {
-		return variant === 'default' ? 'rounded-xl mb-4' : 'rounded-lg mb-3'
-	})
-
 	let placeholderClasses = $derived.by(() => {
 		const base = 'flex items-center justify-center bg-neutral-100 text-neutral-400'
-		const size = variant === 'default' ? 'h-40 rounded-xl mb-4' : 'h-32 rounded-lg mb-3'
+		const size = variant === 'default' ? 'h-40' : 'h-32'
 		return `${base} ${size}`
+	})
+
+	let contentClasses = $derived.by(() => {
+		const base = 'bg-neutral-100 flex-1'
+		const padding = variant === 'default' ? 'p-6' : 'p-4'
+		return `${base} ${padding}`
 	})
 
 	function handleCardClick() {
@@ -91,7 +93,7 @@
 <div class={cardClasses} {id} onclick={handleCardClick} {...restProps}>
 	<!-- Image or Icon Section -->
 	{#if image}
-		<img src={image} alt={imageAlt} class="w-full h-40 object-cover {imageClasses}" />
+		<img src={image} alt={imageAlt} class="w-full h-40 object-cover" />
 	{:else if children}
 		<div class={placeholderClasses}>
 			{@render children()}
@@ -103,7 +105,7 @@
 	{/if}
 
 	<!-- Content Section -->
-	<div class="flex-1">
+	<div class={contentClasses}>
 		<!-- Header with Title and Favorite -->
 		<div class="flex items-start justify-between mb-2">
 			<div class="flex-1 min-w-0">
@@ -144,6 +146,7 @@
 					<Button
 						variant="secondary"
 						size="medium"
+						fullWidth={true}
 						onclick={() => handleButtonClick()}
 						disabled={disabled}
 					>

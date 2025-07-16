@@ -1,7 +1,7 @@
 <script module>
 	import { defineMeta } from '@storybook/addon-svelte-csf'
 	import CardHorizontal from '../lib/components/CardHorizontal.svelte'
-	import { PersonIcon, HeartFilledIcon, ChatIcon } from '../lib/icons'
+	import { ChatIcon } from '../lib/icons'
 
 	const { Story } = defineMeta({
 		title: 'Components/CardHorizontal',

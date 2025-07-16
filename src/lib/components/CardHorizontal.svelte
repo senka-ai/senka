@@ -38,23 +38,30 @@
 	}: Props = $props()
 
 	let cardClasses = $derived.by(() => {
-		const base = 'flex items-center gap-3 p-4 bg-white border border-neutral-200 rounded-xl transition-all duration-200'
-		const interactive = onclick && !disabled ? 'cursor-pointer hover:bg-neutral-50 hover:border-neutral-300' : ''
+		const base = 'flex items-stretch overflow-hidden rounded-xl transition-all duration-200 h-18'
+		const interactive = onclick && !disabled ? 'cursor-pointer hover:shadow-md' : ''
 		const disabledStyles = disabled ? 'opacity-50 cursor-not-allowed' : ''
 		
 		return `${base} ${interactive} ${disabledStyles} ${className}`
 	})
 
 	let iconClasses = $derived.by(() => {
-		const base = 'flex-shrink-0 flex items-center justify-center'
-		const size = 'h-12 w-12'
+		const base = 'flex-shrink-0 w-20 flex items-center justify-center'
+		
+		if (image) {
+			return base
+		}
+		
 		const background = iconType === 'image' ? 'bg-neutral-100 text-neutral-400' : 
 						  iconType === 'avatar' ? 'bg-highlight-light text-white' :
-						  iconType === 'heart' ? 'bg-white' :
+						  iconType === 'heart' ? 'bg-neutral-100' :
 						  'bg-neutral-100 text-neutral-400'
-		const borderRadius = 'rounded-lg'
 		
-		return `${base} ${size} ${background} ${borderRadius}`
+		return `${base} ${background}`
+	})
+
+	let contentClasses = $derived.by(() => {
+		return 'bg-neutral-100 flex-1 min-w-0 p-4 flex flex-col justify-center'
 	})
 
 	function handleCardClick() {
@@ -74,7 +81,7 @@
 	<!-- Left Icon/Image Section -->
 	<div class={iconClasses}>
 		{#if image}
-			<img src={image} alt={imageAlt} class="w-full h-full object-cover rounded-lg" />
+			<img src={image} alt={imageAlt} class="w-full h-full object-cover" />
 		{:else if children}
 			{@render children()}
 		{:else if iconType === 'avatar'}
@@ -87,7 +94,7 @@
 	</div>
 
 	<!-- Content Section -->
-	<div class="flex-1 min-w-0">
+	<div class={contentClasses}>
 		<h3 class="text-body-m text-primary font-medium leading-tight">
 			{title}
 		</h3>
@@ -100,7 +107,7 @@
 
 	<!-- Right Action Section -->
 	{#if showAction}
-		<div class="flex-shrink-0">
+		<div class="flex-shrink-0 bg-neutral-100 p-4 flex items-center">
 			{#if actionType === 'button'}
 				<Button
 					variant="secondary"
