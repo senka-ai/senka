@@ -17,6 +17,8 @@ export { default as Tag } from './components/Tag.svelte'
 export { default as ListTitle } from './components/ListTitle.svelte'
 export { default as ListItem } from './components/ListItem.svelte'
 export { default as Accordion } from './components/Accordion.svelte'
+export { default as Card } from './components/Card.svelte'
+export { default as CardHorizontal } from './components/CardHorizontal.svelte'
 
 // Theme Management (Runes-based)
 export { getTheme, setTheme, toggleTheme, useTheme } from './theme.svelte'
