@@ -62,9 +62,6 @@
 		return `${base} ${variants[variant]} ${interactive} ${disabledStyles} ${className}`
 	})
 
-	let placeholderSize = $derived.by((): 'small' | 'medium' | 'large' => {
-		return 'medium'
-	})
 
 	let contentClasses = $derived.by(() => {
 		const base = 'bg-neutral-100 flex-1'
@@ -102,7 +99,7 @@
 		</div>
 	{:else}
 		<div class="relative {variant === 'default' ? 'h-40' : 'h-32'}">
-			<ImagePlaceholder variant="default" size={placeholderSize} />
+			<ImagePlaceholder variant="default" />
 		</div>
 	{/if}
 

@@ -115,7 +115,7 @@
 				<img src={placeholder} alt="" class="h-full w-full object-cover opacity-50" />
 			</div>
 		{:else}
-			<ImagePlaceholder variant="default" size="medium" message={placeholder} />
+			<ImagePlaceholder variant="default" message={placeholder} />
 		{/if}
 	{/if}
 
@@ -131,10 +131,10 @@
 			onerror={handleError}
 		/>
 	{:else}
-		<ImagePlaceholder variant="error" size="medium" message="Failed to load image" />
+		<ImagePlaceholder variant="error" message="Failed to load image" />
 	{/if}
 
 	{#if !imageLoaded && !imageError && !placeholder}
-		<ImagePlaceholder variant="loading" size="medium" />
+		<ImagePlaceholder variant="loading" />
 	{/if}
 </div>

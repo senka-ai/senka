@@ -87,7 +87,7 @@
 			{@render children()}
 		{:else}
 			<div class="relative h-full w-full">
-				<ImagePlaceholder variant="default" size="small" />
+				<ImagePlaceholder variant="default" />
 			</div>
 		{/if}
 	</div>

@@ -133,7 +133,7 @@
 				<img src={placeholder} alt="" class="h-full w-full object-cover opacity-50" />
 			</div>
 		{:else}
-			<VideoPlaceholder variant="default" size="medium" message={placeholder} />
+			<VideoPlaceholder variant="default" message={placeholder} />
 		{/if}
 	{/if}
 
@@ -159,11 +159,11 @@
 			Your browser does not support the video tag.
 		</video>
 	{:else}
-		<VideoPlaceholder variant="error" size="medium" message="Failed to load video" />
+		<VideoPlaceholder variant="error" message="Failed to load video" />
 	{/if}
 
 	{#if !videoLoaded && !videoError && !placeholder}
-		<VideoPlaceholder variant="loading" size="medium" />
+		<VideoPlaceholder variant="loading" />
 	{/if}
 
 	{#if !controls && !isPlaying && videoLoaded}
