@@ -58,29 +58,31 @@
 	{/snippet}
 </Story>
 
-<Story name="Large Number" args={{ type: 'number', value: 150, max: 99 }}>
+<Story name="Large Number" args={{ type: 'number', value: 99, max: 99 }}>
 	{#snippet template(args)}
 		<Badge {...args} />
 	{/snippet}
 </Story>
 
 <Story name="All Variants">
-	<div class="space-y-4">
-		<div class="flex items-center gap-4">
-			<Badge type="number" value={5} />
-			<Badge type="icon" />
-			<Badge type="dot" />
+	{#snippet template()}
+		<div class="space-y-4">
+			<div class="flex items-center gap-4">
+				<Badge type="number" value={5} />
+				<Badge type="icon" />
+				<Badge type="dot" />
+			</div>
+			<div class="flex items-center gap-4">
+				<Badge type="number" value={5} variant="default" />
+				<Badge type="number" value={5} variant="success" />
+				<Badge type="number" value={5} variant="warning" />
+				<Badge type="number" value={5} variant="error" />
+			</div>
+			<div class="flex items-center gap-4">
+				<Badge type="number" value={5} size="small" />
+				<Badge type="number" value={5} size="medium" />
+				<Badge type="number" value={5} size="large" />
+			</div>
 		</div>
-		<div class="flex items-center gap-4">
-			<Badge type="number" value={5} variant="default" />
-			<Badge type="number" value={5} variant="success" />
-			<Badge type="number" value={5} variant="warning" />
-			<Badge type="number" value={5} variant="error" />
-		</div>
-		<div class="flex items-center gap-4">
-			<Badge type="number" value={5} size="small" />
-			<Badge type="number" value={5} size="medium" />
-			<Badge type="number" value={5} size="large" />
-		</div>
-	</div>
+	{/snippet}
 </Story>
