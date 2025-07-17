@@ -1,5 +1,6 @@
 <script lang="ts">
 	import { VideoIcon } from '../icons'
+	import VideoPlaceholder from './VideoPlaceholder.svelte'
 
 	interface Props {
 		src: string
@@ -51,7 +52,7 @@
 	let currentSrc = $state(src)
 
 	let containerClasses = $derived.by(() => {
-		const base = 'relative overflow-hidden bg-neutral-100'
+		const base = 'relative overflow-hidden bg-highlight-50'
 
 		const aspectRatios = {
 			square: 'aspect-square',
@@ -127,15 +128,13 @@
 
 <div class={containerClasses}>
 	{#if placeholder && !videoLoaded && !videoError}
-		<div class="absolute inset-0 flex items-center justify-center bg-neutral-100">
-			{#if placeholder.startsWith('http') || placeholder.startsWith('data:') || placeholder.startsWith('/')}
+		{#if placeholder.startsWith('http') || placeholder.startsWith('data:') || placeholder.startsWith('/')}
+			<div class="bg-highlight-50 absolute inset-0 flex items-center justify-center">
 				<img src={placeholder} alt="" class="h-full w-full object-cover opacity-50" />
-			{:else}
-				<div class="text-body-s flex items-center justify-center text-neutral-400">
-					{placeholder}
-				</div>
-			{/if}
-		</div>
+			</div>
+		{:else}
+			<VideoPlaceholder variant="default" size="medium" message={placeholder} />
+		{/if}
 	{/if}
 
 	{#if !videoError}
@@ -160,20 +159,11 @@
 			Your browser does not support the video tag.
 		</video>
 	{:else}
-		<div class="absolute inset-0 flex items-center justify-center bg-neutral-100 text-neutral-500">
-			<div class="flex flex-col items-center gap-2">
-				<VideoIcon class="h-16 w-16" />
-				<span class="text-body-xs">Failed to load video</span>
-			</div>
-		</div>
+		<VideoPlaceholder variant="error" size="medium" message="Failed to load video" />
 	{/if}
 
 	{#if !videoLoaded && !videoError && !placeholder}
-		<div class="absolute inset-0 flex items-center justify-center bg-neutral-100">
-			<div class="animate-pulse">
-				<VideoIcon class="h-16 w-16 text-neutral-300" />
-			</div>
-		</div>
+		<VideoPlaceholder variant="loading" size="medium" />
 	{/if}
 
 	{#if !controls && !isPlaying && videoLoaded}

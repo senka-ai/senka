@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { ImageIcon } from '../icons'
+	import ImagePlaceholder from './ImagePlaceholder.svelte'
 
 	interface Props {
 		src: string
@@ -38,7 +38,7 @@
 	let currentSrc = $state(src)
 
 	let containerClasses = $derived.by(() => {
-		const base = 'relative overflow-hidden bg-neutral-100'
+		const base = 'relative overflow-hidden bg-highlight-50'
 
 		const aspectRatios = {
 			square: 'aspect-square',
@@ -110,15 +110,13 @@
 
 <div class={containerClasses}>
 	{#if placeholder && !imageLoaded && !imageError}
-		<div class="absolute inset-0 flex items-center justify-center bg-neutral-100">
-			{#if placeholder.startsWith('http') || placeholder.startsWith('data:') || placeholder.startsWith('/')}
+		{#if placeholder.startsWith('http') || placeholder.startsWith('data:') || placeholder.startsWith('/')}
+			<div class="bg-highlight-50 absolute inset-0 flex items-center justify-center">
 				<img src={placeholder} alt="" class="h-full w-full object-cover opacity-50" />
-			{:else}
-				<div class="text-body-s flex items-center justify-center text-neutral-400">
-					{placeholder}
-				</div>
-			{/if}
-		</div>
+			</div>
+		{:else}
+			<ImagePlaceholder variant="default" size="medium" message={placeholder} />
+		{/if}
 	{/if}
 
 	{#if !imageError}
@@ -133,19 +131,10 @@
 			onerror={handleError}
 		/>
 	{:else}
-		<div class="absolute inset-0 flex items-center justify-center bg-neutral-100 text-neutral-500">
-			<div class="flex flex-col items-center gap-2">
-				<ImageIcon class="h-10 w-10" />
-				<span class="text-body-xs">Failed to load image</span>
-			</div>
-		</div>
+		<ImagePlaceholder variant="error" size="medium" message="Failed to load image" />
 	{/if}
 
 	{#if !imageLoaded && !imageError && !placeholder}
-		<div class="absolute inset-0 flex items-center justify-center bg-neutral-100">
-			<div class="animate-pulse">
-				<ImageIcon class="h-10 w-10 text-neutral-300" />
-			</div>
-		</div>
+		<ImagePlaceholder variant="loading" size="medium" />
 	{/if}
 </div>

@@ -1,6 +1,7 @@
 <script lang="ts">
 	import Button from './Button.svelte'
-	import { ArrowRightIcon, ImageIcon } from '../icons'
+	import ImagePlaceholder from './ImagePlaceholder.svelte'
+	import { ArrowRightIcon } from '../icons'
 
 	interface Props {
 		title: string
@@ -49,19 +50,17 @@
 		const base = 'overflow-hidden transition-all duration-200'
 		const interactive = onclick && !disabled ? 'cursor-pointer hover:shadow-md' : ''
 		const disabledStyles = disabled ? 'opacity-50 cursor-not-allowed' : ''
-		
+
 		const variants = {
 			default: 'rounded-2xl',
-			compact: 'rounded-xl'
+			compact: 'rounded-xl',
 		}
 
 		return `${base} ${variants[variant]} ${interactive} ${disabledStyles} ${className}`
 	})
 
-	let placeholderClasses = $derived.by(() => {
-		const base = 'flex items-center justify-center bg-neutral-100 text-neutral-400'
-		const size = variant === 'default' ? 'h-40' : 'h-32'
-		return `${base} ${size}`
+	let placeholderSize = $derived.by((): 'small' | 'medium' | 'large' => {
+		return variant === 'default' ? 'large' : 'medium'
 	})
 
 	let contentClasses = $derived.by(() => {
@@ -93,23 +92,23 @@
 <div class={cardClasses} {id} onclick={handleCardClick} {...restProps}>
 	<!-- Image or Icon Section -->
 	{#if image}
-		<img src={image} alt={imageAlt} class="w-full h-40 object-cover" />
+		<img src={image} alt={imageAlt} class="h-40 w-full object-cover" />
 	{:else if children}
-		<div class={placeholderClasses}>
+		<div class="bg-highlight-50 flex items-center justify-center {variant === 'default' ? 'h-40' : 'h-32'}">
 			{@render children()}
 		</div>
 	{:else}
-		<div class={placeholderClasses}>
-			<ImageIcon class="h-8 w-8" />
+		<div class="relative {variant === 'default' ? 'h-40' : 'h-32'}">
+			<ImagePlaceholder variant="default" size={placeholderSize} />
 		</div>
 	{/if}
 
 	<!-- Content Section -->
 	<div class={contentClasses}>
 		<!-- Header with Title and Favorite -->
-		<div class="flex items-start justify-between mb-2">
-			<div class="flex-1 min-w-0">
-				<h3 class="text-heading-s text-primary font-semibold leading-tight">
+		<div class="mb-2 flex items-start justify-between">
+			<div class="min-w-0 flex-1">
+				<h3 class="text-heading-s text-primary leading-tight font-semibold">
 					{title}
 				</h3>
 				{#if subtitle}
@@ -118,15 +117,20 @@
 					</p>
 				{/if}
 			</div>
-			
+
 			{#if onFavoriteClick}
 				<button
-					class="ml-2 p-1 text-neutral-400 hover:text-error transition-colors duration-200"
+					class="hover:text-error ml-2 p-1 text-neutral-400 transition-colors duration-200"
 					onclick={handleFavoriteClick}
 					aria-label={favorite ? 'Remove from favorites' : 'Add to favorites'}
 				>
 					<svg class="h-5 w-5" fill={favorite ? 'currentColor' : 'none'} viewBox="0 0 24 24" stroke="currentColor">
-						<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
+						<path
+							stroke-linecap="round"
+							stroke-linejoin="round"
+							stroke-width="2"
+							d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"
+						/>
 					</svg>
 				</button>
 			{/if}
@@ -143,20 +147,14 @@
 		{#if showAction}
 			<div class="flex items-center justify-between">
 				{#if actionType === 'button'}
-					<Button
-						variant="secondary"
-						size="medium"
-						fullWidth={true}
-						onclick={() => handleButtonClick()}
-						disabled={disabled}
-					>
+					<Button variant="secondary" size="medium" fullWidth={true} onclick={() => handleButtonClick()} {disabled}>
 						{#snippet children()}{buttonText}{/snippet}
 					</Button>
 				{:else if actionType === 'arrow'}
 					<button
-						class="flex items-center text-highlight hover:text-highlight-hover transition-colors duration-200"
+						class="text-highlight hover:text-highlight-hover flex items-center transition-colors duration-200"
 						onclick={() => handleButtonClick()}
-						disabled={disabled}
+						{disabled}
 					>
 						<ArrowRightIcon class="h-5 w-5" />
 					</button>

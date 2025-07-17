@@ -19,6 +19,8 @@ export { default as ListItem } from './components/ListItem.svelte'
 export { default as Accordion } from './components/Accordion.svelte'
 export { default as Card } from './components/Card.svelte'
 export { default as CardHorizontal } from './components/CardHorizontal.svelte'
+export { default as ImagePlaceholder } from './components/ImagePlaceholder.svelte'
+export { default as VideoPlaceholder } from './components/VideoPlaceholder.svelte'
 
 // Theme Management (Runes-based)
 export { getTheme, setTheme, toggleTheme, useTheme } from './theme.svelte'

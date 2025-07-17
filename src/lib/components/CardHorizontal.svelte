@@ -1,6 +1,7 @@
 <script lang="ts">
 	import Button from './Button.svelte'
-	import { ArrowRightIcon, ImageIcon, PersonIcon, HeartFilledIcon } from '../icons'
+	import ImagePlaceholder from './ImagePlaceholder.svelte'
+	import { ArrowRightIcon, PersonIcon, HeartFilledIcon } from '../icons'
 
 	interface Props {
 		title: string
@@ -41,22 +42,26 @@
 		const base = 'flex items-stretch overflow-hidden rounded-xl transition-all duration-200 h-18'
 		const interactive = onclick && !disabled ? 'cursor-pointer hover:shadow-md' : ''
 		const disabledStyles = disabled ? 'opacity-50 cursor-not-allowed' : ''
-		
+
 		return `${base} ${interactive} ${disabledStyles} ${className}`
 	})
 
 	let iconClasses = $derived.by(() => {
 		const base = 'flex-shrink-0 w-20 flex items-center justify-center'
-		
+
 		if (image) {
 			return base
 		}
-		
-		const background = iconType === 'image' ? 'bg-neutral-100 text-neutral-400' : 
-						  iconType === 'avatar' ? 'bg-highlight-light text-white' :
-						  iconType === 'heart' ? 'bg-neutral-100' :
-						  'bg-neutral-100 text-neutral-400'
-		
+
+		const background =
+			iconType === 'image'
+				? 'bg-highlight-50'
+				: iconType === 'avatar'
+					? 'bg-highlight-light text-white'
+					: iconType === 'heart'
+						? 'bg-highlight-50'
+						: 'bg-highlight-50'
+
 		return `${base} ${background}`
 	})
 
@@ -81,21 +86,23 @@
 	<!-- Left Icon/Image Section -->
 	<div class={iconClasses}>
 		{#if image}
-			<img src={image} alt={imageAlt} class="w-full h-full object-cover" />
+			<img src={image} alt={imageAlt} class="h-full w-full object-cover" />
 		{:else if children}
 			{@render children()}
 		{:else if iconType === 'avatar'}
 			<PersonIcon class="h-6 w-6" />
 		{:else if iconType === 'heart'}
-			<HeartFilledIcon class="h-6 w-6 text-highlight" />
+			<HeartFilledIcon class="text-highlight h-6 w-6" />
 		{:else}
-			<ImageIcon class="h-6 w-6" />
+			<div class="relative h-full w-full">
+				<ImagePlaceholder variant="default" size="small" />
+			</div>
 		{/if}
 	</div>
 
 	<!-- Content Section -->
 	<div class={contentClasses}>
-		<h3 class="text-body-m text-primary font-medium leading-tight">
+		<h3 class="text-body-m text-primary leading-tight font-medium">
 			{title}
 		</h3>
 		{#if subtitle}
@@ -107,21 +114,16 @@
 
 	<!-- Right Action Section -->
 	{#if showAction}
-		<div class="flex-shrink-0 bg-neutral-100 p-4 flex items-center">
+		<div class="flex flex-shrink-0 items-center bg-neutral-100 p-4">
 			{#if actionType === 'button'}
-				<Button
-					variant="secondary"
-					size="medium"
-					onclick={() => handleButtonClick()}
-					disabled={disabled}
-				>
+				<Button variant="secondary" size="medium" onclick={() => handleButtonClick()} {disabled}>
 					{#snippet children()}{buttonText}{/snippet}
 				</Button>
 			{:else if actionType === 'arrow'}
 				<button
-					class="flex items-center justify-center p-2 text-neutral-400 hover:text-neutral-600 transition-colors duration-200"
+					class="flex items-center justify-center p-2 text-neutral-400 transition-colors duration-200 hover:text-neutral-600"
 					onclick={() => handleButtonClick()}
-					disabled={disabled}
+					{disabled}
 					aria-label="View details"
 				>
 					<ArrowRightIcon class="h-5 w-5" />
