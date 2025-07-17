@@ -8,9 +8,11 @@
 		showChevron?: boolean
 		clickable?: boolean
 		disabled?: boolean
+		compact?: boolean
 		class?: string
 		id?: string
 		onclick?: () => void
+		children?: any
 	}
 
 	let {
@@ -22,18 +24,21 @@
 		showChevron = false,
 		clickable = false,
 		disabled = false,
+		compact = false,
 		class: className = '',
 		id,
 		onclick,
+		children,
 		...restProps
 	}: Props = $props()
 
 	let itemClasses = $derived.by(() => {
-		const base = 'flex items-center gap-3 px-4 py-3 bg-background transition-colors duration-200'
+		const base = 'flex items-center gap-3 px-4 bg-background transition-colors duration-200'
+		const padding = compact ? 'py-2' : 'py-3'
 		const width = 'w-full text-left'
 		const interactive = (clickable || onclick) && !disabled ? 'cursor-pointer hover:bg-surface' : ''
 		const disabledStyles = disabled ? 'opacity-50 cursor-not-allowed' : ''
-		return `${base} ${width} ${interactive} ${disabledStyles} ${className}`
+		return `${base} ${padding} ${width} ${interactive} ${disabledStyles} ${className}`
 	})
 
 	function handleClick() {
