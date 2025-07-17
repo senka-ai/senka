@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { ProfileIcon } from '../icons'
+	import AvatarPlaceholder from './AvatarPlaceholder.svelte'
 
 	interface Props {
 		src?: string
@@ -13,7 +13,7 @@
 	let { src, alt = '', size = 'medium', initials, status, class: className = '' }: Props = $props()
 
 	let avatarClasses = $derived.by(() => {
-		const base = 'relative inline-flex items-center justify-center bg-neutral-200 text-neutral-600 font-medium'
+		const base = 'relative inline-flex items-center justify-center bg-highlight-50 text-neutral-600 font-medium'
 
 		const sizes = {
 			xs: 'h-8 w-8 text-body-s rounded-xl',
@@ -88,7 +88,7 @@
 		</span>
 	{:else}
 		<!-- Generic person SVG fallback -->
-		<ProfileIcon class="h-full w-full {imageBorderRadius}" />
+		<AvatarPlaceholder {size} />
 	{/if}
 
 	{#if status}
