@@ -141,7 +141,7 @@
 
 <Story name="All Variants">
 	{#snippet template()}
-		<div class="space-y-0 overflow-hidden rounded-lg border border-neutral-200 bg-white">
+		<div class="space-y-2">
 			<ListItem title="Basic Item" />
 
 			<ListItem title="With Description" description="Additional information goes here" />
@@ -187,7 +187,7 @@
 			<!-- Contact List -->
 			<div>
 				<h3 class="text-thick-m text-primary mb-2">Contacts</h3>
-				<div class="overflow-hidden rounded-lg border border-neutral-200 bg-white">
+				<div class="space-y-2">
 					<ListItem title="Sarah Johnson" description="sarah@example.com" clickable={true} showChevron={true}>
 						{#snippet leftIcon()}
 							<Avatar size="small" alt="Sarah Johnson" initials="SJ" />
@@ -205,7 +205,7 @@
 			<!-- Settings List -->
 			<div>
 				<h3 class="text-thick-m text-primary mb-2">Settings</h3>
-				<div class="overflow-hidden rounded-lg border border-neutral-200 bg-white">
+				<div class="space-y-2">
 					<ListItem title="Push Notifications" description="Receive alerts and updates">
 						{#snippet rightControl()}
 							<Toggle />
@@ -230,7 +230,7 @@
 			<!-- Tasks List -->
 			<div>
 				<h3 class="text-thick-m text-primary mb-2">Tasks</h3>
-				<div class="overflow-hidden rounded-lg border border-neutral-200 bg-white">
+				<div class="space-y-2">
 					<ListItem title="Complete project proposal" description="Due today at 5 PM">
 						{#snippet rightControl()}
 							<Checkbox />

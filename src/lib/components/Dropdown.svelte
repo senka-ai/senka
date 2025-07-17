@@ -63,7 +63,7 @@
 
 	let buttonClasses = $derived.by(() => {
 		const base =
-			'w-full px-3.25 py-3.25 text-slim-m bg-neutral-50 border rounded-xl transition-all duration-200 focus:outline-none focus:ring-offset-0 flex items-center justify-between'
+			'w-full px-3.25 py-3.25 text-slim-m bg-surface border rounded-xl transition-all duration-200 focus:outline-none focus:ring-offset-0 flex items-center justify-between'
 
 		const states = {
 			default: 'border-neutral-400 text-neutral-900 focus:border-highlight focus:ring-1 focus:ring-highlight-200',
@@ -89,7 +89,7 @@
 
 	let menuClasses = $derived.by(() => {
 		const base =
-			'absolute z-50 w-full mt-1 bg-white border border-neutral-300 rounded-xl shadow-lg max-h-60 overflow-y-auto'
+			'absolute z-50 w-full mt-1 bg-surface-elevated border border-default rounded-xl shadow-lg max-h-60 overflow-y-auto'
 		const visibility = isOpen ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-1 pointer-events-none'
 		return `${base} ${visibility} transition-all duration-200`
 	})
@@ -216,7 +216,7 @@
 				<button
 					type="button"
 					class={`text-slim-m w-full px-3.25 py-2.5 text-left transition-colors duration-150 ${
-						option.disabled ? 'cursor-not-allowed text-neutral-400' : 'text-neutral-900 hover:bg-neutral-100'
+						option.disabled ? 'cursor-not-allowed text-muted' : 'text-primary hover:bg-surface-hover'
 					} ${option.value === value ? 'bg-highlight-50 text-highlight-700' : ''}`}
 					disabled={option.disabled}
 					role="option"

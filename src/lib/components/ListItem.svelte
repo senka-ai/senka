@@ -29,9 +29,9 @@
 	}: Props = $props()
 
 	let itemClasses = $derived.by(() => {
-		const base = 'flex items-center gap-3 px-4 py-3 transition-colors duration-200'
+		const base = 'flex items-center gap-3 px-4 py-3 bg-background transition-colors duration-200'
 		const width = 'w-full text-left'
-		const interactive = (clickable || onclick) && !disabled ? 'cursor-pointer hover:bg-neutral-100' : ''
+		const interactive = (clickable || onclick) && !disabled ? 'cursor-pointer hover:bg-surface' : ''
 		const disabledStyles = disabled ? 'opacity-50 cursor-not-allowed' : ''
 		return `${base} ${width} ${interactive} ${disabledStyles} ${className}`
 	})

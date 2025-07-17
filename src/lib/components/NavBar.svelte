@@ -13,7 +13,7 @@
 	let { title, showBackButton = false, leftAction, rightAction, onBackClick, class: className = '' }: Props = $props()
 
 	let navClasses = $derived.by(() => {
-		const base = 'relative flex items-center justify-between px-4 py-3 bg-white'
+		const base = 'relative flex items-center justify-between px-4 py-3 bg-background'
 		return `${base} ${className}`
 	})
 
