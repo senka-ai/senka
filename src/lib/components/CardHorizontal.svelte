@@ -4,7 +4,9 @@
 	import ImagePlaceholder from './ImagePlaceholder.svelte'
 	import { ArrowRightIcon } from '../icons'
 
-	interface Props {
+	import type { BaseProps, ChildrenComponent, ClickHandler } from '../types/component'
+
+	interface Props extends BaseProps, ChildrenComponent, ClickHandler {
 		title: string
 		subtitle?: string
 		image?: string
@@ -13,13 +15,8 @@
 		buttonText?: string
 		showAction?: boolean
 		actionType?: 'button' | 'arrow'
-		disabled?: boolean
 		iconColor?: string
-		class?: string
-		id?: string
-		onclick?: () => void
 		onButtonClick?: () => void
-		children?: any
 	}
 
 	let {

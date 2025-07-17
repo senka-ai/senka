@@ -3,25 +3,17 @@
 	import Image from './Image.svelte'
 	import ImagePlaceholder from './ImagePlaceholder.svelte'
 	import { ArrowRightIcon } from '../icons'
+	import type { CardComponent } from '../types/component'
 
-	interface Props {
-		title: string
-		subtitle?: string
-		description?: string
+	interface Props extends CardComponent {
 		image?: string
 		imageAlt?: string
 		icon?: any
-		children?: any
 		buttonText?: string
 		showAction?: boolean
 		actionType?: 'button' | 'arrow'
-		variant?: 'default' | 'compact'
 		favorite?: boolean
-		disabled?: boolean
 		iconColor?: string
-		class?: string
-		id?: string
-		onclick?: () => void
 		onButtonClick?: () => void
 		onFavoriteClick?: () => void
 	}
@@ -61,7 +53,6 @@
 
 		return `${base} ${variants[variant]} ${interactive} ${disabledStyles} ${className}`
 	})
-
 
 	let contentClasses = $derived.by(() => {
 		const base = 'bg-neutral-100 flex-1'

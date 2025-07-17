@@ -1,19 +1,15 @@
 <script lang="ts">
 	import SearchIcon from '../icons/SearchIcon.svelte'
+	import type { BaseProps, FullWidthComponent, KeyboardHandler } from '../types/component'
 
-	interface Props {
+	interface Props extends BaseProps, FullWidthComponent, KeyboardHandler {
 		placeholder?: string
 		value?: string
-		disabled?: boolean
-		fullWidth?: boolean
-		class?: string
-		id?: string
 		name?: string
 		oninput?: (event: Event) => void
 		onchange?: (event: Event) => void
 		onfocus?: (event: FocusEvent) => void
 		onblur?: (event: FocusEvent) => void
-		onkeydown?: (event: KeyboardEvent) => void
 	}
 
 	let {

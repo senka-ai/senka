@@ -1,19 +1,10 @@
 <script lang="ts">
 	import { SpinnerIcon } from '../icons'
+	import type { ButtonLikeComponent, IconComponent } from '../types/component'
 
-	interface Props {
-		variant?: 'primary' | 'secondary' | 'tertiary'
-		size?: 'small' | 'medium' | 'large'
+	interface Props extends ButtonLikeComponent, IconComponent {
 		leftIcon?: string
 		rightIcon?: string
-		loading?: boolean
-		fullWidth?: boolean
-		disabled?: boolean
-		class?: string
-		id?: string
-		type?: 'button' | 'submit' | 'reset'
-		onclick?: () => void
-		children?: any
 	}
 
 	let {

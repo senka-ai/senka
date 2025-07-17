@@ -1,12 +1,12 @@
 <script lang="ts">
-	interface Props {
-		type?: 'number' | 'icon' | 'dot'
-		variant?: 'default' | 'success' | 'warning' | 'error'
-		size?: 'small' | 'medium' | 'large'
+	import type { BaseProps, SizedComponent, BadgeType, BadgeVariant } from '../types/component'
+
+	interface Props extends BaseProps, SizedComponent {
+		type?: BadgeType
+		variant?: BadgeVariant
 		value?: number | string
 		icon?: string
 		max?: number
-		class?: string
 	}
 
 	let {

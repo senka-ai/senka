@@ -2,6 +2,7 @@
 	import ListTitle from './ListTitle.svelte'
 	import ListItem from './ListItem.svelte'
 	import Divider from './Divider.svelte'
+	import type { BaseProps } from '../types/component'
 
 	interface ListItemData {
 		id?: string
@@ -17,7 +18,7 @@
 		[key: string]: any
 	}
 
-	interface Props {
+	interface Props extends BaseProps {
 		title?: string
 		rightText?: string
 		rightIcon?: any
@@ -26,8 +27,6 @@
 		showDividers?: boolean
 		dividerVariant?: 'solid' | 'dashed' | 'dotted'
 		compact?: boolean
-		class?: string
-		id?: string
 		children?: any
 	}
 

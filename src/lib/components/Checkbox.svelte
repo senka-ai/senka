@@ -1,16 +1,11 @@
 <script lang="ts">
 	import { CheckIcon } from '../icons'
+	import type { BaseProps, SizedComponent, ChangeHandler, ChildrenComponent } from '../types/component'
 
-	interface Props {
+	interface Props extends BaseProps, SizedComponent, ChangeHandler<boolean>, ChildrenComponent {
 		checked?: boolean
-		size?: 'small' | 'medium' | 'large'
-		disabled?: boolean
-		class?: string
-		id?: string
 		name?: string
 		value?: string
-		onchange?: (checked: boolean) => void
-		children?: any
 		label?: string
 	}
 
@@ -40,7 +35,7 @@
 			if (target.tagName === 'A') {
 				return
 			}
-			
+
 			// Toggle checkbox for everything else
 			localChecked = !localChecked
 			onchange?.(localChecked)

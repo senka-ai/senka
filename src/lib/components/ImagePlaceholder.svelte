@@ -1,10 +1,9 @@
 <script lang="ts">
 	import { ImageIcon } from '../icons'
+	import type { BaseProps, VariantComponent } from '../types/component'
 
-	interface Props {
-		variant?: 'default' | 'error' | 'loading'
+	interface Props extends BaseProps, VariantComponent<'default' | 'error' | 'loading'> {
 		message?: string
-		class?: string
 	}
 
 	let { variant = 'default', message, class: className = '' }: Props = $props()

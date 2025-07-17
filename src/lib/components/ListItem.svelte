@@ -1,18 +1,10 @@
 <script lang="ts">
-	interface Props {
-		title: string
-		description?: string
-		leftIcon?: any
-		rightIcon?: any
+	import type { ListItemComponent, IconComponent } from '../types/component'
+
+	interface Props extends ListItemComponent, IconComponent {
 		rightControl?: any
 		showChevron?: boolean
-		clickable?: boolean
-		disabled?: boolean
 		compact?: boolean
-		class?: string
-		id?: string
-		onclick?: () => void
-		children?: any
 	}
 
 	let {

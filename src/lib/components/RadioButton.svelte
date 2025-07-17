@@ -1,14 +1,10 @@
 <script lang="ts">
-	interface Props {
+	import type { BaseProps, SizedComponent, ChangeHandler, ChildrenComponent } from '../types/component'
+
+	interface Props extends BaseProps, SizedComponent, ChangeHandler<boolean>, ChildrenComponent {
 		checked?: boolean
-		size?: 'small' | 'medium' | 'large'
-		disabled?: boolean
-		class?: string
-		id?: string
 		name?: string
 		value?: string
-		onchange?: (checked: boolean) => void
-		children?: any
 		label?: string
 	}
 
@@ -38,7 +34,7 @@
 			if (target.tagName === 'A') {
 				return
 			}
-			
+
 			// Select radio button for everything else
 			localChecked = true
 			onchange?.(true)

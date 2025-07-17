@@ -1,13 +1,12 @@
 <script lang="ts">
-	interface Props {
-		variant?: 'primary' | 'secondary' | 'tertiary'
+	import type { BaseProps, VariantComponent, IconComponent, ClickHandler } from '../types/component'
+
+	interface Props
+		extends BaseProps,
+			VariantComponent<'primary' | 'secondary' | 'tertiary'>,
+			IconComponent,
+			ClickHandler {
 		text: string
-		leftIcon?: any
-		rightIcon?: any
-		disabled?: boolean
-		class?: string
-		id?: string
-		onclick?: () => void
 	}
 
 	let {

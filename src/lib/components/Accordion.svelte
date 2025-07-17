@@ -1,12 +1,10 @@
 <script lang="ts">
-	interface Props {
+	import type { BaseProps, ChildrenComponent, KeyboardHandler } from '../types/component'
+
+	interface Props extends BaseProps, ChildrenComponent, KeyboardHandler {
 		title: string
 		open?: boolean
-		disabled?: boolean
-		class?: string
-		id?: string
 		onToggle?: (open: boolean) => void
-		children?: any
 	}
 
 	let {
@@ -17,6 +15,7 @@
 		id,
 		onToggle,
 		children,
+		onkeydown,
 		...restProps
 	}: Props = $props()
 
@@ -55,6 +54,7 @@
 	}
 
 	function handleKeyDown(event: KeyboardEvent) {
+		onkeydown?.(event)
 		if ((event.key === 'Enter' || event.key === ' ') && !disabled) {
 			event.preventDefault()
 			toggle()

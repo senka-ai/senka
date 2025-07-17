@@ -1,19 +1,10 @@
 <script lang="ts">
-	interface Props {
-		label?: string
-		helperText?: string
-		error?: string
+	import type { FormInputComponent } from '../types/component'
+
+	interface Props extends FormInputComponent {
 		inputState?: 'default' | 'focused' | 'error' | 'disabled'
-		fullWidth?: boolean
-		showLabel?: boolean
 		showPlaceholder?: boolean
-		showHelperText?: boolean
-		disabled?: boolean
-		class?: string
-		id?: string
-		placeholder?: string
 		value?: string
-		name?: string
 		rows?: number
 		maxlength?: number
 		resize?: 'none' | 'vertical' | 'horizontal' | 'both'

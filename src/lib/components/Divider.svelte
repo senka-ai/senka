@@ -1,10 +1,9 @@
 <script lang="ts">
-	interface Props {
+	import type { BaseProps, VariantComponent } from '../types/component'
+
+	interface Props extends BaseProps, VariantComponent<'solid' | 'dashed' | 'dotted'> {
 		orientation?: 'horizontal' | 'vertical'
-		variant?: 'solid' | 'dashed' | 'dotted'
 		spacing?: 'none' | 'small' | 'medium' | 'large'
-		class?: string
-		id?: string
 	}
 
 	let {

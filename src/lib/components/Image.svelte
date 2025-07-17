@@ -1,7 +1,8 @@
 <script lang="ts">
 	import ImagePlaceholder from './ImagePlaceholder.svelte'
+	import type { BaseProps } from '../types/component'
 
-	interface Props {
+	interface Props extends BaseProps {
 		src: string
 		alt: string
 		width?: number | string
@@ -11,7 +12,6 @@
 		loading?: 'lazy' | 'eager'
 		placeholder?: string
 		fallback?: string
-		class?: string
 		rounded?: 'none' | 'sm' | 'md' | 'lg' | 'xl' | '2xl' | '3xl' | 'full'
 		onLoad?: () => void
 		onError?: () => void

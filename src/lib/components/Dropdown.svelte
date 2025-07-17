@@ -1,5 +1,6 @@
 <script lang="ts">
 	import ArrowDownIcon from '../icons/ArrowDownIcon.svelte'
+	import type { FormInputComponent, ChangeHandler } from '../types/component'
 
 	interface Option {
 		value: string
@@ -7,21 +8,9 @@
 		disabled?: boolean
 	}
 
-	interface Props {
+	interface Props extends FormInputComponent, ChangeHandler<string> {
 		options: Option[]
 		value?: string
-		label?: string
-		helperText?: string
-		error?: string
-		placeholder?: string
-		disabled?: boolean
-		fullWidth?: boolean
-		showLabel?: boolean
-		showHelperText?: boolean
-		class?: string
-		id?: string
-		name?: string
-		onchange?: (value: string) => void
 	}
 
 	let {

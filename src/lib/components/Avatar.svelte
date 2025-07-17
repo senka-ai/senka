@@ -1,13 +1,11 @@
 <script lang="ts">
 	import AvatarPlaceholder from './AvatarPlaceholder.svelte'
+	import type { BaseProps, ExtendedSizedComponent, StatusComponent } from '../types/component'
 
-	interface Props {
+	interface Props extends BaseProps, ExtendedSizedComponent, StatusComponent {
 		src?: string
 		alt?: string
-		size?: 'xs' | 'small' | 'medium' | 'large'
 		initials?: string
-		status?: 'online' | 'offline' | 'away' | 'busy'
-		class?: string
 	}
 
 	let { src, alt = '', size = 'medium', initials, status, class: className = '' }: Props = $props()

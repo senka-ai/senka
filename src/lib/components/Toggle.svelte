@@ -1,12 +1,9 @@
 <script lang="ts">
-	interface Props {
+	import type { BaseProps, SizedComponent, ChangeHandler } from '../types/component'
+
+	interface Props extends BaseProps, SizedComponent, ChangeHandler<boolean> {
 		checked?: boolean
-		size?: 'small' | 'medium' | 'large'
-		disabled?: boolean
-		class?: string
-		id?: string
 		name?: string
-		onchange?: (checked: boolean) => void
 	}
 
 	let {

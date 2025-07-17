@@ -2,11 +2,9 @@
 	import { onMount } from 'svelte'
 	import { toggleTheme, useTheme } from '../theme.svelte'
 	import { SunIcon, MoonIcon } from '../icons'
+	import type { BaseProps, SizedComponent } from '../types/component'
 
-	interface Props {
-		class?: string
-		size?: 'small' | 'medium' | 'large'
-	}
+	interface Props extends BaseProps, SizedComponent {}
 
 	let { class: className = '', size = 'medium' }: Props = $props()
 

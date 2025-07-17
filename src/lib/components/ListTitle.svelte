@@ -1,11 +1,11 @@
 <script lang="ts">
-	interface Props {
+	import type { BaseProps } from '../types/component'
+
+	interface Props extends BaseProps {
 		title: string
 		rightText?: string
 		rightIcon?: any
 		onRightClick?: () => void
-		class?: string
-		id?: string
 	}
 
 	let { title, rightText, rightIcon, onRightClick, class: className = '', id, ...restProps }: Props = $props()

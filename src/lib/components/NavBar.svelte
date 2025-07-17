@@ -1,13 +1,14 @@
 <script lang="ts">
 	import ArrowLeftIcon from '../icons/ArrowLeftIcon.svelte'
 
-	interface Props {
+	import type { BaseProps } from '../types/component'
+
+	interface Props extends BaseProps {
 		title: string
 		showBackButton?: boolean
 		leftAction?: any
 		rightAction?: any
 		onBackClick?: () => void
-		class?: string
 	}
 
 	let { title, showBackButton = false, leftAction, rightAction, onBackClick, class: className = '' }: Props = $props()

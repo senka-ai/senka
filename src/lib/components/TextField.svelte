@@ -1,26 +1,16 @@
 <script lang="ts">
-	interface Props {
-		label?: string
-		helperText?: string
-		error?: string
+	import type { FormInputComponent, IconComponent, IconSizeComponent } from '../types/component'
+
+	interface Props extends FormInputComponent, IconComponent, IconSizeComponent {
 		leftIcon?: string
 		rightIcon?: any
 		unit?: string
 		inputState?: 'default' | 'focused' | 'error' | 'disabled'
-		fullWidth?: boolean
-		showLabel?: boolean
 		showPlaceholder?: boolean
-		showHelperText?: boolean
 		showIcon?: boolean
 		showUnit?: boolean
-		disabled?: boolean
-		class?: string
-		id?: string
-		placeholder?: string
-		type?: string
 		value?: string
-		name?: string
-		iconSize?: number
+		required?: boolean
 	}
 
 	let {
@@ -45,6 +35,7 @@
 		name,
 		value = $bindable(),
 		iconSize = 16,
+		required = false,
 		...restProps
 	}: Props = $props()
 
@@ -117,6 +108,7 @@
 			{placeholder}
 			{type}
 			{name}
+			{required}
 			onfocus={() => (focused = true)}
 			onblur={() => (focused = false)}
 			{...restProps}

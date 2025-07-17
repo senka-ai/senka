@@ -1,4 +1,6 @@
 <script lang="ts">
+	import type { BaseProps } from '../types/component'
+
 	interface Tab {
 		id: string
 		label: string
@@ -6,10 +8,9 @@
 		disabled?: boolean
 	}
 
-	interface Props {
+	interface Props extends BaseProps {
 		tabs: Tab[]
 		activeTab?: string
-		class?: string
 		onTabChange?: (tabId: string) => void
 	}
 

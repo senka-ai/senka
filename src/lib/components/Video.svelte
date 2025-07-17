@@ -2,7 +2,9 @@
 	import { VideoIcon } from '../icons'
 	import VideoPlaceholder from './VideoPlaceholder.svelte'
 
-	interface Props {
+	import type { BaseProps } from '../types/component'
+
+	interface Props extends BaseProps {
 		src: string
 		poster?: string
 		width?: number | string
@@ -14,7 +16,6 @@
 		loop?: boolean
 		preload?: 'none' | 'metadata' | 'auto'
 		placeholder?: string
-		class?: string
 		rounded?: 'none' | 'sm' | 'md' | 'lg' | 'xl' | '2xl' | '3xl' | 'full'
 		onPlay?: () => void
 		onPause?: () => void
