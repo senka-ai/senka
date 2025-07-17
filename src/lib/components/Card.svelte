@@ -17,6 +17,7 @@
 		variant?: 'default' | 'compact'
 		favorite?: boolean
 		disabled?: boolean
+		iconColor?: string
 		class?: string
 		id?: string
 		onclick?: () => void
@@ -38,6 +39,7 @@
 		variant = 'default',
 		favorite = false,
 		disabled = false,
+		iconColor = 'text-highlight-400',
 		class: className = '',
 		id,
 		onclick,
@@ -60,7 +62,7 @@
 	})
 
 	let placeholderSize = $derived.by((): 'small' | 'medium' | 'large' => {
-		return variant === 'default' ? 'large' : 'medium'
+		return 'medium'
 	})
 
 	let contentClasses = $derived.by(() => {
@@ -94,7 +96,7 @@
 	{#if image}
 		<img src={image} alt={imageAlt} class="h-40 w-full object-cover" />
 	{:else if children}
-		<div class="bg-highlight-50 flex items-center justify-center {variant === 'default' ? 'h-40' : 'h-32'}">
+		<div class="bg-highlight-50 flex items-center justify-center {variant === 'default' ? 'h-40' : 'h-32'} {iconColor}">
 			{@render children()}
 		</div>
 	{:else}

@@ -1,18 +1,19 @@
 <script lang="ts">
 	import Button from './Button.svelte'
 	import ImagePlaceholder from './ImagePlaceholder.svelte'
-	import { ArrowRightIcon, PersonIcon, HeartFilledIcon } from '../icons'
+	import { ArrowRightIcon } from '../icons'
 
 	interface Props {
 		title: string
 		subtitle?: string
 		image?: string
 		imageAlt?: string
-		iconType?: 'image' | 'avatar' | 'heart' | 'custom'
+		iconType?: 'image' | 'custom'
 		buttonText?: string
 		showAction?: boolean
 		actionType?: 'button' | 'arrow'
 		disabled?: boolean
+		iconColor?: string
 		class?: string
 		id?: string
 		onclick?: () => void
@@ -30,6 +31,7 @@
 		showAction = false,
 		actionType = 'button',
 		disabled = false,
+		iconColor = 'text-highlight-400',
 		class: className = '',
 		id,
 		onclick,
@@ -53,16 +55,9 @@
 			return base
 		}
 
-		const background =
-			iconType === 'image'
-				? 'bg-highlight-50'
-				: iconType === 'avatar'
-					? 'bg-highlight-light text-white'
-					: iconType === 'heart'
-						? 'bg-highlight-50'
-						: 'bg-highlight-50'
+		const background = 'bg-highlight-50'
 
-		return `${base} ${background}`
+		return `${base} ${background} ${iconColor}`
 	})
 
 	let contentClasses = $derived.by(() => {
@@ -89,10 +84,6 @@
 			<img src={image} alt={imageAlt} class="h-full w-full object-cover" />
 		{:else if children}
 			{@render children()}
-		{:else if iconType === 'avatar'}
-			<PersonIcon class="h-6 w-6" />
-		{:else if iconType === 'heart'}
-			<HeartFilledIcon class="text-highlight h-6 w-6" />
 		{:else}
 			<div class="relative h-full w-full">
 				<ImagePlaceholder variant="default" size="small" />

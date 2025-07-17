@@ -1,7 +1,7 @@
 <script module>
 	import { defineMeta } from '@storybook/addon-svelte-csf'
 	import CardHorizontal from '../lib/components/CardHorizontal.svelte'
-	import { ChatIcon } from '../lib/icons'
+	import { ChatIcon, PersonIcon, HeartFilledIcon } from '../lib/icons'
 
 	const { Story } = defineMeta({
 		title: 'Components/CardHorizontal',
@@ -18,7 +18,7 @@
 		argTypes: {
 			iconType: {
 				control: { type: 'select' },
-				options: ['image', 'avatar', 'heart', 'custom'],
+				options: ['image', 'custom'],
 				description: 'Type of icon to display',
 			},
 			actionType: {
@@ -54,18 +54,26 @@
 	{/snippet}
 </Story>
 
-<Story name="Avatar Type" args={{ iconType: 'avatar' }}>
+<Story name="Avatar Type" args={{ iconType: 'custom' }}>
 	{#snippet template(args)}
 		<div class="max-w-md">
-			<CardHorizontal {...args} />
+			<CardHorizontal {...args}>
+				{#snippet children()}
+					<PersonIcon class="h-6 w-6" />
+				{/snippet}
+			</CardHorizontal>
 		</div>
 	{/snippet}
 </Story>
 
-<Story name="Heart Type" args={{ iconType: 'heart' }}>
+<Story name="Heart Type" args={{ iconType: 'custom' }}>
 	{#snippet template(args)}
 		<div class="max-w-md">
-			<CardHorizontal {...args} />
+			<CardHorizontal {...args}>
+				{#snippet children()}
+					<HeartFilledIcon class="h-6 w-6" />
+				{/snippet}
+			</CardHorizontal>
 		</div>
 	{/snippet}
 </Story>
@@ -165,24 +173,36 @@
 					<CardHorizontal
 						title="Avatar + Button"
 						subtitle="Subtitle"
-						iconType="avatar"
+						iconType="custom"
 						buttonText="Button"
 						showAction={true}
 						actionType="button"
-					/>
+					>
+						{#snippet children()}
+							<PersonIcon class="h-6 w-6" />
+						{/snippet}
+					</CardHorizontal>
 					<CardHorizontal
 						title="Avatar + Arrow"
 						subtitle="Subtitle"
-						iconType="avatar"
+						iconType="custom"
 						showAction={true}
 						actionType="arrow"
-					/>
+					>
+						{#snippet children()}
+							<PersonIcon class="h-6 w-6" />
+						{/snippet}
+					</CardHorizontal>
 					<CardHorizontal
 						title="Avatar Only"
 						subtitle="Subtitle"
-						iconType="avatar"
+						iconType="custom"
 						showAction={false}
-					/>
+					>
+						{#snippet children()}
+							<PersonIcon class="h-6 w-6" />
+						{/snippet}
+					</CardHorizontal>
 				</div>
 			</div>
 
@@ -193,24 +213,36 @@
 					<CardHorizontal
 						title="Heart + Button"
 						subtitle="Subtitle"
-						iconType="heart"
+						iconType="custom"
 						buttonText="Button"
 						showAction={true}
 						actionType="button"
-					/>
+					>
+						{#snippet children()}
+							<HeartFilledIcon class="h-6 w-6" />
+						{/snippet}
+					</CardHorizontal>
 					<CardHorizontal
 						title="Heart + Arrow"
 						subtitle="Subtitle"
-						iconType="heart"
+						iconType="custom"
 						showAction={true}
 						actionType="arrow"
-					/>
+					>
+						{#snippet children()}
+							<HeartFilledIcon class="h-6 w-6" />
+						{/snippet}
+					</CardHorizontal>
 					<CardHorizontal
 						title="Heart Only"
 						subtitle="Subtitle"
-						iconType="heart"
+						iconType="custom"
 						showAction={false}
-					/>
+					>
+						{#snippet children()}
+							<HeartFilledIcon class="h-6 w-6" />
+						{/snippet}
+					</CardHorizontal>
 				</div>
 			</div>
 
@@ -246,20 +278,28 @@
 					<CardHorizontal
 						title="Clickable Card"
 						subtitle="Click the entire card"
-						iconType="avatar"
+						iconType="custom"
 						buttonText="Button"
 						showAction={true}
 						onclick={() => console.log('Card clicked')}
 						onButtonClick={() => console.log('Button clicked')}
-					/>
+					>
+						{#snippet children()}
+							<PersonIcon class="h-6 w-6" />
+						{/snippet}
+					</CardHorizontal>
 					<CardHorizontal
 						title="Disabled Card"
 						subtitle="Cannot interact"
-						iconType="heart"
+						iconType="custom"
 						buttonText="Button"
 						showAction={true}
 						disabled={true}
-					/>
+					>
+						{#snippet children()}
+							<HeartFilledIcon class="h-6 w-6" />
+						{/snippet}
+					</CardHorizontal>
 				</div>
 			</div>
 		</div>
