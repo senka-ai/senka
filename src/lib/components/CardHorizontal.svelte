@@ -1,5 +1,6 @@
 <script lang="ts">
 	import Button from './Button.svelte'
+	import Image from './Image.svelte'
 	import ImagePlaceholder from './ImagePlaceholder.svelte'
 	import { ArrowRightIcon } from '../icons'
 
@@ -81,7 +82,7 @@
 	<!-- Left Icon/Image Section -->
 	<div class={iconClasses}>
 		{#if image}
-			<img src={image} alt={imageAlt} class="h-full w-full object-cover" />
+			<Image src={image} alt={imageAlt} class="h-full w-full" aspectRatio="auto" />
 		{:else if children}
 			{@render children()}
 		{:else}

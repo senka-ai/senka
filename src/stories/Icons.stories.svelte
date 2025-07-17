@@ -30,7 +30,6 @@
 		InfoIcon,
 		LinkedInIcon,
 		MinusIcon,
-		PersonIcon,
 		PlaceholderIcon,
 		PlayIcon,
 		ProfileIcon,
@@ -187,10 +186,6 @@
 			<div class="flex flex-col items-center gap-2">
 				<MinusIcon {...args} />
 				<span class="text-xs text-neutral-600">MinusIcon</span>
-			</div>
-			<div class="flex flex-col items-center gap-2">
-				<PersonIcon {...args} />
-				<span class="text-xs text-neutral-600">PersonIcon</span>
 			</div>
 			<div class="flex flex-col items-center gap-2">
 				<PlaceholderIcon {...args} />

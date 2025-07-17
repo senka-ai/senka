@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { PersonIcon } from '../icons'
+	import { ProfileIcon } from '../icons'
 
 	interface Props {
 		src?: string
@@ -88,7 +88,7 @@
 		</span>
 	{:else}
 		<!-- Generic person SVG fallback -->
-		<PersonIcon class="h-full w-full {imageBorderRadius}" />
+		<ProfileIcon class="h-full w-full {imageBorderRadius}" />
 	{/if}
 
 	{#if status}

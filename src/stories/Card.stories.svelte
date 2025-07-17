@@ -1,7 +1,7 @@
 <script module>
 	import { defineMeta } from '@storybook/addon-svelte-csf'
 	import Card from '../lib/components/Card.svelte'
-	import { ImageIcon, PersonIcon, ChatIcon } from '../lib/icons'
+	import { ImageIcon, ProfileIcon, ChatIcon } from '../lib/icons'
 
 	const { Story } = defineMeta({
 		title: 'Components/Card',
@@ -65,7 +65,7 @@
 		<div class="max-w-sm">
 			<Card {...args}>
 				{#snippet children()}
-					<PersonIcon class="h-8 w-8" />
+					<ProfileIcon class="h-8 w-8" />
 				{/snippet}
 			</Card>
 		</div>
@@ -83,11 +83,7 @@
 <Story name="With Favorite">
 	{#snippet template(args)}
 		<div class="max-w-sm">
-			<Card
-				{...args}
-				onFavoriteClick={() => console.log('Favorite clicked')}
-				favorite={true}
-			/>
+			<Card {...args} onFavoriteClick={() => console.log('Favorite clicked')} favorite={true} />
 		</div>
 	{/snippet}
 </Story>
@@ -119,11 +115,7 @@
 <Story name="Clickable Card">
 	{#snippet template(args)}
 		<div class="max-w-sm">
-			<Card
-				{...args}
-				onclick={() => console.log('Card clicked')}
-				onButtonClick={() => console.log('Button clicked')}
-			/>
+			<Card {...args} onclick={() => console.log('Card clicked')} onButtonClick={() => console.log('Button clicked')} />
 		</div>
 	{/snippet}
 </Story>
@@ -141,8 +133,8 @@
 		<div class="space-y-8">
 			<!-- Default Cards -->
 			<div>
-				<h3 class="text-lg font-semibold mb-4">Default Variant</h3>
-				<div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+				<h3 class="mb-4 text-lg font-semibold">Default Variant</h3>
+				<div class="grid grid-cols-1 gap-6 md:grid-cols-3">
 					<Card
 						title="With Image"
 						subtitle="Subtitle"
@@ -175,33 +167,21 @@
 
 			<!-- Compact Cards -->
 			<div>
-				<h3 class="text-lg font-semibold mb-4">Compact Variant</h3>
-				<div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-					<Card
-						variant="compact"
-						title="Compact Card"
-						subtitle="Subtitle"
-						buttonText="Button"
-						showAction={true}
-					>
+				<h3 class="mb-4 text-lg font-semibold">Compact Variant</h3>
+				<div class="grid grid-cols-1 gap-4 md:grid-cols-2">
+					<Card variant="compact" title="Compact Card" subtitle="Subtitle" buttonText="Button" showAction={true}>
 						{#snippet children()}
-							<PersonIcon class="h-6 w-6" />
+							<ProfileIcon class="h-6 w-6" />
 						{/snippet}
 					</Card>
-					<Card
-						variant="compact"
-						title="With Arrow"
-						subtitle="Subtitle"
-						actionType="arrow"
-						showAction={true}
-					/>
+					<Card variant="compact" title="With Arrow" subtitle="Subtitle" actionType="arrow" showAction={true} />
 				</div>
 			</div>
 
 			<!-- Action Types -->
 			<div>
-				<h3 class="text-lg font-semibold mb-4">Action Types</h3>
-				<div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+				<h3 class="mb-4 text-lg font-semibold">Action Types</h3>
+				<div class="grid grid-cols-1 gap-6 md:grid-cols-3">
 					<Card
 						title="Button Action"
 						subtitle="Subtitle"
@@ -217,19 +197,14 @@
 						showAction={true}
 						actionType="arrow"
 					/>
-					<Card
-						title="No Action"
-						subtitle="Subtitle"
-						description="Card without any action"
-						showAction={false}
-					/>
+					<Card title="No Action" subtitle="Subtitle" description="Card without any action" showAction={false} />
 				</div>
 			</div>
 
 			<!-- Special States -->
 			<div>
-				<h3 class="text-lg font-semibold mb-4">Special States</h3>
-				<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+				<h3 class="mb-4 text-lg font-semibold">Special States</h3>
+				<div class="grid grid-cols-1 gap-6 md:grid-cols-2">
 					<Card
 						title="Favorite Card"
 						subtitle="Subtitle"

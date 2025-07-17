@@ -4,7 +4,7 @@
 	import Avatar from '../lib/components/Avatar.svelte'
 	import Toggle from '../lib/components/Toggle.svelte'
 	import Checkbox from '../lib/components/Checkbox.svelte'
-	import { HeartFilledIcon, PersonIcon, StarFilledIcon } from '../lib/icons'
+	import { HeartFilledIcon, ProfileIcon, StarFilledIcon } from '../lib/icons'
 
 	const { Story } = defineMeta({
 		title: 'Components/ListItem',
@@ -133,7 +133,7 @@
 	{#snippet template(args)}
 		<ListItem {...args}>
 			{#snippet leftIcon()}
-				<PersonIcon size={24} class="text-neutral-400" />
+				<ProfileIcon size={24} class="text-neutral-400" />
 			{/snippet}
 		</ListItem>
 	{/snippet}

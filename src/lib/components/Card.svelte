@@ -1,5 +1,6 @@
 <script lang="ts">
 	import Button from './Button.svelte'
+	import Image from './Image.svelte'
 	import ImagePlaceholder from './ImagePlaceholder.svelte'
 	import { ArrowRightIcon } from '../icons'
 
@@ -94,7 +95,7 @@
 <div class={cardClasses} {id} onclick={handleCardClick} {...restProps}>
 	<!-- Image or Icon Section -->
 	{#if image}
-		<img src={image} alt={imageAlt} class="h-40 w-full object-cover" />
+		<Image src={image} alt={imageAlt} class="h-40 w-full" aspectRatio="auto" />
 	{:else if children}
 		<div class="bg-highlight-50 flex items-center justify-center {variant === 'default' ? 'h-40' : 'h-32'} {iconColor}">
 			{@render children()}

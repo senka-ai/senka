@@ -1,7 +1,7 @@
 <script module>
 	import { defineMeta } from '@storybook/addon-svelte-csf'
 	import CardHorizontal from '../lib/components/CardHorizontal.svelte'
-	import { ChatIcon, PersonIcon, HeartFilledIcon } from '../lib/icons'
+	import { ChatIcon, ProfileIcon, HeartFilledIcon } from '../lib/icons'
 
 	const { Story } = defineMeta({
 		title: 'Components/CardHorizontal',
@@ -59,7 +59,7 @@
 		<div class="max-w-md">
 			<CardHorizontal {...args}>
 				{#snippet children()}
-					<PersonIcon class="h-6 w-6" />
+					<ProfileIcon class="h-6 w-6" />
 				{/snippet}
 			</CardHorizontal>
 		</div>
@@ -179,7 +179,7 @@
 						actionType="button"
 					>
 						{#snippet children()}
-							<PersonIcon class="h-6 w-6" />
+							<ProfileIcon class="h-6 w-6" />
 						{/snippet}
 					</CardHorizontal>
 					<CardHorizontal
@@ -190,7 +190,7 @@
 						actionType="arrow"
 					>
 						{#snippet children()}
-							<PersonIcon class="h-6 w-6" />
+							<ProfileIcon class="h-6 w-6" />
 						{/snippet}
 					</CardHorizontal>
 					<CardHorizontal
@@ -200,7 +200,7 @@
 						showAction={false}
 					>
 						{#snippet children()}
-							<PersonIcon class="h-6 w-6" />
+							<ProfileIcon class="h-6 w-6" />
 						{/snippet}
 					</CardHorizontal>
 				</div>
@@ -285,7 +285,7 @@
 						onButtonClick={() => console.log('Button clicked')}
 					>
 						{#snippet children()}
-							<PersonIcon class="h-6 w-6" />
+							<ProfileIcon class="h-6 w-6" />
 						{/snippet}
 					</CardHorizontal>
 					<CardHorizontal
