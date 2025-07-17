@@ -8,6 +8,8 @@
 		name?: string
 		value?: string
 		onchange?: (checked: boolean) => void
+		children?: any
+		label?: string
 	}
 
 	let {
@@ -19,6 +21,8 @@
 		name,
 		value,
 		onchange,
+		children,
+		label,
 	}: Props = $props()
 
 	let localChecked = $state(checked)
@@ -26,6 +30,20 @@
 	$effect(() => {
 		localChecked = checked
 	})
+
+	function handleContainerClick(event: MouseEvent) {
+		if (!disabled) {
+			// Simple check: if we clicked on a link, don't select
+			const target = event.target as HTMLElement
+			if (target.tagName === 'A') {
+				return
+			}
+			
+			// Select radio button for everything else
+			localChecked = true
+			onchange?.(true)
+		}
+	}
 
 	function handleChange() {
 		if (!disabled) {
@@ -56,7 +74,13 @@
 
 		const disabledStyles = disabled ? 'opacity-50 cursor-not-allowed hover:border-neutral-300' : ''
 
-		return `${base} ${sizes[size]} ${states} ${disabledStyles} rounded-full ${className}`
+		return `${base} ${sizes[size]} ${states} ${disabledStyles} rounded-full`
+	})
+
+	let containerClasses = $derived.by(() => {
+		const base = 'flex items-center gap-2'
+		const cursor = disabled ? 'cursor-not-allowed' : 'cursor-pointer'
+		return `${base} ${cursor} ${className}`
 	})
 
 	let dotSizes = $derived.by(() => {
@@ -74,22 +98,31 @@
 	aria-checked={localChecked}
 	aria-disabled={disabled}
 	tabindex={disabled ? -1 : 0}
-	class={radioClasses}
+	class={containerClasses}
 	{id}
-	onclick={handleChange}
 	onkeydown={handleKeydown}
+	onclick={handleContainerClick}
 >
-	<input
-		type="radio"
-		checked={localChecked}
-		{disabled}
-		{name}
-		{value}
-		class="sr-only"
-		tabindex="-1"
-		onchange={handleChange}
-	/>
-	{#if localChecked}
-		<div class="rounded-full bg-white {dotSizes}"></div>
+	<div class={radioClasses}>
+		<input
+			type="radio"
+			checked={localChecked}
+			{disabled}
+			{name}
+			{value}
+			class="sr-only"
+			tabindex="-1"
+			onchange={handleChange}
+		/>
+		{#if localChecked}
+			<div class="rounded-full bg-white {dotSizes}"></div>
+		{/if}
+	</div>
+	{#if children}
+		<div class="select-none">
+			{@render children?.()}
+		</div>
+	{:else if label}
+		<span class="select-none">{label}</span>
 	{/if}
 </div>

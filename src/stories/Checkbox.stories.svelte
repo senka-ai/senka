@@ -24,6 +24,10 @@
 				control: { type: 'boolean' },
 				description: 'Disabled state',
 			},
+			label: {
+				control: { type: 'text' },
+				description: 'Simple text label',
+			},
 			onchange: {
 				action: 'changed',
 				description: 'Change event handler',
@@ -93,27 +97,52 @@
 	{/snippet}
 </Story>
 
+<Story name="With Label" args={{ label: 'Accept terms and conditions' }}>
+	{#snippet template(args)}
+		<Checkbox {...args} />
+	{/snippet}
+</Story>
+
+<Story name="Rich Content">
+	{#snippet template()}
+		<div class="space-y-4">
+			<p class="text-neutral-600">Examples of rich content in checkboxes:</p>
+			<div class="flex flex-col gap-3">
+				<Checkbox>
+					{#snippet children()}
+						I agree to the <strong>terms and conditions</strong> and
+						<a href="/terms" class="text-highlight underline">privacy policy</a>
+					{/snippet}
+				</Checkbox>
+				<Checkbox>
+					{#snippet children()}
+						<strong>Important:</strong> Enable notifications for updates
+					{/snippet}
+				</Checkbox>
+				<Checkbox>
+					{#snippet children()}
+						Subscribe to our <em>newsletter</em> for <strong>exclusive</strong> offers
+					{/snippet}
+				</Checkbox>
+			</div>
+		</div>
+	{/snippet}
+</Story>
+
 <Story name="Interactive Example">
 	{#snippet template()}
 		<div class="space-y-4">
-			<p class="text-neutral-600">Click the checkboxes to toggle their state:</p>
+			<p class="text-neutral-600">Click anywhere on the checkbox or text to toggle:</p>
 			<div class="flex flex-col gap-3">
-				<label class="flex cursor-pointer items-center gap-2">
-					<Checkbox />
-					<span>Option 1</span>
-				</label>
-				<label class="flex cursor-pointer items-center gap-2">
-					<Checkbox />
-					<span>Option 2</span>
-				</label>
-				<label class="flex cursor-pointer items-center gap-2">
-					<Checkbox />
-					<span>Option 3</span>
-				</label>
-				<label class="flex cursor-pointer items-center gap-2">
-					<Checkbox disabled />
-					<span class="text-neutral-500">Disabled option</span>
-				</label>
+				<Checkbox label="Simple text option" />
+				<Checkbox label="Another simple option" />
+				<Checkbox>
+					{#snippet children()}
+						Rich content with <strong>bold text</strong> and
+						<a href="https://example.com" class="text-highlight underline">links</a>
+					{/snippet}
+				</Checkbox>
+				<Checkbox label="Disabled option" disabled />
 			</div>
 		</div>
 	{/snippet}

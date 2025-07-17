@@ -10,6 +10,8 @@
 		name?: string
 		value?: string
 		onchange?: (checked: boolean) => void
+		children?: any
+		label?: string
 	}
 
 	let {
@@ -21,6 +23,8 @@
 		name,
 		value,
 		onchange,
+		children,
+		label,
 	}: Props = $props()
 
 	let localChecked = $state(checked)
@@ -28,6 +32,20 @@
 	$effect(() => {
 		localChecked = checked
 	})
+
+	function handleContainerClick(event: MouseEvent) {
+		if (!disabled) {
+			// Simple check: if we clicked on a link, don't toggle
+			const target = event.target as HTMLElement
+			if (target.tagName === 'A') {
+				return
+			}
+			
+			// Toggle checkbox for everything else
+			localChecked = !localChecked
+			onchange?.(localChecked)
+		}
+	}
 
 	function handleChange() {
 		if (!disabled) {
@@ -58,7 +76,13 @@
 
 		const disabledStyles = disabled ? 'opacity-50 cursor-not-allowed hover:border-neutral-300' : ''
 
-		return `${base} ${sizes[size]} ${states} ${disabledStyles} ${className}`
+		return `${base} ${sizes[size]} ${states} ${disabledStyles}`
+	})
+
+	let containerClasses = $derived.by(() => {
+		const base = 'flex items-center gap-2'
+		const cursor = disabled ? 'cursor-not-allowed' : 'cursor-pointer'
+		return `${base} ${cursor} ${className}`
 	})
 
 	let iconSizes = $derived.by(() => {
@@ -76,13 +100,22 @@
 	aria-checked={localChecked}
 	aria-disabled={disabled}
 	tabindex={disabled ? -1 : 0}
-	class={checkboxClasses}
+	class={containerClasses}
 	{id}
-	onclick={handleChange}
 	onkeydown={handleKeydown}
+	onclick={handleContainerClick}
 >
-	<input type="checkbox" bind:checked={localChecked} {disabled} {name} {value} class="sr-only" tabindex="-1" />
-	{#if localChecked}
-		<CheckIcon size={iconSizes} class="text-white" />
+	<div class={checkboxClasses}>
+		<input type="checkbox" bind:checked={localChecked} {disabled} {name} {value} class="sr-only" tabindex="-1" />
+		{#if localChecked}
+			<CheckIcon size={iconSizes} class="text-white" />
+		{/if}
+	</div>
+	{#if children}
+		<div class="select-none">
+			{@render children?.()}
+		</div>
+	{:else if label}
+		<span class="select-none">{label}</span>
 	{/if}
 </div>
