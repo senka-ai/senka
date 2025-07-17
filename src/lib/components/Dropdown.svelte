@@ -63,7 +63,7 @@
 
 	let buttonClasses = $derived.by(() => {
 		const base =
-			'w-full px-3.25 py-3.25 text-slim-m bg-surface border rounded-xl transition-all duration-200 focus:outline-none focus:ring-offset-0 flex items-center justify-between'
+			'w-full px-3.25 py-3.25 text-slim-m bg-background border rounded-xl transition-all duration-200 focus:outline-none focus:ring-offset-0 flex items-center justify-between'
 
 		const states = {
 			default: 'border-neutral-400 text-neutral-900 focus:border-highlight focus:ring-1 focus:ring-highlight-200',
@@ -216,7 +216,7 @@
 				<button
 					type="button"
 					class={`text-slim-m w-full px-3.25 py-2.5 text-left transition-colors duration-150 ${
-						option.disabled ? 'cursor-not-allowed text-muted' : 'text-primary hover:bg-surface-hover'
+						option.disabled ? 'text-muted cursor-not-allowed' : 'text-primary hover:bg-surface-hover'
 					} ${option.value === value ? 'bg-highlight-50 text-highlight-700' : ''}`}
 					disabled={option.disabled}
 					role="option"
