@@ -17,10 +17,18 @@
 		"test:unit": "vitest",
 		"test": "npm run test:unit -- --run",
 		"story": "storybook dev -p 6006 --no-open",
-		"build-storybook": "storybook build"
+		"build-storybook": "storybook build",
+		"test:visual": "playwright test",
+		"test:visual:ui": "playwright test --ui",
+		"test:visual:update": "playwright test --update-snapshots",
+		"test:visual:critical": "playwright test critical-components.spec.ts",
+		"test:visual:all": "playwright test all-components.spec.ts",
+		"test:visual:all:update": "playwright test all-components.spec.ts --update-snapshots",
+		"test:visual:report": "playwright show-report"
 	},
 	"devDependencies": {
 		"@chromatic-com/storybook": "^4.0.1",
+		"@playwright/test": "^1.53.0",
 		"@storybook/addon-docs": "^9.0.16",
 		"@storybook/addon-svelte-csf": "^5.0.7",
 		"@storybook/sveltekit": "^9.0.16",
@@ -30,7 +38,6 @@
 		"@tailwindcss/forms": "^0.5.9",
 		"@tailwindcss/typography": "^0.5.15",
 		"@tailwindcss/vite": "^4.0.0",
-		"@vitest/browser": "^3.2.3",
 		"playwright": "^1.53.0",
 		"prettier": "^3.4.2",
 		"prettier-plugin-svelte": "^3.3.3",
