@@ -1,5 +1,6 @@
 <script lang="ts">
 	import ImagePlaceholder from './ImagePlaceholder.svelte'
+	import { useLoadingState } from '../utils/state.svelte'
 	import type { BaseProps } from '../types/component'
 
 	interface Props extends BaseProps {
@@ -33,8 +34,7 @@
 		onError,
 	}: Props = $props()
 
-	let imageLoaded = $state(false)
-	let imageError = $state(false)
+	const loadingState = useLoadingState(true) // Start with loading state
 	let currentSrc = $state(src)
 
 	let containerClasses = $derived.by(() => {
@@ -74,27 +74,24 @@
 		}
 
 		const sizeClasses = width && height ? '' : 'w-full h-full'
-		const opacityClass = imageLoaded ? 'opacity-100' : 'opacity-0'
+		const opacityClass = !loadingState.loading() ? 'opacity-100' : 'opacity-0'
 
 		return `${base} ${fitClasses[fit]} ${sizeClasses} ${opacityClass}`
 	})
 
 	function handleLoad() {
-		imageLoaded = true
-		imageError = false
+		loadingState.setLoading(false)
 		onLoad?.()
 	}
 
 	function handleError() {
-		imageError = true
-		imageLoaded = false
-
 		if (fallback && currentSrc !== fallback) {
 			currentSrc = fallback
-			imageError = false
+			loadingState.setLoading(true) // Reset to loading for fallback
 			return
 		}
 
+		loadingState.setError('Failed to load image')
 		onError?.()
 	}
 
@@ -102,14 +99,13 @@
 	$effect(() => {
 		if (src !== currentSrc) {
 			currentSrc = src
-			imageLoaded = false
-			imageError = false
+			loadingState.setLoading(true)
 		}
 	})
 </script>
 
 <div class={containerClasses}>
-	{#if placeholder && !imageLoaded && !imageError}
+	{#if placeholder && loadingState.loading() && !loadingState.hasError()}
 		{#if placeholder.startsWith('http') || placeholder.startsWith('data:') || placeholder.startsWith('/')}
 			<div class="bg-highlight-50 absolute inset-0 flex items-center justify-center">
 				<img src={placeholder} alt="" class="h-full w-full object-cover opacity-50" />
@@ -119,7 +115,7 @@
 		{/if}
 	{/if}
 
-	{#if !imageError}
+	{#if !loadingState.hasError()}
 		<img
 			src={currentSrc}
 			{alt}
@@ -134,7 +130,7 @@
 		<ImagePlaceholder variant="error" message="Failed to load image" />
 	{/if}
 
-	{#if !imageLoaded && !imageError && !placeholder}
+	{#if loadingState.loading() && !loadingState.hasError() && !placeholder}
 		<ImagePlaceholder variant="loading" />
 	{/if}
 </div>

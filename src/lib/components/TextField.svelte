@@ -1,5 +1,6 @@
 <script lang="ts">
 	import type { FormInputComponent, IconComponent, IconSizeComponent } from '../types/component'
+	import { useFocusState } from '../utils/state.svelte'
 
 	interface Props extends FormInputComponent, IconComponent, IconSizeComponent {
 		leftIcon?: string
@@ -39,13 +40,13 @@
 		...restProps
 	}: Props = $props()
 
-	let focused = $state(false)
 	let inputRef: HTMLInputElement
+	const focusState = useFocusState()
 
 	let currentState = $derived.by(() => {
 		if (disabled) return 'disabled'
 		if (error) return 'error'
-		if (focused) return 'focused'
+		if (focusState.focused()) return 'focused'
 		return inputState
 	})
 
@@ -109,8 +110,8 @@
 			{type}
 			{name}
 			{required}
-			onfocus={() => (focused = true)}
-			onblur={() => (focused = false)}
+			onfocus={focusState.handleFocus}
+			onblur={focusState.handleBlur}
 			{...restProps}
 		/>
 

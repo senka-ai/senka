@@ -1,5 +1,6 @@
 <script lang="ts">
 	import type { BaseProps, ChildrenComponent, KeyboardHandler } from '../types/component'
+	import { useToggleState } from '../utils/state.svelte'
 
 	interface Props extends BaseProps, ChildrenComponent, KeyboardHandler {
 		title: string
@@ -19,13 +20,8 @@
 		...restProps
 	}: Props = $props()
 
-	let isOpen = $state(open)
+	const toggleState = useToggleState(open, open, onToggle)
 	let contentElement: HTMLDivElement | undefined = $state()
-
-	// Sync with external open prop
-	$effect(() => {
-		isOpen = open
-	})
 
 	let headerClasses = $derived.by(() => {
 		const base = 'flex items-center justify-between w-full px-4 py-3 text-left transition-colors duration-200'
@@ -36,21 +32,19 @@
 
 	let contentClasses = $derived.by(() => {
 		const base = 'overflow-hidden transition-all duration-300 ease-in-out'
-		const heightClass = isOpen ? 'max-h-screen' : 'max-h-0'
+		const heightClass = toggleState.value() ? 'max-h-screen' : 'max-h-0'
 		return `${base} ${heightClass}`
 	})
 
 	let chevronClasses = $derived.by(() => {
 		const base = 'h-5 w-5 text-neutral-500 transition-transform duration-300'
-		const rotation = isOpen ? 'rotate-180' : 'rotate-0'
+		const rotation = toggleState.value() ? 'rotate-180' : 'rotate-0'
 		return `${base} ${rotation}`
 	})
 
 	function toggle() {
 		if (disabled) return
-
-		isOpen = !isOpen
-		onToggle?.(isOpen)
+		toggleState.toggle()
 	}
 
 	function handleKeyDown(event: KeyboardEvent) {
@@ -67,7 +61,7 @@
 		class={headerClasses}
 		onclick={toggle}
 		onkeydown={handleKeyDown}
-		aria-expanded={isOpen}
+		aria-expanded={toggleState.value()}
 		aria-controls={id ? `${id}-content` : undefined}
 		{disabled}
 		type="button"
@@ -88,7 +82,7 @@
 		role="region"
 		aria-labelledby={id ? `${id}-header` : undefined}
 	>
-		{#if isOpen && children}
+		{#if toggleState.value() && children}
 			<div class="p-4 pt-1">
 				{@render children()}
 			</div>

@@ -369,7 +369,7 @@ Don't use inline comments like this {/_ this is a comment _/}
 
 # $derived.by
 
-Sometimes you need to create complex derivations that don’t fit inside a short expression. In these cases, you can use $derived.by which accepts a function as its argument.
+Sometimes you need to create complex derivations that don't fit inside a short expression. In these cases, you can use $derived.by which accepts a function as its argument.
 
 <script>
 	let numbers = $state([1, 2, 3]);
@@ -381,3 +381,37 @@ Sometimes you need to create complex derivations that don’t fit inside a short
 		return total;
 	});
 </script>
+
+# Runes File Extension Rule
+
+**IMPORTANT**: Runes like `$state`, `$derived`, `$effect`, and `$props` can ONLY be used inside `.svelte` and `.svelte.js/.svelte.ts` files.
+
+If you need to use runes in utility files, you MUST use the `.svelte.js` or `.svelte.ts` file extension:
+
+❌ **Wrong**: `state.ts` - Will throw "rune_outside_svelte" error
+✅ **Correct**: `state.svelte.ts` - Allows runes to be used
+
+Example:
+```typescript
+// src/lib/utils/state.svelte.ts
+export function useControlledState<T>(
+	initialValue: T,
+	controlledValue: T | undefined,
+	onChange?: (value: T) => void
+) {
+	const isControlled = controlledValue !== undefined
+	let localValue = $state(initialValue) // ✅ Works in .svelte.ts files
+	
+	const currentValue = $derived(isControlled ? controlledValue : localValue)
+	
+	return {
+		value: () => currentValue,
+		setValue: (newValue: T) => {
+			if (!isControlled) {
+				localValue = newValue
+			}
+			onChange?.(newValue)
+		}
+	}
+}
+```

@@ -1,5 +1,6 @@
 <script lang="ts">
 	import type { FormInputComponent } from '../types/component'
+	import { useFocusState } from '../utils/state.svelte'
 
 	interface Props extends FormInputComponent {
 		inputState?: 'default' | 'focused' | 'error' | 'disabled'
@@ -31,13 +32,13 @@
 		...restProps
 	}: Props = $props()
 
-	let focused = $state(false)
+	const focusState = useFocusState()
 	let textareaRef: HTMLTextAreaElement
 
 	let currentState = $derived.by(() => {
 		if (disabled) return 'disabled'
 		if (error) return 'error'
-		if (focused) return 'focused'
+		if (focusState.focused()) return 'focused'
 		return inputState
 	})
 
@@ -102,8 +103,8 @@
 			{name}
 			{rows}
 			{maxlength}
-			onfocus={() => (focused = true)}
-			onblur={() => (focused = false)}
+			onfocus={focusState.handleFocus}
+			onblur={focusState.handleBlur}
 			{...restProps}
 		></textarea>
 	</div>

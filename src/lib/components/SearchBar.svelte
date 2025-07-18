@@ -1,6 +1,7 @@
 <script lang="ts">
 	import SearchIcon from '../icons/SearchIcon.svelte'
 	import type { BaseProps, FullWidthComponent, KeyboardHandler } from '../types/component'
+	import { useFocusState } from '../utils/state.svelte'
 
 	interface Props extends BaseProps, FullWidthComponent, KeyboardHandler {
 		placeholder?: string
@@ -28,7 +29,7 @@
 		...restProps
 	}: Props = $props()
 
-	let focused = $state(false)
+	const focusState = useFocusState()
 	let inputRef: HTMLInputElement
 
 	let containerClasses = $derived.by(() => {
@@ -47,18 +48,18 @@
 			disabled: 'border-neutral-300 bg-neutral-100 text-neutral-500 cursor-not-allowed',
 		}
 
-		const currentState = disabled ? 'disabled' : focused ? 'focused' : 'default'
+		const currentState = disabled ? 'disabled' : focusState.focused() ? 'focused' : 'default'
 
 		return `${base} ${states[currentState]}`
 	})
 
 	function handleFocus(event: FocusEvent) {
-		focused = true
+		focusState.handleFocus()
 		onfocus?.(event)
 	}
 
 	function handleBlur(event: FocusEvent) {
-		focused = false
+		focusState.handleBlur()
 		onblur?.(event)
 	}
 </script>

@@ -1,6 +1,7 @@
 <script lang="ts">
 	import { CheckIcon } from '../icons'
 	import type { BaseProps, SizedComponent, ChangeHandler, ChildrenComponent } from '../types/component'
+	import { useControlledState } from '../utils/state.svelte'
 
 	interface Props extends BaseProps, SizedComponent, ChangeHandler<boolean>, ChildrenComponent {
 		checked?: boolean
@@ -22,11 +23,7 @@
 		label,
 	}: Props = $props()
 
-	let localChecked = $state(checked)
-
-	$effect(() => {
-		localChecked = checked
-	})
+	const checkedState = useControlledState(false, checked, onchange)
 
 	function handleContainerClick(event: MouseEvent) {
 		if (!disabled) {
@@ -37,15 +34,13 @@
 			}
 
 			// Toggle checkbox for everything else
-			localChecked = !localChecked
-			onchange?.(localChecked)
+			checkedState.setValue(!checkedState.value())
 		}
 	}
 
 	function handleChange() {
 		if (!disabled) {
-			localChecked = !localChecked
-			onchange?.(localChecked)
+			checkedState.setValue(!checkedState.value())
 		}
 	}
 
@@ -65,7 +60,7 @@
 			large: 'h-8 w-8 rounded-lg',
 		}
 
-		const states = localChecked
+		const states = checkedState.value()
 			? 'bg-highlight border-2 border-highlight'
 			: 'bg-surface border-2 border-neutral-300 hover:border-neutral-400'
 
@@ -92,7 +87,7 @@
 
 <div
 	role="checkbox"
-	aria-checked={localChecked}
+	aria-checked={checkedState.value()}
 	aria-disabled={disabled}
 	tabindex={disabled ? -1 : 0}
 	class={containerClasses}
@@ -101,8 +96,8 @@
 	onclick={handleContainerClick}
 >
 	<div class={checkboxClasses}>
-		<input type="checkbox" bind:checked={localChecked} {disabled} {name} {value} class="sr-only" tabindex="-1" />
-		{#if localChecked}
+		<input type="checkbox" checked={checkedState.value()} {disabled} {name} {value} class="sr-only" tabindex="-1" />
+		{#if checkedState.value()}
 			<CheckIcon size={iconSizes} class="text-white" />
 		{/if}
 	</div>

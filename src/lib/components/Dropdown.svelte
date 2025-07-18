@@ -1,6 +1,7 @@
 <script lang="ts">
 	import ArrowDownIcon from '../icons/ArrowDownIcon.svelte'
 	import type { FormInputComponent, ChangeHandler } from '../types/component'
+	import { useSelectState, useFocusState } from '../utils/state.svelte'
 
 	interface Option {
 		value: string
@@ -30,17 +31,18 @@
 		onchange,
 	}: Props = $props()
 
-	let isOpen = $state(false)
 	let dropdownRef: HTMLDivElement
 	let buttonRef: HTMLButtonElement
-	let focused = $state(false)
+	
+	const selectState = useSelectState(value || '', value, onchange)
+	const focusState = useFocusState()
 
-	let selectedOption = $derived(options.find((opt) => opt.value === value))
+	let selectedOption = $derived(options.find((opt) => opt.value === selectState.value()))
 
 	let currentState = $derived.by(() => {
 		if (disabled) return 'disabled'
 		if (error) return 'error'
-		if (focused || isOpen) return 'focused'
+		if (focusState.focused() || selectState.isOpen()) return 'focused'
 		return 'default'
 	})
 
@@ -79,21 +81,20 @@
 	let menuClasses = $derived.by(() => {
 		const base =
 			'absolute z-50 w-full mt-1 bg-surface-elevated border border-default rounded-xl shadow-lg max-h-60 overflow-y-auto'
-		const visibility = isOpen ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-1 pointer-events-none'
+		const visibility = selectState.isOpen() ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-1 pointer-events-none'
 		return `${base} ${visibility} transition-all duration-200`
 	})
 
 	function toggleDropdown() {
 		if (!disabled) {
-			isOpen = !isOpen
+			selectState.toggle()
 		}
 	}
 
 	function selectOption(option: Option) {
 		if (!option.disabled) {
 			value = option.value
-			onchange?.(option.value)
-			isOpen = false
+			selectState.select(option.value)
 			buttonRef?.focus()
 		}
 	}
@@ -108,13 +109,13 @@
 				toggleDropdown()
 				break
 			case 'Escape':
-				isOpen = false
+				selectState.close()
 				buttonRef?.focus()
 				break
 			case 'ArrowDown':
 				event.preventDefault()
-				if (!isOpen) {
-					isOpen = true
+				if (!selectState.isOpen()) {
+					selectState.open()
 				} else {
 					// Focus next option
 					focusNextOption()
@@ -122,8 +123,8 @@
 				break
 			case 'ArrowUp':
 				event.preventDefault()
-				if (!isOpen) {
-					isOpen = true
+				if (!selectState.isOpen()) {
+					selectState.open()
 				} else {
 					// Focus previous option
 					focusPreviousOption()
@@ -152,12 +153,12 @@
 
 	function handleClickOutside(event: MouseEvent) {
 		if (dropdownRef && !dropdownRef.contains(event.target as Node)) {
-			isOpen = false
+			selectState.close()
 		}
 	}
 
 	$effect(() => {
-		if (isOpen) {
+		if (selectState.isOpen()) {
 			document.addEventListener('click', handleClickOutside)
 		} else {
 			document.removeEventListener('click', handleClickOutside)
@@ -184,18 +185,18 @@
 			{disabled}
 			{id}
 			{name}
-			aria-expanded={isOpen}
+			aria-expanded={selectState.isOpen()}
 			aria-haspopup="listbox"
 			onclick={toggleDropdown}
 			onkeydown={handleKeydown}
-			onfocus={() => (focused = true)}
-			onblur={() => (focused = false)}
+			onfocus={focusState.handleFocus}
+			onblur={focusState.handleBlur}
 		>
 			<span class={selectedOption ? 'text-neutral-900' : 'text-neutral-500'}>
 				{selectedOption?.label || placeholder}
 			</span>
 			<ArrowDownIcon
-				class={`transition-transform duration-200 ${isOpen ? 'rotate-180' : ''} ${disabled ? 'text-neutral-400' : 'text-neutral-500'}`}
+				class={`transition-transform duration-200 ${selectState.isOpen() ? 'rotate-180' : ''} ${disabled ? 'text-neutral-400' : 'text-neutral-500'}`}
 				size={12}
 			/>
 		</button>
@@ -206,10 +207,10 @@
 					type="button"
 					class={`text-slim-m w-full px-3.25 py-2.5 text-left transition-colors duration-150 ${
 						option.disabled ? 'text-muted cursor-not-allowed' : 'text-primary hover:bg-surface-hover'
-					} ${option.value === value ? 'bg-highlight-50 text-highlight-700' : ''}`}
+					} ${option.value === selectState.value() ? 'bg-highlight-50 text-highlight-700' : ''}`}
 					disabled={option.disabled}
 					role="option"
-					aria-selected={option.value === value}
+					aria-selected={option.value === selectState.value()}
 					onclick={() => selectOption(option)}
 				>
 					{option.label}

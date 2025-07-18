@@ -1,5 +1,6 @@
 <script lang="ts">
 	import type { BaseProps, SizedComponent, ChangeHandler } from '../types/component'
+	import { useToggleState } from '../utils/state.svelte'
 
 	interface Props extends BaseProps, SizedComponent, ChangeHandler<boolean> {
 		checked?: boolean
@@ -16,16 +17,11 @@
 		onchange,
 	}: Props = $props()
 
-	let localChecked = $state(checked)
-
-	$effect(() => {
-		localChecked = checked
-	})
+	const toggleState = useToggleState(false, checked, onchange)
 
 	function handleToggle() {
 		if (!disabled) {
-			localChecked = !localChecked
-			onchange?.(localChecked)
+			toggleState.toggle()
 		}
 	}
 
@@ -45,7 +41,7 @@
 			large: 'h-8 w-14',
 		}
 
-		const states = localChecked ? 'bg-highlight' : 'bg-neutral-300'
+		const states = toggleState.value() ? 'bg-highlight' : 'bg-neutral-300'
 
 		const disabledStyles = disabled ? 'opacity-50 cursor-not-allowed' : ''
 
@@ -62,9 +58,9 @@
 		}
 
 		const positions = {
-			small: localChecked ? 'translate-x-4.5' : 'translate-x-0.75',
-			medium: localChecked ? 'translate-x-6' : 'translate-x-1',
-			large: localChecked ? 'translate-x-7' : 'translate-x-1',
+			small: toggleState.value() ? 'translate-x-4.5' : 'translate-x-0.75',
+			medium: toggleState.value() ? 'translate-x-6' : 'translate-x-1',
+			large: toggleState.value() ? 'translate-x-7' : 'translate-x-1',
 		}
 
 		return `${base} ${sizes[size]} ${positions[size]}`
@@ -73,7 +69,7 @@
 
 <button
 	role="switch"
-	aria-checked={localChecked}
+	aria-checked={toggleState.value()}
 	aria-disabled={disabled}
 	aria-label="Toggle switch"
 	type="button"
@@ -84,5 +80,5 @@
 	onkeydown={handleKeydown}
 >
 	<span class={knobClasses}></span>
-	<input type="checkbox" checked={localChecked} {disabled} {name} class="sr-only" tabindex="-1" />
+	<input type="checkbox" checked={toggleState.value()} {disabled} {name} class="sr-only" tabindex="-1" />
 </button>

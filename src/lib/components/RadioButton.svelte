@@ -1,5 +1,6 @@
 <script lang="ts">
 	import type { BaseProps, SizedComponent, ChangeHandler, ChildrenComponent } from '../types/component'
+	import { useControlledState } from '../utils/state.svelte'
 
 	interface Props extends BaseProps, SizedComponent, ChangeHandler<boolean>, ChildrenComponent {
 		checked?: boolean
@@ -21,11 +22,7 @@
 		label,
 	}: Props = $props()
 
-	let localChecked = $state(checked)
-
-	$effect(() => {
-		localChecked = checked
-	})
+	const checkedState = useControlledState(false, checked, onchange)
 
 	function handleContainerClick(event: MouseEvent) {
 		if (!disabled) {
@@ -36,15 +33,13 @@
 			}
 
 			// Select radio button for everything else
-			localChecked = true
-			onchange?.(true)
+			checkedState.setValue(true)
 		}
 	}
 
 	function handleChange() {
 		if (!disabled) {
-			localChecked = true
-			onchange?.(true)
+			checkedState.setValue(true)
 		}
 	}
 
@@ -64,7 +59,7 @@
 			large: 'h-8 w-8',
 		}
 
-		const states = localChecked
+		const states = checkedState.value()
 			? 'bg-highlight border-2 border-highlight'
 			: 'bg-surface border-2 border-neutral-300 hover:border-neutral-400'
 
@@ -91,7 +86,7 @@
 
 <div
 	role="radio"
-	aria-checked={localChecked}
+	aria-checked={checkedState.value()}
 	aria-disabled={disabled}
 	tabindex={disabled ? -1 : 0}
 	class={containerClasses}
@@ -102,7 +97,7 @@
 	<div class={radioClasses}>
 		<input
 			type="radio"
-			checked={localChecked}
+			checked={checkedState.value()}
 			{disabled}
 			{name}
 			{value}
@@ -110,7 +105,7 @@
 			tabindex="-1"
 			onchange={handleChange}
 		/>
-		{#if localChecked}
+		{#if checkedState.value()}
 			<div class="rounded-full bg-white {dotSizes}"></div>
 		{/if}
 	</div>

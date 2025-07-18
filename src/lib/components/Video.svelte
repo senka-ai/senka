@@ -1,6 +1,7 @@
 <script lang="ts">
 	import { VideoIcon } from '../icons'
 	import VideoPlaceholder from './VideoPlaceholder.svelte'
+	import { useLoadingState } from '../utils/state.svelte'
 
 	import type { BaseProps } from '../types/component'
 
@@ -47,8 +48,7 @@
 		onError,
 	}: Props = $props()
 
-	let videoLoaded = $state(false)
-	let videoError = $state(false)
+	const loadingState = useLoadingState(true) // Start with loading state
 	let isPlaying = $state(false)
 	let currentSrc = $state(src)
 
@@ -79,19 +79,17 @@
 
 	let videoClasses = $derived.by(() => {
 		const base = 'w-full h-full object-cover transition-opacity duration-300'
-		const opacityClass = videoLoaded ? 'opacity-100' : 'opacity-0'
+		const opacityClass = !loadingState.loading() ? 'opacity-100' : 'opacity-0'
 		return `${base} ${opacityClass}`
 	})
 
 	function handleLoadStart() {
-		videoLoaded = false
-		videoError = false
+		loadingState.setLoading(true)
 		onLoadStart?.()
 	}
 
 	function handleCanPlay() {
-		videoLoaded = true
-		videoError = false
+		loadingState.setLoading(false)
 		onCanPlay?.()
 	}
 
@@ -111,8 +109,7 @@
 	}
 
 	function handleError() {
-		videoError = true
-		videoLoaded = false
+		loadingState.setError('Failed to load video')
 		onError?.()
 	}
 
@@ -120,15 +117,14 @@
 	$effect(() => {
 		if (src !== currentSrc) {
 			currentSrc = src
-			videoLoaded = false
-			videoError = false
+			loadingState.setLoading(true)
 			isPlaying = false
 		}
 	})
 </script>
 
 <div class={containerClasses}>
-	{#if placeholder && !videoLoaded && !videoError}
+	{#if placeholder && loadingState.loading() && !loadingState.hasError()}
 		{#if placeholder.startsWith('http') || placeholder.startsWith('data:') || placeholder.startsWith('/')}
 			<div class="bg-highlight-50 absolute inset-0 flex items-center justify-center">
 				<img src={placeholder} alt="" class="h-full w-full object-cover opacity-50" />
@@ -138,7 +134,7 @@
 		{/if}
 	{/if}
 
-	{#if !videoError}
+	{#if !loadingState.hasError()}
 		<video
 			src={currentSrc}
 			{poster}
@@ -163,11 +159,11 @@
 		<VideoPlaceholder variant="error" message="Failed to load video" />
 	{/if}
 
-	{#if !videoLoaded && !videoError && !placeholder}
+	{#if loadingState.loading() && !loadingState.hasError() && !placeholder}
 		<VideoPlaceholder variant="loading" />
 	{/if}
 
-	{#if !controls && !isPlaying && videoLoaded}
+	{#if !controls && !isPlaying && !loadingState.loading()}
 		<div class="pointer-events-none absolute inset-0 flex items-center justify-center">
 			<VideoIcon class="h-16 w-16 text-white drop-shadow-lg" />
 		</div>
