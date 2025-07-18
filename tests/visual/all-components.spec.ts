@@ -35,10 +35,10 @@ const allComponents = [
 	{ name: 'Video', story: 'default' },
 ]
 
-// Generate tests for each component
+// Generate tests for each component (optimized for speed)
 allComponents.forEach(component => {
 	test.describe(`${component.name} Component`, () => {
-		test(`${component.name} - Light Theme`, async ({ page }) => {
+		test(`${component.name} - Both Themes`, async ({ page }) => {
 			const storyId = component.section 
 				? `${component.section}--${component.story}`
 				: `components-${component.name.toLowerCase()}--${component.story}`
@@ -47,30 +47,16 @@ allComponents.forEach(component => {
 				await mockExternalImages(page)
 				await visitStory(page, storyId)
 				await waitForImages(page)
-				await setTheme(page, 'light')
 				
+				// Test light theme
+				await setTheme(page, 'light')
 				const storyContainer = getStoryContainer(page)
 				await expect(storyContainer).toHaveScreenshot(
 					`${component.name.toLowerCase()}-light.png`
 				)
-			} catch (error) {
-				console.log(`Story ${storyId} failed: ${error.message}`)
-				test.skip()
-			}
-		})
-		
-		test(`${component.name} - Dark Theme`, async ({ page }) => {
-			const storyId = component.section 
-				? `${component.section}--${component.story}`
-				: `components-${component.name.toLowerCase()}--${component.story}`
-			
-			try {
-				await mockExternalImages(page)
-				await visitStory(page, storyId)
-				await waitForImages(page)
-				await setTheme(page, 'dark')
 				
-				const storyContainer = getStoryContainer(page)
+				// Test dark theme (reuse same page)
+				await setTheme(page, 'dark')
 				await expect(storyContainer).toHaveScreenshot(
 					`${component.name.toLowerCase()}-dark.png`
 				)

@@ -11,8 +11,8 @@ export async function visitStory(page: Page, storyId: string) {
 	await page.goto(`/iframe.html?id=${storyId}`)
 	// Wait for the story to load
 	await page.waitForSelector('#storybook-root')
-	// Wait for any animations to complete
-	await page.waitForTimeout(500)
+	// Reduced wait time for faster execution
+	await page.waitForTimeout(200)
 }
 
 /**
@@ -22,8 +22,8 @@ export async function setTheme(page: Page, theme: 'light' | 'dark') {
 	await page.evaluate((theme) => {
 		document.documentElement.setAttribute('data-theme', theme)
 	}, theme)
-	// Wait for theme transition
-	await page.waitForTimeout(200)
+	// Reduced wait time for theme transition
+	await page.waitForTimeout(100)
 }
 
 /**

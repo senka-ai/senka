@@ -7,6 +7,9 @@ import { defineConfig, devices } from '@playwright/test'
 export default defineConfig({
 	testDir: './tests/visual',
 	
+	// Enable full parallelization
+	fullyParallel: true,
+	
 	// Configure test timeout and retry
 	timeout: 30 * 1000,
 	expect: {
@@ -24,8 +27,8 @@ export default defineConfig({
 	// Retry on CI only
 	retries: process.env.CI ? 2 : 0,
 	
-	// Opt out of parallel tests on CI
-	workers: process.env.CI ? 1 : undefined,
+	// Use parallel workers for faster execution
+	workers: process.env.CI ? 2 : 4,
 	
 	// Reporter to use
 	reporter: [
