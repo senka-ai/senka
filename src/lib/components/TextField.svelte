@@ -2,6 +2,7 @@
 	import type { FormInputComponent, IconComponent, IconSizeComponent } from '../types/component'
 	import { useFocusState } from '../utils/state.svelte'
 	import { shouldRenderIcon, getInputIconClasses, getInputPadding, isStringIcon } from '../utils/icons'
+	import FormField from './FormField.svelte'
 
 	interface Props extends FormInputComponent, IconComponent, IconSizeComponent {
 		unit?: string
@@ -49,12 +50,6 @@
 		return inputState
 	})
 
-	let containerClasses = $derived.by(() => {
-		const base = 'relative'
-		const width = fullWidth ? 'w-full' : ''
-		return `${base} ${width} ${className}`
-	})
-
 	let inputClasses = $derived.by(() => {
 		const base =
 			'w-full px-3.25 py-3.25 text-slim-m text-neutral-900 bg-neutral-50 border rounded-xl transition-all duration-200 focus:outline-none focus:ring-offset-0 placeholder:text-neutral-500'
@@ -72,28 +67,21 @@
 
 		return `${base} ${states[currentState]} ${padding}`
 	})
-
-	let labelClasses = $derived.by(() => {
-		const base = 'block text-thick-s mb-1.5'
-		const color = disabled ? 'text-neutral-500' : 'text-neutral-800'
-		return `${base} ${color}`
-	})
-
-	let helperTextClasses = $derived.by(() => {
-		const base = 'text-slim-s mt-1'
-		const color = currentState === 'error' ? 'text-error' : 'text-neutral-600'
-		return `${base} ${color}`
-	})
 </script>
 
-<div class={containerClasses}>
-	{#if label && showLabel}
-		<label for={id} class={labelClasses}>
-			{label}
-		</label>
-	{/if}
-
-	<div class="relative">
+<FormField
+	{label}
+	{helperText}
+	{error}
+	{showLabel}
+	{showHelperText}
+	{fullWidth}
+	{disabled}
+	for={id}
+	class={className}
+	{...restProps}
+>
+	{#snippet children()}
 		{#if shouldRenderIcon(leftIcon, showIcon)}
 			<div class={getInputIconClasses('left')}>
 				{#if isStringIcon(leftIcon)}
@@ -132,11 +120,5 @@
 				{unit}
 			</div>
 		{/if}
-	</div>
-
-	{#if (error || helperText) && showHelperText}
-		<div class={helperTextClasses}>
-			{error || helperText}
-		</div>
-	{/if}
-</div>
+	{/snippet}
+</FormField>

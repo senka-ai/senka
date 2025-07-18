@@ -1,6 +1,7 @@
 <script lang="ts">
 	import ArrowDownIcon from '../icons/ArrowDownIcon.svelte'
-	import type { FormInputComponent, ChangeHandler } from '../types/component'
+	import FormField from './FormField.svelte'
+	import type { FormInputComponent, ChangeHandler, ChildrenComponent } from '../types/component'
 	import { useSelectState, useFocusState } from '../utils/state.svelte'
 
 	interface Option {
@@ -9,7 +10,7 @@
 		disabled?: boolean
 	}
 
-	interface Props extends FormInputComponent, ChangeHandler<string> {
+	interface Props extends FormInputComponent, ChangeHandler<string>, ChildrenComponent {
 		options: Option[]
 		value?: string
 	}
@@ -29,6 +30,8 @@
 		id,
 		name,
 		onchange,
+		children,
+		...restProps
 	}: Props = $props()
 
 	let dropdownRef: HTMLDivElement
@@ -46,10 +49,9 @@
 		return 'default'
 	})
 
-	let containerClasses = $derived.by(() => {
+	let dropdownClasses = $derived.by(() => {
 		const base = 'relative'
-		const width = fullWidth ? 'w-full' : ''
-		return `${base} ${width} ${className}`
+		return `${base}`
 	})
 
 	let buttonClasses = $derived.by(() => {
@@ -66,17 +68,6 @@
 		return `${base} ${states[currentState]}`
 	})
 
-	let labelClasses = $derived.by(() => {
-		const base = 'block text-thick-s mb-1.5'
-		const color = disabled ? 'text-neutral-500' : 'text-neutral-800'
-		return `${base} ${color}`
-	})
-
-	let helperTextClasses = $derived.by(() => {
-		const base = 'text-slim-s mt-1'
-		const color = currentState === 'error' ? 'text-error' : 'text-neutral-600'
-		return `${base} ${color}`
-	})
 
 	let menuClasses = $derived.by(() => {
 		const base =
@@ -170,58 +161,60 @@
 	})
 </script>
 
-<div class={containerClasses} bind:this={dropdownRef}>
-	{#if label && showLabel}
-		<label for={id} class={labelClasses}>
-			{label}
-		</label>
-	{/if}
+<FormField
+	{label}
+	{helperText}
+	{error}
+	{showLabel}
+	{showHelperText}
+	{fullWidth}
+	{disabled}
+	for={id}
+	class={className}
+	{id}
+	{...restProps}
+>
+	{#snippet children()}
+		<div class={dropdownClasses} bind:this={dropdownRef}>
+			<button
+				bind:this={buttonRef}
+				type="button"
+				class={buttonClasses}
+				{disabled}
+				{id}
+				{name}
+				aria-expanded={selectState.isOpen()}
+				aria-haspopup="listbox"
+				onclick={toggleDropdown}
+				onkeydown={handleKeydown}
+				onfocus={focusState.handleFocus}
+				onblur={focusState.handleBlur}
+			>
+				<span class={selectedOption ? 'text-neutral-900' : 'text-neutral-500'}>
+					{selectedOption?.label || placeholder}
+				</span>
+				<ArrowDownIcon
+					class={`transition-transform duration-200 ${selectState.isOpen() ? 'rotate-180' : ''} ${disabled ? 'text-neutral-400' : 'text-neutral-500'}`}
+					size={12}
+				/>
+			</button>
 
-	<div class="relative">
-		<button
-			bind:this={buttonRef}
-			type="button"
-			class={buttonClasses}
-			{disabled}
-			{id}
-			{name}
-			aria-expanded={selectState.isOpen()}
-			aria-haspopup="listbox"
-			onclick={toggleDropdown}
-			onkeydown={handleKeydown}
-			onfocus={focusState.handleFocus}
-			onblur={focusState.handleBlur}
-		>
-			<span class={selectedOption ? 'text-neutral-900' : 'text-neutral-500'}>
-				{selectedOption?.label || placeholder}
-			</span>
-			<ArrowDownIcon
-				class={`transition-transform duration-200 ${selectState.isOpen() ? 'rotate-180' : ''} ${disabled ? 'text-neutral-400' : 'text-neutral-500'}`}
-				size={12}
-			/>
-		</button>
-
-		<div class={menuClasses} role="listbox">
-			{#each options as option}
-				<button
-					type="button"
-					class={`text-slim-m w-full px-3.25 py-2.5 text-left transition-colors duration-150 ${
-						option.disabled ? 'text-muted cursor-not-allowed' : 'text-primary hover:bg-surface-hover'
-					} ${option.value === selectState.value() ? 'bg-highlight-50 text-highlight-700' : ''}`}
-					disabled={option.disabled}
-					role="option"
-					aria-selected={option.value === selectState.value()}
-					onclick={() => selectOption(option)}
-				>
-					{option.label}
-				</button>
-			{/each}
+			<div class={menuClasses} role="listbox">
+				{#each options as option}
+					<button
+						type="button"
+						class={`text-slim-m w-full px-3.25 py-2.5 text-left transition-colors duration-150 ${
+							option.disabled ? 'text-muted cursor-not-allowed' : 'text-primary hover:bg-surface-hover'
+						} ${option.value === selectState.value() ? 'bg-highlight-50 text-highlight-700' : ''}`}
+						disabled={option.disabled}
+						role="option"
+						aria-selected={option.value === selectState.value()}
+						onclick={() => selectOption(option)}
+					>
+						{option.label}
+					</button>
+				{/each}
+			</div>
 		</div>
-	</div>
-
-	{#if (error || helperText) && showHelperText}
-		<div class={helperTextClasses}>
-			{error || helperText}
-		</div>
-	{/if}
-</div>
+	{/snippet}
+</FormField>

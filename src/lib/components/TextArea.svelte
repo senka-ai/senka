@@ -1,6 +1,7 @@
 <script lang="ts">
 	import type { FormInputComponent } from '../types/component'
 	import { useFocusState } from '../utils/state.svelte'
+	import FormField from './FormField.svelte'
 
 	interface Props extends FormInputComponent {
 		inputState?: 'default' | 'focused' | 'error' | 'disabled'
@@ -42,11 +43,6 @@
 		return inputState
 	})
 
-	let containerClasses = $derived.by(() => {
-		const base = 'relative'
-		const width = fullWidth ? 'w-full' : ''
-		return `${base} ${width} ${className}`
-	})
 
 	let textareaClasses = $derived.by(() => {
 		const base =
@@ -69,30 +65,33 @@
 		return `${base} ${states[currentState]} ${resizeClasses[resize]}`
 	})
 
-	let labelClasses = $derived.by(() => {
-		const base = 'block text-thick-s mb-1.5'
-		const color = disabled ? 'text-neutral-500' : 'text-neutral-800'
-		return `${base} ${color}`
-	})
-
-	let helperTextClasses = $derived.by(() => {
-		const base = 'text-slim-s mt-1'
-		const color = currentState === 'error' ? 'text-error' : 'text-neutral-600'
-		return `${base} ${color}`
-	})
 
 	let charCount = $derived(value?.length || 0)
 	let showCharCount = $derived(maxlength !== undefined && maxlength > 0)
+
+	// Determine if we need a custom helper area (when we have both text and char count)
+	let showCustomHelperArea = $derived(showCharCount && showHelperText && (error || helperText))
+	
+	// Helper text to pass to FormField (only when not using custom helper area)
+	let formFieldHelperText = $derived.by(() => {
+		if (showCustomHelperArea) return ''
+		return error || helperText || ''
+	})
 </script>
 
-<div class={containerClasses}>
-	{#if label && showLabel}
-		<label for={id} class={labelClasses}>
-			{label}
-		</label>
-	{/if}
-
-	<div class="relative">
+<FormField
+	{label}
+	helperText={formFieldHelperText}
+	{error}
+	{showLabel}
+	showHelperText={showHelperText && !showCustomHelperArea}
+	{fullWidth}
+	{disabled}
+	for={id}
+	class={className}
+	{...restProps}
+>
+	{#snippet children()}
 		<textarea
 			bind:this={textareaRef}
 			bind:value
@@ -107,11 +106,13 @@
 			onblur={focusState.handleBlur}
 			{...restProps}
 		></textarea>
-	</div>
+	{/snippet}
+</FormField>
 
+{#if showCustomHelperArea}
 	<div class="mt-1 flex items-start justify-between">
 		{#if (error || helperText) && showHelperText}
-			<div class={helperTextClasses}>
+			<div class="text-slim-s {error ? 'text-error' : 'text-neutral-600'}">
 				{error || helperText}
 			</div>
 		{/if}
@@ -121,4 +122,4 @@
 			</div>
 		{/if}
 	</div>
-</div>
+{/if}
