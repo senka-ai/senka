@@ -1,5 +1,6 @@
 <script lang="ts">
 	import type { BaseProps, VariantComponent, IconComponent, ClickHandler } from '../types/component'
+	import { shouldRenderIcon, isStringIcon } from '../utils/icons'
 
 	interface Props
 		extends BaseProps,
@@ -7,6 +8,7 @@
 			IconComponent,
 			ClickHandler {
 		text: string
+		iconSize?: number
 	}
 
 	let {
@@ -14,6 +16,7 @@
 		text,
 		leftIcon,
 		rightIcon,
+		iconSize = 16,
 		disabled = false,
 		class: className = '',
 		id,
@@ -54,33 +57,49 @@
 
 {#if onclick}
 	<button class={tagClasses} {id} onclick={handleClick} onkeydown={handleKeyDown} {disabled} {...restProps}>
-		{#if leftIcon}
+		{#if shouldRenderIcon(leftIcon, true)}
 			<span class="flex items-center">
-				{@render leftIcon()}
+				{#if isStringIcon(leftIcon)}
+					{leftIcon}
+				{:else}
+					{@render leftIcon?.(iconSize)}
+				{/if}
 			</span>
 		{/if}
 
 		{text}
 
-		{#if rightIcon}
+		{#if shouldRenderIcon(rightIcon, true)}
 			<span class="flex items-center">
-				{@render rightIcon()}
+				{#if isStringIcon(rightIcon)}
+					{rightIcon}
+				{:else}
+					{@render rightIcon?.(iconSize)}
+				{/if}
 			</span>
 		{/if}
 	</button>
 {:else}
 	<span class={tagClasses} {id} {...restProps}>
-		{#if leftIcon}
+		{#if shouldRenderIcon(leftIcon, true)}
 			<span class="flex items-center">
-				{@render leftIcon()}
+				{#if isStringIcon(leftIcon)}
+					{leftIcon}
+				{:else}
+					{@render leftIcon?.(iconSize)}
+				{/if}
 			</span>
 		{/if}
 
 		{text}
 
-		{#if rightIcon}
+		{#if shouldRenderIcon(rightIcon, true)}
 			<span class="flex items-center">
-				{@render rightIcon()}
+				{#if isStringIcon(rightIcon)}
+					{rightIcon}
+				{:else}
+					{@render rightIcon?.(iconSize)}
+				{/if}
 			</span>
 		{/if}
 	</span>

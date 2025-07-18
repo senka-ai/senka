@@ -70,6 +70,32 @@ export interface IconSizeComponent {
 	iconSize?: number
 }
 
+// Unified icon interfaces for consistency
+export interface UnifiedIconComponent {
+	leftIcon?: any
+	rightIcon?: any
+	iconSize?: number
+	showIcon?: boolean
+}
+
+export interface SingleIconComponent {
+	icon?: any
+	iconSize?: number
+	showIcon?: boolean
+}
+
+export interface LeftIconComponent {
+	leftIcon?: any
+	iconSize?: number
+	showIcon?: boolean
+}
+
+export interface RightIconComponent {
+	rightIcon?: any
+	iconSize?: number
+	showIcon?: boolean
+}
+
 // Loading state interface
 export interface LoadingComponent {
 	loading?: boolean

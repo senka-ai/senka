@@ -1,10 +1,10 @@
 <script lang="ts">
 	import { SpinnerIcon } from '../icons'
 	import type { ButtonLikeComponent, IconComponent } from '../types/component'
+	import { shouldRenderIcon, isStringIcon } from '../utils/icons'
 
 	interface Props extends ButtonLikeComponent, IconComponent {
-		leftIcon?: string
-		rightIcon?: string
+		iconSize?: number
 	}
 
 	let {
@@ -12,6 +12,7 @@
 		size = 'medium',
 		leftIcon,
 		rightIcon,
+		iconSize = 16,
 		loading = false,
 		fullWidth = false,
 		disabled = false,
@@ -51,9 +52,13 @@
 <button class={buttonClasses} disabled={disabled || loading} {id} {type} {onclick} {...restProps}>
 	{#if loading}
 		<SpinnerIcon class="h-3.5 w-3.5" />
-	{:else if leftIcon}
+	{:else if shouldRenderIcon(leftIcon, true)}
 		<span class="flex items-center">
-			{leftIcon}
+			{#if isStringIcon(leftIcon)}
+				{leftIcon}
+			{:else}
+				{@render leftIcon?.(iconSize)}
+			{/if}
 		</span>
 	{/if}
 
@@ -61,9 +66,13 @@
 		{@render children()}
 	{/if}
 
-	{#if rightIcon && !loading}
+	{#if shouldRenderIcon(rightIcon, true) && !loading}
 		<span class="flex items-center">
-			{rightIcon}
+			{#if isStringIcon(rightIcon)}
+				{rightIcon}
+			{:else}
+				{@render rightIcon?.(iconSize)}
+			{/if}
 		</span>
 	{/if}
 </button>

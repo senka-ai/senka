@@ -1,10 +1,12 @@
 <script lang="ts">
 	import type { ListItemComponent, IconComponent } from '../types/component'
+	import { shouldRenderIcon, isStringIcon } from '../utils/icons'
 
 	interface Props extends ListItemComponent, IconComponent {
 		rightControl?: any
 		showChevron?: boolean
 		compact?: boolean
+		iconSize?: number
 	}
 
 	let {
@@ -17,6 +19,7 @@
 		clickable = false,
 		disabled = false,
 		compact = false,
+		iconSize = 16,
 		class: className = '',
 		id,
 		onclick,
@@ -57,9 +60,13 @@
 		type="button"
 		{...restProps}
 	>
-		{#if leftIcon}
+		{#if shouldRenderIcon(leftIcon, true)}
 			<div class="flex-shrink-0">
-				{@render leftIcon()}
+				{#if isStringIcon(leftIcon)}
+					{leftIcon}
+				{:else}
+					{@render leftIcon?.(iconSize)}
+				{/if}
 			</div>
 		{/if}
 
@@ -79,9 +86,13 @@
 				{@render rightControl()}
 			{/if}
 
-			{#if rightIcon}
+			{#if shouldRenderIcon(rightIcon, true)}
 				<div class="text-highlight">
-					{@render rightIcon()}
+					{#if isStringIcon(rightIcon)}
+						{rightIcon}
+					{:else}
+						{@render rightIcon?.(iconSize)}
+					{/if}
 				</div>
 			{/if}
 
@@ -94,9 +105,13 @@
 	</button>
 {:else}
 	<div class={itemClasses} {id} {...restProps}>
-		{#if leftIcon}
+		{#if shouldRenderIcon(leftIcon, true)}
 			<div class="flex-shrink-0">
-				{@render leftIcon()}
+				{#if isStringIcon(leftIcon)}
+					{leftIcon}
+				{:else}
+					{@render leftIcon?.(iconSize)}
+				{/if}
 			</div>
 		{/if}
 
@@ -116,9 +131,13 @@
 				{@render rightControl()}
 			{/if}
 
-			{#if rightIcon}
+			{#if shouldRenderIcon(rightIcon, true)}
 				<div class="text-highlight">
-					{@render rightIcon()}
+					{#if isStringIcon(rightIcon)}
+						{rightIcon}
+					{:else}
+						{@render rightIcon?.(iconSize)}
+					{/if}
 				</div>
 			{/if}
 

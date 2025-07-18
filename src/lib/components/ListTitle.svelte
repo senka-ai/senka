@@ -1,14 +1,16 @@
 <script lang="ts">
 	import type { BaseProps } from '../types/component'
+	import { shouldRenderIcon, isStringIcon } from '../utils/icons'
 
 	interface Props extends BaseProps {
 		title: string
 		rightText?: string
 		rightIcon?: any
 		onRightClick?: () => void
+		iconSize?: number
 	}
 
-	let { title, rightText, rightIcon, onRightClick, class: className = '', id, ...restProps }: Props = $props()
+	let { title, rightText, rightIcon, onRightClick, iconSize = 16, class: className = '', id, ...restProps }: Props = $props()
 
 	let containerClasses = $derived.by(() => {
 		const base = 'flex items-center justify-between'
@@ -49,9 +51,13 @@
 					</span>
 				{/if}
 
-				{#if rightIcon}
+				{#if shouldRenderIcon(rightIcon, true)}
 					<span class="text-highlight">
-						{@render rightIcon()}
+						{#if isStringIcon(rightIcon)}
+							{rightIcon}
+						{:else}
+							{@render rightIcon?.(iconSize)}
+						{/if}
 					</span>
 				{/if}
 			</button>
@@ -63,9 +69,13 @@
 					</span>
 				{/if}
 
-				{#if rightIcon}
+				{#if shouldRenderIcon(rightIcon, true)}
 					<span class="text-highlight">
-						{@render rightIcon()}
+						{#if isStringIcon(rightIcon)}
+							{rightIcon}
+						{:else}
+							{@render rightIcon?.(iconSize)}
+						{/if}
 					</span>
 				{/if}
 			</div>

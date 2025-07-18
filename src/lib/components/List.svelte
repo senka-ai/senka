@@ -27,6 +27,7 @@
 		showDividers?: boolean
 		dividerVariant?: 'solid' | 'dashed' | 'dotted'
 		compact?: boolean
+		iconSize?: number
 		children?: any
 	}
 
@@ -39,6 +40,7 @@
 		showDividers = true,
 		dividerVariant = 'solid',
 		compact = false,
+		iconSize = 16,
 		class: className = '',
 		id,
 		children,
@@ -54,7 +56,7 @@
 <div class={containerClasses} {id} {...restProps}>
 	{#if title}
 		<div class={compact ? 'mb-2' : 'mb-4'}>
-			<ListTitle {title} {rightText} {rightIcon} {onRightClick} />
+			<ListTitle {title} {rightText} {rightIcon} {onRightClick} {iconSize} />
 		</div>
 	{/if}
 
@@ -88,6 +90,7 @@
 				{disabled}
 				{onclick}
 				{compact}
+				{iconSize}
 				{...itemProps}
 			/>
 

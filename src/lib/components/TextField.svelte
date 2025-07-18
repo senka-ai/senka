@@ -1,10 +1,9 @@
 <script lang="ts">
 	import type { FormInputComponent, IconComponent, IconSizeComponent } from '../types/component'
 	import { useFocusState } from '../utils/state.svelte'
+	import { shouldRenderIcon, getInputIconClasses, getInputPadding, isStringIcon } from '../utils/icons'
 
 	interface Props extends FormInputComponent, IconComponent, IconSizeComponent {
-		leftIcon?: string
-		rightIcon?: any
 		unit?: string
 		inputState?: 'default' | 'focused' | 'error' | 'disabled'
 		showPlaceholder?: boolean
@@ -67,10 +66,11 @@
 			disabled: 'border-neutral-300 bg-neutral-100 text-neutral-500 cursor-not-allowed',
 		}
 
-		const leftPadding = leftIcon && showIcon ? 'pl-10' : ''
-		const rightPadding = (rightIcon && showIcon) || (unit && showUnit) ? 'pr-10' : ''
+		const hasLeftIcon = shouldRenderIcon(leftIcon, showIcon)
+		const hasRightIcon = shouldRenderIcon(rightIcon, showIcon) || (unit && showUnit)
+		const padding = getInputPadding(hasLeftIcon, hasRightIcon)
 
-		return `${base} ${states[currentState]} ${leftPadding} ${rightPadding}`
+		return `${base} ${states[currentState]} ${padding}`
 	})
 
 	let labelClasses = $derived.by(() => {
@@ -94,9 +94,13 @@
 	{/if}
 
 	<div class="relative">
-		{#if leftIcon && showIcon}
-			<div class="absolute top-1/2 left-3.25 -translate-y-1/2 transform text-neutral-500">
-				{leftIcon}
+		{#if shouldRenderIcon(leftIcon, showIcon)}
+			<div class={getInputIconClasses('left')}>
+				{#if isStringIcon(leftIcon)}
+					{leftIcon}
+				{:else}
+					{@render leftIcon?.(iconSize)}
+				{/if}
 			</div>
 		{/if}
 
@@ -115,9 +119,13 @@
 			{...restProps}
 		/>
 
-		{#if rightIcon && showIcon}
-			<div class="absolute top-1/2 right-3.25 -translate-y-1/2 transform text-neutral-500">
-				{@render rightIcon?.(iconSize)}
+		{#if shouldRenderIcon(rightIcon, showIcon)}
+			<div class={getInputIconClasses('right')}>
+				{#if isStringIcon(rightIcon)}
+					{rightIcon}
+				{:else}
+					{@render rightIcon?.(iconSize)}
+				{/if}
 			</div>
 		{:else if unit && showUnit}
 			<div class="text-body-m absolute top-1/2 right-3.25 -translate-y-1/2 transform text-neutral-600">
