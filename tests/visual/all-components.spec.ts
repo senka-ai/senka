@@ -62,7 +62,7 @@ allComponents.forEach(component => {
 				)
 			} catch (error) {
 				console.log(`Story ${storyId} failed: ${error.message}`)
-				test.skip()
+				throw error
 			}
 		})
 	})
