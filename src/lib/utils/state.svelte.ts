@@ -36,17 +36,28 @@ export function useControlledState<T>(
 
 /**
  * Creates a focus state manager with consistent focus/blur handling
+ * @param onFocus - Optional callback when element gains focus
+ * @param onBlur - Optional callback when element loses focus
+ * @param disabled - Whether focus handling is disabled
  * @returns Object with focus state and handlers
  */
-export function useFocusState() {
+export function useFocusState(
+	onFocus?: (event: FocusEvent) => void,
+	onBlur?: (event: FocusEvent) => void,
+	disabled?: boolean
+) {
 	let focused = $state(false)
 	
-	const handleFocus = () => {
+	const handleFocus = (event: FocusEvent) => {
+		if (disabled) return
 		focused = true
+		onFocus?.(event)
 	}
 	
-	const handleBlur = () => {
+	const handleBlur = (event: FocusEvent) => {
+		if (disabled) return
 		focused = false
+		onBlur?.(event)
 	}
 	
 	return {

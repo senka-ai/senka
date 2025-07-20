@@ -1,10 +1,12 @@
 <script lang="ts">
 	import { SpinnerIcon } from '../icons'
-	import type { ButtonLikeComponent, IconComponent } from '../types/component'
+	import type { ButtonLikeComponent, IconComponent, InteractiveHandlers } from '../types/component'
 	import { shouldRenderIcon, isStringIcon } from '../utils/icons'
+	import { createKeyboardHandler, createClickHandler, KeySets } from '../utils/events'
 
-	interface Props extends ButtonLikeComponent, IconComponent {
+	interface Props extends ButtonLikeComponent, IconComponent, InteractiveHandlers {
 		iconSize?: number
+		type?: 'button' | 'submit' | 'reset'
 	}
 
 	let {
@@ -20,6 +22,9 @@
 		id,
 		type = 'button',
 		onclick,
+		onkeydown,
+		onfocus,
+		onblur,
 		children,
 		...restProps
 	}: Props = $props()
@@ -47,9 +52,41 @@
 
 		return `${base} ${variants[variant]} ${sizes[size]} ${width} ${className}`
 	})
+
+	// Create standardized event handlers
+	const isDisabled = $derived(disabled || loading)
+	
+	// Enhanced click handler with disabled state support
+	const handleClick = (event?: Event) => {
+		if (isDisabled) return
+		onclick?.()
+	}
+
+	// Keyboard handler for accessibility (Enter + Space keys)
+	const handleKeyDown = (event: KeyboardEvent) => {
+		// Handle activation keys (Enter + Space)
+		if (['Enter', ' '].includes(event.key)) {
+			if (isDisabled) return
+			event.preventDefault()
+			onclick?.()
+		}
+		
+		// Call user's custom keyboard handler
+		onkeydown?.(event)
+	}
 </script>
 
-<button class={buttonClasses} disabled={disabled || loading} {id} {type} {onclick} {...restProps}>
+<button 
+	class={buttonClasses} 
+	disabled={isDisabled} 
+	{id} 
+	{type} 
+	onclick={handleClick}
+	onkeydown={handleKeyDown}
+	onfocus={onfocus}
+	onblur={onblur}
+	{...restProps}
+>
 	{#if loading}
 		<SpinnerIcon class="h-3.5 w-3.5" />
 	{:else if shouldRenderIcon(leftIcon, true)}

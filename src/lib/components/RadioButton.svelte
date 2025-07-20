@@ -1,8 +1,9 @@
 <script lang="ts">
-	import type { BaseProps, SizedComponent, ChangeHandler, ChildrenComponent } from '../types/component'
+	import type { BaseProps, SizedComponent, ChangeHandler, ChildrenComponent, InteractiveHandlers } from '../types/component'
 	import { useControlledState } from '../utils/state.svelte'
+	import { createKeyboardHandler, createSafeClickHandler, KeySets } from '../utils/events'
 
-	interface Props extends BaseProps, SizedComponent, ChangeHandler<boolean>, ChildrenComponent {
+	interface Props extends BaseProps, SizedComponent, ChangeHandler<boolean>, ChildrenComponent, InteractiveHandlers {
 		checked?: boolean
 		name?: string
 		value?: string
@@ -20,34 +21,34 @@
 		onchange,
 		children,
 		label,
+		onclick,
+		onkeydown,
+		onfocus,
+		onblur,
+		...restProps
 	}: Props = $props()
 
 	const checkedState = useControlledState(false, checked, onchange)
 
-	function handleContainerClick(event: MouseEvent) {
-		if (!disabled) {
-			// Simple check: if we clicked on a link, don't select
-			const target = event.target as HTMLElement
-			if (target.tagName === 'A') {
-				return
-			}
-
-			// Select radio button for everything else
-			checkedState.setValue(true)
-		}
+	function handleSelect() {
+		checkedState.setValue(true)
+		onclick?.()
 	}
 
-	function handleChange() {
-		if (!disabled) {
-			checkedState.setValue(true)
-		}
-	}
+	// Use standardized safe click handler that protects against interactive elements
+	const handleContainerClick = createSafeClickHandler(handleSelect, disabled)
 
-	function handleKeydown(event: KeyboardEvent) {
-		if (event.key === ' ' || event.key === 'Enter') {
-			event.preventDefault()
-			handleChange()
-		}
+	// Use standardized keyboard handler for activation keys
+	const handleKeyboard = createKeyboardHandler(handleSelect, {
+		keys: [...KeySets.ACTIVATION],
+		preventDefault: true,
+		disabled
+	})
+
+	// Combined keyboard handler that includes user's custom handler
+	const handleKeyDown = (event: KeyboardEvent) => {
+		handleKeyboard(event)
+		onkeydown?.(event)
 	}
 
 	let radioClasses = $derived.by(() => {
@@ -91,8 +92,11 @@
 	tabindex={disabled ? -1 : 0}
 	class={containerClasses}
 	{id}
-	onkeydown={handleKeydown}
+	onkeydown={handleKeyDown}
 	onclick={handleContainerClick}
+	onfocus={onfocus}
+	onblur={onblur}
+	{...restProps}
 >
 	<div class={radioClasses}>
 		<input
@@ -103,7 +107,7 @@
 			{value}
 			class="sr-only"
 			tabindex="-1"
-			onchange={handleChange}
+			onchange={handleSelect}
 		/>
 		{#if checkedState.value()}
 			<div class="rounded-full bg-white {dotSizes}"></div>

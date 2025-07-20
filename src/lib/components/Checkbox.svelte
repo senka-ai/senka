@@ -1,9 +1,10 @@
 <script lang="ts">
 	import { CheckIcon } from '../icons'
-	import type { BaseProps, SizedComponent, ChangeHandler, ChildrenComponent } from '../types/component'
+	import type { BaseProps, SizedComponent, ChangeHandler, ChildrenComponent, InteractiveHandlers } from '../types/component'
 	import { useControlledState } from '../utils/state.svelte'
+	import { createKeyboardHandler, createSafeClickHandler, KeySets } from '../utils/events'
 
-	interface Props extends BaseProps, SizedComponent, ChangeHandler<boolean>, ChildrenComponent {
+	interface Props extends BaseProps, SizedComponent, ChangeHandler<boolean>, ChildrenComponent, InteractiveHandlers {
 		checked?: boolean
 		name?: string
 		value?: string
@@ -21,34 +22,34 @@
 		onchange,
 		children,
 		label,
+		onclick,
+		onkeydown,
+		onfocus,
+		onblur,
+		...restProps
 	}: Props = $props()
 
 	const checkedState = useControlledState(false, checked, onchange)
 
-	function handleContainerClick(event: MouseEvent) {
-		if (!disabled) {
-			// Simple check: if we clicked on a link, don't toggle
-			const target = event.target as HTMLElement
-			if (target.tagName === 'A') {
-				return
-			}
-
-			// Toggle checkbox for everything else
-			checkedState.setValue(!checkedState.value())
-		}
+	function handleToggle() {
+		checkedState.setValue(!checkedState.value())
+		onclick?.()
 	}
 
-	function handleChange() {
-		if (!disabled) {
-			checkedState.setValue(!checkedState.value())
-		}
-	}
+	// Use standardized safe click handler that protects against interactive elements
+	const handleContainerClick = createSafeClickHandler(handleToggle, disabled)
 
-	function handleKeydown(event: KeyboardEvent) {
-		if (event.key === ' ' || event.key === 'Enter') {
-			event.preventDefault()
-			handleChange()
-		}
+	// Use standardized keyboard handler for activation keys
+	const handleKeyboard = createKeyboardHandler(handleToggle, {
+		keys: [...KeySets.ACTIVATION],
+		preventDefault: true,
+		disabled
+	})
+
+	// Combined keyboard handler that includes user's custom handler
+	const handleKeyDown = (event: KeyboardEvent) => {
+		handleKeyboard(event)
+		onkeydown?.(event)
 	}
 
 	let checkboxClasses = $derived.by(() => {
@@ -92,8 +93,11 @@
 	tabindex={disabled ? -1 : 0}
 	class={containerClasses}
 	{id}
-	onkeydown={handleKeydown}
+	onkeydown={handleKeyDown}
 	onclick={handleContainerClick}
+	onfocus={onfocus}
+	onblur={onblur}
+	{...restProps}
 >
 	<div class={checkboxClasses}>
 		<input type="checkbox" checked={checkedState.value()} {disabled} {name} {value} class="sr-only" tabindex="-1" />

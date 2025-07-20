@@ -56,9 +56,43 @@ export interface KeyboardHandler {
 }
 
 export interface FocusHandlers {
-	onfocus?: () => void
-	onblur?: () => void
+	onfocus?: (event: FocusEvent) => void
+	onblur?: (event: FocusEvent) => void
 }
+
+// Enhanced event handler interfaces
+export interface InputHandlers {
+	oninput?: (event: Event) => void
+	onchange?: (event: Event) => void
+}
+
+export interface SpecializedClickHandlers {
+	onclick?: () => void
+	onSecondaryClick?: () => void
+}
+
+export interface FormEventHandlers extends FocusHandlers, InputHandlers {
+	onsubmit?: (event: SubmitEvent) => void
+}
+
+// Keyboard navigation interfaces
+export interface KeyboardNavigationHandler {
+	onkeydown?: (event: KeyboardEvent) => void
+	onkeyup?: (event: KeyboardEvent) => void
+}
+
+// Combined interface for interactive components
+export interface InteractiveHandlers extends ClickHandler, KeyboardHandler, FocusHandlers {
+	disabled?: boolean
+}
+
+// Navigation-specific handlers for components like TabBar
+export interface NavigationHandlers {
+	onNavigate?: (direction: 'up' | 'down' | 'left' | 'right') => void
+}
+
+// Combined interface for navigable interactive components
+export interface NavigableHandlers extends InteractiveHandlers, NavigationHandlers {}
 
 // Icon-related interfaces
 export interface IconComponent {

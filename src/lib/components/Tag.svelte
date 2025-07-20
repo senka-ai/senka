@@ -1,12 +1,13 @@
 <script lang="ts">
-	import type { BaseProps, VariantComponent, IconComponent, ClickHandler } from '../types/component'
+	import type { BaseProps, VariantComponent, IconComponent, InteractiveHandlers } from '../types/component'
 	import { shouldRenderIcon, isStringIcon } from '../utils/icons'
+	import { createKeyboardHandler, KeySets } from '../utils/events'
 
 	interface Props
 		extends BaseProps,
 			VariantComponent<'primary' | 'secondary' | 'tertiary'>,
 			IconComponent,
-			ClickHandler {
+			InteractiveHandlers {
 		text: string
 		iconSize?: number
 	}
@@ -21,6 +22,9 @@
 		class: className = '',
 		id,
 		onclick,
+		onkeydown,
+		onfocus,
+		onblur,
 		...restProps
 	}: Props = $props()
 
@@ -42,21 +46,26 @@
 	})
 
 	function handleClick() {
-		if (!disabled && onclick) {
-			onclick()
-		}
+		if (disabled) return
+		onclick?.()
 	}
 
-	function handleKeyDown(event: KeyboardEvent) {
-		if ((event.key === 'Enter' || event.key === ' ') && onclick && !disabled) {
-			event.preventDefault()
-			handleClick()
-		}
+	// Use standardized keyboard handler for activation keys
+	const handleKeyboard = createKeyboardHandler(handleClick, {
+		keys: [...KeySets.ACTIVATION],
+		preventDefault: true,
+		disabled
+	})
+
+	// Combined keyboard handler that includes user's custom handler
+	const handleKeyDown = (event: KeyboardEvent) => {
+		handleKeyboard(event)
+		onkeydown?.(event)
 	}
 </script>
 
 {#if onclick}
-	<button class={tagClasses} {id} onclick={handleClick} onkeydown={handleKeyDown} {disabled} {...restProps}>
+	<button class={tagClasses} {id} onclick={handleClick} onkeydown={handleKeyDown} onfocus={onfocus} onblur={onblur} {disabled} {...restProps}>
 		{#if shouldRenderIcon(leftIcon, true)}
 			<span class="flex items-center">
 				{#if isStringIcon(leftIcon)}

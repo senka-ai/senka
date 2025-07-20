@@ -1,8 +1,9 @@
 <script lang="ts">
-	import type { BaseProps, SizedComponent, ChangeHandler } from '../types/component'
+	import type { BaseProps, SizedComponent, ChangeHandler, InteractiveHandlers } from '../types/component'
 	import { useToggleState } from '../utils/state.svelte'
+	import { createKeyboardHandler, createClickHandler, KeySets } from '../utils/events'
 
-	interface Props extends BaseProps, SizedComponent, ChangeHandler<boolean> {
+	interface Props extends BaseProps, SizedComponent, ChangeHandler<boolean>, InteractiveHandlers {
 		checked?: boolean
 		name?: string
 	}
@@ -15,21 +16,32 @@
 		id,
 		name,
 		onchange,
+		onclick,
+		onkeydown,
+		onfocus,
+		onblur,
+		...restProps
 	}: Props = $props()
 
 	const toggleState = useToggleState(false, checked, onchange)
 
 	function handleToggle() {
-		if (!disabled) {
-			toggleState.toggle()
-		}
+		toggleState.toggle()
+		onclick?.()
 	}
 
-	function handleKeydown(event: KeyboardEvent) {
-		if (event.key === ' ' || event.key === 'Enter') {
-			event.preventDefault()
-			handleToggle()
-		}
+	// Create standardized event handlers
+	const handleClick = createClickHandler(handleToggle, disabled)
+
+	const handleKeyboard = createKeyboardHandler(handleToggle, {
+		keys: [...KeySets.ACTIVATION],
+		preventDefault: true,
+		disabled
+	})
+
+	const handleKeyDown = (event: KeyboardEvent) => {
+		handleKeyboard(event)
+		onkeydown?.(event)
 	}
 
 	let toggleClasses = $derived.by(() => {
@@ -76,8 +88,11 @@
 	{disabled}
 	{id}
 	class={toggleClasses}
-	onclick={handleToggle}
-	onkeydown={handleKeydown}
+	onclick={handleClick}
+	onkeydown={handleKeyDown}
+	onfocus={onfocus}
+	onblur={onblur}
+	{...restProps}
 >
 	<span class={knobClasses}></span>
 	<input type="checkbox" checked={toggleState.value()} {disabled} {name} class="sr-only" tabindex="-1" />
