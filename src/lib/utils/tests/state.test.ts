@@ -1,5 +1,5 @@
 import { describe, it, expect, vi } from 'vitest'
-import { useControlledState, useFocusState, useToggleState } from './state.svelte'
+import { useControlledState, useFocusState, useToggleState } from '../state.svelte'
 
 describe('useControlledState', () => {
   it('should handle uncontrolled state', () => {
