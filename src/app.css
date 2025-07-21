@@ -9,6 +9,7 @@
 @import './styles/colors.css';
 @import './styles/hover-states.css';
 @import './styles/focus-states.css';
+@import './styles/transitions.css';
 
 :root {
 	/* Highlight Colors (same for both themes) */

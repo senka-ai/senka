@@ -2,7 +2,7 @@
 	import { VideoIcon } from '../../icons'
 	import VideoPlaceholder from './VideoPlaceholder.svelte'
 	import { useLoadingState } from '../../utils/state.svelte'
-
+	import { createMediaContainerStyles, createVideoStyles } from '../../utils/styles'
 	import type { BaseProps } from '../../types/component'
 
 	interface Props extends BaseProps {
@@ -52,36 +52,15 @@
 	let isPlaying = $state(false)
 	let currentSrc = $state(src)
 
-	let containerClasses = $derived.by(() => {
-		const base = 'relative overflow-hidden bg-highlight-50'
+	let containerClasses = $derived(createMediaContainerStyles({
+		aspectRatio,
+		rounded,
+		className
+	}))
 
-		const aspectRatios = {
-			square: 'aspect-square',
-			'16:9': 'aspect-video',
-			'4:3': 'aspect-[4/3]',
-			'3:2': 'aspect-[3/2]',
-			auto: '',
-		}
-
-		const roundedClasses = {
-			none: '',
-			sm: 'rounded-sm',
-			md: 'rounded-md',
-			lg: 'rounded-lg',
-			xl: 'rounded-xl',
-			'2xl': 'rounded-2xl',
-			'3xl': 'rounded-3xl',
-			full: 'rounded-full',
-		}
-
-		return `${base} ${aspectRatios[aspectRatio]} ${roundedClasses[rounded]} ${className}`
-	})
-
-	let videoClasses = $derived.by(() => {
-		const base = 'w-full h-full object-cover transition-opacity duration-300'
-		const opacityClass = !loadingState.loading() ? 'opacity-100' : 'opacity-0'
-		return `${base} ${opacityClass}`
-	})
+	let videoClasses = $derived(createVideoStyles({
+		loading: loadingState.loading()
+	}))
 
 	function handleLoadStart() {
 		loadingState.setLoading(true)

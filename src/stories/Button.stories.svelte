@@ -20,7 +20,7 @@
 			},
 			size: {
 				control: { type: 'select' },
-				options: ['small', 'medium', 'large'],
+				options: ['xs', 'small', 'medium', 'large'],
 				description: 'Button size',
 			},
 			disabled: {
@@ -56,6 +56,14 @@
 </Story>
 
 <Story name="Tertiary" args={{ variant: 'tertiary' }}>
+	{#snippet template(args)}
+		<Button {...args}>
+			{#snippet children()}Button{/snippet}
+		</Button>
+	{/snippet}
+</Story>
+
+<Story name="Extra Small" args={{ size: 'xs' }}>
 	{#snippet template(args)}
 		<Button {...args}>
 			{#snippet children()}Button{/snippet}
@@ -126,6 +134,9 @@
 				</Button>
 			</div>
 			<div class="flex items-start gap-4">
+				<Button size="xs">
+					{#snippet children()}XS{/snippet}
+				</Button>
 				<Button size="small">
 					{#snippet children()}Small{/snippet}
 				</Button>

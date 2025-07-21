@@ -3,6 +3,8 @@
 	import type { ButtonLikeComponent, IconComponent, InteractiveHandlers } from '../types/component'
 	import { shouldRenderIcon, isStringIcon } from '../utils/icons'
 	import { createKeyboardHandler, createClickHandler, KeySets } from '../utils/events'
+	import { createButtonStyles } from '../utils/styles'
+	import { ButtonRenderer, IconRenderer } from '../utils/rendering'
 
 	/**
 	 * Button component props interface
@@ -35,32 +37,17 @@
 		...restProps
 	}: Props = $props()
 
-	let buttonClasses = $derived.by(() => {
-		const base =
-			'inline-flex items-center justify-center gap-2 font-medium transition-all duration-200 focus:outline-none cursor-pointer'
+	// Use style composition utility with corrected values
+	let buttonClasses = $derived(createButtonStyles({
+		variant,
+		size,
+		fullWidth,
+		disabled: isDisabled,
+		className
+	}))
 
-		const variants = {
-			primary:
-				'border-2 border-transparent hover:bg-highlight-hover bg-highlight text-white disabled:bg-neutral-disabled disabled:text-neutral-disabled',
-			secondary:
-				'bg-transparent border-2 hover:bg-highlight-light text-highlight border-highlight disabled:border-neutral-disabled disabled:text-neutral-light',
-			tertiary:
-				'bg-transparent border-2 border-transparent hover:bg-highlight-light text-highlight disabled:text-neutral-light',
-		}
-
-		const sizes = {
-			small: 'px-3 py-1.5 text-action-s rounded-lg',
-			medium: 'px-4 py-2.75 text-action-m rounded-xl',
-			large: 'px-6 py-4 text-action-l rounded-2xl',
-		}
-
-		const width = fullWidth ? 'w-full' : ''
-
-		return `${base} ${variants[variant]} ${sizes[size]} ${width} ${className}`
-	})
-
-	// Create standardized event handlers
-	const isDisabled = $derived(disabled || loading)
+	// Use rendering utilities for consistent logic
+	const isDisabled = $derived(ButtonRenderer.isEffectivelyDisabled(disabled, loading))
 	
 	// Enhanced click handler with disabled state support
 	const handleClick = (event?: Event) => {
@@ -68,18 +55,14 @@
 		onclick?.()
 	}
 
-	// Keyboard handler for accessibility (Enter + Space keys)
-	const handleKeyDown = (event: KeyboardEvent) => {
-		// Handle activation keys (Enter + Space)
-		if (['Enter', ' '].includes(event.key)) {
-			if (isDisabled) return
-			event.preventDefault()
-			onclick?.()
-		}
-		
-		// Call user's custom keyboard handler
-		onkeydown?.(event)
-	}
+	// Use standardized keyboard handler
+	const handleKeyDown = createKeyboardHandler(() => {
+		if (!isDisabled) onclick?.()
+	}, { 
+		keys: KeySets.ACTIVATION,
+		preventDefault: true,
+		disabled: isDisabled
+	})
 </script>
 
 <button 
@@ -88,16 +71,19 @@
 	{id} 
 	{type} 
 	onclick={handleClick}
-	onkeydown={handleKeyDown}
+	onkeydown={(event) => {
+		handleKeyDown(event)
+		onkeydown?.(event)
+	}}
 	onfocus={onfocus}
 	onblur={onblur}
 	{...restProps}
 >
-	{#if loading}
+	{#if ButtonRenderer.shouldShowLoading(loading)}
 		<SpinnerIcon class="h-3.5 w-3.5" />
-	{:else if shouldRenderIcon(leftIcon, true)}
+	{:else if IconRenderer.shouldRender(leftIcon)}
 		<span class="flex items-center">
-			{#if isStringIcon(leftIcon)}
+			{#if IconRenderer.isStringIcon(leftIcon)}
 				{leftIcon}
 			{:else}
 				{@render leftIcon?.(iconSize)}
@@ -109,9 +95,9 @@
 		{@render children()}
 	{/if}
 
-	{#if shouldRenderIcon(rightIcon, true) && !loading}
+	{#if IconRenderer.shouldRender(rightIcon) && !ButtonRenderer.shouldShowLoading(loading)}
 		<span class="flex items-center">
-			{#if isStringIcon(rightIcon)}
+			{#if IconRenderer.isStringIcon(rightIcon)}
 				{rightIcon}
 			{:else}
 				{@render rightIcon?.(iconSize)}

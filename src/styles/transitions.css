@@ -1,0 +1,446 @@
+/**
+ * Standardized transition utilities for consistent animations
+ * These utilities provide consistent timing, easing, and property-specific transitions
+ */
+
+/* Base transition utilities */
+.transition-none {
+  transition-property: none;
+}
+
+.transition-all {
+  transition-property: all;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 200ms;
+}
+
+.transition-colors {
+  transition-property: color, background-color, border-color, text-decoration-color, fill, stroke;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 200ms;
+}
+
+.transition-opacity {
+  transition-property: opacity;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 200ms;
+}
+
+.transition-shadow {
+  transition-property: box-shadow;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 200ms;
+}
+
+.transition-transform {
+  transition-property: transform;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 200ms;
+}
+
+/* Duration utilities */
+.duration-75 {
+  transition-duration: 75ms;
+}
+
+.duration-100 {
+  transition-duration: 100ms;
+}
+
+.duration-150 {
+  transition-duration: 150ms;
+}
+
+.duration-200 {
+  transition-duration: 200ms;
+}
+
+.duration-300 {
+  transition-duration: 300ms;
+}
+
+.duration-500 {
+  transition-duration: 500ms;
+}
+
+.duration-700 {
+  transition-duration: 700ms;
+}
+
+.duration-1000 {
+  transition-duration: 1000ms;
+}
+
+/* Timing function utilities */
+.ease-linear {
+  transition-timing-function: linear;
+}
+
+.ease-in {
+  transition-timing-function: cubic-bezier(0.4, 0, 1, 1);
+}
+
+.ease-out {
+  transition-timing-function: cubic-bezier(0, 0, 0.2, 1);
+}
+
+.ease-in-out {
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.ease-bounce {
+  transition-timing-function: cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+/* Delay utilities */
+.delay-75 {
+  transition-delay: 75ms;
+}
+
+.delay-100 {
+  transition-delay: 100ms;
+}
+
+.delay-150 {
+  transition-delay: 150ms;
+}
+
+.delay-200 {
+  transition-delay: 200ms;
+}
+
+.delay-300 {
+  transition-delay: 300ms;
+}
+
+.delay-500 {
+  transition-delay: 500ms;
+}
+
+.delay-700 {
+  transition-delay: 700ms;
+}
+
+.delay-1000 {
+  transition-delay: 1000ms;
+}
+
+/* Component-specific transition patterns */
+
+/* Button transitions */
+.btn-transition {
+  transition-property: color, background-color, border-color, box-shadow, transform;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 150ms;
+}
+
+.btn-transition:hover {
+  transform: translateY(-1px);
+}
+
+.btn-transition:active {
+  transform: translateY(0);
+  transition-duration: 75ms;
+}
+
+/* Input transitions */
+.input-transition {
+  transition-property: color, background-color, border-color, box-shadow;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 200ms;
+}
+
+/* Modal/overlay transitions */
+.modal-transition {
+  transition-property: opacity, transform;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 200ms;
+}
+
+.modal-enter {
+  opacity: 0;
+  transform: scale(0.95) translateY(-10px);
+}
+
+.modal-enter-to {
+  opacity: 1;
+  transform: scale(1) translateY(0);
+}
+
+.modal-leave {
+  opacity: 1;
+  transform: scale(1) translateY(0);
+}
+
+.modal-leave-to {
+  opacity: 0;
+  transform: scale(0.95) translateY(-10px);
+}
+
+/* Dropdown transitions */
+.dropdown-transition {
+  transition-property: opacity, transform;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 150ms;
+}
+
+.dropdown-enter {
+  opacity: 0;
+  transform: translateY(-4px);
+}
+
+.dropdown-enter-to {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.dropdown-leave {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.dropdown-leave-to {
+  opacity: 0;
+  transform: translateY(-4px);
+}
+
+/* Toast transitions */
+.toast-transition {
+  transition-property: opacity, transform;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 300ms;
+}
+
+.toast-enter {
+  opacity: 0;
+  transform: translateX(100%);
+}
+
+.toast-enter-to {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.toast-leave {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.toast-leave-to {
+  opacity: 0;
+  transform: translateX(100%);
+}
+
+/* Slide transitions */
+.slide-left-enter {
+  transform: translateX(-100%);
+}
+
+.slide-left-enter-to {
+  transform: translateX(0);
+}
+
+.slide-left-leave {
+  transform: translateX(0);
+}
+
+.slide-left-leave-to {
+  transform: translateX(100%);
+}
+
+.slide-right-enter {
+  transform: translateX(100%);
+}
+
+.slide-right-enter-to {
+  transform: translateX(0);
+}
+
+.slide-right-leave {
+  transform: translateX(0);
+}
+
+.slide-right-leave-to {
+  transform: translateX(-100%);
+}
+
+.slide-up-enter {
+  transform: translateY(100%);
+}
+
+.slide-up-enter-to {
+  transform: translateY(0);
+}
+
+.slide-up-leave {
+  transform: translateY(0);
+}
+
+.slide-up-leave-to {
+  transform: translateY(-100%);
+}
+
+.slide-down-enter {
+  transform: translateY(-100%);
+}
+
+.slide-down-enter-to {
+  transform: translateY(0);
+}
+
+.slide-down-leave {
+  transform: translateY(0);
+}
+
+.slide-down-leave-to {
+  transform: translateY(100%);
+}
+
+/* Fade transitions */
+.fade-enter {
+  opacity: 0;
+}
+
+.fade-enter-to {
+  opacity: 1;
+}
+
+.fade-leave {
+  opacity: 1;
+}
+
+.fade-leave-to {
+  opacity: 0;
+}
+
+/* Scale transitions */
+.scale-enter {
+  opacity: 0;
+  transform: scale(0.9);
+}
+
+.scale-enter-to {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.scale-leave {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.scale-leave-to {
+  opacity: 0;
+  transform: scale(0.9);
+}
+
+/* Loading spinner animation */
+.spin {
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Pulse animation for loading states */
+.pulse {
+  animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+@keyframes pulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+}
+
+/* Bounce animation for notifications */
+.bounce {
+  animation: bounce 1s infinite;
+}
+
+@keyframes bounce {
+  0%, 100% {
+    transform: translateY(-25%);
+    animation-timing-function: cubic-bezier(0.8, 0, 1, 1);
+  }
+  50% {
+    transform: none;
+    animation-timing-function: cubic-bezier(0, 0, 0.2, 1);
+  }
+}
+
+/* Interactive element animations */
+.hover-lift:hover {
+  transform: translateY(-2px);
+  transition: transform 150ms ease-out;
+}
+
+.hover-scale:hover {
+  transform: scale(1.05);
+  transition: transform 150ms ease-out;
+}
+
+.active-scale:active {
+  transform: scale(0.98);
+  transition: transform 75ms ease-out;
+}
+
+/* Focus animations */
+.focus-ring-animated:focus {
+  animation: focus-ring 300ms ease-out;
+}
+
+@keyframes focus-ring {
+  0% {
+    box-shadow: 0 0 0 0 var(--color-highlight-400);
+  }
+  100% {
+    box-shadow: 0 0 0 3px var(--color-highlight-100);
+  }
+}
+
+/* Skeleton loading animation */
+.skeleton {
+  background: linear-gradient(90deg, 
+    var(--color-neutral-200) 25%, 
+    var(--color-neutral-100) 50%, 
+    var(--color-neutral-200) 75%
+  );
+  background-size: 200% 100%;
+  animation: skeleton 1.5s ease-in-out infinite;
+}
+
+@keyframes skeleton {
+  0% {
+    background-position: 200% 0;
+  }
+  100% {
+    background-position: -200% 0;
+  }
+}
+
+/* Reduce motion for accessibility */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+  
+  .skeleton {
+    animation: none;
+    background: var(--color-neutral-200);
+  }
+}

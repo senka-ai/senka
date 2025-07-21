@@ -41,3 +41,15 @@ export { default as VideoPlaceholder } from './components/media/VideoPlaceholder
 
 // Theme Management (Runes-based)
 export { getTheme, setTheme, toggleTheme, useTheme } from './theme.svelte'
+
+// Utility Functions
+export * from './utils/events'
+export * from './utils/icons'
+export * from './utils/state.svelte'
+export * from './utils/validation.svelte'
+export * from './utils/styles'
+export * from './utils/rendering'
+export * from './utils/focus.svelte'
+
+// Type Definitions
+export type * from './types/component'

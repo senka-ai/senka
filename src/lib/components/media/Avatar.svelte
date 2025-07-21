@@ -1,6 +1,8 @@
 <script lang="ts">
 	import AvatarPlaceholder from './AvatarPlaceholder.svelte'
 	import type { BaseProps, ExtendedSizedComponent, StatusComponent } from '../../types/component'
+	import { createAvatarStyles } from '../../utils/styles'
+	import { AvatarRenderer } from '../../utils/rendering'
 
 	interface Props extends BaseProps, ExtendedSizedComponent, StatusComponent {
 		src?: string
@@ -10,41 +12,17 @@
 
 	let { src, alt = '', size = 'medium', initials, status, class: className = '' }: Props = $props()
 
-	let avatarClasses = $derived.by(() => {
-		const base = 'relative inline-flex items-center justify-center bg-highlight-50 text-neutral-600 font-medium'
+	// Use style composition utility for consistent avatar styling
+	let avatarClasses = $derived(createAvatarStyles({
+		variant: 'default',
+		size,
+		className
+	}))
 
-		const sizes = {
-			xs: 'h-8 w-8 text-body-s rounded-xl',
-			small: 'h-10 w-10 text-body-s rounded-2xl',
-			medium: 'h-14 w-14 text-body-m rounded-2xl',
-			large: 'h-20 w-20 text-body-l rounded-3xl',
-		}
+	// Use updated rendering utility that matches original Avatar design
+	let statusClasses = $derived(AvatarRenderer.getStatusClasses(status, size))
 
-		return `${base} ${sizes[size]} ${className}`
-	})
-
-	let statusClasses = $derived.by(() => {
-		if (!status) return ''
-
-		const base = 'absolute rounded-full border-2 border-white'
-
-		const statusColors = {
-			online: 'bg-success',
-			offline: 'bg-neutral',
-			away: 'bg-warning',
-			busy: 'bg-error',
-		}
-
-		const statusSizes = {
-			xs: 'h-2.5 w-2.5 -bottom-0.5 -right-0.5',
-			small: 'h-3 w-3 -bottom-0.5 -right-0.5',
-			medium: 'h-3.5 w-3.5 -bottom-1 -right-1',
-			large: 'h-4 w-4 -bottom-0.5 -right-0.5',
-		}
-
-		return `${base} ${statusColors[status]} ${statusSizes[size]}`
-	})
-
+	// Restore original initials logic (the utility doesn't handle the priority correctly)
 	let displayInitials = $derived.by(() => {
 		if (initials) return initials
 		if (alt) {
@@ -58,6 +36,10 @@
 		return ''
 	})
 
+	// Determine what to render based on available data
+	let renderType = $derived(AvatarRenderer.getRenderType(src, displayInitials))
+
+	// Get border radius for images to match avatar container
 	let imageBorderRadius = $derived.by(() => {
 		const borderRadius = {
 			xs: 'rounded-lg',
@@ -70,17 +52,17 @@
 </script>
 
 <div class={avatarClasses}>
-	{#if src}
+	{#if renderType === 'image' && src}
 		<img
 			{src}
 			{alt}
 			class="h-full w-full object-cover {imageBorderRadius}"
 			onerror={() => {
-				// Handle image load error by falling back to initials
+				// Handle image load error by falling back to initials/placeholder
 				src = undefined
 			}}
 		/>
-	{:else if displayInitials}
+	{:else if renderType === 'initials' && displayInitials}
 		<span class="select-none">
 			{displayInitials}
 		</span>

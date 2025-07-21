@@ -4,6 +4,7 @@
 	import ImagePlaceholder from '../media/ImagePlaceholder.svelte'
 	import { ArrowRightIcon } from '../../icons'
 	import type { CardComponent } from '../../types/component'
+	import { createCardStyles, createCardContentStyles } from '../../utils/styles'
 
 	interface Props extends CardComponent {
 		image?: string
@@ -41,24 +42,16 @@
 		...restProps
 	}: Props = $props()
 
-	let cardClasses = $derived.by(() => {
-		const base = 'overflow-hidden transition-all duration-200'
-		const interactive = onclick && !disabled ? 'cursor-pointer hover:shadow-md' : ''
-		const disabledStyles = disabled ? 'opacity-50 cursor-not-allowed' : ''
+	let cardClasses = $derived(createCardStyles({
+		variant,
+		interactive: Boolean(onclick),
+		disabled,
+		className
+	}))
 
-		const variants = {
-			default: 'rounded-2xl',
-			compact: 'rounded-xl',
-		}
-
-		return `${base} ${variants[variant]} ${interactive} ${disabledStyles} ${className}`
-	})
-
-	let contentClasses = $derived.by(() => {
-		const base = 'bg-neutral-100 flex-1'
-		const padding = variant === 'default' ? 'p-6' : 'p-4'
-		return `${base} ${padding}`
-	})
+	let contentClasses = $derived(createCardContentStyles({
+		variant
+	}))
 
 	function handleCardClick() {
 		if (!disabled && onclick) {

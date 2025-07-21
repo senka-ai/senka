@@ -25,7 +25,7 @@
 			},
 			size: {
 				control: { type: 'select' },
-				options: ['small', 'medium', 'large'],
+				options: ['xs', 'small', 'medium', 'large'],
 				description: 'Badge size',
 			},
 			value: {

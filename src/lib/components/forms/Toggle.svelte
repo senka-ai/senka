@@ -2,6 +2,7 @@
 	import type { BaseProps, ExtendedSizedComponent, ChangeHandler, InteractiveHandlers } from '../../types/component'
 	import { useToggleState } from '../../utils/state.svelte'
 	import { createKeyboardHandler, createClickHandler, KeySets } from '../../utils/events'
+	import { createToggleStyles } from '../../utils/styles'
 
 	interface Props extends BaseProps, ExtendedSizedComponent, ChangeHandler<boolean>, InteractiveHandlers {
 		checked?: boolean
@@ -44,22 +45,12 @@
 		onkeydown?.(event)
 	}
 
-	let toggleClasses = $derived.by(() => {
-		const base = 'relative inline-flex items-center cursor-pointer transition-all duration-200'
-
-		const sizes = {
-			xs: 'h-4 w-7',
-			small: 'h-5 w-9',
-			medium: 'h-7 w-12',
-			large: 'h-8 w-14',
-		}
-
-		const states = toggleState.value() ? 'bg-highlight' : 'bg-neutral-300'
-
-		const disabledStyles = disabled ? 'opacity-50 cursor-not-allowed' : ''
-
-		return `${base} ${sizes[size]} ${states} ${disabledStyles} rounded-full ${className}`
-	})
+	let toggleClasses = $derived(createToggleStyles({
+		variant: toggleState.value() ? 'checked' : 'unchecked',
+		size,
+		disabled,
+		className
+	}))
 
 	let knobClasses = $derived.by(() => {
 		const base = 'absolute bg-white rounded-full transition-transform duration-200'

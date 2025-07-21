@@ -2,6 +2,7 @@
 	import type { ListItemComponent, IconComponent, InteractiveHandlers } from '../../types/component'
 	import { shouldRenderIcon, isStringIcon } from '../../utils/icons'
 	import { createKeyboardHandler, KeySets } from '../../utils/events'
+	import { createListItemStyles } from '../../utils/styles'
 
 	interface Props extends ListItemComponent, IconComponent, InteractiveHandlers {
 		rightControl?: any
@@ -31,14 +32,12 @@
 		...restProps
 	}: Props = $props()
 
-	let itemClasses = $derived.by(() => {
-		const base = 'flex items-center gap-3 px-4 bg-background transition-colors duration-200'
-		const padding = compact ? 'py-2' : 'py-3'
-		const width = 'w-full text-left'
-		const interactive = (clickable || onclick) && !disabled ? 'cursor-pointer hover:bg-surface' : ''
-		const disabledStyles = disabled ? 'opacity-50 cursor-not-allowed' : ''
-		return `${base} ${padding} ${width} ${interactive} ${disabledStyles} ${className}`
-	})
+	let itemClasses = $derived(createListItemStyles({
+		compact,
+		interactive: (clickable || Boolean(onclick)),
+		disabled,
+		className
+	}))
 
 	function handleClick() {
 		if (disabled) return

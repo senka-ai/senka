@@ -1,6 +1,7 @@
 <script lang="ts">
 	import ImagePlaceholder from './ImagePlaceholder.svelte'
 	import { useLoadingState } from '../../utils/state.svelte'
+	import { createMediaContainerStyles, createImageStyles } from '../../utils/styles'
 	import type { BaseProps } from '../../types/component'
 
 	interface Props extends BaseProps {
@@ -37,47 +38,17 @@
 	const loadingState = useLoadingState(true) // Start with loading state
 	let currentSrc = $state(src)
 
-	let containerClasses = $derived.by(() => {
-		const base = 'relative overflow-hidden bg-highlight-50'
+	let containerClasses = $derived(createMediaContainerStyles({
+		aspectRatio,
+		rounded,
+		className
+	}))
 
-		const aspectRatios = {
-			square: 'aspect-square',
-			'16:9': 'aspect-video',
-			'4:3': 'aspect-[4/3]',
-			'3:2': 'aspect-[3/2]',
-			auto: '',
-		}
-
-		const roundedClasses = {
-			none: '',
-			sm: 'rounded-sm',
-			md: 'rounded-md',
-			lg: 'rounded-lg',
-			xl: 'rounded-xl',
-			'2xl': 'rounded-2xl',
-			'3xl': 'rounded-3xl',
-			full: 'rounded-full',
-		}
-
-		return `${base} ${aspectRatios[aspectRatio]} ${roundedClasses[rounded]} ${className}`
-	})
-
-	let imageClasses = $derived.by(() => {
-		const base = 'transition-opacity duration-300'
-
-		const fitClasses = {
-			cover: 'object-cover',
-			contain: 'object-contain',
-			fill: 'object-fill',
-			'scale-down': 'object-scale-down',
-			none: 'object-none',
-		}
-
-		const sizeClasses = width && height ? '' : 'w-full h-full'
-		const opacityClass = !loadingState.loading() ? 'opacity-100' : 'opacity-0'
-
-		return `${base} ${fitClasses[fit]} ${sizeClasses} ${opacityClass}`
-	})
+	let imageClasses = $derived(createImageStyles({
+		fit,
+		loading: loadingState.loading(),
+		hasSize: Boolean(width && height)
+	}))
 
 	function handleLoad() {
 		loadingState.setLoading(false)

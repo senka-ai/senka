@@ -3,6 +3,8 @@
 	import { useFocusState } from '../../utils/state.svelte'
 	import { shouldRenderIcon, getInputIconClasses, getInputPadding, isStringIcon } from '../../utils/icons'
 	import { validateValue, validationRules as rules, type ValidationRule } from '../../utils/validation.svelte'
+	import { createInputStyles } from '../../utils/styles'
+	import { FormRenderer, IconRenderer } from '../../utils/rendering'
 	import FormField from './FormField.svelte'
 
 	interface Props extends FormInputComponent, IconComponent, IconSizeComponent {
@@ -57,30 +59,20 @@
 	// Determine effective error state (validation error or external error)
 	let effectiveError = $derived(validationState.error || error)
 
-	let currentState = $derived.by(() => {
-		if (disabled) return 'disabled'
-		if (effectiveError) return 'error'
-		if (focusState.focused()) return 'focused'
-		return inputState
-	})
+	// Use rendering utility for consistent state logic
+	let currentState = $derived(FormRenderer.getInputState(focusState.focused(), effectiveError, disabled))
 
-	let inputClasses = $derived.by(() => {
-		const base =
-			'w-full px-3.25 py-3.25 text-slim-m text-neutral-900 bg-neutral-50 border rounded-xl transition-all duration-200 focus:outline-none focus:ring-offset-0 placeholder:text-neutral-500'
-
-		const states = {
-			default: 'border-neutral-400 focus:border-highlight focus:ring-1 focus:ring-highlight-200',
-			focused: 'border-highlight ring-1 ring-highlight-400',
-			error: 'border-error focus:border-error focus:ring-1 focus:ring-error-100',
-			disabled: 'border-neutral-300 bg-neutral-100 text-neutral-500 cursor-not-allowed',
-		}
-
-		const hasLeftIcon = shouldRenderIcon(leftIcon, showIcon)
-		const hasRightIcon = shouldRenderIcon(rightIcon, showIcon) || (unit && showUnit)
-		const padding = getInputPadding(hasLeftIcon, hasRightIcon)
-
-		return `${base} ${states[currentState]} ${padding}`
-	})
+	// Use updated style composition utility that matches original TextField design
+	let inputClasses = $derived(createInputStyles({
+		variant: currentState,
+		size: 'medium',
+		fullWidth: true,
+		className: (() => {
+			const hasLeftIcon = IconRenderer.shouldRender(leftIcon, showIcon)
+			const hasRightIcon = IconRenderer.shouldRender(rightIcon, showIcon) || (unit && showUnit)
+			return getInputPadding(hasLeftIcon, hasRightIcon)
+		})()
+	}))
 </script>
 
 <FormField
@@ -96,9 +88,9 @@
 	{...restProps}
 >
 	{#snippet children()}
-		{#if shouldRenderIcon(leftIcon, showIcon)}
+		{#if IconRenderer.shouldRender(leftIcon, showIcon)}
 			<div class={getInputIconClasses('left')}>
-				{#if isStringIcon(leftIcon)}
+				{#if IconRenderer.isStringIcon(leftIcon)}
 					{leftIcon}
 				{:else}
 					{@render leftIcon?.(iconSize)}
@@ -139,9 +131,9 @@
 			{...restProps}
 		/>
 
-		{#if shouldRenderIcon(rightIcon, showIcon)}
+		{#if IconRenderer.shouldRender(rightIcon, showIcon)}
 			<div class={getInputIconClasses('right')}>
-				{#if isStringIcon(rightIcon)}
+				{#if IconRenderer.isStringIcon(rightIcon)}
 					{rightIcon}
 				{:else}
 					{@render rightIcon?.(iconSize)}

@@ -1,5 +1,6 @@
 <script lang="ts">
 	import type { BaseProps, ExtendedSizedComponent, BadgeType, BadgeVariant } from '../../types/component'
+	import { createBadgeStyles } from '../../utils/styles'
 
 	interface Props extends BaseProps, ExtendedSizedComponent {
 		type?: BadgeType
@@ -26,27 +27,12 @@
 		return value?.toString() || ''
 	})
 
-	let badgeClasses = $derived.by(() => {
-		const base = 'inline-flex items-center justify-center font-medium'
-
-		const variants = {
-			default: 'bg-highlight text-white',
-			success: 'bg-success text-white',
-			warning: 'bg-warning text-white',
-			error: 'bg-error text-white',
-		}
-
-		const sizes = {
-			xs: type === 'dot' ? 'h-1.5 w-1.5' : 'h-3 w-3 min-w-3 text-caption-s',
-			small: type === 'dot' ? 'h-2 w-2' : 'h-4 w-4 min-w-4 text-caption-m',
-			medium: type === 'dot' ? 'h-3 w-3' : 'h-5 w-5 min-w-5 text-caption-m',
-			large: type === 'dot' ? 'h-4 w-4' : 'h-6 w-6 min-w-6 text-caption-m',
-		}
-
-		const shape = type === 'dot' ? 'rounded-full' : 'rounded-full'
-
-		return `${base} ${variants[variant]} ${sizes[size]} ${shape} ${className}`
-	})
+	let badgeClasses = $derived(createBadgeStyles({
+		variant,
+		size,
+		type,
+		className
+	}))
 </script>
 
 <span class={badgeClasses}>

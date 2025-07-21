@@ -2,6 +2,8 @@
 	import type { FormInputComponent } from '../../types/component'
 	import { useFocusState } from '../../utils/state.svelte'
 	import { validateValue, type ValidationRule } from '../../utils/validation.svelte'
+	import { createInputStyles } from '../../utils/styles'
+	import { FormRenderer } from '../../utils/rendering'
 	import FormField from './FormField.svelte'
 
 	interface Props extends FormInputComponent {
@@ -50,25 +52,10 @@
 	// Determine effective error state (validation error or external error)
 	let effectiveError = $derived(validationState.error || error)
 
-	let currentState = $derived.by(() => {
-		if (disabled) return 'disabled'
-		if (effectiveError) return 'error'
-		if (focusState.focused()) return 'focused'
-		return inputState
-	})
-
+	// Use rendering utility for consistent state logic
+	let currentState = $derived(FormRenderer.getInputState(focusState.focused(), effectiveError, disabled))
 
 	let textareaClasses = $derived.by(() => {
-		const base =
-			'w-full px-3.25 py-3.25 text-slim-m bg-neutral-50 border rounded-xl transition-[border-color,box-shadow] duration-200 focus:outline-none focus:ring-offset-0 placeholder:text-neutral-500 min-h-[3rem]'
-
-		const states = {
-			default: 'border-neutral-400 text-neutral-900 focus:border-highlight focus:ring-1 focus:ring-highlight-200',
-			focused: 'border-highlight text-neutral-900 ring-1 ring-highlight-400',
-			error: 'border-error text-neutral-900 focus:border-error focus:ring-1 focus:ring-error-100',
-			disabled: 'border-neutral-300 bg-neutral-100 text-neutral-400 cursor-not-allowed',
-		}
-
 		const resizeClasses = {
 			none: 'resize-none',
 			vertical: 'resize-y',
@@ -76,7 +63,12 @@
 			both: 'resize',
 		}
 
-		return `${base} ${states[currentState]} ${resizeClasses[resize]}`
+		return createInputStyles({
+			variant: currentState,
+			size: 'medium',
+			fullWidth: true,
+			className: `min-h-[3rem] ${resizeClasses[resize]}`
+		})
 	})
 
 

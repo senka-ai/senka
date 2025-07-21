@@ -1,6 +1,7 @@
 <script lang="ts">
 	import type { BaseProps, ExtendedSizedComponent, ChangeHandler, ChildrenComponent, InteractiveHandlers } from '../../types/component'
 	import { createKeyboardHandler, createSafeClickHandler, KeySets } from '../../utils/events'
+	import { createRadioStyles, composeClasses } from '../../utils/styles'
 	import { getContext } from 'svelte'
 
 	interface Props extends BaseProps, ExtendedSizedComponent, ChangeHandler<boolean>, ChildrenComponent, InteractiveHandlers {
@@ -74,30 +75,20 @@
 		onkeydown?.(event)
 	}
 
-	let radioClasses = $derived.by(() => {
-		const base = 'relative inline-flex items-center justify-center cursor-pointer transition-all duration-200'
-
-		const sizes = {
-			xs: 'h-3 w-3',
-			small: 'h-4 w-4',
-			medium: 'h-6 w-6',
-			large: 'h-8 w-8',
+	let radioClasses = $derived(createRadioStyles({
+		variant: effectiveChecked ? 'checked' : 'unchecked',
+		size,
+		disabled: effectiveDisabled,
+		modifiers: {
+			'opacity-50 cursor-not-allowed hover:border-neutral-300': effectiveDisabled
 		}
+	}))
 
-		const states = effectiveChecked
-			? 'bg-highlight border-2 border-highlight'
-			: 'bg-surface border-2 border-neutral-300 hover:border-neutral-400'
-
-		const disabledStyles = effectiveDisabled ? 'opacity-50 cursor-not-allowed hover:border-neutral-300' : ''
-
-		return `${base} ${sizes[size]} ${states} ${disabledStyles} rounded-full`
-	})
-
-	let containerClasses = $derived.by(() => {
-		const base = 'flex items-center gap-2'
-		const cursor = effectiveDisabled ? 'cursor-not-allowed' : 'cursor-pointer'
-		return `${base} ${cursor} ${className}`
-	})
+	let containerClasses = $derived(composeClasses(
+		'flex items-center gap-2',
+		effectiveDisabled ? 'cursor-not-allowed' : 'cursor-pointer',
+		className
+	))
 
 	let dotSizes = $derived.by(() => {
 		const sizes = {

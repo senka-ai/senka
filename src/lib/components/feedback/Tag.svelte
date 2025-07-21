@@ -2,6 +2,7 @@
 	import type { BaseProps, VariantComponent, IconComponent, InteractiveHandlers } from '../../types/component'
 	import { shouldRenderIcon, isStringIcon } from '../../utils/icons'
 	import { createKeyboardHandler, KeySets } from '../../utils/events'
+	import { createTagStyles } from '../../utils/styles'
 
 	interface Props
 		extends BaseProps,
@@ -28,22 +29,12 @@
 		...restProps
 	}: Props = $props()
 
-	let tagClasses = $derived.by(() => {
-		const base = 'inline-flex items-center gap-1.5 font-medium transition-all duration-200 rounded-full uppercase'
-
-		const variants = {
-			primary: 'bg-highlight text-white',
-			secondary: 'bg-transparent border border-highlight text-highlight',
-			tertiary: 'bg-highlight-light text-highlight',
-		}
-
-		const sizes = 'h-6 px-3 text-medium-xs tracking-wider'
-
-		const interactiveStyles = onclick && !disabled ? 'cursor-pointer hover:opacity-80' : ''
-		const disabledStyles = disabled ? 'opacity-50 cursor-not-allowed' : ''
-
-		return `${base} ${variants[variant]} ${sizes} ${interactiveStyles} ${disabledStyles} ${className}`
-	})
+	let tagClasses = $derived(createTagStyles({
+		variant,
+		interactive: Boolean(onclick),
+		disabled,
+		className
+	}))
 
 	function handleClick() {
 		if (disabled) return

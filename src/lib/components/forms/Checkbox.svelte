@@ -3,6 +3,7 @@
 	import type { BaseProps, ExtendedSizedComponent, ChangeHandler, ChildrenComponent, InteractiveHandlers } from '../../types/component'
 	import { useControlledState } from '../../utils/state.svelte'
 	import { createKeyboardHandler, createSafeClickHandler, KeySets } from '../../utils/events'
+	import { createCheckboxStyles, composeClasses } from '../../utils/styles'
 
 	interface Props extends BaseProps, ExtendedSizedComponent, ChangeHandler<boolean>, ChildrenComponent, InteractiveHandlers {
 		checked?: boolean
@@ -52,30 +53,20 @@
 		onkeydown?.(event)
 	}
 
-	let checkboxClasses = $derived.by(() => {
-		const base = 'relative inline-flex items-center justify-center cursor-pointer transition-all duration-200'
-
-		const sizes = {
-			xs: 'h-3 w-3 rounded-sm',
-			small: 'h-4 w-4 rounded',
-			medium: 'h-6 w-6 rounded-md',
-			large: 'h-8 w-8 rounded-lg',
+	let checkboxClasses = $derived(createCheckboxStyles({
+		variant: checkedState.value() ? 'checked' : 'unchecked',
+		size,
+		disabled,
+		modifiers: {
+			'opacity-50 cursor-not-allowed hover:border-neutral-300': disabled
 		}
+	}))
 
-		const states = checkedState.value()
-			? 'bg-highlight border-2 border-highlight'
-			: 'bg-surface border-2 border-neutral-300 hover:border-neutral-400'
-
-		const disabledStyles = disabled ? 'opacity-50 cursor-not-allowed hover:border-neutral-300' : ''
-
-		return `${base} ${sizes[size]} ${states} ${disabledStyles}`
-	})
-
-	let containerClasses = $derived.by(() => {
-		const base = 'flex items-center gap-2'
-		const cursor = disabled ? 'cursor-not-allowed' : 'cursor-pointer'
-		return `${base} ${cursor} ${className}`
-	})
+	let containerClasses = $derived(composeClasses(
+		'flex items-center gap-2',
+		disabled ? 'cursor-not-allowed' : 'cursor-pointer',
+		className
+	))
 
 	let iconSizes = $derived.by(() => {
 		const sizes = {
