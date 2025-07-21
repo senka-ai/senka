@@ -1,6 +1,6 @@
 /**
  * Component composition and rendering utilities
- * 
+ *
  * These utilities simplify common rendering patterns and conditional logic
  * used throughout components, making templates cleaner and more readable.
  */
@@ -41,11 +41,7 @@ export function renderIfAny(conditions: boolean[], content: any): any {
  * Choose between multiple rendering options based on a value
  * Useful for switch-like rendering logic
  */
-export function renderSwitch<T extends string | number, R>(
-  value: T,
-  options: Record<T, R>,
-  fallback?: R
-): R | null {
+export function renderSwitch<T extends string | number, R>(value: T, options: Record<T, R>, fallback?: R): R | null {
   return options[value] || fallback || null
 }
 
@@ -80,14 +76,14 @@ export const IconRenderer = {
    */
   getPositionClasses(position: 'left' | 'right', hasIcon: boolean): string {
     if (!hasIcon) return ''
-    
+
     const classes = {
       left: 'pl-10',
-      right: 'pr-10'
+      right: 'pr-10',
     }
-    
+
     return classes[position] || ''
-  }
+  },
 }
 
 /**
@@ -118,12 +114,16 @@ export const FormRenderer = {
   /**
    * Get the appropriate input state for styling
    */
-  getInputState(focused: boolean, error?: string, disabled: boolean = false): 'default' | 'focused' | 'error' | 'disabled' {
+  getInputState(
+    focused: boolean,
+    error?: string,
+    disabled: boolean = false
+  ): 'default' | 'focused' | 'error' | 'disabled' {
     if (disabled) return 'disabled'
     if (error) return 'error'
     if (focused) return 'focused'
     return 'default'
-  }
+  },
 }
 
 /**
@@ -136,12 +136,12 @@ export const AvatarRenderer = {
    */
   getInitials(name?: string): string {
     if (!name || name.trim() === '') return ''
-    
+
     return name
       .trim()
       .split(' ')
-      .filter(word => word.length > 0)
-      .map(word => word.charAt(0))
+      .filter((word) => word.length > 0)
+      .map((word) => word.charAt(0))
       .join('')
       .toUpperCase()
       .slice(0, 2)
@@ -160,26 +160,29 @@ export const AvatarRenderer = {
    * Get status indicator classes
    * Updated to match Avatar component's original design
    */
-  getStatusClasses(status?: 'online' | 'offline' | 'away' | 'busy', size: 'xs' | 'small' | 'medium' | 'large' = 'medium'): string {
+  getStatusClasses(
+    status?: 'online' | 'offline' | 'away' | 'busy',
+    size: 'xs' | 'small' | 'medium' | 'large' = 'medium'
+  ): string {
     if (!status) return ''
-    
+
     const baseClasses = 'absolute rounded-full border-2 border-white'
     const statusColors = {
       online: 'bg-success',
       offline: 'bg-neutral',
       away: 'bg-warning',
-      busy: 'bg-error'
+      busy: 'bg-error',
     }
-    
+
     const sizeClasses = {
       xs: 'h-2.5 w-2.5 -bottom-0.5 -right-0.5',
       small: 'h-3 w-3 -bottom-0.5 -right-0.5',
       medium: 'h-3.5 w-3.5 -bottom-1 -right-1',
-      large: 'h-4 w-4 -bottom-0.5 -right-0.5'
+      large: 'h-4 w-4 -bottom-0.5 -right-0.5',
     }
-    
+
     return `${baseClasses} ${statusColors[status]} ${sizeClasses[size]}`
-  }
+  },
 }
 
 /**
@@ -199,12 +202,12 @@ export const ListRenderer = {
   getItemClasses(index: number, total: number, variant: 'default' | 'compact' = 'default'): string {
     const baseClasses = variant === 'compact' ? 'py-2 px-3' : 'py-3 px-4'
     const positionClasses: string[] = []
-    
+
     if (index === 0) positionClasses.push('rounded-t-xl')
     if (index === total - 1) positionClasses.push('rounded-b-xl')
-    
+
     return `${baseClasses} ${positionClasses.join(' ')}`
-  }
+  },
 }
 
 /**
@@ -234,30 +237,27 @@ export const BadgeRenderer = {
    */
   getContentSize(size: 'xs' | 'small' | 'medium' | 'large', type: 'number' | 'icon' | 'dot'): string {
     if (type === 'dot') return ''
-    
+
     const iconSizes = {
       xs: 'h-2 w-2',
       small: 'h-2.5 w-2.5',
       medium: 'h-3 w-3',
-      large: 'h-3.5 w-3.5'
+      large: 'h-3.5 w-3.5',
     }
-    
+
     return type === 'icon' ? iconSizes[size] : ''
-  }
+  },
 }
 
 /**
- * Utilities for dropdown/select rendering patterns  
+ * Utilities for dropdown/select rendering patterns
  */
 export const DropdownRenderer = {
   /**
    * Find selected option from options array
    */
-  findSelectedOption<T extends { value: string; label: string }>(
-    options: T[],
-    selectedValue?: string
-  ): T | undefined {
-    return options.find(option => option.value === selectedValue)
+  findSelectedOption<T extends { value: string; label: string }>(options: T[], selectedValue?: string): T | undefined {
+    return options.find((option) => option.value === selectedValue)
   },
 
   /**
@@ -277,7 +277,7 @@ export const DropdownRenderer = {
    */
   shouldShowOpen(isOpen: boolean, disabled: boolean = false): boolean {
     return isOpen && !disabled
-  }
+  },
 }
 
 /**
@@ -295,7 +295,7 @@ export const ButtonRenderer = {
    * Get content to render based on loading state
    */
   getContent(loading: boolean, children: any, loadingText?: string): any {
-    return loading ? (loadingText || 'Loading...') : children
+    return loading ? loadingText || 'Loading...' : children
   },
 
   /**
@@ -303,7 +303,7 @@ export const ButtonRenderer = {
    */
   isEffectivelyDisabled(disabled: boolean = false, loading: boolean = false): boolean {
     return disabled || loading
-  }
+  },
 }
 
 /**
@@ -318,9 +318,9 @@ export const MediaRenderer = {
       '1:1': 'aspect-square',
       '16:9': 'aspect-video',
       '4:3': 'aspect-[4/3]',
-      '3:2': 'aspect-[3/2]'
+      '3:2': 'aspect-[3/2]',
     }
-    
+
     return aspectRatio ? ratios[aspectRatio] : ''
   },
 
@@ -330,15 +330,15 @@ export const MediaRenderer = {
   getRoundedClasses(rounded: boolean | 'small' | 'medium' | 'large' = false): string {
     if (!rounded) return ''
     if (rounded === true) return 'rounded-xl'
-    
+
     const sizes = {
       small: 'rounded-lg',
-      medium: 'rounded-xl', 
-      large: 'rounded-2xl'
+      medium: 'rounded-xl',
+      large: 'rounded-2xl',
     }
-    
+
     return sizes[rounded] || ''
-  }
+  },
 }
 
 /**
@@ -357,13 +357,13 @@ export const GenericRenderer = {
    */
   getRestProps(allProps: Record<string, any>, excludeKeys: string[]): Record<string, any> {
     const restProps: Record<string, any> = {}
-    
-    Object.keys(allProps).forEach(key => {
+
+    Object.keys(allProps).forEach((key) => {
       if (!excludeKeys.includes(key)) {
         restProps[key] = allProps[key]
       }
     })
-    
+
     return restProps
   },
 
@@ -378,13 +378,13 @@ export const GenericRenderer = {
     ariaExpanded?: boolean
   }): Record<string, any> {
     const props: Record<string, any> = {}
-    
+
     if (options.role) props.role = options.role
     if (options.ariaLabel) props['aria-label'] = options.ariaLabel
     if (options.ariaDescribedBy) props['aria-describedby'] = options.ariaDescribedBy
     if (options.ariaPressed !== undefined) props['aria-pressed'] = options.ariaPressed
     if (options.ariaExpanded !== undefined) props['aria-expanded'] = options.ariaExpanded
-    
+
     return props
-  }
+  },
 }

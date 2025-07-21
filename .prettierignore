@@ -6,7 +6,4 @@ bun.lock
 bun.lockb
 
 # Keep utility CSS files as-is (single line formatting)
-src/styles/colors.css
-src/styles/hover-states.css
-src/styles/focus-states.css
-src/styles/typography.css
+src/styles/*.css

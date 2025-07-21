@@ -12,127 +12,127 @@
 @import './styles/transitions.css';
 
 :root {
-	/* Highlight Colors (same for both themes) */
-	--color-highlight-50: #eaf2ff;
-	--color-highlight-100: #b4dbff;
-	--color-highlight-200: #6fbaff;
-	--color-highlight-300: #2897ff;
-	--color-highlight-400: #006ffd;
+  /* Highlight Colors (same for both themes) */
+  --color-highlight-50: #eaf2ff;
+  --color-highlight-100: #b4dbff;
+  --color-highlight-200: #6fbaff;
+  --color-highlight-300: #2897ff;
+  --color-highlight-400: #006ffd;
 
-	/* Support Colors (same for both themes) */
-	--color-success-50: #e7f4e8;
-	--color-success-100: #3ac0a0;
-	--color-success-200: #298267;
+  /* Support Colors (same for both themes) */
+  --color-success-50: #e7f4e8;
+  --color-success-100: #3ac0a0;
+  --color-success-200: #298267;
 
-	--color-warning-50: #fff4e4;
-	--color-warning-100: #ffb37c;
-	--color-warning-200: #e86339;
+  --color-warning-50: #fff4e4;
+  --color-warning-100: #ffb37c;
+  --color-warning-200: #e86339;
 
-	--color-error-50: #ffe2e5;
-	--color-error-100: #ff016d;
-	--color-error-200: #ed3241;
+  --color-error-50: #ffe2e5;
+  --color-error-100: #ff016d;
+  --color-error-200: #ed3241;
 
-	/* Typography */
-	--font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  /* Typography */
+  --font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
 }
 
 /* Light Theme (default) */
 :root,
 [data-theme='light'] {
-	/* Neutral Colors - Light Theme */
-	--color-neutral-50: #ffffff;
-	--color-neutral-100: #f8f9fe;
-	--color-neutral-200: #e8e9f1;
-	--color-neutral-300: #d4d6dd;
-	--color-neutral-400: #c5c6cc;
-	--color-neutral-500: #8f9098;
-	--color-neutral-600: #71727a;
-	--color-neutral-700: #494a50;
-	--color-neutral-800: #2f3036;
-	--color-neutral-900: #1f2024;
+  /* Neutral Colors - Light Theme */
+  --color-neutral-50: #ffffff;
+  --color-neutral-100: #f8f9fe;
+  --color-neutral-200: #e8e9f1;
+  --color-neutral-300: #d4d6dd;
+  --color-neutral-400: #c5c6cc;
+  --color-neutral-500: #8f9098;
+  --color-neutral-600: #71727a;
+  --color-neutral-700: #494a50;
+  --color-neutral-800: #2f3036;
+  --color-neutral-900: #1f2024;
 
-	/* Semantic colors for light theme */
-	--color-background: var(--color-neutral-50);
-	--color-surface: var(--color-neutral-100);
-	--color-surface-elevated: var(--color-neutral-50);
-	--color-surface-hover: var(--color-neutral-200);
-	--color-text-primary: var(--color-neutral-900);
-	--color-text-secondary: var(--color-neutral-600);
-	--color-text-muted: var(--color-neutral-500);
-	--color-border: var(--color-neutral-200);
-	--color-border-strong: var(--color-neutral-300);
+  /* Semantic colors for light theme */
+  --color-background: var(--color-neutral-50);
+  --color-surface: var(--color-neutral-100);
+  --color-surface-elevated: var(--color-neutral-50);
+  --color-surface-hover: var(--color-neutral-200);
+  --color-text-primary: var(--color-neutral-900);
+  --color-text-secondary: var(--color-neutral-600);
+  --color-text-muted: var(--color-neutral-500);
+  --color-border: var(--color-neutral-200);
+  --color-border-strong: var(--color-neutral-300);
 }
 
 /* Dark Theme */
 [data-theme='dark'] {
-	/* Neutral Colors - Dark Theme (inverted) */
-	--color-neutral-50: #1f2024;
-	--color-neutral-100: #2f3036;
-	--color-neutral-200: #494a50;
-	--color-neutral-300: #71727a;
-	--color-neutral-400: #8f9098;
-	--color-neutral-500: #c5c6cc;
-	--color-neutral-600: #d4d6dd;
-	--color-neutral-700: #e8e9f1;
-	--color-neutral-800: #f8f9fe;
-	--color-neutral-900: #ffffff;
+  /* Neutral Colors - Dark Theme (inverted) */
+  --color-neutral-50: #1f2024;
+  --color-neutral-100: #2f3036;
+  --color-neutral-200: #494a50;
+  --color-neutral-300: #71727a;
+  --color-neutral-400: #8f9098;
+  --color-neutral-500: #c5c6cc;
+  --color-neutral-600: #d4d6dd;
+  --color-neutral-700: #e8e9f1;
+  --color-neutral-800: #f8f9fe;
+  --color-neutral-900: #ffffff;
 
-	/* Semantic colors for dark theme */
-	--color-background: var(--color-neutral-50);
-	--color-surface: var(--color-neutral-100);
-	--color-surface-elevated: var(--color-neutral-200);
-	--color-surface-hover: var(--color-neutral-300);
-	--color-text-primary: var(--color-neutral-900);
-	--color-text-secondary: var(--color-neutral-600);
-	--color-text-muted: var(--color-neutral-500);
-	--color-border: var(--color-neutral-200);
-	--color-border-strong: var(--color-neutral-300);
+  /* Semantic colors for dark theme */
+  --color-background: var(--color-neutral-50);
+  --color-surface: var(--color-neutral-100);
+  --color-surface-elevated: var(--color-neutral-200);
+  --color-surface-hover: var(--color-neutral-300);
+  --color-text-primary: var(--color-neutral-900);
+  --color-text-secondary: var(--color-neutral-600);
+  --color-text-muted: var(--color-neutral-500);
+  --color-border: var(--color-neutral-200);
+  --color-border-strong: var(--color-neutral-300);
 
-	/* Adjust highlight colors for dark theme */
-	--color-highlight-50: #0a1929;
-	--color-highlight-100: #1e3a5f;
+  /* Adjust highlight colors for dark theme */
+  --color-highlight-50: #0a1929;
+  --color-highlight-100: #1e3a5f;
 }
 
 * {
-	font-family: var(--font-family);
+  font-family: var(--font-family);
 }
 
 body {
-	font-family: var(--font-family);
-	color: var(--color-text-primary);
-	background-color: var(--color-background);
-	transition:
-		color 0.2s ease,
-		background-color 0.2s ease;
+  font-family: var(--font-family);
+  color: var(--color-text-primary);
+  background-color: var(--color-background);
+  transition:
+    color 0.2s ease,
+    background-color 0.2s ease;
 }
 
 /* Card components - these are temporary and should be removed in the future when a card component is added */
 .card {
-	background: var(--color-surface-default);
-	border-radius: 12px;
-	padding: 1.5rem;
-	border: 1px solid var(--color-border-subtle);
+  background: var(--color-surface-default);
+  border-radius: 12px;
+  padding: 1.5rem;
+  border: 1px solid var(--color-border-subtle);
 }
 
 .card-elevated {
-	background: var(--color-surface-elevated);
-	border-radius: 12px;
-	padding: 1.5rem;
-	box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  background: var(--color-surface-elevated);
+  border-radius: 12px;
+  padding: 1.5rem;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
 
 .card-default {
-	background: var(--color-surface-default);
-	border-radius: 12px;
-	padding: 1.5rem;
-	border: 1px solid var(--color-border-subtle);
+  background: var(--color-surface-default);
+  border-radius: 12px;
+  padding: 1.5rem;
+  border: 1px solid var(--color-border-subtle);
 }
 
 /* Mobile scrolling behavior - prevent whole page scroll */
 @media (max-width: 767px) {
-	html,
-	body {
-		overflow: hidden;
-		height: 100vh;
-	}
+  html,
+  body {
+    overflow: hidden;
+    height: 100vh;
+  }
 }

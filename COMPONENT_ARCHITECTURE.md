@@ -7,6 +7,7 @@ This document provides a comprehensive analysis of the component architecture, d
 ## Core Technologies & Patterns
 
 ### Svelte 5 Runes System
+
 The entire codebase uses **Svelte 5 runes** instead of legacy Svelte 4 patterns:
 
 - **`$state()`** - Reactive state management instead of reactive `let`
@@ -16,6 +17,7 @@ The entire codebase uses **Svelte 5 runes** instead of legacy Svelte 4 patterns:
 - **Snippets** - `{@render children?.()}` instead of slots
 
 ### TypeScript Integration
+
 - **Explicit prop interfaces** - Every component defines a clear TypeScript interface
 - **Composition via interfaces** - Components extend base interfaces for consistency
 - **Type-safe event handling** - Standardized event handler interfaces
@@ -30,7 +32,9 @@ This file contains all the shared TypeScript interfaces that components extend t
 ### Base Interfaces
 
 #### `BaseProps`
+
 The fundamental interface that all components should extend:
+
 ```typescript
 export interface BaseProps {
   class?: string
@@ -40,7 +44,9 @@ export interface BaseProps {
 ```
 
 #### `SizedComponent`
+
 For components with standard size variants:
+
 ```typescript
 export interface SizedComponent {
   size?: 'small' | 'medium' | 'large'
@@ -48,7 +54,9 @@ export interface SizedComponent {
 ```
 
 #### `ExtendedSizedComponent`
+
 For components that need an extra-small size:
+
 ```typescript
 export interface ExtendedSizedComponent {
   size?: 'xs' | 'small' | 'medium' | 'large'
@@ -56,7 +64,9 @@ export interface ExtendedSizedComponent {
 ```
 
 #### `VariantComponent<T>`
+
 Generic interface for components with style variants:
+
 ```typescript
 export interface VariantComponent<T extends string> {
   variant?: T
@@ -66,7 +76,9 @@ export interface VariantComponent<T extends string> {
 ### Form-Related Interfaces
 
 #### `FormField`
+
 Standard form field props:
+
 ```typescript
 export interface FormField {
   name?: string
@@ -81,7 +93,9 @@ export interface FormField {
 ```
 
 #### `FormInputComponent`
+
 Combines base props with form field functionality:
+
 ```typescript
 export interface FormInputComponent extends BaseProps, FormField, FullWidthComponent, FocusHandlers {
   type?: string
@@ -91,6 +105,7 @@ export interface FormInputComponent extends BaseProps, FormField, FullWidthCompo
 ### Event Handler Interfaces
 
 #### `ClickHandler`
+
 ```typescript
 export interface ClickHandler {
   onclick?: () => void
@@ -98,6 +113,7 @@ export interface ClickHandler {
 ```
 
 #### `ChangeHandler<T>`
+
 ```typescript
 export interface ChangeHandler<T = any> {
   onchange?: (value: T) => void
@@ -105,6 +121,7 @@ export interface ChangeHandler<T = any> {
 ```
 
 #### `KeyboardHandler`
+
 ```typescript
 export interface KeyboardHandler {
   onkeydown?: (event: KeyboardEvent) => void
@@ -112,6 +129,7 @@ export interface KeyboardHandler {
 ```
 
 #### `FocusHandlers`
+
 ```typescript
 export interface FocusHandlers {
   onfocus?: () => void
@@ -122,21 +140,24 @@ export interface FocusHandlers {
 ### Component-Specific Interfaces
 
 #### `ButtonLikeComponent`
+
 Comprehensive interface for button-like components:
+
 ```typescript
-export interface ButtonLikeComponent extends 
-  BaseProps, 
-  SizedComponent, 
-  VariantComponent<'primary' | 'secondary' | 'tertiary'>,
-  FullWidthComponent,
-  LoadingComponent,
-  ClickHandler,
-  ChildrenComponent {
+export interface ButtonLikeComponent
+  extends BaseProps,
+    SizedComponent,
+    VariantComponent<'primary' | 'secondary' | 'tertiary'>,
+    FullWidthComponent,
+    LoadingComponent,
+    ClickHandler,
+    ChildrenComponent {
   type?: 'button' | 'submit' | 'reset'
 }
 ```
 
 #### `CardComponent`
+
 ```typescript
 export interface CardComponent extends BaseProps, ClickHandler, ChildrenComponent {
   title: string
@@ -147,6 +168,7 @@ export interface CardComponent extends BaseProps, ClickHandler, ChildrenComponen
 ```
 
 #### `ListItemComponent`
+
 ```typescript
 export interface ListItemComponent extends BaseProps, ClickHandler, InteractiveComponent, ChildrenComponent {
   title: string
@@ -164,33 +186,36 @@ The Button component exemplifies the comprehensive interface composition pattern
 
 ```typescript
 interface Props extends ButtonLikeComponent, IconComponent, InteractiveHandlers {
-    iconSize?: number
-    type?: 'button' | 'submit' | 'reset'
+  iconSize?: number
+  type?: 'button' | 'submit' | 'reset'
 }
 ```
 
 **Key Implementation Features:**
+
 - **Semantic CSS Classes** - Uses `.bg-highlight`, `.bg-highlight-hover` instead of verbose CSS variable syntax
 - **Standardized Event Handling** - Disabled state support with standardized keyboard accessibility
 - **Flexible Icon System** - Supports both string emoji and Svelte component icons
 - **Loading State Management** - Spinner replacement with proper disabled state coordination
 
 **CSS Class Composition Pattern:**
+
 ```svelte
 let buttonClasses = $derived.by(() => {
     const base = 'inline-flex items-center justify-center gap-2 font-medium transition-all duration-200 focus:outline-none cursor-pointer'
-    
+
     const variants = {
         primary: 'border-2 border-transparent hover:bg-highlight-hover bg-highlight text-white disabled:bg-neutral-disabled disabled:text-neutral-disabled',
         secondary: 'bg-transparent border-2 hover:bg-highlight-light text-highlight border-highlight disabled:border-neutral-disabled disabled:text-neutral-light',
         tertiary: 'bg-transparent border-2 border-transparent hover:bg-highlight-light text-highlight disabled:text-neutral-light'
     }
-    
+
     return `${base} ${variants[variant]} ${sizes[size]} ${fullWidth ? 'w-full' : ''} ${className}`
 })
 ```
 
 **Event Handling Pattern:**
+
 ```svelte
 const isDisabled = $derived(disabled || loading)
 
@@ -216,6 +241,7 @@ const handleKeyDown = (event: KeyboardEvent) => {
 Demonstrates advanced form component patterns with integrated validation and focus management:
 
 **State Management:**
+
 ```svelte
 let inputRef: HTMLInputElement
 const focusState = useFocusState()
@@ -229,31 +255,33 @@ let effectiveError = $derived(validationState.error || error)
 // Dynamic state calculation
 let currentState = $derived.by(() => {
     if (disabled) return 'disabled'
-    if (effectiveError) return 'error'  
+    if (effectiveError) return 'error'
     if (focusState.focused()) return 'focused'
     return inputState
 })
 ```
 
 **Validation Integration:**
+
 ```svelte
 onblur={(e) => {
-    focusState.handleBlur(e)
-    // Always validate on blur
-    if (validationRules?.length > 0) {
-        const result = validateValue(value || '', validationRules)
-        validationState.error = result.errors[0] || ''
-        validationState.isValid = result.isValid
-    }
+  focusState.handleBlur(e)
+  // Always validate on blur
+  if (validationRules?.length > 0) {
+    const result = validateValue(value || '', validationRules)
+    validationState.error = result.errors[0] || ''
+    validationState.isValid = result.isValid
+  }
 }}
 ```
 
 **Composition with FormField:**
+
 ```svelte
 <FormField {label} {helperText} error={effectiveError} {showLabel} {showHelperText}>
-    {#snippet children()}
-        <!-- Icons, input, and unit display -->
-    {/snippet}
+  {#snippet children()}
+    <!-- Icons, input, and unit display -->
+  {/snippet}
 </FormField>
 ```
 
@@ -264,38 +292,50 @@ onblur={(e) => {
 Demonstrates sophisticated fallback hierarchy and size-proportional styling:
 
 **Fallback Logic:**
+
 ```svelte
 <div class={avatarClasses}>
-    {#if src}
-        <img 
-            {src} {alt} 
-            class="h-full w-full object-cover {imageBorderRadius}"
-            onerror={() => { src = undefined }} <!-- Fallback to next option -->
-        />
-    {:else if displayInitials}
-        <span class="select-none">{displayInitials}</span>
-    {:else}
-        <AvatarPlaceholder {size} />
-    {/if}
-    
-    {#if status}
-        <span class={statusClasses} aria-label={`Status: ${status}`}></span>
-    {/if}
+  {#if src}
+    <img
+      {src}
+      {alt}
+      class="h-full w-full object-cover {imageBorderRadius}"
+      onerror={() => {
+        src = undefined
+      }}
+      <!--
+      Fallback
+      to
+      next
+      option
+      --
+    />
+    />
+  {:else if displayInitials}
+    <span class="select-none">{displayInitials}</span>
+  {:else}
+    <AvatarPlaceholder {size} />
+  {/if}
+
+  {#if status}
+    <span class={statusClasses} aria-label={`Status: ${status}`}></span>
+  {/if}
 </div>
 ```
 
 **Size-Proportional Styling:**
+
 ```svelte
 let avatarClasses = $derived.by(() => {
     const base = 'relative inline-flex items-center justify-center bg-highlight-50 text-neutral-600 font-medium'
-    
+
     const sizes = {
         xs: 'h-8 w-8 text-body-s rounded-xl',
         small: 'h-10 w-10 text-body-s rounded-2xl',
         medium: 'h-14 w-14 text-body-m rounded-2xl',
         large: 'h-20 w-20 text-body-l rounded-3xl'
     }
-    
+
     return `${base} ${sizes[size]} ${className}`
 })
 ```
@@ -332,54 +372,52 @@ setContext('radioGroup', {
 The app uses specialized state management utilities for consistent patterns across components:
 
 #### Controlled/Uncontrolled Components
+
 ```typescript
-export function useControlledState<T>(
-    initialValue: T,
-    controlledValue: T | undefined,
-    onChange?: (value: T) => void
-) {
-    let localValue = $state(initialValue)
-    
-    const isControlled = $derived(controlledValue !== undefined)
-    const currentValue = $derived(isControlled ? controlledValue : localValue)
-    
-    const setValue = (newValue: T) => {
-        if (!isControlled) localValue = newValue
-        onChange?.(newValue)
-    }
-    
-    return {
-        value: () => currentValue,
-        setValue,
-        isControlled: () => isControlled
-    }
+export function useControlledState<T>(initialValue: T, controlledValue: T | undefined, onChange?: (value: T) => void) {
+  let localValue = $state(initialValue)
+
+  const isControlled = $derived(controlledValue !== undefined)
+  const currentValue = $derived(isControlled ? controlledValue : localValue)
+
+  const setValue = (newValue: T) => {
+    if (!isControlled) localValue = newValue
+    onChange?.(newValue)
+  }
+
+  return {
+    value: () => currentValue,
+    setValue,
+    isControlled: () => isControlled,
+  }
 }
 ```
 
 #### Focus State Management
+
 ```typescript
 export function useFocusState(
-    onFocus?: (event: FocusEvent) => void,
-    onBlur?: (event: FocusEvent) => void,
-    disabled?: boolean
+  onFocus?: (event: FocusEvent) => void,
+  onBlur?: (event: FocusEvent) => void,
+  disabled?: boolean
 ) {
-    let focused = $state(false)
-    
-    const handleFocus = (event: FocusEvent) => {
-        if (disabled) return
-        focused = true
-        onFocus?.(event)
-    }
-    
-    return {
-        focused: () => focused,
-        handleFocus,
-        handleBlur: (event: FocusEvent) => {
-            if (disabled) return
-            focused = false
-            onBlur?.(event)
-        }
-    }
+  let focused = $state(false)
+
+  const handleFocus = (event: FocusEvent) => {
+    if (disabled) return
+    focused = true
+    onFocus?.(event)
+  }
+
+  return {
+    focused: () => focused,
+    handleFocus,
+    handleBlur: (event: FocusEvent) => {
+      if (disabled) return
+      focused = false
+      onBlur?.(event)
+    },
+  }
 }
 ```
 
@@ -393,24 +431,24 @@ Provides consistent, accessible event handling patterns:
 
 ```typescript
 export const KeySets = {
-    ACTIVATION: ['Enter', ' '], // Enter + Space for buttons
-    NAVIGATION: ['ArrowUp', 'ArrowDown', 'ArrowLeft', 'ArrowRight'],
-    HORIZONTAL_NAVIGATION: ['ArrowLeft', 'ArrowRight'],
-    VERTICAL_NAVIGATION: ['ArrowUp', 'ArrowDown'],
-    ESCAPE: ['Escape']
+  ACTIVATION: ['Enter', ' '], // Enter + Space for buttons
+  NAVIGATION: ['ArrowUp', 'ArrowDown', 'ArrowLeft', 'ArrowRight'],
+  HORIZONTAL_NAVIGATION: ['ArrowLeft', 'ArrowRight'],
+  VERTICAL_NAVIGATION: ['ArrowUp', 'ArrowDown'],
+  ESCAPE: ['Escape'],
 } as const
 
 export function createKeyboardHandler(
-    handler: () => void,
-    config: KeyboardEventConfig = { keys: ['Enter', ' '], preventDefault: true }
+  handler: () => void,
+  config: KeyboardEventConfig = { keys: ['Enter', ' '], preventDefault: true }
 ) {
-    return (event: KeyboardEvent) => {
-        if (config.disabled) return
-        if (config.keys.includes(event.key)) {
-            if (config.preventDefault) event.preventDefault()
-            handler()
-        }
+  return (event: KeyboardEvent) => {
+    if (config.disabled) return
+    if (config.keys.includes(event.key)) {
+      if (config.preventDefault) event.preventDefault()
+      handler()
     }
+  }
 }
 ```
 
@@ -424,17 +462,17 @@ All icons follow a standardized pattern:
 
 ```svelte
 <script lang="ts">
-    interface Props {
-        class?: string
-        size?: number | string
-    }
-    
-    let { class: className = '', size = 24 }: Props = $props()
+  interface Props {
+    class?: string
+    size?: number | string
+  }
+
+  let { class: className = '', size = 24 }: Props = $props()
 </script>
 
 <svg class={className} width={size} height={size} viewBox="0 0 81 80">
-    <rect fill="var(--color-highlight-50)" />
-    <path fill="var(--color-highlight-100)" />
+  <rect fill="var(--color-highlight-50)" />
+  <path fill="var(--color-highlight-100)" />
 </svg>
 ```
 
@@ -446,18 +484,18 @@ Provides type-safe icon rendering with flexible support:
 
 ```typescript
 export function shouldRenderIcon(icon: IconType, showIcon: boolean = true): boolean {
-    return showIcon && icon !== undefined && icon !== null && icon !== ''
+  return showIcon && icon !== undefined && icon !== null && icon !== ''
 }
 
 export function isStringIcon(icon: IconType): icon is string {
-    return typeof icon === 'string'
+  return typeof icon === 'string'
 }
 
 export function getInputPadding(hasLeftIcon: boolean, hasRightIcon: boolean): string {
-    let padding = ''
-    if (hasLeftIcon) padding += 'pl-10 '
-    if (hasRightIcon) padding += 'pr-10 '
-    return padding.trim()
+  let padding = ''
+  if (hasLeftIcon) padding += 'pl-10 '
+  if (hasRightIcon) padding += 'pr-10 '
+  return padding.trim()
 }
 ```
 
@@ -469,20 +507,22 @@ Provides reactive theme state with automatic persistence:
 
 ```typescript
 export function useTheme() {
-    ensureInitialized()
-    
-    // Create reactive state inside component context
-    const theme = $state({ current: currentTheme })
-    
-    // Subscribe to changes
-    const unsubscribe = subscribe((newTheme) => {
-        theme.current = newTheme
-    })
-    
-    return {
-        get current(): Theme { return theme.current },
-        destroy: unsubscribe
-    }
+  ensureInitialized()
+
+  // Create reactive state inside component context
+  const theme = $state({ current: currentTheme })
+
+  // Subscribe to changes
+  const unsubscribe = subscribe((newTheme) => {
+    theme.current = newTheme
+  })
+
+  return {
+    get current(): Theme {
+      return theme.current
+    },
+    destroy: unsubscribe,
+  }
 }
 ```
 
@@ -491,8 +531,9 @@ export function useTheme() {
 ### Form Components
 
 #### TextField
+
 - **Extends**: `FormInputComponent`, `IconComponent`, `IconSizeComponent`
-- **Key Features**: 
+- **Key Features**:
   - Left/right icons with automatic padding
   - Input states (default, focused, error, disabled)
   - Unit display support
@@ -501,52 +542,59 @@ export function useTheme() {
 - **Pattern**: Uses `$bindable()` for two-way binding with validation integration
 
 #### TextArea
+
 - **Extends**: `FormInputComponent`
-- **Key Features**: 
+- **Key Features**:
   - Resize control
   - Row configuration
   - Max length support
 
 #### Dropdown
+
 - **Extends**: `FormInputComponent`, `ChangeHandler<string>`
-- **Key Features**: 
+- **Key Features**:
   - Option-based selection
   - Keyboard navigation
   - Click-outside handling
 
 #### SearchBar
+
 - **Extends**: `BaseProps`, `FullWidthComponent`, `KeyboardHandler`
-- **Key Features**: 
+- **Key Features**:
   - Built-in search icon
   - Focus state management
 
 ### Interactive Components
 
 #### Button
+
 - **Extends**: `ButtonLikeComponent`, `IconComponent`
-- **Key Features**: 
+- **Key Features**:
   - Left/right icons
   - Loading state with spinner
   - Three variants (primary, secondary, tertiary)
   - Full width support
 
 #### Toggle
+
 - **Extends**: `BaseProps`, `SizedComponent`, `ChangeHandler<boolean>`
-- **Key Features**: 
+- **Key Features**:
   - Switch-like behavior
   - Keyboard accessibility
   - Smooth animations
 
 #### Checkbox
+
 - **Extends**: `BaseProps`, `SizedComponent`, `ChangeHandler<boolean>`, `ChildrenComponent`
-- **Key Features**: 
+- **Key Features**:
   - Container click handling
   - Link-aware clicking
   - Custom label support
 
 #### RadioButton
+
 - **Extends**: `BaseProps`, `SizedComponent`, `ChangeHandler<boolean>`, `ChildrenComponent`
-- **Key Features**: 
+- **Key Features**:
   - Single selection behavior
   - Visual dot indicator
   - Label support
@@ -554,30 +602,34 @@ export function useTheme() {
 ### Display Components
 
 #### Badge
+
 - **Extends**: `BaseProps`, `SizedComponent`
-- **Key Features**: 
+- **Key Features**:
   - Three types (number, icon, dot)
   - Four variants (default, success, warning, error)
   - Number truncation with max value
 
 #### Avatar
+
 - **Extends**: `BaseProps`, `ExtendedSizedComponent`, `StatusComponent`
-- **Key Features**: 
+- **Key Features**:
   - Multi-fallback system (image → initials → SVG)
   - Status indicators
   - Size-proportional styling
 
 #### Card
+
 - **Extends**: `CardComponent`
-- **Key Features**: 
+- **Key Features**:
   - Image/icon/placeholder support
   - Action buttons or arrows
   - Favorite functionality
   - Compact and default variants
 
 #### Tag
+
 - **Extends**: `BaseProps`, `VariantComponent<'primary' | 'secondary' | 'tertiary'>`, `IconComponent`, `ClickHandler`
-- **Key Features**: 
+- **Key Features**:
   - Text-based display
   - Left/right icons
   - Clickable functionality
@@ -585,23 +637,26 @@ export function useTheme() {
 ### Layout Components
 
 #### ListItem
+
 - **Extends**: `ListItemComponent`, `IconComponent`
-- **Key Features**: 
+- **Key Features**:
   - Left/right icons
   - Right controls
   - Chevron support
   - Compact mode
 
 #### List
+
 - **Extends**: `BaseProps`
-- **Key Features**: 
+- **Key Features**:
   - Automatic ListItem rendering
   - Divider support
   - Title with right actions
 
 #### Divider
+
 - **Extends**: `BaseProps`, `VariantComponent<'solid' | 'dashed' | 'dotted'>`
-- **Key Features**: 
+- **Key Features**:
   - Horizontal/vertical orientation
   - Spacing control
   - Style variants
@@ -609,16 +664,18 @@ export function useTheme() {
 ### Media Components
 
 #### Image
+
 - **Extends**: `BaseProps`
-- **Key Features**: 
+- **Key Features**:
   - Aspect ratio control
   - Placeholder/fallback system
   - Rounded corners
   - Loading states
 
 #### Video
+
 - **Extends**: `BaseProps`
-- **Key Features**: 
+- **Key Features**:
   - Placeholder support
   - Loading/error states
   - Event handlers
@@ -627,27 +684,32 @@ export function useTheme() {
 ## Key Patterns
 
 ### State Management
+
 - Use `$state()` for reactive local state
 - Use `$bindable()` for two-way binding in form components
 - Use `$derived.by()` for complex computed values
 - Use `$effect()` for side effects and cleanup
 
 ### Event Handling
+
 - Direct event handler props (e.g., `onclick`) instead of `on:` directive
 - Event prevention and stopPropagation where needed
 - Keyboard accessibility with proper key handling
 
 ### CSS Class Management
+
 - Use `$derived.by()` for dynamic class composition
 - Pattern: `const base = '...'` + variants + modifiers + `className`
 - Consistent naming: `containerClasses`, `buttonClasses`, etc.
 
 ### Icon Integration
+
 - Accept icons as `any` type for maximum flexibility
 - Use `{@render icon?.()}` pattern for optional icons
 - Support both left and right icon positions
 
 ### Children Pattern
+
 - Use `children?: any` prop type
 - Render with `{@render children?.()}`
 - Always include `ChildrenComponent` interface when used
@@ -662,49 +724,51 @@ The app uses the latest Storybook patterns with Svelte 5:
 
 ```svelte
 <script module>
-    import { defineMeta } from '@storybook/addon-svelte-csf'
-    import Button from '../lib/components/Button.svelte'
-    
-    const { Story } = defineMeta({
-        title: 'Components/Button',
-        component: Button,
-        args: { variant: 'primary', size: 'medium' },
-        argTypes: {
-            variant: { control: { type: 'select' }, options: ['primary', 'secondary', 'tertiary'] }
-        }
-    })
+  import { defineMeta } from '@storybook/addon-svelte-csf'
+  import Button from '../lib/components/Button.svelte'
+
+  const { Story } = defineMeta({
+    title: 'Components/Button',
+    component: Button,
+    args: { variant: 'primary', size: 'medium' },
+    argTypes: {
+      variant: { control: { type: 'select' }, options: ['primary', 'secondary', 'tertiary'] },
+    },
+  })
 </script>
 
 <Story name="Primary" args={{ variant: 'primary' }}>
-    {#snippet template(args)}
-        <Button {...args}>
-            {#snippet children()}Button Text{/snippet}
-        </Button>
-    {/snippet}
+  {#snippet template(args)}
+    <Button {...args}>
+      {#snippet children()}Button Text{/snippet}
+    </Button>
+  {/snippet}
 </Story>
 ```
 
 **Key Requirements:**
+
 - Use `<script module>` not `<script>`
 - Use `defineMeta()` instead of `<Meta>`
 - Use `{#snippet template(args)}` for story content
 - Always use `{#snippet children()}` for component content
 
 **Multi-Example Story Pattern:**
+
 ```svelte
 <Story name="All Variants">
-    {#snippet template()}
-        <div class="space-y-4">
-            <div class="flex items-start gap-4">
-                <Button variant="primary">
-                    {#snippet children()}Primary{/snippet}
-                </Button>
-                <Button variant="secondary">
-                    {#snippet children()}Secondary{/snippet}
-                </Button>
-            </div>
-        </div>
-    {/snippet}
+  {#snippet template()}
+    <div class="space-y-4">
+      <div class="flex items-start gap-4">
+        <Button variant="primary">
+          {#snippet children()}Primary{/snippet}
+        </Button>
+        <Button variant="secondary">
+          {#snippet children()}Secondary{/snippet}
+        </Button>
+      </div>
+    </div>
+  {/snippet}
 </Story>
 ```
 
@@ -718,67 +782,70 @@ Demonstrates advanced responsive layout patterns:
 
 ```svelte
 <script lang="ts">
-    // Route-based layout detection
-    let isAuthRoute = $derived.by(() => {
-        if (!browser) return false
-        const pathname = $page.url.pathname
-        return pathname.startsWith('/auth') || pathname === '/login'
-    })
-    
-    // Responsive state management
-    let isMobile = $state(false)
-    
-    function updateIsMobile() {
-        if (browser) isMobile = window.innerWidth < 768
-    }
+  // Route-based layout detection
+  let isAuthRoute = $derived.by(() => {
+    if (!browser) return false
+    const pathname = $page.url.pathname
+    return pathname.startsWith('/auth') || pathname === '/login'
+  })
+
+  // Responsive state management
+  let isMobile = $state(false)
+
+  function updateIsMobile() {
+    if (browser) isMobile = window.innerWidth < 768
+  }
 </script>
 
 {#if isAuthRoute}
-    <div class="auth-layout">{@render children()}</div>
+  <div class="auth-layout">{@render children()}</div>
 {:else}
-    <div class="app-layout" class:mobile={isMobile}>
-        {#if isMobile}
-            <main class="mobile-content">{@render children()}</main>
-            <Navigation {isMobile} />
-        {:else}
-            <Navigation {isMobile} />
-            <main class="desktop-content">{@render children()}</main>
-        {/if}
-    </div>
+  <div class="app-layout" class:mobile={isMobile}>
+    {#if isMobile}
+      <main class="mobile-content">{@render children()}</main>
+      <Navigation {isMobile} />
+    {:else}
+      <Navigation {isMobile} />
+      <main class="desktop-content">{@render children()}</main>
+    {/if}
+  </div>
 {/if}
 ```
 
 ## Svelte 5 Specific Patterns
 
 ### Component Props Pattern
+
 ```typescript
 interface Props extends BaseProps {
-    // component-specific props
+  // component-specific props
 }
 
-let { 
-    // destructure with defaults
-    class: className = '',
-    disabled = false,
-    children,
-    ...restProps 
+let {
+  // destructure with defaults
+  class: className = '',
+  disabled = false,
+  children,
+  ...restProps
 }: Props = $props()
 ```
 
 ### Children & Snippet Pattern
+
 ```svelte
 <!-- Component Usage -->
 <Component>
-    {#snippet children()}Content{/snippet}
+  {#snippet children()}Content{/snippet}
 </Component>
 
 <!-- Component Implementation -->
 {#if children}
-    {@render children()}
+  {@render children()}
 {/if}
 ```
 
 ### State & Derived Values
+
 ```svelte
 // Reactive state
 let focused = $state(false)
@@ -795,9 +862,10 @@ let buttonClasses = $derived.by(() => {
 ```
 
 ### Event Handling
+
 ```svelte
 // Direct event handlers (no on: prefix)
-<button 
+<button
     onclick={handleClick}
     onkeydown={handleKeyDown}
     onfocus={handleFocus}
@@ -852,6 +920,7 @@ yarn check      # Svelte-specific type checking
 ```
 
 **Common Type Issues to Avoid:**
+
 - Never use `ComponentProps<'button'>` or `ComponentProps<'input'>` - define explicit interfaces
 - Always include `children?: any` when using `{@render children?.()}`
 - Use `$derived.by()` for complex computations, not `$derived()`
@@ -861,19 +930,21 @@ yarn check      # Svelte-specific type checking
 ### Component Composition Patterns
 
 **Wrapper Components:**
+
 ```svelte
 <!-- FormField wrapper pattern -->
 <FormField {label} {helperText} error={effectiveError}>
-    {#snippet children()}
-        <input bind:value class={inputClasses} />
-    {/snippet}
+  {#snippet children()}
+    <input bind:value class={inputClasses} />
+  {/snippet}
 </FormField>
 ```
 
 **Context-Based Communication:**
+
 ```svelte
 <!-- Parent provides context -->
-setContext('radioGroup', { selectedValue, onRadioChange })
+setContext('radioGroup', {(selectedValue, onRadioChange)})
 
 <!-- Child consumes context -->
 const radioGroup = getContext('radioGroup')
@@ -882,14 +953,16 @@ const radioGroup = getContext('radioGroup')
 ### Testing & Quality Assurance
 
 #### Testing Configuration
+
 - **Browser tests** - Playwright with Chromium for component testing
-- **Server tests** - Node environment for utility function testing  
+- **Server tests** - Node environment for utility function testing
 - **Type checking** - Integrated TypeScript and Svelte checking
 - **Story testing** - Storybook for component isolation and visual testing
 
 #### Code Quality Standards
+
 - **Prettier formatting** - Consistent code style
-- **TypeScript strict mode** - Type safety enforcement  
+- **TypeScript strict mode** - Type safety enforcement
 - **Interface composition** - Reusable, composable component interfaces
 - **Semantic CSS** - Maintainable styling with theme awareness
 - **Accessibility** - ARIA roles, keyboard navigation, focus management
@@ -897,12 +970,14 @@ const radioGroup = getContext('radioGroup')
 ### Performance Considerations
 
 #### Component Optimization
+
 - **Efficient derived values** - Use `$derived.by()` for expensive computations
 - **Minimal re-rendering** - Proper state and prop management
 - **Icon optimization** - SVG components with proper sizing
 - **CSS efficiency** - Semantic classes reduce runtime calculations
 
 #### Bundle Optimization
+
 - **Tree shaking** - Clean barrel exports from `/src/lib/index.ts`
 - **Icon splitting** - Individual icon imports prevent bundle bloat
 - **Utility functions** - Shared utilities reduce code duplication
@@ -910,12 +985,14 @@ const radioGroup = getContext('radioGroup')
 ### Accessibility Standards
 
 #### Keyboard Navigation
+
 - **Activation keys** - Enter + Space for buttons and interactive elements
 - **Arrow navigation** - Up/Down/Left/Right for navigable components
 - **Focus management** - Proper focus ring and state management
 - **Escape handling** - Close modals, dropdowns, and overlays
 
 #### Screen Reader Support
+
 - **Semantic HTML** - Proper element usage and ARIA roles
 - **Label associations** - Proper form field labeling
 - **Status indicators** - Accessible status communication
@@ -924,6 +1001,7 @@ const radioGroup = getContext('radioGroup')
 ### Future Architecture Evolution
 
 #### Planned Improvements
+
 1. **Enhanced State Management** - More specialized state utilities for complex components
 2. **Advanced Icon System** - Dynamic icon loading and optimization
 3. **Validation Framework** - More sophisticated form validation patterns
@@ -932,8 +1010,9 @@ const radioGroup = getContext('radioGroup')
 6. **Performance Monitoring** - Component performance tracking and optimization
 
 #### Scalability Considerations
+
 - **Component library growth** - Interface composition supports easy extension
-- **Theme expansion** - CSS variable system supports additional themes  
+- **Theme expansion** - CSS variable system supports additional themes
 - **Icon system scaling** - Organized structure supports large icon libraries
 - **State management scaling** - Utility functions provide consistent patterns
 - **Validation expansion** - Unified validation system supports complex rules
@@ -941,6 +1020,7 @@ const radioGroup = getContext('radioGroup')
 ### Documentation Standards
 
 #### Component Documentation Requirements
+
 - **Interface documentation** - Clear TypeScript interface definitions
 - **Usage examples** - Comprehensive Storybook stories
 - **Props documentation** - JSDoc comments for all props
@@ -948,6 +1028,7 @@ const radioGroup = getContext('radioGroup')
 - **Accessibility notes** - Keyboard and screen reader usage
 
 #### Architecture Documentation
+
 - **Pattern documentation** - Clear explanation of architectural decisions
 - **Example implementations** - Real-world usage examples
 - **Best practices** - Guidelines for consistent development
@@ -966,6 +1047,7 @@ The CSS architecture is built on a foundation of CSS custom properties (variable
 ### Main Style Files
 
 #### `/src/app.css` - Main Entry Point
+
 - **Purpose**: Main CSS entry point that imports all other styles
 - **Key Features**:
   - Google Fonts import (Inter family)
@@ -976,6 +1058,7 @@ The CSS architecture is built on a foundation of CSS custom properties (variable
   - Temporary card utility classes
 
 #### `/src/styles/typography.css` - Typography System
+
 - **Purpose**: Comprehensive typography scale with semantic naming
 - **Key Features**:
   - CSS variables for font sizes, weights, and line heights
@@ -985,6 +1068,7 @@ The CSS architecture is built on a foundation of CSS custom properties (variable
   - Line height variants: tight (1.2), normal (1.4)
 
 #### `/src/styles/colors.css` - Color System
+
 - **Purpose**: Complete color utility classes using CSS variables
 - **Key Features**:
   - Background colors: `bg-highlight-*`, `bg-neutral-*`, `bg-success-*`, `bg-warning-*`, `bg-error-*`
@@ -993,6 +1077,7 @@ The CSS architecture is built on a foundation of CSS custom properties (variable
   - Semantic colors: `bg-background`, `bg-surface`, `text-primary`, `text-secondary`, `border-default`
 
 #### `/src/styles/hover-states.css` - Interactive States
+
 - **Purpose**: Hover state utilities for all color variations
 - **Key Features**:
   - Hover backgrounds: `hover:bg-*`
@@ -1001,6 +1086,7 @@ The CSS architecture is built on a foundation of CSS custom properties (variable
   - Consistent with base color system
 
 #### `/src/styles/focus-states.css` - Accessibility & Focus
+
 - **Purpose**: Focus states and ring utilities for accessibility
 - **Key Features**:
   - Focus border colors: `focus:border-*`
@@ -1011,6 +1097,7 @@ The CSS architecture is built on a foundation of CSS custom properties (variable
 ### Color System Architecture
 
 #### CSS Variables Structure
+
 ```css
 :root {
   /* Base color scales */
@@ -1019,7 +1106,7 @@ The CSS architecture is built on a foundation of CSS custom properties (variable
   --color-highlight-200: #6fbaff;
   --color-highlight-300: #2897ff;
   --color-highlight-400: #006ffd;
-  
+
   /* Semantic mappings */
   --color-background: var(--color-neutral-50);
   --color-surface: var(--color-neutral-100);
@@ -1028,12 +1115,14 @@ The CSS architecture is built on a foundation of CSS custom properties (variable
 ```
 
 #### Theme System
+
 - **Light Theme**: Default theme with standard color mappings
 - **Dark Theme**: Inverted neutral scale with adjusted semantic colors
 - **Theme-Aware Colors**: Semantic variables that adapt to theme context
 - **Theme Switching**: Controlled via `[data-theme='dark']` attribute
 
 #### Color Categories
+
 1. **Highlight Colors** (Brand/Primary): Blue color scale for primary actions
 2. **Neutral Colors** (UI/Structure): Gray scale for text, borders, backgrounds
 3. **Success Colors** (Positive): Green scale for success states
@@ -1043,6 +1132,7 @@ The CSS architecture is built on a foundation of CSS custom properties (variable
 ### Typography System
 
 #### Semantic Typography Classes
+
 - **Action Text**: `text-action-s/m/l` - For buttons and actionable elements
 - **Caption Text**: `text-caption-m` - For labels and captions
 - **Heading Text**: `text-h1` through `text-h5` - For hierarchical headings
@@ -1052,6 +1142,7 @@ The CSS architecture is built on a foundation of CSS custom properties (variable
 - **Thick Text**: `text-thick-*` - Semibold weight variant
 
 #### Font System
+
 - **Primary Font**: Inter (Google Fonts)
 - **Fallback Stack**: System fonts (`-apple-system`, `BlinkMacSystemFont`, `'Segoe UI'`, `Roboto`, `sans-serif`)
 - **Weight Range**: 300-800 (light to extrabold)
@@ -1059,7 +1150,9 @@ The CSS architecture is built on a foundation of CSS custom properties (variable
 ### Component CSS Patterns
 
 #### Class Composition Pattern
+
 Components use `$derived.by()` to compose CSS classes:
+
 ```svelte
 let buttonClasses = $derived.by(() => {
   const base = 'inline-flex items-center justify-center gap-2 font-medium transition-all duration-200'
@@ -1076,6 +1169,7 @@ let buttonClasses = $derived.by(() => {
 ```
 
 #### Tailwind CSS v4 Integration
+
 - **Modern Tailwind**: Uses v4 with CSS-first approach
 - **CSS Variables**: Tailwind classes work with CSS variables
 - **Plugins**: Uses `@tailwindcss/forms` and `@tailwindcss/typography`
