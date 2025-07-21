@@ -74,7 +74,7 @@
   let showCharCount = $derived(maxlength !== undefined && maxlength > 0)
 
   // Determine if we need a custom helper area (when we have both text and char count)
-  let showCustomHelperArea = $derived(showCharCount && showHelperText && (error || helperText))
+  let showCustomHelperArea = $derived(showCharCount && showHelperText && (effectiveError || helperText))
 
   // Helper text to pass to FormField (only when not using custom helper area)
   let formFieldHelperText = $derived.by(() => {
@@ -83,65 +83,66 @@
   })
 </script>
 
-<FormField
-  {label}
-  helperText={formFieldHelperText}
-  error={effectiveError}
-  {showLabel}
-  showHelperText={showHelperText && !showCustomHelperArea}
-  {fullWidth}
-  {disabled}
-  for={id}
-  class={className}
-  {...restProps}
->
-  {#snippet children()}
-    <textarea
-      bind:this={textareaRef}
-      bind:value
-      class={textareaClasses}
-      {disabled}
-      {id}
-      {placeholder}
-      {name}
-      {rows}
-      {maxlength}
-      onfocus={focusState.handleFocus}
-      onblur={(e) => {
-        focusState.handleBlur(e)
-        // Always validate on blur
-        if (validationRules && validationRules.length > 0) {
-          const result = validateValue(value || '', validationRules)
-          validationState.error = result.errors[0] || ''
-          validationState.isValid = result.isValid
-        }
-        ;(restProps as any).onblur?.(e)
-      }}
-      oninput={(e) => {
-        const target = e.target as HTMLTextAreaElement
-        if (validateOnChange && validationRules && validationRules.length > 0) {
-          const result = validateValue(target.value, validationRules)
-          validationState.error = result.errors[0] || ''
-          validationState.isValid = result.isValid
-        }
-        ;(restProps as any).oninput?.(e)
-      }}
-      {...restProps}
-    ></textarea>
-  {/snippet}
-</FormField>
+<div class={className}>
+  <FormField
+    {label}
+    helperText={formFieldHelperText}
+    error={effectiveError}
+    {showLabel}
+    showHelperText={showHelperText && !showCustomHelperArea}
+    {fullWidth}
+    {disabled}
+    for={id}
+    {...restProps}
+  >
+    {#snippet children()}
+      <textarea
+        bind:this={textareaRef}
+        bind:value
+        class={textareaClasses}
+        {disabled}
+        {id}
+        {placeholder}
+        {name}
+        {rows}
+        {maxlength}
+        onfocus={focusState.handleFocus}
+        onblur={(e) => {
+          focusState.handleBlur(e)
+          // Always validate on blur
+          if (validationRules && validationRules.length > 0) {
+            const result = validateValue(value || '', validationRules)
+            validationState.error = result.errors[0] || ''
+            validationState.isValid = result.isValid
+          }
+          ;(restProps as any).onblur?.(e)
+        }}
+        oninput={(e) => {
+          const target = e.target as HTMLTextAreaElement
+          if (validateOnChange && validationRules && validationRules.length > 0) {
+            const result = validateValue(target.value, validationRules)
+            validationState.error = result.errors[0] || ''
+            validationState.isValid = result.isValid
+          }
+          ;(restProps as any).oninput?.(e)
+        }}
+        {...restProps}
+      ></textarea>
+    {/snippet}
+  </FormField>
 
-{#if showCustomHelperArea}
-  <div class="mt-1 flex items-start justify-between">
-    {#if (effectiveError || helperText) && showHelperText}
-      <div class="text-slim-s {effectiveError ? 'text-error' : 'text-neutral-600'}">
-        {effectiveError || helperText}
-      </div>
-    {/if}
-    {#if showCharCount}
-      <div class="text-slim-s ml-auto text-neutral-600">
-        {charCount}/{maxlength}
-      </div>
-    {/if}
-  </div>
-{/if}
+  {#if showCustomHelperArea}
+    <div class="mt-1 flex items-start justify-between">
+      {#if (effectiveError || helperText) && showHelperText}
+        <div class="text-slim-s {effectiveError ? 'text-error' : 'text-neutral-600'}">
+          {effectiveError || helperText}
+        </div>
+      {/if}
+      {#if showCharCount}
+        <div class="text-slim-s ml-auto text-neutral-600">
+          {charCount}/{maxlength}
+        </div>
+      {/if}
+    </div>
+  {/if}
+</div>
