@@ -1,6 +1,7 @@
 <script lang="ts">
-	import Badge from '$lib/components/Badge.svelte'
+	import Badge from '$lib/components/feedback/Badge.svelte'
 	import Button from '$lib/components/Button.svelte'
+	import type { BadgeVariant } from '$lib/types/component'
 
 	type TaskStatus = 'pending' | 'in_progress' | 'completed'
 	type TaskType = 'homework' | 'test' | 'project' | 'reading'
@@ -54,7 +55,7 @@
 		}
 	]
 
-	function getStatusBadge(status: TaskStatus) {
+	function getStatusBadge(status: TaskStatus): { variant: BadgeVariant; text: string } {
 		switch (status) {
 			case 'pending': return { variant: 'warning', text: 'În așteptare' }
 			case 'in_progress': return { variant: 'default', text: 'În progres' }

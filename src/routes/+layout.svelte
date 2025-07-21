@@ -2,7 +2,7 @@
 	import '../app.css'
 	import { page } from '$app/stores'
 	import { browser } from '$app/environment'
-	import Navigation from '$lib/components/Navigation.svelte'
+	import Navigation from '$lib/components/navigation/Navigation.svelte'
 
 	let { children } = $props()
 

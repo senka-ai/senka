@@ -1,6 +1,6 @@
 <script module>
 	import { defineMeta } from '@storybook/addon-svelte-csf'
-	import TextField from '../lib/components/TextField.svelte'
+	import TextField from '../lib/components/forms/TextField.svelte'
 	import EyeInvisibleIcon from '../lib/icons/EyeInvisibleIcon.svelte'
 
 	const { Story } = defineMeta({

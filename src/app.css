@@ -4,6 +4,8 @@
 @plugin '@tailwindcss/typography';
 
 @import './styles/typography.css';
+/* @import './styles/typography-extended.css'; */
+@import './styles/spacing.css';
 @import './styles/colors.css';
 @import './styles/hover-states.css';
 @import './styles/focus-states.css';

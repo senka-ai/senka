@@ -7,6 +7,7 @@ export default defineConfig({
 	server: {
 		port: 7007,
 	},
+	// @ts-expect-error - Vitest config in Vite config file
 	test: {
 		environment: 'node',
 		include: ['src/**/*.{test,spec}.{js,ts}'],

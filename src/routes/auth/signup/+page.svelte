@@ -1,6 +1,6 @@
 <script lang="ts">
 	import Button from '$lib/components/Button.svelte'
-	import TextField from '$lib/components/TextField.svelte'
+	import TextField from '$lib/components/forms/TextField.svelte'
 	import ThemeToggle from '$lib/components/ThemeToggle.svelte'
 
 	let email = $state('')
@@ -26,7 +26,7 @@
 			<p>Alătură-te comunității educaționale Senka</p>
 		</div>
 
-		<form class="signup-form" on:submit|preventDefault={handleSignup}>
+		<form class="signup-form" onsubmit={(e) => { e.preventDefault(); handleSignup(); }}>
 			<TextField 
 				label="Nume complet" 
 				type="text"

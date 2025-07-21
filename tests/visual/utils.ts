@@ -34,14 +34,31 @@ export function getStoryContainer(page: Page) {
 }
 
 /**
- * Mock external images with static placeholder
+ * Mock external images and videos with static placeholders
  */
 export async function mockExternalImages(page: Page) {
 	await page.route('**/*', route => {
 		const url = route.request().url()
 		
+		// Mock external video services with a minimal static video
+		if (url.includes('gtv-videos-bucket') || 
+			url.includes('commondatastorage.googleapis.com') ||
+			url.includes('BigBuckBunny.mp4')) {
+			
+			// Return a minimal 1-second black MP4 video (base64 encoded)
+			// This is a valid MP4 file that loads instantly and shows a black frame
+			const staticVideo = Buffer.from(
+				'AAAAIGZ0eXBpc29tAAACAGlzb21pc28yYXZjMW1wNDEAAAAIZnJlZQAAAitbZGF0AAACrgYF//+q3EXpvebZSLeWLNgg2SPu73gyNjQgLSBjb3JlIDE2NCByMzA5NSBiYWVlNDAwIC0gSC4yNjQvTVBFRy00IEFWQyBjb2RlYyAtIENvcHlsZWZ0IDIwMDMtMjAyMyAtIGh0dHA6Ly93d3cudmlkZW9sYW4ub3JnL3gyNjQuaHRtbCAtIG9wdGlvbnM6IGNhYmFjPTEgcmVmPTMgZGVibG9jaz0xOjA6MCBhbmFseXNlPTB4MzoweDExMyBtZT1oZXggc3VibWU9NyBwc3k9MSBwc3lfcmQ9MS4wMDowLjAwIG1peGVkX3JlZj0xIG1lX3JhbmdlPTE2IGNocm9tYV9tZT0xIHRyZWxsaXM9MSA4eDhkY3Q9MSBjcW09MCBkZWFkem9uZT0yMSwxMSBmYXN0X3Bza2lwPTEgY2hyb21hX3FwX29mZnNldD0tMiB0aHJlYWRzPTEyIGxvb2thaGVhZF90aHJlYWRzPTEgc2xpY2VkX3RocmVhZHM9MCBucj0wIGRlY2ltYXRlPTEgaW50ZXJsYWNlZD0wIGJsdXJheV9jb21wYXQ9MCBjb25zdHJhaW5lZF9pbnRyYT0wIGJmcmFtZXM9MyBiX3B5cmFtaWQ9MiBiX2FkYXB0PTEgYl9iaWFzPTAgZGlyZWN0PTEgd2VpZ2h0Yj0xIG9wZW5fZ29wPTAgd2VpZ2h0cD0yIGtleWludD0yNTAga2V5aW50X21pbj0yNSBzY2VuZWN1dD00MCBpbnRyYV9yZWZyZXNoPTAgcmNfbG9va2FoZWFkPTQwIHJjPWNyZiBtYnRyZWU9MSBjcmY9MjMuMCBxY29tcD0wLjYwIHFwbWluPTAgcXBtYXg9NjkgcXBzdGVwPTQgaXBfcmF0aW89MS40MCBhcT0xOjEuMDAAgAAAAIhliIql', 
+				'base64'
+			)
+			route.fulfill({
+				status: 200,
+				contentType: 'video/mp4',
+				body: staticVideo
+			})
+		}
 		// Mock external image services with a static placeholder
-		if (url.includes('picsum.photos') || 
+		else if (url.includes('picsum.photos') || 
 			url.includes('placeholder.com') || 
 			url.includes('via.placeholder.com') ||
 			url.includes('invalid-url.com') ||

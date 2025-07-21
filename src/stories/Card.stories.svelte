@@ -1,6 +1,6 @@
 <script module>
 	import { defineMeta } from '@storybook/addon-svelte-csf'
-	import Card from '../lib/components/Card.svelte'
+	import Card from '../lib/components/layout/Card.svelte'
 	import { ImageIcon, ProfileIcon, ChatIcon } from '../lib/icons'
 
 	const { Story } = defineMeta({

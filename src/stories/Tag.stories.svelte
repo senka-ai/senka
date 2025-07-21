@@ -1,6 +1,6 @@
 <script module>
 	import { defineMeta } from '@storybook/addon-svelte-csf'
-	import Tag from '../lib/components/Tag.svelte'
+	import Tag from '../lib/components/feedback/Tag.svelte'
 	import { StarFilledIcon, HeartFilledIcon, AddIcon, DeleteIcon } from '../lib/icons'
 
 	const { Story } = defineMeta({

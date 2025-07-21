@@ -1,6 +1,6 @@
 <script module>
 	import { defineMeta } from '@storybook/addon-svelte-csf'
-	import TabBar from '../lib/components/TabBar.svelte'
+	import TabBar from '../lib/components/navigation/TabBar.svelte'
 	import { ExploreIcon, CreateIcon, ProfileIcon, SettingsIcon, InboxIcon, StarFilledIcon, CategoriesIcon, SearchIcon } from '../lib/icons'
 
 	const basicTabs = [

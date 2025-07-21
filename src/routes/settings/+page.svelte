@@ -1,6 +1,6 @@
 <script lang="ts">
 	import Button from '$lib/components/Button.svelte'
-	import TextField from '$lib/components/TextField.svelte'
+	import TextField from '$lib/components/forms/TextField.svelte'
 	import ThemeToggle from '$lib/components/ThemeToggle.svelte'
 
 	let userSettings = $state({
