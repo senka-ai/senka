@@ -1,6 +1,8 @@
 <script lang="ts">
 	import type { BaseProps, ChildrenComponent, KeyboardHandler } from '../../types/component'
 	import { useToggleState } from '../../utils/state.svelte'
+	import { createKeyboardHandler, KeySets } from '../../utils/events'
+	import { composeClasses } from '../../utils/styles'
 
 	interface Props extends BaseProps, ChildrenComponent, KeyboardHandler {
 		title: string
@@ -36,12 +38,11 @@
 		}
 	})
 
-	let headerClasses = $derived.by(() => {
-		const base = 'flex items-center justify-between w-full px-4 py-3 text-left transition-colors duration-200'
-		const interactive = !disabled ? 'cursor-pointer' : 'cursor-not-allowed'
-		const disabledStyles = disabled ? 'opacity-50' : ''
-		return `${base} ${interactive} ${disabledStyles}`
-	})
+	let headerClasses = $derived(composeClasses(
+		'flex items-center justify-between w-full px-4 py-3 text-left transition-colors duration-200',
+		!disabled ? 'cursor-pointer' : 'cursor-not-allowed',
+		disabled && 'opacity-50'
+	))
 
 	// Use exact height for smooth animation
 	let contentStyle = $derived.by(() => {
@@ -59,16 +60,20 @@
 		toggleState.toggle()
 	}
 
+	// Use standardized keyboard handler for activation keys
+	const handleKeyboard = createKeyboardHandler(toggle, {
+		keys: [...KeySets.ACTIVATION],
+		preventDefault: true,
+		disabled
+	})
+
 	function handleKeyDown(event: KeyboardEvent) {
+		handleKeyboard(event)
 		onkeydown?.(event)
-		if ((event.key === 'Enter' || event.key === ' ') && !disabled) {
-			event.preventDefault()
-			toggle()
-		}
 	}
 </script>
 
-<div class="overflow-hidden {className}" {id} {...restProps}>
+<div class={composeClasses('overflow-hidden', className)} {id} {...restProps}>
 	<button
 		class={headerClasses}
 		onclick={toggle}

@@ -1,6 +1,7 @@
 <script lang="ts">
 	import type { BaseProps, ExtendedSizedComponent, ChangeHandler, InteractiveHandlers } from '../../types/component'
 	import { useToggleState } from '../../utils/state.svelte'
+	import { useFocusVisible } from '../../utils/focus.svelte'
 	import { createKeyboardHandler, createClickHandler, KeySets } from '../../utils/events'
 	import { createToggleStyles } from '../../utils/styles'
 
@@ -24,7 +25,9 @@
 		...restProps
 	}: Props = $props()
 
-	const toggleState = useToggleState(checked || false, undefined, onchange)
+	// Always start uncontrolled for simpler behavior in Storybook
+	const toggleState = useToggleState(checked ?? false, undefined, onchange)
+	const focusVisible = useFocusVisible()
 
 	function handleToggle() {
 		toggleState.toggle()
@@ -37,7 +40,7 @@
 	const handleKeyboard = createKeyboardHandler(handleToggle, {
 		keys: [...KeySets.ACTIVATION],
 		preventDefault: true,
-		disabled
+		disabled,
 	})
 
 	const handleKeyDown = (event: KeyboardEvent) => {
@@ -45,15 +48,21 @@
 		onkeydown?.(event)
 	}
 
-	let toggleClasses = $derived(createToggleStyles({
-		variant: toggleState.value() ? 'checked' : 'unchecked',
-		size,
-		disabled,
-		className
-	}))
+	let toggleClasses = $derived.by(() => {
+		const baseClasses = createToggleStyles({
+			variant: toggleState.value() ? 'checked' : 'unchecked',
+			size,
+			disabled,
+			className,
+		})
+
+		const focusRing = focusVisible.focusVisible() && !disabled ? 'ring-2 ring-highlight-200 ring-offset-2' : ''
+
+		return `${baseClasses} ${focusRing}`
+	})
 
 	let knobClasses = $derived.by(() => {
-		const base = 'absolute bg-white rounded-full transition-transform duration-200'
+		const base = 'absolute bg-white rounded-full transition-all duration-200 ease-in-out shadow-sm'
 
 		const sizes = {
 			xs: 'h-2.5 w-2.5 top-0.75',
@@ -84,8 +93,8 @@
 	class={toggleClasses}
 	onclick={handleClick}
 	onkeydown={handleKeyDown}
-	onfocus={onfocus}
-	onblur={onblur}
+	onfocus={(e) => { focusVisible.handleFocus(); onfocus?.(e); }}
+	onblur={(e) => { focusVisible.handleBlur(); onblur?.(e); }}
 	{...restProps}
 >
 	<span class={knobClasses}></span>

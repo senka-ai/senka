@@ -1,6 +1,6 @@
 <script lang="ts">
 	import type { ListItemComponent, IconComponent, InteractiveHandlers } from '../../types/component'
-	import { shouldRenderIcon, isStringIcon } from '../../utils/icons'
+	import { IconRenderer } from '../../utils/rendering'
 	import { createKeyboardHandler, KeySets } from '../../utils/events'
 	import { createListItemStyles } from '../../utils/styles'
 
@@ -70,9 +70,9 @@
 		type="button"
 		{...restProps}
 	>
-		{#if shouldRenderIcon(leftIcon, true)}
+		{#if IconRenderer.shouldRender(leftIcon)}
 			<div class="flex-shrink-0">
-				{#if isStringIcon(leftIcon)}
+				{#if IconRenderer.isStringIcon(leftIcon)}
 					{leftIcon}
 				{:else}
 					{@render leftIcon?.(iconSize)}
@@ -96,9 +96,9 @@
 				{@render rightControl()}
 			{/if}
 
-			{#if shouldRenderIcon(rightIcon, true)}
+			{#if IconRenderer.shouldRender(rightIcon)}
 				<div class="text-highlight">
-					{#if isStringIcon(rightIcon)}
+					{#if IconRenderer.isStringIcon(rightIcon)}
 						{rightIcon}
 					{:else}
 						{@render rightIcon?.(iconSize)}
@@ -115,9 +115,9 @@
 	</button>
 {:else}
 	<div class={itemClasses} {id} {...restProps}>
-		{#if shouldRenderIcon(leftIcon, true)}
+		{#if IconRenderer.shouldRender(leftIcon)}
 			<div class="flex-shrink-0">
-				{#if isStringIcon(leftIcon)}
+				{#if IconRenderer.isStringIcon(leftIcon)}
 					{leftIcon}
 				{:else}
 					{@render leftIcon?.(iconSize)}
@@ -141,9 +141,9 @@
 				{@render rightControl()}
 			{/if}
 
-			{#if shouldRenderIcon(rightIcon, true)}
+			{#if IconRenderer.shouldRender(rightIcon)}
 				<div class="text-highlight">
-					{#if isStringIcon(rightIcon)}
+					{#if IconRenderer.isStringIcon(rightIcon)}
 						{rightIcon}
 					{:else}
 						{@render rightIcon?.(iconSize)}

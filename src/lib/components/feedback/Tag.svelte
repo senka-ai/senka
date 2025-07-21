@@ -1,6 +1,6 @@
 <script lang="ts">
 	import type { BaseProps, VariantComponent, IconComponent, InteractiveHandlers } from '../../types/component'
-	import { shouldRenderIcon, isStringIcon } from '../../utils/icons'
+	import { IconRenderer } from '../../utils/rendering'
 	import { createKeyboardHandler, KeySets } from '../../utils/events'
 	import { createTagStyles } from '../../utils/styles'
 
@@ -57,9 +57,9 @@
 
 {#if onclick}
 	<button class={tagClasses} {id} onclick={handleClick} onkeydown={handleKeyDown} onfocus={onfocus} onblur={onblur} {disabled} {...restProps}>
-		{#if shouldRenderIcon(leftIcon, true)}
+		{#if IconRenderer.shouldRender(leftIcon)}
 			<span class="flex items-center">
-				{#if isStringIcon(leftIcon)}
+				{#if IconRenderer.isStringIcon(leftIcon)}
 					{leftIcon}
 				{:else}
 					{@render leftIcon?.(iconSize)}
@@ -69,9 +69,9 @@
 
 		{text}
 
-		{#if shouldRenderIcon(rightIcon, true)}
+		{#if IconRenderer.shouldRender(rightIcon)}
 			<span class="flex items-center">
-				{#if isStringIcon(rightIcon)}
+				{#if IconRenderer.isStringIcon(rightIcon)}
 					{rightIcon}
 				{:else}
 					{@render rightIcon?.(iconSize)}
@@ -81,9 +81,9 @@
 	</button>
 {:else}
 	<span class={tagClasses} {id} {...restProps}>
-		{#if shouldRenderIcon(leftIcon, true)}
+		{#if IconRenderer.shouldRender(leftIcon)}
 			<span class="flex items-center">
-				{#if isStringIcon(leftIcon)}
+				{#if IconRenderer.isStringIcon(leftIcon)}
 					{leftIcon}
 				{:else}
 					{@render leftIcon?.(iconSize)}
@@ -93,9 +93,9 @@
 
 		{text}
 
-		{#if shouldRenderIcon(rightIcon, true)}
+		{#if IconRenderer.shouldRender(rightIcon)}
 			<span class="flex items-center">
-				{#if isStringIcon(rightIcon)}
+				{#if IconRenderer.isStringIcon(rightIcon)}
 					{rightIcon}
 				{:else}
 					{@render rightIcon?.(iconSize)}

@@ -230,14 +230,16 @@ export const BadgeRenderer = {
 
   /**
    * Get appropriate size classes for badge content
+   * Supports xs, small, medium, and large sizes
    */
-  getContentSize(size: 'small' | 'medium' | 'large', type: 'number' | 'icon' | 'dot'): string {
+  getContentSize(size: 'xs' | 'small' | 'medium' | 'large', type: 'number' | 'icon' | 'dot'): string {
     if (type === 'dot') return ''
     
     const iconSizes = {
-      small: 'h-3 w-3',
-      medium: 'h-4 w-4',
-      large: 'h-5 w-5'
+      xs: 'h-2 w-2',
+      small: 'h-2.5 w-2.5',
+      medium: 'h-3 w-3',
+      large: 'h-3.5 w-3.5'
     }
     
     return type === 'icon' ? iconSizes[size] : ''

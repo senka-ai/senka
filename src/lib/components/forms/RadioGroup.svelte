@@ -1,6 +1,7 @@
 <script lang="ts">
 	import type { BaseProps, ChangeHandler, ChildrenComponent } from '../../types/component'
 	import { useControlledState } from '../../utils/state.svelte'
+	import { composeClasses } from '../../utils/styles'
 	import { setContext } from 'svelte'
 
 	interface Props extends BaseProps, ChangeHandler<string>, ChildrenComponent {
@@ -44,11 +45,11 @@
 		onRadioChange: handleRadioChange
 	})
 
-	let groupClasses = $derived.by(() => {
-		const base = 'flex flex-col gap-2'
-		const disabledStyles = disabled ? 'opacity-50' : ''
-		return `${base} ${disabledStyles} ${className}`
-	})
+	let groupClasses = $derived(composeClasses(
+		'flex flex-col gap-2',
+		disabled && 'opacity-50',
+		className
+	))
 </script>
 
 <div

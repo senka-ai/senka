@@ -3,6 +3,9 @@
 	import FormField from './FormField.svelte'
 	import type { FormInputComponent, ChangeHandler, ChildrenComponent } from '../../types/component'
 	import { useSelectState, useFocusState } from '../../utils/state.svelte'
+	import { createInputStyles, composeClasses } from '../../utils/styles'
+	import { FormRenderer, DropdownRenderer } from '../../utils/rendering'
+	import { createKeyboardHandler, KeySets } from '../../utils/events'
 
 	interface Option {
 		value: string
@@ -40,41 +43,24 @@
 	const selectState = useSelectState(value || '', value, onchange)
 	const focusState = useFocusState()
 
-	let selectedOption = $derived(options.find((opt) => opt.value === selectState.value()))
+	let selectedOption = $derived(DropdownRenderer.findSelectedOption(options, selectState.value()))
 
-	let currentState = $derived.by(() => {
-		if (disabled) return 'disabled'
-		if (error) return 'error'
-		if (focusState.focused() || selectState.isOpen()) return 'focused'
-		return 'default'
-	})
+	let currentState = $derived(FormRenderer.getInputState(focusState.focused() || selectState.isOpen(), error, disabled))
 
-	let dropdownClasses = $derived.by(() => {
-		const base = 'relative'
-		return `${base}`
-	})
+	let dropdownClasses = $derived('relative')
 
-	let buttonClasses = $derived.by(() => {
-		const base =
-			'w-full px-3.25 py-3.25 text-slim-m bg-background border rounded-xl transition-all duration-200 focus:outline-none focus:ring-offset-0 flex items-center justify-between'
-
-		const states = {
-			default: 'border-neutral-400 text-neutral-900 focus:border-highlight focus:ring-1 focus:ring-highlight-200',
-			focused: 'border-highlight text-neutral-900 ring-1 ring-highlight-400',
-			error: 'border-error text-neutral-900 focus:border-error focus:ring-1 focus:ring-error-100',
-			disabled: 'border-neutral-300 bg-neutral-100 text-neutral-400 cursor-not-allowed',
-		}
-
-		return `${base} ${states[currentState]}`
-	})
+	let buttonClasses = $derived(createInputStyles({
+		variant: currentState,
+		size: 'medium',
+		fullWidth: true,
+		className: 'flex items-center justify-between'
+	}))
 
 
-	let menuClasses = $derived.by(() => {
-		const base =
-			'absolute z-50 w-full mt-1 bg-surface-elevated border border-default rounded-xl shadow-lg max-h-60 overflow-y-auto'
-		const visibility = selectState.isOpen() ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-1 pointer-events-none'
-		return `${base} ${visibility} transition-all duration-200`
-	})
+	let menuClasses = $derived(composeClasses(
+		'absolute z-50 w-full mt-1 bg-surface-elevated border border-default rounded-xl shadow-lg max-h-60 overflow-y-auto transition-all duration-200',
+		selectState.isOpen() ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-1 pointer-events-none'
+	))
 
 	function toggleDropdown() {
 		if (!disabled) {
@@ -191,7 +177,7 @@
 				onblur={focusState.handleBlur}
 			>
 				<span class={selectedOption ? 'text-neutral-900' : 'text-neutral-500'}>
-					{selectedOption?.label || placeholder}
+					{DropdownRenderer.getDisplayText(options, selectState.value(), placeholder)}
 				</span>
 				<ArrowDownIcon
 					class={`transition-transform duration-200 ${selectState.isOpen() ? 'rotate-180' : ''} ${disabled ? 'text-neutral-400' : 'text-neutral-500'}`}
