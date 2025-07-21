@@ -128,8 +128,9 @@ export function createCardContentStyles(options: {
   
   const base = 'bg-neutral-100 flex-1'
   const padding = variant === 'default' ? 'p-6' : 'p-4'
+  const rounding = variant === 'default' ? 'rounded-b-2xl' : 'rounded-b-xl'
   
-  return composeClasses(base, padding)
+  return composeClasses(base, padding, rounding)
 }
 
 /**

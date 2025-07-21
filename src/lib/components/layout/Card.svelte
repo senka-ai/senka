@@ -73,16 +73,16 @@
 	}
 </script>
 
-<div class={cardClasses} {id} onclick={handleCardClick} {...restProps}>
+<div class="{cardClasses} flex flex-col" {id} onclick={handleCardClick} {...restProps}>
 	<!-- Image or Icon Section -->
 	{#if image}
-		<Image src={image} alt={imageAlt} class="h-40 w-full" aspectRatio="auto" />
+		<Image src={image} alt={imageAlt} class="h-40 w-full {variant === 'default' ? 'rounded-t-2xl' : 'rounded-t-xl'}" aspectRatio="auto" />
 	{:else if children}
-		<div class="bg-highlight-50 flex items-center justify-center {variant === 'default' ? 'h-40' : 'h-32'} {iconColor}">
+		<div class="bg-highlight-50 flex items-center justify-center {variant === 'default' ? 'h-40 rounded-t-2xl' : 'h-32 rounded-t-xl'} {iconColor}">
 			{@render children()}
 		</div>
 	{:else}
-		<div class="relative {variant === 'default' ? 'h-40' : 'h-32'}">
+		<div class="relative {variant === 'default' ? 'h-40 rounded-t-2xl' : 'h-32 rounded-t-xl'}">
 			<ImagePlaceholder variant="default" />
 		</div>
 	{/if}

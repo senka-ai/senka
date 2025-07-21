@@ -20,8 +20,21 @@
 		...restProps
 	}: Props = $props()
 
-	const toggleState = useToggleState(open, undefined, onToggle)
+	const toggleState = useToggleState(open || false, undefined, onToggle)
 	let contentElement: HTMLDivElement | undefined = $state()
+	let contentHeight = $state(0)
+
+	// Measure content height when element is available
+	$effect(() => {
+		if (contentElement) {
+			// Use a timeout to ensure DOM is ready
+			setTimeout(() => {
+				if (contentElement) {
+					contentHeight = contentElement.scrollHeight
+				}
+			}, 0)
+		}
+	})
 
 	let headerClasses = $derived.by(() => {
 		const base = 'flex items-center justify-between w-full px-4 py-3 text-left transition-colors duration-200'
@@ -30,16 +43,15 @@
 		return `${base} ${interactive} ${disabledStyles}`
 	})
 
-	let contentClasses = $derived.by(() => {
-		const base = 'overflow-hidden transition-all duration-300 ease-in-out'
-		const heightClass = toggleState.value() ? 'max-h-screen' : 'max-h-0'
-		return `${base} ${heightClass}`
+	// Use exact height for smooth animation
+	let contentStyle = $derived.by(() => {
+		const height = toggleState.value() ? `${contentHeight}px` : '0px'
+		return `height: ${height}; overflow: hidden; transition: height 300ms ease-in-out;`
 	})
 
-	let chevronClasses = $derived.by(() => {
-		const base = 'h-5 w-5 text-neutral-500 transition-transform duration-300'
-		const rotation = toggleState.value() ? 'rotate-180' : 'rotate-0'
-		return `${base} ${rotation}`
+	let chevronStyle = $derived.by(() => {
+		const rotation = toggleState.value() ? 'rotate(180deg)' : 'rotate(0deg)'
+		return `transform: ${rotation}; transition: transform 300ms ease-in-out;`
 	})
 
 	function toggle() {
@@ -70,20 +82,26 @@
 			{title}
 		</h3>
 
-		<svg class={chevronClasses} fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+		<svg 
+			class="h-5 w-5 text-neutral-500" 
+			style={chevronStyle}
+			fill="none" 
+			viewBox="0 0 24 24" 
+			stroke="currentColor" 
+			aria-hidden="true"
+		>
 			<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
 		</svg>
 	</button>
 
 	<div
-		class={contentClasses}
+		style={contentStyle}
 		id={id ? `${id}-content` : undefined}
-		bind:this={contentElement}
 		role="region"
 		aria-labelledby={id ? `${id}-header` : undefined}
 	>
-		{#if toggleState.value() && children}
-			<div class="p-4 pt-1">
+		{#if children}
+			<div class="p-4 pt-1" bind:this={contentElement}>
 				{@render children()}
 			</div>
 		{/if}
