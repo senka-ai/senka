@@ -1,0 +1,137 @@
+/**
+ * Semantic Spacing Utilities
+ * Extends Tailwind CSS with semantic spacing classes for consistent layouts
+ */
+
+:root {
+	/* Spacing Scale - Based on 4px grid system */
+	--space-xs: 0.25rem;    /* 4px */
+	--space-sm: 0.5rem;     /* 8px */
+	--space-md: 0.75rem;    /* 12px */
+	--space-lg: 1rem;       /* 16px */
+	--space-xl: 1.5rem;     /* 24px */
+	--space-2xl: 2rem;      /* 32px */
+	--space-3xl: 3rem;      /* 48px */
+	--space-4xl: 4rem;      /* 64px */
+
+	/* Component-specific spacing */
+	--space-input-padding: var(--space-md) var(--space-lg);
+	--space-button-padding: var(--space-md) var(--space-xl);
+	--space-card-padding: var(--space-xl);
+	--space-section-gap: var(--space-2xl);
+	--space-form-field-gap: var(--space-lg);
+	--space-icon-gap: var(--space-sm);
+
+	/* Layout spacing */
+	--space-page-padding: var(--space-xl);
+	--space-container-padding: var(--space-lg);
+	--space-grid-gap: var(--space-lg);
+	--space-list-gap: var(--space-md);
+}
+
+/* Component Spacing Classes */
+.spacing-input {
+	padding: var(--space-input-padding);
+}
+
+.spacing-button {
+	padding: var(--space-button-padding);
+}
+
+.spacing-card {
+	padding: var(--space-card-padding);
+}
+
+.spacing-page {
+	padding: var(--space-page-padding);
+}
+
+.spacing-container {
+	padding: var(--space-container-padding);
+}
+
+/* Gap Classes */
+.gap-section {
+	gap: var(--space-section-gap);
+}
+
+.gap-form {
+	gap: var(--space-form-field-gap);
+}
+
+.gap-icon {
+	gap: var(--space-icon-gap);
+}
+
+.gap-grid {
+	gap: var(--space-grid-gap);
+}
+
+.gap-list {
+	gap: var(--space-list-gap);
+}
+
+/* Margin Classes */
+.mb-section {
+	margin-bottom: var(--space-section-gap);
+}
+
+.mb-form {
+	margin-bottom: var(--space-form-field-gap);
+}
+
+.mr-icon {
+	margin-right: var(--space-icon-gap);
+}
+
+.ml-icon {
+	margin-left: var(--space-icon-gap);
+}
+
+/* Responsive Spacing - Mobile adjustments */
+@media (max-width: 767px) {
+	:root {
+		--space-page-padding: var(--space-lg);
+		--space-container-padding: var(--space-md);
+		--space-section-gap: var(--space-xl);
+		--space-card-padding: var(--space-lg);
+	}
+}
+
+/* Specific spacing for educational app layouts */
+.spacing-classroom {
+	padding: var(--space-lg);
+	margin-bottom: var(--space-xl);
+}
+
+.spacing-assignment {
+	padding: var(--space-md) var(--space-lg);
+	gap: var(--space-md);
+}
+
+.spacing-student-list {
+	gap: var(--space-sm);
+}
+
+.spacing-grade-input {
+	padding: var(--space-sm) var(--space-md);
+}
+
+.spacing-notification {
+	padding: var(--space-md);
+	margin-bottom: var(--space-md);
+}
+
+/* Compact layouts for data-dense interfaces */
+.spacing-compact {
+	--space-card-padding: var(--space-md);
+	--space-form-field-gap: var(--space-md);
+	--space-section-gap: var(--space-lg);
+}
+
+/* Spacious layouts for focus areas */
+.spacing-spacious {
+	--space-card-padding: var(--space-2xl);
+	--space-form-field-gap: var(--space-xl);
+	--space-section-gap: var(--space-3xl);
+}

@@ -15,9 +15,10 @@ export function useControlledState<T>(
 	controlledValue: T | undefined,
 	onChange?: (value: T) => void
 ) {
-	const isControlled = controlledValue !== undefined
 	let localValue = $state(initialValue)
 	
+	// Reactively determine if controlled based on current controlledValue
+	const isControlled = $derived(controlledValue !== undefined)
 	const currentValue = $derived(isControlled ? controlledValue : localValue)
 	
 	const setValue = (newValue: T) => {

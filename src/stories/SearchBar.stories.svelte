@@ -1,6 +1,6 @@
 <script module>
 	import { defineMeta } from '@storybook/addon-svelte-csf'
-	import SearchBar from '../lib/components/SearchBar.svelte'
+	import SearchBar from '../lib/components/forms/SearchBar.svelte'
 
 	const { Story } = defineMeta({
 		title: 'Components/SearchBar',

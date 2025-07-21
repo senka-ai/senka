@@ -24,7 +24,7 @@ const allComponents = [
 	{ name: 'ListItem', story: 'basic' },
 	{ name: 'ListTitle', story: 'basic' },
 	{ name: 'NavBar', story: 'all-variants' },
-	{ name: 'RadioButton', story: 'all-sizes' },
+	{ name: 'RadioGroup', story: 'different-sizes' },
 	{ name: 'SearchBar', story: 'all-states' },
 	{ name: 'TabBar', story: 'default' },
 	{ name: 'Tag', story: 'all-variants' },
@@ -61,7 +61,7 @@ allComponents.forEach(component => {
 					`${component.name.toLowerCase()}-dark.png`
 				)
 			} catch (error) {
-				console.log(`Story ${storyId} failed: ${error.message}`)
+				console.log(`Story ${storyId} failed: ${error instanceof Error ? error.message : String(error)}`)
 				throw error
 			}
 		})

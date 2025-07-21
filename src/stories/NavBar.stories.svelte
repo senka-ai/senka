@@ -1,8 +1,8 @@
 <script module>
 	import { defineMeta } from '@storybook/addon-svelte-csf'
-	import NavBar from '../lib/components/NavBar.svelte'
+	import NavBar from '../lib/components/navigation/NavBar.svelte'
 	import Button from '../lib/components/Button.svelte'
-	import Avatar from '../lib/components/Avatar.svelte'
+	import Avatar from '../lib/components/media/Avatar.svelte'
 	import EditIcon from '../lib/icons/EditIcon.svelte'
 	import HeartOutlinedIcon from '../lib/icons/HeartOutlinedIcon.svelte'
 

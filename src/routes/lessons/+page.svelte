@@ -1,6 +1,7 @@
 <script lang="ts">
-	import Badge from '$lib/components/Badge.svelte'
+	import Badge from '$lib/components/feedback/Badge.svelte'
 	import Button from '$lib/components/Button.svelte'
+	import type { BadgeVariant } from '$lib/types/component'
 
 	interface Lesson {
 		id: string
@@ -51,7 +52,7 @@
 		}
 	]
 
-	function getStatusBadge(status: Lesson['status']) {
+	function getStatusBadge(status: Lesson['status']): { variant: BadgeVariant; text: string } {
 		switch (status) {
 			case 'new': return { variant: 'default', text: 'Nou' }
 			case 'in_progress': return { variant: 'warning', text: 'În progres' }

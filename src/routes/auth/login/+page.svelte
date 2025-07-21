@@ -1,6 +1,6 @@
 <script lang="ts">
 	import Button from '$lib/components/Button.svelte'
-	import TextField from '$lib/components/TextField.svelte'
+	import TextField from '$lib/components/forms/TextField.svelte'
 	import ThemeToggle from '$lib/components/ThemeToggle.svelte'
 
 	let email = $state('')
@@ -24,7 +24,7 @@
 			<p>Bine ai revenit! Introdu datele tale pentru a continua.</p>
 		</div>
 
-		<form class="login-form" on:submit|preventDefault={handleLogin}>
+		<form class="login-form" onsubmit={(e) => { e.preventDefault(); handleLogin(); }}>
 			<TextField 
 				label="Email" 
 				type="email"

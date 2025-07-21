@@ -1,6 +1,6 @@
 <script module>
 	import { defineMeta } from '@storybook/addon-svelte-csf'
-	import Divider from '../lib/components/Divider.svelte'
+	import Divider from '../lib/components/layout/Divider.svelte'
 
 	const { Story } = defineMeta({
 		title: 'Components/Divider',

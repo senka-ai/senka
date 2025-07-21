@@ -2,9 +2,9 @@
 	import { onMount } from 'svelte'
 	import { toggleTheme, useTheme } from '../theme.svelte'
 	import { SunIcon, MoonIcon } from '../icons'
-	import type { BaseProps, SizedComponent } from '../types/component'
+	import type { BaseProps, ExtendedSizedComponent } from '../types/component'
 
-	interface Props extends BaseProps, SizedComponent {}
+	interface Props extends BaseProps, ExtendedSizedComponent {}
 
 	let { class: className = '', size = 'medium' }: Props = $props()
 
@@ -16,6 +16,7 @@
 		const hover = 'hover:bg-neutral-200'
 
 		const sizes = {
+			xs: 'h-6 w-6',
 			small: 'h-8 w-8',
 			medium: 'h-10 w-10',
 			large: 'h-12 w-12',
@@ -26,6 +27,7 @@
 
 	let iconSize = $derived.by(() => {
 		const sizes = {
+			xs: 12,
 			small: 16,
 			medium: 20,
 			large: 24,

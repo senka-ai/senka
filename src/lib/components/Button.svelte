@@ -4,8 +4,14 @@
 	import { shouldRenderIcon, isStringIcon } from '../utils/icons'
 	import { createKeyboardHandler, createClickHandler, KeySets } from '../utils/events'
 
+	/**
+	 * Button component props interface
+	 * Extends core button functionality with icon support and interaction handlers
+	 */
 	interface Props extends ButtonLikeComponent, IconComponent, InteractiveHandlers {
+		/** Size of the icons in pixels @default 16 */
 		iconSize?: number
+		/** HTML button type attribute @default 'button' */
 		type?: 'button' | 'submit' | 'reset'
 	}
 

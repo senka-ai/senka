@@ -1,5 +1,5 @@
 <script lang="ts">
-	import Badge from '$lib/components/Badge.svelte'
+	import Badge from '$lib/components/feedback/Badge.svelte'
 </script>
 
 <div class="dashboard">
