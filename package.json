@@ -18,6 +18,7 @@
     "ui:test": "yarn workspace @senka/ui test",
     "ui:test:visual": "yarn workspace @senka/ui test:visual",
     "ui:test:visual:update": "yarn workspace @senka/ui test:visual -- --update-snapshots",
+    "ui:report": "yarn workspace @senka/ui playwright show-report",
     "app:dev": "yarn workspace senka-app dev",
     "app:build": "yarn workspace senka-app build",
     "app:preview": "yarn workspace senka-app preview",

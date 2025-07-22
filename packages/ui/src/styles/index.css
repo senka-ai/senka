@@ -162,3 +162,11 @@ button {
 button:disabled {
   cursor: not-allowed;
 }
+
+/* Text selection styles */
+::selection {
+  background-color: var(--color-neutral-200);
+}
+::-moz-selection {
+  background-color: var(--color-neutral-200);
+}

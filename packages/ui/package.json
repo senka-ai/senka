@@ -1,7 +1,7 @@
 {
   "name": "@senka/ui",
   "version": "0.1.0",
-  "description": "A modern Svelte 5 UI library for educational applications",
+  "description": "A modern Svelte 5 UI library",
   "type": "module",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
