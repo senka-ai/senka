@@ -68,11 +68,7 @@
 .ring-warning-200 { --tw-ring-color: var(--color-warning-200); }
 .ring-warning { --tw-ring-color: var(--color-warning-200); }
 
-.ring-error-50 { --tw-ring-color: var(--color-error-50); }
-.ring-error-100 { --tw-ring-color: var(--color-error-100); }
-.ring-error-200 { --tw-ring-color: var(--color-error-200); }
-.ring-error { --tw-ring-color: var(--color-error-200); }
-.ring-error-light { --tw-ring-color: var(--color-error-100); }
+.ring-error-400 { --tw-ring-color: var(--color-error-400); }
 
 /* Focus ring colors */
 .focus\:ring-highlight-50:focus { --tw-ring-color: var(--color-highlight-50); }
@@ -80,12 +76,6 @@
 .focus\:ring-highlight-200:focus { --tw-ring-color: var(--color-highlight-200); }
 .focus\:ring-highlight-300:focus { --tw-ring-color: var(--color-highlight-300); }
 .focus\:ring-highlight-400:focus { --tw-ring-color: var(--color-highlight-400); }
-.focus\:ring-highlight:focus { --tw-ring-color: var(--color-highlight-400); }
-
-.focus\:ring-error-50:focus { --tw-ring-color: var(--color-error-50); }
-.focus\:ring-error-100:focus { --tw-ring-color: var(--color-error-100); }
-.focus\:ring-error-200:focus { --tw-ring-color: var(--color-error-200); }
-.focus\:ring-error:focus { --tw-ring-color: var(--color-error-200); }
 
 /* Disabled states */
 .disabled\:bg-neutral-disabled:disabled { background-color: var(--color-neutral-400); }
