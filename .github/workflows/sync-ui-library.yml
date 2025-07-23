@@ -56,10 +56,10 @@ jobs:
         run: |
           # Create temporary directory for sync preparation
           mkdir -p ./sync-temp
-          
+
           # Copy UI package contents
           cp -r packages/ui/* ./sync-temp/
-          
+
           # Remove build artifacts and temp files
           rm -rf ./sync-temp/node_modules
           rm -rf ./sync-temp/dist
@@ -67,55 +67,55 @@ jobs:
           rm -rf ./sync-temp/storybook-static
           rm -rf ./sync-temp/playwright-report
           rm -rf ./sync-temp/test-results
-          
+
           # Create a standalone README for the UI library
           cat > ./sync-temp/README.md << 'EOF'
           # senka-ui
-          
+
           A modern, type-safe Svelte 5 UI component library with full theme support, accessibility standards, and robust state management patterns.
-          
+
           ## Installation
-          
+
           ```bash
           npm install senka-ui
           # Peer dependencies
           npm install svelte @tailwindcss/vite
           ```
-          
+
           ## Usage
-          
+
           ```typescript
           // Import styles
           import 'senka-ui/styles'
-          
+
           // Import components
           import { Button, TextField, Card } from 'senka-ui'
-          
+
           <Button variant="primary" onclick={() => console.log('clicked')}>
             {#snippet children()}
               Click me!
             {/snippet}
           </Button>
           ```
-          
+
           ## Documentation
-          
+
           For full documentation and examples, visit our [Storybook](https://senka-ui-storybook.vercel.app).
-          
+
           ## Development
-          
+
           This package is part of the [Senka monorepo](https://github.com/senka-ai/senka). 
           For development instructions, please see the main repository.
-          
+
           ## License
-          
+
           MIT
           EOF
 
       - name: Update package.json for standalone repo
         run: |
           cd ./sync-temp
-          
+
           # Update repository URLs to point to standalone repo
           node -e "
             const pkg = require('./package.json');
@@ -129,22 +129,22 @@ jobs:
       - name: Sync to senka-ui repository
         run: |
           cd ./synced-repo
-          
+
           # Get current commit info from monorepo
           COMMIT_SHA="${{ github.sha }}"
           COMMIT_MSG="$(cd .. && git log -1 --pretty=format:'%s' $COMMIT_SHA)"
-          
+
           # Clear existing content (except .git and GitHub workflows)
           find . -mindepth 1 -maxdepth 1 ! -name '.git' ! -name '.github' -exec rm -rf {} + 2>/dev/null || true
-          
+
           # Copy prepared sync content
           cp -r ../sync-temp/* .
           cp -r ../sync-temp/.* . 2>/dev/null || true
-          
+
           # Configure git
           git config user.name "senka-sync-bot"
           git config user.email "sync-bot@senka.ai"
-          
+
           # Check if there are changes
           if git diff --quiet && git diff --cached --quiet; then
             echo "No changes to sync"

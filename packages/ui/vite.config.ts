@@ -25,8 +25,10 @@ export default defineConfig({
   },
   // @ts-expect-error - Vitest config in Vite config file
   test: {
-    environment: 'node',
+    environment: 'jsdom',
     include: ['src/**/*.{test,spec}.{js,ts}'],
     exclude: ['src/**/*.svelte.{test,spec}.{js,ts}', 'tests/visual/**'],
+    globals: true,
+    setupFiles: ['./vitest.setup.ts'],
   },
 })

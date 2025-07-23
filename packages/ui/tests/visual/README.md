@@ -108,7 +108,7 @@ yarn ui:report
 ### Before Committing
 
 1. Run all visual tests: `yarn ui:test:visual`
-2. Ensure all tests pass 
+2. Ensure all tests pass
 3. Commit both code changes and updated snapshots
 
 ### CI/CD Integration

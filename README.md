@@ -12,7 +12,6 @@ A modern Svelte 5 UI component library for educational applications.
 - **Build**: `yarn ui:build`
 - **Test**: `yarn ui:test`
 
-
 ### 🎓 [senka-app](./packages/app)
 
 The main educational application built with SvelteKit.

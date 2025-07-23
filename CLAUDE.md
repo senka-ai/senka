@@ -69,7 +69,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 ### After Editing Files (MANDATORY):
 
 1. **`yarn typecheck`** - MUST pass without errors (runs for all packages)
-2. **`yarn check`** - MUST pass without errors (runs for all packages) 
+2. **`yarn check`** - MUST pass without errors (runs for all packages)
 3. For specific packages: `yarn ui:typecheck` / `yarn ui:check` or `yarn app:typecheck` / `yarn app:check`
 4. Fix any errors before proceeding
 
