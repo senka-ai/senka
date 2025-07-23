@@ -2,10 +2,10 @@ import { defineConfig, devices } from '@playwright/test'
 
 /**
  * Playwright configuration for app-level e2e testing
- * For UI component visual testing, see packages/ui/playwright.config.ts
+ * For UI component visual testing, see ../ui/playwright.config.ts
  */
 export default defineConfig({
-  testDir: './packages/app/tests',
+  testDir: './tests',
 
   // Enable full parallelization
   fullyParallel: true,
