@@ -62,7 +62,10 @@
       const enabledTabs = tabs.filter((tab) => !tab.disabled)
       const currentEnabledIndex = enabledTabs.findIndex((tab) => tab.id === activeTab)
       const nextEnabledIndex = (currentEnabledIndex + 1) % enabledTabs.length
-      handleTabClick(enabledTabs[nextEnabledIndex])
+      const nextEnabledTab = enabledTabs[nextEnabledIndex]
+      if (nextEnabledTab) {
+        handleTabClick(nextEnabledTab)
+      }
     }
   }
 
@@ -77,7 +80,10 @@
       const enabledTabs = tabs.filter((tab) => !tab.disabled)
       const currentEnabledIndex = enabledTabs.findIndex((tab) => tab.id === activeTab)
       const prevEnabledIndex = currentEnabledIndex === 0 ? enabledTabs.length - 1 : currentEnabledIndex - 1
-      handleTabClick(enabledTabs[prevEnabledIndex])
+      const prevEnabledTab = enabledTabs[prevEnabledIndex]
+      if (prevEnabledTab) {
+        handleTabClick(prevEnabledTab)
+      }
     }
   }
 
@@ -88,7 +94,6 @@
 
   function getTabClasses(tab: Tab) {
     const base = 'flex flex-col items-center gap-2 cursor-pointer transition-all duration-200'
-    const isActive = tab.id === activeTab
     const isDisabled = tab.disabled
 
     if (isDisabled) {

@@ -35,7 +35,7 @@
     "preview": "vite preview",
     "story": "storybook dev -p 6006 --no-open",
     "typecheck": "tsc --noEmit --strict --skipLibCheck",
-    "check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
+    "svelte-check": "svelte-check --tsconfig ./tsconfig.json",
     "test": "vitest",
     "test:visual": "playwright test"
   },

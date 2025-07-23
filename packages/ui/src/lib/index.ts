@@ -29,7 +29,6 @@ export { default as Accordion } from './components/layout/Accordion.svelte'
 // Navigation Components
 export { default as TabBar } from './components/navigation/TabBar.svelte'
 export { default as NavBar } from './components/navigation/NavBar.svelte'
-export { default as Navigation } from './components/navigation/Navigation.svelte'
 
 // Media Components
 export { default as Avatar } from './components/media/Avatar.svelte'
