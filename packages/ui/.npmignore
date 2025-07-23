@@ -1,0 +1,25 @@
+# Source files
+src/
+tests/
+stories/
+
+# Development files
+.storybook/
+playwright-report/
+node_modules/
+.svelte-kit/
+
+# Config files
+*.config.ts
+*.config.js
+tsconfig.json
+playwright.config.ts
+svelte.config.js
+
+# Documentation (development)
+BUILD_COMPONENTS.md
+UI_ARCHITECTURE.md
+
+# Test results
+test-results/
+playwright-report/

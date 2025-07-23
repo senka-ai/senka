@@ -1,0 +1,69 @@
+{
+  "_id": "senka-db@0.0.1",
+  "name": "senka-db",
+  "dist-tags": {
+    "latest": "0.0.1"
+  },
+  "versions": [
+    "0.0.1"
+  ],
+  "time": {
+    "created": "2025-07-23T13:17:29.972Z",
+    "0.0.1": "2025-07-23T13:17:30.233Z",
+    "modified": "2025-07-23T13:17:30.505Z"
+  },
+  "maintainers": [
+    "senka-ai <catalinungureanu2007@gmail.com>"
+  ],
+  "description": "Database schemas and utilities for Senka",
+  "homepage": "https://github.com/senka-ai/senka-db",
+  "keywords": [
+    "senka",
+    "database",
+    "schema",
+    "educational",
+    "orm"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/senka-ai/senka-db.git"
+  },
+  "author": "Catalin Ungureanu",
+  "bugs": {
+    "url": "https://github.com/senka-ai/senka-db/issues"
+  },
+  "license": "MIT",
+  "readmeFilename": "",
+  "_rev": "1-043beb02e214a55ff72df5daea7947a9",
+  "version": "0.0.1",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "gitHead": "72ab2214773525cb64b4ff12278c8c0389d5a4c7",
+  "_nodeVersion": "24.2.0",
+  "_npmVersion": "11.3.0",
+  "dist": {
+    "integrity": "sha512-TUq3+KMTTHaHmnK+WvkFJpL+IET9JACjA4+f8s1y6v05NohjX0wdF5zTAUP4DuIRN3T0k/8iCDg4ih8B4f7sFw==",
+    "shasum": "6ffe0565511365638e394f9e883b891482648205",
+    "tarball": "https://registry.npmjs.org/senka-db/-/senka-db-0.0.1.tgz",
+    "fileCount": 2,
+    "unpackedSize": 1057,
+    "signatures": [
+      {
+        "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U",
+        "sig": "MEQCIBWEbTHPQiA4I+2QMLwc94ekIo7ZFACcQ3923fz5EPg+AiA8X7wTaL2JCpl8XNd6FlCCqWNtG/WoQ6xGo1cH9nQfLg=="
+      }
+    ]
+  },
+  "_npmUser": "senka-ai <catalinungureanu2007@gmail.com>",
+  "directories": {},
+  "_npmOperationalInternal": {
+    "host": "s3://npm-registry-packages-npm-production",
+    "tmp": "tmp/senka-db_0.0.1_1753276650037_0.1732546979760372"
+  },
+  "_hasShrinkwrap": false
+}

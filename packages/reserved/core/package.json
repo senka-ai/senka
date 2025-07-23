@@ -1,0 +1,67 @@
+{
+  "_id": "senka-core@0.0.1",
+  "name": "senka-core",
+  "dist-tags": {
+    "latest": "0.0.1"
+  },
+  "versions": [
+    "0.0.1"
+  ],
+  "time": {
+    "created": "2025-07-23T13:07:42.002Z",
+    "0.0.1": "2025-07-23T13:07:42.220Z",
+    "modified": "2025-07-23T13:07:42.498Z"
+  },
+  "maintainers": [
+    "senka-ai <catalinungureanu2007@gmail.com>"
+  ],
+  "description": "Core utilities and shared functionality for the Senka",
+  "homepage": "https://github.com/senka-ai/senka-core",
+  "keywords": [
+    "senka",
+    "core",
+    "utilities"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/senka-ai/senka-core.git"
+  },
+  "author": "Catalin Ungureanu",
+  "bugs": {
+    "url": "https://github.com/senka-ai/senka-core/issues"
+  },
+  "license": "MIT",
+  "readmeFilename": "",
+  "_rev": "1-937d50917c9f1ddaf8625423a4f4ec52",
+  "version": "0.0.1",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "gitHead": "72ab2214773525cb64b4ff12278c8c0389d5a4c7",
+  "_nodeVersion": "24.2.0",
+  "_npmVersion": "11.3.0",
+  "dist": {
+    "integrity": "sha512-TUT4MOjk3BdE9A7qvcIe5yrkwDswtWwfce99cee2soPl+589EMSsB2ZB8bHvWEeSQvXvehfZn9u4NQgY1FUfCQ==",
+    "shasum": "f21cd862a8e427c557a7068d0dd84c6107a7509e",
+    "tarball": "https://registry.npmjs.org/senka-core/-/senka-core-0.0.1.tgz",
+    "fileCount": 2,
+    "unpackedSize": 1039,
+    "signatures": [
+      {
+        "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U",
+        "sig": "MEYCIQCE+Dw6ohnoEk0JzRVbYtvlo/XaJE3u0Gd48H69lP0R2wIhAImv6dwolKy4TQUY3dee94oHeR3es5a6CQZ2HboIzLCo"
+      }
+    ]
+  },
+  "_npmUser": "senka-ai <catalinungureanu2007@gmail.com>",
+  "directories": {},
+  "_npmOperationalInternal": {
+    "host": "s3://npm-registry-packages-npm-production",
+    "tmp": "tmp/senka-core_0.0.1_1753276062049_0.6846427802273494"
+  },
+  "_hasShrinkwrap": false
+}

@@ -1,22 +1,27 @@
 import tailwindcss from '@tailwindcss/vite'
-import { sveltekit } from '@sveltejs/kit/vite'
+import { svelte } from '@sveltejs/vite-plugin-svelte'
 import { defineConfig } from 'vite'
 import { resolve } from 'path'
 
 export default defineConfig({
-  plugins: [tailwindcss(), sveltekit()],
-  server: {
-    port: 6006,
-  },
+  plugins: [tailwindcss(), svelte()],
   build: {
     lib: {
       entry: resolve(__dirname, 'src/lib/index.ts'),
       name: 'SenkaUI',
       formats: ['es'],
+      fileName: 'index',
     },
     rollupOptions: {
-      external: ['svelte', 'svelte/internal'],
+      external: ['svelte', 'svelte/internal', 'tailwindcss'],
+      output: {
+        globals: {
+          svelte: 'Svelte',
+        },
+      },
     },
+    outDir: 'dist',
+    emptyOutDir: true,
   },
   // @ts-expect-error - Vitest config in Vite config file
   test: {

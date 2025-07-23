@@ -1,0 +1,69 @@
+{
+  "_id": "senka-auth@0.0.1",
+  "name": "senka-auth",
+  "dist-tags": {
+    "latest": "0.0.1"
+  },
+  "versions": [
+    "0.0.1"
+  ],
+  "time": {
+    "created": "2025-07-23T13:17:19.652Z",
+    "0.0.1": "2025-07-23T13:17:19.867Z",
+    "modified": "2025-07-23T13:17:20.125Z"
+  },
+  "maintainers": [
+    "senka-ai <catalinungureanu2007@gmail.com>"
+  ],
+  "description": "Authentication and authorization utilities for Senka",
+  "homepage": "https://github.com/senka-ai/senka-auth",
+  "keywords": [
+    "senka",
+    "authentication",
+    "authorization",
+    "auth",
+    "educational"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/senka-ai/senka-auth.git"
+  },
+  "author": "Catalin Ungureanu",
+  "bugs": {
+    "url": "https://github.com/senka-ai/senka-auth/issues"
+  },
+  "license": "MIT",
+  "readmeFilename": "",
+  "_rev": "1-206de0682d6f80dd2d692c4d768f5064",
+  "version": "0.0.1",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "gitHead": "72ab2214773525cb64b4ff12278c8c0389d5a4c7",
+  "_nodeVersion": "24.2.0",
+  "_npmVersion": "11.3.0",
+  "dist": {
+    "integrity": "sha512-5YuQj+ffXUwGaqIv660lymFs9qEbnNAv8BOQYdhH5VFctaZn9EX9KwPhytKvWFkyIqCWTpa1C5YTIG/fj9L0IA==",
+    "shasum": "f794df11d4d9c0e297951dd0ff97c4cb85f7c9e1",
+    "tarball": "https://registry.npmjs.org/senka-auth/-/senka-auth-0.0.1.tgz",
+    "fileCount": 2,
+    "unpackedSize": 1103,
+    "signatures": [
+      {
+        "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U",
+        "sig": "MEQCIGVekw+kTR6Ll3+bHB3HTEwKCAQHUMfvi7d8F2uDaou4AiBzTPAfFXiw5Y8f9k6+niYfVzXi/m7Ctw+JzsGbJkW/Eg=="
+      }
+    ]
+  },
+  "_npmUser": "senka-ai <catalinungureanu2007@gmail.com>",
+  "directories": {},
+  "_npmOperationalInternal": {
+    "host": "s3://npm-registry-packages-npm-production",
+    "tmp": "tmp/senka-auth_0.0.1_1753276639710_0.813321740449173"
+  },
+  "_hasShrinkwrap": false
+}

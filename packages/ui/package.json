@@ -1,36 +1,42 @@
 {
-  "name": "@senka/ui",
-  "version": "0.1.0",
-  "description": "A modern Svelte 5 UI library",
+  "name": "senka-ui",
+  "version": "0.1.2",
+  "description": "A modern, type-safe Svelte 5 UI component library with full theme support, accessibility standards, and robust state management patterns",
   "type": "module",
-  "main": "dist/index.js",
-  "types": "dist/index.d.ts",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
   "exports": {
     ".": {
-      "svelte": "./dist/index.js",
       "types": "./dist/index.d.ts",
+      "svelte": "./dist/index.js",
+      "import": "./dist/index.js",
       "default": "./dist/index.js"
     },
     "./components/*": {
-      "svelte": "./dist/components/*.svelte",
       "types": "./dist/components/*.d.ts",
+      "svelte": "./dist/components/*.svelte",
+      "import": "./dist/components/*.js",
       "default": "./dist/components/*.js"
     },
     "./icons/*": {
-      "svelte": "./dist/icons/*.svelte",
       "types": "./dist/icons/*.d.ts",
+      "svelte": "./dist/icons/*.svelte",
+      "import": "./dist/icons/*.js",
       "default": "./dist/icons/*.js"
     },
+    "./styles": "./dist/styles.css",
     "./styles.css": "./dist/styles.css"
   },
   "files": [
     "dist/**/*",
-    "README.md",
-    "CHANGELOG.md"
+    "README.md"
   ],
+  "publishConfig": {
+    "access": "public"
+  },
   "scripts": {
     "dev": "storybook dev -p 6006 --no-open",
-    "build": "vite build && tsc --emitDeclarationOnly",
+    "build": "vite build && tsc --emitDeclarationOnly --outDir dist && cp src/styles/index.css dist/styles.css",
     "build-storybook": "storybook build",
     "preview": "vite preview",
     "story": "storybook dev -p 6006 --no-open",
@@ -41,23 +47,29 @@
   },
   "keywords": [
     "svelte",
+    "svelte5",
     "ui-library",
     "components",
     "design-system",
     "educational",
-    "tailwind"
+    "tailwind",
+    "typescript",
+    "accessibility",
+    "theme",
+    "dark-mode",
+    "form-validation",
+    "senka"
   ],
   "author": "Catalin Ungureanu",
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/catalin-ic/senka.git",
-    "directory": "packages/ui"
+    "url": "https://github.com/senka-ai/senka-ui.git"
   },
   "bugs": {
-    "url": "https://github.com/catalin-ic/senka/issues"
+    "url": "https://github.com/senka-ai/senka-ui/issues"
   },
-  "homepage": "https://senka-ui.github.io/storybook",
+  "homepage": "https://github.com/senka-ai/senka-ui",
   "peerDependencies": {
     "svelte": "^5.0.0",
     "tailwindcss": "^4.0.0"

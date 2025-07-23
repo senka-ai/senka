@@ -1,0 +1,29 @@
+{
+  "name": "senka-utils",
+  "version": "0.0.1",
+  "description": "General utilities and helper functions for Senka",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "senka",
+    "utilities",
+    "helpers",
+    "utils",
+    "educational"
+  ],
+  "author": "Catalin Ungureanu",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/senka-ai/senka-utils.git"
+  },
+  "bugs": {
+    "url": "https://github.com/senka-ai/senka-utils/issues"
+  },
+  "homepage": "https://github.com/senka-ai/senka-utils",
+  "publishConfig": {
+    "access": "public"
+  }
+}

@@ -4,7 +4,7 @@ A monorepo containing the Senka UI library and educational application.
 
 ## Packages
 
-### 📦 [@senka/ui](./packages/ui)
+### 📦 [senka-ui](./packages/ui)
 
 A modern Svelte 5 UI component library for educational applications.
 
@@ -56,7 +56,7 @@ The UI library in `packages/ui` contains reusable Svelte 5 components with:
 
 ### App Development
 
-The main application in `packages/app` will import components from `@senka/ui` and implement educational features.
+The main application in `packages/app` will import components from `senka-ui` and implement educational features.
 
 ### Design Tokens
 
@@ -68,7 +68,7 @@ Shared design tokens in `packages/design-tokens` provide consistent styling acro
 senka/
 ├── packages/
 │   ├── design-tokens/    # Shared design tokens
-│   ├── ui/              # Reusable UI components (@senka/ui)
+│   ├── ui/              # Reusable UI components (senka-ui)
 │   └── app/             # Educational application
 ├── README.md            # This file
 └── package.json         # Workspace configuration
