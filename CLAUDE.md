@@ -9,7 +9,8 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 1. **`~/Downloads/claude/Svelte_5.md`** - Essential Svelte 5 syntax and patterns
 2. **`plan.md`** - Project MVP plan and long-term roadmap
 3. **`mvp_plan_romanian.md`** - Detailed Romanian MVP specifications
-4. **`packages/ui/UI_ARCHITECTURE.md`** - Detailed component patterns and implementation (read this!)
+4. **`HYBRID_SETUP.md`** - Hybrid repository setup for UI library
+5. **`packages/ui/UI_ARCHITECTURE.md`** - Detailed component patterns and implementation (read this!)
 
 ## Project Overview
 

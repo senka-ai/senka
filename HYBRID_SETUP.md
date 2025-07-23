@@ -1,205 +1,152 @@
-# Hybrid Repository Setup Guide
+# Hybrid Repository Architecture
 
-This guide will help you set up the hybrid approach where the UI library is developed in the monorepo but automatically synced to a standalone repository for publishing.
+This document describes the hybrid repository architecture implemented for the Senka UI library, where development happens in the monorepo but publishing occurs from a dedicated standalone repository.
 
-## Overview
+## Architecture Overview
 
 ```
 senka/ (monorepo - development)    →    senka-ui/ (standalone - publishing)
 ├── packages/ui/                        ├── src/
 ├── .github/workflows/                  ├── package.json
-└── sync-ui-library.yml                 └── .github/workflows/publish.yml
+└── sync-ui-library.yml                 ├── package-lock.json
+                                        └── .github/workflows/publish.yml
 ```
 
-## Step 1: Create Standalone Repository
+## How It Works
 
-1. **Create new repository on GitHub:**
+### **Development Flow:**
+1. **Monorepo Development**: All UI library development happens in `packages/ui/`
+2. **Automatic Detection**: Workflow detects changes to UI library files
+3. **Quality Gates**: Runs type checking, Svelte checking, build, and tests
+4. **Intelligent Sync**: Copies UI library to standalone repository with npm compatibility
+5. **Automatic Publishing**: Standalone repository publishes to npm with version checking
 
-   ```bash
-   # Go to https://github.com/senka-ai and create a new repository named "senka-ui"
-   # Make it public and don't add README, .gitignore, or license (we'll sync these)
-   ```
+### **Sync Process:**
+- **Triggered by**: Pushes to main with `packages/ui/` changes
+- **Files Synced**: All UI library source code, configs, and documentation
+- **npm Compatibility**: Generates `package-lock.json` and updates scripts
+- **Workflow Integration**: Copies publish workflow to standalone repository
+- **Repository URLs**: Updates package.json to point to standalone repository
 
-2. **Clone and set up the standalone repository:**
+### **Publishing Pipeline:**
+- **Quality Checks**: Type checking, Svelte checking, build, and tests
+- **Version Detection**: Prevents duplicate publishing of existing versions
+- **npm Publishing**: Automatic publishing to npm registry
+- **GitHub Releases**: Optional release creation with changelog (if permissions allow)
+- **Error Handling**: Graceful handling of permission issues
 
-   ```bash
-   git clone https://github.com/senka-ai/senka-ui.git
-   cd senka-ui
+## Current Implementation
 
-   # Copy the workflow files from your monorepo
-   mkdir -p .github/workflows
-   cp ../senka/standalone-repo-files/.github/workflows/* .github/workflows/
+### **Repositories:**
+- **Development**: [`senka-ai/senka`](https://github.com/senka-ai/senka) - Monorepo for all development
+- **Publishing**: [`senka-ai/senka-ui`](https://github.com/senka-ai/senka-ui) - Standalone UI library
+- **Package**: [`senka-ui`](https://www.npmjs.com/package/senka-ui) - npm package
 
-   # Create initial commit
-   git add .
-   git commit -m "Initial setup: Add GitHub workflows"
-   git push origin main
-   ```
+### **Workflows:**
+- **Sync Workflow**: `.github/workflows/sync-ui-library.yml` - Handles monorepo to standalone sync
+- **Publish Workflow**: `standalone-repo-files/.github/workflows/publish.yml` - Handles npm publishing
 
-## Step 2: Set Up Secrets and Tokens
+### **Key Features:**
+- **Smart Triggering**: Runs on all pushes but only syncs when UI changes detected
+- **Efficient Resource Usage**: Skips expensive operations when no UI changes
+- **Scheduled Backup**: Daily sync at 2 AM UTC to catch any missed syncs
+- **Manual Override**: Force sync option for manual workflow dispatch
+- **npm Compatibility**: Full npm ecosystem support with proper lockfiles
 
-### A. Create Personal Access Token for Syncing
+## Development Workflow
 
-1. Go to GitHub Settings → Developer settings → Personal access tokens → Tokens (classic)
-2. Click "Generate new token (classic)"
-3. Name: `senka-ui-sync-token`
-4. Scopes needed:
-   - `repo` (Full control of private repositories)
-   - `workflow` (Update GitHub Action workflows)
-5. Copy the generated token
-
-### B. Create npm Token for Publishing
-
-1. Log in to [npmjs.com](https://www.npmjs.com)
-2. Go to Access Tokens → Generate New Token
-3. Type: "Automation"
-4. Copy the generated token
-
-### C. Set Repository Secrets
-
-**In the monorepo (`senka-ai/senka`):**
-
+### **Making Changes:**
 ```bash
-# Go to Settings → Secrets and variables → Actions
-# Add these Repository secrets:
+# 1. Work in monorepo as usual
+cd packages/ui
+# ... make your changes ...
+
+# 2. Test locally
+yarn ui:dev     # Storybook development
+yarn ui:test    # Run tests
+yarn ui:build   # Build library
+
+# 3. Release (when ready)
+npm version patch  # or minor, major
+git add package.json
+git commit -m "feat: add new component"
+git push origin main
+
+# 4. Everything else is automatic! 🤖
 ```
 
-- `SYNC_TOKEN`: The GitHub Personal Access Token created above
+### **What Happens Automatically:**
+1. **Change Detection**: Workflow detects UI changes
+2. **Quality Gates**: Runs full test suite and type checking
+3. **Sync Process**: Copies to standalone repository with npm compatibility
+4. **Publishing**: Standalone repository publishes to npm
+5. **Release Notes**: GitHub release created (if permissions allow)
 
-**In the standalone repo (`senka-ai/senka-ui`):**
+## Monitoring and Maintenance
 
-```bash
-# Go to Settings → Secrets and variables → Actions
-# Add these Repository secrets:
-```
+### **Dashboard Links:**
+- **Monorepo Actions**: https://github.com/senka-ai/senka/actions
+- **Standalone Actions**: https://github.com/senka-ai/senka-ui/actions
+- **npm Package**: https://www.npmjs.com/package/senka-ui
+- **Package Statistics**: https://npm-stat.com/charts.html?package=senka-ui
 
-- `NPM_TOKEN`: The npm authentication token
-- `MONOREPO_NOTIFY_TOKEN`: Same GitHub PAT as above (for notifications)
+### **Manual Operations:**
 
-## Step 3: Test the Setup
-
-### A. Test Sync Workflow
-
-1. **Make a change to the UI library in your monorepo:**
-
-   ```bash
-   cd senka/packages/ui
-   # Edit package.json to bump version
-   npm version patch
-   git add package.json
-   git commit -m "test: bump ui version for sync test"
-   git push origin main
-   ```
-
-2. **Check the sync workflow:**
-   - Go to Actions tab in `senka-ai/senka`
-   - Look for "Sync UI Library to senka-ui" workflow
-   - It should trigger automatically and sync to `senka-ai/senka-ui`
-
-### B. Test Publish Workflow
-
-1. **Check the standalone repository:**
-
-   ```bash
-   # The senka-ui repo should now have your UI library files
-   cd senka-ui
-   git pull origin main
-   ls -la  # Should show your UI library structure
-   ```
-
-2. **Test publishing:**
-   - Go to Actions tab in `senka-ai/senka-ui`
-   - Look for "Publish to npm" workflow
-   - It should trigger automatically if the version changed
-   - Check [npmjs.com/package/senka-ui](https://www.npmjs.com/package/senka-ui) for the new version
-
-## Step 4: Development Workflow
-
-### For Regular Development:
-
-1. **Work in the monorepo as usual:**
-
-   ```bash
-   cd senka/packages/ui
-   # Make your changes
-   yarn ui:dev  # Test in Storybook
-   yarn ui:test  # Run tests
-   ```
-
-2. **When ready to release:**
-
-   ```bash
-   # Bump version in monorepo
-   cd packages/ui
-   npm version patch  # or minor, major
-
-   # Commit and push
-   git add package.json
-   git commit -m "release: bump ui library to v0.1.4"
-   git push origin main
-
-   # The workflows will handle the rest automatically!
-   ```
-
-### Manual Sync (if needed):
-
-You can manually trigger the sync workflow:
-
+**Force Sync (if needed):**
 1. Go to Actions tab in `senka-ai/senka`
 2. Click "Sync UI Library to senka-ui"
-3. Click "Run workflow" → "Run workflow"
+3. Click "Run workflow" → Enable "Force sync" → "Run workflow"
 
-### Manual Publish (if needed):
-
-You can manually trigger publishing:
-
+**Manual Publish (if needed):**
 1. Go to Actions tab in `senka-ai/senka-ui`
 2. Click "Publish to npm"
 3. Click "Run workflow" → Choose version type → "Run workflow"
 
-## Step 5: Update Package URLs
+## Technical Details
 
-Your `packages/ui/package.json` will be automatically updated during sync, but you may want to update documentation and links:
+### **Required Secrets:**
+- **Monorepo** (`senka-ai/senka`):
+  - `SYNC_TOKEN`: GitHub Personal Access Token with `repo` and `workflow` permissions
+- **Standalone** (`senka-ai/senka-ui`):
+  - `NPM_TOKEN`: npm Automation token for publishing
 
-1. **Update CLAUDE.md and other docs** to mention the standalone repository
-2. **Update any hardcoded URLs** to point to `senka-ai/senka-ui` for public consumption
+### **Workflow Permissions:**
+- **Sync Workflow**: Uses `SYNC_TOKEN` for cross-repository operations
+- **Publish Workflow**: Requires `contents: write` for GitHub releases
 
-## Monitoring and Maintenance
+### **File Transformations:**
+- **package.json**: Repository URLs updated to point to standalone repository
+- **package-lock.json**: Generated from monorepo yarn.lock for npm compatibility
+- **Scripts**: Updated to use npm commands instead of yarn
+- **README**: Replaced with standalone-specific documentation
 
-### Dashboard Links:
+## Benefits
 
-- **Monorepo Actions**: https://github.com/senka-ai/senka/actions
-- **Standalone Actions**: https://github.com/senka-ai/senka-ui/actions
-- **npm Package**: https://www.npmjs.com/package/senka-ui
-- **Package Downloads**: https://npm-stat.com/charts.html?package=senka-ui
+✅ **Seamless Development**: Continue working in familiar monorepo environment  
+✅ **Automatic Publishing**: Zero manual steps for releases  
+✅ **Clean Public Interface**: Users see only the UI library, not monorepo complexity  
+✅ **Proper npm Integration**: Package points to dedicated repository with correct URLs  
+✅ **Version Control**: Full history of releases and changes  
+✅ **Quality Assurance**: Comprehensive testing before every publish  
+✅ **Error Resilience**: Handles edge cases and permission issues gracefully  
+✅ **Developer Experience**: Simple workflow with clear status reporting
 
-### Troubleshooting:
+## Architecture Decisions
 
-**Sync fails:**
+### **Why Hybrid Approach:**
+- **Development Efficiency**: Keep related packages together in monorepo
+- **Publishing Clarity**: Provide clean, focused repository for public consumption
+- **URL Correctness**: npm package links point to relevant repository
+- **Separation of Concerns**: Development vs. distribution concerns handled separately
 
-- Check the `SYNC_TOKEN` has correct permissions
-- Verify the standalone repository exists and is accessible
-- Check workflow logs for specific errors
+### **Why npm over Yarn in Standalone:**
+- **Broader Compatibility**: npm is more universally supported in CI/CD
+- **Simpler Setup**: Fewer configuration requirements
+- **Lockfile Generation**: Easier to generate from yarn.lock
 
-**Publish fails:**
+### **Why Automatic Sync:**
+- **Reduced Manual Work**: Eliminates human error in publishing process
+- **Consistency**: Ensures standalone repository always reflects latest changes
+- **Speed**: Immediate publishing after development changes
 
-- Verify `NPM_TOKEN` is valid and has publish permissions
-- Check if version already exists on npm
-- Ensure build and tests pass before publishing
-
-**Out of sync:**
-
-- Run manual sync workflow
-- Check for merge conflicts in standalone repo
-- Verify file permissions and git configuration
-
-## Benefits You'll Get:
-
-✅ **Seamless Development**: Continue working in monorepo  
-✅ **Automatic Publishing**: Releases happen automatically  
-✅ **Clean Public Repo**: Users see only the UI library  
-✅ **Proper npm URLs**: Package points to dedicated repository  
-✅ **Version Control**: Full history of releases  
-✅ **Quality Gates**: Tests run before publishing
-
-Your hybrid setup is now ready! The UI library will automatically sync and publish whenever you make changes in the monorepo.
+This hybrid architecture provides the best of both worlds: convenient monorepo development with professional standalone package presentation.
