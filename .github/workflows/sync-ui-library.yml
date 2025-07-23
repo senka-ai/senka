@@ -3,13 +3,17 @@ name: Sync UI Library to senka-ui
 on:
   push:
     branches: [main]
-    paths: ['packages/ui/**']
+    # No path filter - always run, but check for changes inside the workflow
   workflow_dispatch:
     inputs:
       force_sync:
         description: 'Force sync even without UI changes'
         required: false
         default: 'false'
+        type: boolean
+  schedule:
+    # Run daily at 2 AM UTC to catch any missed syncs
+    - cron: '0 2 * * *'
 
 jobs:
   sync:
@@ -33,19 +37,62 @@ jobs:
       - name: Install dependencies
         run: yarn install --immutable
 
+      - name: Check if UI changes exist
+        id: ui-changes
+        run: |
+          echo "🔍 Event details:"
+          echo "  - Event name: ${{ github.event_name }}"
+          echo "  - Ref: ${{ github.ref }}"
+          echo "  - SHA: ${{ github.sha }}"
+          echo "  - Actor: ${{ github.actor }}"
+          echo ""
+          
+          # Check for UI changes in the latest commit
+          UI_CHANGES=0
+          if [[ "${{ github.event_name }}" == "workflow_dispatch" && "${{ github.event.inputs.force_sync }}" == "true" ]]; then
+            echo "🔄 Force sync requested via manual trigger"
+            UI_CHANGES=1
+          elif [[ "${{ github.event_name }}" == "schedule" ]]; then
+            echo "🕒 Scheduled run - will check for sync differences later"
+            UI_CHANGES=1
+          else
+            # Check if the latest commit contains UI changes
+            UI_FILES_IN_LATEST=$(git diff-tree --no-commit-id --name-only -r HEAD | grep '^packages/ui/' | wc -l)
+            echo "UI files changed in latest commit: $UI_FILES_IN_LATEST"
+            
+            if [[ $UI_FILES_IN_LATEST -gt 0 ]]; then
+              echo "🔄 UI changes detected in latest commit"
+              UI_CHANGES=1
+            else
+              echo "⏭️ No UI changes in latest commit - skipping workflow"
+              UI_CHANGES=0
+            fi
+          fi
+          
+          echo "ui-changes=$UI_CHANGES" >> $GITHUB_OUTPUT
+          
+          if [[ $UI_CHANGES -eq 0 ]]; then
+            exit 0  # Exit gracefully, skipping remaining steps
+          fi
+
       - name: Run type checking
+        if: steps.ui-changes.outputs.ui-changes == '1'
         run: yarn ui:typecheck
 
       - name: Run Svelte checking
+        if: steps.ui-changes.outputs.ui-changes == '1'
         run: yarn ui:check
 
       - name: Build UI library
+        if: steps.ui-changes.outputs.ui-changes == '1'
         run: yarn ui:build
 
       - name: Run tests
+        if: steps.ui-changes.outputs.ui-changes == '1'
         run: yarn ui:test
 
       - name: Checkout senka-ui repo
+        if: steps.ui-changes.outputs.ui-changes == '1'
         uses: actions/checkout@v4
         with:
           repository: senka-ai/senka-ui
@@ -53,6 +100,7 @@ jobs:
           path: ./synced-repo
 
       - name: Prepare sync directory
+        if: steps.ui-changes.outputs.ui-changes == '1'
         run: |
           # Create temporary directory for sync preparation
           mkdir -p ./sync-temp
@@ -113,6 +161,7 @@ jobs:
           EOF
 
       - name: Update package.json for standalone repo
+        if: steps.ui-changes.outputs.ui-changes == '1'
         run: |
           cd ./sync-temp
 
@@ -127,6 +176,7 @@ jobs:
           "
 
       - name: Sync to senka-ui repository
+        if: steps.ui-changes.outputs.ui-changes == '1'
         run: |
           cd ./synced-repo
 
@@ -150,12 +200,33 @@ jobs:
           UNTRACKED_FILES=$(git ls-files --others --exclude-standard)
           
           echo "📊 Sync Status:"
+          echo "  - Trigger: ${{ github.event_name }}"
           echo "  - Force sync: ${{ github.event.inputs.force_sync }}"
           echo "  - Untracked files: $(echo "$UNTRACKED_FILES" | wc -l | tr -d ' ') files"
           echo "  - Modified files: $(git diff --name-only | wc -l | tr -d ' ') files"
           echo "  - Staged files: $(git diff --cached --name-only | wc -l | tr -d ' ') files"
           
-          if [[ "${{ github.event.inputs.force_sync }}" == "true" ]] || [[ -n "$UNTRACKED_FILES" ]] || ! (git diff --quiet && git diff --cached --quiet); then
+          # Determine if sync should run
+          SHOULD_SYNC=false
+          if [[ "${{ github.event.inputs.force_sync }}" == "true" ]]; then
+            echo "🔄 Sync triggered: Force sync requested"
+            SHOULD_SYNC=true
+          elif [[ "${{ github.event_name }}" == "schedule" ]]; then
+            # For scheduled runs, only sync if there are actual differences
+            if [[ -n "$UNTRACKED_FILES" ]] || ! (git diff --quiet && git diff --cached --quiet); then
+              echo "🔄 Sync triggered: Scheduled run found changes"
+              SHOULD_SYNC=true
+            else
+              echo "⏭️  Sync skipped: Scheduled run found no changes"
+            fi
+          elif [[ -n "$UNTRACKED_FILES" ]] || ! (git diff --quiet && git diff --cached --quiet); then
+            echo "🔄 Sync triggered: Changes detected"
+            SHOULD_SYNC=true
+          else
+            echo "⏭️  Sync skipped: No changes detected"
+          fi
+          
+          if [[ "$SHOULD_SYNC" == "true" ]]; then
             # Commit and push changes
             git add .
             git commit -m "Sync from monorepo: $COMMIT_MSG
