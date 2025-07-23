@@ -37,6 +37,9 @@
     ...restProps
   }: Props = $props()
 
+  // Use rendering utilities for consistent logic
+  const isDisabled = $derived(ButtonRenderer.isEffectivelyDisabled(disabled, loading))
+
   // Use style composition utility with corrected values
   let buttonClasses = $derived(
     createButtonStyles({
@@ -47,9 +50,6 @@
       className,
     })
   )
-
-  // Use rendering utilities for consistent logic
-  const isDisabled = $derived(ButtonRenderer.isEffectivelyDisabled(disabled, loading))
 
   // Enhanced click handler with disabled state support
   const handleClick = (event?: Event) => {
@@ -63,9 +63,9 @@
       if (!isDisabled) onclick?.()
     },
     {
-      keys: KeySets.ACTIVATION,
+      keys: [...KeySets.ACTIVATION],
       preventDefault: true,
-      disabled: isDisabled,
+      disabled: false, // Handle disabled state in the handler itself
     }
   )
 </script>
@@ -77,7 +77,7 @@
   {type}
   onclick={handleClick}
   onkeydown={(event) => {
-    handleKeyDown(event)
+    if (!isDisabled) handleKeyDown(event)
     onkeydown?.(event)
   }}
   {onfocus}
