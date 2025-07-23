@@ -9,7 +9,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 1. **`~/Downloads/claude/Svelte_5.md`** - Essential Svelte 5 syntax and patterns
 2. **`plan.md`** - Project MVP plan and long-term roadmap
 3. **`mvp_plan_romanian.md`** - Detailed Romanian MVP specifications
-4. **`COMPONENT_ARCHITECTURE.md`** - Detailed component patterns and implementation (read this!)
+4. **`packages/ui/UI_ARCHITECTURE.md`** - Detailed component patterns and implementation (read this!)
 
 ## Project Overview
 
@@ -27,11 +27,14 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Development Commands
 
-### Core Development
+### Core Development (Monorepo)
 
-- `yarn dev` - Start development server
-- `yarn build` - Build for production
-- `yarn preview` - Preview production build
+- `yarn ui:dev` - Start UI library Storybook development server
+- `yarn app:dev` - Start main app development server
+- `yarn ui:build` - Build UI library for production
+- `yarn app:build` - Build main app for production
+- `yarn build` - Build both UI library and app
+- `yarn app:preview` - Preview production build of app
 
 ### Code Quality
 
@@ -40,26 +43,35 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ### MANDATORY Type Checking (ALWAYS RUN AFTER EDITING)
 
-- `yarn typecheck` - Run strict TypeScript type checking
-- `yarn check` - Run Svelte type checking
+- `yarn typecheck` - Run TypeScript checking for all packages
+- `yarn ui:typecheck` - Run TypeScript checking for UI library only
+- `yarn app:typecheck` - Run TypeScript checking for app only
+- `yarn check` - Run Svelte checking for all packages
+- `yarn ui:check` - Run Svelte checking for UI library only
+- `yarn app:check` - Run Svelte checking for app only
 
 ### Testing
 
-- `yarn test` - Run all tests once
-- `yarn test:unit` - Run unit tests in watch mode
+- `yarn test` - Run all tests for all packages
+- `yarn ui:test` - Run UI library tests
+- `yarn app:test` - Run app tests
+- `yarn ui:test:visual` - Run UI library visual tests with Playwright
+- `yarn ui:test:visual:update` - Update visual test snapshots
 
 ### Storybook
 
-- `yarn story` - Start Storybook development server on port 6006
-- `yarn build-storybook` - Build Storybook for production
+- `yarn ui:story` - Start UI library Storybook development server on port 6006
+- `yarn ui:build-storybook` - Build UI library Storybook for production
+- `yarn app:story` - Start app Storybook development server (if available)
 
 ## CRITICAL DEVELOPMENT WORKFLOW
 
 ### After Editing Files (MANDATORY):
 
-1. **`yarn typecheck`** - MUST pass without errors
-2. **`yarn check`** - MUST pass without errors
-3. Fix any errors before proceeding
+1. **`yarn typecheck`** - MUST pass without errors (runs for all packages)
+2. **`yarn check`** - MUST pass without errors (runs for all packages) 
+3. For specific packages: `yarn ui:typecheck` / `yarn ui:check` or `yarn app:typecheck` / `yarn app:check`
+4. Fix any errors before proceeding
 
 ### After Completing Tasks:
 
