@@ -19,7 +19,6 @@
     "story": "storybook dev -p 6007 --no-open",
     "build-storybook": "storybook build"
   },
-  "dependencies": {},
   "devDependencies": {
     "@chromatic-com/storybook": "^4.0.1",
     "@storybook/addon-docs": "^9.0.16",
