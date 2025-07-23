@@ -31,7 +31,7 @@ jobs:
           yarn --version
 
       - name: Install dependencies
-        run: yarn install --frozen-lockfile
+        run: yarn install --immutable
 
       - name: Run type checking
         run: yarn ui:typecheck
@@ -145,26 +145,15 @@ jobs:
           git config user.name "senka-sync-bot"
           git config user.email "sync-bot@senka.ai"
 
-          # Debug: Show current state
-          echo "=== Debug Info ==="
-          echo "Files in synced-repo after copy:"
-          ls -la
-          echo "Git status:"
-          git status
-          echo "Git diff (unstaged):"
-          git diff --name-only
-          echo "Git diff --cached (staged):"
-          git diff --cached --name-only
-          echo "Untracked files:"
-          git ls-files --others --exclude-standard
-          echo "=== End Debug ==="
-
           # Check if there are changes (or force sync)
           # Check for untracked files, modified files, or staged files
           UNTRACKED_FILES=$(git ls-files --others --exclude-standard)
-          echo "Force sync: ${{ github.event.inputs.force_sync }}"
-          echo "Untracked files count: $(echo "$UNTRACKED_FILES" | wc -l)"
-          echo "Untracked files: $UNTRACKED_FILES"
+          
+          echo "📊 Sync Status:"
+          echo "  - Force sync: ${{ github.event.inputs.force_sync }}"
+          echo "  - Untracked files: $(echo "$UNTRACKED_FILES" | wc -l | tr -d ' ') files"
+          echo "  - Modified files: $(git diff --name-only | wc -l | tr -d ' ') files"
+          echo "  - Staged files: $(git diff --cached --name-only | wc -l | tr -d ' ') files"
           
           if [[ "${{ github.event.inputs.force_sync }}" == "true" ]] || [[ -n "$UNTRACKED_FILES" ]] || ! (git diff --quiet && git diff --cached --quiet); then
             # Commit and push changes
