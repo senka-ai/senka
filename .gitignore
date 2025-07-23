@@ -1,5 +1,11 @@
 node_modules
 
+# Yarn
+.yarn/cache
+.yarn/install-state.gz
+.yarn/unplugged
+.yarn/build-state.yml
+
 # Output
 .output
 .vercel
@@ -26,5 +32,5 @@ vite.config.ts.timestamp-*
 storybook-static
 
 # Playwright
-/test-results/
+**/test-results/
 **/playwright-report/

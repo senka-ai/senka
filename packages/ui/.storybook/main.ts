@@ -4,6 +4,7 @@ import tailwindcss from '@tailwindcss/vite'
 const config: StorybookConfig = {
   stories: ['../src/**/*.stories.@(js|ts|svelte)'],
   addons: [
+    '@storybook/addon-essentials',
     {
       name: '@storybook/addon-svelte-csf',
       options: {
@@ -16,6 +17,9 @@ const config: StorybookConfig = {
   framework: {
     name: '@storybook/sveltekit',
     options: {},
+  },
+  features: {
+    experimentalRSC: false,
   },
   viteFinal: async (config) => {
     config.plugins?.push(tailwindcss())
