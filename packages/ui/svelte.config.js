@@ -6,13 +6,13 @@ const config = {
   kit: {
     adapter: adapter(),
     files: {
-      lib: 'src/lib'
+      lib: 'src/lib',
     },
     alias: {
       $lib: 'src/lib',
-      '$lib/*': 'src/lib/*'
-    }
-  }
+      '$lib/*': 'src/lib/*',
+    },
+  },
 }
 
 export default config

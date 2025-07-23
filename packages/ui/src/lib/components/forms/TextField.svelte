@@ -1,8 +1,8 @@
 <script lang="ts">
   import type { FormInputComponent, IconComponent, IconSizeComponent } from '../../types/component'
   import { useFocusState } from '../../utils/state.svelte'
-  import { shouldRenderIcon, getInputIconClasses, getInputPadding, isStringIcon } from '../../utils/icons'
-  import { validateValue, validationRules as rules, type ValidationRule } from '../../utils/validation.svelte'
+  import { getInputPadding, getInputIconClasses } from '../../utils/icons'
+  import { validateValue, type ValidationRule } from '../../utils/validation.svelte'
   import { createInputStyles } from '../../utils/styles'
   import { FormRenderer, IconRenderer } from '../../utils/rendering'
   import FormField from './FormField.svelte'
@@ -49,7 +49,6 @@
     ...restProps
   }: Props = $props()
 
-  let inputRef: HTMLInputElement
   const focusState = useFocusState()
 
   // Initialize validation state
@@ -68,8 +67,9 @@
       size: 'medium',
       fullWidth: true,
       className: (() => {
-        const hasLeftIcon = IconRenderer.shouldRender(leftIcon, showIcon)
-        const hasRightIcon = IconRenderer.shouldRender(rightIcon, showIcon) || (unit && showUnit)
+        const hasLeftIcon = IconRenderer.shouldRender(leftIcon, showIcon ?? true)
+        const hasRightIcon =
+          IconRenderer.shouldRender(rightIcon, showIcon ?? true) || Boolean(unit && (showUnit ?? true))
         return getInputPadding(hasLeftIcon, hasRightIcon)
       })(),
     })
@@ -100,7 +100,6 @@
     {/if}
 
     <input
-      bind:this={inputRef}
       bind:value
       class={inputClasses}
       {disabled}
@@ -140,7 +139,7 @@
           {@render rightIcon?.(iconSize)}
         {/if}
       </div>
-    {:else if unit && showUnit}
+    {:else if unit && (showUnit ?? true)}
       <div class="text-body-m absolute top-1/2 right-3.25 -translate-y-1/2 transform text-neutral-600">
         {unit}
       </div>

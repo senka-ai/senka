@@ -12,11 +12,11 @@ export default defineConfig({
     lib: {
       entry: resolve(__dirname, 'src/lib/index.ts'),
       name: 'SenkaUI',
-      formats: ['es']
+      formats: ['es'],
     },
     rollupOptions: {
-      external: ['svelte', 'svelte/internal']
-    }
+      external: ['svelte', 'svelte/internal'],
+    },
   },
   // @ts-expect-error - Vitest config in Vite config file
   test: {

@@ -6,4 +6,6 @@ bun.lock
 bun.lockb
 
 # Keep utility CSS files as-is (single line formatting)
-src/styles/*.css
+packages/ui/src/styles/*.css
+.svelte-kit
+**/test-results
