@@ -16,6 +16,10 @@ on:
           - minor
           - major
 
+permissions:
+  contents: write  # Required for creating releases
+  packages: write  # Required for publishing packages
+
 jobs:
   quality:
     runs-on: ubuntu-latest
@@ -94,20 +98,27 @@ jobs:
 
       - name: Create GitHub release
         if: steps.version-check.outputs.exists == 'false'
+        continue-on-error: true
         uses: actions/github-script@v7
         with:
           script: |
-            const { data: release } = await github.rest.repos.createRelease({
-              owner: context.repo.owner,
-              repo: context.repo.repo,
-              tag_name: `v${{ steps.package-info.outputs.version }}`,
-              name: `Release v${{ steps.package-info.outputs.version }}`,
-              body: `🚀 **senka-ui v${{ steps.package-info.outputs.version }}**\n\nAutomatic release from monorepo sync.\n\n📦 [View on npm](https://www.npmjs.com/package/${{ steps.package-info.outputs.name }})\n\n🔄 Synced from [senka-ai/senka](https://github.com/senka-ai/senka)`,
-              draft: false,
-              prerelease: false
-            });
-            
-            console.log(`✅ Created release: ${release.html_url}`);
+            try {
+              const { data: release } = await github.rest.repos.createRelease({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                tag_name: `v${{ steps.package-info.outputs.version }}`,
+                name: `Release v${{ steps.package-info.outputs.version }}`,
+                body: `🚀 **senka-ui v${{ steps.package-info.outputs.version }}**\n\nAutomatic release from monorepo sync.\n\n📦 [View on npm](https://www.npmjs.com/package/${{ steps.package-info.outputs.name }})\n\n🔄 Synced from [senka-ai/senka](https://github.com/senka-ai/senka)`,
+                draft: false,
+                prerelease: false
+              });
+              
+              console.log(`✅ Created release: ${release.html_url}`);
+            } catch (error) {
+              console.log(`⚠️ Could not create GitHub release: ${error.message}`);
+              console.log('💡 This is optional - npm publishing was successful');
+              console.log('🔧 To fix: Add "contents: write" permission to GITHUB_TOKEN or setup a PAT with repo permissions');
+            }
 
       - name: Skip publish (version exists)
         if: steps.version-check.outputs.exists == 'true'
@@ -115,12 +126,13 @@ jobs:
           echo "⏭️ Skipping publish: Version ${{ steps.package-info.outputs.version }} already exists on npm"
           echo "💡 To publish a new version, update the version in package.json"
 
-      - name: Notify monorepo
+      - name: Summary
         if: steps.version-check.outputs.exists == 'false'
-        uses: actions/github-script@v7
-        with:
-          github-token: ${{ secrets.MONOREPO_NOTIFY_TOKEN }}
-          script: |
-            // This could be used to create an issue or comment in the monorepo
-            // about successful publishing, but for now we'll just log
-            console.log(`✅ Published ${{ steps.package-info.outputs.name }}@${{ steps.package-info.outputs.version }} successfully`);
+        run: |
+          echo "🎉 **Publishing Complete!**"
+          echo ""
+          echo "📦 **Package**: ${{ steps.package-info.outputs.name }}@${{ steps.package-info.outputs.version }}"
+          echo "🔗 **npm**: https://www.npmjs.com/package/${{ steps.package-info.outputs.name }}"
+          echo "📊 **Registry**: https://npm-stat.com/charts.html?package=${{ steps.package-info.outputs.name }}"
+          echo ""
+          echo "✅ Successfully published to npm registry!"
