@@ -116,6 +116,11 @@ jobs:
           rm -rf ./sync-temp/playwright-report
           rm -rf ./sync-temp/test-results
 
+          # Create package-lock.json from yarn.lock for npm compatibility
+          cd ./sync-temp
+          npm install --package-lock-only
+          cd ..
+
           # Create a standalone README for the UI library
           cat > ./sync-temp/README.md << 'EOF'
           # senka-ui
@@ -165,13 +170,20 @@ jobs:
         run: |
           cd ./sync-temp
 
-          # Update repository URLs to point to standalone repo
+          # Update repository URLs and scripts for standalone repo
           node -e "
             const pkg = require('./package.json');
             pkg.repository.url = 'https://github.com/senka-ai/senka-ui.git';
             pkg.bugs.url = 'https://github.com/senka-ai/senka-ui/issues';
             pkg.homepage = 'https://github.com/senka-ai/senka-ui';
             delete pkg.repository.directory;
+            
+            // Update scripts to use npm instead of yarn
+            if (pkg.scripts) {
+              pkg.scripts.typecheck = pkg.scripts.typecheck || 'tsc --noEmit --strict --skipLibCheck';
+              pkg.scripts['svelte-check'] = pkg.scripts['svelte-check'] || 'svelte-check --tsconfig ./tsconfig.json';
+            }
+            
             require('fs').writeFileSync('./package.json', JSON.stringify(pkg, null, 2));
           "
 
@@ -184,12 +196,18 @@ jobs:
           COMMIT_SHA="${{ github.sha }}"
           COMMIT_MSG="$(cd .. && git log -1 --pretty=format:'%s' $COMMIT_SHA)"
 
-          # Clear existing content (except .git and GitHub workflows)
-          find . -mindepth 1 -maxdepth 1 ! -name '.git' ! -name '.github' -exec rm -rf {} + 2>/dev/null || true
+          # Clear existing content (except .git)
+          find . -mindepth 1 -maxdepth 1 ! -name '.git' -exec rm -rf {} + 2>/dev/null || true
 
           # Copy prepared sync content
           cp -r ../sync-temp/* .
           cp -r ../sync-temp/.* . 2>/dev/null || true
+
+          # Copy standalone repo workflows
+          mkdir -p .github/workflows
+          if [ -f "../standalone-repo-files/.github/workflows/publish.yml" ]; then
+            cp ../standalone-repo-files/.github/workflows/publish.yml .github/workflows/
+          fi
 
           # Configure git
           git config user.name "senka-sync-bot"
