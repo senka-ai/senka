@@ -105,8 +105,9 @@ jobs:
           # Create temporary directory for sync preparation
           mkdir -p ./sync-temp
 
-          # Copy UI package contents
-          cp -r packages/ui/* ./sync-temp/
+          # Copy UI package contents (including hidden files)
+          cp -r packages/ui/* ./sync-temp/ 
+          cp -r packages/ui/.* ./sync-temp/ 2>/dev/null || true
 
           # Remove build artifacts and temp files
           rm -rf ./sync-temp/node_modules
