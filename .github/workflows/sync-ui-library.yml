@@ -155,10 +155,18 @@ jobs:
           git diff --name-only
           echo "Git diff --cached (staged):"
           git diff --cached --name-only
+          echo "Untracked files:"
+          git ls-files --others --exclude-standard
           echo "=== End Debug ==="
 
           # Check if there are changes (or force sync)
-          if [[ "${{ github.event.inputs.force_sync }}" == "true" ]] || ! (git diff --quiet && git diff --cached --quiet); then
+          # Check for untracked files, modified files, or staged files
+          UNTRACKED_FILES=$(git ls-files --others --exclude-standard)
+          echo "Force sync: ${{ github.event.inputs.force_sync }}"
+          echo "Untracked files count: $(echo "$UNTRACKED_FILES" | wc -l)"
+          echo "Untracked files: $UNTRACKED_FILES"
+          
+          if [[ "${{ github.event.inputs.force_sync }}" == "true" ]] || [[ -n "$UNTRACKED_FILES" ]] || ! (git diff --quiet && git diff --cached --quiet); then
             # Commit and push changes
             git add .
             git commit -m "Sync from monorepo: $COMMIT_MSG
