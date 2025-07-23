@@ -12,9 +12,6 @@ A modern Svelte 5 UI component library for educational applications.
 - **Build**: `yarn ui:build`
 - **Test**: `yarn ui:test`
 
-### 📐 [@senka/design-tokens](./packages/design-tokens)
-
-Design tokens including colors, typography, spacing, and component styling tokens.
 
 ### 🎓 [senka-app](./packages/app)
 
@@ -22,7 +19,6 @@ The main educational application built with SvelteKit.
 
 - **Dev server**: `yarn app:dev` (http://localhost:3000)
 - **Build**: `yarn app:build`
-- **Storybook**: `yarn app:story` (http://localhost:6007)
 
 ## Quick Start
 
@@ -58,18 +54,22 @@ The UI library in `packages/ui` contains reusable Svelte 5 components with:
 
 The main application in `packages/app` will import components from `senka-ui` and implement educational features.
 
-### Design Tokens
+### Reserved Packages
 
-Shared design tokens in `packages/design-tokens` provide consistent styling across both packages.
+Reserved package names in `packages/reserved/` are placeholder packages published to npm to reserve names for future development.
 
 ## Architecture
 
 ```
 senka/
 ├── packages/
-│   ├── design-tokens/    # Shared design tokens
 │   ├── ui/              # Reusable UI components (senka-ui)
-│   └── app/             # Educational application
+│   ├── app/             # Educational application
+│   └── reserved/        # Reserved npm package names
+│       ├── api/         # senka-api placeholder
+│       ├── auth/        # senka-auth placeholder
+│       ├── server/      # senka-server placeholder
+│       └── ...          # Other reserved packages
 ├── README.md            # This file
 └── package.json         # Workspace configuration
 ```

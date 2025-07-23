@@ -26,25 +26,13 @@ yarn playwright install
 
 ```bash
 # Run all visual tests
-yarn test:visual
-
-# Run all components (comprehensive test suite)
-yarn test:visual:all
-
-# Run only critical component tests
-yarn test:visual:critical
-
-# Run tests with interactive UI
-yarn test:visual:ui
+yarn ui:test:visual
 
 # Update snapshots (when you've made intentional visual changes)
-yarn test:visual:update
-
-# Update all component snapshots
-yarn test:visual:all:update
+yarn ui:test:visual:update
 
 # View test results report
-yarn test:visual:report
+yarn ui:report
 ```
 
 ### First Time Setup
@@ -54,13 +42,13 @@ When running visual tests for the first time:
 1. **Generate baseline snapshots for all components**:
 
 ```bash
-yarn test:visual:all:update
+yarn ui:test:visual:update
 ```
 
 2. **Run tests to verify**:
 
 ```bash
-yarn test:visual:all
+yarn ui:test:visual
 ```
 
 _Note: Storybook will be started automatically when running tests._
@@ -105,7 +93,7 @@ Visual tests fail when there are visual differences. This could indicate:
 View detailed results with:
 
 ```bash
-yarn test:visual:report
+yarn ui:report
 ```
 
 ## Workflow
@@ -113,15 +101,14 @@ yarn test:visual:report
 ### During Development
 
 1. Make component changes
-2. Run `yarn test:visual:critical` to check key components quickly
-3. For comprehensive testing, run `yarn test:visual:all`
-4. If tests fail, review the visual differences in the HTML report
-5. Update snapshots if changes are intentional
+2. Run `yarn ui:test:visual` to check components
+3. If tests fail, review the visual differences in the HTML report
+4. Update snapshots if changes are intentional with `yarn ui:test:visual:update`
 
 ### Before Committing
 
-1. Run all visual tests: `yarn test:visual:all`
-2. Ensure all 50 tests pass (25 components × 2 themes)
+1. Run all visual tests: `yarn ui:test:visual`
+2. Ensure all tests pass 
 3. Commit both code changes and updated snapshots
 
 ### CI/CD Integration
@@ -161,8 +148,8 @@ Visual testing configuration is in:
 ## Best Practices
 
 1. **Keep snapshots up to date** - Update when making intentional visual changes
-2. **Test critical paths** - Use `yarn test:visual:critical` for quick feedback during development
-3. **Use comprehensive testing** - Run `yarn test:visual:all` before committing changes
+2. **Test during development** - Use `yarn ui:test:visual` for feedback during development
+3. **Use comprehensive testing** - Run `yarn ui:test:visual` before committing changes
 4. **External images are mocked** - Tests use static placeholders for consistent results
 5. **Both themes tested** - Light and dark themes are tested for every component
 6. **Review failures carefully** - Don't automatically update snapshots without understanding why they changed
