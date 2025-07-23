@@ -145,11 +145,20 @@ jobs:
           git config user.name "senka-sync-bot"
           git config user.email "sync-bot@senka.ai"
 
-          # Check if there are changes
-          if git diff --quiet && git diff --cached --quiet; then
-            echo "No changes to sync"
-            echo "sync_performed=false" >> $GITHUB_OUTPUT
-          else
+          # Debug: Show current state
+          echo "=== Debug Info ==="
+          echo "Files in synced-repo after copy:"
+          ls -la
+          echo "Git status:"
+          git status
+          echo "Git diff (unstaged):"
+          git diff --name-only
+          echo "Git diff --cached (staged):"
+          git diff --cached --name-only
+          echo "=== End Debug ==="
+
+          # Check if there are changes (or force sync)
+          if [[ "${{ github.event.inputs.force_sync }}" == "true" ]] || ! (git diff --quiet && git diff --cached --quiet); then
             # Commit and push changes
             git add .
             git commit -m "Sync from monorepo: $COMMIT_MSG
@@ -161,6 +170,9 @@ jobs:
             git push origin main
             echo "sync_performed=true" >> $GITHUB_OUTPUT
             echo "✅ Successfully synced UI library to senka-ui repository"
+          else
+            echo "No changes to sync"
+            echo "sync_performed=false" >> $GITHUB_OUTPUT
           fi
 
       - name: Comment on PR (if applicable)
