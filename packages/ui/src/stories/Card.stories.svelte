@@ -44,10 +44,31 @@
   })
 </script>
 
-<Story name="Default">
+<Story name="Default" args={{}}>
   {#snippet template(args)}
     <div class="max-w-sm">
-      <Card {...args} />
+      <Card
+        title={args.title || 'Card Title'}
+        subtitle={args.subtitle}
+        description={args.description}
+        image={args.image}
+        imageAlt={args.imageAlt}
+        buttonText={args.buttonText}
+        showAction={args.showAction ?? true}
+        actionType={args.actionType || 'button'}
+        variant={args.variant || 'default'}
+        favorite={args.favorite ?? false}
+        disabled={args.disabled ?? false}
+        class={args.class}
+        id={args.id}
+        onclick={args.onclick}
+        onButtonClick={args.onButtonClick}
+        onFavoriteClick={args.onFavoriteClick}
+      >
+        {#if args.children}
+          {@render args.children()}
+        {/if}
+      </Card>
     </div>
   {/snippet}
 </Story>
@@ -55,15 +76,53 @@
 <Story name="With Image" args={{ image: 'https://picsum.photos/400/300', imageAlt: 'Sample image' }}>
   {#snippet template(args)}
     <div class="max-w-sm">
-      <Card {...args} />
+      <Card
+        title={args.title || 'Card Title'}
+        subtitle={args.subtitle}
+        description={args.description}
+        image={args.image}
+        imageAlt={args.imageAlt}
+        buttonText={args.buttonText}
+        showAction={args.showAction ?? true}
+        actionType={args.actionType || 'button'}
+        variant={args.variant || 'default'}
+        favorite={args.favorite ?? false}
+        disabled={args.disabled ?? false}
+        class={args.class}
+        id={args.id}
+        onclick={args.onclick}
+        onButtonClick={args.onButtonClick}
+        onFavoriteClick={args.onFavoriteClick}
+      >
+        {#if args.children}
+          {@render args.children()}
+        {/if}
+      </Card>
     </div>
   {/snippet}
 </Story>
 
-<Story name="With Icon">
+<Story name="With Icon" args={{}}>
   {#snippet template(args)}
     <div class="max-w-sm">
-      <Card {...args}>
+      <Card
+        title={args.title || 'Card Title'}
+        subtitle={args.subtitle}
+        description={args.description}
+        image={args.image}
+        imageAlt={args.imageAlt}
+        buttonText={args.buttonText}
+        showAction={args.showAction ?? true}
+        actionType={args.actionType || 'button'}
+        variant={args.variant || 'default'}
+        favorite={args.favorite ?? false}
+        disabled={args.disabled ?? false}
+        class={args.class}
+        id={args.id}
+        onclick={args.onclick}
+        onButtonClick={args.onButtonClick}
+        onFavoriteClick={args.onFavoriteClick}
+      >
         {#snippet children()}
           <ProfileIcon class="h-8 w-8" />
         {/snippet}
@@ -75,15 +134,57 @@
 <Story name="Compact Variant" args={{ variant: 'compact' }}>
   {#snippet template(args)}
     <div class="max-w-sm">
-      <Card {...args} />
+      <Card
+        title={args.title || 'Card Title'}
+        subtitle={args.subtitle}
+        description={args.description}
+        image={args.image}
+        imageAlt={args.imageAlt}
+        buttonText={args.buttonText}
+        showAction={args.showAction ?? true}
+        actionType={args.actionType || 'button'}
+        variant={args.variant || 'default'}
+        favorite={args.favorite ?? false}
+        disabled={args.disabled ?? false}
+        class={args.class}
+        id={args.id}
+        onclick={args.onclick}
+        onButtonClick={args.onButtonClick}
+        onFavoriteClick={args.onFavoriteClick}
+      >
+        {#if args.children}
+          {@render args.children()}
+        {/if}
+      </Card>
     </div>
   {/snippet}
 </Story>
 
-<Story name="With Favorite">
+<Story name="With Favorite" args={{}}>
   {#snippet template(args)}
     <div class="max-w-sm">
-      <Card {...args} onFavoriteClick={() => console.log('Favorite clicked')} favorite={true} />
+      <Card
+        title={args.title || 'Card Title'}
+        subtitle={args.subtitle}
+        description={args.description}
+        image={args.image}
+        imageAlt={args.imageAlt}
+        buttonText={args.buttonText}
+        showAction={args.showAction ?? true}
+        actionType={args.actionType || 'button'}
+        variant={args.variant || 'default'}
+        favorite={true}
+        disabled={args.disabled ?? false}
+        class={args.class}
+        id={args.id}
+        onclick={args.onclick}
+        onButtonClick={args.onButtonClick}
+        onFavoriteClick={() => console.log('Favorite clicked')}
+      >
+        {#if args.children}
+          {@render args.children()}
+        {/if}
+      </Card>
     </div>
   {/snippet}
 </Story>
@@ -91,7 +192,28 @@
 <Story name="Arrow Action" args={{ actionType: 'arrow' }}>
   {#snippet template(args)}
     <div class="max-w-sm">
-      <Card {...args} />
+      <Card
+        title={args.title || 'Card Title'}
+        subtitle={args.subtitle}
+        description={args.description}
+        image={args.image}
+        imageAlt={args.imageAlt}
+        buttonText={args.buttonText}
+        showAction={args.showAction ?? true}
+        actionType={args.actionType || 'button'}
+        variant={args.variant || 'default'}
+        favorite={args.favorite ?? false}
+        disabled={args.disabled ?? false}
+        class={args.class}
+        id={args.id}
+        onclick={args.onclick}
+        onButtonClick={args.onButtonClick}
+        onFavoriteClick={args.onFavoriteClick}
+      >
+        {#if args.children}
+          {@render args.children()}
+        {/if}
+      </Card>
     </div>
   {/snippet}
 </Story>
@@ -99,7 +221,28 @@
 <Story name="No Action" args={{ showAction: false }}>
   {#snippet template(args)}
     <div class="max-w-sm">
-      <Card {...args} />
+      <Card
+        title={args.title || 'Card Title'}
+        subtitle={args.subtitle}
+        description={args.description}
+        image={args.image}
+        imageAlt={args.imageAlt}
+        buttonText={args.buttonText}
+        showAction={args.showAction ?? true}
+        actionType={args.actionType || 'button'}
+        variant={args.variant || 'default'}
+        favorite={args.favorite ?? false}
+        disabled={args.disabled ?? false}
+        class={args.class}
+        id={args.id}
+        onclick={args.onclick}
+        onButtonClick={args.onButtonClick}
+        onFavoriteClick={args.onFavoriteClick}
+      >
+        {#if args.children}
+          {@render args.children()}
+        {/if}
+      </Card>
     </div>
   {/snippet}
 </Story>
@@ -107,15 +250,57 @@
 <Story name="Disabled" args={{ disabled: true }}>
   {#snippet template(args)}
     <div class="max-w-sm">
-      <Card {...args} />
+      <Card
+        title={args.title || 'Card Title'}
+        subtitle={args.subtitle}
+        description={args.description}
+        image={args.image}
+        imageAlt={args.imageAlt}
+        buttonText={args.buttonText}
+        showAction={args.showAction ?? true}
+        actionType={args.actionType || 'button'}
+        variant={args.variant || 'default'}
+        favorite={args.favorite ?? false}
+        disabled={args.disabled ?? false}
+        class={args.class}
+        id={args.id}
+        onclick={args.onclick}
+        onButtonClick={args.onButtonClick}
+        onFavoriteClick={args.onFavoriteClick}
+      >
+        {#if args.children}
+          {@render args.children()}
+        {/if}
+      </Card>
     </div>
   {/snippet}
 </Story>
 
-<Story name="Clickable Card">
+<Story name="Clickable Card" args={{}}>
   {#snippet template(args)}
     <div class="max-w-sm">
-      <Card {...args} onclick={() => console.log('Card clicked')} onButtonClick={() => console.log('Button clicked')} />
+      <Card
+        title={args.title || 'Card Title'}
+        subtitle={args.subtitle}
+        description={args.description}
+        image={args.image}
+        imageAlt={args.imageAlt}
+        buttonText={args.buttonText}
+        showAction={args.showAction ?? true}
+        actionType={args.actionType || 'button'}
+        variant={args.variant || 'default'}
+        favorite={args.favorite ?? false}
+        disabled={args.disabled ?? false}
+        class={args.class}
+        id={args.id}
+        onclick={() => console.log('Card clicked')}
+        onButtonClick={() => console.log('Button clicked')}
+        onFavoriteClick={args.onFavoriteClick}
+      >
+        {#if args.children}
+          {@render args.children()}
+        {/if}
+      </Card>
     </div>
   {/snippet}
 </Story>
@@ -123,12 +308,33 @@
 <Story name="Simple Card" args={{ subtitle: '', description: '', showAction: false }}>
   {#snippet template(args)}
     <div class="max-w-sm">
-      <Card {...args} />
+      <Card
+        title={args.title || 'Card Title'}
+        subtitle={args.subtitle}
+        description={args.description}
+        image={args.image}
+        imageAlt={args.imageAlt}
+        buttonText={args.buttonText}
+        showAction={args.showAction ?? true}
+        actionType={args.actionType || 'button'}
+        variant={args.variant || 'default'}
+        favorite={args.favorite ?? false}
+        disabled={args.disabled ?? false}
+        class={args.class}
+        id={args.id}
+        onclick={args.onclick}
+        onButtonClick={args.onButtonClick}
+        onFavoriteClick={args.onFavoriteClick}
+      >
+        {#if args.children}
+          {@render args.children()}
+        {/if}
+      </Card>
     </div>
   {/snippet}
 </Story>
 
-<Story name="All Variants">
+<Story name="All Variants" args={{}}>
   {#snippet template()}
     <div class="space-y-8">
       <!-- Default Cards -->

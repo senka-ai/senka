@@ -40,7 +40,20 @@
 
 <Story name="Basic" args={{ title: 'Basic List Item' }}>
   {#snippet template(args)}
-    <ListItem {...args} />
+    <ListItem
+      title={args.title || 'List Item'}
+      description={args.description}
+      showChevron={args.showChevron ?? false}
+      compact={args.compact ?? false}
+      iconSize={args.iconSize}
+      class={args.class}
+      id={args.id}
+      disabled={args.disabled ?? false}
+      onclick={args.onclick}
+      onkeydown={args.onkeydown}
+      onfocus={args.onfocus}
+      onblur={args.onblur}
+    />
   {/snippet}
 </Story>
 
@@ -49,13 +62,39 @@
   args={{ title: 'Item with Description', description: 'This item has additional descriptive text below the title' }}
 >
   {#snippet template(args)}
-    <ListItem {...args} />
+    <ListItem
+      title={args.title || 'List Item'}
+      description={args.description}
+      showChevron={args.showChevron ?? false}
+      compact={args.compact ?? false}
+      iconSize={args.iconSize}
+      class={args.class}
+      id={args.id}
+      disabled={args.disabled ?? false}
+      onclick={args.onclick}
+      onkeydown={args.onkeydown}
+      onfocus={args.onfocus}
+      onblur={args.onblur}
+    />
   {/snippet}
 </Story>
 
 <Story name="With Left Icon" args={{ title: 'Favorite Item', description: 'This item has a heart icon' }}>
   {#snippet template(args)}
-    <ListItem {...args}>
+    <ListItem
+      title={args.title || 'List Item'}
+      description={args.description}
+      showChevron={args.showChevron ?? false}
+      compact={args.compact ?? false}
+      iconSize={args.iconSize}
+      class={args.class}
+      id={args.id}
+      disabled={args.disabled ?? false}
+      onclick={args.onclick}
+      onkeydown={args.onkeydown}
+      onfocus={args.onfocus}
+      onblur={args.onblur}
+    >
       {#snippet leftIcon()}
         <HeartFilledIcon size={24} class="text-highlight" />
       {/snippet}
@@ -65,7 +104,20 @@
 
 <Story name="With Avatar" args={{ title: 'John Doe', description: 'Software Developer' }}>
   {#snippet template(args)}
-    <ListItem {...args}>
+    <ListItem
+      title={args.title || 'List Item'}
+      description={args.description}
+      showChevron={args.showChevron ?? false}
+      compact={args.compact ?? false}
+      iconSize={args.iconSize}
+      class={args.class}
+      id={args.id}
+      disabled={args.disabled ?? false}
+      onclick={args.onclick}
+      onkeydown={args.onkeydown}
+      onfocus={args.onfocus}
+      onblur={args.onblur}
+    >
       {#snippet leftIcon()}
         <Avatar size="small" alt="John Doe" initials="JD" />
       {/snippet}
@@ -78,13 +130,39 @@
   args={{ title: 'Clickable Item', description: 'Click to navigate', showChevron: true, clickable: true }}
 >
   {#snippet template(args)}
-    <ListItem {...args} onclick={() => alert('Item clicked!')} />
+    <ListItem
+      title={args.title || 'List Item'}
+      description={args.description}
+      showChevron={args.showChevron ?? false}
+      compact={args.compact ?? false}
+      iconSize={args.iconSize}
+      class={args.class}
+      id={args.id}
+      disabled={args.disabled ?? false}
+      onkeydown={args.onkeydown}
+      onfocus={args.onfocus}
+      onblur={args.onblur}
+      onclick={() => alert('Item clicked!')}
+    />
   {/snippet}
 </Story>
 
 <Story name="With Toggle" args={{ title: 'Settings Option', description: 'Enable or disable this feature' }}>
   {#snippet template(args)}
-    <ListItem {...args}>
+    <ListItem
+      title={args.title || 'List Item'}
+      description={args.description}
+      showChevron={args.showChevron ?? false}
+      compact={args.compact ?? false}
+      iconSize={args.iconSize}
+      class={args.class}
+      id={args.id}
+      disabled={args.disabled ?? false}
+      onclick={args.onclick}
+      onkeydown={args.onkeydown}
+      onfocus={args.onfocus}
+      onblur={args.onblur}
+    >
       {#snippet leftIcon()}
         <StarFilledIcon size={24} class="text-highlight" />
       {/snippet}
@@ -97,7 +175,20 @@
 
 <Story name="With Checkbox" args={{ title: 'Task Item', description: 'Complete this task' }}>
   {#snippet template(args)}
-    <ListItem {...args}>
+    <ListItem
+      title={args.title || 'List Item'}
+      description={args.description}
+      showChevron={args.showChevron ?? false}
+      compact={args.compact ?? false}
+      iconSize={args.iconSize}
+      class={args.class}
+      id={args.id}
+      disabled={args.disabled ?? false}
+      onclick={args.onclick}
+      onkeydown={args.onkeydown}
+      onfocus={args.onfocus}
+      onblur={args.onblur}
+    >
       {#snippet leftIcon()}
         <div class="bg-highlight flex h-6 w-6 items-center justify-center rounded-full">
           <svg class="h-4 w-4 text-white" fill="currentColor" viewBox="0 0 20 20">
@@ -118,7 +209,20 @@
 
 <Story name="With Status Indicator" args={{ title: 'Online User', description: 'Currently active' }}>
   {#snippet template(args)}
-    <ListItem {...args}>
+    <ListItem
+      title={args.title || 'List Item'}
+      description={args.description}
+      showChevron={args.showChevron ?? false}
+      compact={args.compact ?? false}
+      iconSize={args.iconSize}
+      class={args.class}
+      id={args.id}
+      disabled={args.disabled ?? false}
+      onclick={args.onclick}
+      onkeydown={args.onkeydown}
+      onfocus={args.onfocus}
+      onblur={args.onblur}
+    >
       {#snippet leftIcon()}
         <Avatar size="small" alt="User" initials="U" />
       {/snippet}
@@ -131,7 +235,20 @@
 
 <Story name="Disabled" args={{ title: 'Disabled Item', description: 'This item is not available', disabled: true }}>
   {#snippet template(args)}
-    <ListItem {...args}>
+    <ListItem
+      title={args.title || 'List Item'}
+      description={args.description}
+      showChevron={args.showChevron ?? false}
+      compact={args.compact ?? false}
+      iconSize={args.iconSize}
+      class={args.class}
+      id={args.id}
+      disabled={args.disabled ?? false}
+      onclick={args.onclick}
+      onkeydown={args.onkeydown}
+      onfocus={args.onfocus}
+      onblur={args.onblur}
+    >
       {#snippet leftIcon()}
         <ProfileIcon size={24} class="text-neutral-400" />
       {/snippet}
@@ -139,7 +256,7 @@
   {/snippet}
 </Story>
 
-<Story name="All Variants">
+<Story name="All Variants" args={{}}>
   {#snippet template()}
     <div class="space-y-2">
       <ListItem title="Basic Item" />
@@ -181,7 +298,7 @@
   {/snippet}
 </Story>
 
-<Story name="Real World Examples">
+<Story name="Real World Examples" args={{}}>
   {#snippet template()}
     <div class="space-y-6">
       <!-- Contact List -->

@@ -1,5 +1,5 @@
 <script lang="ts">
-  import type { FormInputComponent, IconComponent, IconSizeComponent } from '../../types/component'
+  import type { FormInputComponent, IconComponent, IconSizeComponent, InputHandlers } from '../../types/component'
   import { useFocusState } from '../../utils/state.svelte'
   import { getInputPadding, getInputIconClasses } from '../../utils/icons'
   import { validateValue, type ValidationRule } from '../../utils/validation.svelte'
@@ -7,7 +7,7 @@
   import { FormRenderer, IconRenderer } from '../../utils/rendering'
   import FormField from './FormField.svelte'
 
-  interface Props extends FormInputComponent, IconComponent, IconSizeComponent {
+  interface Props extends FormInputComponent, IconComponent, IconSizeComponent, InputHandlers {
     unit?: string
     inputState?: 'default' | 'focused' | 'error' | 'disabled'
     showPlaceholder?: boolean

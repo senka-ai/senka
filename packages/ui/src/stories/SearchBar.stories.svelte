@@ -78,7 +78,7 @@
   {/snippet}
 </Story>
 
-<Story name="All States">
+<Story name="All States" args={{}}>
   {#snippet template()}
     <div class="max-w-md space-y-4">
       <SearchBar placeholder="Search" />

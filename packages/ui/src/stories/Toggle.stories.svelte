@@ -74,7 +74,7 @@
   {/snippet}
 </Story>
 
-<Story name="All Sizes">
+<Story name="All Sizes" args={{}}>
   {#snippet template()}
     <div class="space-y-4">
       <div class="flex items-center gap-4">
@@ -93,7 +93,7 @@
   {/snippet}
 </Story>
 
-<Story name="Interactive Example">
+<Story name="Interactive Example" args={{}}>
   {#snippet template()}
     <div class="space-y-4">
       <p class="text-neutral-600">Toggle settings:</p>

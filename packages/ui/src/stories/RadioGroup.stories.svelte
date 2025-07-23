@@ -32,7 +32,7 @@
   })
 </script>
 
-<Story name="Default">
+<Story name="Default" args={{}}>
   {#snippet template()}
     <RadioGroup name="colors">
       {#snippet children()}
@@ -44,7 +44,7 @@
   {/snippet}
 </Story>
 
-<Story name="Different Sizes">
+<Story name="Different Sizes" args={{}}>
   {#snippet template()}
     <RadioGroup name="mixed-sizes">
       {#snippet children()}
@@ -57,7 +57,7 @@
   {/snippet}
 </Story>
 
-<Story name="Rich Content Options">
+<Story name="Rich Content Options" args={{}}>
   {#snippet template()}
     <RadioGroup name="plans">
       {#snippet children()}
@@ -90,7 +90,7 @@
   {/snippet}
 </Story>
 
-<Story name="Disabled Group">
+<Story name="Disabled Group" args={{}}>
   {#snippet template()}
     <RadioGroup name="disabled-options" disabled={true}>
       {#snippet children()}
@@ -102,7 +102,7 @@
   {/snippet}
 </Story>
 
-<Story name="Horizontal Layout">
+<Story name="Horizontal Layout" args={{}}>
   {#snippet template()}
     <RadioGroup name="horizontal" class="flex-row gap-6">
       {#snippet children()}

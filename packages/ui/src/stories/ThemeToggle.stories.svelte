@@ -55,7 +55,7 @@
   {/snippet}
 </Story>
 
-<Story name="All Sizes">
+<Story name="All Sizes" args={{}}>
   {#snippet template()}
     <div class="space-y-4">
       <h3 class="text-primary text-lg font-semibold">Theme Toggle Sizes</h3>
@@ -77,7 +77,7 @@
   {/snippet}
 </Story>
 
-<Story name="In Context">
+<Story name="In Context" args={{}}>
   {#snippet template()}
     <div class="bg-background border-default rounded-lg border p-6">
       <div class="mb-4 flex items-center justify-between">

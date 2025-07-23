@@ -68,7 +68,7 @@
   })
 </script>
 
-<Story name="Icon Gallery">
+<Story name="Icon Gallery" args={{}}>
   {#snippet template(args)}
     <div class="grid grid-cols-4 gap-2 p-6 md:grid-cols-6 lg:grid-cols-8">
       <div class="flex flex-col items-center gap-2">
@@ -255,7 +255,7 @@
   {/snippet}
 </Story>
 
-<Story name="Icon Sizes">
+<Story name="Icon Sizes" args={{}}>
   {#snippet template()}
     <div class="space-y-2">
       <div class="flex items-center gap-4">
@@ -290,7 +290,7 @@
   {/snippet}
 </Story>
 
-<Story name="Icon Colors">
+<Story name="Icon Colors" args={{}}>
   {#snippet template()}
     <div class="space-y-2">
       <div class="flex items-center gap-4">
@@ -332,7 +332,7 @@
   {/snippet}
 </Story>
 
-<Story name="Arrow Icons">
+<Story name="Arrow Icons" args={{}}>
   {#snippet template()}
     <div class="p-6">
       <div class="flex flex-col items-center gap-2">
@@ -355,7 +355,7 @@
   {/snippet}
 </Story>
 
-<Story name="Status Icons">
+<Story name="Status Icons" args={{}}>
   {#snippet template()}
     <div class="space-y-2 p-6">
       <div class="flex flex-col items-center gap-2">
@@ -386,7 +386,7 @@
   {/snippet}
 </Story>
 
-<Story name="Social Icons">
+<Story name="Social Icons" args={{}}>
   {#snippet template()}
     <div class="space-y-2 p-6">
       <div class="flex flex-col items-center gap-2">

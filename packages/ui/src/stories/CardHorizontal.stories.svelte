@@ -38,10 +38,29 @@
   })
 </script>
 
-<Story name="Default">
+<Story name="Default" args={{}}>
   {#snippet template(args)}
     <div class="max-w-md">
-      <CardHorizontal {...args} />
+      <CardHorizontal
+        title={args.title || 'Title'}
+        subtitle={args.subtitle}
+        image={args.image}
+        imageAlt={args.imageAlt}
+        iconType={args.iconType || 'image'}
+        buttonText={args.buttonText}
+        showAction={args.showAction ?? true}
+        actionType={args.actionType || 'button'}
+        iconColor={args.iconColor}
+        disabled={args.disabled ?? false}
+        class={args.class}
+        id={args.id}
+        onclick={args.onclick}
+        onButtonClick={args.onButtonClick}
+      >
+        {#if args.children}
+          {@render args.children()}
+        {/if}
+      </CardHorizontal>
     </div>
   {/snippet}
 </Story>
@@ -49,15 +68,48 @@
 <Story name="With Image" args={{ image: 'https://picsum.photos/80/80', imageAlt: 'Sample image' }}>
   {#snippet template(args)}
     <div class="max-w-md">
-      <CardHorizontal {...args} />
+      <CardHorizontal
+        title={args.title || 'Title'}
+        subtitle={args.subtitle}
+        image={args.image}
+        imageAlt={args.imageAlt}
+        iconType={args.iconType || 'image'}
+        buttonText={args.buttonText}
+        showAction={args.showAction ?? true}
+        actionType={args.actionType || 'button'}
+        iconColor={args.iconColor}
+        disabled={args.disabled ?? false}
+        class={args.class}
+        id={args.id}
+        onclick={args.onclick}
+        onButtonClick={args.onButtonClick}
+      >
+        {#if args.children}
+          {@render args.children()}
+        {/if}
+      </CardHorizontal>
     </div>
   {/snippet}
 </Story>
 
-<Story name="Avatar Type" args={{ iconType: 'custom' }}>
+<Story name="Avatar Type" args={{ title: 'Avatar Card', iconType: 'custom' }}>
   {#snippet template(args)}
     <div class="max-w-md">
-      <CardHorizontal {...args}>
+      <CardHorizontal
+        title={args.title || 'Card Title'}
+        subtitle={args.subtitle}
+        image={args.image}
+        imageAlt={args.imageAlt}
+        iconType={args.iconType || 'image'}
+        buttonText={args.buttonText}
+        showAction={args.showAction ?? true}
+        actionType={args.actionType || 'button'}
+        disabled={args.disabled ?? false}
+        class={args.class}
+        id={args.id}
+        onclick={args.onclick}
+        onButtonClick={args.onButtonClick}
+      >
         {#snippet children()}
           <ProfileIcon class="h-6 w-6" />
         {/snippet}
@@ -66,10 +118,24 @@
   {/snippet}
 </Story>
 
-<Story name="Heart Type" args={{ iconType: 'custom' }}>
+<Story name="Heart Type" args={{ title: 'Heart Card', iconType: 'custom' }}>
   {#snippet template(args)}
     <div class="max-w-md">
-      <CardHorizontal {...args}>
+      <CardHorizontal
+        title={args.title || 'Card Title'}
+        subtitle={args.subtitle}
+        image={args.image}
+        imageAlt={args.imageAlt}
+        iconType={args.iconType || 'image'}
+        buttonText={args.buttonText}
+        showAction={args.showAction ?? true}
+        actionType={args.actionType || 'button'}
+        disabled={args.disabled ?? false}
+        class={args.class}
+        id={args.id}
+        onclick={args.onclick}
+        onButtonClick={args.onButtonClick}
+      >
         {#snippet children()}
           <HeartFilledIcon class="h-6 w-6" />
         {/snippet}
@@ -81,7 +147,22 @@
 <Story name="Custom Icon" args={{ iconType: 'custom' }}>
   {#snippet template(args)}
     <div class="max-w-md">
-      <CardHorizontal {...args}>
+      <CardHorizontal
+        title={args.title || 'Title'}
+        subtitle={args.subtitle}
+        image={args.image}
+        imageAlt={args.imageAlt}
+        iconType={args.iconType || 'image'}
+        buttonText={args.buttonText}
+        showAction={args.showAction ?? true}
+        actionType={args.actionType || 'button'}
+        iconColor={args.iconColor}
+        disabled={args.disabled ?? false}
+        class={args.class}
+        id={args.id}
+        onclick={args.onclick}
+        onButtonClick={args.onButtonClick}
+      >
         {#snippet children()}
           <ChatIcon class="text-highlight h-6 w-6" />
         {/snippet}
@@ -93,7 +174,26 @@
 <Story name="Arrow Action" args={{ actionType: 'arrow' }}>
   {#snippet template(args)}
     <div class="max-w-md">
-      <CardHorizontal {...args} />
+      <CardHorizontal
+        title={args.title || 'Title'}
+        subtitle={args.subtitle}
+        image={args.image}
+        imageAlt={args.imageAlt}
+        iconType={args.iconType || 'image'}
+        buttonText={args.buttonText}
+        showAction={args.showAction ?? true}
+        actionType={args.actionType || 'button'}
+        iconColor={args.iconColor}
+        disabled={args.disabled ?? false}
+        class={args.class}
+        id={args.id}
+        onclick={args.onclick}
+        onButtonClick={args.onButtonClick}
+      >
+        {#if args.children}
+          {@render args.children()}
+        {/if}
+      </CardHorizontal>
     </div>
   {/snippet}
 </Story>
@@ -101,7 +201,26 @@
 <Story name="No Action" args={{ showAction: false }}>
   {#snippet template(args)}
     <div class="max-w-md">
-      <CardHorizontal {...args} />
+      <CardHorizontal
+        title={args.title || 'Title'}
+        subtitle={args.subtitle}
+        image={args.image}
+        imageAlt={args.imageAlt}
+        iconType={args.iconType || 'image'}
+        buttonText={args.buttonText}
+        showAction={args.showAction ?? true}
+        actionType={args.actionType || 'button'}
+        iconColor={args.iconColor}
+        disabled={args.disabled ?? false}
+        class={args.class}
+        id={args.id}
+        onclick={args.onclick}
+        onButtonClick={args.onButtonClick}
+      >
+        {#if args.children}
+          {@render args.children()}
+        {/if}
+      </CardHorizontal>
     </div>
   {/snippet}
 </Story>
@@ -109,7 +228,26 @@
 <Story name="Disabled" args={{ disabled: true }}>
   {#snippet template(args)}
     <div class="max-w-md">
-      <CardHorizontal {...args} />
+      <CardHorizontal
+        title={args.title || 'Title'}
+        subtitle={args.subtitle}
+        image={args.image}
+        imageAlt={args.imageAlt}
+        iconType={args.iconType || 'image'}
+        buttonText={args.buttonText}
+        showAction={args.showAction ?? true}
+        actionType={args.actionType || 'button'}
+        iconColor={args.iconColor}
+        disabled={args.disabled ?? false}
+        class={args.class}
+        id={args.id}
+        onclick={args.onclick}
+        onButtonClick={args.onButtonClick}
+      >
+        {#if args.children}
+          {@render args.children()}
+        {/if}
+      </CardHorizontal>
     </div>
   {/snippet}
 </Story>
@@ -118,7 +256,17 @@
   {#snippet template(args)}
     <div class="max-w-md">
       <CardHorizontal
-        {...args}
+        title={args.title || 'Card Title'}
+        subtitle={args.subtitle}
+        image={args.image}
+        imageAlt={args.imageAlt}
+        iconType={args.iconType || 'image'}
+        buttonText={args.buttonText}
+        showAction={args.showAction ?? true}
+        actionType={args.actionType || 'button'}
+        disabled={args.disabled ?? false}
+        class={args.class}
+        id={args.id}
         onclick={() => console.log('Card clicked')}
         onButtonClick={() => console.log('Button clicked')}
       />
@@ -129,12 +277,31 @@
 <Story name="Text Only" args={{ iconType: 'image', showAction: false }}>
   {#snippet template(args)}
     <div class="max-w-md">
-      <CardHorizontal {...args} />
+      <CardHorizontal
+        title={args.title || 'Title'}
+        subtitle={args.subtitle}
+        image={args.image}
+        imageAlt={args.imageAlt}
+        iconType={args.iconType || 'image'}
+        buttonText={args.buttonText}
+        showAction={args.showAction ?? true}
+        actionType={args.actionType || 'button'}
+        iconColor={args.iconColor}
+        disabled={args.disabled ?? false}
+        class={args.class}
+        id={args.id}
+        onclick={args.onclick}
+        onButtonClick={args.onButtonClick}
+      >
+        {#if args.children}
+          {@render args.children()}
+        {/if}
+      </CardHorizontal>
     </div>
   {/snippet}
 </Story>
 
-<Story name="All Variants">
+<Story name="All Variants" args={{}}>
   {#snippet template()}
     <div class="max-w-lg space-y-6">
       <!-- Image Variants -->

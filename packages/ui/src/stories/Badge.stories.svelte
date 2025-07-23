@@ -64,7 +64,7 @@
   {/snippet}
 </Story>
 
-<Story name="All Variants">
+<Story name="All Variants" args={{}}>
   {#snippet template()}
     <div class="space-y-4">
       <div class="flex items-center gap-4">

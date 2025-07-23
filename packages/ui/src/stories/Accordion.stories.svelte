@@ -7,7 +7,6 @@
     component: Accordion,
     args: {
       title: 'Accordion Title',
-      open: false,
     },
     argTypes: {
       title: {
@@ -28,7 +27,15 @@
 
 <Story name="Basic Closed" args={{ title: 'Basic Accordion', open: false }}>
   {#snippet template(args)}
-    <Accordion {...args}>
+    <Accordion
+      title={args.title || 'Basic Accordion'}
+      open={args.open ?? false}
+      disabled={args.disabled ?? false}
+      class={args.class}
+      id={args.id}
+      onToggle={args.onToggle}
+      onkeydown={args.onkeydown}
+    >
       {#snippet children()}
         <p class="text-body-m text-secondary">
           This is the content inside the accordion. It can contain any HTML elements like text, images, or other
@@ -41,7 +48,15 @@
 
 <Story name="Basic Open" args={{ title: 'Open Accordion', open: true }}>
   {#snippet template(args)}
-    <Accordion {...args}>
+    <Accordion
+      title={args.title || 'Open Accordion'}
+      open={args.open ?? true}
+      disabled={args.disabled ?? false}
+      class={args.class}
+      id={args.id}
+      onToggle={args.onToggle}
+      onkeydown={args.onkeydown}
+    >
       {#snippet children()}
         <p class="text-body-m text-secondary">
           This accordion starts in an open state. The chevron icon points up and the content is visible.
@@ -53,7 +68,15 @@
 
 <Story name="With Rich Content" args={{ title: 'Accordion with Rich Content', open: false }}>
   {#snippet template(args)}
-    <Accordion {...args}>
+    <Accordion
+      title={args.title || 'Accordion with Rich Content'}
+      open={args.open ?? false}
+      disabled={args.disabled ?? false}
+      class={args.class}
+      id={args.id}
+      onToggle={args.onToggle}
+      onkeydown={args.onkeydown}
+    >
       {#snippet children()}
         <div class="space-y-3">
           <h4 class="text-h4 text-primary">Rich Content Example</h4>
@@ -76,7 +99,15 @@
 
 <Story name="Disabled" args={{ title: 'Disabled Accordion', disabled: true }}>
   {#snippet template(args)}
-    <Accordion {...args}>
+    <Accordion
+      title={args.title || 'Disabled Accordion'}
+      disabled={args.disabled ?? true}
+      open={args.open ?? false}
+      class={args.class}
+      id={args.id}
+      onToggle={args.onToggle}
+      onkeydown={args.onkeydown}
+    >
       {#snippet children()}
         <p class="text-body-m text-secondary">This accordion is disabled and cannot be toggled.</p>
       {/snippet}
@@ -86,7 +117,15 @@
 
 <Story name="With Toggle Callback" args={{ title: 'Interactive Accordion', open: false }}>
   {#snippet template(args)}
-    <Accordion {...args} onToggle={(open) => console.log('Accordion toggled:', open)}>
+    <Accordion
+      title={args.title || 'Interactive Accordion'}
+      open={args.open ?? false}
+      disabled={args.disabled ?? false}
+      class={args.class}
+      id={args.id}
+      onToggle={(open) => console.log('Accordion toggled:', open)}
+      onkeydown={args.onkeydown}
+    >
       {#snippet children()}
         <p class="text-body-m text-secondary">
           This accordion logs to the console when toggled. Check the browser console to see the output.
@@ -96,7 +135,7 @@
   {/snippet}
 </Story>
 
-<Story name="Multiple Accordions">
+<Story name="Multiple Accordions" args={{}}>
   {#snippet template()}
     <div class="space-y-4">
       <Accordion title="First Section" open={true}>
@@ -124,7 +163,7 @@
   {/snippet}
 </Story>
 
-<Story name="FAQ Example">
+<Story name="FAQ Example" args={{}}>
   {#snippet template()}
     <div class="space-y-4">
       <h2 class="text-h3 text-primary mb-4">Frequently Asked Questions</h2>

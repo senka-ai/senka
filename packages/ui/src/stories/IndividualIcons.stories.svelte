@@ -46,7 +46,7 @@
   } from '../lib/icons'
 </script>
 
-<Story name="Add Icon">
+<Story name="Add Icon" args={{}}>
   {#snippet template(args)}
     <div class="flex items-center gap-4 p-6">
       <AddIcon {...args} />
@@ -55,7 +55,7 @@
   {/snippet}
 </Story>
 
-<Story name="Search Icon">
+<Story name="Search Icon" args={{}}>
   {#snippet template(args)}
     <div class="flex items-center gap-4 p-6">
       <SearchIcon {...args} />
@@ -64,7 +64,7 @@
   {/snippet}
 </Story>
 
-<Story name="Settings Icon">
+<Story name="Settings Icon" args={{}}>
   {#snippet template(args)}
     <div class="flex items-center gap-4 p-6">
       <SettingsIcon {...args} />
@@ -73,7 +73,7 @@
   {/snippet}
 </Story>
 
-<Story name="Profile Icon">
+<Story name="Profile Icon" args={{}}>
   {#snippet template(args)}
     <div class="flex items-center gap-4 p-6">
       <ProfileIcon {...args} />
@@ -82,7 +82,7 @@
   {/snippet}
 </Story>
 
-<Story name="Edit Icon">
+<Story name="Edit Icon" args={{}}>
   {#snippet template(args)}
     <div class="flex items-center gap-4 p-6">
       <EditIcon {...args} />
@@ -91,7 +91,7 @@
   {/snippet}
 </Story>
 
-<Story name="Delete Icon">
+<Story name="Delete Icon" args={{}}>
   {#snippet template(args)}
     <div class="flex items-center gap-4 p-6">
       <DeleteIcon {...args} />
@@ -100,7 +100,7 @@
   {/snippet}
 </Story>
 
-<Story name="Check Icon">
+<Story name="Check Icon" args={{}}>
   {#snippet template(args)}
     <div class="flex items-center gap-4 p-6">
       <CheckIcon {...args} />
@@ -109,7 +109,7 @@
   {/snippet}
 </Story>
 
-<Story name="Close Icon">
+<Story name="Close Icon" args={{}}>
   {#snippet template(args)}
     <div class="flex items-center gap-4 p-6">
       <CloseIcon {...args} />
@@ -118,7 +118,7 @@
   {/snippet}
 </Story>
 
-<Story name="Arrow Icons">
+<Story name="Arrow Icons" args={{}}>
   {#snippet template(args)}
     <div class="space-y-2 p-6">
       <div class="flex flex-col items-center gap-2">
@@ -141,7 +141,7 @@
   {/snippet}
 </Story>
 
-<Story name="Eye Icons">
+<Story name="Eye Icons" args={{}}>
   {#snippet template(args)}
     <div class="space-y-2 p-6">
       <div class="flex flex-col items-center gap-2">
@@ -156,7 +156,7 @@
   {/snippet}
 </Story>
 
-<Story name="Heart Icons">
+<Story name="Heart Icons" args={{}}>
   {#snippet template(args)}
     <div class="space-y-2 p-6">
       <div class="flex flex-col items-center gap-2">
@@ -171,7 +171,7 @@
   {/snippet}
 </Story>
 
-<Story name="Star Icons">
+<Story name="Star Icons" args={{}}>
   {#snippet template(args)}
     <div class="space-y-2 p-6">
       <div class="flex flex-col items-center gap-2">
@@ -186,7 +186,7 @@
   {/snippet}
 </Story>
 
-<Story name="Shopping Bag Icons">
+<Story name="Shopping Bag Icons" args={{}}>
   {#snippet template(args)}
     <div class="space-y-2 p-6">
       <div class="flex flex-col items-center gap-2">

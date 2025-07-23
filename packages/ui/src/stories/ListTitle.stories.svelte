@@ -24,19 +24,27 @@
 
 <Story name="Basic" args={{ title: 'My List' }}>
   {#snippet template(args)}
-    <ListTitle {...args} />
+    <ListTitle title={args.title} class={args.class} id={args.id} />
   {/snippet}
 </Story>
 
 <Story name="With Right Text" args={{ title: 'Tasks', rightText: 'Edit' }}>
   {#snippet template(args)}
-    <ListTitle {...args} />
+    <ListTitle title={args.title} class={args.class} id={args.id} />
   {/snippet}
 </Story>
 
 <Story name="With Right Icon" args={{ title: 'Search Results' }}>
   {#snippet template(args)}
-    <ListTitle {...args}>
+    <ListTitle
+      title={args.title || 'List Title'}
+      rightText={args.rightText}
+      onRightClick={args.onRightClick}
+      iconSize={args.iconSize}
+      class={args.class}
+      id={args.id}
+      disabled={args.disabled ?? false}
+    >
       {#snippet rightIcon()}
         <SearchIcon size={20} />
       {/snippet}
@@ -46,13 +54,30 @@
 
 <Story name="Clickable Right Text" args={{ title: 'Photos', rightText: 'Edit' }}>
   {#snippet template(args)}
-    <ListTitle {...args} onRightClick={() => alert('Edit clicked!')} />
+    <ListTitle
+      title={args.title || 'List Title'}
+      rightText={args.rightText}
+      rightIcon={args.rightIcon}
+      iconSize={args.iconSize}
+      class={args.class}
+      id={args.id}
+      disabled={args.disabled ?? false}
+      onRightClick={() => alert('Edit clicked!')}
+    />
   {/snippet}
 </Story>
 
 <Story name="Clickable Right Icon" args={{ title: 'Items' }}>
   {#snippet template(args)}
-    <ListTitle {...args} onRightClick={() => alert('Filter clicked!')}>
+    <ListTitle
+      title={args.title || 'List Title'}
+      rightText={args.rightText}
+      iconSize={args.iconSize}
+      class={args.class}
+      id={args.id}
+      disabled={args.disabled ?? false}
+      onRightClick={() => alert('Filter clicked!')}
+    >
       {#snippet rightIcon()}
         <FilterIcon size={20} />
       {/snippet}
@@ -60,7 +85,7 @@
   {/snippet}
 </Story>
 
-<Story name="All Variants">
+<Story name="All Variants" args={{}}>
   {#snippet template()}
     <div class="space-y-6 p-4">
       <ListTitle title="Basic List Title" />
@@ -84,7 +109,7 @@
   {/snippet}
 </Story>
 
-<Story name="Real World Examples">
+<Story name="Real World Examples" args={{}}>
   {#snippet template()}
     <div class="space-y-8 p-4">
       <div>

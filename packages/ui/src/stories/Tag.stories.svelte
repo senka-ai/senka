@@ -30,25 +30,69 @@
 
 <Story name="Primary" args={{ variant: 'primary', text: 'Primary Tag' }}>
   {#snippet template(args)}
-    <Tag {...args} />
+    <Tag
+      text={args.text || 'Tag'}
+      variant={args.variant || 'primary'}
+      iconSize={args.iconSize}
+      disabled={args.disabled ?? false}
+      class={args.class}
+      id={args.id}
+      onclick={args.onclick}
+      onkeydown={args.onkeydown}
+      onfocus={args.onfocus}
+      onblur={args.onblur}
+    />
   {/snippet}
 </Story>
 
 <Story name="Secondary" args={{ variant: 'secondary', text: 'Secondary Tag' }}>
   {#snippet template(args)}
-    <Tag {...args} />
+    <Tag
+      text={args.text || 'Tag'}
+      variant={args.variant || 'primary'}
+      iconSize={args.iconSize}
+      disabled={args.disabled ?? false}
+      class={args.class}
+      id={args.id}
+      onclick={args.onclick}
+      onkeydown={args.onkeydown}
+      onfocus={args.onfocus}
+      onblur={args.onblur}
+    />
   {/snippet}
 </Story>
 
 <Story name="Tertiary" args={{ variant: 'tertiary', text: 'Tertiary Tag' }}>
   {#snippet template(args)}
-    <Tag {...args} />
+    <Tag
+      text={args.text || 'Tag'}
+      variant={args.variant || 'primary'}
+      iconSize={args.iconSize}
+      disabled={args.disabled ?? false}
+      class={args.class}
+      id={args.id}
+      onclick={args.onclick}
+      onkeydown={args.onkeydown}
+      onfocus={args.onfocus}
+      onblur={args.onblur}
+    />
   {/snippet}
 </Story>
 
 <Story name="With Left Icon" args={{ variant: 'secondary', text: 'Favorite' }}>
   {#snippet template(args)}
-    <Tag {...args}>
+    <Tag
+      text={args.text || 'Tag'}
+      variant={args.variant || 'primary'}
+      iconSize={args.iconSize}
+      class={args.class}
+      id={args.id}
+      disabled={args.disabled ?? false}
+      onclick={args.onclick}
+      onkeydown={args.onkeydown}
+      onfocus={args.onfocus}
+      onblur={args.onblur}
+    >
       {#snippet leftIcon()}
         <StarFilledIcon size={12} />
       {/snippet}
@@ -58,7 +102,18 @@
 
 <Story name="With Right Icon" args={{ variant: 'primary', text: 'Add Item' }}>
   {#snippet template(args)}
-    <Tag {...args}>
+    <Tag
+      text={args.text || 'Tag'}
+      variant={args.variant || 'primary'}
+      iconSize={args.iconSize}
+      class={args.class}
+      id={args.id}
+      disabled={args.disabled ?? false}
+      onclick={args.onclick}
+      onkeydown={args.onkeydown}
+      onfocus={args.onfocus}
+      onblur={args.onblur}
+    >
       {#snippet rightIcon()}
         <AddIcon size={12} />
       {/snippet}
@@ -68,7 +123,18 @@
 
 <Story name="With Both Icons" args={{ variant: 'secondary', text: 'Liked' }}>
   {#snippet template(args)}
-    <Tag {...args}>
+    <Tag
+      text={args.text || 'Tag'}
+      variant={args.variant || 'primary'}
+      iconSize={args.iconSize}
+      class={args.class}
+      id={args.id}
+      disabled={args.disabled ?? false}
+      onclick={args.onclick}
+      onkeydown={args.onkeydown}
+      onfocus={args.onfocus}
+      onblur={args.onblur}
+    >
       {#snippet leftIcon()}
         <HeartFilledIcon size={12} />
       {/snippet}
@@ -81,17 +147,39 @@
 
 <Story name="Clickable" args={{ variant: 'secondary', text: 'Click me' }}>
   {#snippet template(args)}
-    <Tag {...args} onclick={() => alert('Tag clicked!')} />
+    <Tag
+      text={args.text || 'Tag'}
+      variant={args.variant || 'primary'}
+      iconSize={args.iconSize}
+      class={args.class}
+      id={args.id}
+      disabled={args.disabled ?? false}
+      onkeydown={args.onkeydown}
+      onfocus={args.onfocus}
+      onblur={args.onblur}
+      onclick={() => alert('Tag clicked!')}
+    />
   {/snippet}
 </Story>
 
 <Story name="Disabled" args={{ variant: 'primary', text: 'Disabled', disabled: true }}>
   {#snippet template(args)}
-    <Tag {...args} />
+    <Tag
+      text={args.text || 'Tag'}
+      variant={args.variant || 'primary'}
+      iconSize={args.iconSize}
+      disabled={args.disabled ?? false}
+      class={args.class}
+      id={args.id}
+      onclick={args.onclick}
+      onkeydown={args.onkeydown}
+      onfocus={args.onfocus}
+      onblur={args.onblur}
+    />
   {/snippet}
 </Story>
 
-<Story name="All Variants">
+<Story name="All Variants" args={{}}>
   {#snippet template()}
     <div class="space-y-4">
       <div class="flex items-center gap-4">

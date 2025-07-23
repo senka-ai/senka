@@ -134,9 +134,6 @@
         </Button>
       </div>
       <div class="flex items-start gap-4">
-        <Button size="xs">
-          {#snippet children()}XS{/snippet}
-        </Button>
         <Button size="small">
           {#snippet children()}Small{/snippet}
         </Button>

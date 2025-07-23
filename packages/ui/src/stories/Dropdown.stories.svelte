@@ -51,45 +51,143 @@
   })
 </script>
 
-<Story name="Default">
+<Story name="Default" args={{}}>
   {#snippet template(args)}
-    <Dropdown {...args} />
+    <Dropdown
+      options={args.options || []}
+      value={args.value}
+      label={args.label}
+      placeholder={args.placeholder}
+      helperText={args.helperText}
+      error={args.error}
+      showLabel={args.showLabel ?? true}
+      showHelperText={args.showHelperText ?? true}
+      fullWidth={args.fullWidth ?? false}
+      disabled={args.disabled ?? false}
+      class={args.class}
+      id={args.id}
+      onchange={args.onchange}
+    />
   {/snippet}
 </Story>
 
 <Story name="With Selected Value" args={{ value: 'option2' }}>
   {#snippet template(args)}
-    <Dropdown {...args} />
+    <Dropdown
+      options={args.options || []}
+      value={args.value}
+      label={args.label}
+      placeholder={args.placeholder}
+      helperText={args.helperText}
+      error={args.error}
+      showLabel={args.showLabel ?? true}
+      showHelperText={args.showHelperText ?? true}
+      fullWidth={args.fullWidth ?? false}
+      disabled={args.disabled ?? false}
+      class={args.class}
+      id={args.id}
+      onchange={args.onchange}
+    />
   {/snippet}
 </Story>
 
 <Story name="With Error" args={{ error: 'This field is required' }}>
   {#snippet template(args)}
-    <Dropdown {...args} />
+    <Dropdown
+      options={args.options || []}
+      value={args.value}
+      label={args.label}
+      placeholder={args.placeholder}
+      helperText={args.helperText}
+      error={args.error}
+      showLabel={args.showLabel ?? true}
+      showHelperText={args.showHelperText ?? true}
+      fullWidth={args.fullWidth ?? false}
+      disabled={args.disabled ?? false}
+      class={args.class}
+      id={args.id}
+      onchange={args.onchange}
+    />
   {/snippet}
 </Story>
 
 <Story name="With Helper Text" args={{ helperText: 'Choose your preferred option' }}>
   {#snippet template(args)}
-    <Dropdown {...args} />
+    <Dropdown
+      options={args.options || []}
+      value={args.value}
+      label={args.label}
+      placeholder={args.placeholder}
+      helperText={args.helperText}
+      error={args.error}
+      showLabel={args.showLabel ?? true}
+      showHelperText={args.showHelperText ?? true}
+      fullWidth={args.fullWidth ?? false}
+      disabled={args.disabled ?? false}
+      class={args.class}
+      id={args.id}
+      onchange={args.onchange}
+    />
   {/snippet}
 </Story>
 
 <Story name="Disabled" args={{ disabled: true, value: 'option1' }}>
   {#snippet template(args)}
-    <Dropdown {...args} />
+    <Dropdown
+      options={args.options || []}
+      value={args.value}
+      label={args.label}
+      placeholder={args.placeholder}
+      helperText={args.helperText}
+      error={args.error}
+      showLabel={args.showLabel ?? true}
+      showHelperText={args.showHelperText ?? true}
+      fullWidth={args.fullWidth ?? false}
+      disabled={args.disabled ?? false}
+      class={args.class}
+      id={args.id}
+      onchange={args.onchange}
+    />
   {/snippet}
 </Story>
 
 <Story name="Full Width" args={{ fullWidth: true }}>
   {#snippet template(args)}
-    <Dropdown {...args} />
+    <Dropdown
+      options={args.options || []}
+      value={args.value}
+      label={args.label}
+      placeholder={args.placeholder}
+      helperText={args.helperText}
+      error={args.error}
+      showLabel={args.showLabel ?? true}
+      showHelperText={args.showHelperText ?? true}
+      fullWidth={args.fullWidth ?? false}
+      disabled={args.disabled ?? false}
+      class={args.class}
+      id={args.id}
+      onchange={args.onchange}
+    />
   {/snippet}
 </Story>
 
 <Story name="With Disabled Options" args={{ options: optionsWithDisabled }}>
   {#snippet template(args)}
-    <Dropdown {...args} />
+    <Dropdown
+      options={args.options || []}
+      value={args.value}
+      label={args.label}
+      placeholder={args.placeholder}
+      helperText={args.helperText}
+      error={args.error}
+      showLabel={args.showLabel ?? true}
+      showHelperText={args.showHelperText ?? true}
+      fullWidth={args.fullWidth ?? false}
+      disabled={args.disabled ?? false}
+      class={args.class}
+      id={args.id}
+      onchange={args.onchange}
+    />
   {/snippet}
 </Story>
 

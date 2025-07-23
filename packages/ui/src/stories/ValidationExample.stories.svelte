@@ -17,7 +17,7 @@
   })
 </script>
 
-<Story name="Email Validation">
+<Story name="Email Validation" args={{}}>
   {#snippet template()}
     <div class="max-w-md space-y-6">
       <h3 class="text-lg font-medium">Email Validation</h3>
@@ -34,7 +34,7 @@
   {/snippet}
 </Story>
 
-<Story name="Password Requirements">
+<Story name="Password Requirements" args={{}}>
   {#snippet template()}
     <div class="max-w-md space-y-6">
       <h3 class="text-lg font-medium">Password with Multiple Rules</h3>
@@ -57,7 +57,7 @@
   {/snippet}
 </Story>
 
-<Story name="Text Length Validation">
+<Story name="Text Length Validation" args={{}}>
   {#snippet template()}
     <div class="max-w-md space-y-6">
       <h3 class="text-lg font-medium">Text Area with Length Validation</h3>
@@ -77,7 +77,7 @@
   {/snippet}
 </Story>
 
-<Story name="Custom Validation">
+<Story name="Custom Validation" args={{}}>
   {#snippet template()}
     <div class="max-w-md space-y-6">
       <h3 class="text-lg font-medium">Custom Username Validation</h3>
@@ -100,7 +100,7 @@
   {/snippet}
 </Story>
 
-<Story name="Form with Multiple Fields">
+<Story name="Form with Multiple Fields" args={{}}>
   {#snippet template()}
     <div class="max-w-md space-y-6">
       <h3 class="text-lg font-medium">Registration Form</h3>

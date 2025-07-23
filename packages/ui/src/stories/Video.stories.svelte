@@ -71,10 +71,26 @@
   })
 </script>
 
-<Story name="Default">
+<Story name="Default" args={{}}>
   {#snippet template(args)}
     <div class="w-80">
-      <Video {...args} />
+      <Video
+        src={args.src || 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4'}
+        poster={args.poster}
+        width={args.width}
+        height={args.height}
+        aspectRatio={args.aspectRatio || '16:9'}
+        controls={args.controls ?? true}
+        autoplay={args.autoplay ?? false}
+        muted={args.muted ?? false}
+        loop={args.loop ?? false}
+        preload={args.preload || 'metadata'}
+        placeholder={args.placeholder}
+        rounded={args.rounded || 'none'}
+        class={args.class}
+        id={args.id}
+        disabled={args.disabled ?? false}
+      />
     </div>
   {/snippet}
 </Story>
@@ -87,7 +103,23 @@
 >
   {#snippet template(args)}
     <div class="w-80">
-      <Video {...args} />
+      <Video
+        src={args.src || 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4'}
+        poster={args.poster}
+        width={args.width}
+        height={args.height}
+        aspectRatio={args.aspectRatio || '16:9'}
+        controls={args.controls ?? true}
+        autoplay={args.autoplay ?? false}
+        muted={args.muted ?? false}
+        loop={args.loop ?? false}
+        preload={args.preload || 'metadata'}
+        placeholder={args.placeholder}
+        rounded={args.rounded || 'none'}
+        class={args.class}
+        id={args.id}
+        disabled={args.disabled ?? false}
+      />
     </div>
   {/snippet}
 </Story>
@@ -95,7 +127,23 @@
 <Story name="Square Aspect Ratio" args={{ aspectRatio: 'square' }}>
   {#snippet template(args)}
     <div class="w-80">
-      <Video {...args} />
+      <Video
+        src={args.src || 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4'}
+        poster={args.poster}
+        width={args.width}
+        height={args.height}
+        aspectRatio={args.aspectRatio || '16:9'}
+        controls={args.controls ?? true}
+        autoplay={args.autoplay ?? false}
+        muted={args.muted ?? false}
+        loop={args.loop ?? false}
+        preload={args.preload || 'metadata'}
+        placeholder={args.placeholder}
+        rounded={args.rounded || 'none'}
+        class={args.class}
+        id={args.id}
+        disabled={args.disabled ?? false}
+      />
     </div>
   {/snippet}
 </Story>
@@ -103,7 +151,23 @@
 <Story name="No Controls" args={{ controls: false }}>
   {#snippet template(args)}
     <div class="w-80">
-      <Video {...args} />
+      <Video
+        src={args.src || 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4'}
+        poster={args.poster}
+        width={args.width}
+        height={args.height}
+        aspectRatio={args.aspectRatio || '16:9'}
+        controls={args.controls ?? true}
+        autoplay={args.autoplay ?? false}
+        muted={args.muted ?? false}
+        loop={args.loop ?? false}
+        preload={args.preload || 'metadata'}
+        placeholder={args.placeholder}
+        rounded={args.rounded || 'none'}
+        class={args.class}
+        id={args.id}
+        disabled={args.disabled ?? false}
+      />
     </div>
   {/snippet}
 </Story>
@@ -111,7 +175,23 @@
 <Story name="Autoplay Muted" args={{ autoplay: true, muted: true }}>
   {#snippet template(args)}
     <div class="w-80">
-      <Video {...args} />
+      <Video
+        src={args.src || 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4'}
+        poster={args.poster}
+        width={args.width}
+        height={args.height}
+        aspectRatio={args.aspectRatio || '16:9'}
+        controls={args.controls ?? true}
+        autoplay={args.autoplay ?? false}
+        muted={args.muted ?? false}
+        loop={args.loop ?? false}
+        preload={args.preload || 'metadata'}
+        placeholder={args.placeholder}
+        rounded={args.rounded || 'none'}
+        class={args.class}
+        id={args.id}
+        disabled={args.disabled ?? false}
+      />
     </div>
   {/snippet}
 </Story>
@@ -119,7 +199,23 @@
 <Story name="Rounded" args={{ rounded: 'lg' }}>
   {#snippet template(args)}
     <div class="w-80">
-      <Video {...args} />
+      <Video
+        src={args.src || 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4'}
+        poster={args.poster}
+        width={args.width}
+        height={args.height}
+        aspectRatio={args.aspectRatio || '16:9'}
+        controls={args.controls ?? true}
+        autoplay={args.autoplay ?? false}
+        muted={args.muted ?? false}
+        loop={args.loop ?? false}
+        preload={args.preload || 'metadata'}
+        placeholder={args.placeholder}
+        rounded={args.rounded || 'none'}
+        class={args.class}
+        id={args.id}
+        disabled={args.disabled ?? false}
+      />
     </div>
   {/snippet}
 </Story>
@@ -127,7 +223,23 @@
 <Story name="With Placeholder" args={{ placeholder: 'Loading video...' }}>
   {#snippet template(args)}
     <div class="w-80">
-      <Video {...args} />
+      <Video
+        src={args.src || 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4'}
+        poster={args.poster}
+        width={args.width}
+        height={args.height}
+        aspectRatio={args.aspectRatio || '16:9'}
+        controls={args.controls ?? true}
+        autoplay={args.autoplay ?? false}
+        muted={args.muted ?? false}
+        loop={args.loop ?? false}
+        preload={args.preload || 'metadata'}
+        placeholder={args.placeholder}
+        rounded={args.rounded || 'none'}
+        class={args.class}
+        id={args.id}
+        disabled={args.disabled ?? false}
+      />
     </div>
   {/snippet}
 </Story>
@@ -135,18 +247,50 @@
 <Story name="Error State" args={{ src: 'https://invalid-url.com/video.mp4' }}>
   {#snippet template(args)}
     <div class="w-80">
-      <Video {...args} />
+      <Video
+        src={args.src || 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4'}
+        poster={args.poster}
+        width={args.width}
+        height={args.height}
+        aspectRatio={args.aspectRatio || '16:9'}
+        controls={args.controls ?? true}
+        autoplay={args.autoplay ?? false}
+        muted={args.muted ?? false}
+        loop={args.loop ?? false}
+        preload={args.preload || 'metadata'}
+        placeholder={args.placeholder}
+        rounded={args.rounded || 'none'}
+        class={args.class}
+        id={args.id}
+        disabled={args.disabled ?? false}
+      />
     </div>
   {/snippet}
 </Story>
 
 <Story name="Fixed Size" args={{ width: 400, height: 225 }}>
   {#snippet template(args)}
-    <Video {...args} />
+    <Video
+      src={args.src || 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4'}
+      poster={args.poster}
+      width={args.width}
+      height={args.height}
+      aspectRatio={args.aspectRatio || '16:9'}
+      controls={args.controls ?? true}
+      autoplay={args.autoplay ?? false}
+      muted={args.muted ?? false}
+      loop={args.loop ?? false}
+      preload={args.preload || 'metadata'}
+      placeholder={args.placeholder}
+      rounded={args.rounded || 'none'}
+      class={args.class}
+      id={args.id}
+      disabled={args.disabled ?? false}
+    />
   {/snippet}
 </Story>
 
-<Story name="All Aspect Ratios">
+<Story name="All Aspect Ratios" args={{}}>
   {#snippet template()}
     <div class="space-y-6">
       <div>
@@ -196,7 +340,7 @@
   {/snippet}
 </Story>
 
-<Story name="All Rounded Variants">
+<Story name="All Rounded Variants" args={{}}>
   {#snippet template()}
     <div class="grid grid-cols-2 gap-4">
       <div>
@@ -274,7 +418,7 @@
   {/snippet}
 </Story>
 
-<Story name="Video Gallery">
+<Story name="Video Gallery" args={{}}>
   {#snippet template()}
     <div class="grid grid-cols-2 gap-4">
       {#each Array(4) as _, i}
@@ -293,7 +437,7 @@
   {/snippet}
 </Story>
 
-<Story name="Interactive Features">
+<Story name="Interactive Features" args={{}}>
   {#snippet template()}
     <div class="space-y-6">
       <div>

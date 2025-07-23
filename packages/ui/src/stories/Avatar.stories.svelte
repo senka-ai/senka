@@ -79,7 +79,7 @@
   {/snippet}
 </Story>
 
-<Story name="All Sizes">
+<Story name="All Sizes" args={{}}>
   {#snippet template()}
     <div class="space-y-4">
       <div class="flex items-center gap-4">

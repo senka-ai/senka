@@ -222,7 +222,7 @@
   {/snippet}
 </Story>
 
-<Story name="Using Children">
+<Story name="Using Children" args={{}}>
   {#snippet template()}
     <List title="Custom Content" rightText="Edit">
       {#snippet children()}
@@ -254,7 +254,7 @@
   {/snippet}
 </Story>
 
-<Story name="All Variants">
+<Story name="All Variants" args={{}}>
   {#snippet template()}
     <div class="space-y-8">
       <List title="Basic List (Clickable by Default)" items={basicItems} />
@@ -276,7 +276,7 @@
   {/snippet}
 </Story>
 
-<Story name="Real World Examples">
+<Story name="Real World Examples" args={{}}>
   {#snippet template()}
     <div class="space-y-8">
       <!-- Contacts List -->

@@ -65,27 +65,51 @@
   })
 </script>
 
-<Story name="Default">
+<Story name="Default" args={{}}>
   {#snippet template(args)}
-    <TabBar {...args} />
+    <TabBar
+      tabs={args.tabs || []}
+      activeTab={args.activeTab}
+      onTabChange={args.onTabChange}
+      class={args.class}
+      id={args.id}
+    />
   {/snippet}
 </Story>
 
 <Story name="Second Tab Active" args={{ activeTab: 'explore' }}>
   {#snippet template(args)}
-    <TabBar {...args} />
+    <TabBar
+      tabs={args.tabs || []}
+      activeTab={args.activeTab}
+      onTabChange={args.onTabChange}
+      class={args.class}
+      id={args.id}
+    />
   {/snippet}
 </Story>
 
 <Story name="Many Tabs" args={{ tabs: manyTabs }}>
   {#snippet template(args)}
-    <TabBar {...args} />
+    <TabBar
+      tabs={args.tabs || []}
+      activeTab={args.activeTab}
+      onTabChange={args.onTabChange}
+      class={args.class}
+      id={args.id}
+    />
   {/snippet}
 </Story>
 
 <Story name="With Disabled Tabs" args={{ tabs: tabsWithDisabled }}>
   {#snippet template(args)}
-    <TabBar {...args} />
+    <TabBar
+      tabs={args.tabs || []}
+      activeTab={args.activeTab}
+      onTabChange={args.onTabChange}
+      class={args.class}
+      id={args.id}
+    />
   {/snippet}
 </Story>
 
@@ -99,7 +123,13 @@
   }}
 >
   {#snippet template(args)}
-    <TabBar {...args} />
+    <TabBar
+      tabs={args.tabs || []}
+      activeTab={args.activeTab}
+      onTabChange={args.onTabChange}
+      class={args.class}
+      id={args.id}
+    />
   {/snippet}
 </Story>
 
@@ -115,7 +145,13 @@
   }}
 >
   {#snippet template(args)}
-    <TabBar {...args} />
+    <TabBar
+      tabs={args.tabs || []}
+      activeTab={args.activeTab}
+      onTabChange={args.onTabChange}
+      class={args.class}
+      id={args.id}
+    />
   {/snippet}
 </Story>
 

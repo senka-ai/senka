@@ -62,10 +62,23 @@
   })
 </script>
 
-<Story name="Default">
+<Story name="Default" args={{}}>
   {#snippet template(args)}
     <div class="w-80">
-      <Image {...args} />
+      <Image
+        src={args.src || 'https://picsum.photos/400/300?random=1'}
+        alt={args.alt || 'Sample image'}
+        width={args.width}
+        height={args.height}
+        aspectRatio={args.aspectRatio || '4:3'}
+        fit={args.fit || 'cover'}
+        loading={args.loading || 'lazy'}
+        placeholder={args.placeholder}
+        fallback={args.fallback}
+        rounded={args.rounded || 'none'}
+        class={args.class}
+        id={args.id}
+      />
     </div>
   {/snippet}
 </Story>
@@ -73,7 +86,20 @@
 <Story name="Square Aspect Ratio" args={{ aspectRatio: 'square' }}>
   {#snippet template(args)}
     <div class="w-80">
-      <Image {...args} />
+      <Image
+        src={args.src || 'https://picsum.photos/400/300?random=1'}
+        alt={args.alt || 'Sample image'}
+        width={args.width}
+        height={args.height}
+        aspectRatio={args.aspectRatio || '4:3'}
+        fit={args.fit || 'cover'}
+        loading={args.loading || 'lazy'}
+        placeholder={args.placeholder}
+        fallback={args.fallback}
+        rounded={args.rounded || 'none'}
+        class={args.class}
+        id={args.id}
+      />
     </div>
   {/snippet}
 </Story>
@@ -81,7 +107,20 @@
 <Story name="Video Aspect Ratio" args={{ aspectRatio: '16:9' }}>
   {#snippet template(args)}
     <div class="w-80">
-      <Image {...args} />
+      <Image
+        src={args.src || 'https://picsum.photos/400/300?random=1'}
+        alt={args.alt || 'Sample image'}
+        width={args.width}
+        height={args.height}
+        aspectRatio={args.aspectRatio || '4:3'}
+        fit={args.fit || 'cover'}
+        loading={args.loading || 'lazy'}
+        placeholder={args.placeholder}
+        fallback={args.fallback}
+        rounded={args.rounded || 'none'}
+        class={args.class}
+        id={args.id}
+      />
     </div>
   {/snippet}
 </Story>
@@ -89,7 +128,20 @@
 <Story name="Rounded" args={{ rounded: 'lg' }}>
   {#snippet template(args)}
     <div class="w-80">
-      <Image {...args} />
+      <Image
+        src={args.src || 'https://picsum.photos/400/300?random=1'}
+        alt={args.alt || 'Sample image'}
+        width={args.width}
+        height={args.height}
+        aspectRatio={args.aspectRatio || '4:3'}
+        fit={args.fit || 'cover'}
+        loading={args.loading || 'lazy'}
+        placeholder={args.placeholder}
+        fallback={args.fallback}
+        rounded={args.rounded || 'none'}
+        class={args.class}
+        id={args.id}
+      />
     </div>
   {/snippet}
 </Story>
@@ -97,7 +149,20 @@
 <Story name="Circular" args={{ aspectRatio: 'square', rounded: 'full' }}>
   {#snippet template(args)}
     <div class="w-80">
-      <Image {...args} />
+      <Image
+        src={args.src || 'https://picsum.photos/400/300?random=1'}
+        alt={args.alt || 'Sample image'}
+        width={args.width}
+        height={args.height}
+        aspectRatio={args.aspectRatio || '4:3'}
+        fit={args.fit || 'cover'}
+        loading={args.loading || 'lazy'}
+        placeholder={args.placeholder}
+        fallback={args.fallback}
+        rounded={args.rounded || 'none'}
+        class={args.class}
+        id={args.id}
+      />
     </div>
   {/snippet}
 </Story>
@@ -105,7 +170,20 @@
 <Story name="With Placeholder" args={{ placeholder: 'Loading image...' }}>
   {#snippet template(args)}
     <div class="w-80">
-      <Image {...args} />
+      <Image
+        src={args.src || 'https://picsum.photos/400/300?random=1'}
+        alt={args.alt || 'Sample image'}
+        width={args.width}
+        height={args.height}
+        aspectRatio={args.aspectRatio || '4:3'}
+        fit={args.fit || 'cover'}
+        loading={args.loading || 'lazy'}
+        placeholder={args.placeholder}
+        fallback={args.fallback}
+        rounded={args.rounded || 'none'}
+        class={args.class}
+        id={args.id}
+      />
     </div>
   {/snippet}
 </Story>
@@ -113,7 +191,20 @@
 <Story name="Loading State" args={{ src: 'https://picsum.photos/400/300?random=999&delay=2000' }}>
   {#snippet template(args)}
     <div class="w-80">
-      <Image {...args} />
+      <Image
+        src={args.src || 'https://picsum.photos/400/300?random=1'}
+        alt={args.alt || 'Sample image'}
+        width={args.width}
+        height={args.height}
+        aspectRatio={args.aspectRatio || '4:3'}
+        fit={args.fit || 'cover'}
+        loading={args.loading || 'lazy'}
+        placeholder={args.placeholder}
+        fallback={args.fallback}
+        rounded={args.rounded || 'none'}
+        class={args.class}
+        id={args.id}
+      />
     </div>
   {/snippet}
 </Story>
@@ -127,7 +218,20 @@
 >
   {#snippet template(args)}
     <div class="w-80">
-      <Image {...args} />
+      <Image
+        src={args.src || 'https://picsum.photos/400/300?random=1'}
+        alt={args.alt || 'Sample image'}
+        width={args.width}
+        height={args.height}
+        aspectRatio={args.aspectRatio || '4:3'}
+        fit={args.fit || 'cover'}
+        loading={args.loading || 'lazy'}
+        placeholder={args.placeholder}
+        fallback={args.fallback}
+        rounded={args.rounded || 'none'}
+        class={args.class}
+        id={args.id}
+      />
     </div>
   {/snippet}
 </Story>
@@ -135,7 +239,20 @@
 <Story name="Object Contain" args={{ fit: 'contain', aspectRatio: 'square' }}>
   {#snippet template(args)}
     <div class="w-80">
-      <Image {...args} />
+      <Image
+        src={args.src || 'https://picsum.photos/400/300?random=1'}
+        alt={args.alt || 'Sample image'}
+        width={args.width}
+        height={args.height}
+        aspectRatio={args.aspectRatio || '4:3'}
+        fit={args.fit || 'cover'}
+        loading={args.loading || 'lazy'}
+        placeholder={args.placeholder}
+        fallback={args.fallback}
+        rounded={args.rounded || 'none'}
+        class={args.class}
+        id={args.id}
+      />
     </div>
   {/snippet}
 </Story>
@@ -143,7 +260,20 @@
 <Story name="Error State" args={{ src: 'https://invalid-url.com/image.jpg' }}>
   {#snippet template(args)}
     <div class="w-80">
-      <Image {...args} />
+      <Image
+        src={args.src || 'https://picsum.photos/400/300?random=1'}
+        alt={args.alt || 'Sample image'}
+        width={args.width}
+        height={args.height}
+        aspectRatio={args.aspectRatio || '4:3'}
+        fit={args.fit || 'cover'}
+        loading={args.loading || 'lazy'}
+        placeholder={args.placeholder}
+        fallback={args.fallback}
+        rounded={args.rounded || 'none'}
+        class={args.class}
+        id={args.id}
+      />
     </div>
   {/snippet}
 </Story>
@@ -157,18 +287,44 @@
 >
   {#snippet template(args)}
     <div class="w-80">
-      <Image {...args} />
+      <Image
+        src={args.src || 'https://picsum.photos/400/300?random=1'}
+        alt={args.alt || 'Sample image'}
+        width={args.width}
+        height={args.height}
+        aspectRatio={args.aspectRatio || '4:3'}
+        fit={args.fit || 'cover'}
+        loading={args.loading || 'lazy'}
+        placeholder={args.placeholder}
+        fallback={args.fallback}
+        rounded={args.rounded || 'none'}
+        class={args.class}
+        id={args.id}
+      />
     </div>
   {/snippet}
 </Story>
 
 <Story name="Fixed Size" args={{ width: 200, height: 150 }}>
   {#snippet template(args)}
-    <Image {...args} />
+    <Image
+      src={args.src || 'https://picsum.photos/400/300?random=1'}
+      alt={args.alt || 'Sample image'}
+      width={args.width}
+      height={args.height}
+      aspectRatio={args.aspectRatio || '4:3'}
+      fit={args.fit || 'cover'}
+      loading={args.loading || 'lazy'}
+      placeholder={args.placeholder}
+      fallback={args.fallback}
+      rounded={args.rounded || 'none'}
+      class={args.class}
+      id={args.id}
+    />
   {/snippet}
 </Story>
 
-<Story name="All Aspect Ratios">
+<Story name="All Aspect Ratios" args={{}}>
   {#snippet template()}
     <div class="space-y-6">
       <div>
@@ -202,7 +358,7 @@
   {/snippet}
 </Story>
 
-<Story name="All Rounded Variants">
+<Story name="All Rounded Variants" args={{}}>
   {#snippet template()}
     <div class="grid grid-cols-2 gap-4">
       <div>
@@ -250,7 +406,7 @@
   {/snippet}
 </Story>
 
-<Story name="Gallery Example">
+<Story name="Gallery Example" args={{}}>
   {#snippet template()}
     <div class="grid grid-cols-3 gap-4">
       {#each Array(9) as _, i}
@@ -268,7 +424,7 @@
   {/snippet}
 </Story>
 
-<Story name="Profile Images">
+<Story name="Profile Images" args={{}}>
   {#snippet template()}
     <div class="flex items-center gap-4">
       <div class="w-16">

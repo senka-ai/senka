@@ -33,7 +33,15 @@
   }}
 >
   {#snippet template(args)}
-    <NavBar {...args} />
+    <NavBar
+      title={args.title || 'NavBar Title'}
+      showBackButton={args.showBackButton ?? false}
+      leftAction={args.leftAction}
+      rightAction={args.rightAction}
+      onBackClick={args.onBackClick}
+      class={args.class}
+      id={args.id}
+    />
   {/snippet}
 </Story>
 
@@ -45,7 +53,15 @@
   }}
 >
   {#snippet template(args)}
-    <NavBar {...args} />
+    <NavBar
+      title={args.title || 'NavBar Title'}
+      showBackButton={args.showBackButton ?? false}
+      leftAction={args.leftAction}
+      rightAction={args.rightAction}
+      onBackClick={args.onBackClick}
+      class={args.class}
+      id={args.id}
+    />
   {/snippet}
 </Story>
 
@@ -63,7 +79,15 @@
         Edit
       </Button>
     {/snippet}
-    <NavBar {...args} rightAction={editAction} />
+    <NavBar
+      title={args.title || 'NavBar Title'}
+      showBackButton={args.showBackButton ?? false}
+      leftAction={args.leftAction}
+      onBackClick={args.onBackClick}
+      class={args.class}
+      id={args.id}
+      rightAction={editAction}
+    />
   {/snippet}
 </Story>
 
@@ -84,7 +108,15 @@
         <HeartOutlinedIcon size={20} />
       </button>
     {/snippet}
-    <NavBar {...args} rightAction={heartAction} />
+    <NavBar
+      title={args.title || 'NavBar Title'}
+      showBackButton={args.showBackButton ?? false}
+      leftAction={args.leftAction}
+      onBackClick={args.onBackClick}
+      class={args.class}
+      id={args.id}
+      rightAction={heartAction}
+    />
   {/snippet}
 </Story>
 
@@ -99,7 +131,14 @@
     {#snippet avatarAction()}
       <Avatar size="small" alt="John Doe" />
     {/snippet}
-    <NavBar {...args} rightAction={avatarAction} />
+    <NavBar
+      title={args.title || 'NavBar Title'}
+      showBackButton={args.showBackButton ?? false}
+      onBackClick={args.onBackClick}
+      class={args.class}
+      id={args.id}
+      rightAction={avatarAction}
+    />
   {/snippet}
 </Story>
 
@@ -116,7 +155,15 @@
     {#snippet editAction()}
       <Button variant="tertiary" size="small">Edit</Button>
     {/snippet}
-    <NavBar {...args} leftAction={cancelAction} rightAction={editAction} />
+    <NavBar
+      title={args.title || 'NavBar Title'}
+      showBackButton={args.showBackButton ?? false}
+      onBackClick={args.onBackClick}
+      class={args.class}
+      id={args.id}
+      leftAction={cancelAction}
+      rightAction={editAction}
+    />
   {/snippet}
 </Story>
 
@@ -127,11 +174,19 @@
   }}
 >
   {#snippet template(args)}
-    <NavBar {...args} />
+    <NavBar
+      title={args.title || 'NavBar Title'}
+      showBackButton={args.showBackButton ?? false}
+      leftAction={args.leftAction}
+      rightAction={args.rightAction}
+      onBackClick={args.onBackClick}
+      class={args.class}
+      id={args.id}
+    />
   {/snippet}
 </Story>
 
-<Story name="All Variants">
+<Story name="All Variants" args={{}}>
   {#snippet template()}
     <div class="space-y-4">
       <NavBar title="Simple Title" />

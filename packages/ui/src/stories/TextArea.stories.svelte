@@ -99,7 +99,7 @@
   {/snippet}
 </Story>
 
-<Story name="All States">
+<Story name="All States" args={{}}>
   {#snippet template()}
     <div class="space-y-6">
       <TextArea label="Default" placeholder="Placeholder" />
@@ -111,7 +111,7 @@
   {/snippet}
 </Story>
 
-<Story name="Interactive Example">
+<Story name="Interactive Example" args={{}}>
   {#snippet template()}
     <div class="space-y-6">
       <TextArea
