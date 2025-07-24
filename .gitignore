@@ -32,3 +32,6 @@ storybook-static
 # Playwright
 **/test-results/
 **/playwright-report/
+
+# Secrets
+.secrets
