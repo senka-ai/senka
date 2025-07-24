@@ -1057,16 +1057,136 @@ theme.set('dark')
 - **Event Delegation**: Efficient event handling patterns
 - **Memory Management**: Proper cleanup in state utilities
 
+## No-Code Builder Component Requirements
+
+### Visual Builder Integration Components
+
+**Critical for Phase 1 No-Code Platform Development:**
+
+#### 1. **Visual Component Wrappers** (`@senka/visual-components`)
+```typescript
+interface BuiltComponentWrapper {
+  // Visual editing handles
+  dragHandle: boolean
+  resizeHandles: ResizeHandle[]
+  
+  // Visual state indicators  
+  isSelected: boolean
+  isHovered: boolean
+  isDragging: boolean
+  
+  // Layout constraints
+  constraints: LayoutConstraints
+  snapToGrid: boolean
+  
+  // Component metadata for builder
+  componentType: string
+  builderProps: BuilderComponentProps
+}
+```
+
+#### 2. **Drag-and-Drop System Components**
+- **DragHandle**: Visual handle for moving components
+- **ResizeHandle**: Corner/edge handles for resizing 
+- **SelectionOverlay**: Visual selection indicator
+- **SnapGrid**: Visual grid system for alignment
+- **GuideLines**: Alignment guides during dragging
+
+#### 3. **Real-Time Preview Components**
+- **PreviewFrame**: Isolated preview of built application
+- **ResponsiveViewport**: Multi-device preview switching
+- **LivePreview**: Real-time updates during editing
+- **InteractionPreview**: Preview of component interactions
+
+#### 4. **Layout Constraint System**
+```typescript
+interface LayoutConstraints {
+  position: 'absolute' | 'relative' | 'flex' | 'grid'
+  minWidth?: number
+  maxWidth?: number
+  minHeight?: number
+  maxHeight?: number
+  aspectRatio?: number
+  alignSelf?: FlexAlign
+  gridArea?: string
+}
+```
+
+#### 5. **Builder-Specific Component Variants**
+Each existing component needs builder-optimized variants:
+- **Button** → **BuilderButton** (with drag handles, property inspector)
+- **TextField** → **BuilderTextField** (with validation setup UI)
+- **Card** → **BuilderCard** (with content slot management)
+
+### Component Property Inspector Integration
+
+#### Visual Property Controls
+```typescript
+interface PropertyInspectorProps {
+  // Visual styling controls (no CSS knowledge needed)
+  colorPicker: boolean
+  fontSelector: boolean
+  spacingSliders: boolean
+  shadowEditor: boolean
+  
+  // Layout controls
+  positionEditor: boolean
+  sizeControls: boolean
+  alignmentTools: boolean
+  
+  // Component-specific properties
+  componentProps: Record<string, PropertyControl>
+  
+  // Advanced settings (collapsed by default)
+  advancedSettings: PropertyControl[]
+}
+```
+
+#### Property Control Types
+- **ColorPicker**: Visual color selection with palette
+- **SizeSlider**: Numeric input with visual slider
+- **ToggleSwitch**: Boolean property toggle
+- **DropdownSelect**: Enumerated options
+- **TextInput**: String/number input with validation
+
+### Template Integration Components
+
+#### Template Preview System
+```typescript
+interface TemplatePreviewComponent {
+  // Template metadata
+  templateId: string
+  templateName: string
+  templateCategory: string
+  
+  // Preview capabilities
+  thumbnailImage: string
+  livePreview: boolean
+  responsivePreview: boolean
+  
+  // Customization hooks
+  customizableAreas: CustomizableArea[]
+  requiredData: DataRequirement[]
+}
+```
+
+#### One-Click Customization
+- **BrandKitApplicator**: Apply user's brand colors/fonts across template
+- **ContentWizard**: Guide user through content replacement
+- **ImageReplacer**: Smart image replacement suggestions
+- **ColorSchemeApplicator**: One-click color scheme changes
+
 ## Future Roadmap
 
 ### Planned Enhancements
 
-1. **Animation System** - Consistent transition and animation utilities
-2. **Advanced Validation** - More sophisticated form validation patterns
-3. **Responsive Utilities** - Enhanced responsive design helpers
-4. **Component Variants** - Additional size and style variants
-5. **Accessibility Improvements** - Enhanced screen reader support
-6. **Performance Monitoring** - Component performance tracking
+1. **Advanced Visual Builder** - Complete drag-and-drop system with constraint-based layouts
+2. **Animation System** - Visual animation editor with timeline
+3. **Advanced Validation** - Visual validation rule builder
+4. **Responsive Utilities** - Visual breakpoint editor
+5. **Component Variants** - Visual variant selector and customizer
+6. **Accessibility Improvements** - Built-in accessibility checker and fixer
+7. **Performance Monitoring** - Real-time performance feedback in builder
 
 ### API Stability
 
