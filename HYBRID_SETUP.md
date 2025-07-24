@@ -5,7 +5,7 @@ This document describes the hybrid repository architecture implemented for the S
 ## Architecture Overview
 
 ```
-senka/ (monorepo - development)    →    senka-ui/ (standalone - publishing)
+senka/ (monorepo - development)    →    @senka-ai/ui/ (standalone - publishing)
 ├── packages/ui/                        ├── src/
 ├── .github/workflows/                  ├── package.json
 └── sync-ui-library.yml                 ├── package-lock.json
@@ -39,8 +39,8 @@ senka/ (monorepo - development)    →    senka-ui/ (standalone - publishing)
 
 ### **Repositories:**
 - **Development**: [`senka-ai/senka`](https://github.com/senka-ai/senka) - Monorepo for all development
-- **Publishing**: [`senka-ai/senka-ui`](https://github.com/senka-ai/senka-ui) - Standalone UI library
-- **Package**: [`senka-ui`](https://www.npmjs.com/package/senka-ui) - npm package
+- **Publishing**: [`senka-ai/ui`](https://github.com/senka-ai/ui) - Standalone UI library
+- **Package**: [`@senka-ai/ui`](https://www.npmjs.com/package/@senka-ai/ui) - npm organization package
 
 ### **Workflows:**
 - **Sync Workflow**: `.github/workflows/sync-ui-library.yml` - Handles monorepo to standalone sync
@@ -73,6 +73,7 @@ git commit -m "feat: add new component"
 git push origin main
 
 # 4. Everything else is automatic! 🤖
+# Publishes as @senka-ai/ui to npm
 ```
 
 ### **What Happens Automatically:**
@@ -86,19 +87,19 @@ git push origin main
 
 ### **Dashboard Links:**
 - **Monorepo Actions**: https://github.com/senka-ai/senka/actions
-- **Standalone Actions**: https://github.com/senka-ai/senka-ui/actions
-- **npm Package**: https://www.npmjs.com/package/senka-ui
-- **Package Statistics**: https://npm-stat.com/charts.html?package=senka-ui
+- **Standalone Actions**: https://github.com/senka-ai/ui/actions
+- **npm Package**: https://www.npmjs.com/package/@senka-ai/ui
+- **Package Statistics**: https://npm-stat.com/charts.html?package=@senka-ai/ui
 
 ### **Manual Operations:**
 
 **Force Sync (if needed):**
 1. Go to Actions tab in `senka-ai/senka`
-2. Click "Sync UI Library to senka-ui"
+2. Click "Sync UI Library to @senka-ai/ui"
 3. Click "Run workflow" → Enable "Force sync" → "Run workflow"
 
 **Manual Publish (if needed):**
-1. Go to Actions tab in `senka-ai/senka-ui`
+1. Go to Actions tab in `senka-ai/ui`
 2. Click "Publish to npm"
 3. Click "Run workflow" → Choose version type → "Run workflow"
 
@@ -107,7 +108,7 @@ git push origin main
 ### **Required Secrets:**
 - **Monorepo** (`senka-ai/senka`):
   - `SYNC_TOKEN`: GitHub Personal Access Token with `repo` and `workflow` permissions
-- **Standalone** (`senka-ai/senka-ui`):
+- **Standalone** (`senka-ai/ui`):
   - `NPM_TOKEN`: npm Automation token for publishing
 
 ### **Workflow Permissions:**

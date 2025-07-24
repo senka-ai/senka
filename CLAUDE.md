@@ -16,7 +16,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Overview
 
-**Senka** is a comprehensive AI-powered no-code platform that enables **non-technical users** to build sophisticated applications through drag-and-drop visual tools and conversational AI. The platform consists of multiple packages including a UI library, visual builder system, AI integrations, template marketplace, and an educational app as a reference implementation.
+**Senka** is a comprehensive AI-powered no-code platform that enables **non-technical users** to build sophisticated applications through drag-and-drop visual tools and conversational AI. The platform consists of multiple packages under the `@senka-ai` npm organization, including a UI library, visual builder system, AI integrations, template marketplace, and an educational app as a reference implementation.
 
 **Current Focus**: The educational app (packages/app) serves the Romanian educational system but is primarily a showcase of the platform's capabilities. The main vision is the complete no-code development platform described in `SENKA_SYSTEM_ARCHITECTURE.md`.
 

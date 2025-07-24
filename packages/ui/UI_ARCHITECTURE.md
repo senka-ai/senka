@@ -1,8 +1,8 @@
-# senka-ui Component Library Architecture
+# @senka-ai/ui Component Library Architecture
 
 ## Overview
 
-The `senka-ui` library is a modern, type-safe Svelte 5 component library built with TypeScript, Tailwind CSS v4, and modern development practices. It provides a comprehensive set of reusable UI components, featuring full theme support, accessibility standards, and robust state management patterns.
+The `@senka-ai/ui` library is a modern, type-safe Svelte 5 component library built with TypeScript, Tailwind CSS v4, and modern development practices. It provides a comprehensive set of reusable UI components, featuring full theme support, accessibility standards, and robust state management patterns.
 
 **Version**: 0.1.0  
 **License**: MIT  
@@ -34,7 +34,7 @@ The library fully embraces Svelte 5's modern runes system:
 ## Package Structure
 
 ```
-senka-ui/
+@senka-ai/ui/
 ├── src/
 │   ├── lib/
 │   │   ├── components/          # 29 UI components organized by category
@@ -984,7 +984,7 @@ export default defineConfig({
 ### Installation
 
 ```bash
-npm install senka-ui
+npm install @senka-ai/ui
 # Peer dependencies
 npm install svelte @tailwindcss/vite
 ```
@@ -993,10 +993,10 @@ npm install svelte @tailwindcss/vite
 
 ```typescript
 // app.css
-import 'senka-ui/styles'
+import '@senka-ai/ui/styles'
 
 // Component usage
-import { Button, TextField, Card } from 'senka-ui'
+import { Button, TextField, Card } from '@senka-ai/ui'
 
 <Button variant="primary" onclick={() => console.log('clicked')}>
   {#snippet children()}
@@ -1008,7 +1008,7 @@ import { Button, TextField, Card } from 'senka-ui'
 ### Theme Integration
 
 ```typescript
-import { useTheme, ThemeToggle } from 'senka-ui'
+import { useTheme, ThemeToggle } from '@senka-ai/ui'
 
 // In your app
 <ThemeToggle />
@@ -1074,7 +1074,7 @@ theme.set('dark')
 
 **Critical for Phase 1 No-Code Platform Development:**
 
-#### 1. **Visual Component Wrappers** (`@senka/visual-components`)
+#### 1. **Visual Component Wrappers** (`@senka-ai/visual-components`)
 ```typescript
 interface BuiltComponentWrapper {
   // Visual editing handles

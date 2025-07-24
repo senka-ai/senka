@@ -1,4 +1,4 @@
-name: Sync UI Library to senka-ui
+name: Sync UI Library to @senka-ai/ui
 
 on:
   push:
@@ -95,7 +95,7 @@ jobs:
         if: steps.ui-changes.outputs.ui-changes == '1'
         uses: actions/checkout@v4
         with:
-          repository: senka-ai/senka-ui
+          repository: senka-ai/ui
           token: ${{ secrets.SYNC_TOKEN }}
           path: ./synced-repo
 
@@ -124,14 +124,14 @@ jobs:
 
           # Create a standalone README for the UI library
           cat > ./sync-temp/README.md << 'EOF'
-          # senka-ui
+          # @senka-ai/ui
 
           A modern, type-safe Svelte 5 UI component library with full theme support, accessibility standards, and robust state management patterns.
 
           ## Installation
 
           ```bash
-          npm install senka-ui
+          npm install @senka-ai/ui
           # Peer dependencies
           npm install svelte @tailwindcss/vite
           ```
@@ -140,10 +140,10 @@ jobs:
 
           ```typescript
           // Import styles
-          import 'senka-ui/styles'
+          import '@senka-ai/ui/styles'
 
           // Import components
-          import { Button, TextField, Card } from 'senka-ui'
+          import { Button, TextField, Card } from '@senka-ai/ui'
 
           <Button variant="primary" onclick={() => console.log('clicked')}>
             {#snippet children()}
@@ -154,7 +154,7 @@ jobs:
 
           ## Documentation
 
-          For full documentation and examples, visit our [Storybook](https://senka-ui-storybook.vercel.app).
+          For full documentation and examples, visit our [Storybook](https://senka-ai-ui-storybook.vercel.app).
 
           ## Development
 
@@ -174,9 +174,9 @@ jobs:
           # Update repository URLs and scripts for standalone repo
           node -e "
             const pkg = require('./package.json');
-            pkg.repository.url = 'https://github.com/senka-ai/senka-ui.git';
-            pkg.bugs.url = 'https://github.com/senka-ai/senka-ui/issues';
-            pkg.homepage = 'https://github.com/senka-ai/senka-ui';
+            pkg.repository.url = 'https://github.com/senka-ai/ui.git';
+            pkg.bugs.url = 'https://github.com/senka-ai/ui/issues';
+            pkg.homepage = 'https://github.com/senka-ai/ui';
             delete pkg.repository.directory;
             
             // Update scripts to use npm instead of yarn
@@ -188,7 +188,7 @@ jobs:
             require('fs').writeFileSync('./package.json', JSON.stringify(pkg, null, 2));
           "
 
-      - name: Sync to senka-ui repository
+      - name: Sync to @senka-ai/ui repository
         if: steps.ui-changes.outputs.ui-changes == '1'
         run: |
           cd ./synced-repo
@@ -256,7 +256,7 @@ jobs:
             🤖 Auto-synced from senka-ai/senka monorepo"
             git push origin main
             echo "sync_performed=true" >> $GITHUB_OUTPUT
-            echo "✅ Successfully synced UI library to senka-ui repository"
+            echo "✅ Successfully synced UI library to @senka-ai/ui repository"
           else
             echo "No changes to sync"
             echo "sync_performed=false" >> $GITHUB_OUTPUT
@@ -271,5 +271,5 @@ jobs:
               issue_number: context.issue.number,
               owner: context.repo.owner,
               repo: context.repo.repo,
-              body: '🔄 UI library changes will be synced to [senka-ai/senka-ui](https://github.com/senka-ai/senka-ui) when this PR is merged.'
+              body: '🔄 UI library changes will be synced to [@senka-ai/ui](https://github.com/senka-ai/ui) when this PR is merged.'
             })
