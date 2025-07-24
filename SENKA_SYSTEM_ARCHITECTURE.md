@@ -69,9 +69,16 @@ packages/core/
 │   ├── project/           # Project structure and templates
 │   ├── validation/        # Code and structure validation
 │   ├── config/            # Configuration management
-│   └── registry/          # Component and template registry
-├── templates/             # Application templates
-└── schemas/               # JSON schemas for validation
+│   ├── registry/          # Component and template registry
+│   ├── modification-engine/ # Core system for app modifications
+│   ├── dependency-tracker/ # Track component dependencies and relationships
+│   ├── version-control/   # Built-in versioning for app changes
+│   └── rollback/          # Safe rollback for failed modifications
+├── templates/
+│   ├── modular-apps/      # App templates designed for easy modification
+│   └── extensible-patterns/ # Patterns that support feature additions
+├── schemas/               # JSON schemas for validation
+└── modification-patterns/ # Common app modification patterns
 ```
 
 #### Visual Builder System (`@senka/visual-builder`)
@@ -125,7 +132,16 @@ packages/ai-chat/
 │   ├── context/           # Conversation context management
 │   ├── suggestions/       # Smart suggestions
 │   ├── templates/         # Response templates
+│   ├── requirement-gathering/ # Detailed requirement collection
+│   ├── clarification/     # Clarifying questions system
+│   ├── confirmation/      # Requirement confirmation workflow
+│   ├── iteration/         # Iterative refinement system
 │   └── modes/             # Different chat modes
+├── workflows/
+│   ├── discovery/         # App discovery and planning phase
+│   ├── specification/     # Detailed specification gathering
+│   ├── validation/        # Requirement validation
+│   └── modification/      # Post-build modification workflows
 └── prompts/               # AI prompt templates
 ```
 
@@ -139,7 +155,13 @@ packages/ai-generators/
 │   ├── data-models/       # Generate data structures
 │   ├── business-logic/    # Generate functions from descriptions
 │   ├── integrations/      # Generate API integrations
-│   └── optimization/      # AI-powered code optimization
+│   ├── optimization/      # AI-powered code optimization
+│   ├── modular-generation/ # Generate modular, easily modifiable code
+│   ├── dependency-mapping/ # Track component dependencies for safe modifications
+│   └── incremental/       # Incremental code generation for modifications
+├── templates/
+│   ├── modular-patterns/  # Patterns that support easy modification
+│   └── extensible-architectures/ # Architecture templates for extensibility
 └── models/                # AI model configurations
 ```
 
@@ -593,14 +615,41 @@ interface VisualBuilder {
 }
 ```
 
-#### 2. **Conversational AI Builder**
+#### 2. **Conversational AI Builder with Deep Requirement Gathering**
 ```typescript
 interface ConversationalBuilder {
+  // Requirement gathering phase - NO building until complete
+  requirementGathering: {
+    initiateDiscovery: (initialRequest: string) => DiscoverySession
+    askClarifyingQuestions: (context: AppContext) => Question[]
+    validateRequirements: (requirements: AppRequirements) => ValidationResult
+    confirmSpecification: (spec: DetailedSpec) => boolean
+  }
+  
+  // Detailed specification collection
+  specificationCapture: {
+    functionalRequirements: FunctionalRequirement[]
+    designPreferences: DesignSpecification
+    userWorkflows: UserJourney[]
+    dataRequirements: DataModel[]
+    integrationNeeds: ExternalIntegration[]
+    platformTargets: Platform[]
+  }
+  
+  // Only start building after full clarity
   naturalLanguage: {
-    appFromDescription: (desc: string) => App
-    addFeature: (feature: string) => void
-    modifyDesign: (change: string) => void
-    connectService: (service: string) => Integration
+    appFromDetailedSpec: (spec: DetailedSpecification) => App
+    addFeatureFromSpec: (feature: FeatureSpec) => void
+    modifyFromDescription: (change: ChangeRequest) => ModificationPlan
+    connectService: (service: ServiceSpec) => Integration
+  }
+  
+  // Modification-focused interface
+  modificationInterface: {
+    explainCurrentStructure: () => AppStructureExplanation
+    suggestModificationApproach: (change: string) => ModificationStrategy
+    previewModification: (change: ModificationPlan) => PreviewResult
+    safelyApplyChanges: (plan: ModificationPlan) => ModificationResult
   }
   
   voiceInterface: {
@@ -615,6 +664,7 @@ interface ConversationalBuilder {
     suggestNextSteps: boolean
     explainConcepts: boolean
     troubleshootIssues: boolean
+    trackModificationHistory: boolean
   }
 }
 ```
@@ -986,12 +1036,17 @@ This architecture positions Senka as the definitive platform for AI-powered no-c
 - **No Code Exposure**: Users never see or write code during the building process
 - **Drag-and-Drop Perfection**: Smooth, responsive interactions with automatic alignment
 - **Immediate Visual Feedback**: Real-time preview of changes without delays
+- **Modification-First Design**: Every component and feature designed for easy post-build changes
+- **Clear Change Impact**: Users see exactly what will change before applying modifications
 
 ### 2. **AI Integration Quality**
-- **Natural Language Understanding**: "Build me a restaurant website" → working application
+- **Requirement Gathering Excellence**: AI asks detailed clarifying questions before building anything
+- **No Premature Building**: Building only starts when requirements are 100% clear
+- **Natural Language Understanding**: "Build me a restaurant website" → detailed requirement gathering → working application
 - **Context Awareness**: AI remembers user preferences and project context
-- **Reliable Code Generation**: Generated apps must be production-ready
+- **Reliable Code Generation**: Generated apps must be production-ready and easily modifiable
 - **Voice Interface Support**: Hands-free building through voice commands
+- **Modification Intelligence**: AI understands app structure and suggests safe modification approaches
 
 ### 3. **Template Quality and Variety**
 - **Professional Design Standards**: Templates look professionally designed
@@ -1013,7 +1068,8 @@ The Romanian educational app serves as the **primary demonstration** of platform
 - **International Expansion**: Proves platform flexibility for different markets
 
 ### Development Success Metrics
-- **Time to Live App**: Non-technical users create deployed app in <2 hours
+- **Requirement Clarity**: >95% of projects have complete requirements before building starts
+- **Time to Live App**: Non-technical users create deployed app in <2 hours (after requirements phase)
 - **Multi-Platform Deployment**: Web + mobile app generation in <5 minutes
 - **User Success Rate**: >90% of first-time users successfully create and deploy apps
 - **Template Adoption**: >80% of apps start from templates rather than blank canvas
@@ -1021,3 +1077,6 @@ The Romanian educational app serves as the **primary demonstration** of platform
 - **Performance Standards**: Generated apps achieve Lighthouse scores >90
 - **Mobile App Success**: >95% success rate for iOS/Android wrapper generation
 - **Cross-Platform Consistency**: Generated mobile apps maintain design fidelity with web versions
+- **Modification Success**: >90% of requested app modifications complete successfully without breaking existing functionality
+- **Modification Speed**: Simple changes (colors, text, layout) complete in <30 seconds
+- **Complex Modification Success**: Feature additions/removals complete successfully >85% of the time
