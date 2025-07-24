@@ -52,8 +52,11 @@ The goal is to develop an educational app named **Senka**, designed to support s
       - Modify class composition (add/remove students).
       - Assign specific roles to students (e.g., edit math homework, update timetable).
 - **Supported Languages**: Romanian and English.
-- **Supported modes**: Mobile and desktop: web app that shows like a mobile app - tab based - on mobiles/narrow screens,
-  and like a full desktop app on desktops/wide screens (with a sidebar for navigation).
+- **Multi-Platform Support**: 
+  - **Responsive Web App**: Adapts to mobile (tab-based navigation) and desktop (sidebar navigation)
+  - **Progressive Web App (PWA)**: Installable on mobile devices with offline capabilities
+  - **Native Mobile Apps**: iOS and Android wrapper generation for app store distribution
+  - **Cross-Platform Consistency**: Maintains design and functionality across all platforms
 
 ## Long-Term Plan
 
@@ -103,8 +106,12 @@ The goal is to develop an educational app named **Senka**, designed to support s
 5. **AI Integration Showcase**: Advanced AI features demonstrate the platform's AI-powered building capabilities
 
 **Success Metrics for Platform Validation:**
-- Successful deployment and adoption in Romanian schools
+- **Web Platform**: Successful deployment and adoption in Romanian schools
+- **Mobile Platform**: >75% of users access via mobile devices (web or native apps)
+- **Cross-Platform Consistency**: User experience rating >4.5/5 across all platforms
+- **Native App Success**: Successful iOS and Android app store deployment
 - User satisfaction scores >4.5/5 from students, teachers, and parents  
 - Feature complexity demonstrates platform can handle enterprise-grade applications
 - International expansion shows platform adaptability
 - AI features work reliably for educational use cases
+- **Platform Flexibility**: Same codebase powers web, PWA, iOS, and Android versions

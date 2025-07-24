@@ -1149,7 +1149,7 @@ interface PropertyInspectorProps {
 - **DropdownSelect**: Enumerated options
 - **TextInput**: String/number input with validation
 
-### Template Integration Components
+### Multi-Platform Template Integration Components
 
 #### Template Preview System
 ```typescript
@@ -1159,34 +1159,128 @@ interface TemplatePreviewComponent {
   templateName: string
   templateCategory: string
   
+  // Platform support
+  supportedPlatforms: ('web' | 'mobile-web' | 'ios' | 'android')[]
+  primaryPlatform: 'mobile' | 'desktop' | 'responsive'
+  
   // Preview capabilities
   thumbnailImage: string
   livePreview: boolean
   responsivePreview: boolean
+  mobilePreview: boolean
+  desktopPreview: boolean
+  
+  // Platform-specific previews
+  iosPreview?: string
+  androidPreview?: string
+  pwaPreview?: string
   
   // Customization hooks
   customizableAreas: CustomizableArea[]
   requiredData: DataRequirement[]
+  
+  // Mobile-specific metadata
+  mobileOptimized: boolean
+  touchFriendly: boolean
+  nativeFeatures: string[]
 }
 ```
 
-#### One-Click Customization
-- **BrandKitApplicator**: Apply user's brand colors/fonts across template
-- **ContentWizard**: Guide user through content replacement
-- **ImageReplacer**: Smart image replacement suggestions
-- **ColorSchemeApplicator**: One-click color scheme changes
+#### Platform-Adaptive Components
+```typescript
+interface ResponsiveComponent {
+  // Breakpoint behavior
+  mobileLayout: ComponentLayout
+  tabletLayout?: ComponentLayout
+  desktopLayout: ComponentLayout
+  
+  // Platform-specific styling
+  mobileStyles: StyleDefinition
+  desktopStyles: StyleDefinition
+  
+  // Touch vs mouse interactions
+  touchInteractions: TouchGesture[]
+  mouseInteractions: MouseEvent[]
+  
+  // Native app adaptations
+  iosAdaptations?: PlatformAdaptation
+  androidAdaptations?: PlatformAdaptation
+}
+
+interface PlatformAdaptation {
+  navigationStyle: 'tab-bar' | 'side-menu' | 'stack'
+  statusBarStyle: 'light' | 'dark' | 'auto'
+  safeAreaHandling: boolean
+  platformColors: ColorScheme
+  nativeComponents: NativeComponentMapping[]
+}
+```
+
+#### Multi-Platform One-Click Customization
+- **BrandKitApplicator**: Apply user's brand colors/fonts across all platforms
+- **ContentWizard**: Guide user through content replacement with platform optimization
+- **ImageReplacer**: Smart image replacement with mobile/desktop variants
+- **ColorSchemeApplicator**: Platform-aware color scheme changes
+- **PlatformOptimizer**: Automatic platform-specific adaptations
+
+#### Native App Generation Components
+```typescript
+interface NativeWrapperGenerator {
+  // iOS wrapper generation
+  generateiOSWrapper(webApp: WebApplication): iOSAppBundle
+  
+  // Android wrapper generation  
+  generateAndroidWrapper(webApp: WebApplication): AndroidAppBundle
+  
+  // PWA generation
+  generatePWA(webApp: WebApplication): PWAManifest
+  
+  // Cross-platform configuration
+  platformConfigs: {
+    ios: iOSConfiguration
+    android: AndroidConfiguration
+    pwa: PWAConfiguration
+  }
+  
+  // App store metadata
+  storeListings: {
+    appleAppStore: AppStoreMetadata
+    googlePlayStore: PlayStoreMetadata
+  }
+}
+
+interface MobileAppComponents {
+  // Mobile-specific navigation
+  tabBarNavigation: TabBarComponent
+  stackNavigation: StackNavigatorComponent
+  drawerNavigation: DrawerComponent
+  
+  // Platform UI adaptations
+  iosStatusBar: StatusBarComponent
+  androidAppBar: AppBarComponent
+  safeAreaView: SafeAreaComponent
+  
+  // Native feature integration
+  cameraAccess: CameraComponent
+  locationServices: LocationComponent
+  pushNotifications: NotificationComponent
+  deviceContacts: ContactsComponent
+}
+```
 
 ## Future Roadmap
 
 ### Planned Enhancements
 
-1. **Advanced Visual Builder** - Complete drag-and-drop system with constraint-based layouts
-2. **Animation System** - Visual animation editor with timeline
-3. **Advanced Validation** - Visual validation rule builder
-4. **Responsive Utilities** - Visual breakpoint editor
-5. **Component Variants** - Visual variant selector and customizer
-6. **Accessibility Improvements** - Built-in accessibility checker and fixer
-7. **Performance Monitoring** - Real-time performance feedback in builder
+1. **Advanced Multi-Platform Visual Builder** - Complete drag-and-drop system with mobile/desktop constraint-based layouts
+2. **Cross-Platform Animation System** - Visual animation editor with platform-specific animations
+3. **Platform-Aware Validation** - Visual validation rule builder with mobile form patterns
+4. **Responsive Utilities** - Visual breakpoint editor with mobile-first design tools
+5. **Platform Component Variants** - Visual variant selector with iOS/Android/web customizations
+6. **Universal Accessibility** - Built-in accessibility checker for web and mobile standards
+7. **Multi-Platform Performance Monitoring** - Real-time performance feedback across all target platforms
+8. **Native Feature Integration** - Visual editor for camera, location, notifications, and device APIs
+9. **App Store Optimization** - Built-in ASO tools and automated store listing generation
 
 ### API Stability
 
