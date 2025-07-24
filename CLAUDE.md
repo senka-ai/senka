@@ -6,15 +6,18 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 **ALWAYS read these files before making any changes:**
 
-1. **`~/Downloads/claude/Svelte_5.md`** - Essential Svelte 5 syntax and patterns
-2. **`packages/app/plan.md`** - Project MVP plan and long-term roadmap
-3. **`packages/app/mvp_plan_romanian.md`** - Detailed Romanian MVP specifications
-4. **`HYBRID_SETUP.md`** - Hybrid repository setup for UI library
-5. **`packages/ui/UI_ARCHITECTURE.md`** - Detailed component patterns and implementation (read this!)
+1. **`SENKA_SYSTEM_ARCHITECTURE.md`** - **CRITICAL: Complete system architecture and platform vision** (read this!)
+5. **`HYBRID_SETUP.md`** - Hybrid repository setup for UI library
+2. **`../Downloads/claude/Svelte_5.md`** - Essential Svelte 5 syntax and patterns
+6. **`packages/ui/UI_ARCHITECTURE.md`** - Detailed component patterns and implementation
+3. **`packages/app/plan.md`** - Educational app MVP plan and long-term roadmap
+4. **`packages/app/mvp_plan_romanian.md`** - Detailed Romanian MVP specifications
 
 ## Project Overview
 
-**Senka** is an educational app built with SvelteKit 5, designed to support students, teachers, and parents in the Romanian educational system. The app provides features for class management, timetable creation, task assignment, and educational content delivery.
+**Senka** is a comprehensive AI-powered no-code platform that enables **non-technical users** to build sophisticated applications through drag-and-drop visual tools and conversational AI. The platform consists of multiple packages including a UI library, visual builder system, AI integrations, template marketplace, and an educational app as a reference implementation.
+
+**Current Focus**: The educational app (packages/app) serves the Romanian educational system but is primarily a showcase of the platform's capabilities. The main vision is the complete no-code development platform described in `SENKA_SYSTEM_ARCHITECTURE.md`.
 
 ## Key Technologies
 
@@ -78,81 +81,23 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 **ALWAYS prompt user to run Prettier over changed files**
 
-## Component Architecture Principles
+## Platform Architecture Context
 
-- Components use **Svelte 5 runes syntax** (`$state`, `$props`, `$derived.by`)
-- TypeScript interfaces defined explicitly (never use `ComponentProps<>`)
-- Event handling uses direct props (`onclick`) not `on:click`
-- Children pattern: `{@render children?.()}` with `children?: any` in interface
-- Icons are modular Svelte components in `src/lib/icons/`
-- CSS uses semantic utility classes over verbose variable syntax
+**CRITICAL**: Senka is designed as a no-code platform with multiple specialized packages.
 
-## Key Svelte 5 Patterns
+### Educational App Domain (Reference Implementation)
 
-```typescript
-// Props interface (ALWAYS explicit)
-interface Props {
-  variant: 'primary' | 'secondary'
-  size?: 'small' | 'medium' | 'large'
-  disabled?: boolean
-  class?: string
-  onclick?: () => void
-  children?: any
-}
-
-// Component structure
-let { variant, size = 'medium', ...props }: Props = $props()
-
-// State management
-let isActive = $state(false)
-
-// Computed values
-let classes = $derived.by(() => {
-  return `base ${variants[variant]} ${sizes[size]}`
-})
-```
-
-## Architecture Files
-
-- **Components**: `src/lib/components/` (29 components)
-- **Icons**: `src/lib/icons/` (48 SVG components)
-- **Types**: `src/lib/types/component.ts`
-- **Utilities**: `src/lib/utils/`
-- **Routes**: `src/routes/`
-- **Stories**: `src/stories/`
-- **Styles**: `src/styles/`
-
-## Development Notes
-
-### NEVER Use:
-
-- `ComponentProps<'button'>` or similar - define explicit interfaces
-- `on:click` syntax - use direct `onclick` props
-- `let` for reactive state - use `$state()`
-- `$:` for computed values - use `$derived.by()`
-
-### ALWAYS Include:
-
-- `children?: any` when using `{@render children?.()}`
-- Common HTML attributes (`class?`, `id?`, `disabled?`) in interfaces
-- Type checking after edits
-- Prettier formatting prompt after task completion
-
-## Educational App Domain
-
-This app serves the Romanian educational system with three user types:
-
+The current educational app serves the Romanian educational system with three user types:
 - **Students**: Access timetables, assignments, educational content
-- **Teachers**: Create classes, assign tasks, manage timetables
+- **Teachers**: Create classes, assign tasks, manage timetables  
 - **Parents**: Monitor child progress, receive updates
-
-The MVP focuses on classroom management, with plans for AI-powered personalized learning.
 
 ## IMPORTANT: Current Status
 
-- Current pages contain **demo/dummy data** and will change in future
-- Next project phase: **solid component structure** then new components
-- All components must follow architecture patterns in `ARCHITECTURE.md`
+- Educational app contains **demo/dummy data** and serves as platform demonstration
+- **Primary goal**: Build the comprehensive no-code platform architecture
+- All development should align with the no-code platform vision
+- Components must support both direct use and visual builder integration
 
 ## Security & Best Practices
 
