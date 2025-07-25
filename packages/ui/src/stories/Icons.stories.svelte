@@ -53,7 +53,6 @@
     component: AddIcon,
     args: {
       size: 24,
-      class: 'text-neutral-700',
     },
     argTypes: {
       size: {
