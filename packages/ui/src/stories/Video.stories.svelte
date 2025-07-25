@@ -71,6 +71,192 @@
   })
 </script>
 
+<Story name="Overview" args={{}}>
+  {#snippet template()}
+    <div class="space-y-8">
+      <!-- Aspect Ratios -->
+      <div>
+        <h3 class="text-h4 text-primary mb-4">Aspect Ratios</h3>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div class="text-center">
+            <div class="w-60">
+              <Video
+                src="https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4"
+                aspectRatio="square"
+                controls={true}
+              />
+            </div>
+            <p class="text-body-s text-secondary mt-2">Square (1:1)</p>
+          </div>
+          <div class="text-center">
+            <div class="w-80">
+              <Video
+                src="https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4"
+                aspectRatio="16:9"
+                controls={true}
+              />
+            </div>
+            <p class="text-body-s text-secondary mt-2">Video (16:9)</p>
+          </div>
+          <div class="text-center">
+            <div class="w-80">
+              <Video
+                src="https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4"
+                aspectRatio="4:3"
+                controls={true}
+              />
+            </div>
+            <p class="text-body-s text-secondary mt-2">Traditional (4:3)</p>
+          </div>
+          <div class="text-center">
+            <div class="w-80">
+              <Video
+                src="https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4"
+                aspectRatio="3:2"
+                controls={true}
+              />
+            </div>
+            <p class="text-body-s text-secondary mt-2">Photo (3:2)</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Control Options -->
+      <div>
+        <h3 class="text-h4 text-primary mb-4">Control Options</h3>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div>
+            <p class="text-body-s text-secondary mb-2">With Controls</p>
+            <div class="w-80">
+              <Video
+                src="https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4"
+                aspectRatio="16:9"
+                controls={true}
+              />
+            </div>
+          </div>
+          <div>
+            <p class="text-body-s text-secondary mb-2">No Controls</p>
+            <div class="w-80">
+              <Video
+                src="https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4"
+                aspectRatio="16:9"
+                controls={false}
+                muted={true}
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- With Poster -->
+      <div>
+        <h3 class="text-h4 text-primary mb-4">With Poster Image</h3>
+        <div class="w-80">
+          <Video
+            src="https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4"
+            poster="https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/images/BigBuckBunny.jpg"
+            aspectRatio="16:9"
+            controls={true}
+            preload="none"
+          />
+        </div>
+      </div>
+
+      <!-- Rounded Variants -->
+      <div>
+        <h3 class="text-h4 text-primary mb-4">Rounded Variants</h3>
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+          <div class="text-center">
+            <div class="w-32">
+              <Video
+                src="https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4"
+                aspectRatio="square"
+                rounded="none"
+                controls={true}
+              />
+            </div>
+            <p class="text-body-s text-secondary mt-2">None</p>
+          </div>
+          <div class="text-center">
+            <div class="w-32">
+              <Video
+                src="https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4"
+                aspectRatio="square"
+                rounded="sm"
+                controls={true}
+              />
+            </div>
+            <p class="text-body-s text-secondary mt-2">Small</p>
+          </div>
+          <div class="text-center">
+            <div class="w-32">
+              <Video
+                src="https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4"
+                aspectRatio="square"
+                rounded="lg"
+                controls={true}
+              />
+            </div>
+            <p class="text-body-s text-secondary mt-2">Large</p>
+          </div>
+          <div class="text-center">
+            <div class="w-32">
+              <Video
+                src="https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4"
+                aspectRatio="square"
+                rounded="xl"
+                controls={true}
+              />
+            </div>
+            <p class="text-body-s text-secondary mt-2">XL</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Real Examples -->
+      <div>
+        <h3 class="text-h4 text-primary mb-4">Real Examples</h3>
+        <div class="space-y-6">
+          <div>
+            <p class="text-body-s text-secondary mb-2">Auto-play Preview (Muted)</p>
+            <div class="w-80">
+              <Video
+                src="https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4"
+                aspectRatio="16:9"
+                autoplay={true}
+                muted={true}
+                loop={true}
+                controls={true}
+                rounded="lg"
+              />
+            </div>
+          </div>
+          <div>
+            <p class="text-body-s text-secondary mb-2">Video Gallery</p>
+            <div class="grid grid-cols-2 gap-4 max-w-2xl">
+              <Video
+                src="https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4"
+                poster="https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/images/BigBuckBunny.jpg"
+                aspectRatio="16:9"
+                rounded="lg"
+                controls={true}
+              />
+              <Video
+                src="https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4"
+                poster="https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/images/BigBuckBunny.jpg"
+                aspectRatio="16:9"
+                rounded="lg"
+                controls={true}
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  {/snippet}
+</Story>
+
 <Story name="Default" args={{}}>
   {#snippet template(args)}
     <div class="w-80">

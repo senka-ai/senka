@@ -38,6 +38,156 @@
   })
 </script>
 
+<Story name="Overview" args={{}}>
+  {#snippet template()}
+    <div class="space-y-8">
+      <!-- Basic Variants -->
+      <div>
+        <h3 class="text-h4 text-primary mb-4">Basic Variants</h3>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl">
+          <div>
+            <p class="text-body-s text-secondary mb-2">With Button Action</p>
+            <CardHorizontal
+              title="Product Name"
+              subtitle="Product description"
+              buttonText="Add to Cart"
+              showAction={true}
+              actionType="button"
+            />
+          </div>
+          <div>
+            <p class="text-body-s text-secondary mb-2">With Arrow Action</p>
+            <CardHorizontal
+              title="Navigate Item"
+              subtitle="Click to view details"
+              showAction={true}
+              actionType="arrow"
+            />
+          </div>
+          <div>
+            <p class="text-body-s text-secondary mb-2">No Action</p>
+            <CardHorizontal
+              title="Information Only"
+              subtitle="Read-only content"
+              showAction={false}
+            />
+          </div>
+          <div>
+            <p class="text-body-s text-secondary mb-2">Disabled</p>
+            <CardHorizontal
+              title="Disabled Item"
+              subtitle="Not available"
+              buttonText="Unavailable"
+              disabled={true}
+            />
+          </div>
+        </div>
+      </div>
+
+      <!-- With Image -->
+      <div>
+        <h3 class="text-h4 text-primary mb-4">With Image</h3>
+        <div class="max-w-md">
+          <CardHorizontal
+            title="Profile Card"
+            subtitle="User information"
+            image="https://picsum.photos/80/80"
+            imageAlt="Profile picture"
+            buttonText="View Profile"
+            showAction={true}
+            actionType="button"
+          />
+        </div>
+      </div>
+
+      <!-- With Custom Icons -->
+      <div>
+        <h3 class="text-h4 text-primary mb-4">With Custom Icons</h3>
+        <div class="space-y-4 max-w-md">
+          <CardHorizontal
+            title="Favorite Item"
+            subtitle="Added to favorites"
+            iconType="custom"
+            showAction={false}
+          >
+            {#snippet children()}
+              <HeartFilledIcon class="h-6 w-6 text-red-500" />
+            {/snippet}
+          </CardHorizontal>
+          <CardHorizontal
+            title="User Profile"
+            subtitle="Account settings"
+            iconType="custom"
+            actionType="arrow"
+            showAction={true}
+          >
+            {#snippet children()}
+              <ProfileIcon class="h-6 w-6 text-blue-500" />
+            {/snippet}
+          </CardHorizontal>
+          <CardHorizontal
+            title="Chat Message"
+            subtitle="New conversation"
+            iconType="custom"
+            buttonText="Reply"
+            showAction={true}
+            actionType="button"
+          >
+            {#snippet children()}
+              <ChatIcon class="h-6 w-6 text-green-500" />
+            {/snippet}
+          </CardHorizontal>
+        </div>
+      </div>
+
+      <!-- Real World Examples -->
+      <div>
+        <h3 class="text-h4 text-primary mb-4">Real World Examples</h3>
+        <div class="space-y-4 max-w-lg">
+          <CardHorizontal
+            title="John Doe"
+            subtitle="Software Engineer • Online"
+            image="https://picsum.photos/80/80?random=1"
+            imageAlt="John Doe"
+            actionType="arrow"
+            showAction={true}
+          />
+          <CardHorizontal
+            title="Design System"
+            subtitle="Updated 2 hours ago"
+            iconType="custom"
+            buttonText="Open"
+            showAction={true}
+            actionType="button"
+          >
+            {#snippet children()}
+              <div class="bg-purple-100 text-purple-600 flex h-10 w-10 items-center justify-center rounded-lg">
+                <svg class="h-5 w-5" fill="currentColor" viewBox="0 0 20 20">
+                  <path d="M4 3a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V5a2 2 0 00-2-2H4zm12 12H4l4-8 3 6 2-4 3 6z" />
+                </svg>
+              </div>
+            {/snippet}
+          </CardHorizontal>
+          <CardHorizontal
+            title="Meeting Reminder"
+            subtitle="Team standup in 15 minutes"
+            iconType="custom"
+            showAction={false}
+          >
+            {#snippet children()}
+              <div class="bg-yellow-100 text-yellow-600 flex h-10 w-10 items-center justify-center rounded-lg">
+                <svg class="h-5 w-5" fill="currentColor" viewBox="0 0 20 20">
+                  <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l2.828 2.829a1 1 0 101.415-1.415L11 9.586V6z" clip-rule="evenodd" />
+                </svg>
+              </div>
+            {/snippet}
+          </CardHorizontal>
+        </div>
+      </div>
+    </div>
+  {/snippet}
+</Story>
+
 <Story name="Default" args={{}}>
   {#snippet template(args)}
     <div class="max-w-md">

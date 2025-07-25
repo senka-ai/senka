@@ -22,6 +22,85 @@
   })
 </script>
 
+<Story name="Overview" args={{}}>
+  {#snippet template()}
+    <div class="space-y-8">
+      <!-- Basic Variants -->
+      <div>
+        <h3 class="text-h4 text-primary mb-4">Basic Variants</h3>
+        <div class="space-y-4">
+          <div>
+            <p class="text-body-s text-secondary mb-2">Basic Title</p>
+            <ListTitle title="My List" />
+          </div>
+          <div>
+            <p class="text-body-s text-secondary mb-2">With Right Text</p>
+            <ListTitle title="Photos" rightText="See All" />
+          </div>
+          <div>
+            <p class="text-body-s text-secondary mb-2">Clickable Right Text</p>
+            <ListTitle title="Tasks" rightText="Edit" onRightClick={() => console.log('Edit clicked')} />
+          </div>
+        </div>
+      </div>
+
+      <!-- With Icons -->
+      <div>
+        <h3 class="text-h4 text-primary mb-4">With Icons</h3>
+        <div class="space-y-4">
+          <div>
+            <p class="text-body-s text-secondary mb-2">Search Icon</p>
+            <ListTitle title="Search Results">
+              {#snippet rightIcon()}
+                <SearchIcon size={20} />
+              {/snippet}
+            </ListTitle>
+          </div>
+          <div>
+            <p class="text-body-s text-secondary mb-2">Filter Icon (Clickable)</p>
+            <ListTitle title="Items" onRightClick={() => console.log('Filter clicked')}>
+              {#snippet rightIcon()}
+                <FilterIcon size={20} />
+              {/snippet}
+            </ListTitle>
+          </div>
+          <div>
+            <p class="text-body-s text-secondary mb-2">Edit Icon</p>
+            <ListTitle title="Documents">
+              {#snippet rightIcon()}
+                <EditIcon size={20} />
+              {/snippet}
+            </ListTitle>
+          </div>
+        </div>
+      </div>
+
+      <!-- Real World Examples -->
+      <div>
+        <h3 class="text-h4 text-primary mb-4">Real World Examples</h3>
+        <div class="space-y-6">
+          <div>
+            <ListTitle title="Recent Photos" rightText="See All" />
+            <p class="text-body-s text-secondary mt-2">Photos from this week</p>
+          </div>
+          <div>
+            <ListTitle title="Shopping List" rightText="Edit" />
+            <p class="text-body-s text-secondary mt-2">5 items remaining</p>
+          </div>
+          <div>
+            <ListTitle title="Contacts">
+              {#snippet rightIcon()}
+                <SearchIcon size={20} />
+              {/snippet}
+            </ListTitle>
+            <p class="text-body-s text-secondary mt-2">24 contacts</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  {/snippet}
+</Story>
+
 <Story name="Basic" args={{ title: 'My List' }}>
   {#snippet template(args)}
     <ListTitle title={args.title} class={args.class} id={args.id} />

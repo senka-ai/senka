@@ -45,6 +45,18 @@
   })
 </script>
 
+<Story name="All States" args={{}}>
+  {#snippet template()}
+    <div class="max-w-md space-y-4">
+      <TextField label="Default" placeholder="Enter text" />
+      <TextField label="With Helper Text" placeholder="Enter text" helperText="This is helper text" />
+      <TextField label="With Error" placeholder="Enter text" error="This field is required" />
+      <TextField label="Disabled" placeholder="Enter text" disabled />
+      <TextField label="With Unit" placeholder="0.00" unit="€" />
+    </div>
+  {/snippet}
+</Story>
+
 <Story name="Default" args={{}}>
   {#snippet template(args)}
     <TextField {...args} />
@@ -72,17 +84,5 @@
 <Story name="With Password Icon" args={{ type: 'password', label: 'Password' }}>
   {#snippet template(args)}
     <TextField {...args} />
-  {/snippet}
-</Story>
-
-<Story name="All States" args={{}}>
-  {#snippet template()}
-    <div class="max-w-md space-y-4">
-      <TextField label="Default" placeholder="Enter text" />
-      <TextField label="With Helper Text" placeholder="Enter text" helperText="This is helper text" />
-      <TextField label="With Error" placeholder="Enter text" error="This field is required" />
-      <TextField label="Disabled" placeholder="Enter text" disabled />
-      <TextField label="With Unit" placeholder="0.00" unit="€" />
-    </div>
   {/snippet}
 </Story>

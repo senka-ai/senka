@@ -32,6 +32,95 @@
   })
 </script>
 
+<Story name="Overview" args={{}}>
+  {#snippet template()}
+    <div class="space-y-8">
+      <!-- Basic States -->
+      <div>
+        <h3 class="text-h4 text-primary mb-4">Basic States</h3>
+        <div class="flex items-center gap-8">
+          <div class="text-center">
+            <Toggle checked={false} />
+            <p class="text-body-s text-secondary mt-2">Off</p>
+          </div>
+          <div class="text-center">
+            <Toggle checked={true} />
+            <p class="text-body-s text-secondary mt-2">On</p>
+          </div>
+          <div class="text-center">
+            <Toggle disabled={true} checked={false} />
+            <p class="text-body-s text-secondary mt-2">Disabled Off</p>
+          </div>
+          <div class="text-center">
+            <Toggle disabled={true} checked={true} />
+            <p class="text-body-s text-secondary mt-2">Disabled On</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- All Sizes -->
+      <div>
+        <h3 class="text-h4 text-primary mb-4">Sizes</h3>
+        <div class="space-y-6">
+          <div class="flex items-center gap-6">
+            <div class="text-center">
+              <div class="flex items-center gap-3">
+                <Toggle size="xs" />
+                <Toggle size="xs" checked={true} />
+              </div>
+              <p class="text-body-s text-secondary mt-2">Extra Small</p>
+            </div>
+            <div class="text-center">
+              <div class="flex items-center gap-3">
+                <Toggle size="small" />
+                <Toggle size="small" checked={true} />
+              </div>
+              <p class="text-body-s text-secondary mt-2">Small</p>
+            </div>
+            <div class="text-center">
+              <div class="flex items-center gap-3">
+                <Toggle size="medium" />
+                <Toggle size="medium" checked={true} />
+              </div>
+              <p class="text-body-s text-secondary mt-2">Medium</p>
+            </div>
+            <div class="text-center">
+              <div class="flex items-center gap-3">
+                <Toggle size="large" />
+                <Toggle size="large" checked={true} />
+              </div>
+              <p class="text-body-s text-secondary mt-2">Large</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Settings Examples -->
+      <div>
+        <h3 class="text-h4 text-primary mb-4">Settings Examples</h3>
+        <div class="space-y-3 max-w-md">
+          <label class="bg-surface flex items-center justify-between gap-4 rounded-lg p-3 cursor-pointer">
+            <span class="text-body-m">Enable notifications</span>
+            <Toggle />
+          </label>
+          <label class="bg-surface flex items-center justify-between gap-4 rounded-lg p-3 cursor-pointer">
+            <span class="text-body-m">Dark mode</span>
+            <Toggle checked={true} />
+          </label>
+          <label class="bg-surface flex items-center justify-between gap-4 rounded-lg p-3 cursor-pointer">
+            <span class="text-body-m">Auto-save documents</span>
+            <Toggle />
+          </label>
+          <label class="bg-surface flex items-center justify-between gap-4 rounded-lg p-3">
+            <span class="text-body-m text-neutral-500">Maintenance mode (disabled)</span>
+            <Toggle disabled />
+          </label>
+        </div>
+      </div>
+    </div>
+  {/snippet}
+</Story>
+
 <Story name="Default" args={{ checked: false }}>
   {#snippet template(args)}
     <Toggle {...args} />

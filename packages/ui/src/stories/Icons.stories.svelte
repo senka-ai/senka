@@ -68,7 +68,7 @@
   })
 </script>
 
-<Story name="Icon Gallery" args={{}}>
+<Story name="Overview" args={{}}>
   {#snippet template(args)}
     <div class="grid grid-cols-4 gap-2 p-6 md:grid-cols-6 lg:grid-cols-8">
       <div class="flex flex-col items-center gap-2">

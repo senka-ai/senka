@@ -39,6 +39,18 @@
   })
 </script>
 
+<Story name="All States" args={{}}>
+  {#snippet template()}
+    <div class="space-y-6">
+      <TextArea label="Default" placeholder="Placeholder" />
+      <TextArea label="With Text" value="Text" />
+      <TextArea label="Focused" inputState="focused" value="Text" />
+      <TextArea label="Error" inputState="error" value="Text" error="Error message" />
+      <TextArea label="Disabled" disabled value="Text" />
+    </div>
+  {/snippet}
+</Story>
+
 <Story name="Default" args={{ value: '' }}>
   {#snippet template(args)}
     <TextArea {...args} />
@@ -96,18 +108,6 @@
 <Story name="No Resize" args={{ resize: 'none' }}>
   {#snippet template(args)}
     <TextArea {...args} />
-  {/snippet}
-</Story>
-
-<Story name="All States" args={{}}>
-  {#snippet template()}
-    <div class="space-y-6">
-      <TextArea label="Default" placeholder="Placeholder" />
-      <TextArea label="With Text" value="Text" />
-      <TextArea label="Focused" inputState="focused" value="Text" />
-      <TextArea label="Error" inputState="error" value="Text" error="Error message" />
-      <TextArea label="Disabled" disabled value="Text" />
-    </div>
   {/snippet}
 </Story>
 

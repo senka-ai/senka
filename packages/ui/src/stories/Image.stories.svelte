@@ -62,6 +62,134 @@
   })
 </script>
 
+<Story name="Overview" args={{}}>
+  {#snippet template()}
+    <div class="space-y-8">
+      <!-- Aspect Ratios -->
+      <div>
+        <h3 class="text-h4 text-primary mb-4">Aspect Ratios</h3>
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
+          <div class="text-center">
+            <div class="w-40">
+              <Image src="https://picsum.photos/400/400?random=1" alt="Square" aspectRatio="square" />
+            </div>
+            <p class="text-body-s text-secondary mt-2">Square (1:1)</p>
+          </div>
+          <div class="text-center">
+            <div class="w-40">
+              <Image src="https://picsum.photos/800/450?random=2" alt="Video" aspectRatio="16:9" />
+            </div>
+            <p class="text-body-s text-secondary mt-2">Video (16:9)</p>
+          </div>
+          <div class="text-center">
+            <div class="w-40">
+              <Image src="https://picsum.photos/400/300?random=3" alt="Traditional" aspectRatio="4:3" />
+            </div>
+            <p class="text-body-s text-secondary mt-2">Traditional (4:3)</p>
+          </div>
+          <div class="text-center">
+            <div class="w-40">
+              <Image src="https://picsum.photos/600/400?random=4" alt="Photo" aspectRatio="3:2" />
+            </div>
+            <p class="text-body-s text-secondary mt-2">Photo (3:2)</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Rounded Variants -->
+      <div>
+        <h3 class="text-h4 text-primary mb-4">Rounded Variants</h3>
+        <div class="grid grid-cols-3 md:grid-cols-6 gap-4">
+          <div class="text-center">
+            <div class="w-24">
+              <Image src="https://picsum.photos/200/200?random=5" alt="None" aspectRatio="square" rounded="none" />
+            </div>
+            <p class="text-body-s text-secondary mt-2">None</p>
+          </div>
+          <div class="text-center">
+            <div class="w-24">
+              <Image src="https://picsum.photos/200/200?random=6" alt="Small" aspectRatio="square" rounded="sm" />
+            </div>
+            <p class="text-body-s text-secondary mt-2">Small</p>
+          </div>
+          <div class="text-center">
+            <div class="w-24">
+              <Image src="https://picsum.photos/200/200?random=7" alt="Medium" aspectRatio="square" rounded="md" />
+            </div>
+            <p class="text-body-s text-secondary mt-2">Medium</p>
+          </div>
+          <div class="text-center">
+            <div class="w-24">
+              <Image src="https://picsum.photos/200/200?random=8" alt="Large" aspectRatio="square" rounded="lg" />
+            </div>
+            <p class="text-body-s text-secondary mt-2">Large</p>
+          </div>
+          <div class="text-center">
+            <div class="w-24">
+              <Image src="https://picsum.photos/200/200?random=9" alt="Extra Large" aspectRatio="square" rounded="xl" />
+            </div>
+            <p class="text-body-s text-secondary mt-2">XL</p>
+          </div>
+          <div class="text-center">
+            <div class="w-24">
+              <Image src="https://picsum.photos/200/200?random=10" alt="Full" aspectRatio="square" rounded="full" />
+            </div>
+            <p class="text-body-s text-secondary mt-2">Full</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Object Fit Options -->
+      <div>
+        <h3 class="text-h4 text-primary mb-4">Object Fit Options</h3>
+        <div class="grid grid-cols-2 gap-6">
+          <div class="text-center">
+            <div class="w-48">
+              <Image src="https://picsum.photos/400/600?random=11" alt="Cover" aspectRatio="square" fit="cover" />
+            </div>
+            <p class="text-body-s text-secondary mt-2">Cover (default)</p>
+          </div>
+          <div class="text-center">
+            <div class="w-48">
+              <Image src="https://picsum.photos/400/600?random=12" alt="Contain" aspectRatio="square" fit="contain" />
+            </div>
+            <p class="text-body-s text-secondary mt-2">Contain</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Real Examples -->
+      <div>
+        <h3 class="text-h4 text-primary mb-4">Real Examples</h3>
+        <div class="space-y-6">
+          <div>
+            <p class="text-body-s text-secondary mb-2">Profile Pictures</p>
+            <div class="flex items-center gap-4">
+              <div class="w-16">
+                <Image src="https://picsum.photos/100/100?random=13" alt="Small profile" aspectRatio="square" rounded="full" />
+              </div>
+              <div class="w-24">
+                <Image src="https://picsum.photos/100/100?random=14" alt="Medium profile" aspectRatio="square" rounded="full" />
+              </div>
+              <div class="w-32">
+                <Image src="https://picsum.photos/100/100?random=15" alt="Large profile" aspectRatio="square" rounded="full" />
+              </div>
+            </div>
+          </div>
+          <div>
+            <p class="text-body-s text-secondary mb-2">Gallery Grid</p>
+            <div class="grid grid-cols-3 gap-2 max-w-md">
+              <Image src="https://picsum.photos/300/300?random=16" alt="Gallery 1" aspectRatio="square" rounded="lg" />
+              <Image src="https://picsum.photos/300/300?random=17" alt="Gallery 2" aspectRatio="square" rounded="lg" />
+              <Image src="https://picsum.photos/300/300?random=18" alt="Gallery 3" aspectRatio="square" rounded="lg" />
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  {/snippet}
+</Story>
+
 <Story name="Default" args={{}}>
   {#snippet template(args)}
     <div class="w-80">

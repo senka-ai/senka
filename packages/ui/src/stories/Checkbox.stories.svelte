@@ -36,6 +36,98 @@
   })
 </script>
 
+<Story name="Overview" args={{}}>
+  {#snippet template()}
+    <div class="space-y-8">
+      <!-- Basic States -->
+      <div>
+        <h3 class="text-h4 text-primary mb-4">Basic States</h3>
+        <div class="flex items-center gap-6">
+          <div class="text-center">
+            <Checkbox checked={false} />
+            <p class="text-body-s text-secondary mt-2">Unchecked</p>
+          </div>
+          <div class="text-center">
+            <Checkbox checked={true} />
+            <p class="text-body-s text-secondary mt-2">Checked</p>
+          </div>
+          <div class="text-center">
+            <Checkbox disabled={true} checked={false} />
+            <p class="text-body-s text-secondary mt-2">Disabled</p>
+          </div>
+          <div class="text-center">
+            <Checkbox disabled={true} checked={true} />
+            <p class="text-body-s text-secondary mt-2">Disabled Checked</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- All Sizes -->
+      <div>
+        <h3 class="text-h4 text-primary mb-4">Sizes</h3>
+        <div class="flex items-center gap-6">
+          <div class="text-center">
+            <div class="flex items-center gap-3">
+              <Checkbox size="xs" />
+              <Checkbox size="xs" checked={true} />
+            </div>
+            <p class="text-body-s text-secondary mt-2">Extra Small</p>
+          </div>
+          <div class="text-center">
+            <div class="flex items-center gap-3">
+              <Checkbox size="small" />
+              <Checkbox size="small" checked={true} />
+            </div>
+            <p class="text-body-s text-secondary mt-2">Small</p>
+          </div>
+          <div class="text-center">
+            <div class="flex items-center gap-3">
+              <Checkbox size="medium" />
+              <Checkbox size="medium" checked={true} />
+            </div>
+            <p class="text-body-s text-secondary mt-2">Medium</p>
+          </div>
+          <div class="text-center">
+            <div class="flex items-center gap-3">
+              <Checkbox size="large" />
+              <Checkbox size="large" checked={true} />
+            </div>
+            <p class="text-body-s text-secondary mt-2">Large</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- With Labels -->
+      <div>
+        <h3 class="text-h4 text-primary mb-4">With Labels</h3>
+        <div class="space-y-3">
+          <Checkbox label="Accept terms and conditions" />
+          <Checkbox label="Subscribe to newsletter" checked={true} />
+          <Checkbox label="Receive notifications" disabled />
+        </div>
+      </div>
+
+      <!-- Rich Content -->
+      <div>
+        <h3 class="text-h4 text-primary mb-4">Rich Content</h3>
+        <div class="space-y-3">
+          <Checkbox>
+            {#snippet children()}
+              I agree to the <strong>terms and conditions</strong> and
+              <a href="/privacy" class="text-highlight underline">privacy policy</a>
+            {/snippet}
+          </Checkbox>
+          <Checkbox checked={true}>
+            {#snippet children()}
+              <strong>Important:</strong> Enable notifications for updates
+            {/snippet}
+          </Checkbox>
+        </div>
+      </div>
+    </div>
+  {/snippet}
+</Story>
+
 <Story name="Default" args={{ checked: false }}>
   {#snippet template(args)}
     <Checkbox {...args} />

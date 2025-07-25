@@ -31,6 +31,28 @@
   })
 </script>
 
+<Story name="All Sizes" args={{}}>
+  {#snippet template()}
+    <div class="space-y-4">
+      <h3 class="text-primary text-lg font-semibold">Theme Toggle Sizes</h3>
+      <div class="flex items-center gap-4">
+        <div class="flex flex-col items-center gap-2">
+          <ThemeToggle size="small" />
+          <span class="text-secondary text-sm">Small</span>
+        </div>
+        <div class="flex flex-col items-center gap-2">
+          <ThemeToggle size="medium" />
+          <span class="text-secondary text-sm">Medium</span>
+        </div>
+        <div class="flex flex-col items-center gap-2">
+          <ThemeToggle size="large" />
+          <span class="text-secondary text-sm">Large</span>
+        </div>
+      </div>
+    </div>
+  {/snippet}
+</Story>
+
 <Story name="Default" args={{}}>
   {#snippet template(args)}
     <ThemeToggle {...args} />
@@ -52,28 +74,6 @@
 <Story name="Large" args={{ size: 'large' }}>
   {#snippet template(args)}
     <ThemeToggle {...args} />
-  {/snippet}
-</Story>
-
-<Story name="All Sizes" args={{}}>
-  {#snippet template()}
-    <div class="space-y-4">
-      <h3 class="text-primary text-lg font-semibold">Theme Toggle Sizes</h3>
-      <div class="flex items-center gap-4">
-        <div class="flex flex-col items-center gap-2">
-          <ThemeToggle size="small" />
-          <span class="text-secondary text-sm">Small</span>
-        </div>
-        <div class="flex flex-col items-center gap-2">
-          <ThemeToggle size="medium" />
-          <span class="text-secondary text-sm">Medium</span>
-        </div>
-        <div class="flex flex-col items-center gap-2">
-          <ThemeToggle size="large" />
-          <span class="text-secondary text-sm">Large</span>
-        </div>
-      </div>
-    </div>
   {/snippet}
 </Story>
 

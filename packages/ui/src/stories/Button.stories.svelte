@@ -39,6 +39,43 @@
   })
 </script>
 
+<Story name="All Variants">
+  {#snippet template()}
+    <div class="space-y-4">
+      <div class="flex items-start gap-4">
+        <Button variant="primary">
+          {#snippet children()}Primary{/snippet}
+        </Button>
+        <Button variant="secondary">
+          {#snippet children()}Secondary{/snippet}
+        </Button>
+        <Button variant="tertiary">
+          {#snippet children()}Tertiary{/snippet}
+        </Button>
+      </div>
+      <div class="flex items-start gap-4">
+        <Button size="small">
+          {#snippet children()}Small{/snippet}
+        </Button>
+        <Button size="medium">
+          {#snippet children()}Medium{/snippet}
+        </Button>
+        <Button size="large">
+          {#snippet children()}Large{/snippet}
+        </Button>
+      </div>
+      <div class="flex items-start gap-4">
+        <Button disabled>
+          {#snippet children()}Disabled{/snippet}
+        </Button>
+        <Button loading>
+          {#snippet children()}Loading{/snippet}
+        </Button>
+      </div>
+    </div>
+  {/snippet}
+</Story>
+
 <Story name="Primary" args={{ variant: 'primary' }}>
   {#snippet template(args)}
     <Button {...args}>
@@ -116,42 +153,5 @@
     <Button {...args}>
       {#snippet children()}Button{/snippet}
     </Button>
-  {/snippet}
-</Story>
-
-<Story name="All Variants">
-  {#snippet template()}
-    <div class="space-y-4">
-      <div class="flex items-start gap-4">
-        <Button variant="primary">
-          {#snippet children()}Primary{/snippet}
-        </Button>
-        <Button variant="secondary">
-          {#snippet children()}Secondary{/snippet}
-        </Button>
-        <Button variant="tertiary">
-          {#snippet children()}Tertiary{/snippet}
-        </Button>
-      </div>
-      <div class="flex items-start gap-4">
-        <Button size="small">
-          {#snippet children()}Small{/snippet}
-        </Button>
-        <Button size="medium">
-          {#snippet children()}Medium{/snippet}
-        </Button>
-        <Button size="large">
-          {#snippet children()}Large{/snippet}
-        </Button>
-      </div>
-      <div class="flex items-start gap-4">
-        <Button disabled>
-          {#snippet children()}Disabled{/snippet}
-        </Button>
-        <Button loading>
-          {#snippet children()}Loading{/snippet}
-        </Button>
-      </div>
-    </div>
   {/snippet}
 </Story>

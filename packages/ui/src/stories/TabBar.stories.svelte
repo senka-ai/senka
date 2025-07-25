@@ -65,6 +65,27 @@
   })
 </script>
 
+<Story name="All States">
+  {#snippet template()}
+    <div class="space-y-8">
+      <div>
+        <h3 class="mb-4 text-neutral-800">Basic Navigation</h3>
+        <TabBar tabs={basicTabs} activeTab="tab1" />
+      </div>
+
+      <div>
+        <h3 class="mb-4 text-neutral-800">With Many Tabs</h3>
+        <TabBar tabs={manyTabs} activeTab="tab3" />
+      </div>
+
+      <div>
+        <h3 class="mb-4 text-neutral-800">With Disabled Tabs</h3>
+        <TabBar tabs={tabsWithDisabled} activeTab="tab1" />
+      </div>
+    </div>
+  {/snippet}
+</Story>
+
 <Story name="Default" args={{}}>
   {#snippet template(args)}
     <TabBar
@@ -155,26 +176,6 @@
   {/snippet}
 </Story>
 
-<Story name="All States">
-  {#snippet template()}
-    <div class="space-y-8">
-      <div>
-        <h3 class="mb-4 text-neutral-800">Basic Navigation</h3>
-        <TabBar tabs={basicTabs} activeTab="tab1" />
-      </div>
-
-      <div>
-        <h3 class="mb-4 text-neutral-800">With Many Tabs</h3>
-        <TabBar tabs={manyTabs} activeTab="tab3" />
-      </div>
-
-      <div>
-        <h3 class="mb-4 text-neutral-800">With Disabled Tabs</h3>
-        <TabBar tabs={tabsWithDisabled} activeTab="tab1" />
-      </div>
-    </div>
-  {/snippet}
-</Story>
 
 <Story name="Interactive Example">
   {#snippet template()}

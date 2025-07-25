@@ -36,6 +36,106 @@
   })
 </script>
 
+<Story name="Overview" args={{}}>
+  {#snippet template()}
+    <div class="space-y-8">
+      <!-- Basic Types -->
+      <div>
+        <h3 class="text-h4 text-primary mb-4">Basic Types</h3>
+        <div class="flex items-center gap-6">
+          <div class="text-center">
+            <Avatar 
+              src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-4.0.3&auto=format&fit=crop&w=100&q=80" 
+              alt="John Doe" 
+              size="medium" 
+            />
+            <p class="text-body-s text-secondary mt-2">With Image</p>
+          </div>
+          <div class="text-center">
+            <Avatar initials="JD" alt="John Doe" size="medium" />
+            <p class="text-body-s text-secondary mt-2">With Initials</p>
+          </div>
+          <div class="text-center">
+            <Avatar alt="Default" size="medium" />
+            <p class="text-body-s text-secondary mt-2">Default SVG</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- All Sizes -->
+      <div>
+        <h3 class="text-h4 text-primary mb-4">Sizes</h3>
+        <div class="flex items-center gap-6">
+          <div class="text-center">
+            <Avatar size="xs" initials="XS" alt="Extra Small" />
+            <p class="text-body-s text-secondary mt-2">Extra Small</p>
+          </div>
+          <div class="text-center">
+            <Avatar size="small" initials="S" alt="Small" />
+            <p class="text-body-s text-secondary mt-2">Small</p>
+          </div>
+          <div class="text-center">
+            <Avatar size="medium" initials="M" alt="Medium" />
+            <p class="text-body-s text-secondary mt-2">Medium</p>
+          </div>
+          <div class="text-center">
+            <Avatar size="large" initials="L" alt="Large" />
+            <p class="text-body-s text-secondary mt-2">Large</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- With Status Indicators -->
+      <div>
+        <h3 class="text-h4 text-primary mb-4">Status Indicators</h3>
+        <div class="flex items-center gap-6">
+          <div class="text-center">
+            <Avatar initials="ON" alt="Online" status="online" size="medium" />
+            <p class="text-body-s text-secondary mt-2">Online</p>
+          </div>
+          <div class="text-center">
+            <Avatar initials="AW" alt="Away" status="away" size="medium" />
+            <p class="text-body-s text-secondary mt-2">Away</p>
+          </div>
+          <div class="text-center">
+            <Avatar initials="BS" alt="Busy" status="busy" size="medium" />
+            <p class="text-body-s text-secondary mt-2">Busy</p>
+          </div>
+          <div class="text-center">
+            <Avatar initials="OF" alt="Offline" status="offline" size="medium" />
+            <p class="text-body-s text-secondary mt-2">Offline</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Real Examples -->
+      <div>
+        <h3 class="text-h4 text-primary mb-4">Real Examples</h3>
+        <div class="flex items-center gap-4">
+          <Avatar 
+            src="https://images.unsplash.com/photo-1494790108755-2616b612b786?ixlib=rb-4.0.3&auto=format&fit=crop&w=100&q=80" 
+            alt="Sarah Johnson" 
+            status="online" 
+            size="large" 
+          />
+          <Avatar 
+            initials="MK" 
+            alt="Mike Kim" 
+            status="away" 
+            size="large" 
+          />
+          <Avatar 
+            src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=100&q=80" 
+            alt="Alex Chen" 
+            status="busy" 
+            size="large" 
+          />
+        </div>
+      </div>
+    </div>
+  {/snippet}
+</Story>
+
 <Story
   name="With Image"
   args={{

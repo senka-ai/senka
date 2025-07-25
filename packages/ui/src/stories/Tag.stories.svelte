@@ -28,6 +28,35 @@
   })
 </script>
 
+<Story name="All Variants" args={{}}>
+  {#snippet template()}
+    <div class="space-y-4">
+      <div class="flex items-center gap-4">
+        <Tag variant="primary" text="Primary" />
+        <Tag variant="secondary" text="Secondary" />
+        <Tag variant="tertiary" text="Tertiary" />
+      </div>
+      <div class="flex items-center gap-4">
+        <Tag variant="primary" text="With Icon">
+          {#snippet leftIcon()}
+            <StarFilledIcon size={12} />
+          {/snippet}
+        </Tag>
+        <Tag variant="secondary" text="With Icon">
+          {#snippet rightIcon()}
+            <AddIcon size={12} />
+          {/snippet}
+        </Tag>
+      </div>
+      <div class="flex items-center gap-4">
+        <Tag variant="primary" text="Disabled" disabled />
+        <Tag variant="secondary" text="Disabled" disabled />
+        <Tag variant="tertiary" text="Disabled" disabled />
+      </div>
+    </div>
+  {/snippet}
+</Story>
+
 <Story name="Primary" args={{ variant: 'primary', text: 'Primary Tag' }}>
   {#snippet template(args)}
     <Tag
@@ -176,34 +205,5 @@
       onfocus={args.onfocus}
       onblur={args.onblur}
     />
-  {/snippet}
-</Story>
-
-<Story name="All Variants" args={{}}>
-  {#snippet template()}
-    <div class="space-y-4">
-      <div class="flex items-center gap-4">
-        <Tag variant="primary" text="Primary" />
-        <Tag variant="secondary" text="Secondary" />
-        <Tag variant="tertiary" text="Tertiary" />
-      </div>
-      <div class="flex items-center gap-4">
-        <Tag variant="primary" text="With Icon">
-          {#snippet leftIcon()}
-            <StarFilledIcon size={12} />
-          {/snippet}
-        </Tag>
-        <Tag variant="secondary" text="With Icon">
-          {#snippet rightIcon()}
-            <AddIcon size={12} />
-          {/snippet}
-        </Tag>
-      </div>
-      <div class="flex items-center gap-4">
-        <Tag variant="primary" text="Disabled" disabled />
-        <Tag variant="secondary" text="Disabled" disabled />
-        <Tag variant="tertiary" text="Disabled" disabled />
-      </div>
-    </div>
   {/snippet}
 </Story>

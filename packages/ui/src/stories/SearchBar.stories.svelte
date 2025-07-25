@@ -31,6 +31,57 @@
   })
 </script>
 
+<Story name="Overview" args={{}}>
+  {#snippet template()}
+    <div class="space-y-8">
+      <!-- Basic States -->
+      <div>
+        <h3 class="text-h4 text-primary mb-4">Basic States</h3>
+        <div class="space-y-4 max-w-md">
+          <div>
+            <p class="text-body-s text-secondary mb-2">Default (Empty)</p>
+            <SearchBar placeholder="Search products..." />
+          </div>
+          <div>
+            <p class="text-body-s text-secondary mb-2">With Value</p>
+            <SearchBar placeholder="Search products..." value="laptop" />
+          </div>
+          <div>
+            <p class="text-body-s text-secondary mb-2">Disabled</p>
+            <SearchBar placeholder="Search disabled..." disabled={true} />
+          </div>
+        </div>
+      </div>
+
+      <!-- Width Variants -->
+      <div>
+        <h3 class="text-h4 text-primary mb-4">Width Variants</h3>
+        <div class="space-y-4">
+          <div>
+            <p class="text-body-s text-secondary mb-2">Default Width</p>
+            <SearchBar placeholder="Default width search" />
+          </div>
+          <div>
+            <p class="text-body-s text-secondary mb-2">Full Width</p>
+            <SearchBar placeholder="Full width search bar" fullWidth={true} />
+          </div>
+        </div>
+      </div>
+
+      <!-- Different Placeholders -->
+      <div>
+        <h3 class="text-h4 text-primary mb-4">Different Use Cases</h3>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <SearchBar placeholder="Search files..." />
+          <SearchBar placeholder="Find contacts..." />
+          <SearchBar placeholder="Search documentation..." />
+          <SearchBar placeholder="Filter results..." />
+        </div>
+      </div>
+    </div>
+  {/snippet}
+</Story>
+
 <Story
   name="Default"
   args={{

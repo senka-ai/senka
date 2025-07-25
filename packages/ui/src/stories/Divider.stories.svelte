@@ -30,6 +30,105 @@
   })
 </script>
 
+<Story name="Overview" args={{}}>
+  {#snippet template()}
+    <div class="space-y-8">
+      <!-- Horizontal Variants -->
+      <div>
+        <h3 class="text-h4 text-primary mb-4">Horizontal Variants</h3>
+        <div class="space-y-6">
+          <div>
+            <p class="text-body-s text-secondary mb-2">Solid</p>
+            <div class="rounded border border-neutral-200 p-4">
+              <p class="text-body-m">Content above</p>
+              <Divider orientation="horizontal" variant="solid" spacing="medium" />
+              <p class="text-body-m">Content below</p>
+            </div>
+          </div>
+          <div>
+            <p class="text-body-s text-secondary mb-2">Dashed</p>
+            <div class="rounded border border-neutral-200 p-4">
+              <p class="text-body-m">Content above</p>
+              <Divider orientation="horizontal" variant="dashed" spacing="medium" />
+              <p class="text-body-m">Content below</p>
+            </div>
+          </div>
+          <div>
+            <p class="text-body-s text-secondary mb-2">Dotted</p>
+            <div class="rounded border border-neutral-200 p-4">
+              <p class="text-body-m">Content above</p>
+              <Divider orientation="horizontal" variant="dotted" spacing="medium" />
+              <p class="text-body-m">Content below</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Vertical Variants -->
+      <div>
+        <h3 class="text-h4 text-primary mb-4">Vertical Variants</h3>
+        <div class="flex items-center gap-6">
+          <div class="text-center">
+            <div class="flex h-16 items-center rounded border border-neutral-200 px-4">
+              <p class="text-body-m">Left</p>
+              <Divider orientation="vertical" variant="solid" spacing="medium" />
+              <p class="text-body-m">Right</p>
+            </div>
+            <p class="text-body-s text-secondary mt-2">Solid</p>
+          </div>
+          <div class="text-center">
+            <div class="flex h-16 items-center rounded border border-neutral-200 px-4">
+              <p class="text-body-m">Left</p>
+              <Divider orientation="vertical" variant="dashed" spacing="medium" />
+              <p class="text-body-m">Right</p>
+            </div>
+            <p class="text-body-s text-secondary mt-2">Dashed</p>
+          </div>
+          <div class="text-center">
+            <div class="flex h-16 items-center rounded border border-neutral-200 px-4">
+              <p class="text-body-m">Left</p>
+              <Divider orientation="vertical" variant="dotted" spacing="medium" />
+              <p class="text-body-m">Right</p>
+            </div>
+            <p class="text-body-s text-secondary mt-2">Dotted</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Spacing Options -->
+      <div>
+        <h3 class="text-h4 text-primary mb-4">Spacing Options</h3>
+        <div class="space-y-6">
+          <div>
+            <p class="text-body-s text-secondary mb-2">No Spacing</p>
+            <div class="rounded border border-neutral-200 p-4">
+              <p class="text-body-m">Content above</p>
+              <Divider spacing="none" />
+              <p class="text-body-m">Content below</p>
+            </div>
+          </div>
+          <div>
+            <p class="text-body-s text-secondary mb-2">Small Spacing</p>
+            <div class="rounded border border-neutral-200 p-4">
+              <p class="text-body-m">Content above</p>
+              <Divider spacing="small" />
+              <p class="text-body-m">Content below</p>
+            </div>
+          </div>
+          <div>
+            <p class="text-body-s text-secondary mb-2">Large Spacing</p>
+            <div class="rounded border border-neutral-200 p-4">
+              <p class="text-body-m">Content above</p>
+              <Divider spacing="large" />
+              <p class="text-body-m">Content below</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  {/snippet}
+</Story>
+
 <Story name="Horizontal Solid" args={{ orientation: 'horizontal', variant: 'solid' }}>
   {#snippet template(args)}
     <div class="w-full">

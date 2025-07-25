@@ -164,6 +164,28 @@
   ]
 </script>
 
+<Story name="All Variants" args={{}}>
+  {#snippet template()}
+    <div class="space-y-8">
+      <List title="Basic List (Clickable by Default)" items={basicItems} />
+
+      <List title="Simple Items (No Description)" items={simpleItems} />
+
+      <List title="Non-Clickable Items" items={nonClickableItems} />
+
+      <List title="Without Dividers" items={basicItems} showDividers={false} />
+
+      <List title="Dashed Dividers" items={basicItems} dividerVariant="dashed" />
+
+      <List title="Dotted Dividers" items={basicItems} dividerVariant="dotted" />
+
+      <List title="Compact Mode" items={basicItems} compact={true} />
+
+      <List title="With Right Action" rightText="See All" items={basicItems} />
+    </div>
+  {/snippet}
+</Story>
+
 <Story name="Basic List" args={{ title: 'Basic List', items: basicItems }}>
   {#snippet template(args)}
     <List {...args} />
@@ -251,28 +273,6 @@
         </ListItem>
       {/snippet}
     </List>
-  {/snippet}
-</Story>
-
-<Story name="All Variants" args={{}}>
-  {#snippet template()}
-    <div class="space-y-8">
-      <List title="Basic List (Clickable by Default)" items={basicItems} />
-
-      <List title="Simple Items (No Description)" items={simpleItems} />
-
-      <List title="Non-Clickable Items" items={nonClickableItems} />
-
-      <List title="Without Dividers" items={basicItems} showDividers={false} />
-
-      <List title="Dashed Dividers" items={basicItems} dividerVariant="dashed" />
-
-      <List title="Dotted Dividers" items={basicItems} dividerVariant="dotted" />
-
-      <List title="Compact Mode" items={basicItems} compact={true} />
-
-      <List title="With Right Action" rightText="See All" items={basicItems} />
-    </div>
   {/snippet}
 </Story>
 

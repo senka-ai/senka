@@ -51,6 +51,112 @@
   })
 </script>
 
+<Story name="Overview" args={{}}>
+  {#snippet template()}
+    <div class="space-y-8">
+      <!-- Basic States -->
+      <div>
+        <h3 class="text-h4 text-primary mb-4">Basic States</h3>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div>
+            <p class="text-body-s text-secondary mb-2">Default</p>
+            <Dropdown 
+              options={sampleOptions} 
+              label="Choose Option" 
+              placeholder="Select an option" 
+            />
+          </div>
+          <div>
+            <p class="text-body-s text-secondary mb-2">With Selection</p>
+            <Dropdown 
+              options={sampleOptions} 
+              label="Choose Option" 
+              value="option2" 
+            />
+          </div>
+          <div>
+            <p class="text-body-s text-secondary mb-2">With Error</p>
+            <Dropdown 
+              options={sampleOptions} 
+              label="Choose Option" 
+              placeholder="Select an option"
+              error="This field is required" 
+            />
+          </div>
+          <div>
+            <p class="text-body-s text-secondary mb-2">Disabled</p>
+            <Dropdown 
+              options={sampleOptions} 
+              label="Choose Option" 
+              value="option1"
+              disabled={true} 
+            />
+          </div>
+        </div>
+      </div>
+
+      <!-- With Helper Text -->
+      <div>
+        <h3 class="text-h4 text-primary mb-4">With Helper Text</h3>
+        <div class="max-w-sm">
+          <Dropdown 
+            options={sampleOptions} 
+            label="Priority Level" 
+            placeholder="Select priority"
+            helperText="Choose the urgency level for this task" 
+          />
+        </div>
+      </div>
+
+      <!-- Full Width -->
+      <div>
+        <h3 class="text-h4 text-primary mb-4">Full Width</h3>
+        <Dropdown 
+          options={sampleOptions} 
+          label="Full Width Dropdown" 
+          placeholder="This dropdown spans the full width"
+          fullWidth={true} 
+        />
+      </div>
+
+      <!-- With Disabled Options -->
+      <div>
+        <h3 class="text-h4 text-primary mb-4">With Disabled Options</h3>
+        <div class="max-w-sm">
+          <Dropdown 
+            options={optionsWithDisabled} 
+            label="Mixed Options" 
+            placeholder="Some options are disabled" 
+          />
+        </div>
+      </div>
+
+      <!-- Long Options List -->
+      <div>
+        <h3 class="text-h4 text-primary mb-4">Scrollable List</h3>
+        <div class="max-w-sm">
+          <Dropdown 
+            options={[
+              { value: 'option1', label: 'Option 1' },
+              { value: 'option2', label: 'Option 2' },
+              { value: 'option3', label: 'Option 3' },
+              { value: 'option4', label: 'Option 4' },
+              { value: 'option5', label: 'Option 5' },
+              { value: 'option6', label: 'Option 6' },
+              { value: 'option7', label: 'Option 7' },
+              { value: 'option8', label: 'Option 8' },
+              { value: 'option9', label: 'Option 9' },
+              { value: 'option10', label: 'Option 10' },
+            ]}
+            label="Long List" 
+            placeholder="Scroll to see more options" 
+          />
+        </div>
+      </div>
+    </div>
+  {/snippet}
+</Story>
+
 <Story name="Default" args={{}}>
   {#snippet template(args)}
     <Dropdown
