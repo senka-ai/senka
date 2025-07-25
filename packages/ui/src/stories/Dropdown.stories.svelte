@@ -19,7 +19,7 @@
   ]
 
   const { Story } = defineMeta({
-    title: 'Components/Dropdown',
+    title: 'Forms/Dropdown',
     component: Dropdown,
     args: {
       options: sampleOptions,

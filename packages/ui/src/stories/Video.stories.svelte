@@ -3,7 +3,7 @@
   import Video from '../lib/components/media/Video.svelte'
 
   const { Story } = defineMeta({
-    title: 'Components/Video',
+    title: 'Media/Video',
     component: Video,
     args: {
       src: 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4',

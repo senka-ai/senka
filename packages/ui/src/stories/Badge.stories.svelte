@@ -3,7 +3,7 @@
   import Badge from '../lib/components/feedback/Badge.svelte'
 
   const { Story } = defineMeta({
-    title: 'Components/Badge',
+    title: 'Feedback/Badge',
     component: Badge,
     args: {
       type: 'number',

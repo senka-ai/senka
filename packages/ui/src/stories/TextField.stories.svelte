@@ -4,7 +4,7 @@
   import EyeInvisibleIcon from '../lib/icons/EyeInvisibleIcon.svelte'
 
   const { Story } = defineMeta({
-    title: 'Components/TextField',
+    title: 'Forms/TextField',
     component: TextField,
     args: {
       label: 'Label',

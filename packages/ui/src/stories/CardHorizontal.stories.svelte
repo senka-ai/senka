@@ -4,7 +4,7 @@
   import { ChatIcon, ProfileIcon, HeartFilledIcon } from '../lib/icons'
 
   const { Story } = defineMeta({
-    title: 'Components/CardHorizontal',
+    title: 'Layout/CardHorizontal',
     component: CardHorizontal,
     args: {
       title: 'Title',

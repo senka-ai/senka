@@ -4,7 +4,7 @@
   import { SearchIcon, EditIcon, FilterIcon } from '../lib/icons'
 
   const { Story } = defineMeta({
-    title: 'Components/ListTitle',
+    title: 'Layout/ListTitle',
     component: ListTitle,
     args: {
       title: 'List Title',

@@ -8,7 +8,7 @@
   import { HeartFilledIcon, StarFilledIcon, SearchIcon, FilterIcon } from '../lib/icons'
 
   const { Story } = defineMeta({
-    title: 'Components/List',
+    title: 'Layout/List',
     component: List,
     args: {
       title: 'List Title',

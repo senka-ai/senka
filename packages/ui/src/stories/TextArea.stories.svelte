@@ -3,7 +3,7 @@
   import TextArea from '../lib/components/forms/TextArea.svelte'
 
   const { Story } = defineMeta({
-    title: 'Components/TextArea',
+    title: 'Forms/TextArea',
     component: TextArea,
     args: {
       label: 'Title',

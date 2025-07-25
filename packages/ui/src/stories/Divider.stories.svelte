@@ -3,7 +3,7 @@
   import Divider from '../lib/components/layout/Divider.svelte'
 
   const { Story } = defineMeta({
-    title: 'Components/Divider',
+    title: 'Layout/Divider',
     component: Divider,
     args: {
       orientation: 'horizontal',

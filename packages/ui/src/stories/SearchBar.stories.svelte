@@ -3,7 +3,7 @@
   import SearchBar from '../lib/components/forms/SearchBar.svelte'
 
   const { Story } = defineMeta({
-    title: 'Components/SearchBar',
+    title: 'Forms/SearchBar',
     component: SearchBar,
     args: {
       placeholder: 'Search',

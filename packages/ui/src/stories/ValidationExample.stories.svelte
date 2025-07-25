@@ -5,7 +5,7 @@
   import { validationRules } from '../lib/utils/validation.svelte'
 
   const { Story } = defineMeta({
-    title: 'Examples/Form Validation',
+    title: 'Forms/Validation Example',
     component: TextField,
     parameters: {
       docs: {

@@ -42,7 +42,7 @@
   ]
 
   const { Story } = defineMeta({
-    title: 'Components/TabBar',
+    title: 'Navigation/TabBar',
     component: TabBar,
     args: {
       tabs: iconTabs,

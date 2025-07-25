@@ -4,7 +4,7 @@
   import { ImageIcon, ProfileIcon, ChatIcon } from '../lib/icons'
 
   const { Story } = defineMeta({
-    title: 'Components/Card',
+    title: 'Layout/Card',
     component: Card,
     args: {
       title: 'Card Title',

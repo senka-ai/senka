@@ -3,7 +3,7 @@
   import Image from '../lib/components/media/Image.svelte'
 
   const { Story } = defineMeta({
-    title: 'Components/Image',
+    title: 'Media/Image',
     component: Image,
     args: {
       src: 'https://picsum.photos/400/300?random=1',

@@ -3,7 +3,7 @@
   import Button from '../lib/components/Button.svelte'
 
   const { Story } = defineMeta({
-    title: 'Components/Button',
+    title: 'Core/Button',
     component: Button,
     args: {
       variant: 'primary',

@@ -7,7 +7,7 @@
   import HeartOutlinedIcon from '../lib/icons/HeartOutlinedIcon.svelte'
 
   const { Story } = defineMeta({
-    title: 'Components/NavBar',
+    title: 'Navigation/NavBar',
     component: NavBar,
     args: {
       title: 'Page Title',

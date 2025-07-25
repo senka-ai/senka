@@ -3,7 +3,7 @@
   import ThemeToggle from '../lib/components/ThemeToggle.svelte'
 
   const { Story } = defineMeta({
-    title: 'Components/ThemeToggle',
+    title: 'Core/ThemeToggle',
     component: ThemeToggle,
     args: {
       size: 'medium',

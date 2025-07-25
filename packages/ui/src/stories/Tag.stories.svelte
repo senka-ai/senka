@@ -4,7 +4,7 @@
   import { StarFilledIcon, HeartFilledIcon, AddIcon, DeleteIcon } from '../lib/icons'
 
   const { Story } = defineMeta({
-    title: 'Components/Tag',
+    title: 'Feedback/Tag',
     component: Tag,
     args: {
       variant: 'secondary',

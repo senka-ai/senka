@@ -4,7 +4,7 @@
   import RadioButton from '../lib/components/forms/RadioButton.svelte'
 
   const { Story } = defineMeta({
-    title: 'Components/RadioGroup',
+    title: 'Forms/RadioGroup',
     component: RadioGroup,
     args: {
       name: 'example',

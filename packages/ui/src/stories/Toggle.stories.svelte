@@ -3,7 +3,7 @@
   import Toggle from '../lib/components/forms/Toggle.svelte'
 
   const { Story } = defineMeta({
-    title: 'Components/Toggle',
+    title: 'Forms/Toggle',
     component: Toggle,
     args: {
       checked: false,
