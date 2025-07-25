@@ -148,7 +148,7 @@
   {/snippet}
 </Story>
 
-<Story name="Full Width" args={{ fullWidth: true }} parameters={{ layout: 'full' }}>
+<Story name="Full Width" args={{ fullWidth: true }} parameters={{ layout: 'default' }}>
   {#snippet template(args)}
     <Button {...args}>
       {#snippet children()}Button{/snippet}
