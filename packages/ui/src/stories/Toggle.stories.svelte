@@ -98,16 +98,16 @@
       <!-- Settings Examples -->
       <div>
         <h3 class="text-h4 text-primary mb-4">Settings Examples</h3>
-        <div class="space-y-3 max-w-md">
-          <label class="bg-surface flex items-center justify-between gap-4 rounded-lg p-3 cursor-pointer">
+        <div class="max-w-md space-y-3">
+          <label class="bg-surface flex cursor-pointer items-center justify-between gap-4 rounded-lg p-3">
             <span class="text-body-m">Enable notifications</span>
             <Toggle />
           </label>
-          <label class="bg-surface flex items-center justify-between gap-4 rounded-lg p-3 cursor-pointer">
+          <label class="bg-surface flex cursor-pointer items-center justify-between gap-4 rounded-lg p-3">
             <span class="text-body-m">Dark mode</span>
             <Toggle checked={true} />
           </label>
-          <label class="bg-surface flex items-center justify-between gap-4 rounded-lg p-3 cursor-pointer">
+          <label class="bg-surface flex cursor-pointer items-center justify-between gap-4 rounded-lg p-3">
             <span class="text-body-m">Auto-save documents</span>
             <Toggle />
           </label>

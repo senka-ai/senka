@@ -109,9 +109,11 @@
         <div class="space-y-3">
           <ListItem title="Enable Notifications" description="Receive push notifications">
             {#snippet leftIcon()}
-              <div class="bg-blue-100 text-blue-600 flex h-6 w-6 items-center justify-center rounded-full">
+              <div class="flex h-6 w-6 items-center justify-center rounded-full bg-blue-100 text-blue-600">
                 <svg class="h-4 w-4" fill="currentColor" viewBox="0 0 20 20">
-                  <path d="M10 2a6 6 0 00-6 6v3.586l-.707.707A1 1 0 004 14h12a1 1 0 00.707-1.707L16 11.586V8a6 6 0 00-6-6zM10 18a3 3 0 01-3-3h6a3 3 0 01-3 3z" />
+                  <path
+                    d="M10 2a6 6 0 00-6 6v3.586l-.707.707A1 1 0 004 14h12a1 1 0 00.707-1.707L16 11.586V8a6 6 0 00-6-6zM10 18a3 3 0 01-3-3h6a3 3 0 01-3 3z"
+                  />
                 </svg>
               </div>
             {/snippet}
@@ -121,7 +123,7 @@
           </ListItem>
           <ListItem title="Dark Mode" description="Switch to dark theme">
             {#snippet leftIcon()}
-              <div class="bg-gray-100 text-gray-600 flex h-6 w-6 items-center justify-center rounded-full">
+              <div class="flex h-6 w-6 items-center justify-center rounded-full bg-gray-100 text-gray-600">
                 <svg class="h-4 w-4" fill="currentColor" viewBox="0 0 20 20">
                   <path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z" />
                 </svg>
@@ -133,9 +135,13 @@
           </ListItem>
           <ListItem title="Complete Task" description="Mark as finished">
             {#snippet leftIcon()}
-              <div class="bg-green-100 text-green-600 flex h-6 w-6 items-center justify-center rounded-full">
+              <div class="flex h-6 w-6 items-center justify-center rounded-full bg-green-100 text-green-600">
                 <svg class="h-4 w-4" fill="currentColor" viewBox="0 0 20 20">
-                  <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
+                  <path
+                    fill-rule="evenodd"
+                    d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                    clip-rule="evenodd"
+                  />
                 </svg>
               </div>
             {/snippet}
@@ -155,7 +161,7 @@
               <Avatar size="small" alt="Alex Johnson" initials="AJ" />
             {/snippet}
             {#snippet rightIcon()}
-              <div class="bg-green-500 h-3 w-3 rounded-full"></div>
+              <div class="h-3 w-3 rounded-full bg-green-500"></div>
             {/snippet}
           </ListItem>
           <ListItem title="Maria Garcia" description="Away">
@@ -163,7 +169,7 @@
               <Avatar size="small" alt="Maria Garcia" initials="MG" />
             {/snippet}
             {#snippet rightIcon()}
-              <div class="bg-yellow-500 h-3 w-3 rounded-full"></div>
+              <div class="h-3 w-3 rounded-full bg-yellow-500"></div>
             {/snippet}
           </ListItem>
           <ListItem title="David Kim" description="Offline">
@@ -171,7 +177,7 @@
               <Avatar size="small" alt="David Kim" initials="DK" />
             {/snippet}
             {#snippet rightIcon()}
-              <div class="bg-gray-400 h-3 w-3 rounded-full"></div>
+              <div class="h-3 w-3 rounded-full bg-gray-400"></div>
             {/snippet}
           </ListItem>
         </div>
@@ -222,7 +228,11 @@
   {/snippet}
 </Story>
 
-<Story name="With Left Icon" args={{ title: 'Favorite Item', description: 'This item has a heart icon' }} parameters={{ layout: 'compact' }}>
+<Story
+  name="With Left Icon"
+  args={{ title: 'Favorite Item', description: 'This item has a heart icon' }}
+  parameters={{ layout: 'compact' }}
+>
   {#snippet template(args)}
     <ListItem
       title={args.title || 'List Item'}
@@ -245,7 +255,11 @@
   {/snippet}
 </Story>
 
-<Story name="With Avatar" args={{ title: 'John Doe', description: 'Software Developer' }} parameters={{ layout: 'compact' }}>
+<Story
+  name="With Avatar"
+  args={{ title: 'John Doe', description: 'Software Developer' }}
+  parameters={{ layout: 'compact' }}
+>
   {#snippet template(args)}
     <ListItem
       title={args.title || 'List Item'}
@@ -291,7 +305,11 @@
   {/snippet}
 </Story>
 
-<Story name="With Toggle" args={{ title: 'Settings Option', description: 'Enable or disable this feature' }} parameters={{ layout: 'compact' }}>
+<Story
+  name="With Toggle"
+  args={{ title: 'Settings Option', description: 'Enable or disable this feature' }}
+  parameters={{ layout: 'compact' }}
+>
   {#snippet template(args)}
     <ListItem
       title={args.title || 'List Item'}
@@ -317,7 +335,11 @@
   {/snippet}
 </Story>
 
-<Story name="With Checkbox" args={{ title: 'Task Item', description: 'Complete this task' }} parameters={{ layout: 'compact' }}>
+<Story
+  name="With Checkbox"
+  args={{ title: 'Task Item', description: 'Complete this task' }}
+  parameters={{ layout: 'compact' }}
+>
   {#snippet template(args)}
     <ListItem
       title={args.title || 'List Item'}
@@ -351,7 +373,11 @@
   {/snippet}
 </Story>
 
-<Story name="With Status Indicator" args={{ title: 'Online User', description: 'Currently active' }} parameters={{ layout: 'compact' }}>
+<Story
+  name="With Status Indicator"
+  args={{ title: 'Online User', description: 'Currently active' }}
+  parameters={{ layout: 'compact' }}
+>
   {#snippet template(args)}
     <ListItem
       title={args.title || 'List Item'}
@@ -377,7 +403,11 @@
   {/snippet}
 </Story>
 
-<Story name="Disabled" args={{ title: 'Disabled Item', description: 'This item is not available', disabled: true }} parameters={{ layout: 'compact' }}>
+<Story
+  name="Disabled"
+  args={{ title: 'Disabled Item', description: 'This item is not available', disabled: true }}
+  parameters={{ layout: 'compact' }}
+>
   {#snippet template(args)}
     <ListItem
       title={args.title || 'List Item'}

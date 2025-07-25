@@ -11,12 +11,7 @@
   import { createKeyboardHandler, createSafeClickHandler, KeySets } from '../../utils/events'
   import { createCheckboxStyles, composeClasses } from '../../utils/styles'
 
-  interface Props
-    extends BaseProps,
-      SizedComponent,
-      ChangeHandler<boolean>,
-      ChildrenComponent,
-      InteractiveHandlers {
+  interface Props extends BaseProps, SizedComponent, ChangeHandler<boolean>, ChildrenComponent, InteractiveHandlers {
     checked?: boolean
     name?: string
     value?: string

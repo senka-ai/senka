@@ -10,12 +10,7 @@
   import { createRadioStyles, composeClasses } from '../../utils/styles'
   import { getContext } from 'svelte'
 
-  interface Props
-    extends BaseProps,
-      SizedComponent,
-      ChangeHandler<boolean>,
-      ChildrenComponent,
-      InteractiveHandlers {
+  interface Props extends BaseProps, SizedComponent, ChangeHandler<boolean>, ChildrenComponent, InteractiveHandlers {
     checked?: boolean
     name?: string
     value?: string

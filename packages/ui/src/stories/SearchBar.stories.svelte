@@ -37,7 +37,7 @@
       <!-- Basic States -->
       <div>
         <h3 class="text-h4 text-primary mb-4">Basic States</h3>
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div class="grid grid-cols-1 gap-6 md:grid-cols-2">
           <div>
             <p class="text-body-s text-secondary mb-2">Default (Empty)</p>
             <SearchBar placeholder="Search products..." />
@@ -73,7 +73,7 @@
       <!-- Different Use Cases -->
       <div>
         <h3 class="text-h4 text-primary mb-4">Different Use Cases</h3>
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <div class="grid grid-cols-1 gap-4 md:grid-cols-2">
           <SearchBar placeholder="Search files..." />
           <SearchBar placeholder="Find contacts..." />
           <SearchBar placeholder="Search documentation..." />

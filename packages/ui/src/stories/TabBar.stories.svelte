@@ -178,7 +178,6 @@
   {/snippet}
 </Story>
 
-
 <Story name="Interactive Example" parameters={{ layout: 'full' }}>
   {#snippet template()}
     <div class="space-y-8">

@@ -45,18 +45,26 @@
       <!-- Basic States -->
       <div>
         <h3 class="text-h4 text-primary mb-4">Basic States</h3>
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div class="grid grid-cols-1 gap-6 md:grid-cols-2">
           <div>
             <p class="text-body-s text-secondary mb-2">Default (Empty)</p>
             <TextArea label="Default" placeholder="Enter your message here..." />
           </div>
           <div>
             <p class="text-body-s text-secondary mb-2">With Text</p>
-            <TextArea label="With Content" value="This is some sample text content that shows how the textarea displays existing text." />
+            <TextArea
+              label="With Content"
+              value="This is some sample text content that shows how the textarea displays existing text."
+            />
           </div>
           <div>
             <p class="text-body-s text-secondary mb-2">Error State</p>
-            <TextArea label="Error Example" inputState="error" value="Invalid content" error="This field contains invalid content" />
+            <TextArea
+              label="Error Example"
+              inputState="error"
+              value="Invalid content"
+              error="This field contains invalid content"
+            />
           </div>
           <div>
             <p class="text-body-s text-secondary mb-2">Disabled</p>
@@ -77,7 +85,11 @@
           </div>
           <div>
             <p class="text-body-s text-secondary mb-2">Full Width (spans entire container)</p>
-            <TextArea label="Full Width" placeholder="This full-width textarea spans the entire available container width and is perfect for longer content..." fullWidth={true} />
+            <TextArea
+              label="Full Width"
+              placeholder="This full-width textarea spans the entire available container width and is perfect for longer content..."
+              fullWidth={true}
+            />
           </div>
         </div>
       </div>
@@ -85,7 +97,7 @@
       <!-- Different Use Cases -->
       <div>
         <h3 class="text-h4 text-primary mb-4">Common Use Cases</h3>
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div class="grid grid-cols-1 gap-6 md:grid-cols-2">
           <TextArea label="Comment" placeholder="Write your comment..." helperText="Share your thoughts" rows={3} />
           <TextArea label="Feedback" placeholder="Your feedback..." maxlength={200} />
           <TextArea label="Description" placeholder="Describe the item..." rows={5} />
@@ -114,7 +126,11 @@
   {/snippet}
 </Story>
 
-<Story name="Error" args={{ inputState: 'error', value: 'Text', error: 'Error message' }} parameters={{ layout: 'compact' }}>
+<Story
+  name="Error"
+  args={{ inputState: 'error', value: 'Text', error: 'Error message' }}
+  parameters={{ layout: 'compact' }}
+>
   {#snippet template(args)}
     <TextArea {...args} />
   {/snippet}
@@ -132,7 +148,11 @@
   {/snippet}
 </Story>
 
-<Story name="With Character Count" args={{ maxlength: 200, value: 'Some text content' }} parameters={{ layout: 'compact' }}>
+<Story
+  name="With Character Count"
+  args={{ maxlength: 200, value: 'Some text content' }}
+  parameters={{ layout: 'compact' }}
+>
   {#snippet template(args)}
     <TextArea {...args} />
   {/snippet}

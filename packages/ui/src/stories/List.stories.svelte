@@ -198,7 +198,11 @@
   {/snippet}
 </Story>
 
-<Story name="With Right Text" args={{ title: 'My Tasks', rightText: 'Edit', items: basicItems }} parameters={{ layout: 'default' }}>
+<Story
+  name="With Right Text"
+  args={{ title: 'My Tasks', rightText: 'Edit', items: basicItems }}
+  parameters={{ layout: 'default' }}
+>
   {#snippet template(args)}
     <List {...args} onRightClick={() => alert('Edit clicked!')} />
   {/snippet}
@@ -214,31 +218,51 @@
   {/snippet}
 </Story>
 
-<Story name="No Dividers" args={{ title: 'Clean List', items: basicItems, showDividers: false }} parameters={{ layout: 'default' }}>
+<Story
+  name="No Dividers"
+  args={{ title: 'Clean List', items: basicItems, showDividers: false }}
+  parameters={{ layout: 'default' }}
+>
   {#snippet template(args)}
     <List {...args} />
   {/snippet}
 </Story>
 
-<Story name="Dashed Dividers" args={{ title: 'Dashed List', items: basicItems, dividerVariant: 'dashed' }} parameters={{ layout: 'default' }}>
+<Story
+  name="Dashed Dividers"
+  args={{ title: 'Dashed List', items: basicItems, dividerVariant: 'dashed' }}
+  parameters={{ layout: 'default' }}
+>
   {#snippet template(args)}
     <List {...args} />
   {/snippet}
 </Story>
 
-<Story name="Compact Mode" args={{ title: 'Compact List', items: basicItems, compact: true }} parameters={{ layout: 'default' }}>
+<Story
+  name="Compact Mode"
+  args={{ title: 'Compact List', items: basicItems, compact: true }}
+  parameters={{ layout: 'default' }}
+>
   {#snippet template(args)}
     <List {...args} />
   {/snippet}
 </Story>
 
-<Story name="Non-Clickable Items" args={{ title: 'Static List', items: nonClickableItems }} parameters={{ layout: 'default' }}>
+<Story
+  name="Non-Clickable Items"
+  args={{ title: 'Static List', items: nonClickableItems }}
+  parameters={{ layout: 'default' }}
+>
   {#snippet template(args)}
     <List {...args} />
   {/snippet}
 </Story>
 
-<Story name="Simple Items (No Description)" args={{ title: 'Navigation Menu', items: simpleItems }} parameters={{ layout: 'default' }}>
+<Story
+  name="Simple Items (No Description)"
+  args={{ title: 'Navigation Menu', items: simpleItems }}
+  parameters={{ layout: 'default' }}
+>
   {#snippet template(args)}
     <List {...args} />
   {/snippet}

@@ -12,25 +12,17 @@ const preview: Preview = {
     },
     options: {
       storySort: {
-        order: [
-          'Core',
-          'Icons', 
-          'Forms',
-          'Feedback',
-          'Layout',
-          'Media',
-          'Navigation'
-        ],
+        order: ['Core', 'Icons', 'Forms', 'Feedback', 'Layout', 'Media', 'Navigation'],
       },
     },
   },
   decorators: [
     (story, context) => {
       const layout = context.parameters.layout || 'default'
-      
+
       // Apply layout class to the story container
       const result = story()
-      
+
       // Add data attribute for CSS targeting
       if (typeof document !== 'undefined') {
         setTimeout(() => {
@@ -40,9 +32,9 @@ const preview: Preview = {
           }
         }, 0)
       }
-      
+
       return result
-    }
+    },
   ],
 }
 

@@ -44,7 +44,7 @@
       <!-- Basic Variants -->
       <div>
         <h3 class="text-h4 text-primary mb-4">Basic Variants</h3>
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl">
+        <div class="grid max-w-4xl grid-cols-1 gap-6 md:grid-cols-2">
           <div>
             <p class="text-body-s text-secondary mb-2">With Button Action</p>
             <CardHorizontal
@@ -66,20 +66,11 @@
           </div>
           <div>
             <p class="text-body-s text-secondary mb-2">No Action</p>
-            <CardHorizontal
-              title="Information Only"
-              subtitle="Read-only content"
-              showAction={false}
-            />
+            <CardHorizontal title="Information Only" subtitle="Read-only content" showAction={false} />
           </div>
           <div>
             <p class="text-body-s text-secondary mb-2">Disabled</p>
-            <CardHorizontal
-              title="Disabled Item"
-              subtitle="Not available"
-              buttonText="Unavailable"
-              disabled={true}
-            />
+            <CardHorizontal title="Disabled Item" subtitle="Not available" buttonText="Unavailable" disabled={true} />
           </div>
         </div>
       </div>
@@ -103,13 +94,8 @@
       <!-- With Custom Icons -->
       <div>
         <h3 class="text-h4 text-primary mb-4">With Custom Icons</h3>
-        <div class="space-y-4 max-w-md">
-          <CardHorizontal
-            title="Favorite Item"
-            subtitle="Added to favorites"
-            iconType="custom"
-            showAction={false}
-          >
+        <div class="max-w-md space-y-4">
+          <CardHorizontal title="Favorite Item" subtitle="Added to favorites" iconType="custom" showAction={false}>
             {#snippet children()}
               <HeartFilledIcon class="h-6 w-6 text-red-500" />
             {/snippet}
@@ -143,7 +129,7 @@
       <!-- Real World Examples -->
       <div>
         <h3 class="text-h4 text-primary mb-4">Real World Examples</h3>
-        <div class="space-y-4 max-w-lg">
+        <div class="max-w-lg space-y-4">
           <CardHorizontal
             title="John Doe"
             subtitle="Software Engineer • Online"
@@ -161,9 +147,11 @@
             actionType="button"
           >
             {#snippet children()}
-              <div class="bg-purple-100 text-purple-600 flex h-10 w-10 items-center justify-center rounded-lg">
+              <div class="flex h-10 w-10 items-center justify-center rounded-lg bg-purple-100 text-purple-600">
                 <svg class="h-5 w-5" fill="currentColor" viewBox="0 0 20 20">
-                  <path d="M4 3a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V5a2 2 0 00-2-2H4zm12 12H4l4-8 3 6 2-4 3 6z" />
+                  <path
+                    d="M4 3a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V5a2 2 0 00-2-2H4zm12 12H4l4-8 3 6 2-4 3 6z"
+                  />
                 </svg>
               </div>
             {/snippet}
@@ -175,9 +163,13 @@
             showAction={false}
           >
             {#snippet children()}
-              <div class="bg-yellow-100 text-yellow-600 flex h-10 w-10 items-center justify-center rounded-lg">
+              <div class="flex h-10 w-10 items-center justify-center rounded-lg bg-yellow-100 text-yellow-600">
                 <svg class="h-5 w-5" fill="currentColor" viewBox="0 0 20 20">
-                  <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l2.828 2.829a1 1 0 101.415-1.415L11 9.586V6z" clip-rule="evenodd" />
+                  <path
+                    fill-rule="evenodd"
+                    d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l2.828 2.829a1 1 0 101.415-1.415L11 9.586V6z"
+                    clip-rule="evenodd"
+                  />
                 </svg>
               </div>
             {/snippet}
@@ -191,49 +183,53 @@
 <Story name="Default" args={{}} parameters={{ layout: 'compact' }}>
   {#snippet template(args)}
     <CardHorizontal
-        title={args.title || 'Title'}
-        subtitle={args.subtitle}
-        image={args.image}
-        imageAlt={args.imageAlt}
-        iconType={args.iconType || 'image'}
-        buttonText={args.buttonText}
-        showAction={args.showAction ?? true}
-        actionType={args.actionType || 'button'}
-        iconColor={args.iconColor}
-        disabled={args.disabled ?? false}
-        class={args.class}
-        id={args.id}
-        onclick={args.onclick}
-        onButtonClick={args.onButtonClick}
-      >
-        {#if args.children}
-          {@render args.children()}
-        {/if}
+      title={args.title || 'Title'}
+      subtitle={args.subtitle}
+      image={args.image}
+      imageAlt={args.imageAlt}
+      iconType={args.iconType || 'image'}
+      buttonText={args.buttonText}
+      showAction={args.showAction ?? true}
+      actionType={args.actionType || 'button'}
+      iconColor={args.iconColor}
+      disabled={args.disabled ?? false}
+      class={args.class}
+      id={args.id}
+      onclick={args.onclick}
+      onButtonClick={args.onButtonClick}
+    >
+      {#if args.children}
+        {@render args.children()}
+      {/if}
     </CardHorizontal>
   {/snippet}
 </Story>
 
-<Story name="With Image" args={{ image: 'https://picsum.photos/80/80', imageAlt: 'Sample image' }} parameters={{ layout: 'compact' }}>
+<Story
+  name="With Image"
+  args={{ image: 'https://picsum.photos/80/80', imageAlt: 'Sample image' }}
+  parameters={{ layout: 'compact' }}
+>
   {#snippet template(args)}
     <CardHorizontal
-        title={args.title || 'Title'}
-        subtitle={args.subtitle}
-        image={args.image}
-        imageAlt={args.imageAlt}
-        iconType={args.iconType || 'image'}
-        buttonText={args.buttonText}
-        showAction={args.showAction ?? true}
-        actionType={args.actionType || 'button'}
-        iconColor={args.iconColor}
-        disabled={args.disabled ?? false}
-        class={args.class}
-        id={args.id}
-        onclick={args.onclick}
-        onButtonClick={args.onButtonClick}
-      >
-        {#if args.children}
-          {@render args.children()}
-        {/if}
+      title={args.title || 'Title'}
+      subtitle={args.subtitle}
+      image={args.image}
+      imageAlt={args.imageAlt}
+      iconType={args.iconType || 'image'}
+      buttonText={args.buttonText}
+      showAction={args.showAction ?? true}
+      actionType={args.actionType || 'button'}
+      iconColor={args.iconColor}
+      disabled={args.disabled ?? false}
+      class={args.class}
+      id={args.id}
+      onclick={args.onclick}
+      onButtonClick={args.onButtonClick}
+    >
+      {#if args.children}
+        {@render args.children()}
+      {/if}
     </CardHorizontal>
   {/snippet}
 </Story>
@@ -241,23 +237,23 @@
 <Story name="Avatar Type" args={{ title: 'Avatar Card', iconType: 'custom' }} parameters={{ layout: 'compact' }}>
   {#snippet template(args)}
     <CardHorizontal
-        title={args.title || 'Card Title'}
-        subtitle={args.subtitle}
-        image={args.image}
-        imageAlt={args.imageAlt}
-        iconType={args.iconType || 'image'}
-        buttonText={args.buttonText}
-        showAction={args.showAction ?? true}
-        actionType={args.actionType || 'button'}
-        disabled={args.disabled ?? false}
-        class={args.class}
-        id={args.id}
-        onclick={args.onclick}
-        onButtonClick={args.onButtonClick}
-      >
-        {#snippet children()}
-          <ProfileIcon class="h-6 w-6" />
-        {/snippet}
+      title={args.title || 'Card Title'}
+      subtitle={args.subtitle}
+      image={args.image}
+      imageAlt={args.imageAlt}
+      iconType={args.iconType || 'image'}
+      buttonText={args.buttonText}
+      showAction={args.showAction ?? true}
+      actionType={args.actionType || 'button'}
+      disabled={args.disabled ?? false}
+      class={args.class}
+      id={args.id}
+      onclick={args.onclick}
+      onButtonClick={args.onButtonClick}
+    >
+      {#snippet children()}
+        <ProfileIcon class="h-6 w-6" />
+      {/snippet}
     </CardHorizontal>
   {/snippet}
 </Story>
@@ -265,23 +261,23 @@
 <Story name="Heart Type" args={{ title: 'Heart Card', iconType: 'custom' }} parameters={{ layout: 'compact' }}>
   {#snippet template(args)}
     <CardHorizontal
-        title={args.title || 'Card Title'}
-        subtitle={args.subtitle}
-        image={args.image}
-        imageAlt={args.imageAlt}
-        iconType={args.iconType || 'image'}
-        buttonText={args.buttonText}
-        showAction={args.showAction ?? true}
-        actionType={args.actionType || 'button'}
-        disabled={args.disabled ?? false}
-        class={args.class}
-        id={args.id}
-        onclick={args.onclick}
-        onButtonClick={args.onButtonClick}
-      >
-        {#snippet children()}
-          <HeartFilledIcon class="h-6 w-6" />
-        {/snippet}
+      title={args.title || 'Card Title'}
+      subtitle={args.subtitle}
+      image={args.image}
+      imageAlt={args.imageAlt}
+      iconType={args.iconType || 'image'}
+      buttonText={args.buttonText}
+      showAction={args.showAction ?? true}
+      actionType={args.actionType || 'button'}
+      disabled={args.disabled ?? false}
+      class={args.class}
+      id={args.id}
+      onclick={args.onclick}
+      onButtonClick={args.onButtonClick}
+    >
+      {#snippet children()}
+        <HeartFilledIcon class="h-6 w-6" />
+      {/snippet}
     </CardHorizontal>
   {/snippet}
 </Story>
@@ -289,24 +285,24 @@
 <Story name="Custom Icon" args={{ iconType: 'custom' }} parameters={{ layout: 'compact' }}>
   {#snippet template(args)}
     <CardHorizontal
-        title={args.title || 'Title'}
-        subtitle={args.subtitle}
-        image={args.image}
-        imageAlt={args.imageAlt}
-        iconType={args.iconType || 'image'}
-        buttonText={args.buttonText}
-        showAction={args.showAction ?? true}
-        actionType={args.actionType || 'button'}
-        iconColor={args.iconColor}
-        disabled={args.disabled ?? false}
-        class={args.class}
-        id={args.id}
-        onclick={args.onclick}
-        onButtonClick={args.onButtonClick}
-      >
-        {#snippet children()}
-          <ChatIcon class="text-highlight h-6 w-6" />
-        {/snippet}
+      title={args.title || 'Title'}
+      subtitle={args.subtitle}
+      image={args.image}
+      imageAlt={args.imageAlt}
+      iconType={args.iconType || 'image'}
+      buttonText={args.buttonText}
+      showAction={args.showAction ?? true}
+      actionType={args.actionType || 'button'}
+      iconColor={args.iconColor}
+      disabled={args.disabled ?? false}
+      class={args.class}
+      id={args.id}
+      onclick={args.onclick}
+      onButtonClick={args.onButtonClick}
+    >
+      {#snippet children()}
+        <ChatIcon class="text-highlight h-6 w-6" />
+      {/snippet}
     </CardHorizontal>
   {/snippet}
 </Story>
@@ -314,24 +310,24 @@
 <Story name="Arrow Action" args={{ actionType: 'arrow' }} parameters={{ layout: 'compact' }}>
   {#snippet template(args)}
     <CardHorizontal
-        title={args.title || 'Title'}
-        subtitle={args.subtitle}
-        image={args.image}
-        imageAlt={args.imageAlt}
-        iconType={args.iconType || 'image'}
-        buttonText={args.buttonText}
-        showAction={args.showAction ?? true}
-        actionType={args.actionType || 'button'}
-        iconColor={args.iconColor}
-        disabled={args.disabled ?? false}
-        class={args.class}
-        id={args.id}
-        onclick={args.onclick}
-        onButtonClick={args.onButtonClick}
-      >
-        {#if args.children}
-          {@render args.children()}
-        {/if}
+      title={args.title || 'Title'}
+      subtitle={args.subtitle}
+      image={args.image}
+      imageAlt={args.imageAlt}
+      iconType={args.iconType || 'image'}
+      buttonText={args.buttonText}
+      showAction={args.showAction ?? true}
+      actionType={args.actionType || 'button'}
+      iconColor={args.iconColor}
+      disabled={args.disabled ?? false}
+      class={args.class}
+      id={args.id}
+      onclick={args.onclick}
+      onButtonClick={args.onButtonClick}
+    >
+      {#if args.children}
+        {@render args.children()}
+      {/if}
     </CardHorizontal>
   {/snippet}
 </Story>
@@ -339,24 +335,24 @@
 <Story name="No Action" args={{ showAction: false }} parameters={{ layout: 'compact' }}>
   {#snippet template(args)}
     <CardHorizontal
-        title={args.title || 'Title'}
-        subtitle={args.subtitle}
-        image={args.image}
-        imageAlt={args.imageAlt}
-        iconType={args.iconType || 'image'}
-        buttonText={args.buttonText}
-        showAction={args.showAction ?? true}
-        actionType={args.actionType || 'button'}
-        iconColor={args.iconColor}
-        disabled={args.disabled ?? false}
-        class={args.class}
-        id={args.id}
-        onclick={args.onclick}
-        onButtonClick={args.onButtonClick}
-      >
-        {#if args.children}
-          {@render args.children()}
-        {/if}
+      title={args.title || 'Title'}
+      subtitle={args.subtitle}
+      image={args.image}
+      imageAlt={args.imageAlt}
+      iconType={args.iconType || 'image'}
+      buttonText={args.buttonText}
+      showAction={args.showAction ?? true}
+      actionType={args.actionType || 'button'}
+      iconColor={args.iconColor}
+      disabled={args.disabled ?? false}
+      class={args.class}
+      id={args.id}
+      onclick={args.onclick}
+      onButtonClick={args.onButtonClick}
+    >
+      {#if args.children}
+        {@render args.children()}
+      {/if}
     </CardHorizontal>
   {/snippet}
 </Story>
@@ -364,24 +360,24 @@
 <Story name="Disabled" args={{ disabled: true }} parameters={{ layout: 'compact' }}>
   {#snippet template(args)}
     <CardHorizontal
-        title={args.title || 'Title'}
-        subtitle={args.subtitle}
-        image={args.image}
-        imageAlt={args.imageAlt}
-        iconType={args.iconType || 'image'}
-        buttonText={args.buttonText}
-        showAction={args.showAction ?? true}
-        actionType={args.actionType || 'button'}
-        iconColor={args.iconColor}
-        disabled={args.disabled ?? false}
-        class={args.class}
-        id={args.id}
-        onclick={args.onclick}
-        onButtonClick={args.onButtonClick}
-      >
-        {#if args.children}
-          {@render args.children()}
-        {/if}
+      title={args.title || 'Title'}
+      subtitle={args.subtitle}
+      image={args.image}
+      imageAlt={args.imageAlt}
+      iconType={args.iconType || 'image'}
+      buttonText={args.buttonText}
+      showAction={args.showAction ?? true}
+      actionType={args.actionType || 'button'}
+      iconColor={args.iconColor}
+      disabled={args.disabled ?? false}
+      class={args.class}
+      id={args.id}
+      onclick={args.onclick}
+      onButtonClick={args.onButtonClick}
+    >
+      {#if args.children}
+        {@render args.children()}
+      {/if}
     </CardHorizontal>
   {/snippet}
 </Story>
@@ -389,19 +385,19 @@
 <Story name="Clickable Card" parameters={{ layout: 'compact' }}>
   {#snippet template(args)}
     <CardHorizontal
-        title={args.title || 'Card Title'}
-        subtitle={args.subtitle}
-        image={args.image}
-        imageAlt={args.imageAlt}
-        iconType={args.iconType || 'image'}
-        buttonText={args.buttonText}
-        showAction={args.showAction ?? true}
-        actionType={args.actionType || 'button'}
-        disabled={args.disabled ?? false}
-        class={args.class}
-        id={args.id}
-        onclick={() => console.log('Card clicked')}
-        onButtonClick={() => console.log('Button clicked')}
+      title={args.title || 'Card Title'}
+      subtitle={args.subtitle}
+      image={args.image}
+      imageAlt={args.imageAlt}
+      iconType={args.iconType || 'image'}
+      buttonText={args.buttonText}
+      showAction={args.showAction ?? true}
+      actionType={args.actionType || 'button'}
+      disabled={args.disabled ?? false}
+      class={args.class}
+      id={args.id}
+      onclick={() => console.log('Card clicked')}
+      onButtonClick={() => console.log('Button clicked')}
     />
   {/snippet}
 </Story>
@@ -409,24 +405,24 @@
 <Story name="Text Only" args={{ iconType: 'image', showAction: false }} parameters={{ layout: 'compact' }}>
   {#snippet template(args)}
     <CardHorizontal
-        title={args.title || 'Title'}
-        subtitle={args.subtitle}
-        image={args.image}
-        imageAlt={args.imageAlt}
-        iconType={args.iconType || 'image'}
-        buttonText={args.buttonText}
-        showAction={args.showAction ?? true}
-        actionType={args.actionType || 'button'}
-        iconColor={args.iconColor}
-        disabled={args.disabled ?? false}
-        class={args.class}
-        id={args.id}
-        onclick={args.onclick}
-        onButtonClick={args.onButtonClick}
-      >
-        {#if args.children}
-          {@render args.children()}
-        {/if}
+      title={args.title || 'Title'}
+      subtitle={args.subtitle}
+      image={args.image}
+      imageAlt={args.imageAlt}
+      iconType={args.iconType || 'image'}
+      buttonText={args.buttonText}
+      showAction={args.showAction ?? true}
+      actionType={args.actionType || 'button'}
+      iconColor={args.iconColor}
+      disabled={args.disabled ?? false}
+      class={args.class}
+      id={args.id}
+      onclick={args.onclick}
+      onButtonClick={args.onButtonClick}
+    >
+      {#if args.children}
+        {@render args.children()}
+      {/if}
     </CardHorizontal>
   {/snippet}
 </Story>

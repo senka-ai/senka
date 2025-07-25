@@ -44,10 +44,10 @@
         <h3 class="text-h4 text-primary mb-4">Basic Types</h3>
         <div class="flex items-center gap-6">
           <div class="text-center">
-            <Avatar 
-              src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-4.0.3&auto=format&fit=crop&w=100&q=80" 
-              alt="John Doe" 
-              size="medium" 
+            <Avatar
+              src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-4.0.3&auto=format&fit=crop&w=100&q=80"
+              alt="John Doe"
+              size="medium"
             />
             <p class="text-body-s text-secondary mt-2">With Image</p>
           </div>
@@ -112,23 +112,18 @@
       <div>
         <h3 class="text-h4 text-primary mb-4">Real Examples</h3>
         <div class="flex items-center gap-4">
-          <Avatar 
-            src="https://images.unsplash.com/photo-1494790108755-2616b612b786?ixlib=rb-4.0.3&auto=format&fit=crop&w=100&q=80" 
-            alt="Sarah Johnson" 
-            status="online" 
-            size="large" 
+          <Avatar
+            src="https://images.unsplash.com/photo-1494790108755-2616b612b786?ixlib=rb-4.0.3&auto=format&fit=crop&w=100&q=80"
+            alt="Sarah Johnson"
+            status="online"
+            size="large"
           />
-          <Avatar 
-            initials="MK" 
-            alt="Mike Kim" 
-            status="away" 
-            size="large" 
-          />
-          <Avatar 
-            src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=100&q=80" 
-            alt="Alex Chen" 
-            status="busy" 
-            size="large" 
+          <Avatar initials="MK" alt="Mike Kim" status="away" size="large" />
+          <Avatar
+            src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=100&q=80"
+            alt="Alex Chen"
+            status="busy"
+            size="large"
           />
         </div>
       </div>

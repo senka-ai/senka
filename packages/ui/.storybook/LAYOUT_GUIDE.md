@@ -45,7 +45,7 @@ Add the `layout` parameter to your story:
 If you don't specify a `layout` parameter, the system will automatically apply sizing based on story names:
 
 - Stories with "Icon", "Default", "Basic" in the name get compact sizing
-- Stories named "Overview" in Icon stories get wide sizing  
+- Stories named "Overview" in Icon stories get wide sizing
 - Stories with "Full Width" in the name get full sizing
 - All others get default sizing
 

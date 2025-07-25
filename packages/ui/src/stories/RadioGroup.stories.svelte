@@ -38,7 +38,7 @@
       <!-- Basic Vertical Layout -->
       <div>
         <h3 class="text-h4 text-primary mb-4">Basic Vertical Layout</h3>
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+        <div class="grid grid-cols-1 gap-8 md:grid-cols-2">
           <div>
             <p class="text-body-s text-secondary mb-3">Default</p>
             <RadioGroup name="colors-default">

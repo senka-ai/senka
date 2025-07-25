@@ -173,7 +173,11 @@
   {/snippet}
 </Story>
 
-<Story name="With Image" args={{ image: 'https://picsum.photos/400/300', imageAlt: 'Sample image' }} parameters={{ layout: 'compact' }}>
+<Story
+  name="With Image"
+  args={{ image: 'https://picsum.photos/400/300', imageAlt: 'Sample image' }}
+  parameters={{ layout: 'compact' }}
+>
   {#snippet template(args)}
     <div class="max-w-sm">
       <Card
@@ -405,7 +409,11 @@
   {/snippet}
 </Story>
 
-<Story name="Simple Card" args={{ subtitle: '', description: '', showAction: false }} parameters={{ layout: 'compact' }}>
+<Story
+  name="Simple Card"
+  args={{ subtitle: '', description: '', showAction: false }}
+  parameters={{ layout: 'compact' }}
+>
   {#snippet template(args)}
     <div class="max-w-sm">
       <Card
