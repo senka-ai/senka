@@ -62,12 +62,19 @@
       both: 'resize',
     }
 
-    return createInputStyles({
+    const baseStyles = createInputStyles({
       variant: currentState,
       size: 'medium',
       fullWidth: true,
       className: `min-h-[3rem] ${resizeClasses[resize]}`,
     })
+
+    // Replace all transitions with color-only transitions for resizable textareas
+    if (resize !== 'none') {
+      return baseStyles.replace('transition-all duration-200', 'transition-colors duration-200')
+    }
+
+    return baseStyles
   })
 
   let charCount = $derived(value?.length || 0)
