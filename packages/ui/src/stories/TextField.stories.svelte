@@ -45,7 +45,7 @@
   })
 </script>
 
-<Story name="Overview" args={{}}>
+<Story name="Overview" args={{}} parameters={{ layout: 'default' }}>
   {#snippet template()}
     <div class="max-w-md space-y-4">
       <TextField label="Default" placeholder="Enter text" />
@@ -57,31 +57,31 @@
   {/snippet}
 </Story>
 
-<Story name="Default" args={{}}>
+<Story name="Default" args={{}} parameters={{ layout: 'compact' }}>
   {#snippet template(args)}
     <TextField {...args} />
   {/snippet}
 </Story>
 
-<Story name="With Helper Text" args={{ helperText: 'This is helper text' }}>
+<Story name="With Helper Text" args={{ helperText: 'This is helper text' }} parameters={{ layout: 'compact' }}>
   {#snippet template(args)}
     <TextField {...args} />
   {/snippet}
 </Story>
 
-<Story name="With Error" args={{ error: 'Please enter a valid email address' }}>
+<Story name="With Error" args={{ error: 'Please enter a valid email address' }} parameters={{ layout: 'compact' }}>
   {#snippet template(args)}
     <TextField {...args} />
   {/snippet}
 </Story>
 
-<Story name="Disabled" args={{ disabled: true }}>
+<Story name="Disabled" args={{ disabled: true }} parameters={{ layout: 'compact' }}>
   {#snippet template(args)}
     <TextField {...args} />
   {/snippet}
 </Story>
 
-<Story name="With Password Icon" args={{ type: 'password', label: 'Password' }}>
+<Story name="With Password Icon" args={{ type: 'password', label: 'Password' }} parameters={{ layout: 'compact' }}>
   {#snippet template(args)}
     <TextField {...args} />
   {/snippet}

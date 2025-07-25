@@ -45,81 +45,81 @@
   } from '../lib/icons'
 </script>
 
-<Story name="Add Icon" args={{}}>
+<Story name="Add Icon" args={{}} parameters={{ layout: 'compact' }}>
   {#snippet template(args)}
-    <div class="flex items-start gap-4 p-6">
+    <div class="flex items-start gap-4">
       <AddIcon {...args} />
       <span class="text-sm">Add Icon</span>
     </div>
   {/snippet}
 </Story>
 
-<Story name="Search Icon" args={{}}>
+<Story name="Search Icon" args={{}} parameters={{ layout: 'compact' }}>
   {#snippet template(args)}
-    <div class="flex items-start gap-4 p-6">
+    <div class="flex items-start gap-4">
       <SearchIcon {...args} />
       <span class="text-sm">Search Icon</span>
     </div>
   {/snippet}
 </Story>
 
-<Story name="Settings Icon" args={{}}>
+<Story name="Settings Icon" args={{}} parameters={{ layout: 'compact' }}>
   {#snippet template(args)}
-    <div class="flex items-start gap-4 p-6">
+    <div class="flex items-start gap-4">
       <SettingsIcon {...args} />
       <span class="text-sm">Settings Icon</span>
     </div>
   {/snippet}
 </Story>
 
-<Story name="Profile Icon" args={{}}>
+<Story name="Profile Icon" args={{}} parameters={{ layout: 'compact' }}>
   {#snippet template(args)}
-    <div class="flex items-start gap-4 p-6">
+    <div class="flex items-start gap-4">
       <ProfileIcon {...args} />
       <span class="text-sm">Profile Icon</span>
     </div>
   {/snippet}
 </Story>
 
-<Story name="Edit Icon" args={{}}>
+<Story name="Edit Icon" args={{}} parameters={{ layout: 'compact' }}>
   {#snippet template(args)}
-    <div class="flex items-start gap-4 p-6">
+    <div class="flex items-start gap-4">
       <EditIcon {...args} />
       <span class="text-sm">Edit Icon</span>
     </div>
   {/snippet}
 </Story>
 
-<Story name="Delete Icon" args={{}}>
+<Story name="Delete Icon" args={{}} parameters={{ layout: 'compact' }}>
   {#snippet template(args)}
-    <div class="flex items-start gap-4 p-6">
+    <div class="flex items-start gap-4">
       <DeleteIcon {...args} />
       <span class="text-sm">Delete Icon</span>
     </div>
   {/snippet}
 </Story>
 
-<Story name="Check Icon" args={{}}>
+<Story name="Check Icon" args={{}} parameters={{ layout: 'compact' }}>
   {#snippet template(args)}
-    <div class="flex items-start gap-4 p-6">
+    <div class="flex items-start gap-4">
       <CheckIcon {...args} />
       <span class="text-sm">Check Icon</span>
     </div>
   {/snippet}
 </Story>
 
-<Story name="Close Icon" args={{}}>
+<Story name="Close Icon" args={{}} parameters={{ layout: 'compact' }}>
   {#snippet template(args)}
-    <div class="flex items-start gap-4 p-6">
+    <div class="flex items-start gap-4">
       <CloseIcon {...args} />
       <span class="text-sm">Close Icon</span>
     </div>
   {/snippet}
 </Story>
 
-<Story name="Arrow Icons" args={{}}>
+<Story name="Arrow Icons" args={{}} parameters={{ layout: 'compact' }}>
   {#snippet template(args)}
-    <div class="flex justify-start p-6">
+    <div class="flex justify-start">
       <div class="flex flex-col items-center gap-4">
         <div class="flex flex-col items-center gap-2">
           <ArrowUpIcon {...args} />
@@ -142,9 +142,9 @@
   {/snippet}
 </Story>
 
-<Story name="Eye Icons" args={{}}>
+<Story name="Eye Icons" args={{}} parameters={{ layout: 'compact' }}>
   {#snippet template(args)}
-    <div class="flex justify-start p-6">
+    <div class="flex justify-start">
       <div class="flex flex-col items-center gap-4">
         <div class="flex flex-col items-center gap-2">
           <EyeVisibleIcon {...args} />
@@ -159,9 +159,9 @@
   {/snippet}
 </Story>
 
-<Story name="Heart Icons" args={{}}>
+<Story name="Heart Icons" args={{}} parameters={{ layout: 'compact' }}>
   {#snippet template(args)}
-    <div class="flex justify-start p-6">
+    <div class="flex justify-start">
       <div class="flex flex-col items-center gap-4">
         <div class="flex flex-col items-center gap-2">
           <HeartFilledIcon {...args} />
@@ -176,9 +176,9 @@
   {/snippet}
 </Story>
 
-<Story name="Star Icons" args={{}}>
+<Story name="Star Icons" args={{}} parameters={{ layout: 'compact' }}>
   {#snippet template(args)}
-    <div class="flex justify-start p-6">
+    <div class="flex justify-start">
       <div class="flex flex-col items-center gap-4">
         <div class="flex flex-col items-center gap-2">
           <StarFilledIcon {...args} />
@@ -193,9 +193,9 @@
   {/snippet}
 </Story>
 
-<Story name="Shopping Bag Icons" args={{}}>
+<Story name="Shopping Bag Icons" args={{}} parameters={{ layout: 'compact' }}>
   {#snippet template(args)}
-    <div class="flex justify-start p-6">
+    <div class="flex justify-start">
       <div class="flex flex-col items-center gap-4">
         <div class="flex flex-col items-center gap-2">
           <ShoppingBagFilledIcon {...args} />

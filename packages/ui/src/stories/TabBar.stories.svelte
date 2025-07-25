@@ -65,7 +65,7 @@
   })
 </script>
 
-<Story name="Overview">
+<Story name="Overview" parameters={{ layout: 'full' }}>
   {#snippet template()}
     <div class="space-y-8">
       <div>
@@ -86,7 +86,7 @@
   {/snippet}
 </Story>
 
-<Story name="Default" args={{}}>
+<Story name="Default" args={{}} parameters={{ layout: 'full' }}>
   {#snippet template(args)}
     <TabBar
       tabs={args.tabs || []}
@@ -98,7 +98,7 @@
   {/snippet}
 </Story>
 
-<Story name="Second Tab Active" args={{ activeTab: 'explore' }}>
+<Story name="Second Tab Active" args={{ activeTab: 'explore' }} parameters={{ layout: 'full' }}>
   {#snippet template(args)}
     <TabBar
       tabs={args.tabs || []}
@@ -110,7 +110,7 @@
   {/snippet}
 </Story>
 
-<Story name="Many Tabs" args={{ tabs: manyTabs }}>
+<Story name="Many Tabs" args={{ tabs: manyTabs }} parameters={{ layout: 'full' }}>
   {#snippet template(args)}
     <TabBar
       tabs={args.tabs || []}
@@ -122,7 +122,7 @@
   {/snippet}
 </Story>
 
-<Story name="With Disabled Tabs" args={{ tabs: tabsWithDisabled }}>
+<Story name="With Disabled Tabs" args={{ tabs: tabsWithDisabled }} parameters={{ layout: 'full' }}>
   {#snippet template(args)}
     <TabBar
       tabs={args.tabs || []}
@@ -142,6 +142,7 @@
       { id: 'tab2', label: 'Tab 2', icon: ExploreIcon },
     ],
   }}
+  parameters={{ layout: 'full' }}
 >
   {#snippet template(args)}
     <TabBar
@@ -164,6 +165,7 @@
       { id: 'profile', label: 'Profile Management', icon: ProfileIcon },
     ],
   }}
+  parameters={{ layout: 'full' }}
 >
   {#snippet template(args)}
     <TabBar
@@ -177,7 +179,7 @@
 </Story>
 
 
-<Story name="Interactive Example">
+<Story name="Interactive Example" parameters={{ layout: 'full' }}>
   {#snippet template()}
     <div class="space-y-8">
       <div>

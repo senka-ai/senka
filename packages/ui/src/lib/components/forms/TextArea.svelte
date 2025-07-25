@@ -65,7 +65,7 @@
     const baseStyles = createInputStyles({
       variant: currentState,
       size: 'medium',
-      fullWidth: true,
+      fullWidth,
       className: `min-h-[3rem] ${resizeClasses[resize]}`,
     })
 

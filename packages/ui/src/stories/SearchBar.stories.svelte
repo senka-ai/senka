@@ -31,13 +31,13 @@
   })
 </script>
 
-<Story name="Overview" args={{}}>
+<Story name="Overview" args={{}} parameters={{ layout: 'wide' }}>
   {#snippet template()}
     <div class="space-y-8">
       <!-- Basic States -->
       <div>
         <h3 class="text-h4 text-primary mb-4">Basic States</h3>
-        <div class="space-y-4 max-w-md">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
           <div>
             <p class="text-body-s text-secondary mb-2">Default (Empty)</p>
             <SearchBar placeholder="Search products..." />
@@ -58,17 +58,19 @@
         <h3 class="text-h4 text-primary mb-4">Width Variants</h3>
         <div class="space-y-4">
           <div>
-            <p class="text-body-s text-secondary mb-2">Default Width</p>
-            <SearchBar placeholder="Default width search" />
+            <p class="text-body-s text-secondary mb-2">Default Width (in narrow container)</p>
+            <div class="max-w-sm">
+              <SearchBar placeholder="Default width search" />
+            </div>
           </div>
           <div>
-            <p class="text-body-s text-secondary mb-2">Full Width</p>
-            <SearchBar placeholder="Full width search bar" fullWidth={true} />
+            <p class="text-body-s text-secondary mb-2">Full Width (spans entire container)</p>
+            <SearchBar placeholder="Full width search bar spans the entire available width" fullWidth={true} />
           </div>
         </div>
       </div>
 
-      <!-- Different Placeholders -->
+      <!-- Different Use Cases -->
       <div>
         <h3 class="text-h4 text-primary mb-4">Different Use Cases</h3>
         <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -87,6 +89,7 @@
   args={{
     placeholder: 'Search',
   }}
+  parameters={{ layout: 'compact' }}
 >
   {#snippet template(args)}
     <SearchBar {...args} />
@@ -99,6 +102,7 @@
     placeholder: 'Search',
     value: 'Text',
   }}
+  parameters={{ layout: 'compact' }}
 >
   {#snippet template(args)}
     <SearchBar {...args} />
@@ -111,6 +115,7 @@
     placeholder: 'Search',
     disabled: true,
   }}
+  parameters={{ layout: 'compact' }}
 >
   {#snippet template(args)}
     <SearchBar {...args} />
@@ -123,15 +128,16 @@
     placeholder: 'Search',
     fullWidth: true,
   }}
+  parameters={{ layout: 'wide' }}
 >
   {#snippet template(args)}
     <SearchBar {...args} />
   {/snippet}
 </Story>
 
-<Story name="All States" args={{}}>
+<Story name="All States" args={{}} parameters={{ layout: 'compact' }}>
   {#snippet template()}
-    <div class="max-w-md space-y-4">
+    <div class="space-y-4">
       <SearchBar placeholder="Search" />
       <SearchBar placeholder="Search" value="Text" />
       <SearchBar placeholder="Search" disabled />

@@ -44,7 +44,7 @@
   })
 </script>
 
-<Story name="Overview" args={{}}>
+<Story name="Overview" args={{}} parameters={{ layout: 'wide' }}>
   {#snippet template()}
     <div class="space-y-8">
       <!-- Default Cards -->
@@ -144,7 +144,7 @@
   {/snippet}
 </Story>
 
-<Story name="Default" args={{}}>
+<Story name="Default" args={{}} parameters={{ layout: 'compact' }}>
   {#snippet template(args)}
     <div class="max-w-sm">
       <Card
@@ -173,7 +173,7 @@
   {/snippet}
 </Story>
 
-<Story name="With Image" args={{ image: 'https://picsum.photos/400/300', imageAlt: 'Sample image' }}>
+<Story name="With Image" args={{ image: 'https://picsum.photos/400/300', imageAlt: 'Sample image' }} parameters={{ layout: 'compact' }}>
   {#snippet template(args)}
     <div class="max-w-sm">
       <Card
@@ -202,7 +202,7 @@
   {/snippet}
 </Story>
 
-<Story name="With Icon" args={{}}>
+<Story name="With Icon" args={{}} parameters={{ layout: 'compact' }}>
   {#snippet template(args)}
     <div class="max-w-sm">
       <Card
@@ -231,7 +231,7 @@
   {/snippet}
 </Story>
 
-<Story name="Compact Variant" args={{ variant: 'compact' }}>
+<Story name="Compact Variant" args={{ variant: 'compact' }} parameters={{ layout: 'compact' }}>
   {#snippet template(args)}
     <div class="max-w-sm">
       <Card
@@ -260,7 +260,7 @@
   {/snippet}
 </Story>
 
-<Story name="With Favorite" args={{}}>
+<Story name="With Favorite" args={{}} parameters={{ layout: 'compact' }}>
   {#snippet template(args)}
     <div class="max-w-sm">
       <Card
@@ -289,7 +289,7 @@
   {/snippet}
 </Story>
 
-<Story name="Arrow Action" args={{ actionType: 'arrow' }}>
+<Story name="Arrow Action" args={{ actionType: 'arrow' }} parameters={{ layout: 'compact' }}>
   {#snippet template(args)}
     <div class="max-w-sm">
       <Card
@@ -318,7 +318,7 @@
   {/snippet}
 </Story>
 
-<Story name="No Action" args={{ showAction: false }}>
+<Story name="No Action" args={{ showAction: false }} parameters={{ layout: 'compact' }}>
   {#snippet template(args)}
     <div class="max-w-sm">
       <Card
@@ -347,7 +347,7 @@
   {/snippet}
 </Story>
 
-<Story name="Disabled" args={{ disabled: true }}>
+<Story name="Disabled" args={{ disabled: true }} parameters={{ layout: 'compact' }}>
   {#snippet template(args)}
     <div class="max-w-sm">
       <Card
@@ -376,7 +376,7 @@
   {/snippet}
 </Story>
 
-<Story name="Clickable Card" args={{}}>
+<Story name="Clickable Card" args={{}} parameters={{ layout: 'compact' }}>
   {#snippet template(args)}
     <div class="max-w-sm">
       <Card
@@ -405,7 +405,7 @@
   {/snippet}
 </Story>
 
-<Story name="Simple Card" args={{ subtitle: '', description: '', showAction: false }}>
+<Story name="Simple Card" args={{ subtitle: '', description: '', showAction: false }} parameters={{ layout: 'compact' }}>
   {#snippet template(args)}
     <div class="max-w-sm">
       <Card

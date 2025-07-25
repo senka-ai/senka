@@ -62,13 +62,13 @@
   })
 </script>
 
-<Story name="Overview" args={{}}>
+<Story name="Overview" args={{}} parameters={{ layout: 'wide' }}>
   {#snippet template()}
     <div class="space-y-8">
       <!-- Aspect Ratios -->
       <div>
         <h3 class="text-h4 text-primary mb-4">Aspect Ratios</h3>
-        <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
+        <div class="grid grid-cols-2 gap-6 md:grid-cols-4">
           <div class="text-center">
             <div class="w-40">
               <Image src="https://picsum.photos/400/400?random=1" alt="Square" aspectRatio="square" />
@@ -99,7 +99,7 @@
       <!-- Rounded Variants -->
       <div>
         <h3 class="text-h4 text-primary mb-4">Rounded Variants</h3>
-        <div class="grid grid-cols-3 md:grid-cols-6 gap-4">
+        <div class="grid grid-cols-3 gap-4 md:grid-cols-6">
           <div class="text-center">
             <div class="w-24">
               <Image src="https://picsum.photos/200/200?random=5" alt="None" aspectRatio="square" rounded="none" />
@@ -166,19 +166,34 @@
             <p class="text-body-s text-secondary mb-2">Profile Pictures</p>
             <div class="flex items-center gap-4">
               <div class="w-16">
-                <Image src="https://picsum.photos/100/100?random=13" alt="Small profile" aspectRatio="square" rounded="full" />
+                <Image
+                  src="https://picsum.photos/100/100?random=13"
+                  alt="Small profile"
+                  aspectRatio="square"
+                  rounded="full"
+                />
               </div>
               <div class="w-24">
-                <Image src="https://picsum.photos/100/100?random=14" alt="Medium profile" aspectRatio="square" rounded="full" />
+                <Image
+                  src="https://picsum.photos/100/100?random=14"
+                  alt="Medium profile"
+                  aspectRatio="square"
+                  rounded="full"
+                />
               </div>
               <div class="w-32">
-                <Image src="https://picsum.photos/100/100?random=15" alt="Large profile" aspectRatio="square" rounded="full" />
+                <Image
+                  src="https://picsum.photos/100/100?random=15"
+                  alt="Large profile"
+                  aspectRatio="square"
+                  rounded="full"
+                />
               </div>
             </div>
           </div>
           <div>
             <p class="text-body-s text-secondary mb-2">Gallery Grid</p>
-            <div class="grid grid-cols-3 gap-2 max-w-md">
+            <div class="grid max-w-md grid-cols-3 gap-2">
               <Image src="https://picsum.photos/300/300?random=16" alt="Gallery 1" aspectRatio="square" rounded="lg" />
               <Image src="https://picsum.photos/300/300?random=17" alt="Gallery 2" aspectRatio="square" rounded="lg" />
               <Image src="https://picsum.photos/300/300?random=18" alt="Gallery 3" aspectRatio="square" rounded="lg" />

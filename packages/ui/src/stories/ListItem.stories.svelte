@@ -38,7 +38,7 @@
   })
 </script>
 
-<Story name="Overview" args={{}}>
+<Story name="Overview" args={{}} parameters={{ layout: 'default' }}>
   {#snippet template()}
     <div class="space-y-8">
       <!-- Basic States -->
@@ -180,7 +180,7 @@
   {/snippet}
 </Story>
 
-<Story name="Basic" args={{ title: 'Basic List Item' }}>
+<Story name="Basic" args={{ title: 'Basic List Item' }} parameters={{ layout: 'compact' }}>
   {#snippet template(args)}
     <ListItem
       title={args.title || 'List Item'}
@@ -202,6 +202,7 @@
 <Story
   name="With Description"
   args={{ title: 'Item with Description', description: 'This item has additional descriptive text below the title' }}
+  parameters={{ layout: 'compact' }}
 >
   {#snippet template(args)}
     <ListItem
@@ -221,7 +222,7 @@
   {/snippet}
 </Story>
 
-<Story name="With Left Icon" args={{ title: 'Favorite Item', description: 'This item has a heart icon' }}>
+<Story name="With Left Icon" args={{ title: 'Favorite Item', description: 'This item has a heart icon' }} parameters={{ layout: 'compact' }}>
   {#snippet template(args)}
     <ListItem
       title={args.title || 'List Item'}
@@ -244,7 +245,7 @@
   {/snippet}
 </Story>
 
-<Story name="With Avatar" args={{ title: 'John Doe', description: 'Software Developer' }}>
+<Story name="With Avatar" args={{ title: 'John Doe', description: 'Software Developer' }} parameters={{ layout: 'compact' }}>
   {#snippet template(args)}
     <ListItem
       title={args.title || 'List Item'}
@@ -270,6 +271,7 @@
 <Story
   name="With Chevron"
   args={{ title: 'Clickable Item', description: 'Click to navigate', showChevron: true, clickable: true }}
+  parameters={{ layout: 'compact' }}
 >
   {#snippet template(args)}
     <ListItem
@@ -289,7 +291,7 @@
   {/snippet}
 </Story>
 
-<Story name="With Toggle" args={{ title: 'Settings Option', description: 'Enable or disable this feature' }}>
+<Story name="With Toggle" args={{ title: 'Settings Option', description: 'Enable or disable this feature' }} parameters={{ layout: 'compact' }}>
   {#snippet template(args)}
     <ListItem
       title={args.title || 'List Item'}
@@ -315,7 +317,7 @@
   {/snippet}
 </Story>
 
-<Story name="With Checkbox" args={{ title: 'Task Item', description: 'Complete this task' }}>
+<Story name="With Checkbox" args={{ title: 'Task Item', description: 'Complete this task' }} parameters={{ layout: 'compact' }}>
   {#snippet template(args)}
     <ListItem
       title={args.title || 'List Item'}
@@ -349,7 +351,7 @@
   {/snippet}
 </Story>
 
-<Story name="With Status Indicator" args={{ title: 'Online User', description: 'Currently active' }}>
+<Story name="With Status Indicator" args={{ title: 'Online User', description: 'Currently active' }} parameters={{ layout: 'compact' }}>
   {#snippet template(args)}
     <ListItem
       title={args.title || 'List Item'}
@@ -375,7 +377,7 @@
   {/snippet}
 </Story>
 
-<Story name="Disabled" args={{ title: 'Disabled Item', description: 'This item is not available', disabled: true }}>
+<Story name="Disabled" args={{ title: 'Disabled Item', description: 'This item is not available', disabled: true }} parameters={{ layout: 'compact' }}>
   {#snippet template(args)}
     <ListItem
       title={args.title || 'List Item'}
@@ -398,7 +400,7 @@
   {/snippet}
 </Story>
 
-<Story name="All Examples" args={{}}>
+<Story name="All Examples" args={{}} parameters={{ layout: 'compact' }}>
   {#snippet template()}
     <div class="space-y-2">
       <ListItem title="Basic Item" />
@@ -440,7 +442,7 @@
   {/snippet}
 </Story>
 
-<Story name="Real World Examples" args={{}}>
+<Story name="Real World Examples" args={{}} parameters={{ layout: 'default' }}>
   {#snippet template()}
     <div class="space-y-6">
       <!-- Contact List -->

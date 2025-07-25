@@ -38,7 +38,7 @@
   })
 </script>
 
-<Story name="Overview" args={{}}>
+<Story name="Overview" args={{}} parameters={{ layout: 'wide' }}>
   {#snippet template()}
     <div class="space-y-8">
       <!-- Basic Variants -->
@@ -87,7 +87,7 @@
       <!-- With Image -->
       <div>
         <h3 class="text-h4 text-primary mb-4">With Image</h3>
-        <div class="max-w-md">
+        <div>
           <CardHorizontal
             title="Profile Card"
             subtitle="User information"
@@ -188,10 +188,9 @@
   {/snippet}
 </Story>
 
-<Story name="Default" args={{}}>
+<Story name="Default" args={{}} parameters={{ layout: 'compact' }}>
   {#snippet template(args)}
-    <div class="max-w-md">
-      <CardHorizontal
+    <CardHorizontal
         title={args.title || 'Title'}
         subtitle={args.subtitle}
         image={args.image}
@@ -210,15 +209,13 @@
         {#if args.children}
           {@render args.children()}
         {/if}
-      </CardHorizontal>
-    </div>
+    </CardHorizontal>
   {/snippet}
 </Story>
 
-<Story name="With Image" args={{ image: 'https://picsum.photos/80/80', imageAlt: 'Sample image' }}>
+<Story name="With Image" args={{ image: 'https://picsum.photos/80/80', imageAlt: 'Sample image' }} parameters={{ layout: 'compact' }}>
   {#snippet template(args)}
-    <div class="max-w-md">
-      <CardHorizontal
+    <CardHorizontal
         title={args.title || 'Title'}
         subtitle={args.subtitle}
         image={args.image}
@@ -237,15 +234,13 @@
         {#if args.children}
           {@render args.children()}
         {/if}
-      </CardHorizontal>
-    </div>
+    </CardHorizontal>
   {/snippet}
 </Story>
 
-<Story name="Avatar Type" args={{ title: 'Avatar Card', iconType: 'custom' }}>
+<Story name="Avatar Type" args={{ title: 'Avatar Card', iconType: 'custom' }} parameters={{ layout: 'compact' }}>
   {#snippet template(args)}
-    <div class="max-w-md">
-      <CardHorizontal
+    <CardHorizontal
         title={args.title || 'Card Title'}
         subtitle={args.subtitle}
         image={args.image}
@@ -263,15 +258,13 @@
         {#snippet children()}
           <ProfileIcon class="h-6 w-6" />
         {/snippet}
-      </CardHorizontal>
-    </div>
+    </CardHorizontal>
   {/snippet}
 </Story>
 
-<Story name="Heart Type" args={{ title: 'Heart Card', iconType: 'custom' }}>
+<Story name="Heart Type" args={{ title: 'Heart Card', iconType: 'custom' }} parameters={{ layout: 'compact' }}>
   {#snippet template(args)}
-    <div class="max-w-md">
-      <CardHorizontal
+    <CardHorizontal
         title={args.title || 'Card Title'}
         subtitle={args.subtitle}
         image={args.image}
@@ -289,15 +282,13 @@
         {#snippet children()}
           <HeartFilledIcon class="h-6 w-6" />
         {/snippet}
-      </CardHorizontal>
-    </div>
+    </CardHorizontal>
   {/snippet}
 </Story>
 
-<Story name="Custom Icon" args={{ iconType: 'custom' }}>
+<Story name="Custom Icon" args={{ iconType: 'custom' }} parameters={{ layout: 'compact' }}>
   {#snippet template(args)}
-    <div class="max-w-md">
-      <CardHorizontal
+    <CardHorizontal
         title={args.title || 'Title'}
         subtitle={args.subtitle}
         image={args.image}
@@ -316,15 +307,13 @@
         {#snippet children()}
           <ChatIcon class="text-highlight h-6 w-6" />
         {/snippet}
-      </CardHorizontal>
-    </div>
+    </CardHorizontal>
   {/snippet}
 </Story>
 
-<Story name="Arrow Action" args={{ actionType: 'arrow' }}>
+<Story name="Arrow Action" args={{ actionType: 'arrow' }} parameters={{ layout: 'compact' }}>
   {#snippet template(args)}
-    <div class="max-w-md">
-      <CardHorizontal
+    <CardHorizontal
         title={args.title || 'Title'}
         subtitle={args.subtitle}
         image={args.image}
@@ -343,15 +332,13 @@
         {#if args.children}
           {@render args.children()}
         {/if}
-      </CardHorizontal>
-    </div>
+    </CardHorizontal>
   {/snippet}
 </Story>
 
-<Story name="No Action" args={{ showAction: false }}>
+<Story name="No Action" args={{ showAction: false }} parameters={{ layout: 'compact' }}>
   {#snippet template(args)}
-    <div class="max-w-md">
-      <CardHorizontal
+    <CardHorizontal
         title={args.title || 'Title'}
         subtitle={args.subtitle}
         image={args.image}
@@ -370,15 +357,13 @@
         {#if args.children}
           {@render args.children()}
         {/if}
-      </CardHorizontal>
-    </div>
+    </CardHorizontal>
   {/snippet}
 </Story>
 
-<Story name="Disabled" args={{ disabled: true }}>
+<Story name="Disabled" args={{ disabled: true }} parameters={{ layout: 'compact' }}>
   {#snippet template(args)}
-    <div class="max-w-md">
-      <CardHorizontal
+    <CardHorizontal
         title={args.title || 'Title'}
         subtitle={args.subtitle}
         image={args.image}
@@ -397,15 +382,13 @@
         {#if args.children}
           {@render args.children()}
         {/if}
-      </CardHorizontal>
-    </div>
+    </CardHorizontal>
   {/snippet}
 </Story>
 
-<Story name="Clickable Card">
+<Story name="Clickable Card" parameters={{ layout: 'compact' }}>
   {#snippet template(args)}
-    <div class="max-w-md">
-      <CardHorizontal
+    <CardHorizontal
         title={args.title || 'Card Title'}
         subtitle={args.subtitle}
         image={args.image}
@@ -419,15 +402,13 @@
         id={args.id}
         onclick={() => console.log('Card clicked')}
         onButtonClick={() => console.log('Button clicked')}
-      />
-    </div>
+    />
   {/snippet}
 </Story>
 
-<Story name="Text Only" args={{ iconType: 'image', showAction: false }}>
+<Story name="Text Only" args={{ iconType: 'image', showAction: false }} parameters={{ layout: 'compact' }}>
   {#snippet template(args)}
-    <div class="max-w-md">
-      <CardHorizontal
+    <CardHorizontal
         title={args.title || 'Title'}
         subtitle={args.subtitle}
         image={args.image}
@@ -446,14 +427,13 @@
         {#if args.children}
           {@render args.children()}
         {/if}
-      </CardHorizontal>
-    </div>
+    </CardHorizontal>
   {/snippet}
 </Story>
 
-<Story name="All Examples" args={{}}>
+<Story name="All Examples" args={{}} parameters={{ layout: 'default' }}>
   {#snippet template()}
-    <div class="max-w-lg space-y-6">
+    <div class="space-y-6">
       <!-- Image Variants -->
       <div>
         <h3 class="mb-4 text-lg font-semibold">Image Variants</h3>

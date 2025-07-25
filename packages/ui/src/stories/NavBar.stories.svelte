@@ -26,7 +26,7 @@
   })
 </script>
 
-<Story name="Overview" args={{}}>
+<Story name="Overview" args={{}} parameters={{ layout: 'default' }}>
   {#snippet template()}
     <div class="space-y-6">
       <!-- Basic Variants -->
@@ -34,11 +34,9 @@
         <h3 class="text-h4 text-primary mb-4">Basic Variants</h3>
         <div class="space-y-4">
           <div>
-            <p class="text-body-s text-secondary mb-2">Simple Title</p>
             <NavBar title="Page Title" />
           </div>
           <div>
-            <p class="text-body-s text-secondary mb-2">With Back Button</p>
             <NavBar title="Page Title" showBackButton />
           </div>
         </div>
@@ -49,7 +47,6 @@
         <h3 class="text-h4 text-primary mb-4">With Right Actions</h3>
         <div class="space-y-4">
           <div>
-            <p class="text-body-s text-secondary mb-2">Edit Action</p>
             {#snippet editAction()}
               <Button variant="tertiary" size="small">
                 <EditIcon size={16} />
@@ -59,7 +56,6 @@
             <NavBar title="Edit Mode" showBackButton rightAction={editAction} />
           </div>
           <div>
-            <p class="text-body-s text-secondary mb-2">Heart Action</p>
             {#snippet heartAction()}
               <button
                 type="button"
@@ -72,7 +68,6 @@
             <NavBar title="Favorite Item" showBackButton rightAction={heartAction} />
           </div>
           <div>
-            <p class="text-body-s text-secondary mb-2">Avatar Action</p>
             {#snippet avatarAction()}
               <Avatar size="small" alt="John Doe" initials="JD" />
             {/snippet}
@@ -85,7 +80,6 @@
       <div>
         <h3 class="text-h4 text-primary mb-4">Dual Actions</h3>
         <div>
-          <p class="text-body-s text-secondary mb-2">Cancel & Save</p>
           {#snippet cancelAction()}
             <Button variant="tertiary" size="small">Cancel</Button>
           {/snippet}
@@ -101,11 +95,9 @@
         <h3 class="text-h4 text-primary mb-4">Real World Examples</h3>
         <div class="space-y-4">
           <div>
-            <p class="text-body-s text-secondary mb-2">Settings Page</p>
             <NavBar title="Settings" showBackButton />
           </div>
           <div>
-            <p class="text-body-s text-secondary mb-2">Profile Page</p>
             {#snippet profileEditAction()}
               <Button variant="tertiary" size="small">
                 <EditIcon size={16} />
@@ -115,15 +107,19 @@
             <NavBar title="John Doe" showBackButton rightAction={profileEditAction} />
           </div>
           <div>
-            <p class="text-body-s text-secondary mb-2">Article View</p>
             {#snippet shareAction()}
               <button
                 type="button"
-                class="text-neutral-600 hover:bg-neutral-100 flex h-10 w-10 items-center justify-center rounded-lg transition-colors duration-200"
+                class="flex h-10 w-10 items-center justify-center rounded-lg text-neutral-600 transition-colors duration-200 hover:bg-neutral-100"
                 aria-label="Share article"
               >
                 <svg class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 105.367-2.684 3 3 0 00-5.367 2.684zm0 9.316a3 3 0 105.367 2.684 3 3 0 00-5.367-2.684z" />
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 105.367-2.684 3 3 0 00-5.367 2.684zm0 9.316a3 3 0 105.367 2.684 3 3 0 00-5.367-2.684z"
+                  />
                 </svg>
               </button>
             {/snippet}
@@ -140,6 +136,7 @@
   args={{
     title: 'Page Title',
   }}
+  parameters={{ layout: 'default' }}
 >
   {#snippet template(args)}
     <NavBar
@@ -160,6 +157,7 @@
     title: 'Page Title',
     showBackButton: true,
   }}
+  parameters={{ layout: 'default' }}
 >
   {#snippet template(args)}
     <NavBar
@@ -180,6 +178,7 @@
     title: 'Page Title',
     showBackButton: true,
   }}
+  parameters={{ layout: 'default' }}
 >
   {#snippet template(args)}
     {#snippet editAction()}
@@ -206,6 +205,7 @@
     title: 'Page Title',
     showBackButton: true,
   }}
+  parameters={{ layout: 'default' }}
 >
   {#snippet template(args)}
     {#snippet heartAction()}
@@ -235,6 +235,7 @@
     title: 'Page Title',
     showBackButton: true,
   }}
+  parameters={{ layout: 'default' }}
 >
   {#snippet template(args)}
     {#snippet avatarAction()}
@@ -256,6 +257,7 @@
   args={{
     title: 'Page Title',
   }}
+  parameters={{ layout: 'default' }}
 >
   {#snippet template(args)}
     {#snippet cancelAction()}
@@ -281,6 +283,7 @@
   args={{
     title: 'Page Title',
   }}
+  parameters={{ layout: 'default' }}
 >
   {#snippet template(args)}
     <NavBar
@@ -295,7 +298,7 @@
   {/snippet}
 </Story>
 
-<Story name="All Examples" args={{}}>
+<Story name="All Examples" args={{}} parameters={{ layout: 'default' }}>
   {#snippet template()}
     <div class="space-y-4">
       <NavBar title="Simple Title" />

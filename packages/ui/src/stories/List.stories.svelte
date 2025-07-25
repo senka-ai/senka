@@ -164,7 +164,7 @@
   ]
 </script>
 
-<Story name="Overview" args={{}}>
+<Story name="Overview" args={{}} parameters={{ layout: 'default' }}>
   {#snippet template()}
     <div class="space-y-8">
       <List title="Basic List (Clickable by Default)" items={basicItems} />
@@ -186,25 +186,25 @@
   {/snippet}
 </Story>
 
-<Story name="Basic List" args={{ title: 'Basic List', items: basicItems }}>
+<Story name="Basic List" args={{ title: 'Basic List', items: basicItems }} parameters={{ layout: 'default' }}>
   {#snippet template(args)}
     <List {...args} />
   {/snippet}
 </Story>
 
-<Story name="Without Title" args={{ items: basicItems }}>
+<Story name="Without Title" args={{ items: basicItems }} parameters={{ layout: 'default' }}>
   {#snippet template(args)}
     <List {...args} />
   {/snippet}
 </Story>
 
-<Story name="With Right Text" args={{ title: 'My Tasks', rightText: 'Edit', items: basicItems }}>
+<Story name="With Right Text" args={{ title: 'My Tasks', rightText: 'Edit', items: basicItems }} parameters={{ layout: 'default' }}>
   {#snippet template(args)}
     <List {...args} onRightClick={() => alert('Edit clicked!')} />
   {/snippet}
 </Story>
 
-<Story name="With Right Icon" args={{ title: 'Search Results', items: basicItems }}>
+<Story name="With Right Icon" args={{ title: 'Search Results', items: basicItems }} parameters={{ layout: 'default' }}>
   {#snippet template(args)}
     <List {...args}>
       {#snippet rightIcon()}
@@ -214,37 +214,37 @@
   {/snippet}
 </Story>
 
-<Story name="No Dividers" args={{ title: 'Clean List', items: basicItems, showDividers: false }}>
+<Story name="No Dividers" args={{ title: 'Clean List', items: basicItems, showDividers: false }} parameters={{ layout: 'default' }}>
   {#snippet template(args)}
     <List {...args} />
   {/snippet}
 </Story>
 
-<Story name="Dashed Dividers" args={{ title: 'Dashed List', items: basicItems, dividerVariant: 'dashed' }}>
+<Story name="Dashed Dividers" args={{ title: 'Dashed List', items: basicItems, dividerVariant: 'dashed' }} parameters={{ layout: 'default' }}>
   {#snippet template(args)}
     <List {...args} />
   {/snippet}
 </Story>
 
-<Story name="Compact Mode" args={{ title: 'Compact List', items: basicItems, compact: true }}>
+<Story name="Compact Mode" args={{ title: 'Compact List', items: basicItems, compact: true }} parameters={{ layout: 'default' }}>
   {#snippet template(args)}
     <List {...args} />
   {/snippet}
 </Story>
 
-<Story name="Non-Clickable Items" args={{ title: 'Static List', items: nonClickableItems }}>
+<Story name="Non-Clickable Items" args={{ title: 'Static List', items: nonClickableItems }} parameters={{ layout: 'default' }}>
   {#snippet template(args)}
     <List {...args} />
   {/snippet}
 </Story>
 
-<Story name="Simple Items (No Description)" args={{ title: 'Navigation Menu', items: simpleItems }}>
+<Story name="Simple Items (No Description)" args={{ title: 'Navigation Menu', items: simpleItems }} parameters={{ layout: 'default' }}>
   {#snippet template(args)}
     <List {...args} />
   {/snippet}
 </Story>
 
-<Story name="Using Children" args={{}}>
+<Story name="Using Children" args={{}} parameters={{ layout: 'default' }}>
   {#snippet template()}
     <List title="Custom Content" rightText="Edit">
       {#snippet children()}
@@ -276,7 +276,7 @@
   {/snippet}
 </Story>
 
-<Story name="Real World Examples" args={{}}>
+<Story name="Real World Examples" args={{}} parameters={{ layout: 'default' }}>
   {#snippet template()}
     <div class="space-y-8">
       <!-- Contacts List -->

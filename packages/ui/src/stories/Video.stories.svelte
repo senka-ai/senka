@@ -71,13 +71,13 @@
   })
 </script>
 
-<Story name="Overview" args={{}}>
+<Story name="Overview" args={{}} parameters={{ layout: 'wide' }}>
   {#snippet template()}
     <div class="space-y-8">
       <!-- Aspect Ratios -->
       <div>
         <h3 class="text-h4 text-primary mb-4">Aspect Ratios</h3>
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div class="grid grid-cols-1 gap-6 md:grid-cols-2">
           <div class="text-center">
             <div class="w-60">
               <Video
@@ -124,7 +124,7 @@
       <!-- Control Options -->
       <div>
         <h3 class="text-h4 text-primary mb-4">Control Options</h3>
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div class="grid grid-cols-1 gap-6 md:grid-cols-2">
           <div>
             <p class="text-body-s text-secondary mb-2">With Controls</p>
             <div class="w-80">
@@ -166,7 +166,7 @@
       <!-- Rounded Variants -->
       <div>
         <h3 class="text-h4 text-primary mb-4">Rounded Variants</h3>
-        <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+        <div class="grid grid-cols-2 gap-4 md:grid-cols-4">
           <div class="text-center">
             <div class="w-32">
               <Video
@@ -234,7 +234,7 @@
           </div>
           <div>
             <p class="text-body-s text-secondary mb-2">Video Gallery</p>
-            <div class="grid grid-cols-2 gap-4 max-w-2xl">
+            <div class="grid max-w-2xl grid-cols-2 gap-4">
               <Video
                 src="https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4"
                 poster="https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/images/BigBuckBunny.jpg"

@@ -24,11 +24,11 @@
 
 <Story name="Overview" args={{}}>
   {#snippet template()}
-    <div class="space-y-8">
+    <div class="space-y-12">
       <!-- Basic Variants -->
       <div>
         <h3 class="text-h4 text-primary mb-4">Basic Variants</h3>
-        <div class="space-y-4">
+        <div class="space-y-8">
           <div>
             <p class="text-body-s text-secondary mb-2">Basic Title</p>
             <ListTitle title="My List" />
@@ -47,7 +47,7 @@
       <!-- With Icons -->
       <div>
         <h3 class="text-h4 text-primary mb-4">With Icons</h3>
-        <div class="space-y-4">
+        <div class="space-y-8">
           <div>
             <p class="text-body-s text-secondary mb-2">Search Icon</p>
             <ListTitle title="Search Results">
@@ -78,7 +78,7 @@
       <!-- Real World Examples -->
       <div>
         <h3 class="text-h4 text-primary mb-4">Real World Examples</h3>
-        <div class="space-y-6">
+        <div class="space-y-8">
           <div>
             <ListTitle title="Recent Photos" rightText="See All" />
             <p class="text-body-s text-secondary mt-2">Photos from this week</p>
@@ -102,12 +102,6 @@
 </Story>
 
 <Story name="Basic" args={{ title: 'My List' }}>
-  {#snippet template(args)}
-    <ListTitle title={args.title} class={args.class} id={args.id} />
-  {/snippet}
-</Story>
-
-<Story name="With Right Text" args={{ title: 'Tasks', rightText: 'Edit' }}>
   {#snippet template(args)}
     <ListTitle title={args.title} class={args.class} id={args.id} />
   {/snippet}
@@ -161,30 +155,6 @@
         <FilterIcon size={20} />
       {/snippet}
     </ListTitle>
-  {/snippet}
-</Story>
-
-<Story name="All Examples" args={{}}>
-  {#snippet template()}
-    <div class="space-y-6 p-4">
-      <ListTitle title="Basic List Title" />
-
-      <ListTitle title="With Edit Text" rightText="Edit" />
-
-      <ListTitle title="With Search Icon">
-        {#snippet rightIcon()}
-          <SearchIcon size={20} />
-        {/snippet}
-      </ListTitle>
-
-      <ListTitle title="Clickable Edit" rightText="Edit" onRightClick={() => alert('Edit clicked!')} />
-
-      <ListTitle title="Clickable Filter" onRightClick={() => alert('Filter clicked!')}>
-        {#snippet rightIcon()}
-          <FilterIcon size={20} />
-        {/snippet}
-      </ListTitle>
-    </div>
   {/snippet}
 </Story>
 

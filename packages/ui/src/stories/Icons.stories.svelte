@@ -67,9 +67,9 @@
   })
 </script>
 
-<Story name="Overview" args={{}}>
+<Story name="Overview" args={{}} parameters={{ layout: 'wide' }}>
   {#snippet template(args)}
-    <div class="grid grid-cols-4 gap-4 p-6 md:grid-cols-6 lg:grid-cols-8">
+    <div class="grid grid-cols-4 gap-4 md:grid-cols-6">
       <div class="flex flex-col items-center gap-2">
         <AddIcon {...args} />
         <span class="text-xs text-neutral-600">AddIcon</span>
@@ -254,7 +254,7 @@
   {/snippet}
 </Story>
 
-<Story name="Icon Sizes" args={{}}>
+<Story name="Icon Sizes" args={{}} parameters={{ layout: 'compact' }}>
   {#snippet template()}
     <div class="space-y-2">
       <div class="flex items-center gap-4">
@@ -289,7 +289,7 @@
   {/snippet}
 </Story>
 
-<Story name="Icon Colors" args={{}}>
+<Story name="Icon Colors" args={{}} parameters={{ layout: 'compact' }}>
   {#snippet template()}
     <div class="space-y-2">
       <div class="flex items-center gap-4">
@@ -331,9 +331,9 @@
   {/snippet}
 </Story>
 
-<Story name="Arrow Icons" args={{}}>
+<Story name="Arrow Icons" args={{}} parameters={{ layout: 'compact' }}>
   {#snippet template()}
-    <div class="flex justify-start p-6">
+    <div class="flex justify-start">
       <div class="flex flex-col items-center gap-4">
         <div class="flex flex-col items-center gap-2">
           <ArrowUpIcon size={32} />
@@ -356,9 +356,9 @@
   {/snippet}
 </Story>
 
-<Story name="Status Icons" args={{}}>
+<Story name="Status Icons" args={{}} parameters={{ layout: 'compact' }}>
   {#snippet template()}
-    <div class="flex justify-start p-6">
+    <div class="flex justify-start">
       <div class="flex flex-col items-center gap-4">
         <div class="flex flex-col items-center gap-2">
           <CheckIcon size={32} class="text-success" />
@@ -389,9 +389,9 @@
   {/snippet}
 </Story>
 
-<Story name="Social Icons" args={{}}>
+<Story name="Social Icons" args={{}} parameters={{ layout: 'compact' }}>
   {#snippet template()}
-    <div class="flex justify-start p-6">
+    <div class="flex justify-start">
       <div class="flex flex-col items-center gap-4">
         <div class="flex flex-col items-center gap-2">
           <FacebookIcon size={32} class="text-highlight" />

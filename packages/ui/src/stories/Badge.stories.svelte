@@ -40,7 +40,7 @@
   })
 </script>
 
-<Story name="Overview" args={{}}>
+<Story name="Overview" args={{}} parameters={{ layout: 'default' }}>
   {#snippet template()}
     <div class="space-y-4">
       <div class="flex items-center gap-4">
@@ -63,25 +63,25 @@
   {/snippet}
 </Story>
 
-<Story name="Number" args={{ type: 'number', value: 5 }}>
+<Story name="Number" args={{ type: 'number', value: 5 }} parameters={{ layout: 'compact' }}>
   {#snippet template(args)}
     <Badge {...args} />
   {/snippet}
 </Story>
 
-<Story name="Icon" args={{ type: 'icon' }}>
+<Story name="Icon" args={{ type: 'icon' }} parameters={{ layout: 'compact' }}>
   {#snippet template(args)}
     <Badge {...args} />
   {/snippet}
 </Story>
 
-<Story name="Dot" args={{ type: 'dot' }}>
+<Story name="Dot" args={{ type: 'dot' }} parameters={{ layout: 'compact' }}>
   {#snippet template(args)}
     <Badge {...args} />
   {/snippet}
 </Story>
 
-<Story name="Large Number" args={{ type: 'number', value: 99, max: 99 }}>
+<Story name="Large Number" args={{ type: 'number', value: 99, max: 99 }} parameters={{ layout: 'compact' }}>
   {#snippet template(args)}
     <Badge {...args} />
   {/snippet}

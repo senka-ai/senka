@@ -1,0 +1,31 @@
+/**
+ * Global story layout styles
+ * Uses story parameters to determine container size
+ */
+
+/* Remove default Storybook padding to avoid double padding */
+.sb-show-main {
+  padding: 2.5rem !important;
+}
+
+/* Base container styling for all stories */
+.docs-story,
+.sb-show-main {
+  max-width: 42rem; /* 672px - default */
+}
+
+/* Container sizes based on story parameters */
+[data-layout='compact'].docs-story,
+[data-layout='compact'].sb-show-main {
+  max-width: 32rem; /* 320px - much smaller for form controls */
+}
+
+[data-layout='wide'].docs-story,
+[data-layout='wide'].sb-show-main {
+  max-width: 64rem; /* 1024px - wider for component showcases */
+}
+
+[data-layout='full'].docs-story,
+[data-layout='full'].sb-show-main {
+  max-width: none; /* truly full width */
+}

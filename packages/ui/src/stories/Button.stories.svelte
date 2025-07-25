@@ -39,7 +39,7 @@
   })
 </script>
 
-<Story name="Overview">
+<Story name="Overview" parameters={{ layout: 'default' }}>
   {#snippet template()}
     <div class="space-y-4">
       <div class="flex items-start gap-4">
@@ -76,7 +76,7 @@
   {/snippet}
 </Story>
 
-<Story name="Primary" args={{ variant: 'primary' }}>
+<Story name="Primary" args={{ variant: 'primary' }} parameters={{ layout: 'compact' }}>
   {#snippet template(args)}
     <Button {...args}>
       {#snippet children()}Button{/snippet}
@@ -84,7 +84,7 @@
   {/snippet}
 </Story>
 
-<Story name="Secondary" args={{ variant: 'secondary' }}>
+<Story name="Secondary" args={{ variant: 'secondary' }} parameters={{ layout: 'compact' }}>
   {#snippet template(args)}
     <Button {...args}>
       {#snippet children()}Button{/snippet}
@@ -92,7 +92,7 @@
   {/snippet}
 </Story>
 
-<Story name="Tertiary" args={{ variant: 'tertiary' }}>
+<Story name="Tertiary" args={{ variant: 'tertiary' }} parameters={{ layout: 'compact' }}>
   {#snippet template(args)}
     <Button {...args}>
       {#snippet children()}Button{/snippet}
@@ -100,7 +100,7 @@
   {/snippet}
 </Story>
 
-<Story name="Extra Small" args={{ size: 'xs' }}>
+<Story name="Extra Small" args={{ size: 'xs' }} parameters={{ layout: 'compact' }}>
   {#snippet template(args)}
     <Button {...args}>
       {#snippet children()}Button{/snippet}
@@ -108,7 +108,7 @@
   {/snippet}
 </Story>
 
-<Story name="Small" args={{ size: 'small' }}>
+<Story name="Small" args={{ size: 'small' }} parameters={{ layout: 'compact' }}>
   {#snippet template(args)}
     <Button {...args}>
       {#snippet children()}Button{/snippet}
@@ -116,7 +116,7 @@
   {/snippet}
 </Story>
 
-<Story name="Medium" args={{ size: 'medium' }}>
+<Story name="Medium" args={{ size: 'medium' }} parameters={{ layout: 'compact' }}>
   {#snippet template(args)}
     <Button {...args}>
       {#snippet children()}Button{/snippet}
@@ -124,7 +124,7 @@
   {/snippet}
 </Story>
 
-<Story name="Large" args={{ size: 'large' }}>
+<Story name="Large" args={{ size: 'large' }} parameters={{ layout: 'compact' }}>
   {#snippet template(args)}
     <Button {...args}>
       {#snippet children()}Button{/snippet}
@@ -132,7 +132,7 @@
   {/snippet}
 </Story>
 
-<Story name="Disabled" args={{ disabled: true }}>
+<Story name="Disabled" args={{ disabled: true }} parameters={{ layout: 'compact' }}>
   {#snippet template(args)}
     <Button {...args}>
       {#snippet children()}Button{/snippet}
@@ -140,7 +140,7 @@
   {/snippet}
 </Story>
 
-<Story name="Loading" args={{ loading: true }}>
+<Story name="Loading" args={{ loading: true }} parameters={{ layout: 'compact' }}>
   {#snippet template(args)}
     <Button {...args}>
       {#snippet children()}Button{/snippet}
@@ -148,7 +148,7 @@
   {/snippet}
 </Story>
 
-<Story name="Full Width" args={{ fullWidth: true }}>
+<Story name="Full Width" args={{ fullWidth: true }} parameters={{ layout: 'full' }}>
   {#snippet template(args)}
     <Button {...args}>
       {#snippet children()}Button{/snippet}

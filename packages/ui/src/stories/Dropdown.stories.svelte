@@ -51,83 +51,66 @@
   })
 </script>
 
-<Story name="Overview" args={{}}>
+<Story name="Overview" args={{}} parameters={{ layout: 'default' }}>
   {#snippet template()}
     <div class="space-y-8">
       <!-- Basic States -->
       <div>
         <h3 class="text-h4 text-primary mb-4">Basic States</h3>
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div class="grid grid-cols-1 gap-6 md:grid-cols-2">
           <div>
             <p class="text-body-s text-secondary mb-2">Default</p>
-            <Dropdown 
-              options={sampleOptions} 
-              label="Choose Option" 
-              placeholder="Select an option" 
-            />
+            <Dropdown options={sampleOptions} label="Choose Option" placeholder="Select an option" />
           </div>
           <div>
             <p class="text-body-s text-secondary mb-2">With Selection</p>
-            <Dropdown 
-              options={sampleOptions} 
-              label="Choose Option" 
-              value="option2" 
-            />
+            <Dropdown options={sampleOptions} label="Choose Option" value="option2" />
           </div>
           <div>
             <p class="text-body-s text-secondary mb-2">With Error</p>
-            <Dropdown 
-              options={sampleOptions} 
-              label="Choose Option" 
+            <Dropdown
+              options={sampleOptions}
+              label="Choose Option"
               placeholder="Select an option"
-              error="This field is required" 
+              error="This field is required"
             />
           </div>
           <div>
             <p class="text-body-s text-secondary mb-2">Disabled</p>
-            <Dropdown 
-              options={sampleOptions} 
-              label="Choose Option" 
-              value="option1"
-              disabled={true} 
-            />
+            <Dropdown options={sampleOptions} label="Choose Option" value="option1" disabled={true} />
           </div>
-        </div>
-      </div>
-
-      <!-- With Helper Text -->
-      <div>
-        <h3 class="text-h4 text-primary mb-4">With Helper Text</h3>
-        <div class="max-w-sm">
-          <Dropdown 
-            options={sampleOptions} 
-            label="Priority Level" 
-            placeholder="Select priority"
-            helperText="Choose the urgency level for this task" 
-          />
         </div>
       </div>
 
       <!-- Full Width -->
       <div>
         <h3 class="text-h4 text-primary mb-4">Full Width</h3>
-        <Dropdown 
-          options={sampleOptions} 
-          label="Full Width Dropdown" 
+        <Dropdown
+          options={sampleOptions}
+          label="Full Width Dropdown"
           placeholder="This dropdown spans the full width"
-          fullWidth={true} 
+          fullWidth={true}
         />
+      </div>
+
+      <!-- With Helper Text -->
+      <div>
+        <h3 class="text-h4 text-primary mb-4">With Helper Text</h3>
+        <div class="max-w-sm">
+          <Dropdown
+            options={sampleOptions}
+            label="Priority Level"
+            placeholder="Select priority"
+            helperText="Choose the urgency level for this task"
+          />
+        </div>
       </div>
 
       <!-- With Disabled Options -->
       <div>
         <h3 class="text-h4 text-primary mb-4">With Disabled Options</h3>
         <div class="max-w-sm">
-          <Dropdown 
-            options={optionsWithDisabled} 
-            label="Mixed Options" 
-            placeholder="Some options are disabled" 
-          />
+          <Dropdown options={optionsWithDisabled} label="Mixed Options" placeholder="Some options are disabled" />
         </div>
       </div>
 
@@ -135,7 +118,7 @@
       <div>
         <h3 class="text-h4 text-primary mb-4">Scrollable List</h3>
         <div class="max-w-sm">
-          <Dropdown 
+          <Dropdown
             options={[
               { value: 'option1', label: 'Option 1' },
               { value: 'option2', label: 'Option 2' },
@@ -148,8 +131,8 @@
               { value: 'option9', label: 'Option 9' },
               { value: 'option10', label: 'Option 10' },
             ]}
-            label="Long List" 
-            placeholder="Scroll to see more options" 
+            label="Long List"
+            placeholder="Scroll to see more options"
           />
         </div>
       </div>
@@ -157,7 +140,7 @@
   {/snippet}
 </Story>
 
-<Story name="Default" args={{}}>
+<Story name="Default" args={{}} parameters={{ layout: 'compact' }}>
   {#snippet template(args)}
     <Dropdown
       options={args.options || []}
@@ -177,7 +160,7 @@
   {/snippet}
 </Story>
 
-<Story name="With Selected Value" args={{ value: 'option2' }}>
+<Story name="With Selected Value" args={{ value: 'option2' }} parameters={{ layout: 'compact' }}>
   {#snippet template(args)}
     <Dropdown
       options={args.options || []}
@@ -197,7 +180,7 @@
   {/snippet}
 </Story>
 
-<Story name="With Error" args={{ error: 'This field is required' }}>
+<Story name="With Error" args={{ error: 'This field is required' }} parameters={{ layout: 'compact' }}>
   {#snippet template(args)}
     <Dropdown
       options={args.options || []}
@@ -217,7 +200,7 @@
   {/snippet}
 </Story>
 
-<Story name="With Helper Text" args={{ helperText: 'Choose your preferred option' }}>
+<Story name="With Helper Text" args={{ helperText: 'Choose your preferred option' }} parameters={{ layout: 'compact' }}>
   {#snippet template(args)}
     <Dropdown
       options={args.options || []}
@@ -237,7 +220,7 @@
   {/snippet}
 </Story>
 
-<Story name="Disabled" args={{ disabled: true, value: 'option1' }}>
+<Story name="Disabled" args={{ disabled: true, value: 'option1' }} parameters={{ layout: 'compact' }}>
   {#snippet template(args)}
     <Dropdown
       options={args.options || []}
@@ -257,7 +240,7 @@
   {/snippet}
 </Story>
 
-<Story name="Full Width" args={{ fullWidth: true }}>
+<Story name="Full Width" args={{ fullWidth: true }} parameters={{ layout: 'wide' }}>
   {#snippet template(args)}
     <Dropdown
       options={args.options || []}
@@ -277,7 +260,7 @@
   {/snippet}
 </Story>
 
-<Story name="With Disabled Options" args={{ options: optionsWithDisabled }}>
+<Story name="With Disabled Options" args={{ options: optionsWithDisabled }} parameters={{ layout: 'compact' }}>
   {#snippet template(args)}
     <Dropdown
       options={args.options || []}
@@ -297,7 +280,7 @@
   {/snippet}
 </Story>
 
-<Story name="Long Options List">
+<Story name="Long Options List" parameters={{ layout: 'compact' }}>
   {#snippet template(args)}
     <Dropdown
       {...args}
@@ -319,7 +302,7 @@
   {/snippet}
 </Story>
 
-<Story name="All States">
+<Story name="All States" parameters={{ layout: 'compact' }}>
   {#snippet template()}
     <div class="space-y-6">
       <Dropdown options={sampleOptions} label="Default" placeholder="Select an option" />
@@ -331,7 +314,7 @@
   {/snippet}
 </Story>
 
-<Story name="Interactive Example">
+<Story name="Interactive Example" parameters={{ layout: 'default' }}>
   {#snippet template()}
     <div class="space-y-6">
       <div class="grid grid-cols-1 gap-4 md:grid-cols-2">
