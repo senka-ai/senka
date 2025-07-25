@@ -65,7 +65,7 @@
   })
 </script>
 
-<Story name="All States">
+<Story name="Overview">
   {#snippet template()}
     <div class="space-y-8">
       <div>

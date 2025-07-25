@@ -39,7 +39,7 @@
   })
 </script>
 
-<Story name="All States" args={{}}>
+<Story name="Overview" args={{}}>
   {#snippet template()}
     <div class="space-y-6">
       <TextArea label="Default" placeholder="Placeholder" />

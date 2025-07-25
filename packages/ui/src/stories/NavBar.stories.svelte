@@ -295,7 +295,7 @@
   {/snippet}
 </Story>
 
-<Story name="All Variants" args={{}}>
+<Story name="All Examples" args={{}}>
   {#snippet template()}
     <div class="space-y-4">
       <NavBar title="Simple Title" />

@@ -39,7 +39,7 @@
   })
 </script>
 
-<Story name="All Variants">
+<Story name="Overview">
   {#snippet template()}
     <div class="space-y-4">
       <div class="flex items-start gap-4">

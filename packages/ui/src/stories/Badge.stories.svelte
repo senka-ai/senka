@@ -40,7 +40,7 @@
   })
 </script>
 
-<Story name="All Variants" args={{}}>
+<Story name="Overview" args={{}}>
   {#snippet template()}
     <div class="space-y-4">
       <div class="flex items-center gap-4">

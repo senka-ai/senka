@@ -31,7 +31,7 @@
   })
 </script>
 
-<Story name="All Sizes" args={{}}>
+<Story name="Overview" args={{}}>
   {#snippet template()}
     <div class="space-y-4">
       <h3 class="text-primary text-lg font-semibold">Theme Toggle Sizes</h3>

@@ -164,7 +164,7 @@
   ]
 </script>
 
-<Story name="All Variants" args={{}}>
+<Story name="Overview" args={{}}>
   {#snippet template()}
     <div class="space-y-8">
       <List title="Basic List (Clickable by Default)" items={basicItems} />

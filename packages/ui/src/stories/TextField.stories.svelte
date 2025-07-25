@@ -45,7 +45,7 @@
   })
 </script>
 
-<Story name="All States" args={{}}>
+<Story name="Overview" args={{}}>
   {#snippet template()}
     <div class="max-w-md space-y-4">
       <TextField label="Default" placeholder="Enter text" />

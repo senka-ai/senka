@@ -164,7 +164,7 @@
   {/snippet}
 </Story>
 
-<Story name="All Variants" args={{}}>
+<Story name="All Examples" args={{}}>
   {#snippet template()}
     <div class="space-y-6 p-4">
       <ListTitle title="Basic List Title" />
