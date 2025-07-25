@@ -116,7 +116,7 @@
   }
 
   function getLabelClasses(tab: Tab) {
-    const base = 'text-body-xs transition-colors duration-200'
+    const base = 'text-action-s transition-colors duration-200'
     const isActive = tab.id === activeTab
     const isDisabled = tab.disabled
 
@@ -124,7 +124,7 @@
       return `${base} text-neutral-400`
     }
 
-    return isActive ? `${base} text-action-s` : `${base} text-neutral-600 hover:text-neutral-800`
+    return isActive ? `${base} text-highlight` : `${base} text-neutral-600 hover:text-neutral-800`
   }
 </script>
 
@@ -152,12 +152,7 @@
             : 'bg-neutral-300 hover:bg-neutral-400'} {tab.disabled ? 'bg-neutral-300' : ''}"
         ></div>
       {/if}
-      <div class="relative">
-        <!-- Invisible thick text to reserve space -->
-        <span class="text-action-s pointer-events-none opacity-0">{tab.label}</span>
-        <!-- Visible text -->
-        <span class="absolute inset-0 {getLabelClasses(tab)}">{tab.label}</span>
-      </div>
+      <span class={getLabelClasses(tab)}>{tab.label}</span>
     </button>
   {/each}
 </div>
