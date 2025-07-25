@@ -69,7 +69,7 @@
 
 <Story name="Overview" args={{}}>
   {#snippet template(args)}
-    <div class="grid grid-cols-4 gap-2 p-6 md:grid-cols-6 lg:grid-cols-8">
+    <div class="grid grid-cols-4 gap-4 p-6 md:grid-cols-6 lg:grid-cols-8">
       <div class="flex flex-col items-center gap-2">
         <AddIcon {...args} />
         <span class="text-xs text-neutral-600">AddIcon</span>
@@ -259,31 +259,31 @@
     <div class="space-y-2">
       <div class="flex items-center gap-4">
         <span class="w-16 text-sm font-medium">16px:</span>
-        <AddIcon size={16} class="text-neutral-700" />
-        <SearchIcon size={16} class="text-neutral-700" />
-        <SettingsIcon size={16} class="text-neutral-700" />
-        <ProfileIcon size={16} class="text-neutral-700" />
+        <AddIcon size={16} />
+        <SearchIcon size={16} />
+        <SettingsIcon size={16} />
+        <ProfileIcon size={16} />
       </div>
       <div class="flex items-center gap-4">
         <span class="w-16 text-sm font-medium">24px:</span>
-        <AddIcon size={24} class="text-neutral-700" />
-        <SearchIcon size={24} class="text-neutral-700" />
-        <SettingsIcon size={24} class="text-neutral-700" />
-        <ProfileIcon size={24} class="text-neutral-700" />
+        <AddIcon size={24} />
+        <SearchIcon size={24} />
+        <SettingsIcon size={24} />
+        <ProfileIcon size={24} />
       </div>
       <div class="flex items-center gap-4">
         <span class="w-16 text-sm font-medium">32px:</span>
-        <AddIcon size={32} class="text-neutral-700" />
-        <SearchIcon size={32} class="text-neutral-700" />
-        <SettingsIcon size={32} class="text-neutral-700" />
-        <ProfileIcon size={32} class="text-neutral-700" />
+        <AddIcon size={32} />
+        <SearchIcon size={32} />
+        <SettingsIcon size={32} />
+        <ProfileIcon size={32} />
       </div>
       <div class="flex items-center gap-4">
         <span class="w-16 text-sm font-medium">48px:</span>
-        <AddIcon size={48} class="text-neutral-700" />
-        <SearchIcon size={48} class="text-neutral-700" />
-        <SettingsIcon size={48} class="text-neutral-700" />
-        <ProfileIcon size={48} class="text-neutral-700" />
+        <AddIcon size={48} />
+        <SearchIcon size={48} />
+        <SettingsIcon size={48} />
+        <ProfileIcon size={48} />
       </div>
     </div>
   {/snippet}
@@ -294,38 +294,38 @@
     <div class="space-y-2">
       <div class="flex items-center gap-4">
         <span class="w-20 text-sm font-medium">Neutral:</span>
-        <AddIcon size={24} class="text-neutral-500" />
-        <SearchIcon size={24} class="text-neutral-500" />
-        <SettingsIcon size={24} class="text-neutral-500" />
-        <ProfileIcon size={24} class="text-neutral-500" />
+        <AddIcon size={24} class="text-neutral" />
+        <SearchIcon size={24} class="text-neutral" />
+        <SettingsIcon size={24} class="text-neutral" />
+        <ProfileIcon size={24} class="text-neutral" />
       </div>
       <div class="flex items-center gap-4">
         <span class="w-20 text-sm font-medium">Highlight:</span>
-        <AddIcon size={24} class="text-highlight-400" />
-        <SearchIcon size={24} class="text-highlight-400" />
-        <SettingsIcon size={24} class="text-highlight-400" />
-        <ProfileIcon size={24} class="text-highlight-400" />
+        <AddIcon size={24} class="text-highlight" />
+        <SearchIcon size={24} class="text-highlight" />
+        <SettingsIcon size={24} class="text-highlight" />
+        <ProfileIcon size={24} class="text-highlight" />
       </div>
       <div class="flex items-center gap-4">
         <span class="w-20 text-sm font-medium">Success:</span>
-        <AddIcon size={24} class="text-success-200" />
-        <SearchIcon size={24} class="text-success-200" />
-        <SettingsIcon size={24} class="text-success-200" />
-        <ProfileIcon size={24} class="text-success-200" />
+        <AddIcon size={24} class="text-success" />
+        <SearchIcon size={24} class="text-success" />
+        <SettingsIcon size={24} class="text-success" />
+        <ProfileIcon size={24} class="text-success" />
       </div>
       <div class="flex items-center gap-4">
         <span class="w-20 text-sm font-medium">Warning:</span>
-        <AddIcon size={24} class="text-warning-200" />
-        <SearchIcon size={24} class="text-warning-200" />
-        <SettingsIcon size={24} class="text-warning-200" />
-        <ProfileIcon size={24} class="text-warning-200" />
+        <AddIcon size={24} class="text-warning" />
+        <SearchIcon size={24} class="text-warning" />
+        <SettingsIcon size={24} class="text-warning" />
+        <ProfileIcon size={24} class="text-warning" />
       </div>
       <div class="flex items-center gap-4">
         <span class="w-20 text-sm font-medium">Error:</span>
-        <AddIcon size={24} class="text-error-200" />
-        <SearchIcon size={24} class="text-error-200" />
-        <SettingsIcon size={24} class="text-error-200" />
-        <ProfileIcon size={24} class="text-error-200" />
+        <AddIcon size={24} class="text-error" />
+        <SearchIcon size={24} class="text-error" />
+        <SettingsIcon size={24} class="text-error" />
+        <ProfileIcon size={24} class="text-error" />
       </div>
     </div>
   {/snippet}
@@ -333,22 +333,24 @@
 
 <Story name="Arrow Icons" args={{}}>
   {#snippet template()}
-    <div class="p-6">
-      <div class="flex flex-col items-center gap-2">
-        <ArrowUpIcon size={32} class="text-neutral-700" />
-        <span class="text-xs text-neutral-600">Up</span>
-      </div>
-      <div class="mt-2 flex flex-col items-center gap-2">
-        <ArrowDownIcon size={32} class="text-neutral-700" />
-        <span class="text-xs text-neutral-600">Down</span>
-      </div>
-      <div class="mt-2 flex flex-col items-center gap-2">
-        <ArrowLeftIcon size={32} class="text-neutral-700" />
-        <span class="text-xs text-neutral-600">Left</span>
-      </div>
-      <div class="mt-2 flex flex-col items-center gap-2">
-        <ArrowRightIcon size={32} class="text-neutral-700" />
-        <span class="text-xs text-neutral-600">Right</span>
+    <div class="flex justify-start p-6">
+      <div class="flex flex-col items-center gap-4">
+        <div class="flex flex-col items-center gap-2">
+          <ArrowUpIcon size={32} />
+          <span class="text-xs text-neutral-600">Up</span>
+        </div>
+        <div class="flex flex-col items-center gap-2">
+          <ArrowDownIcon size={32} />
+          <span class="text-xs text-neutral-600">Down</span>
+        </div>
+        <div class="flex flex-col items-center gap-2">
+          <ArrowLeftIcon size={32} />
+          <span class="text-xs text-neutral-600">Left</span>
+        </div>
+        <div class="flex flex-col items-center gap-2">
+          <ArrowRightIcon size={32} />
+          <span class="text-xs text-neutral-600">Right</span>
+        </div>
       </div>
     </div>
   {/snippet}
@@ -356,30 +358,32 @@
 
 <Story name="Status Icons" args={{}}>
   {#snippet template()}
-    <div class="space-y-2 p-6">
-      <div class="flex flex-col items-center gap-2">
-        <CheckIcon size={32} class="text-success-200" />
-        <span class="text-xs text-neutral-600">Success</span>
-      </div>
-      <div class="flex flex-col items-center gap-2">
-        <SuccessIcon size={32} class="text-success-200" />
-        <span class="text-xs text-neutral-600">Success Circle</span>
-      </div>
-      <div class="flex flex-col items-center gap-2">
-        <WarningIcon size={32} class="text-warning-200" />
-        <span class="text-xs text-neutral-600">Warning</span>
-      </div>
-      <div class="flex flex-col items-center gap-2">
-        <InfoIcon size={32} class="text-highlight-400" />
-        <span class="text-xs text-neutral-600">Info</span>
-      </div>
-      <div class="flex flex-col items-center gap-2">
-        <DeleteIcon size={32} class="text-error-200" />
-        <span class="text-xs text-neutral-600">Delete</span>
-      </div>
-      <div class="flex flex-col items-center gap-2">
-        <CloseIcon size={32} class="text-error-200" />
-        <span class="text-xs text-neutral-600">Close</span>
+    <div class="flex justify-start p-6">
+      <div class="flex flex-col items-center gap-4">
+        <div class="flex flex-col items-center gap-2">
+          <CheckIcon size={32} class="text-success" />
+          <span class="text-xs text-neutral-600">Success</span>
+        </div>
+        <div class="flex flex-col items-center gap-2">
+          <SuccessIcon size={32} class="text-success" />
+          <span class="text-xs text-neutral-600">Success Circle</span>
+        </div>
+        <div class="flex flex-col items-center gap-2">
+          <WarningIcon size={32} class="text-warning" />
+          <span class="text-xs text-neutral-600">Warning</span>
+        </div>
+        <div class="flex flex-col items-center gap-2">
+          <InfoIcon size={32} class="text-highlight" />
+          <span class="text-xs text-neutral-600">Info</span>
+        </div>
+        <div class="flex flex-col items-center gap-2">
+          <DeleteIcon size={32} class="text-error" />
+          <span class="text-xs text-neutral-600">Delete</span>
+        </div>
+        <div class="flex flex-col items-center gap-2">
+          <CloseIcon size={32} class="text-error" />
+          <span class="text-xs text-neutral-600">Close</span>
+        </div>
       </div>
     </div>
   {/snippet}
@@ -387,22 +391,24 @@
 
 <Story name="Social Icons" args={{}}>
   {#snippet template()}
-    <div class="space-y-2 p-6">
-      <div class="flex flex-col items-center gap-2">
-        <FacebookIcon size={32} class="text-highlight-400" />
-        <span class="text-xs text-neutral-600">Facebook</span>
-      </div>
-      <div class="flex flex-col items-center gap-2">
-        <GoogleIcon size={32} class="text-error-200" />
-        <span class="text-xs text-neutral-600">Google</span>
-      </div>
-      <div class="flex flex-col items-center gap-2">
-        <LinkedInIcon size={32} class="text-highlight-400" />
-        <span class="text-xs text-neutral-600">LinkedIn</span>
-      </div>
-      <div class="flex flex-col items-center gap-2">
-        <AppleIcon size={32} class="text-neutral-900" />
-        <span class="text-xs text-neutral-600">Apple</span>
+    <div class="flex justify-start p-6">
+      <div class="flex flex-col items-center gap-4">
+        <div class="flex flex-col items-center gap-2">
+          <FacebookIcon size={32} class="text-highlight" />
+          <span class="text-xs text-neutral-600">Facebook</span>
+        </div>
+        <div class="flex flex-col items-center gap-2">
+          <GoogleIcon size={32} class="text-error" />
+          <span class="text-xs text-neutral-600">Google</span>
+        </div>
+        <div class="flex flex-col items-center gap-2">
+          <LinkedInIcon size={32} class="text-highlight" />
+          <span class="text-xs text-neutral-600">LinkedIn</span>
+        </div>
+        <div class="flex flex-col items-center gap-2">
+          <AppleIcon size={32} />
+          <span class="text-xs text-neutral-600">Apple</span>
+        </div>
       </div>
     </div>
   {/snippet}

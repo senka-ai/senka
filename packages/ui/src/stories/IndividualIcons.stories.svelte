@@ -119,22 +119,24 @@
 
 <Story name="Arrow Icons" args={{}}>
   {#snippet template(args)}
-    <div class="space-y-2 p-6">
-      <div class="flex flex-col items-start gap-2">
-        <ArrowUpIcon {...args} />
-        <span class="text-xs">Up</span>
-      </div>
-      <div class="flex flex-col items-start gap-2">
-        <ArrowDownIcon {...args} />
-        <span class="text-xs">Down</span>
-      </div>
-      <div class="flex flex-col items-start gap-2">
-        <ArrowLeftIcon {...args} />
-        <span class="text-xs">Left</span>
-      </div>
-      <div class="flex flex-col items-start gap-2">
-        <ArrowRightIcon {...args} />
-        <span class="text-xs">Right</span>
+    <div class="flex justify-start p-6">
+      <div class="flex flex-col items-center gap-4">
+        <div class="flex flex-col items-center gap-2">
+          <ArrowUpIcon {...args} />
+          <span class="text-xs">Up</span>
+        </div>
+        <div class="flex flex-col items-center gap-2">
+          <ArrowDownIcon {...args} />
+          <span class="text-xs">Down</span>
+        </div>
+        <div class="flex flex-col items-center gap-2">
+          <ArrowLeftIcon {...args} />
+          <span class="text-xs">Left</span>
+        </div>
+        <div class="flex flex-col items-center gap-2">
+          <ArrowRightIcon {...args} />
+          <span class="text-xs">Right</span>
+        </div>
       </div>
     </div>
   {/snippet}
@@ -142,14 +144,16 @@
 
 <Story name="Eye Icons" args={{}}>
   {#snippet template(args)}
-    <div class="space-y-2 p-6">
-      <div class="flex flex-col items-start gap-2">
-        <EyeVisibleIcon {...args} />
-        <span class="text-xs">Visible</span>
-      </div>
-      <div class="flex flex-col items-start gap-2">
-        <EyeInvisibleIcon {...args} />
-        <span class="text-xs">Invisible</span>
+    <div class="flex justify-start p-6">
+      <div class="flex flex-col items-center gap-4">
+        <div class="flex flex-col items-center gap-2">
+          <EyeVisibleIcon {...args} />
+          <span class="text-xs">Visible</span>
+        </div>
+        <div class="flex flex-col items-center gap-2">
+          <EyeInvisibleIcon {...args} />
+          <span class="text-xs">Invisible</span>
+        </div>
       </div>
     </div>
   {/snippet}
@@ -157,14 +161,16 @@
 
 <Story name="Heart Icons" args={{}}>
   {#snippet template(args)}
-    <div class="space-y-2 p-6">
-      <div class="flex flex-col items-start gap-2">
-        <HeartFilledIcon {...args} />
-        <span class="text-xs">Filled</span>
-      </div>
-      <div class="flex flex-col items-start gap-2">
-        <HeartOutlinedIcon {...args} />
-        <span class="text-xs">Outlined</span>
+    <div class="flex justify-start p-6">
+      <div class="flex flex-col items-center gap-4">
+        <div class="flex flex-col items-center gap-2">
+          <HeartFilledIcon {...args} />
+          <span class="text-xs">Filled</span>
+        </div>
+        <div class="flex flex-col items-center gap-2">
+          <HeartOutlinedIcon {...args} />
+          <span class="text-xs">Outlined</span>
+        </div>
       </div>
     </div>
   {/snippet}
@@ -172,14 +178,16 @@
 
 <Story name="Star Icons" args={{}}>
   {#snippet template(args)}
-    <div class="space-y-2 p-6">
-      <div class="flex flex-col items-start gap-2">
-        <StarFilledIcon {...args} />
-        <span class="text-xs">Filled</span>
-      </div>
-      <div class="flex flex-col items-start gap-2">
-        <StarOutlinedIcon {...args} />
-        <span class="text-xs">Outlined</span>
+    <div class="flex justify-start p-6">
+      <div class="flex flex-col items-center gap-4">
+        <div class="flex flex-col items-center gap-2">
+          <StarFilledIcon {...args} />
+          <span class="text-xs">Filled</span>
+        </div>
+        <div class="flex flex-col items-center gap-2">
+          <StarOutlinedIcon {...args} />
+          <span class="text-xs">Outlined</span>
+        </div>
       </div>
     </div>
   {/snippet}
@@ -187,14 +195,16 @@
 
 <Story name="Shopping Bag Icons" args={{}}>
   {#snippet template(args)}
-    <div class="space-y-2 p-6">
-      <div class="flex flex-col items-start gap-2">
-        <ShoppingBagFilledIcon {...args} />
-        <span class="text-xs">Filled</span>
-      </div>
-      <div class="flex flex-col items-start gap-2">
-        <ShoppingBagOutlinedIcon {...args} />
-        <span class="text-xs">Outlined</span>
+    <div class="flex justify-start p-6">
+      <div class="flex flex-col items-center gap-4">
+        <div class="flex flex-col items-center gap-2">
+          <ShoppingBagFilledIcon {...args} />
+          <span class="text-xs">Filled</span>
+        </div>
+        <div class="flex flex-col items-center gap-2">
+          <ShoppingBagOutlinedIcon {...args} />
+          <span class="text-xs">Outlined</span>
+        </div>
       </div>
     </div>
   {/snippet}
