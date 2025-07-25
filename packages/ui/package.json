@@ -1,6 +1,6 @@
 {
   "name": "@senka-ai/ui",
-  "version": "0.2.0",
+  "version": "0.0.1",
   "description": "A modern, type-safe Svelte 5 UI component library with full theme support, accessibility standards, and robust state management patterns",
   "type": "module",
   "main": "./dist/index.js",
@@ -51,7 +51,7 @@
     "ui-library",
     "components",
     "design-system",
-    "no-code", 
+    "no-code",
     "visual-builder",
     "tailwind",
     "typescript",

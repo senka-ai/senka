@@ -613,6 +613,41 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@senka-ai/ui@workspace:packages/ui":
+  version: 0.0.0-use.local
+  resolution: "@senka-ai/ui@workspace:packages/ui"
+  dependencies:
+    "@chromatic-com/storybook": "npm:^4.0.1"
+    "@playwright/test": "npm:^1.53.0"
+    "@storybook/addon-docs": "npm:^9.0.16"
+    "@storybook/addon-svelte-csf": "npm:^5.0.7"
+    "@storybook/sveltekit": "npm:^9.0.16"
+    "@sveltejs/adapter-auto": "npm:^3.0.0"
+    "@sveltejs/kit": "npm:^2.16.0"
+    "@sveltejs/vite-plugin-svelte": "npm:^5.0.0"
+    "@tailwindcss/forms": "npm:^0.5.9"
+    "@tailwindcss/typography": "npm:^0.5.15"
+    "@tailwindcss/vite": "npm:^4.0.0"
+    "@types/jsdom": "npm:^21.1.7"
+    "@types/node": "npm:^24.0.15"
+    jsdom: "npm:^26.1.0"
+    playwright: "npm:^1.53.0"
+    prettier: "npm:^3.4.2"
+    prettier-plugin-svelte: "npm:^3.3.3"
+    prettier-plugin-tailwindcss: "npm:^0.6.11"
+    storybook: "npm:^9.0.16"
+    svelte: "npm:^5.0.0"
+    svelte-check: "npm:^4.0.0"
+    tailwindcss: "npm:^4.0.0"
+    typescript: "npm:^5.0.0"
+    vite: "npm:^6.2.6"
+    vitest: "npm:^3.2.3"
+  peerDependencies:
+    svelte: ^5.0.0
+    tailwindcss: ^4.0.0
+  languageName: unknown
+  linkType: soft
+
 "@storybook/addon-docs@npm:^9.0.16":
   version: 9.0.18
   resolution: "@storybook/addon-docs@npm:9.0.18"
@@ -3103,41 +3138,6 @@ __metadata:
     prettier: "npm:^3.4.2"
     prettier-plugin-svelte: "npm:^3.3.3"
     prettier-plugin-tailwindcss: "npm:^0.6.11"
-  languageName: unknown
-  linkType: soft
-
-"senka-ui@workspace:packages/ui":
-  version: 0.0.0-use.local
-  resolution: "senka-ui@workspace:packages/ui"
-  dependencies:
-    "@chromatic-com/storybook": "npm:^4.0.1"
-    "@playwright/test": "npm:^1.53.0"
-    "@storybook/addon-docs": "npm:^9.0.16"
-    "@storybook/addon-svelte-csf": "npm:^5.0.7"
-    "@storybook/sveltekit": "npm:^9.0.16"
-    "@sveltejs/adapter-auto": "npm:^3.0.0"
-    "@sveltejs/kit": "npm:^2.16.0"
-    "@sveltejs/vite-plugin-svelte": "npm:^5.0.0"
-    "@tailwindcss/forms": "npm:^0.5.9"
-    "@tailwindcss/typography": "npm:^0.5.15"
-    "@tailwindcss/vite": "npm:^4.0.0"
-    "@types/jsdom": "npm:^21.1.7"
-    "@types/node": "npm:^24.0.15"
-    jsdom: "npm:^26.1.0"
-    playwright: "npm:^1.53.0"
-    prettier: "npm:^3.4.2"
-    prettier-plugin-svelte: "npm:^3.3.3"
-    prettier-plugin-tailwindcss: "npm:^0.6.11"
-    storybook: "npm:^9.0.16"
-    svelte: "npm:^5.0.0"
-    svelte-check: "npm:^4.0.0"
-    tailwindcss: "npm:^4.0.0"
-    typescript: "npm:^5.0.0"
-    vite: "npm:^6.2.6"
-    vitest: "npm:^3.2.3"
-  peerDependencies:
-    svelte: ^5.0.0
-    tailwindcss: ^4.0.0
   languageName: unknown
   linkType: soft
 

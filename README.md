@@ -1,23 +1,12 @@
-# Senka Monorepo
+# Senka
 
-A monorepo containing the Senka UI library and educational application.
+**AI-Powered No-Code Application Development Platform**
 
-## Packages
+Senka empowers non-technical users to build sophisticated applications through drag-and-drop visual tools and conversational AI. The platform consists of multiple packages under the `@senka-ai` npm organization.
 
-### 📦 [@senka-ai/ui](./packages/ui)
+## Current Focus
 
-A modern Svelte 5 UI component library for educational applications.
-
-- **Storybook**: `yarn ui:dev` (http://localhost:6006)
-- **Build**: `yarn ui:build`
-- **Test**: `yarn ui:test`
-
-### 🎓 [senka-app](./packages/app)
-
-The main educational application built with SvelteKit.
-
-- **Dev server**: `yarn app:dev` (http://localhost:3000)
-- **Build**: `yarn app:build`
+The educational app (`packages/app`) serves as a reference implementation showcasing the platform's capabilities. The main vision is a comprehensive no-code development platform enabling anyone to build production-ready applications.
 
 ## Quick Start
 
@@ -33,49 +22,34 @@ yarn app:dev
 
 # Build everything
 yarn build
-
-# Run tests
-yarn test
 ```
 
-## Development
+## Key Packages
 
-### UI Library Development
+### 📦 [@senka-ai/ui](./packages/ui)
+Modern Svelte 5 UI component library optimized for visual builders
 
-The UI library in `packages/ui` contains reusable Svelte 5 components with:
+### 🎓 [Educational App](./packages/app)
+Reference implementation demonstrating platform capabilities
 
-- Comprehensive Storybook stories
-- TypeScript interfaces
-- Tailwind CSS styling
-- Playwright visual regression tests
+## Development Commands
 
-### App Development
+- `yarn ui:dev` - UI library Storybook development
+- `yarn app:dev` - App development server
+- `yarn build` - Build all packages
+- `yarn typecheck` - Type checking (run after editing)
+- `yarn check` - Svelte checking (run after editing)
 
-The main application in `packages/app` will import components from `@senka-ai/ui` and implement educational features.
+## Platform Vision
 
-### Reserved Packages
+Senka bridges the gap between human creativity and AI capabilities, enabling rapid creation of complex, production-ready applications through:
 
-Reserved package names in `packages/reserved/` are placeholder packages published to npm to reserve names for future development.
+- **Visual Builder**: Drag-and-drop interface with zero coding
+- **Conversational AI**: Natural language app generation
+- **Template-First**: Industry-specific templates for instant deployment
+- **Multi-Platform**: Web, PWA, and mobile app generation
 
-## Architecture
-
-```
-senka/
-├── packages/
-│   ├── ui/              # Reusable UI components (@senka-ai/ui)
-│   ├── app/             # Educational application
-│   └── reserved/        # Reserved npm package names
-│       ├── api/         # senka-api placeholder
-│       ├── auth/        # senka-auth placeholder
-│       ├── server/      # senka-server placeholder
-│       └── ...          # Other reserved packages
-├── README.md            # This file
-└── package.json         # Workspace configuration
-```
-
-## Contributing
-
-Each package has its own documentation and development workflow. See individual package READMEs for specific instructions.
+See [SENKA_SYSTEM_ARCHITECTURE.md](./SENKA_SYSTEM_ARCHITECTURE.md) for complete platform details.
 
 ## License
 
