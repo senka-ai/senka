@@ -79,7 +79,6 @@
         <h3 class="text-h4 text-primary mb-4">Different Sizes</h3>
         <RadioGroup name="sizes">
           {#snippet children()}
-            <RadioButton value="xs" size="xs" label="Extra Small" />
             <RadioButton value="small" size="small" label="Small" />
             <RadioButton value="medium" size="medium" label="Medium" />
             <RadioButton value="large" size="large" label="Large" />
@@ -139,7 +138,6 @@
   {#snippet template()}
     <RadioGroup name="mixed-sizes">
       {#snippet children()}
-        <RadioButton value="xs" size="xs" label="Extra Small" />
         <RadioButton value="small" size="small" label="Small" />
         <RadioButton value="medium" size="medium" label="Medium" />
         <RadioButton value="large" size="large" label="Large" />

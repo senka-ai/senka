@@ -2,7 +2,7 @@
   import { CheckIcon } from '../../icons'
   import type {
     BaseProps,
-    ExtendedSizedComponent,
+    SizedComponent,
     ChangeHandler,
     ChildrenComponent,
     InteractiveHandlers,
@@ -13,7 +13,7 @@
 
   interface Props
     extends BaseProps,
-      ExtendedSizedComponent,
+      SizedComponent,
       ChangeHandler<boolean>,
       ChildrenComponent,
       InteractiveHandlers {
@@ -81,12 +81,20 @@
 
   let iconSizes = $derived.by(() => {
     const sizes = {
-      xs: 8,
       small: 10,
       medium: 14,
       large: 18,
     }
     return sizes[size]
+  })
+
+  let textClasses = $derived.by(() => {
+    const textSizes = {
+      small: 'text-body-s',
+      medium: 'text-body-m',
+      large: 'text-body-l',
+    }
+    return textSizes[size]
   })
 </script>
 
@@ -110,10 +118,10 @@
     {/if}
   </div>
   {#if children}
-    <div class="select-none">
+    <div class="select-none {textClasses}">
       {@render children?.()}
     </div>
   {:else if label}
-    <span class="select-none">{label}</span>
+    <span class="select-none {textClasses}">{label}</span>
   {/if}
 </div>

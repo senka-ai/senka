@@ -1,7 +1,7 @@
 <script lang="ts">
   import type {
     BaseProps,
-    ExtendedSizedComponent,
+    SizedComponent,
     ChangeHandler,
     ChildrenComponent,
     InteractiveHandlers,
@@ -12,7 +12,7 @@
 
   interface Props
     extends BaseProps,
-      ExtendedSizedComponent,
+      SizedComponent,
       ChangeHandler<boolean>,
       ChildrenComponent,
       InteractiveHandlers {
@@ -104,12 +104,20 @@
 
   let dotSizes = $derived.by(() => {
     const sizes = {
-      xs: 'h-1 w-1',
       small: 'h-1.5 w-1.5',
       medium: 'h-2.5 w-2.5',
       large: 'h-3.5 w-3.5',
     }
     return sizes[size]
+  })
+
+  let textClasses = $derived.by(() => {
+    const textSizes = {
+      small: 'text-body-s',
+      medium: 'text-body-m',
+      large: 'text-body-l',
+    }
+    return textSizes[size]
   })
 </script>
 
@@ -142,10 +150,10 @@
     {/if}
   </div>
   {#if children}
-    <div class="select-none">
+    <div class="select-none {textClasses}">
       {@render children?.()}
     </div>
   {:else if label}
-    <span class="select-none">{label}</span>
+    <span class="select-none {textClasses}">{label}</span>
   {/if}
 </div>

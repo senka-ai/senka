@@ -414,7 +414,6 @@ export const createCheckboxStyles = createStyleComposer({
     checked: 'bg-highlight border-2 border-highlight',
   },
   sizes: {
-    xs: 'h-3 w-3 rounded-sm',
     small: 'h-4 w-4 rounded',
     medium: 'h-6 w-6 rounded-md',
     large: 'h-8 w-8 rounded-lg',
@@ -450,7 +449,6 @@ export const createRadioStyles = createStyleComposer({
     checked: 'bg-highlight border-2 border-highlight',
   },
   sizes: {
-    xs: 'h-3 w-3',
     small: 'h-4 w-4',
     medium: 'h-6 w-6',
     large: 'h-8 w-8',

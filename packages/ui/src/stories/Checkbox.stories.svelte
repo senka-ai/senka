@@ -17,7 +17,7 @@
       },
       size: {
         control: { type: 'select' },
-        options: ['xs', 'small', 'medium', 'large'],
+        options: ['small', 'medium', 'large'],
         description: 'Checkbox size',
       },
       disabled: {
@@ -66,13 +66,6 @@
       <div>
         <h3 class="text-h4 text-primary mb-4">Sizes</h3>
         <div class="flex items-center gap-6">
-          <div class="text-center">
-            <div class="flex items-center gap-3">
-              <Checkbox size="xs" />
-              <Checkbox size="xs" checked={true} />
-            </div>
-            <p class="text-body-s text-secondary mt-2">Extra Small</p>
-          </div>
           <div class="text-center">
             <div class="flex items-center gap-3">
               <Checkbox size="small" />
@@ -140,12 +133,6 @@
   {/snippet}
 </Story>
 
-<Story name="Extra Small" args={{ size: 'xs' }}>
-  {#snippet template(args)}
-    <Checkbox {...args} />
-  {/snippet}
-</Story>
-
 <Story name="Small" args={{ size: 'small' }}>
   {#snippet template(args)}
     <Checkbox {...args} />
@@ -179,10 +166,6 @@
 <Story name="All Sizes" args={{}}>
   {#snippet template()}
     <div class="space-y-4">
-      <div class="flex items-center gap-4">
-        <Checkbox size="xs" />
-        <Checkbox size="xs" checked={true} />
-      </div>
       <div class="flex items-center gap-4">
         <Checkbox size="small" />
         <Checkbox size="small" checked={true} />
