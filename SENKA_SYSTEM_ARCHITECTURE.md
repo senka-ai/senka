@@ -154,10 +154,11 @@ senka-ai/senka/ (PUBLIC)
 │   ├── sdk/                           # @senka-ai/sdk 🌐 (public APIs)
 │   ├── app/                           # Educational reference app 🌐
 │   └── senka/                         # @senka-ai/senka 🌐 (meta-package)
-
-**PRIVATE Repository** [`senka-ai/senka-pro`](https://github.com/senka-ai/senka-pro):
 ```
 
+**PRIVATE Repository** [`senka-ai/senka-pro`](https://github.com/senka-ai/senka-pro):
+
+```
 senka-ai/senka-pro/ (PRIVATE)
 ├── packages/ # Premium revenue-generating packages
 │ ├── ai-engine/ # @senka-ai/ai-engine 🔒
@@ -181,6 +182,7 @@ senka-ai/senka-pro/ (PRIVATE)
 ```
 
 **Shared Infrastructure** (both repositories):
+
 ```
 
 ├── tools/ # Shared build tools and utilities
@@ -205,11 +207,12 @@ senka-ai/senka-pro/ (PRIVATE)
 ├── HYBRID_SETUP.md # UI library hybrid publishing setup
 └── SENKA_SYSTEM_ARCHITECTURE.md # This file
 
-````
+```
 
 #### **Feature Tier Mapping**
 
 **🌐 FREE TIER (Public Packages)**
+
 - **Basic Visual Builder**: Drag-and-drop with 10 components max
 - **10 Basic Templates**: Simple layouts with Senka branding
 - **CLI Tools**: Project scaffolding and basic build tools
@@ -217,6 +220,7 @@ senka-ai/senka-pro/ (PRIVATE)
 - **Web-only Deployment**: Basic hosting integration
 
 **💎 PROFESSIONAL TIER ($29/month)**
+
 - **Enhanced Builder**: Access to @senka-ai/visual-builder-pro features
 - **50+ Templates**: Professional designs without branding restrictions
 - **Multi-platform Publishing**: Web + PWA + mobile apps
@@ -224,6 +228,7 @@ senka-ai/senka-pro/ (PRIVATE)
 - **Email Support**: Direct support channel
 
 **🏢 BUSINESS TIER ($99/month)**
+
 - **Full Collaboration Suite**: @senka-ai/collaboration features
 - **Advanced Integrations**: @senka-ai/integrations package
 - **Team Management**: Multi-user features with permissions
@@ -231,6 +236,7 @@ senka-ai/senka-pro/ (PRIVATE)
 - **Priority Support**: 24-hour response time
 
 **🏆 ENTERPRISE TIER ($299/month)**
+
 - **Complete AI Engine**: Full @senka-ai/ai-engine access
 - **White-label Platform**: @senka-ai/white-label capabilities
 - **Enterprise Features**: SSO, audit logs, compliance (@senka-ai/enterprise)
@@ -240,24 +246,28 @@ senka-ai/senka-pro/ (PRIVATE)
 #### **Implementation Strategy**
 
 **Phase 1: Public Foundation (Current)**
+
 - Keep `senka-ai/senka` repository **PUBLIC**
 - Focus on open source packages that drive adoption
 - Build developer community around @senka-ai/ui library
 - Showcase platform capabilities through educational app
 
 **Phase 2: Premium Features (Months 4-6)**
+
 - Create `senka-ai/senka-pro` **PRIVATE** repository
 - Implement license key system for premium package access
 - Add subscription management and feature gating
 - Begin monetization through Professional tier
 
 **Phase 3: Enterprise Evolution (Months 7-12)**
+
 - Add advanced enterprise packages to private repository
 - Implement white-label and custom deployment options
 - Scale premium features based on user feedback
 - Launch agency and reseller programs
 
 **Benefits of Hybrid Approach:**
+
 - **🚀 Faster Adoption**: Open source foundation reduces barriers
 - **💰 Clear Monetization**: Premium features justify subscriptions
 - **🔒 Competitive Moat**: Private AI engine creates differentiation
@@ -267,24 +277,28 @@ senka-ai/senka-pro/ (PRIVATE)
 ### **Monorepo Benefits**
 
 #### **1. Unified Development Experience**
+
 - **Single Clone**: Developers get entire platform with one `git clone`
 - **Coordinated Changes**: Modify multiple packages in single PR
 - **Shared Tooling**: Common TypeScript, linting, testing, and build configs
 - **Cross-Package Refactoring**: Safe refactoring across package boundaries
 
 #### **2. Simplified Dependency Management**
+
 - **Internal Dependencies**: Packages reference each other with workspace syntax
 - **Version Synchronization**: Coordinated versioning across all packages
 - **Shared Dependencies**: Common libraries managed at root level
 - **No Version Hell**: Internal packages always use latest versions
 
 #### **3. Enhanced CI/CD**
+
 - **Smart Change Detection**: Only build/test packages that changed
 - **Atomic Releases**: Release multiple packages together
 - **Unified Quality Gates**: Consistent testing and linting across all packages
 - **Coordinated Publishing**: Automated publishing to npm organization
 
 #### **4. Documentation & Examples Cohesion**
+
 - **Single Documentation Site**: All docs in one place
 - **Cross-Package Examples**: Examples showing package integration
 - **Unified Changelog**: Single source for all platform changes
@@ -295,11 +309,13 @@ senka-ai/senka-pro/ (PRIVATE)
 #### **Hybrid Approach for Optimal Distribution**
 
 **Current UI Library** ([`senka-ai/senka-ui`](https://github.com/senka-ai/senka-ui)):
+
 - Maintains standalone repository for UI library visibility
 - Synced automatically from monorepo
 - Published as `@senka-ai/ui` to npm
 
 **Future Packages**:
+
 - Published directly from monorepo to `@senka-ai/*` organization
 - Automated publishing with change detection
 - Coordinated versioning and release notes
@@ -307,12 +323,14 @@ senka-ai/senka-pro/ (PRIVATE)
 ### **Tooling & Infrastructure**
 
 #### **Monorepo Management Tools**
+
 - **Package Manager**: Yarn workspaces for dependency management
 - **Build Orchestration**: Nx for smart builds and change detection
 - **Cross-Package Linking**: Automatic workspace linking
 - **Dependency Graphing**: Visual dependency analysis
 
 #### **Development Workflow**
+
 ```bash
 # Single setup for entire platform
 git clone https://github.com/senka-ai/senka.git
@@ -327,7 +345,7 @@ yarn build           # Build all packages
 yarn test            # Test all packages
 yarn typecheck       # Type check all packages
 yarn lint            # Lint all packages
-````
+```
 
 #### **Smart Build System**
 
