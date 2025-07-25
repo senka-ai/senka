@@ -58,19 +58,23 @@
     <img
       {src}
       {alt}
-      class="h-full w-full object-cover {imageBorderRadius}"
+      class="absolute inset-0 h-full w-full object-cover {imageBorderRadius}"
       onerror={() => {
         // Handle image load error by falling back to initials/placeholder
         src = undefined
       }}
     />
   {:else if renderType === 'initials' && displayInitials}
-    <span class="select-none">
-      {displayInitials}
-    </span>
+    <div class="absolute inset-0 flex items-center justify-center">
+      <span class="select-none">
+        {displayInitials}
+      </span>
+    </div>
   {:else}
     <!-- Generic person SVG fallback -->
-    <AvatarPlaceholder {size} />
+    <div class="absolute inset-0">
+      <AvatarPlaceholder {size} />
+    </div>
   {/if}
 
   {#if status}

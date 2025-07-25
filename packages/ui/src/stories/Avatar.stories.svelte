@@ -56,7 +56,7 @@
             <p class="text-body-s text-secondary mt-2">With Initials</p>
           </div>
           <div class="text-center">
-            <Avatar alt="Default" size="medium" />
+            <Avatar alt="" size="medium" />
             <p class="text-body-s text-secondary mt-2">Default SVG</p>
           </div>
         </div>

@@ -7,16 +7,9 @@
   let { class: className = '', size = 'medium' }: Props = $props()
 
   let containerClasses = $derived.by(() => {
-    const base = 'absolute inset-0 flex items-center justify-center bg-highlight-50'
+    const base = 'flex items-center justify-center w-full h-full'
 
-    const borderRadiusMap = {
-      xs: 'rounded-xl',
-      small: 'rounded-2xl',
-      medium: 'rounded-2xl',
-      large: 'rounded-3xl',
-    }
-
-    return `${base} ${borderRadiusMap[size]} ${className}`
+    return `${base} ${className}`
   })
 
   let iconClasses = $derived.by(() => {
