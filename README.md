@@ -27,9 +27,11 @@ yarn build
 ## Key Packages
 
 ### 📦 [@senka-ai/ui](./packages/ui)
+
 Modern Svelte 5 UI component library optimized for visual builders
 
 ### 🎓 [Educational App](./packages/app)
+
 Reference implementation demonstrating platform capabilities
 
 ## Development Commands

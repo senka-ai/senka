@@ -89,8 +89,9 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 ### Educational App Domain (Reference Implementation)
 
 The current educational app serves the Romanian educational system with three user types:
+
 - **Students**: Access timetables, assignments, educational content
-- **Teachers**: Create classes, assign tasks, manage timetables  
+- **Teachers**: Create classes, assign tasks, manage timetables
 - **Parents**: Monitor child progress, receive updates
 
 ## IMPORTANT: Current Status

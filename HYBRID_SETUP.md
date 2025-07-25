@@ -15,6 +15,7 @@ senka/ (monorepo - development)    →    @senka-ai/ui/ (standalone - publishing
 ## How It Works
 
 ### **Development Flow:**
+
 1. **Monorepo Development**: All UI library development happens in `packages/ui/`
 2. **Automatic Detection**: Workflow detects changes to UI library files
 3. **Quality Gates**: Runs type checking, Svelte checking, build, and tests
@@ -22,6 +23,7 @@ senka/ (monorepo - development)    →    @senka-ai/ui/ (standalone - publishing
 5. **Automatic Publishing**: Standalone repository publishes to npm with version checking
 
 ### **Sync Process:**
+
 - **Triggered by**: Pushes to main with `packages/ui/` changes
 - **Files Synced**: All UI library source code, configs, and documentation
 - **npm Compatibility**: Generates `package-lock.json` and updates scripts
@@ -29,6 +31,7 @@ senka/ (monorepo - development)    →    @senka-ai/ui/ (standalone - publishing
 - **Repository URLs**: Updates package.json to point to standalone repository
 
 ### **Publishing Pipeline:**
+
 - **Quality Checks**: Type checking, Svelte checking, build, and tests
 - **Version Detection**: Prevents duplicate publishing of existing versions
 - **npm Publishing**: Automatic publishing to npm registry
@@ -38,15 +41,18 @@ senka/ (monorepo - development)    →    @senka-ai/ui/ (standalone - publishing
 ## Current Implementation
 
 ### **Repositories:**
+
 - **Development**: [`senka-ai/senka`](https://github.com/senka-ai/senka) - Monorepo for all development
 - **Publishing**: [`senka-ai/ui`](https://github.com/senka-ai/ui) - Standalone UI library
 - **Package**: [`@senka-ai/ui`](https://www.npmjs.com/package/@senka-ai/ui) - npm organization package
 
 ### **Workflows:**
+
 - **Sync Workflow**: `.github/workflows/sync-ui-library.yml` - Handles monorepo to standalone sync
 - **Publish Workflow**: `standalone-repo-files/.github/workflows/publish.yml` - Handles npm publishing
 
 ### **Key Features:**
+
 - **Smart Triggering**: Runs on all pushes but only syncs when UI changes detected
 - **Efficient Resource Usage**: Skips expensive operations when no UI changes
 - **Scheduled Backup**: Daily sync at 2 AM UTC to catch any missed syncs
@@ -56,6 +62,7 @@ senka/ (monorepo - development)    →    @senka-ai/ui/ (standalone - publishing
 ## Development Workflow
 
 ### **Making Changes:**
+
 ```bash
 # 1. Work in monorepo as usual
 cd packages/ui
@@ -77,6 +84,7 @@ git push origin main
 ```
 
 ### **What Happens Automatically:**
+
 1. **Change Detection**: Workflow detects UI changes
 2. **Quality Gates**: Runs full test suite and type checking
 3. **Sync Process**: Copies to standalone repository with npm compatibility
@@ -86,6 +94,7 @@ git push origin main
 ## Monitoring and Maintenance
 
 ### **Dashboard Links:**
+
 - **Monorepo Actions**: https://github.com/senka-ai/senka/actions
 - **Standalone Actions**: https://github.com/senka-ai/ui/actions
 - **npm Package**: https://www.npmjs.com/package/@senka-ai/ui
@@ -94,11 +103,13 @@ git push origin main
 ### **Manual Operations:**
 
 **Force Sync (if needed):**
+
 1. Go to Actions tab in `senka-ai/senka`
 2. Click "Sync UI Library to @senka-ai/ui"
 3. Click "Run workflow" → Enable "Force sync" → "Run workflow"
 
 **Manual Publish (if needed):**
+
 1. Go to Actions tab in `senka-ai/ui`
 2. Click "Publish to npm"
 3. Click "Run workflow" → Choose version type → "Run workflow"
@@ -106,30 +117,35 @@ git push origin main
 ## Technical Details
 
 ### **Required Secrets:**
+
 - **Monorepo** (`senka-ai/senka`):
   - `SYNC_TOKEN`: GitHub Personal Access Token with `repo` and `workflow` permissions
 - **Standalone** (`senka-ai/ui`):
   - `NPM_TOKEN`: npm Automation token for publishing
 
 ### **Workflow Permissions:**
+
 - **Sync Workflow**: Uses `SYNC_TOKEN` for cross-repository operations
 - **Publish Workflow**: Requires `contents: write` for GitHub releases
 
 ### **Development Workflow Optimizations:**
 
 #### **Enhanced Quality Gates** (Recommended Additions)
+
 - **Visual Regression Testing**: Automated screenshot comparison for UI changes
 - **Performance Monitoring**: Lighthouse CI integration for generated component performance
 - **Bundle Size Analysis**: Track bundle size impact of new components
 - **Accessibility Testing**: Automated a11y testing in CI pipeline
 
 #### **User Testing Integration**
+
 - **Storybook Deployment**: Automatic Storybook deployment for stakeholder review
 - **Component Usage Analytics**: Track which components are most/least used
 - **Feedback Collection**: Automated feedback requests for new component versions
 - **Breaking Change Detection**: Automated detection of API breaking changes
 
 ### **File Transformations:**
+
 - **package.json**: Repository URLs updated to point to standalone repository
 - **package-lock.json**: Generated from monorepo yarn.lock for npm compatibility
 - **Scripts**: Updated to use npm commands instead of yarn
@@ -149,17 +165,20 @@ git push origin main
 ## Architecture Decisions
 
 ### **Why Hybrid Approach:**
+
 - **Development Efficiency**: Keep related packages together in monorepo
 - **Publishing Clarity**: Provide clean, focused repository for public consumption
 - **URL Correctness**: npm package links point to relevant repository
 - **Separation of Concerns**: Development vs. distribution concerns handled separately
 
 ### **Why npm over Yarn in Standalone:**
+
 - **Broader Compatibility**: npm is more universally supported in CI/CD
 - **Simpler Setup**: Fewer configuration requirements
 - **Lockfile Generation**: Easier to generate from yarn.lock
 
 ### **Why Automatic Sync:**
+
 - **Reduced Manual Work**: Eliminates human error in publishing process
 - **Consistency**: Ensures standalone repository always reflects latest changes
 - **Speed**: Immediate publishing after development changes
