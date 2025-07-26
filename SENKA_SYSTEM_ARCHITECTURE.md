@@ -1450,7 +1450,7 @@ This architecture positions Senka as the definitive platform for AI-powered no-c
 
 ### 5. **Educational App as Flagship Showcase**
 
-The Romanian educational app serves as the **primary demonstration** of platform capabilities:
+The educational app serves as the **primary demonstration** of platform capabilities:
 
 - **Complex Application**: Shows the platform can handle sophisticated requirements
 - **Real User Feedback**: Provides validation from actual educational users

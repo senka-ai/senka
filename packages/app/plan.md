@@ -2,7 +2,7 @@
 
 ## Project Positioning
 
-The **Senka Educational App** serves as the **flagship showcase and reference implementation** for the broader Senka no-code platform. While the primary vision is building a comprehensive AI-powered no-code development platform, this educational app demonstrates the platform's capabilities by solving real-world problems in the Romanian educational system.
+The **Senka Educational App** serves as the **flagship showcase and reference implementation** for the broader Senka no-code platform. While the primary vision is building a comprehensive AI-powered no-code development platform, this educational app demonstrates the platform's capabilities by solving real-world problems in the educational system.
 
 **Key Role**: This app validates that the Senka platform can handle sophisticated applications with complex user roles, permissions, workflows, and real-time collaboration - proving the no-code tools work for professional-grade applications.
 

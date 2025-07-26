@@ -12,13 +12,13 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 4. **`~/Downloads/claude/Svelte_5.md`** - Essential Svelte 5 syntax and patterns
 5. **`packages/ui/UI_ARCHITECTURE.md`** - Detailed component patterns and implementation
 6. **`packages/app/plan.md`** - Educational app MVP plan and long-term roadmap
-7. **`packages/app/mvp_plan_romanian.md`** - Detailed Romanian MVP specifications
+7. **`packages/app/mvp_plan_romanian.md`** - Detailed MVP specifications
 
 ## Project Overview
 
 **Senka** is a comprehensive AI-powered no-code platform that enables **non-technical users** to build sophisticated applications through drag-and-drop visual tools and conversational AI. The platform consists of multiple packages under the `@senka-ai` npm organization, including a UI library, visual builder system, AI integrations, template marketplace, and an educational app as a reference implementation.
 
-**Current Focus**: The educational app (packages/app) serves the Romanian educational system but is primarily a showcase of the platform's capabilities. The main vision is the complete no-code development platform described in `SENKA_SYSTEM_ARCHITECTURE.md`.
+**Current Focus**: The educational app (packages/app) serves the educational system but is primarily a showcase of the platform's capabilities. The main vision is the complete no-code development platform described in `SENKA_SYSTEM_ARCHITECTURE.md`.
 
 ## Key Technologies
 
@@ -88,7 +88,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ### Educational App Domain (Reference Implementation)
 
-The current educational app serves the Romanian educational system with three user types:
+The current educational app serves the educational system with three user types:
 
 - **Students**: Access timetables, assignments, educational content
 - **Teachers**: Create classes, assign tasks, manage timetables

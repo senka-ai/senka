@@ -617,11 +617,6 @@ export const validationRules = {
     message,
     validator: (value: string | number) => !isNaN(Number(value))
   }),
-
-  romanianCNP: (message = 'Invalid CNP format') => ({
-    message,
-    validator: (value: string) => /^\d{13}$/.test(value) // Simplified
-  })
 }
 
 // Usage in components

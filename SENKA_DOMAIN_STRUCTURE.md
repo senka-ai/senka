@@ -7,26 +7,34 @@ Structure the senka.ai domain to clearly communicate the no-code platform value 
 ## Homepage Structure
 
 ### Hero Section
+
 **Primary Message**: "Build Professional Apps Without Code"
+
 - Lead with the core promise that anyone can create sophisticated applications
 - Emphasize conversation + drag-and-drop workflow
 - Clear CTA: "Start Building Now" or "Try the AI Assistant"
 
 ### Value Propositions
+
 **Three Core Pillars**:
+
 1. **Talk to AI** - Natural language app creation through conversational requirement gathering
 2. **Build Visually** - Drag-and-drop interface with real-time preview
 3. **Deploy Everywhere** - One-click web, mobile, and app store deployment
 
 ### Social Proof Section
-**Featured Demo**: Romanian Educational App
+
+**Featured Demo**: Educational App
+
 - Headline: "Complex Real-World Application Built by Non-Technical Users"
 - Interactive preview showing multi-user roles, real-time features, mobile integration
 - Testimonial from educators who built/customized it
 - Stats: "3 user types, 15+ features, deployed in 2 hours"
 
 ### Template Showcase
+
 **"Start with Working Apps, Not Blank Canvas"**
+
 - Grid of industry-specific templates
 - Hover previews showing mobile + desktop versions
 - "Restaurant," "Salon," "Portfolio," "Small Business" categories
@@ -35,7 +43,9 @@ Structure the senka.ai domain to clearly communicate the no-code platform value 
 ## Key Pages Structure
 
 ### /platform
+
 **Interactive Platform Demo**
+
 - Live drag-and-drop interface (embedded iframe or interactive demo)
 - Real-time property panel showing visual controls
 - Mobile/desktop preview toggle
@@ -43,7 +53,9 @@ Structure the senka.ai domain to clearly communicate the no-code platform value 
 - CTA: "Try the Full Builder"
 
 ### /templates
+
 **Template Marketplace**
+
 - Filter by industry, platform (web/mobile), complexity
 - Template cards showing:
   - Preview thumbnails (mobile + desktop)
@@ -54,7 +66,9 @@ Structure the senka.ai domain to clearly communicate the no-code platform value 
 - "One-click customize" workflow
 
 ### /ai-assistant
+
 **Conversational AI Demo**
+
 - Interactive chat interface
 - Sample conversation flow: "I want to build a restaurant website"
 - Shows requirement gathering → clarifying questions → app generation
@@ -62,7 +76,9 @@ Structure the senka.ai domain to clearly communicate the no-code platform value 
 - Before/after: "Description → Working App"
 
 ### /showcase
+
 **User Success Gallery**
+
 - Real applications built on the platform
 - Organized by industry and complexity
 - Each case study includes:
@@ -72,15 +88,19 @@ Structure the senka.ai domain to clearly communicate the no-code platform value 
 - Filter by "Built by non-technical users"
 
 ### /pricing
+
 **Clear Tier Differentiation**
+
 - **Free Tier**: Basic visual builder, 10 components, community support
 - **Professional ($29/month)**: Enhanced builder, 50+ templates, AI assistant
-- **Business ($99/month)**: Collaboration, integrations, advanced analytics  
+- **Business ($99/month)**: Collaboration, integrations, advanced analytics
 - **Enterprise ($299/month)**: White-label, full AI engine, dedicated support
 - Emphasize value per tier with specific use cases
 
 ### /docs
+
 **Non-Technical User Focus**
+
 - **Getting Started**: "Your First App in 10 Minutes"
 - **Template Customization**: Step-by-step guides with videos
 - **AI Assistant Guide**: How to describe your app idea effectively
@@ -88,7 +108,9 @@ Structure the senka.ai domain to clearly communicate the no-code platform value 
 - **Business Guides**: SEO, analytics, monetization for non-technical users
 
 ### /ui
+
 **UI Component Library Hub**
+
 - **Homepage**: Overview of the @senka-ai/ui design system
 - **Components** (`/ui/components`): Live Storybook showcase of all 29 components
 - **Documentation** (`/ui/docs`): Component API documentation and usage guides
@@ -97,6 +119,7 @@ Structure the senka.ai domain to clearly communicate the no-code platform value 
 - **Blog** (`/ui/blog`): Design system updates, patterns, and insights
 
 **Strategic Purpose**:
+
 - Showcase component library quality and professionalism
 - Build developer community around design system
 - Demonstrate platform's technical foundation
@@ -104,7 +127,9 @@ Structure the senka.ai domain to clearly communicate the no-code platform value 
 - Support no-code platform with visible technical excellence
 
 ### /about
+
 **Mission & Vision**
+
 - "Democratizing Application Development"
 - Team story focused on solving real problems for non-technical users
 - Platform statistics: apps created, users served, success stories
@@ -113,12 +138,14 @@ Structure the senka.ai domain to clearly communicate the no-code platform value 
 ## Strategic Messaging Framework
 
 ### Primary Audience: Non-Technical Users
+
 - Business owners who need digital presence
 - Educators wanting custom learning tools
 - Entrepreneurs with ideas but no technical co-founder
 - Content creators seeking interactive experiences
 
 ### Core Value Propositions
+
 1. **Speed**: "Build in hours, not months"
 2. **Quality**: "Professional results without professional developers"
 3. **Accessibility**: "No code knowledge required"
@@ -126,6 +153,7 @@ Structure the senka.ai domain to clearly communicate the no-code platform value 
 5. **Multi-Platform**: "One build, everywhere deployment"
 
 ### Proof Points
+
 - **Educational App**: Complex, real-world application as flagship demo
 - **Template Quality**: Professional, industry-specific starting points
 - **AI Intelligence**: Natural language understanding and code generation
@@ -134,19 +162,23 @@ Structure the senka.ai domain to clearly communicate the no-code platform value 
 ## Content Strategy
 
 ### Tone & Voice
+
 - **Approachable**: Avoid technical jargon, use plain language
 - **Empowering**: Focus on what users can achieve, not what they can't do
 - **Confident**: Assert that anyone can build professional applications
 - **Supportive**: Emphasize guidance, assistance, and success
 
 ### Visual Strategy
+
 - **Show, Don't Tell**: Interactive demos over static descriptions
 - **Before/After**: Show transformation from idea to working app
 - **Multi-Device**: Always show mobile + desktop versions
 - **Real Examples**: Use actual user-built applications in marketing
 
 ### SEO Strategy
+
 **Primary Keywords**:
+
 - "no code app builder"
 - "build app without coding"
 - "AI app creator"
@@ -154,12 +186,14 @@ Structure the senka.ai domain to clearly communicate the no-code platform value 
 - "create mobile app no code"
 
 **UI Library Keywords**:
+
 - "svelte component library"
 - "design system components"
 - "ui component library"
 - "svelte 5 components"
 
 **Content Pillars**:
+
 - How-to guides for specific industries
 - Template customization tutorials
 - Success stories and case studies
@@ -169,21 +203,25 @@ Structure the senka.ai domain to clearly communicate the no-code platform value 
 ## Conversion Funnel
 
 ### Awareness → Interest
+
 - **Blog content**: "How [Industry] Can Build Custom Apps"
 - **Social proof**: User success stories
 - **SEO content**: Template and tutorial pages
 
 ### Interest → Consideration
+
 - **Interactive demos**: Platform trial, AI assistant chat
 - **Template browsing**: Industry-specific solutions
 - **Educational content**: Webinars, video tutorials
 
 ### Consideration → Trial
+
 - **Free tier signup**: Immediate access to basic builder
 - **Template customization**: Quick win experience
 - **AI conversation**: Personal app consultation
 
 ### Trial → Paid
+
 - **Usage limits**: Encourage upgrade for more features
 - **Success metrics**: Show value created in trial
 - **Advanced features**: Demonstrate premium capabilities
@@ -191,18 +229,21 @@ Structure the senka.ai domain to clearly communicate the no-code platform value 
 ## Technical Implementation
 
 ### Performance Requirements
+
 - **Fast Loading**: <2 seconds for all pages
 - **Mobile Optimized**: Responsive design for all screen sizes
 - **Interactive Demos**: Embedded builders and previews
 - **SEO Optimized**: Meta tags, structured data, fast indexing
 
 ### Analytics Tracking
+
 - **User Journey**: Track path from awareness to conversion
 - **Demo Engagement**: Measure interaction with platform demos
 - **Template Popularity**: Track most-used templates and customizations
 - **Conversion Metrics**: Monitor trial-to-paid conversion rates
 
 ### Integration Points
+
 - **Platform Access**: Direct links to builder from marketing pages
 - **Template Marketplace**: Seamless browsing to customization flow
 - **AI Assistant**: Embedded chat for requirement gathering
@@ -211,12 +252,14 @@ Structure the senka.ai domain to clearly communicate the no-code platform value 
 ## Success Metrics
 
 ### Marketing Metrics
+
 - **Traffic Quality**: Time on site, pages per session
 - **Demo Engagement**: Completion rates for interactive demos
 - **Template Interest**: Browse-to-customize conversion
 - **Social Proof**: User-generated content and testimonials
 
 ### Business Metrics
+
 - **Trial Conversion**: Free to paid subscription rate
 - **User Success**: Apps published per user
 - **Platform Adoption**: Daily/monthly active users
@@ -225,12 +268,14 @@ Structure the senka.ai domain to clearly communicate the no-code platform value 
 ## Competitive Differentiation
 
 ### Unique Positioning
+
 - **AI-First**: Conversational app building as primary interface
 - **Template-First**: Start with working apps, not blank canvas
 - **Multi-Platform**: Automatic web + mobile app generation
 - **Non-Technical Focus**: Built for business users, not developers
 
 ### Key Differentiators
+
 - **Educational App Proof**: Complex real-world application as demo
 - **Modification-Safe Architecture**: Changes don't break existing functionality
 - **Quality Templates**: Professional designs, not amateur layouts
