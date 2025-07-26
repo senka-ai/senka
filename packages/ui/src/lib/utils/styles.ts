@@ -510,3 +510,57 @@ export function createToastStyles(options: {
 
   return composeClasses(base, variants[variant], dismissibleStyles, className)
 }
+
+/**
+ * Progress Bar style composer for progress indication components
+ * Provides consistent styling for progress bars with different variants
+ */
+export function createProgressBarStyles(options: {
+  size: 'small' | 'medium' | 'large'
+  color: 'primary' | 'success' | 'warning' | 'error'
+  animated?: boolean
+  disabled?: boolean
+  className?: string
+}): {
+  container: string
+  label: string
+  track: string
+  fill: string
+} {
+  const { size, color, animated = true, disabled = false, className = '' } = options
+
+  // Container styles
+  const containerBase = 'flex flex-col gap-2 w-full'
+  const disabledStyles = disabled ? 'opacity-50 cursor-not-allowed' : ''
+  const container = composeClasses(containerBase, disabledStyles, className)
+
+  // Label styles
+  const label = 'text-body-s text-neutral-700 font-medium'
+
+  // Track styles
+  const trackBase = 'relative bg-neutral-200 overflow-hidden'
+  const trackSizes = {
+    small: 'h-1.5 rounded-full',
+    medium: 'h-2.5 rounded-full',
+    large: 'h-4 rounded-lg',
+  }
+  const track = composeClasses(trackBase, trackSizes[size])
+
+  // Fill styles
+  const fillBase = 'h-full'
+  const fillColors = {
+    primary: 'bg-highlight',
+    success: 'bg-success',
+    warning: 'bg-warning',
+    error: 'bg-error',
+  }
+  const animatedClass = animated ? 'transition-all duration-300 ease-out' : ''
+  const fill = composeClasses(fillBase, fillColors[color], animatedClass)
+
+  return {
+    container,
+    label,
+    track,
+    fill,
+  }
+}
