@@ -564,3 +564,54 @@ export function createProgressBarStyles(options: {
     fill,
   }
 }
+
+/**
+ * Dialog style composer for modal dialog components
+ * Provides consistent styling for modal dialogs with backdrop and content areas
+ */
+export function createDialogStyles(options: { disabled?: boolean; className?: string }): {
+  backdrop: string
+  container: string
+  closeButton: string
+  content: string
+  title: string
+  description: string
+  actions: string
+} {
+  const { disabled = false, className = '' } = options
+
+  // Backdrop/overlay styles
+  const backdrop = 'fixed inset-0 z-50 flex items-center justify-center bg-neutral-900/50 backdrop-blur-sm'
+
+  // Dialog container styles
+  const containerBase =
+    'relative bg-background border border-neutral-200 rounded-2xl shadow-2xl max-w-md w-full mx-4 max-h-[90vh] overflow-hidden'
+  const disabledStyles = disabled ? 'opacity-50' : ''
+  const container = composeClasses(containerBase, disabledStyles, className)
+
+  // Close button styles
+  const closeButton =
+    'absolute top-4 right-4 p-1 text-neutral-500 hover:text-neutral-700 transition-colors duration-200'
+
+  // Content area styles
+  const content = 'p-6 pr-12'
+
+  // Title styles
+  const title = 'text-h3 font-semibold text-neutral-900 mb-3'
+
+  // Description styles
+  const description = 'text-body-m text-neutral-700 leading-relaxed'
+
+  // Actions/buttons area styles
+  const actions = 'flex gap-3 p-6 pt-0 border-t border-neutral-100'
+
+  return {
+    backdrop,
+    container,
+    closeButton,
+    content,
+    title,
+    description,
+    actions,
+  }
+}
