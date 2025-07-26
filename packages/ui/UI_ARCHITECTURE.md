@@ -754,7 +754,6 @@ export function createNavigationHandler(
 - Label, helper text, error display, consistent spacing
 - Extends: `BaseProps`, `ChildrenComponent`
 
-
 ### Feedback Components (2 components)
 
 **Badge** - Status and count indicators
@@ -815,7 +814,6 @@ export function createNavigationHandler(
 
 - Icon and text support, active states, responsive behavior
 - Extends: `BaseProps`, `ChildrenComponent`
-
 
 ### Media Components (6 components)
 
@@ -913,6 +911,7 @@ When building components that need icons or placeholders:
 - ✅ **Semantic naming**: Choose icons that clearly represent their function
 
 **Example - Correct icon usage:**
+
 ```svelte
 <script lang="ts">
   import { ImageIcon, CheckIcon } from '../../icons'
@@ -925,22 +924,24 @@ When building components that need icons or placeholders:
 
 <!-- Success state with icon component -->
 <div class="success-message">
-  <CheckIcon class="h-5 w-5 text-success" size={20} />
+  <CheckIcon class="text-success h-5 w-5" size={20} />
   <span>Success!</span>
 </div>
 ```
 
 **Example - Incorrect approach:**
+
 ```svelte
 <!-- ❌ Don't do this - inline SVG -->
 <div class="placeholder">
   <svg class="h-8 w-8 text-neutral-400" viewBox="0 0 24 24">
-    <path d="M4 3a2 2 0 00-2 2v10..."/>
+    <path d="M4 3a2 2 0 00-2 2v10..." />
   </svg>
 </div>
 ```
 
 **Benefits of using icon components:**
+
 - **Consistency**: All icons follow the same interface and sizing system
 - **Maintainability**: Icon updates apply everywhere automatically
 - **Performance**: Icons are optimized and tree-shakeable

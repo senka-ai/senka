@@ -20,6 +20,7 @@ packages/ui/src/stories/
 ```
 
 **Naming Conventions:**
+
 - **Main Stories**: `ComponentName.stories.svelte` (PascalCase)
 - **Example Components**: `ExampleName.svelte` (descriptive names)
 - **Special Stories**: `FeatureName.stories.svelte` (for cross-component examples)
@@ -94,6 +95,7 @@ packages/ui/src/stories/
 ```
 
 **Key Requirements:**
+
 - **Always first story** in the file
 - **Visual organization** with semantic headings
 - **Comprehensive coverage** of all major variants
@@ -117,6 +119,7 @@ packages/ui/src/stories/
 ```
 
 **Key Requirements:**
+
 - **Props spreading**: `{...args}` for all component props
 - **Children handling**: Provide default content via snippets
 - **Compact layout**: Use `layout: 'compact'` for single components
@@ -202,9 +205,7 @@ packages/ui/src/stories/
 </Component>
 
 <!-- ❌ Wrong: Direct content -->
-<Component>
-  Content goes here
-</Component>
+<Component>Content goes here</Component>
 ```
 
 ### 2. Template Function Pattern
@@ -259,6 +260,7 @@ packages/ui/src/stories/
 ```
 
 **Key Requirements for Required Props:**
+
 - **Explicit mapping**: List all props individually instead of spreading `{...args}`
 - **Fallback values**: Use `args.propName || 'fallback'` for required props
 - **All props included**: Map every prop the component accepts
@@ -289,6 +291,7 @@ packages/ui/src/stories/
 ```
 
 **When to Use Each Pattern:**
+
 - **Props spreading (`{...args}`)**: Components with no required props (e.g., Button, TextField)
 - **Explicit mapping**: Components with required props (e.g., Banner, Card)
 
@@ -298,16 +301,10 @@ packages/ui/src/stories/
 
 ```svelte
 <!-- ✅ Correct: Direct event props -->
-<Component 
-  onclick={() => console.log('clicked')}
-  onchange={(value) => console.log('changed:', value)}
-/>
+<Component onclick={() => console.log('clicked')} onchange={(value) => console.log('changed:', value)} />
 
 <!-- ❌ Wrong: on: directives -->
-<Component 
-  on:click={() => console.log('clicked')}
-  on:change={(e) => console.log('changed:', e.detail)}
-/>
+<Component on:click={() => console.log('clicked')} on:change={(e) => console.log('changed:', e.detail)} />
 ```
 
 ### 4. Icon Integration Pattern
@@ -345,19 +342,19 @@ const { Story } = defineMeta({
       options: ['primary', 'secondary', 'tertiary'],
       description: 'Button variant',
     },
-    
+
     // Boolean Controls
     disabled: {
       control: { type: 'boolean' },
       description: 'Disabled state',
     },
-    
+
     // Text Controls
     label: {
       control: { type: 'text' },
       description: 'Field label',
     },
-    
+
     // Number Controls
     size: {
       control: { type: 'number', min: 12, max: 48, step: 2 },
@@ -369,14 +366,14 @@ const { Story } = defineMeta({
 
 ### 2. Control Type Mapping
 
-| Prop Type | Control Type | Example |
-|-----------|--------------|---------|
-| `boolean` | `{ type: 'boolean' }` | `disabled`, `loading` |
-| `string enum` | `{ type: 'select' }` | `variant`, `size` |
-| `string` | `{ type: 'text' }` | `label`, `placeholder` |
-| `number` | `{ type: 'number' }` | `iconSize`, `rows` |
-| `color` | `{ type: 'color' }` | `backgroundColor` |
-| `function` | Hide from controls | `onclick`, `onchange` |
+| Prop Type     | Control Type          | Example                |
+| ------------- | --------------------- | ---------------------- |
+| `boolean`     | `{ type: 'boolean' }` | `disabled`, `loading`  |
+| `string enum` | `{ type: 'select' }`  | `variant`, `size`      |
+| `string`      | `{ type: 'text' }`    | `label`, `placeholder` |
+| `number`      | `{ type: 'number' }`  | `iconSize`, `rows`     |
+| `color`       | `{ type: 'color' }`   | `backgroundColor`      |
+| `function`    | Hide from controls    | `onclick`, `onchange`  |
 
 ### 3. Function Props Handling
 
@@ -404,7 +401,7 @@ Stories automatically get consistent container styling with appropriate sizing. 
 #### Container Sizes
 
 - **`default`** (672px): Most component stories - automatically applied if no parameter is specified
-- **`compact`** (448px): Individual components, small forms, simple examples  
+- **`compact`** (448px): Individual components, small forms, simple examples
 - **`wide`** (896px): Overview grids, icon galleries, complex layouts
 - **`full`**: No max-width constraint for full-width components
 
@@ -456,7 +453,7 @@ parameters={{ layout: 'full' }}
 If you don't specify a `layout` parameter, the system will automatically apply sizing based on story names:
 
 - Stories with "Icon", "Default", "Basic" in the name get compact sizing
-- Stories named "Overview" in Icon stories get wide sizing  
+- Stories named "Overview" in Icon stories get wide sizing
 - Stories with "Full Width" in the name get full sizing
 - All others get default sizing
 
@@ -533,21 +530,14 @@ If you don't specify a `layout` parameter, the system will automatically apply s
   {#snippet template()}
     <div class="max-w-md space-y-6">
       <h3 class="text-lg font-medium">Registration Form</h3>
-      
-      <TextField
-        label="Full Name"
-        placeholder="Enter your full name"
-        validationRules={[validationRules.required()]}
-      />
+
+      <TextField label="Full Name" placeholder="Enter your full name" validationRules={[validationRules.required()]} />
 
       <TextField
         label="Email"
         type="email"
         placeholder="your.email@example.com"
-        validationRules={[
-          validationRules.required(),
-          validationRules.email()
-        ]}
+        validationRules={[validationRules.required(), validationRules.email()]}
       />
 
       <Button variant="primary" fullWidth>
@@ -664,32 +654,19 @@ Create separate `.svelte` files for complex examples:
 
 ```svelte
 <!-- ✅ Good story names -->
-"Overview"           // Main showcase
-"Default"           // Interactive playground
-"Primary"           // Variant name
-"Small"             // Size name
-"Disabled"          // State name
-"With Validation"   // Feature description
-"Complete Form"     // Example description
+"Overview" // Main showcase "Default" // Interactive playground "Primary" // Variant name "Small" // Size name "Disabled"
+// State name "With Validation" // Feature description "Complete Form" // Example description
 
 <!-- ❌ Bad story names -->
-"Story 1"           // Non-descriptive
-"Test"              // Vague
-"Example1"          // Numbered without context
+"Story 1" // Non-descriptive "Test" // Vague "Example1" // Numbered without context
 ```
 
 ### 3. Title Organization
 
 ```svelte
-// Component categories
-'Core/Button'           // Core components
-'Forms/TextField'       // Form components
-'Layout/Card'           // Layout components
-'Navigation/TabBar'     // Navigation components
-'Media/Image'           // Media components
-'Feedback/Badge'        // Feedback components
-'Icons/All Icons'       // Icon collections
-'Examples/Validation'   // Cross-component examples
+// Component categories 'Core/Button' // Core components 'Forms/TextField' // Form components 'Layout/Card' // Layout
+components 'Navigation/TabBar' // Navigation components 'Media/Image' // Media components 'Feedback/Badge' // Feedback
+components 'Icons/All Icons' // Icon collections 'Examples/Validation' // Cross-component examples
 ```
 
 ## Documentation & Comments
@@ -730,8 +707,8 @@ argTypes: {
 ### 3. Story-Level Documentation
 
 ```svelte
-<Story 
-  name="Password Requirements" 
+<Story
+  name="Password Requirements"
   args={{}}
   parameters={{
     docs: {
@@ -770,7 +747,7 @@ argTypes: {
 <Story name="Accessibility Features">
   {#snippet template()}
     <div class="space-y-4">
-      <TextField 
+      <TextField
         label="Required Field"
         required
         aria-describedby="help-text"
@@ -805,11 +782,7 @@ argTypes: {
 
 ```svelte
 <!-- ❌ Don't repeat component props manually -->
-<Component 
-  variant={args.variant} 
-  size={args.size} 
-  disabled={args.disabled}
-/>
+<Component variant={args.variant} size={args.size} disabled={args.disabled} />
 
 <!-- ✅ Use props spreading -->
 <Component {...args} />
