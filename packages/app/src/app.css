@@ -43,15 +43,15 @@
   --color-neutral-900: #1f2024;
 
   /* Semantic colors for light theme */
-  --color-background: var(--color-neutral-50);
-  --color-surface: var(--color-neutral-100);
-  --color-surface-elevated: var(--color-neutral-50);
-  --color-surface-hover: var(--color-neutral-200);
-  --color-text-primary: var(--color-neutral-900);
-  --color-text-secondary: var(--color-neutral-600);
-  --color-text-muted: var(--color-neutral-500);
-  --color-border: var(--color-neutral-200);
-  --color-border-strong: var(--color-neutral-300);
+  --color-background: #f8f9fe;
+  --color-surface: #ffffff;
+  --color-surface-elevated: #ffffff;
+  --color-surface-hover: var(--color-neutral-100);
+  --color-text-primary: #1f2024;
+  --color-text-secondary: #71727a;
+  --color-text-muted: #8f9098;
+  --color-border: #e8e9f1;
+  --color-border-strong: #d4d6dd;
 }
 
 /* Dark Theme */
@@ -97,26 +97,29 @@ body {
     background-color 0.2s ease;
 }
 
-/* Card components - these are temporary and should be removed in the future when a card component is added */
+/* Card components - clean design system styling */
 .card {
-  background: var(--color-surface-default);
+  background: var(--color-surface);
   border-radius: 12px;
   padding: 1.5rem;
-  border: 1px solid var(--color-border-subtle);
+  border: 1px solid var(--color-border);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
 }
 
 .card-elevated {
   background: var(--color-surface-elevated);
   border-radius: 12px;
   padding: 1.5rem;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  border: none;
 }
 
 .card-default {
-  background: var(--color-surface-default);
+  background: var(--color-surface);
   border-radius: 12px;
   padding: 1.5rem;
-  border: 1px solid var(--color-border-subtle);
+  border: 1px solid var(--color-border);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
 }
 
 /* Mobile scrolling behavior - prevent whole page scroll */

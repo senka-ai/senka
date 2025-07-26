@@ -1,17 +1,18 @@
 <script lang="ts">
   import '../app.css'
-  import { page } from '$app/stores'
   import { browser } from '$app/environment'
+  import { setTheme } from '@senka-ai/ui'
   import Navigation from '$lib/components/navigation/Navigation.svelte'
 
   let { children } = $props()
 
-  // Check if we're on an auth route (login, signup, onboarding)
-  let isAuthRoute = $derived.by(() => {
-    if (!browser) return false
-    const pathname = $page.url.pathname
-    return pathname.startsWith('/auth') || pathname === '/login' || pathname === '/signup' || pathname === '/onboarding'
-  })
+  // Force light theme to match design system specifications
+  if (browser) {
+    setTheme('light')
+  }
+
+  // No auth routes anymore - all routes use main layout
+  let isAuthRoute = $derived(false)
 
   // Responsive breakpoint detection
   let isMobile = $state(false)
@@ -82,8 +83,9 @@
 
   .desktop-content {
     grid-area: content;
-    padding: 1rem;
+    padding: 2rem;
     overflow-y: auto;
+    background: var(--color-background);
   }
 
   .mobile-content {
@@ -93,6 +95,7 @@
     overflow-x: hidden;
     height: calc(100vh - 80px); /* Full height minus navigation height */
     box-sizing: border-box;
+    background: var(--color-background);
   }
 
   /* Responsive adjustments */
