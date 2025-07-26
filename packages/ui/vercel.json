@@ -1,0 +1,13 @@
+{
+  "buildCommand": "yarn build-storybook",
+  "outputDirectory": "storybook-static",
+  "installCommand": "yarn install",
+  "framework": null,
+  "functions": {},
+  "rewrites": [
+    {
+      "source": "/(.*)",
+      "destination": "/$1"
+    }
+  ]
+}
