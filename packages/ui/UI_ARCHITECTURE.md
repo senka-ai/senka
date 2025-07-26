@@ -901,6 +901,52 @@ Icons can be used as both strings (emoji) and Svelte components:
 <Button leftIcon={ArrowRightIcon}>Continue</Button>
 ```
 
+### Icon Development Guidelines
+
+**CRITICAL: Always use existing icon components instead of inline SVG markup**
+
+When building components that need icons or placeholders:
+
+- ✅ **Use existing icons**: Import from `'../../icons'` and use icon components
+- ❌ **No inline SVG**: Never embed SVG markup directly in component templates
+- ✅ **Consistent sizing**: Use the `size` prop for responsive icon sizing
+- ✅ **Semantic naming**: Choose icons that clearly represent their function
+
+**Example - Correct icon usage:**
+```svelte
+<script lang="ts">
+  import { ImageIcon, CheckIcon } from '../../icons'
+</script>
+
+<!-- Placeholder with icon component -->
+<div class="placeholder">
+  <ImageIcon class="h-8 w-8 text-neutral-400" size={32} />
+</div>
+
+<!-- Success state with icon component -->
+<div class="success-message">
+  <CheckIcon class="h-5 w-5 text-success" size={20} />
+  <span>Success!</span>
+</div>
+```
+
+**Example - Incorrect approach:**
+```svelte
+<!-- ❌ Don't do this - inline SVG -->
+<div class="placeholder">
+  <svg class="h-8 w-8 text-neutral-400" viewBox="0 0 24 24">
+    <path d="M4 3a2 2 0 00-2 2v10..."/>
+  </svg>
+</div>
+```
+
+**Benefits of using icon components:**
+- **Consistency**: All icons follow the same interface and sizing system
+- **Maintainability**: Icon updates apply everywhere automatically
+- **Performance**: Icons are optimized and tree-shakeable
+- **Accessibility**: Icons include proper ARIA attributes and semantic markup
+- **Theme Support**: Icons automatically adapt to theme changes
+
 ## Testing Architecture
 
 ### Multi-Layer Testing Strategy
