@@ -25,7 +25,7 @@
   },
   "scripts": {
     "dev": "storybook dev -p 6006 --no-open",
-    "build": "svelte-package -o dist && cp src/styles/index.css dist/styles.css",
+    "build": "svelte-package -o dist && cp -r src/styles/* dist/ && cp src/styles/index.css dist/styles.css",
     "build-storybook": "storybook build",
     "preview": "vite preview",
     "story": "storybook dev -p 6006 --no-open",
