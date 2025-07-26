@@ -50,5 +50,8 @@ export * from './utils/styles'
 export * from './utils/rendering'
 export * from './utils/focus.svelte'
 
+// Icons
+export * from './icons'
+
 // Type Definitions
 export type * from './types/component'
