@@ -12,7 +12,6 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 4. **`../Downloads/claude/Svelte_5.md`** - Essential Svelte 5 syntax and patterns
 5. **`packages/ui/UI_ARCHITECTURE.md`** - Detailed component patterns and implementation
 6. **`packages/app/plan.md`** - Educational app MVP plan and long-term roadmap
-7. **`packages/app/mvp_plan_romanian.md`** - Detailed MVP specifications
 
 ## Project Overview
 

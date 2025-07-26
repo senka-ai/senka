@@ -1,8 +1,10 @@
-# UI Migration Plan: Maximize @senka-ai/ui Component Usage
+# UI Migration Plan: Maximize @senka-ai/ui Library Leverage
 
 ## Executive Summary
 
-The current educational app uses only **4 out of 29** available @senka-ai/ui components (**14% utilization**). This comprehensive plan will increase utilization to **90%+** while implementing proper Svelte 5 patterns and enhancing user experience across all educational app features.
+**PRIMARY GOAL: Leverage the @senka-ai/ui library to its fullest potential**
+
+The current educational app uses only **4 out of 29** available @senka-ai/ui components (**14% utilization**). This comprehensive migration plan will transform the app to **maximize leverage of the @senka-ai/ui library**, achieving **90%+ component utilization** while eliminating custom CSS, implementing proper Svelte 5 patterns, and creating a showcase of the library's capabilities.
 
 ## Current State Analysis
 
@@ -19,9 +21,11 @@ The current educational app uses only **4 out of 29** available @senka-ai/ui com
 - **Media (6)**: Avatar, AvatarPlaceholder, Image, ImagePlaceholder, Video, VideoPlaceholder
 - **Feedback (2)**: Badge, Tag
 - **Core (2)**: Button, ThemeToggle
-- **Plus 48 icons** for consistent visual language
+- **Plus 48+ icons** from @senka-ai/ui for consistent visual language
 
-## Migration Strategy
+## Migration Strategy: Maximize @senka-ai/ui Library Leverage
+
+**Core Philosophy**: Replace ALL custom implementations with @senka-ai/ui components wherever possible. Every piece of UI should leverage the library's pre-built, tested, and accessible components.
 
 ### Phase 1: Core Layout & Navigation (Immediate Impact)
 
@@ -29,15 +33,15 @@ The current educational app uses only **4 out of 29** available @senka-ai/ui com
 **File**: `src/lib/components/navigation/Navigation.svelte`
 
 **Current Issues**:
-- Custom CSS styling (234 lines)
-- Manual responsive breakpoint handling
-- No accessibility features
-- Inconsistent with design system
+- Custom CSS styling (234 lines) - **NOT leveraging @senka-ai/ui**
+- Manual responsive breakpoint handling - **@senka-ai/ui has built-in responsive design**
+- No accessibility features - **@senka-ai/ui components are accessible by default**
+- Inconsistent with design system - **@senka-ai/ui ensures consistency**
 
-**New Implementation**:
+**New Implementation - Maximum @senka-ai/ui Leverage**:
 ```typescript
 <script lang="ts">
-  import { TabBar, NavBar, Avatar } from '@senka-ai/ui'
+  import { TabBar, NavBar, Avatar, ExploreIcon, CategoriesIcon, InboxIcon, CreateIcon, SettingsIcon } from '@senka-ai/ui'
   import { page } from '$app/stores'
   import { goto } from '$app/navigation'
   
@@ -48,12 +52,12 @@ The current educational app uses only **4 out of 29** available @senka-ai/ui com
   let { isMobile }: Props = $props()
   
   const navItems = [
-    { path: '/', label: 'Acasă', icon: '🏠' },
-    { path: '/dashboard', label: 'Dashboard', icon: '📊' },
-    { path: '/schedule', label: 'Orar', icon: '📅' },
-    { path: '/tasks', label: 'Sarcini', icon: '📝' },
-    { path: '/lessons', label: 'Lecții', icon: '📖' },
-    { path: '/settings', label: 'Setări', icon: '⚙️' },
+    { path: '/', label: 'Acasă', icon: ExploreIcon },
+    { path: '/dashboard', label: 'Dashboard', icon: CategoriesIcon },
+    { path: '/schedule', label: 'Orar', icon: CategoriesIcon },
+    { path: '/tasks', label: 'Sarcini', icon: CreateIcon },
+    { path: '/lessons', label: 'Lecții', icon: InboxIcon },
+    { path: '/settings', label: 'Setări', icon: SettingsIcon },
   ]
   
   let currentPath = $derived($page.url.pathname)
@@ -89,7 +93,7 @@ The current educational app uses only **4 out of 29** available @senka-ai/ui com
             class="nav-item"
             class:active={isActive(item.path)}
           >
-            <span class="nav-icon">{item.icon}</span>
+            <svelte:component this={item.icon} class="nav-icon" />
             <span class="nav-label">{item.label}</span>
           </a>
         {/each}
@@ -114,136 +118,117 @@ The current educational app uses only **4 out of 29** available @senka-ai/ui com
 {/if}
 ```
 
-**Benefits**:
-- ✅ Reduces custom CSS from 234 to ~20 lines
-- ✅ Built-in accessibility (ARIA labels, keyboard navigation)
-- ✅ Consistent with design system colors and spacing
-- ✅ Proper Svelte 5 patterns ($props, $derived, snippets)
+**Benefits of Leveraging @senka-ai/ui**:
+- ✅ **Maximum Library Leverage**: Uses TabBar, NavBar, Avatar + 5 icons from @senka-ai/ui
+- ✅ **Eliminates Custom Code**: Reduces custom CSS from 234 to 0 lines (Tailwind only)
+- ✅ **Built-in Accessibility**: ARIA labels, keyboard navigation from @senka-ai/ui
+- ✅ **Design System Consistency**: Automatic adherence to @senka-ai/ui design tokens
+- ✅ **Future-Proof**: Updates to @senka-ai/ui automatically benefit the app
 
 #### 1.2 Homepage Card Enhancement ✅ PRIORITY 2
 **File**: `src/routes/+page.svelte`
 
-**Current**: Custom `.action-card` and `.welcome-card` CSS
-**New**: Use Card components with proper structure
+**Current**: Custom `.action-card` and `.welcome-card` CSS - **NOT leveraging @senka-ai/ui**
+**New**: **Maximum @senka-ai/ui Leverage** - Use Card, List, ListItem + icons for all UI elements
 
 ```typescript
 <script lang="ts">
-  import { Card, ThemeToggle, List, ListItem } from '@senka-ai/ui'
+  import { Card, ThemeToggle, List, ListItem, CategoriesIcon, CreateIcon, InboxIcon, SettingsIcon, ChatIcon } from '@senka-ai/ui'
   import { goto } from '$app/navigation'
 </script>
 
-<div class="homepage">
-  <header class="homepage-header">
-    <div class="header-top">
-      <h1>Senka</h1>
+<div class="max-w-7xl mx-auto p-0">
+  <header class="text-center mb-8">
+    <div class="flex items-center justify-center gap-4 mb-2">
+      <h1 class="text-4xl font-bold text-gray-900 dark:text-gray-100 m-0">Senka</h1>
       <ThemeToggle />
     </div>
-    <p>Aplicația educațională pentru elevi, profesori și părinți</p>
+    <p class="text-lg text-gray-600 dark:text-gray-400 m-0">Aplicația educațională pentru elevi, profesori și părinți</p>
   </header>
 
-  <Card title="Bine ai venit!" variant="default" class="welcome-card">
+  <Card title="Bine ai venit!" variant="default" class="mb-8">
     {#snippet children()}
-      <p>Aceasta este pagina principală a aplicației Senka. Aici vei putea vedea:</p>
+      <p class="mb-4">Aceasta este pagina principală a aplicației Senka. Aici vei putea vedea:</p>
       <List>
         {#snippet children()}
-          <ListItem title="Orarele și programul zilnic" leftIcon="📅" />
-          <ListItem title="Temele și sarcinile primite" leftIcon="📝" />
-          <ListItem title="Lecțiile și materialele educaționale" leftIcon="📖" />
-          <ListItem title="Comunicarea cu profesorii și colegii" leftIcon="💬" />
+          <ListItem title="Orarele și programul zilnic">
+            {#snippet leftIcon()}<CategoriesIcon />{/snippet}
+          </ListItem>
+          <ListItem title="Temele și sarcinile primite">
+            {#snippet leftIcon()}<CreateIcon />{/snippet}
+          </ListItem>
+          <ListItem title="Lecțiile și materialele educaționale">
+            {#snippet leftIcon()}<InboxIcon />{/snippet}
+          </ListItem>
+          <ListItem title="Comunicarea cu profesorii și colegii">
+            {#snippet leftIcon()}<ChatIcon />{/snippet}
+          </ListItem>
         {/snippet}
       </List>
     {/snippet}
   </Card>
 
-  <section class="quick-actions">
-    <h2>Acțiuni rapide</h2>
-    <div class="actions-grid">
+  <section>
+    <h2 class="text-2xl font-semibold text-gray-900 dark:text-gray-100 mb-4">Acțiuni rapide</h2>
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
       <Card
-        title="📅 Orarul zilei"
-        subtitle="Vezi programul pentru astăzi"
         onclick={() => goto('/schedule')}
         variant="default"
-      />
+        class="cursor-pointer hover:shadow-lg transition-shadow"
+      >
+        {#snippet children()}
+          <div class="flex flex-col items-center text-center gap-3 p-4">
+            <CategoriesIcon class="w-8 h-8 text-blue-600 dark:text-blue-400" />
+            <h3 class="text-xl font-semibold text-gray-900 dark:text-gray-100 m-0">Orarul zilei</h3>
+            <p class="text-sm text-gray-600 dark:text-gray-400 m-0">Vezi programul pentru astăzi</p>
+          </div>
+        {/snippet}
+      </Card>
       
       <Card
-        title="📚 Temele"
-        subtitle="Verifică temele și sarcinile"
         onclick={() => goto('/tasks')}
         variant="default"
-      />
+        class="cursor-pointer hover:shadow-lg transition-shadow"
+      >
+        {#snippet children()}
+          <div class="flex flex-col items-center text-center gap-3 p-4">
+            <CreateIcon class="w-8 h-8 text-green-600 dark:text-green-400" />
+            <h3 class="text-xl font-semibold text-gray-900 dark:text-gray-100 m-0">Temele</h3>
+            <p class="text-sm text-gray-600 dark:text-gray-400 m-0">Verifică temele și sarcinile</p>
+          </div>
+        {/snippet}
+      </Card>
       
       <Card
-        title="📖 Lecții"
-        subtitle="Accesează materialele de studiu"
         onclick={() => goto('/lessons')}
         variant="default"
-      />
+        class="cursor-pointer hover:shadow-lg transition-shadow"
+      >
+        {#snippet children()}
+          <div class="flex flex-col items-center text-center gap-3 p-4">
+            <InboxIcon class="w-8 h-8 text-purple-600 dark:text-purple-400" />
+            <h3 class="text-xl font-semibold text-gray-900 dark:text-gray-100 m-0">Lecții</h3>
+            <p class="text-sm text-gray-600 dark:text-gray-400 m-0">Accesează materialele de studiu</p>
+          </div>
+        {/snippet}
+      </Card>
       
       <Card
-        title="⚙️ Setări"
-        subtitle="Configurează aplicația"
         onclick={() => goto('/settings')}
         variant="default"
-      />
+        class="cursor-pointer hover:shadow-lg transition-shadow"
+      >
+        {#snippet children()}
+          <div class="flex flex-col items-center text-center gap-3 p-4">
+            <SettingsIcon class="w-8 h-8 text-gray-600 dark:text-gray-400" />
+            <h3 class="text-xl font-semibold text-gray-900 dark:text-gray-100 m-0">Setări</h3>
+            <p class="text-sm text-gray-600 dark:text-gray-400 m-0">Configurează aplicația</p>
+          </div>
+        {/snippet}
+      </Card>
     </div>
   </section>
 </div>
-
-<style>
-  .homepage {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0;
-  }
-
-  .homepage-header {
-    text-align: center;
-    margin-bottom: 2rem;
-  }
-
-  .header-top {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 1rem;
-    margin-bottom: 0.5rem;
-  }
-
-  h1 {
-    color: var(--color-text-primary);
-    margin: 0;
-    font-size: 2.5rem;
-    font-weight: 700;
-  }
-
-  .homepage-header p {
-    color: var(--color-text-secondary);
-    font-size: 1.1rem;
-    margin: 0;
-  }
-
-  .quick-actions h2 {
-    color: var(--color-text-primary);
-    margin-bottom: 1rem;
-    font-size: 1.5rem;
-  }
-
-  .actions-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 1rem;
-  }
-
-  @media (max-width: 768px) {
-    .actions-grid {
-      grid-template-columns: 1fr;
-    }
-
-    h1 {
-      font-size: 2rem;
-    }
-  }
-</style>
 ```
 
 ### Phase 2: Enhanced Dashboard with Rich Components ✅ PRIORITY 3
@@ -251,18 +236,18 @@ The current educational app uses only **4 out of 29** available @senka-ai/ui com
 #### 2.1 Dashboard Component Enhancement
 **File**: `src/routes/dashboard/+page.svelte`
 
-**Current**: Custom stats grid and activity lists
-**New**: Proper Card layouts with Badge integration
+**Current**: Custom stats grid and activity lists - **NOT leveraging @senka-ai/ui**
+**New**: **Maximum @senka-ai/ui Leverage** - Card, Badge, List, ListItem, Divider + icons for complete UI
 
 ```typescript
 <script lang="ts">
-  import { Card, Badge, List, ListItem, Divider } from '@senka-ai/ui'
+  import { Card, Badge, List, ListItem, Divider, CreateIcon, InboxIcon, CategoriesIcon, SuccessIcon, WarningIcon } from '@senka-ai/ui'
   
   // Statistics data with proper typing
   let stats = $state([
-    { label: 'Teme astăzi', value: 5, icon: '📝' },
-    { label: 'Lecții noi', value: 3, icon: '📖' },
-    { label: 'Teste programate', value: 2, icon: '📅' }
+    { label: 'Teme astăzi', value: 5, icon: CreateIcon },
+    { label: 'Lecții noi', value: 3, icon: InboxIcon },
+    { label: 'Teste programate', value: 2, icon: CategoriesIcon }
   ])
   
   // Activity data with proper status types
@@ -271,19 +256,19 @@ The current educational app uses only **4 out of 29** available @senka-ai/ui com
       title: 'Temă matematică predată', 
       time: 'acum 2 ore', 
       status: 'success' as const,
-      icon: '✅'
+      icon: SuccessIcon
     },
     { 
       title: 'Lecție de fizică adăugată', 
       time: 'acum 4 ore', 
       status: 'warning' as const,
-      icon: '📖'
+      icon: InboxIcon
     },
     { 
       title: 'Orar actualizat', 
       time: 'ieri', 
       status: 'default' as const,
-      icon: '📅'
+      icon: CategoriesIcon
     }
   ])
   
@@ -294,41 +279,43 @@ The current educational app uses only **4 out of 29** available @senka-ai/ui com
       subtitle: 'Mâine, ora 10:00',
       priority: 1,
       status: 'error' as const,
-      icon: '📝'
+      icon: CreateIcon
     },
     {
       title: 'Temă de matematică',
       subtitle: 'Vineri, ora 14:00',
       priority: 2,
       status: 'warning' as const,
-      icon: '📐'
+      icon: CreateIcon
     },
     {
       title: 'Prezentare geografie',
       subtitle: 'Luni viitoare',
       priority: 3,
       status: 'default' as const,
-      icon: '🌍'
+      icon: InboxIcon
     }
   ])
 </script>
 
-<div class="dashboard">
-  <header class="dashboard-header">
-    <h1>Dashboard</h1>
-    <p>Privire de ansamblu asupra activităților tale</p>
+<div class="max-w-7xl mx-auto">
+  <header class="mb-8">
+    <h1 class="text-3xl font-bold text-gray-900 dark:text-gray-100 mb-2">Dashboard</h1>
+    <p class="text-base text-gray-600 dark:text-gray-400">Privire de ansamblu asupra activităților tale</p>
   </header>
 
-  <div class="dashboard-grid">
+  <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
     <!-- Quick Stats Card -->
-    <Card title="Statistici rapide" variant="default" class="stats-card">
+    <Card title="Statistici rapide" variant="default" class="lg:col-span-3">
       {#snippet children()}
-        <div class="stats-grid">
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 mt-4">
           {#each stats as stat}
-            <div class="stat-item">
-              <div class="stat-icon">{stat.icon}</div>
-              <div class="stat-number">{stat.value}</div>
-              <div class="stat-label">{stat.label}</div>
+            <div class="text-center p-4 bg-gray-50 dark:bg-gray-800 rounded-lg">
+              <div class="flex justify-center mb-2">
+                <svelte:component this={stat.icon} class="w-6 h-6 text-blue-600 dark:text-blue-400" />
+              </div>
+              <div class="text-2xl font-bold text-gray-900 dark:text-gray-100 mb-2">{stat.value}</div>
+              <div class="text-sm text-gray-600 dark:text-gray-400">{stat.label}</div>
             </div>
           {/each}
         </div>
@@ -344,8 +331,8 @@ The current educational app uses only **4 out of 29** available @senka-ai/ui com
               <ListItem
                 title={activity.title}
                 description={activity.time}
-                leftIcon={activity.icon}
               >
+                {#snippet leftIcon()}<svelte:component this={activity.icon} />{/snippet}
                 {#snippet children()}
                   <Badge type="dot" variant={activity.status} />
                 {/snippet}
@@ -368,8 +355,8 @@ The current educational app uses only **4 out of 29** available @senka-ai/ui com
               <ListItem
                 title={task.title}
                 description={task.subtitle}
-                leftIcon={task.icon}
               >
+                {#snippet leftIcon()}<svelte:component this={task.icon} />{/snippet}
                 {#snippet children()}
                   <Badge type="number" value={task.priority} variant={task.status} />
                 {/snippet}
@@ -384,77 +371,6 @@ The current educational app uses only **4 out of 29** available @senka-ai/ui com
     </Card>
   </div>
 </div>
-
-<style>
-  .dashboard {
-    max-width: 1200px;
-    margin: 0 auto;
-  }
-
-  .dashboard-header {
-    margin-bottom: 2rem;
-  }
-
-  .dashboard-header h1 {
-    color: var(--color-text-primary);
-    font-size: 2rem;
-    font-weight: 700;
-    margin: 0 0 0.5rem 0;
-  }
-
-  .dashboard-header p {
-    color: var(--color-text-secondary);
-    font-size: 1rem;
-    margin: 0;
-  }
-
-  .dashboard-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 1.5rem;
-  }
-
-  .stats-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
-    gap: 1rem;
-    margin-top: 1rem;
-  }
-
-  .stat-item {
-    text-align: center;
-    padding: 1rem;
-    background: var(--color-surface);
-    border-radius: 8px;
-  }
-
-  .stat-icon {
-    font-size: 1.5rem;
-    margin-bottom: 0.5rem;
-  }
-
-  .stat-number {
-    font-size: 2rem;
-    font-weight: 700;
-    color: var(--color-text-primary);
-    margin-bottom: 0.5rem;
-  }
-
-  .stat-label {
-    font-size: 0.9rem;
-    color: var(--color-text-secondary);
-  }
-
-  @media (max-width: 768px) {
-    .dashboard-grid {
-      grid-template-columns: 1fr;
-    }
-
-    .stats-grid {
-      grid-template-columns: repeat(3, 1fr);
-    }
-  }
-</style>
 ```
 
 ### Phase 3: Form Enhancement Across All Pages ✅ PRIORITY 4
@@ -462,12 +378,12 @@ The current educational app uses only **4 out of 29** available @senka-ai/ui com
 #### 3.1 Login Page Enhancement
 **File**: `src/routes/auth/login/+page.svelte`
 
-**Current**: Basic TextField usage
-**New**: Enhanced forms with validation
+**Current**: Basic TextField usage - **MINIMAL @senka-ai/ui leverage**
+**New**: **Maximum @senka-ai/ui Leverage** - TextField, Button, Card, ThemeToggle + validation + icons
 
 ```typescript
 <script lang="ts">
-  import { Button, TextField, Card, ThemeToggle } from '@senka-ai/ui'
+  import { Button, TextField, Card, ThemeToggle, SendIcon, ProfileIcon } from '@senka-ai/ui'
   import { validationRules } from '@senka-ai/ui'
 
   let email = $state('')
@@ -482,21 +398,21 @@ The current educational app uses only **4 out of 29** available @senka-ai/ui com
   }
 </script>
 
-<div class="login-page">
-  <div class="theme-toggle">
+<div class="min-h-screen flex items-center justify-center p-4 relative">
+  <div class="absolute top-4 right-4">
     <ThemeToggle />
   </div>
 
-  <Card variant="default" class="login-card">
+  <Card variant="default" class="w-full max-w-md p-8">
     {#snippet children()}
-      <div class="login-header">
-        <h1>Senka</h1>
-        <h2>Conectează-te</h2>
-        <p>Bine ai revenit! Introdu datele tale pentru a continua.</p>
+      <div class="text-center mb-8">
+        <h1 class="text-4xl font-bold text-gray-900 dark:text-gray-100 mb-2">Senka</h1>
+        <h2 class="text-2xl font-semibold text-gray-900 dark:text-gray-100 mb-2">Conectează-te</h2>
+        <p class="text-sm text-gray-600 dark:text-gray-400">Bine ai revenit! Introdu datele tale pentru a continua.</p>
       </div>
 
       <form
-        class="login-form"
+        class="flex flex-col gap-6 mb-8"
         onsubmit={(e) => {
           e.preventDefault()
           handleLogin()
@@ -507,28 +423,30 @@ The current educational app uses only **4 out of 29** available @senka-ai/ui com
           type="email"
           bind:value={email}
           placeholder="nume@exemplu.com"
-          leftIcon="📧"
           validationRules={[
             validationRules.required(),
             validationRules.email()
           ]}
           validateOnBlur={true}
           required
-        />
+        >
+          {#snippet leftIcon()}<SendIcon />{/snippet}
+        </TextField>
 
         <TextField
           label="Parola"
           type="password"
           bind:value={password}
           placeholder="Parola ta"
-          leftIcon="🔒"
           validationRules={[
             validationRules.required(),
             validationRules.minLength(6, 'Parola trebuie să aibă cel puțin 6 caractere')
           ]}
           validateOnBlur={true}
           required
-        />
+        >
+          {#snippet leftIcon()}<ProfileIcon />{/snippet}
+        </TextField>
 
         <Button
           type="submit"
@@ -544,101 +462,28 @@ The current educational app uses only **4 out of 29** available @senka-ai/ui com
         </Button>
       </form>
 
-      <div class="login-footer">
-        <p>Nu ai cont? <a href="/auth/signup">Înregistrează-te</a></p>
-        <p><a href="/auth/forgot-password">Ai uitat parola?</a></p>
+      <div class="text-center flex flex-col gap-2">
+        <p class="text-sm text-gray-600 dark:text-gray-400">Nu ai cont? <a href="/auth/signup" class="text-blue-600 dark:text-blue-400 underline hover:text-blue-700 dark:hover:text-blue-300">Înregistrează-te</a></p>
+        <p class="text-sm text-gray-600 dark:text-gray-400"><a href="/auth/forgot-password" class="text-blue-600 dark:text-blue-400 underline hover:text-blue-700 dark:hover:text-blue-300">Ai uitat parola?</a></p>
       </div>
     {/snippet}
   </Card>
 </div>
-
-<style>
-  .login-page {
-    min-height: 100vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 1rem;
-    position: relative;
-  }
-
-  .theme-toggle {
-    position: absolute;
-    top: 1rem;
-    right: 1rem;
-  }
-
-  :global(.login-card) {
-    width: 100%;
-    max-width: 400px;
-    padding: 2rem;
-  }
-
-  .login-header {
-    text-align: center;
-    margin-bottom: 2rem;
-  }
-
-  .login-header h1 {
-    color: var(--color-text-primary);
-    font-size: 2.5rem;
-    font-weight: 700;
-    margin: 0 0 0.5rem 0;
-  }
-
-  .login-header h2 {
-    color: var(--color-text-primary);
-    font-size: 1.5rem;
-    font-weight: 600;
-    margin: 0 0 0.5rem 0;
-  }
-
-  .login-header p {
-    color: var(--color-text-secondary);
-    font-size: 0.9rem;
-    margin: 0;
-  }
-
-  .login-form {
-    display: flex;
-    flex-direction: column;
-    gap: 1.5rem;
-    margin-bottom: 2rem;
-  }
-
-  .login-footer {
-    text-align: center;
-    display: flex;
-    flex-direction: column;
-    gap: 0.5rem;
-  }
-
-  .login-footer p {
-    color: var(--color-text-secondary);
-    font-size: 0.9rem;
-    margin: 0;
-  }
-
-  .login-footer a {
-    color: var(--color-text-primary);
-    text-decoration: underline;
-  }
-
-  .login-footer a:hover {
-    color: var(--color-text-secondary);
-  }
-</style>
 ```
 
 ### Phase 4: Settings Page Complete Overhaul ✅ PRIORITY 5
 
 **File**: `src/routes/settings/+page.svelte`
 
+**Current**: Mixed custom components - **INSUFFICIENT @senka-ai/ui leverage**
+**New**: **Maximum @senka-ai/ui Leverage** - All form inputs, layouts, and interactions use @senka-ai/ui
+
 ```typescript
 <script lang="ts">
   import { 
     Button, TextField, Card, ThemeToggle, Toggle, 
-    Dropdown, Accordion, Divider, Avatar 
+    Dropdown, Accordion, Divider, Avatar, EditIcon, 
+    CloseIcon, CheckIcon, DeleteIcon 
   } from '@senka-ai/ui'
 
   let userSettings = $state({
@@ -679,39 +524,46 @@ The current educational app uses only **4 out of 29** available @senka-ai/ui com
   }
 </script>
 
-<div class="settings-page">
-  <header class="settings-header">
-    <h1>Setări</h1>
-    <p>Configurează aplicația după preferințele tale</p>
+<div class="max-w-7xl mx-auto">
+  <header class="mb-8">
+    <h1 class="text-3xl font-bold text-gray-900 dark:text-gray-100 mb-2">Setări</h1>
+    <p class="text-base text-gray-600 dark:text-gray-400">Configurează aplicația după preferințele tale</p>
   </header>
 
-  <div class="settings-grid">
+  <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
     <!-- Profile Settings -->
     <Card title="Profil personal" variant="default">
       {#snippet children()}
-        <div class="section-header">
-          <h2>Profil personal</h2>
+        <div class="flex justify-between items-center mb-6">
+          <h2 class="text-xl font-semibold text-gray-900 dark:text-gray-100">Profil personal</h2>
           <Button
             variant="tertiary"
             size="small"
             onclick={toggleEdit}
-            leftIcon={isEditing ? "❌" : "✏️"}
           >
+            {#snippet leftIcon()}
+              {#if isEditing}
+                <CloseIcon />
+              {:else}
+                <EditIcon />
+              {/if}
+            {/snippet}
             {#snippet children()}
               {isEditing ? 'Anulează' : 'Editează'}
             {/snippet}
           </Button>
         </div>
         
-        <div class="profile-section">
-          <Avatar
-            initials="IP"
-            name={userSettings.name}
-            size="large"
-            class="profile-avatar"
-          />
+        <div class="flex flex-col gap-4">
+          <div class="flex justify-center">
+            <Avatar
+              initials="IP"
+              name={userSettings.name}
+              size="large"
+            />
+          </div>
           
-          <div class="profile-form">
+          <div class="flex flex-col gap-4">
             <TextField
               label="Nume complet"
               bind:value={userSettings.name}
@@ -738,13 +590,13 @@ The current educational app uses only **4 out of 29** available @senka-ai/ui com
             />
 
             {#if isEditing}
-              <div class="form-actions">
+              <div class="flex gap-2 mt-4">
                 <Button
                   variant="primary"
                   size="small"
-                  leftIcon="💾"
                   onclick={saveSettings}
                 >
+                  {#snippet leftIcon()}<CheckIcon />{/snippet}
                   {#snippet children()}Salvează{/snippet}
                 </Button>
                 <Button
@@ -764,20 +616,20 @@ The current educational app uses only **4 out of 29** available @senka-ai/ui com
     <!-- Appearance Settings -->
     <Card title="Aspect și afișare" variant="default">
       {#snippet children()}
-        <div class="setting-item">
-          <div class="setting-info">
-            <h3>Temă</h3>
-            <p>Alege între temă deschisă și întunecată</p>
+        <div class="flex justify-between items-center py-4">
+          <div>
+            <h3 class="text-base font-semibold text-gray-900 dark:text-gray-100 mb-1">Temă</h3>
+            <p class="text-sm text-gray-600 dark:text-gray-400 leading-relaxed">Alege între temă deschisă și întunecată</p>
           </div>
           <ThemeToggle size="large" />
         </div>
 
         <Divider />
 
-        <div class="setting-item">
-          <div class="setting-info">
-            <h3>Limba</h3>
-            <p>Schimbă limba de afișare</p>
+        <div class="flex justify-between items-center py-4">
+          <div>
+            <h3 class="text-base font-semibold text-gray-900 dark:text-gray-100 mb-1">Limba</h3>
+            <p class="text-sm text-gray-600 dark:text-gray-400 leading-relaxed">Schimbă limba de afișare</p>
           </div>
           <Dropdown
             options={languageOptions}
@@ -791,10 +643,10 @@ The current educational app uses only **4 out of 29** available @senka-ai/ui com
     <!-- Notification Settings -->
     <Card title="Notificări" variant="default">
       {#snippet children()}
-        <div class="setting-item">
-          <div class="setting-info">
-            <h3>Notificări pentru teme noi</h3>
-            <p>Primește notificări când primești teme noi</p>
+        <div class="flex justify-between items-center py-4">
+          <div>
+            <h3 class="text-base font-semibold text-gray-900 dark:text-gray-100 mb-1">Notificări pentru teme noi</h3>
+            <p class="text-sm text-gray-600 dark:text-gray-400 leading-relaxed">Primește notificări când primești teme noi</p>
           </div>
           <Toggle
             checked={notificationSettings.newHomework}
@@ -805,10 +657,10 @@ The current educational app uses only **4 out of 29** available @senka-ai/ui com
 
         <Divider />
 
-        <div class="setting-item">
-          <div class="setting-info">
-            <h3>Notificări pentru teste</h3>
-            <p>Primește notificări pentru teste programate</p>
+        <div class="flex justify-between items-center py-4">
+          <div>
+            <h3 class="text-base font-semibold text-gray-900 dark:text-gray-100 mb-1">Notificări pentru teste</h3>
+            <p class="text-sm text-gray-600 dark:text-gray-400 leading-relaxed">Primește notificări pentru teste programate</p>
           </div>
           <Toggle
             checked={notificationSettings.upcomingTests}
@@ -819,10 +671,10 @@ The current educational app uses only **4 out of 29** available @senka-ai/ui com
 
         <Divider />
 
-        <div class="setting-item">
-          <div class="setting-info">
-            <h3>Notificări pentru orarul zilei</h3>
-            <p>Primește notificări cu orarul zilei</p>
+        <div class="flex justify-between items-center py-4">
+          <div>
+            <h3 class="text-base font-semibold text-gray-900 dark:text-gray-100 mb-1">Notificări pentru orarul zilei</h3>
+            <p class="text-sm text-gray-600 dark:text-gray-400 leading-relaxed">Primește notificări cu orarul zilei</p>
           </div>
           <Toggle
             checked={notificationSettings.scheduleUpdates}
@@ -833,10 +685,10 @@ The current educational app uses only **4 out of 29** available @senka-ai/ui com
 
         <Divider />
 
-        <div class="setting-item">
-          <div class="setting-info">
-            <h3>Rezumat săptămânal prin email</h3>
-            <p>Primește un rezumat al activității săptămânale</p>
+        <div class="flex justify-between items-center py-4">
+          <div>
+            <h3 class="text-base font-semibold text-gray-900 dark:text-gray-100 mb-1">Rezumat săptămânal prin email</h3>
+            <p class="text-sm text-gray-600 dark:text-gray-400 leading-relaxed">Primește un rezumat al activității săptămânale</p>
           </div>
           <Toggle
             checked={notificationSettings.emailDigest}
@@ -848,165 +700,26 @@ The current educational app uses only **4 out of 29** available @senka-ai/ui com
     </Card>
 
     <!-- Advanced Settings -->
-    <Accordion>
+    <Card title="Setări avansate" variant="default" class="lg:col-span-2">
       {#snippet children()}
-        <div class="accordion-item">
-          <h3>Setări avansate</h3>
-          <div class="accordion-content">
-            <Card variant="default">
-              {#snippet children()}
-                <div class="account-actions">
-                  <Button variant="secondary" size="small" fullWidth>
-                    {#snippet children()}Schimbă parola{/snippet}
-                  </Button>
-                  
-                  <Button variant="tertiary" size="small" fullWidth>
-                    {#snippet children()}Exportă datele{/snippet}
-                  </Button>
-                  
-                  <Button variant="tertiary" size="small" fullWidth>
-                    {#snippet children()}Șterge contul{/snippet}
-                  </Button>
-                </div>
-              {/snippet}
-            </Card>
-          </div>
+        <div class="flex flex-col gap-3">
+          <Button variant="secondary" size="small" fullWidth>
+            {#snippet children()}Schimbă parola{/snippet}
+          </Button>
+          
+          <Button variant="tertiary" size="small" fullWidth>
+            {#snippet children()}Exportă datele{/snippet}
+          </Button>
+          
+          <Button variant="tertiary" size="small" fullWidth class="text-red-600 hover:text-red-700 dark:text-red-400 dark:hover:text-red-300">
+            {#snippet leftIcon()}<DeleteIcon />{/snippet}
+            {#snippet children()}Șterge contul{/snippet}
+          </Button>
         </div>
       {/snippet}
-    </Accordion>
+    </Card>
   </div>
 </div>
-
-<style>
-  .settings-page {
-    max-width: 1200px;
-    margin: 0 auto;
-  }
-
-  .settings-header {
-    margin-bottom: 2rem;
-  }
-
-  .settings-header h1 {
-    color: var(--color-text-primary);
-    font-size: 2rem;
-    font-weight: 700;
-    margin: 0 0 0.5rem 0;
-  }
-
-  .settings-header p {
-    color: var(--color-text-secondary);
-    font-size: 1rem;
-    margin: 0;
-  }
-
-  .settings-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-    gap: 1.5rem;
-  }
-
-  .section-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 1.5rem;
-  }
-
-  .section-header h2 {
-    color: var(--color-text-primary);
-    font-size: 1.25rem;
-    font-weight: 600;
-    margin: 0;
-  }
-
-  .profile-section {
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
-  }
-
-  .profile-form {
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
-  }
-
-  .form-actions {
-    display: flex;
-    gap: 0.5rem;
-    margin-top: 1rem;
-  }
-
-  .setting-item {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 1rem 0;
-  }
-
-  .setting-info h3 {
-    color: var(--color-text-primary);
-    font-size: 1rem;
-    font-weight: 600;
-    margin: 0 0 0.25rem 0;
-  }
-
-  .setting-info p {
-    color: var(--color-text-secondary);
-    font-size: 0.9rem;
-    margin: 0;
-    line-height: 1.4;
-  }
-
-  .account-actions {
-    display: flex;
-    flex-direction: column;
-    gap: 0.75rem;
-  }
-
-  .accordion-item {
-    border: 1px solid var(--color-border);
-    border-radius: 8px;
-    overflow: hidden;
-  }
-
-  .accordion-item h3 {
-    color: var(--color-text-primary);
-    font-size: 1rem;
-    font-weight: 600;
-    margin: 0;
-    padding: 1rem;
-    background: var(--color-surface);
-    border-bottom: 1px solid var(--color-border);
-  }
-
-  .accordion-content {
-    padding: 1rem;
-  }
-
-  @media (max-width: 768px) {
-    .settings-grid {
-      grid-template-columns: 1fr;
-    }
-
-    .setting-item {
-      flex-direction: column;
-      align-items: flex-start;
-      gap: 1rem;
-    }
-
-    .form-actions {
-      flex-direction: column;
-    }
-
-    .section-header {
-      flex-direction: column;
-      align-items: flex-start;
-      gap: 1rem;
-    }
-  }
-</style>
 ```
 
 ## Implementation Timeline
@@ -1032,46 +745,64 @@ The current educational app uses only **4 out of 29** available @senka-ai/ui com
 - [ ] Add accessibility improvements
 - [ ] Performance optimization
 
-## Expected Outcomes
+## Expected Outcomes: Maximum @senka-ai/ui Library Leverage
 
-### **Component Utilization**:
-- **Before**: 4/29 components (14%)
-- **After**: 26/29 components (90%+)
+### **Component Utilization - MAXIMIZE LIBRARY LEVERAGE**:
+- **Before**: 4/29 components (14%) - **INSUFFICIENT**
+- **After**: 26/29 components (90%+) - **MAXIMUM LEVERAGE ACHIEVED**
+- **Icons**: 48+ icons fully integrated across all components
+- **Every UI element leverages @senka-ai/ui where possible**
 
-### **Code Quality Improvements**:
-- **CSS Reduction**: ~70% reduction in custom CSS
-- **Accessibility**: Built-in ARIA labels, keyboard navigation
-- **Consistency**: Unified design system across all pages
-- **Maintainability**: Standardized component patterns
+### **Code Quality Improvements - LIBRARY-FIRST APPROACH**:
+- **CSS Elimination**: 100% custom CSS replaced with @senka-ai/ui + Tailwind
+- **Accessibility**: Built-in ARIA labels, keyboard navigation from @senka-ai/ui
+- **Consistency**: Complete adherence to @senka-ai/ui design system
+- **Maintainability**: Standardized @senka-ai/ui component patterns only
 
-### **User Experience Enhancements**:
-- **Responsive Design**: Proper mobile/desktop layouts
-- **Interactive Elements**: Enhanced feedback and animations
-- **Accessibility**: Screen reader support, keyboard navigation
-- **Performance**: Optimized component loading and rendering
+### **User Experience Enhancements - POWERED BY @senka-ai/ui**:
+- **Responsive Design**: @senka-ai/ui responsive patterns throughout
+- **Interactive Elements**: @senka-ai/ui animations and feedback systems
+- **Accessibility**: @senka-ai/ui accessibility features by default
+- **Performance**: Optimized @senka-ai/ui component rendering
 
-### **Developer Experience**:
-- **Type Safety**: Full TypeScript integration
-- **Svelte 5 Compliance**: Modern runes-based state management
-- **Documentation**: Storybook integration for all components
-- **Testing**: Visual regression testing for component changes
+### **Developer Experience - SHOWCASE @senka-ai/ui CAPABILITIES**:
+- **Type Safety**: Full @senka-ai/ui TypeScript integration
+- **Design System**: 100% @senka-ai/ui component usage
+- **Documentation**: Live examples of @senka-ai/ui in real application
+- **Best Practices**: Demonstrates proper @senka-ai/ui implementation patterns
 
-## Missing Components & Future Recommendations
+## @senka-ai/ui Library Expansion Opportunities
 
-### Educational-Specific Components Needed:
-1. **Calendar Component** - For schedule visualization
-2. **Progress Bar** - For lesson completion tracking
-3. **File Upload** - For homework submission
-4. **Rich Text Editor** - For note-taking
-5. **Chat Interface** - For teacher-student communication
-6. **Notification Center** - For app notifications
+### Components to Add to @senka-ai/ui Library:
+**Goal**: Expand @senka-ai/ui to handle 100% of educational app needs
 
-### Immediate Priorities for @senka-ai/ui Extension:
-1. **Calendar/DatePicker** - Critical for educational scheduling
-2. **ProgressBar** - Essential for learning progress tracking  
-3. **FileUpload** - Needed for assignments and materials
-4. **Notification** - For in-app messaging system
+1. **Calendar Component** - For schedule visualization (**High Priority**)
+2. **Progress Bar** - For lesson completion tracking (**High Priority**)
+3. **File Upload** - For homework submission (**Medium Priority**)
+4. **Rich Text Editor** - For note-taking (**Medium Priority**)
+5. **Chat Interface** - For teacher-student communication (**Low Priority**)
+6. **Notification Center** - For app notifications (**Medium Priority**)
+
+### Strategic @senka-ai/ui Library Extensions:
+1. **Calendar/DatePicker** - Would enable 100% @senka-ai/ui usage for scheduling features
+2. **ProgressBar** - Critical for educational progress tracking without custom components
+3. **FileUpload** - Complete form handling within @senka-ai/ui ecosystem
+4. **Notification** - Unified notification system using @senka-ai/ui patterns
+
+### Vision: 100% @senka-ai/ui Coverage
+Once these components are added to @senka-ai/ui, the educational app can achieve **100% library leverage** with zero custom UI components, making it a perfect showcase of the library's comprehensive capabilities.
 
 ---
 
-This plan transforms the educational app from a basic implementation using 14% of available UI components to a sophisticated, accessible, and maintainable application leveraging 90%+ of the @senka-ai/ui library while demonstrating the full capabilities of the Senka platform.
+## Conclusion: The Ultimate @senka-ai/ui Showcase
+
+This migration plan transforms the educational app from a basic implementation using **14% of available UI components** to a sophisticated, accessible, and maintainable application leveraging **90%+ of the @senka-ai/ui library**. 
+
+**The app becomes a living demonstration of:**
+- ✅ **Complete @senka-ai/ui ecosystem adoption**
+- ✅ **Zero custom UI components** (library-first approach)
+- ✅ **Maximum reusability** and consistency
+- ✅ **Showcase of library capabilities** for potential users
+- ✅ **Best practices implementation** for @senka-ai/ui usage
+
+**The educational app serves as the definitive reference implementation demonstrating the full power and versatility of the @senka-ai/ui library.**
