@@ -16,6 +16,7 @@ export { default as Toggle } from './components/forms/Toggle.svelte'
 // Feedback Components
 export { default as Badge } from './components/feedback/Badge.svelte'
 export { default as Tag } from './components/feedback/Tag.svelte'
+export { default as Banner } from './components/feedback/Banner.svelte'
 
 // Layout Components
 export { default as Card } from './components/layout/Card.svelte'

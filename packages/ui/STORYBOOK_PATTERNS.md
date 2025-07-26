@@ -231,6 +231,67 @@ packages/ui/src/stories/
 </Story>
 ```
 
+### 3. TypeScript-Safe Props Pattern (Required for Components with Required Props)
+
+**For components with required props, use explicit prop mapping instead of spreading to avoid TypeScript errors:**
+
+```svelte
+<!-- ❌ Wrong: TypeScript errors with required props -->
+<Story name="Default" args={{}}>
+  {#snippet template(args)}
+    <Component {...args} />
+  {/snippet}
+</Story>
+
+<!-- ✅ Correct: Explicit prop mapping with fallbacks -->
+<Story name="Default" args={{}}>
+  {#snippet template(args)}
+    <Component
+      title={args.title || 'Default Title'}
+      description={args.description}
+      variant={args.variant}
+      disabled={args.disabled}
+      onclick={args.onclick}
+      {/* Map all other props explicitly */}
+    />
+  {/snippet}
+</Story>
+```
+
+**Key Requirements for Required Props:**
+- **Explicit mapping**: List all props individually instead of spreading `{...args}`
+- **Fallback values**: Use `args.propName || 'fallback'` for required props
+- **All props included**: Map every prop the component accepts
+- **TypeScript safety**: Ensures TypeScript knows required props will always be provided
+
+**Example with Banner component:**
+
+```svelte
+<Story name="Default" args={{}} parameters={{ layout: 'compact' }}>
+  {#snippet template(args)}
+    <Banner
+      title={args.title || 'Banner Title'}
+      description={args.description}
+      buttonText={args.buttonText}
+      image={args.image}
+      imageAlt={args.imageAlt}
+      showTitle={args.showTitle}
+      showDescription={args.showDescription}
+      showButton={args.showButton}
+      showImage={args.showImage}
+      variant={args.variant}
+      disabled={args.disabled}
+      onButtonClick={args.onButtonClick}
+      onBannerClick={args.onBannerClick}
+    />
+  {/snippet}
+</Story>
+```
+
+**When to Use Each Pattern:**
+- **Props spreading (`{...args}`)**: Components with no required props (e.g., Button, TextField)
+- **Explicit mapping**: Components with required props (e.g., Banner, Card)
+
 ### 3. Event Handler Pattern
 
 **Use direct event props, not on: directives:**
@@ -336,7 +397,18 @@ argTypes: {
 
 ## Layout & Styling Patterns
 
-### 1. Layout Parameters
+### 1. Layout Parameters & Container Sizing
+
+Stories automatically get consistent container styling with appropriate sizing. You can control the container size using the `layout` parameter.
+
+#### Container Sizes
+
+- **`default`** (672px): Most component stories - automatically applied if no parameter is specified
+- **`compact`** (448px): Individual components, small forms, simple examples  
+- **`wide`** (896px): Overview grids, icon galleries, complex layouts
+- **`full`**: No max-width constraint for full-width components
+
+#### Usage Examples
 
 ```svelte
 <!-- For single components -->
@@ -345,9 +417,54 @@ parameters={{ layout: 'compact' }}
 <!-- For showcases with multiple components -->
 parameters={{ layout: 'default' }}
 
-<!-- For full-width components -->
+<!-- For overview grids and icon galleries -->
 parameters={{ layout: 'wide' }}
+
+<!-- For full-width components -->
+parameters={{ layout: 'full' }}
 ```
+
+#### Detailed Layout Examples
+
+```svelte
+<Story name="Icon Grid" args={{}} parameters={{ layout: 'wide' }}>
+  {#snippet template(args)}
+    <div class="grid grid-cols-8 gap-4">
+      <!-- Many icons -->
+    </div>
+  {/snippet}
+</Story>
+
+<Story name="Single Icon" args={{}} parameters={{ layout: 'compact' }}>
+  {#snippet template(args)}
+    <div class="flex items-center gap-4">
+      <Icon {...args} />
+      <span>Icon name</span>
+    </div>
+  {/snippet}
+</Story>
+
+<Story name="Full Width Component" args={{}} parameters={{ layout: 'full' }}>
+  {#snippet template(args)}
+    <NavBar {...args} />
+  {/snippet}
+</Story>
+```
+
+#### Automatic Sizing (Fallback)
+
+If you don't specify a `layout` parameter, the system will automatically apply sizing based on story names:
+
+- Stories with "Icon", "Default", "Basic" in the name get compact sizing
+- Stories named "Overview" in Icon stories get wide sizing  
+- Stories with "Full Width" in the name get full sizing
+- All others get default sizing
+
+#### Layout Best Practices
+
+1. **Use parameters for explicit control** - more reliable than relying on name patterns
+2. **Choose appropriate sizes** - compact for single components, wide for overviews
+3. **Test responsiveness** - ensure your content works within the container constraints
 
 ### 2. Container Patterns
 

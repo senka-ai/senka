@@ -13,6 +13,8 @@ Before creating new components, you always have to:
 
 After checking the code of a component, you always also have to check its image.
 
+Read `../Downloads/claude/svelte-5.md` before writing code to make sure you respect the correct coding patterns.
+
 When creating a new component you also have to check for its image in `packages/ui/design/need-to-be-built`
 
 The components should be developed step-by-step: don't move to the next component until I confirm that the current

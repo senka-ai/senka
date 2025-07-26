@@ -454,3 +454,31 @@ export const createRadioStyles = createStyleComposer({
     large: 'h-8 w-8',
   },
 })
+
+/**
+ * Banner style composer for informative banner components
+ * Provides consistent styling for informational banners with different variants
+ */
+export function createBannerStyles(options: {
+  variant: 'default' | 'info' | 'success' | 'warning' | 'error'
+  disabled?: boolean
+  clickable?: boolean
+  className?: string
+}): string {
+  const { variant, disabled = false, clickable = false, className = '' } = options
+
+  const base = 'flex items-start gap-4 p-5 rounded-2xl transition-all duration-200'
+
+  const variants = {
+    default: 'bg-neutral-50 border border-neutral-200',
+    info: 'bg-highlight-50 border border-highlight-200',
+    success: 'bg-success-50 border border-success-200',
+    warning: 'bg-warning-50 border border-warning-200',
+    error: 'bg-error-50 border border-error-200',
+  }
+
+  const clickableStyles = clickable && !disabled ? 'cursor-pointer hover:shadow-md active:scale-[0.99]' : ''
+  const disabledStyles = disabled ? 'opacity-50 cursor-not-allowed' : ''
+
+  return composeClasses(base, variants[variant], clickableStyles, disabledStyles, className)
+}
