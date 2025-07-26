@@ -32,7 +32,8 @@
     "typecheck": "tsc --noEmit --strict --skipLibCheck",
     "svelte-check": "svelte-check --tsconfig ./tsconfig.json",
     "test": "vitest",
-    "test:visual": "playwright test"
+    "test:visual": "playwright test",
+    "test:visual:update": "playwright test --update-snapshots"
   },
   "keywords": [
     "svelte",

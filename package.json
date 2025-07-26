@@ -17,7 +17,7 @@
     "ui:check": "yarn workspace @senka-ai/ui svelte-check",
     "ui:test": "yarn workspace @senka-ai/ui test",
     "ui:test:visual": "yarn workspace @senka-ai/ui test:visual",
-    "ui:test:visual:update": "yarn workspace @senka-ai/ui test:visual -- --update-snapshots",
+    "ui:test:visual:update": "yarn workspace @senka-ai/ui test:visual:update",
     "ui:report": "yarn workspace @senka-ai/ui playwright show-report",
     "app:dev": "yarn workspace senka-app dev",
     "app:build": "yarn workspace senka-app build",
