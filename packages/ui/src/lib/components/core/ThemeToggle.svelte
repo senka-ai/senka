@@ -1,8 +1,8 @@
 <script lang="ts">
   import { onMount } from 'svelte'
-  import { toggleTheme, useTheme } from '../theme.svelte'
-  import { SunIcon, MoonIcon } from '../icons'
-  import type { BaseProps, ExtendedSizedComponent } from '../types/component'
+  import { toggleTheme, useTheme } from '../../theme.svelte'
+  import { SunIcon, MoonIcon } from '../../icons'
+  import type { BaseProps, ExtendedSizedComponent } from '../../types/component'
 
   interface Props extends BaseProps, ExtendedSizedComponent {}
 

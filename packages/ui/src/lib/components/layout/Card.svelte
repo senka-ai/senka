@@ -1,5 +1,5 @@
 <script lang="ts">
-  import Button from '../Button.svelte'
+  import Button from '../core/Button.svelte'
   import Image from '../media/Image.svelte'
   import ImagePlaceholder from '../media/ImagePlaceholder.svelte'
   import { ArrowRightIcon } from '../../icons'

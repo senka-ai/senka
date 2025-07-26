@@ -1,10 +1,10 @@
 <script lang="ts">
-  import { SpinnerIcon } from '../icons'
-  import type { ButtonLikeComponent, IconComponent, InteractiveHandlers } from '../types/component'
-  import { shouldRenderIcon, isStringIcon } from '../utils/icons'
-  import { createKeyboardHandler, createClickHandler, KeySets } from '../utils/events'
-  import { createButtonStyles } from '../utils/styles'
-  import { ButtonRenderer, IconRenderer } from '../utils/rendering'
+  import { SpinnerIcon } from '../../icons'
+  import type { ButtonLikeComponent, IconComponent, InteractiveHandlers } from '../../types/component'
+  import { shouldRenderIcon, isStringIcon } from '../../utils/icons'
+  import { createKeyboardHandler, createClickHandler, KeySets } from '../../utils/events'
+  import { createButtonStyles } from '../../utils/styles'
+  import { ButtonRenderer, IconRenderer } from '../../utils/rendering'
 
   /**
    * Button component props interface

@@ -1,6 +1,6 @@
 <script module>
   import { defineMeta } from '@storybook/addon-svelte-csf'
-  import Button from '../lib/components/Button.svelte'
+  import Button from '../lib/components/core/Button.svelte'
 
   const { Story } = defineMeta({
     title: 'Core/Button',

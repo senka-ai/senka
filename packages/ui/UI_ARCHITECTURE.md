@@ -4,7 +4,7 @@
 
 The `@senka-ai/ui` library is a modern, type-safe Svelte 5 component library built with TypeScript, Tailwind CSS v4, and modern development practices. It provides a comprehensive set of reusable UI components, featuring full theme support, accessibility standards, and robust state management patterns.
 
-**Version**: 0.1.0  
+**Version**: 0.0.1  
 **License**: MIT  
 **Framework**: Svelte 5 with TypeScript  
 **Styling**: Tailwind CSS v4 + CSS Custom Properties  
@@ -37,15 +37,15 @@ The library fully embraces Svelte 5's modern runes system:
 @senka-ai/ui/
 ├── src/
 │   ├── lib/
-│   │   ├── components/          # 29 UI components organized by category
-│   │   │   ├── Button.svelte           # Core button component
-│   │   │   ├── ThemeToggle.svelte      # Theme switching component
+│   │   ├── components/          # 28 UI components organized by category
+│   │   │   ├── core/                   # 2 core components
+│   │   │   ├── examples/               # Example components for documentation
 │   │   │   ├── forms/                  # 9 form components
 │   │   │   ├── feedback/               # 2 feedback components
 │   │   │   ├── layout/                 # 7 layout components
-│   │   │   ├── navigation/             # 3 navigation components
+│   │   │   ├── navigation/             # 2 navigation components
 │   │   │   └── media/                  # 6 media components
-│   │   ├── icons/               # 48 SVG icon components
+│   │   ├── icons/               # 47 SVG icon components
 │   │   ├── types/
 │   │   │   └── component.ts     # Shared TypeScript interfaces
 │   │   ├── utils/               # Utility functions and state management
@@ -55,7 +55,8 @@ The library fully embraces Svelte 5's modern runes system:
 │   │   │   ├── rendering.ts     # Component rendering helpers
 │   │   │   ├── state.svelte.ts  # State management utilities
 │   │   │   ├── styles.ts        # Style composition utilities
-│   │   │   └── validation.svelte.ts # Form validation system
+│   │   │   ├── validation.svelte.ts # Form validation system
+│   │   │   └── tests/           # Unit tests for utilities
 │   │   ├── theme.svelte.ts      # Global theme management
 │   │   └── index.ts             # Main library exports
 │   ├── stories/                 # Storybook documentation
@@ -69,8 +70,18 @@ The library fully embraces Svelte 5's modern runes system:
 │       └── transitions.css      # Animation and transition utilities
 ├── package.json
 ├── vite.config.ts              # Build configuration
+├── vitest.setup.ts             # Vitest setup configuration
 ├── tsconfig.json               # TypeScript configuration
-└── tailwind.config.ts          # Tailwind CSS configuration
+├── svelte.config.js            # Svelte configuration
+├── playwright.config.ts        # Playwright testing configuration
+├── vercel.json                 # Vercel deployment configuration
+├── BUILD_COMPONENTS.md         # Component build documentation
+├── README.md                   # Package documentation
+├── design/                     # Design reference images
+├── dist/                       # Build output directory
+├── storybook-static/           # Built Storybook output
+├── test-results/               # Test execution results
+└── tests/                      # Visual testing with Playwright
 ```
 
 ## TypeScript Interface Architecture
@@ -684,6 +695,18 @@ export function createNavigationHandler(
 
 ## Component Categories
 
+### Core Components (2 components)
+
+**Button** - Primary action button
+
+- Three variants, loading states, icons (left/right), full width support
+- Extends: `ButtonLikeComponent`, `IconComponent`
+
+**ThemeToggle** - Light/dark theme switcher
+
+- System preference detection, smooth transitions, icon switching
+- Extends: `BaseProps`, `ClickHandler`
+
 ### Form Components (9 components)
 
 **TextField** - Text input with validation
@@ -731,17 +754,6 @@ export function createNavigationHandler(
 - Label, helper text, error display, consistent spacing
 - Extends: `BaseProps`, `ChildrenComponent`
 
-### Interactive Components (2 components)
-
-**Button** - Primary action button
-
-- Three variants, loading states, icons (left/right), full width support
-- Extends: `ButtonLikeComponent`, `IconComponent`
-
-**ThemeToggle** - Light/dark theme switcher
-
-- System preference detection, smooth transitions, icon switching
-- Extends: `BaseProps`, `ClickHandler`
 
 ### Feedback Components (2 components)
 
@@ -792,7 +804,7 @@ export function createNavigationHandler(
 - Smooth animations, keyboard navigation, multiple items
 - Extends: `BaseProps`, `ChildrenComponent`
 
-### Navigation Components (3 components)
+### Navigation Components (2 components)
 
 **TabBar** - Tab navigation
 
@@ -804,10 +816,6 @@ export function createNavigationHandler(
 - Icon and text support, active states, responsive behavior
 - Extends: `BaseProps`, `ChildrenComponent`
 
-**Navigation** - App navigation component
-
-- Context for navigation state, route awareness
-- Extends: `BaseProps`, `ChildrenComponent`
 
 ### Media Components (6 components)
 
@@ -841,7 +849,7 @@ export function createNavigationHandler(
 - Consistent styling with Video component
 - Extends: `BaseProps`
 
-## Icon System (48 icons)
+## Icon System (47 icons)
 
 ### Standardized Icon Pattern
 
@@ -954,15 +962,15 @@ export default defineConfig({
 
 ```json
 {
-  "dev": "storybook dev -p 6006",
-  "build": "vite build && tsc",
-  "story": "storybook dev -p 6006",
+  "dev": "storybook dev -p 6006 --no-open",
+  "build": "svelte-package -o dist && cp -r src/styles/* dist/ && cp src/styles/index.css dist/styles.css",
+  "story": "storybook dev -p 6006 --no-open",
   "build-storybook": "storybook build",
-  "typecheck": "tsc --noEmit",
-  "check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
-  "test": "vitest run",
-  "test:unit": "vitest",
-  "test:visual": "playwright test"
+  "typecheck": "tsc --noEmit --strict --skipLibCheck",
+  "svelte-check": "svelte-check --tsconfig ./tsconfig.json",
+  "test": "vitest",
+  "test:visual": "playwright test",
+  "preview": "vite preview"
 }
 ```
 

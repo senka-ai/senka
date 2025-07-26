@@ -4,14 +4,11 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## CRITICAL: REQUIRED READING BEFORE ANY CHANGES
 
-**ALWAYS read these files before making any changes:**
+**ALWAYS read these files after reading this document:**
 
-1. **`SENKA_SYSTEM_ARCHITECTURE.md`** - **CRITICAL: Complete system architecture and platform vision** (read this!)
-2. **`HYBRID_SETUP.md`** - Hybrid repository setup for UI library
-3. **`MONETIZATION_STRATEGY.md`** - Monetization strategy for the platform
-4. **`../Downloads/claude/Svelte_5.md`** - Essential Svelte 5 syntax and patterns
-5. **`packages/ui/UI_ARCHITECTURE.md`** - Detailed component patterns and implementation
-6. **`packages/app/plan.md`** - Educational app MVP plan and long-term roadmap
+- **`SENKA_SYSTEM_ARCHITECTURE.md`** - **CRITICAL: Complete system architecture and platform vision** (read this!)
+- **`../Downloads/claude/svelte-5.md`** - Essential Svelte 5 syntax and patterns (read this!)
+- **`packages/ui/UI_ARCHITECTURE.md`** - Detailed component patterns and implementation (read this!)
 
 ## Project Overview
 
