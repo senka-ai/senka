@@ -105,9 +105,17 @@
         {#each Array(steps) as _, index}
           {@const isActive = index <= activeStep()}
           {@const isCompleted = index < activeStep()}
-          <div class="flex-1 bg-neutral-200 border-r border-white last:border-r-0 transition-all duration-200">
+          <div class="flex-1 border-r border-white bg-neutral-200 transition-all duration-200 last:border-r-0">
             {#if isActive || isCompleted}
-              <div class="h-full w-full {color === 'primary' ? 'bg-highlight' : color === 'success' ? 'bg-success' : color === 'warning' ? 'bg-warning' : 'bg-error'} transition-all duration-200"></div>
+              <div
+                class="h-full w-full {color === 'primary'
+                  ? 'bg-highlight'
+                  : color === 'success'
+                    ? 'bg-success'
+                    : color === 'warning'
+                      ? 'bg-warning'
+                      : 'bg-error'} transition-all duration-200"
+              ></div>
             {/if}
           </div>
         {/each}

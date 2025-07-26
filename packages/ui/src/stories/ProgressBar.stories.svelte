@@ -186,7 +186,11 @@
   {/snippet}
 </Story>
 
-<Story name="Stepped Variant" args={{ variant: 'stepped', steps: 5, currentStep: 2 }} parameters={{ layout: 'compact' }}>
+<Story
+  name="Stepped Variant"
+  args={{ variant: 'stepped', steps: 5, currentStep: 2 }}
+  parameters={{ layout: 'compact' }}
+>
   {#snippet template(args)}
     <ProgressBar
       variant={args.variant}
@@ -305,7 +309,11 @@
   {/snippet}
 </Story>
 
-<Story name="Custom Label" args={{ showLabel: true, label: '4 of 5 tasks completed', progress: 80 }} parameters={{ layout: 'compact' }}>
+<Story
+  name="Custom Label"
+  args={{ showLabel: true, label: '4 of 5 tasks completed', progress: 80 }}
+  parameters={{ layout: 'compact' }}
+>
   {#snippet template(args)}
     <ProgressBar
       showLabel={args.showLabel}
@@ -350,18 +358,13 @@
   {#snippet template()}
     <div class="max-w-md space-y-6">
       <h3 class="text-lg font-medium">File Upload Progress</h3>
-      
+
       <div class="space-y-3">
         <div class="flex items-center justify-between text-sm">
           <span>document.pdf</span>
           <span class="text-neutral-600">2.5 MB</span>
         </div>
-        <ProgressBar 
-          progress={85} 
-          color="primary" 
-          showLabel 
-          label="85% uploaded"
-        />
+        <ProgressBar progress={85} color="primary" showLabel label="85% uploaded" />
       </div>
 
       <div class="space-y-3">
@@ -369,12 +372,7 @@
           <span>image.jpg</span>
           <span class="text-neutral-600">1.2 MB</span>
         </div>
-        <ProgressBar 
-          progress={100} 
-          color="success" 
-          showLabel 
-          label="Upload complete"
-        />
+        <ProgressBar progress={100} color="success" showLabel label="Upload complete" />
       </div>
 
       <div class="space-y-3">
@@ -382,11 +380,7 @@
           <span>video.mp4</span>
           <span class="text-neutral-600">45.8 MB</span>
         </div>
-        <ProgressBar 
-          progress={15} 
-          color="primary" 
-          showLabel
-        />
+        <ProgressBar progress={15} color="primary" showLabel />
       </div>
     </div>
   {/snippet}
@@ -396,52 +390,45 @@
   {#snippet template()}
     <div class="max-w-md space-y-6">
       <h3 class="text-lg font-medium">Project Progress</h3>
-      
+
       <div class="space-y-4">
         <div>
           <p class="mb-2 text-sm font-medium">Overall Progress</p>
-          <ProgressBar 
-            variant="stepped" 
-            steps={6} 
-            currentStep={4} 
-            color="primary"
-            showLabel
-            size="large"
-          />
+          <ProgressBar variant="stepped" steps={6} currentStep={4} color="primary" showLabel size="large" />
         </div>
 
         <div class="space-y-3 text-sm">
           <div class="flex items-center justify-between">
             <div class="flex items-center gap-2">
-              <CheckIcon class="h-4 w-4 text-success" size={16} />
+              <CheckIcon class="text-success h-4 w-4" size={16} />
               <span>Research & Planning</span>
             </div>
             <span class="text-success">Complete</span>
           </div>
           <div class="flex items-center justify-between">
             <div class="flex items-center gap-2">
-              <CheckIcon class="h-4 w-4 text-success" size={16} />
+              <CheckIcon class="text-success h-4 w-4" size={16} />
               <span>Design Mockups</span>
             </div>
             <span class="text-success">Complete</span>
           </div>
           <div class="flex items-center justify-between">
             <div class="flex items-center gap-2">
-              <CheckIcon class="h-4 w-4 text-success" size={16} />
+              <CheckIcon class="text-success h-4 w-4" size={16} />
               <span>Frontend Development</span>
             </div>
             <span class="text-success">Complete</span>
           </div>
           <div class="flex items-center justify-between">
             <div class="flex items-center gap-2">
-              <CheckIcon class="h-4 w-4 text-success" size={16} />
+              <CheckIcon class="text-success h-4 w-4" size={16} />
               <span>Backend Development</span>
             </div>
             <span class="text-success">Complete</span>
           </div>
           <div class="flex items-center justify-between">
             <div class="flex items-center gap-2">
-              <InfoIcon class="h-4 w-4 text-warning" size={16} />
+              <InfoIcon class="text-warning h-4 w-4" size={16} />
               <span>Testing & QA</span>
             </div>
             <span class="text-warning">In Progress</span>
@@ -463,7 +450,7 @@
   {#snippet template()}
     <div class="max-w-sm space-y-6">
       <h3 class="text-lg font-medium">Skills</h3>
-      
+
       <div class="space-y-4">
         <div>
           <p class="mb-2 text-sm">JavaScript</p>
