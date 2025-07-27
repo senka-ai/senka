@@ -615,3 +615,86 @@ export function createDialogStyles(options: { disabled?: boolean; className?: st
     actions,
   }
 }
+
+/**
+ * Loader style composer for loading indicator components
+ * Provides consistent styling for circular progress and spinner loaders
+ */
+export function createLoaderStyles(options: {
+  variant: 'progress' | 'spinner'
+  size: 'small' | 'medium' | 'large'
+  color: 'primary' | 'secondary' | 'success' | 'warning' | 'error'
+  speed: 'slow' | 'normal' | 'fast'
+  disabled?: boolean
+  className?: string
+}): {
+  container: string
+  svg: string
+  background: string
+  foreground: string
+  progressText: string
+  label: string
+  spinAnimation: string
+} {
+  const { variant, size, color, speed, disabled = false, className = '' } = options
+
+  // Container styles
+  const containerBase = 'relative inline-flex flex-col items-center justify-center gap-2'
+  const disabledStyles = disabled ? 'opacity-50 cursor-not-allowed' : ''
+  const container = composeClasses(containerBase, disabledStyles, className)
+
+  // SVG size styles
+  const svgSizes = {
+    small: 'h-8 w-8',
+    medium: 'h-12 w-12',
+    large: 'h-16 w-16',
+  }
+  const svg = svgSizes[size]
+
+  // Background circle styles
+  const background = 'stroke-gray-200'
+
+  // Foreground circle styles - colors and animations
+  const colorStyles = {
+    primary: 'stroke-blue-500',
+    secondary: 'stroke-gray-500',
+    success: 'stroke-green-500',
+    warning: 'stroke-amber-500',
+    error: 'stroke-red-500',
+  }
+
+  const progressStyles = variant === 'progress' ? 'transition-all duration-300 ease-out' : ''
+  const foreground = composeClasses(colorStyles[color], progressStyles)
+
+  // Progress text styles
+  const progressTextSizes = {
+    small: 'text-[8px]',
+    medium: 'text-action-s',
+    large: 'text-action-m',
+  }
+  const progressText = composeClasses(
+    'absolute top-0 left-0 w-full h-full flex items-center justify-center font-medium text-neutral-700 pointer-events-none',
+    progressTextSizes[size]
+  )
+
+  // Label styles
+  const label = 'text-body-s text-neutral-600 font-medium'
+
+  // Spinner animation speeds
+  const animationSpeeds = {
+    slow: 'spin 2s linear infinite',
+    normal: 'spin 1.5s linear infinite',
+    fast: 'spin 1s linear infinite',
+  }
+  const spinAnimation = variant === 'spinner' ? animationSpeeds[speed] : ''
+
+  return {
+    container,
+    svg,
+    background,
+    foreground,
+    progressText,
+    label,
+    spinAnimation,
+  }
+}

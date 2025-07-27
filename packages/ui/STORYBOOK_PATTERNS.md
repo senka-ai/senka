@@ -758,6 +758,178 @@ argTypes: {
 </Story>
 ```
 
+## Component Composition in Stories
+
+### Use Library Components Over Raw HTML
+
+**When creating stories that need additional elements (forms, containers, buttons, etc.), always use existing UI components from the same library instead of creating new markup with custom styling.**
+
+#### ✅ Correct: Use Library Components
+
+```svelte
+<Story name="Custom Content Example">
+  {#snippet template()}
+    <Dialog open={true}>
+      {#snippet children()}
+        <div class="space-y-4">
+          <h2 class="text-h3 font-semibold text-neutral-900">Contact Form</h2>
+          <div class="space-y-3">
+            <!-- Use library components -->
+            <TextField label="Name" placeholder="Your name" showLabel={false} />
+            <TextField label="Email" type="email" placeholder="Your email" showLabel={false} />
+            <TextArea label="Message" placeholder="Your message" rows={3} showLabel={false} />
+          </div>
+        </div>
+      {/snippet}
+    </Dialog>
+  {/snippet}
+</Story>
+
+<Story name="Interactive Example">
+  {#snippet template()}
+    <div class="space-y-4">
+      <!-- Use library Button component -->
+      <Button onclick={handleAction} fullWidth>
+        {#snippet children()}Start Process{/snippet}
+      </Button>
+
+      <!-- Use library Loader component -->
+      <Loader variant="progress" progress={progressValue} showProgress />
+    </div>
+  {/snippet}
+</Story>
+```
+
+#### ❌ Wrong: Raw HTML with Custom Styling
+
+```svelte
+<Story name="Custom Content Example">
+  {#snippet template()}
+    <Dialog open={true}>
+      {#snippet children()}
+        <div class="space-y-4">
+          <h2 class="text-h3 font-semibold text-neutral-900">Contact Form</h2>
+          <div class="space-y-3">
+            <!-- Don't use raw HTML inputs -->
+            <input type="text" placeholder="Your name" class="w-full rounded-lg border px-3 py-2" />
+            <input type="email" placeholder="Your email" class="w-full rounded-lg border px-3 py-2" />
+            <textarea placeholder="Your message" rows="3" class="w-full rounded-lg border px-3 py-2"></textarea>
+          </div>
+        </div>
+      {/snippet}
+    </Dialog>
+  {/snippet}
+</Story>
+
+<Story name="Interactive Example">
+  {#snippet template()}
+    <div class="space-y-4">
+      <!-- Don't use raw HTML buttons -->
+      <button onclick={handleAction} class="w-full rounded-lg bg-blue-500 px-4 py-2 text-white"> Start Process </button>
+
+      <!-- Don't create custom loading indicators -->
+      <div class="flex items-center justify-center">
+        <div class="h-8 w-8 animate-spin rounded-full border-b-2 border-blue-500"></div>
+      </div>
+    </div>
+  {/snippet}
+</Story>
+```
+
+#### Key Benefits of Using Library Components
+
+1. **Consistency**: Maintains visual and behavioral consistency across all stories
+2. **Accessibility**: Library components include proper ARIA attributes and keyboard navigation
+3. **Maintainability**: Updates to library components automatically improve all stories
+4. **Documentation**: Stories serve as examples of how components work together
+5. **Testing**: Ensures component interactions are tested in realistic scenarios
+
+#### Component Import Pattern
+
+```svelte
+<script module>
+  import { defineMeta } from '@storybook/addon-svelte-csf'
+  import MainComponent from '../lib/components/category/MainComponent.svelte'
+
+  // Import other library components as needed
+  import Button from '../lib/components/core/Button.svelte'
+  import TextField from '../lib/components/forms/TextField.svelte'
+  import TextArea from '../lib/components/forms/TextArea.svelte'
+  import Card from '../lib/components/layout/Card.svelte'
+  import Badge from '../lib/components/feedback/Badge.svelte'
+
+  // ... story configuration
+</script>
+```
+
+#### Real-World Examples
+
+**Form Validation Story:**
+
+```svelte
+<Story name="Contact Form">
+  {#snippet template()}
+    <Card variant="default">
+      {#snippet children()}
+        <div class="space-y-4">
+          <TextField
+            label="Full Name"
+            placeholder="Enter your full name"
+            validationRules={[validationRules.required()]}
+          />
+          <TextField
+            label="Email"
+            type="email"
+            placeholder="your.email@example.com"
+            validationRules={[validationRules.required(), validationRules.email()]}
+          />
+          <TextArea label="Message" placeholder="How can we help you?" rows={4} />
+          <Button variant="primary" fullWidth>
+            {#snippet children()}Send Message{/snippet}
+          </Button>
+        </div>
+      {/snippet}
+    </Card>
+  {/snippet}
+</Story>
+```
+
+**Dashboard Example:**
+
+```svelte
+<Story name="Dashboard Widget">
+  {#snippet template()}
+    <Card variant="default">
+      {#snippet children()}
+        <div class="space-y-4">
+          <div class="flex items-center justify-between">
+            <h3 class="text-lg font-semibold">Analytics</h3>
+            <Badge variant="success">Live</Badge>
+          </div>
+
+          <div class="grid grid-cols-2 gap-4">
+            <div class="text-center">
+              <Loader variant="progress" progress={75} showProgress color="success" />
+              <p class="mt-2 text-sm text-neutral-600">Server Health</p>
+            </div>
+            <div class="text-center">
+              <Loader variant="spinner" color="primary" />
+              <p class="mt-2 text-sm text-neutral-600">Loading Data</p>
+            </div>
+          </div>
+
+          <Button variant="secondary" fullWidth>
+            {#snippet children()}Refresh Dashboard{/snippet}
+          </Button>
+        </div>
+      {/snippet}
+    </Card>
+  {/snippet}
+</Story>
+```
+
+This pattern ensures that stories not only demonstrate individual components but also show how the entire design system works together cohesively.
+
 ## Common Mistakes to Avoid
 
 ### 1. Svelte 5 Anti-Patterns
