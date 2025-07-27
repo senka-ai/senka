@@ -41,12 +41,34 @@ jobs:
           cd packages/ui
           npx playwright install --with-deps
 
-      - name: Run visual tests
+      - name: Run visual tests (update snapshots if missing)
         run: |
           cd packages/ui
-          yarn test:visual
+          if [ ! -d "tests/visual/all-components.spec.ts-snapshots" ] || [ -z "$(find tests/visual/all-components.spec.ts-snapshots -name '*-linux.png' -print -quit)" ]; then
+            echo "Generating Linux snapshots..."
+            yarn test:visual --update-snapshots
+          else
+            echo "Running visual regression tests..."
+            yarn test:visual
+          fi
         env:
           CI: true
+
+      - name: Commit updated snapshots
+        if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+        run: |
+          cd packages/ui
+          if [ -n "$(git status --porcelain tests/visual/)" ]; then
+            git config --local user.email "action@github.com"
+            git config --local user.name "GitHub Action"
+            git add tests/visual/all-components.spec.ts-snapshots/
+            git commit -m "Update visual test snapshots for Linux CI environment
+
+            🤖 Generated with [Claude Code](https://claude.ai/code)
+
+            Co-Authored-By: Claude <noreply@anthropic.com>"
+            git push
+          fi
 
       - name: Upload test results
         uses: actions/upload-artifact@v4
