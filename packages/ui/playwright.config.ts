@@ -18,6 +18,8 @@ export default defineConfig({
     toHaveScreenshot: {
       mode: 'css',
       animations: 'disabled',
+      // Use platform-agnostic snapshot names for cross-platform compatibility
+      omitBackground: true,
     },
   },
 
