@@ -31,6 +31,9 @@ jobs:
           node-version: '18'
           cache: 'yarn'
 
+      - name: Enable Corepack
+        run: corepack enable
+
       - name: Install dependencies
         run: yarn install --frozen-lockfile
 
@@ -52,7 +55,7 @@ jobs:
         with:
           name: visual-test-results
           path: |
-            packages/ui/tests/visual/test-results/
+            packages/ui/test-results/
             packages/ui/playwright-report/
           retention-days: 30
 
