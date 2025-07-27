@@ -1,0 +1,17 @@
+node_modules
+.git
+.gitignore
+Dockerfile*
+docker-compose*
+README.md
+.env*
+dist
+build
+*.log
+.DS_Store
+packages/app/dist
+packages/app/build
+packages/ui/dist
+packages/ui/build
+packages/ui/playwright-report
+packages/ui/test-results

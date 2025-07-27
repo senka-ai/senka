@@ -1,0 +1,49 @@
+name: Visual Regression Tests (Docker)
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'packages/ui/src/**'
+      - 'packages/ui/tests/**'
+      - 'packages/ui/package.json'
+      - 'packages/ui/Dockerfile.playwright'
+      - 'docker-compose.visual.yml'
+      - '.github/workflows/visual-tests-docker.yml'
+
+jobs:
+  visual-tests:
+    timeout-minutes: 60
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Build Docker image
+        run: |
+          docker build -f packages/ui/Dockerfile.playwright -t visual-tests:latest .
+
+      - name: Run visual tests in Docker
+        run: |
+          docker run --rm \
+            -v $(pwd)/packages/ui/tests:/app/packages/ui/tests \
+            visual-tests:latest
+
+      - name: Upload Playwright report
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: playwright-report
+          path: packages/ui/playwright-report/
+          retention-days: 30
+
+      - name: Upload test results
+        uses: actions/upload-artifact@v4
+        if: failure()
+        with:
+          name: test-results
+          path: packages/ui/test-results/
+          retention-days: 7

@@ -1,0 +1,34 @@
+# Dockerfile for consistent Playwright visual testing environment  
+FROM mcr.microsoft.com/playwright:v1.54.1-noble
+
+# Set working directory
+WORKDIR /app
+
+# Install Node.js 20 and corepack
+RUN apt-get update && apt-get install -y curl && \
+    curl -fsSL https://deb.nodesource.com/setup_20.x | bash - && \
+    apt-get install -y nodejs && \
+    corepack enable && \
+    rm -rf /var/lib/apt/lists/*
+
+# Set environment variables
+ENV CI=true
+ENV NODE_ENV=test
+
+# Copy monorepo package files for dependency installation
+COPY package.json yarn.lock .yarnrc.yml ./
+COPY .yarn/ ./.yarn/
+COPY packages/ui/package.json ./packages/ui/package.json
+COPY packages/app/package.json ./packages/app/package.json
+
+# Install dependencies
+RUN yarn install --immutable
+
+# Copy the UI package source code
+COPY packages/ui/ ./packages/ui/
+
+# Set working directory to UI package
+WORKDIR /app/packages/ui
+
+# Default command
+CMD ["yarn", "test:visual"]

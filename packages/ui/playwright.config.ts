@@ -14,9 +14,9 @@ export default defineConfig({
   timeout: 30 * 1000,
   expect: {
     // Configure screenshot comparison
-    threshold: 0.2,
     toHaveScreenshot: {
       animations: 'disabled',
+      threshold: 0.2,
     },
   },
 
@@ -53,21 +53,6 @@ export default defineConfig({
         colorScheme: 'light',
       },
     },
-    // Optional: Add more browsers if needed
-    // {
-    //   name: 'firefox',
-    //   use: {
-    //     ...devices['Desktop Firefox'],
-    //     colorScheme: 'light',
-    //   },
-    // },
-    // {
-    //   name: 'webkit',
-    //   use: {
-    //     ...devices['Desktop Safari'],
-    //     colorScheme: 'light',
-    //   },
-    // },
   ],
 
   // Run your local dev server before starting the tests

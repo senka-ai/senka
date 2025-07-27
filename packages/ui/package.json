@@ -33,7 +33,10 @@
     "svelte-check": "svelte-check --tsconfig ./tsconfig.json",
     "test": "vitest",
     "test:visual": "playwright test",
-    "test:visual:update": "playwright test --update-snapshots"
+    "test:visual:update": "playwright test --update-snapshots",
+    "test:visual:docker": "docker-compose -f ../../docker-compose.visual.yml run --rm visual-tests",
+    "test:visual:docker:update": "docker-compose -f ../../docker-compose.visual.yml run --rm visual-tests-update",
+    "test:visual:docker:build": "docker-compose -f ../../docker-compose.visual.yml build"
   },
   "keywords": [
     "svelte",

@@ -1,0 +1,57 @@
+services:
+  visual-tests:
+    build:
+      context: .
+      dockerfile: packages/ui/Dockerfile.playwright
+    volumes:
+      # Mount source code for development
+      - ./packages/ui/src:/app/packages/ui/src:ro
+      - ./packages/ui/tests:/app/packages/ui/tests:rw
+      - ./packages/ui/stories:/app/packages/ui/stories:ro
+      # Mount package files
+      - ./packages/ui/package.json:/app/packages/ui/package.json:ro
+      - ./packages/ui/playwright.config.ts:/app/packages/ui/playwright.config.ts:ro
+      - ./packages/ui/vite.config.ts:/app/packages/ui/vite.config.ts:ro
+      - ./packages/ui/.storybook:/app/packages/ui/.storybook:ro
+    environment:
+      - CI=true
+      - NODE_ENV=test
+    ports:
+      - "6006:6006"  # Storybook port
+    command: yarn test:visual
+    
+  visual-tests-update:
+    build:
+      context: .
+      dockerfile: packages/ui/Dockerfile.playwright
+    volumes:
+      # Same mounts as above
+      - ./packages/ui/src:/app/packages/ui/src:ro
+      - ./packages/ui/tests:/app/packages/ui/tests:rw
+      - ./packages/ui/stories:/app/packages/ui/stories:ro
+      - ./packages/ui/package.json:/app/packages/ui/package.json:ro
+      - ./packages/ui/playwright.config.ts:/app/packages/ui/playwright.config.ts:ro
+      - ./packages/ui/vite.config.ts:/app/packages/ui/vite.config.ts:ro
+      - ./packages/ui/.storybook:/app/packages/ui/.storybook:ro
+    environment:
+      - CI=true
+      - NODE_ENV=test
+    ports:
+      - "6007:6006"  # Different port to avoid conflicts
+    command: yarn test:visual --update-snapshots
+    
+  storybook:
+    build:
+      context: .
+      dockerfile: packages/ui/Dockerfile.playwright
+    volumes:
+      - ./packages/ui/src:/app/packages/ui/src:ro
+      - ./packages/ui/stories:/app/packages/ui/stories:ro
+      - ./packages/ui/package.json:/app/packages/ui/package.json:ro
+      - ./packages/ui/vite.config.ts:/app/packages/ui/vite.config.ts:ro
+      - ./packages/ui/.storybook:/app/packages/ui/.storybook:ro
+    environment:
+      - NODE_ENV=development
+    ports:
+      - "6006:6006"
+    command: yarn story
