@@ -62,7 +62,7 @@ export const createButtonStyles = createStyleComposer({
   base: 'inline-flex items-center justify-center gap-2 font-medium transition-all duration-200 focus:outline-none cursor-pointer',
   variants: {
     primary:
-      'border-2 border-transparent hover:bg-highlight-hover bg-highlight text-white disabled:bg-neutral-disabled disabled:text-neutral-disabled',
+      'border-2 border-transparent hover:bg-error-hover bg-error text-white disabled:bg-neutral-disabled disabled:text-neutral-disabled',
     secondary:
       'bg-transparent border-2 hover:bg-highlight-light text-highlight border-highlight disabled:border-neutral-disabled disabled:text-neutral-light',
     tertiary:
@@ -215,7 +215,7 @@ export function createTagStyles(options: {
   const base = 'inline-flex items-center gap-1.5 font-medium transition-all duration-200 rounded-full uppercase'
 
   const variants = {
-    primary: 'bg-highlight text-white',
+    primary: 'bg-error text-white',
     secondary: 'bg-transparent border border-highlight text-highlight',
     tertiary: 'bg-highlight-light text-highlight',
   }
