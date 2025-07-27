@@ -13,13 +13,12 @@ export default defineConfig({
   // Configure test timeout and retry
   timeout: 30 * 1000,
   expect: {
-    // Configure screenshot comparison
-    threshold: 0.2,
+    // Configure screenshot comparison with higher threshold for cross-platform compatibility
+    threshold: 0.3,
     toHaveScreenshot: {
-      mode: 'css',
       animations: 'disabled',
-      // Use platform-agnostic snapshot names for cross-platform compatibility
-      omitBackground: true,
+      // Higher threshold to account for font rendering differences between macOS and Linux
+      threshold: 0.05,
     },
   },
 
