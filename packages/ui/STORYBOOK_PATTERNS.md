@@ -722,7 +722,44 @@ argTypes: {
 
 ## Testing Integration
 
-### 1. Visual Testing Considerations
+### 1. Visual Testing Requirements
+
+**MANDATORY: Every new component must include visual tests alongside Storybook stories.**
+
+When creating a new component, you must:
+
+1. **Create comprehensive Storybook stories** (as documented in this guide)
+2. **Add the component to visual tests** following the existing pattern
+3. **Ensure the Overview story** is optimized for visual testing
+
+#### Adding Visual Tests for New Components
+
+Follow the existing pattern in `@packages/ui/tests/visual/all-components.spec.ts`:
+
+1. **Add your component** to the `allComponents` array:
+
+```typescript
+const allComponents = [
+  // ... existing components
+  { name: 'YourNewComponent', story: 'overview', section: 'category-yournewcomponent' },
+]
+```
+
+2. **Follow the naming convention**:
+   - `name`: Component name (PascalCase)
+   - `story`: Always use `'overview'` (the Overview story)
+   - `section`: Storybook section ID (`'category-componentname'`)
+
+#### Example Addition
+
+```typescript
+// Add to the allComponents array
+{ name: 'Loader', story: 'overview', section: 'feedback-loader' },
+```
+
+This automatically creates visual regression tests for both light and dark themes using the Overview story.
+
+### 2. Visual Testing Considerations
 
 **Design stories for visual regression testing:**
 
@@ -1006,6 +1043,9 @@ This pattern ensures that stories not only demonstrate individual components but
 - [ ] **Validation examples** include realistic rules
 - [ ] **Documentation** is complete and helpful
 - [ ] **Visual consistency** across all stories
+- [ ] **Component added** to `@packages/ui/tests/visual/all-components.spec.ts`
+- [ ] **Overview story optimized** for visual regression testing (static content, consistent layouts)
+- [ ] **Library components used** instead of raw HTML in complex examples
 
 ### Story Quality Standards
 
