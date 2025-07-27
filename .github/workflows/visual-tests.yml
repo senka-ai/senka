@@ -53,6 +53,7 @@ jobs:
       - name: Run visual tests
         run: |
           cd packages/ui
+          echo "CI environment detected: $CI"
           yarn test:visual
         env:
           CI: true
