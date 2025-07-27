@@ -552,6 +552,8 @@ If you don't specify a `layout` parameter, the system will automatically apply s
 
 ### 1. Icon Overview Story
 
+**Note**: In Svelte 5, dynamic component rendering uses `{@render component(props)}` instead of `<svelte:component this={component}>`.
+
 ```svelte
 <Story name="Overview" parameters={{ layout: 'default' }}>
   {#snippet template()}
@@ -561,7 +563,7 @@ If you don't specify a `layout` parameter, the system will automatically apply s
         <div class="grid grid-cols-8 gap-4">
           {#each iconList as icon}
             <div class="flex flex-col items-center gap-2 p-2">
-              <svelte:component this={icon.component} size={24} />
+              {@render icon.component({ size: 24 })}
               <span class="text-xs text-neutral-600">{icon.name}</span>
             </div>
           {/each}
@@ -985,6 +987,12 @@ This pattern ensures that stories not only demonstrate individual components but
 <Button>
   {#snippet children()}Click me{/snippet}
 </Button>
+
+<!-- ❌ Don't use svelte:component for dynamic components -->
+<svelte:component this={component} prop="value" />
+
+<!-- ✅ Use @render for dynamic components -->
+{@render component({ prop: "value" })}
 ```
 
 ### 2. Story Structure Anti-Patterns

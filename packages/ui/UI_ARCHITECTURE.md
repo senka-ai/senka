@@ -357,6 +357,119 @@ The styling system is built on CSS custom properties combined with Tailwind CSS 
 4. **Warning Colors** - Caution states (orange scale)
 5. **Error Colors** - Error states (red scale)
 
+### Semantic Color System
+
+**CRITICAL: Components must ONLY use semantic colors defined in the design system.**
+
+All colors are defined in `src/styles/index.css` and `src/styles/colors.css`. Components should exclusively use these predefined semantic colors to ensure consistency, theme compatibility, and maintainability.
+
+#### Required Color Usage Patterns
+
+**✅ Use semantic color classes:**
+
+```svelte
+<!-- Correct: Using semantic color classes -->
+<div class="bg-surface text-primary border-default">
+  Content with proper semantic colors
+</div>
+
+<!-- Correct: Using design system color utilities -->
+<button class="bg-highlight text-white hover:bg-highlight-300">
+  Primary Button
+</button>
+
+<!-- Correct: Using state-specific colors -->
+<div class="text-error border-error bg-error-50">
+  Error message with consistent error styling
+</div>
+```
+
+**❌ Never use arbitrary colors:**
+
+```svelte
+<!-- Wrong: Arbitrary color values -->
+<div style="background-color: #ff0000; color: #333333;">
+  Don't use arbitrary colors
+</div>
+
+<!-- Wrong: Non-semantic Tailwind colors -->
+<div class="bg-red-500 text-gray-800 border-blue-300">
+  Don't use arbitrary Tailwind colors
+</div>
+
+<!-- Wrong: Inline CSS custom properties -->
+<div style="background-color: var(--some-custom-color);">
+  Don't define custom color variables
+</div>
+```
+
+#### Available Semantic Colors
+
+**Background Colors:**
+- `bg-background` - Main background color
+- `bg-surface` - Component surface color
+- `bg-surface-elevated` - Elevated surface color
+- `bg-surface-hover` - Hover state background
+
+**Text Colors:**
+- `text-primary` - Primary text color
+- `text-secondary` - Secondary text color
+- `text-muted` - Muted/disabled text color
+
+**Border Colors:**
+- `border-default` - Default border color
+- `border-strong` - Strong emphasis border
+
+**State Colors (by category):**
+- Highlight: `bg-highlight`, `text-highlight`, `border-highlight`
+- Success: `bg-success`, `text-success`, `border-success`
+- Warning: `bg-warning`, `text-warning`, `border-warning`
+- Error: `bg-error`, `text-error`, `border-error`
+
+**Scale Colors (50-400 for each category):**
+- `bg-highlight-50` through `bg-highlight-400`
+- `bg-neutral-50` through `bg-neutral-900`
+- `bg-success-50` through `bg-success-400`
+- `bg-warning-50` through `bg-warning-400`
+- `bg-error-50` through `bg-error-400`
+
+#### Theme Compatibility
+
+All semantic colors automatically adapt to light and dark themes through CSS custom properties. When using semantic colors:
+
+- Colors automatically adjust based on `[data-theme='dark']` attribute
+- No additional code needed for theme switching
+- Consistent contrast ratios maintained across themes
+- Accessibility standards preserved in all themes
+
+#### Component Implementation Requirements
+
+**When building components:**
+
+1. **Only reference design system colors** - Never use arbitrary hex codes or RGB values
+2. **Use semantic names** - Prefer `text-primary` over `text-neutral-900`
+3. **Leverage state colors** - Use `text-error` for error states, `bg-success-50` for success backgrounds
+4. **Test in both themes** - Ensure components work in light and dark modes
+5. **Follow the scale** - Use appropriate intensity levels (50 for subtle, 400 for prominent)
+
+#### Style Composition Integration
+
+The style composition system uses only semantic colors:
+
+```typescript
+// Correct: Using semantic colors in style composers
+export const createAlertStyles = createStyleComposer({
+  base: 'border-2 rounded-lg p-4',
+  variants: {
+    success: 'bg-success-50 border-success text-success',
+    warning: 'bg-warning-50 border-warning text-warning', 
+    error: 'bg-error-50 border-error text-error',
+  }
+})
+```
+
+This approach ensures that all components maintain visual consistency, support theme switching, and follow accessibility guidelines without requiring manual color management.
+
 ### Theme System
 
 **Light/Dark Theme Support:**
@@ -453,7 +566,7 @@ Semantic typography classes with consistent sizing:
 
 ### Style Composition System
 
-The library uses sophisticated style composition utilities:
+The library uses sophisticated style composition utilities that enforce semantic color usage:
 
 ```typescript
 // Main style composer
@@ -471,7 +584,7 @@ export function createStyleComposer<TVariant, TSize>(config: {
   }
 }
 
-// Pre-configured style composers
+// Pre-configured style composers (using ONLY semantic colors)
 export const createButtonStyles = createStyleComposer({
   base: 'inline-flex items-center justify-center gap-2 font-medium transition-all duration-200 focus:outline-none',
   variants: {
@@ -487,6 +600,38 @@ export const createButtonStyles = createStyleComposer({
     medium: 'px-4 py-2.75 text-action-m rounded-xl',
     large: 'px-6 py-4 text-action-l rounded-2xl',
   },
+})
+```
+
+**Key Requirements for Style Composers:**
+
+1. **Semantic Colors Only** - All color classes must use predefined semantic colors from the design system
+2. **Theme Compatibility** - Colors automatically adapt to light/dark themes without additional logic
+3. **Accessibility Compliance** - Semantic colors ensure proper contrast ratios are maintained
+4. **Consistency** - Using the same semantic color names across components ensures visual harmony
+
+**Example: Creating a new style composer with proper semantic colors:**
+
+```typescript
+// ✅ Correct: Using semantic colors
+export const createCardStyles = createStyleComposer({
+  base: 'border-2 rounded-xl p-4 transition-colors duration-200',
+  variants: {
+    default: 'bg-surface border-default text-primary',
+    elevated: 'bg-surface-elevated border-default text-primary shadow-sm',
+    success: 'bg-success-50 border-success text-success',
+    warning: 'bg-warning-50 border-warning text-warning',
+    error: 'bg-error-50 border-error text-error',
+  }
+})
+
+// ❌ Wrong: Using arbitrary Tailwind colors
+export const createBadCardStyles = createStyleComposer({
+  base: 'border-2 rounded-xl p-4',
+  variants: {
+    default: 'bg-gray-100 border-gray-300 text-gray-900', // Don't use arbitrary colors
+    error: 'bg-red-50 border-red-500 text-red-700',       // Don't use non-semantic colors
+  }
 })
 ```
 
@@ -910,43 +1055,61 @@ When building components that need icons or placeholders:
 - ✅ **Consistent sizing**: Use the `size` prop for responsive icon sizing
 - ✅ **Semantic naming**: Choose icons that clearly represent their function
 
-**Example - Correct icon usage:**
+**Example - Correct icon usage with semantic colors:**
 
 ```svelte
 <script lang="ts">
   import { ImageIcon, CheckIcon } from '../../icons'
 </script>
 
-<!-- Placeholder with icon component -->
+<!-- Placeholder with icon component using semantic colors -->
 <div class="placeholder">
-  <ImageIcon class="h-8 w-8 text-neutral-400" size={32} />
+  <ImageIcon class="h-8 w-8 text-muted" size={32} />
 </div>
 
-<!-- Success state with icon component -->
+<!-- Success state with icon component using semantic colors -->
 <div class="success-message">
   <CheckIcon class="text-success h-5 w-5" size={20} />
-  <span>Success!</span>
+  <span class="text-success">Success!</span>
 </div>
+
+<!-- Interactive icon using highlight colors -->
+<button class="text-highlight hover:text-highlight-300">
+  <ArrowIcon class="h-4 w-4" size={16} />
+</button>
 ```
 
 **Example - Incorrect approach:**
 
 ```svelte
-<!-- ❌ Don't do this - inline SVG -->
+<!-- ❌ Don't do this - inline SVG with arbitrary colors -->
 <div class="placeholder">
-  <svg class="h-8 w-8 text-neutral-400" viewBox="0 0 24 24">
+  <svg class="h-8 w-8 text-gray-400" viewBox="0 0 24 24">
     <path d="M4 3a2 2 0 00-2 2v10..." />
   </svg>
 </div>
+
+<!-- ❌ Don't use arbitrary Tailwind colors -->
+<div class="success-message">
+  <CheckIcon class="text-green-500 h-5 w-5" size={20} />
+  <span class="text-green-700">Success!</span>
+</div>
+
+<!-- ❌ Don't use inline styles with custom colors -->
+<button style="color: #2897ff;">
+  <ArrowIcon class="h-4 w-4" size={16} />
+</button>
 ```
 
-**Benefits of using icon components:**
+**Benefits of using icon components with semantic colors:**
 
 - **Consistency**: All icons follow the same interface and sizing system
 - **Maintainability**: Icon updates apply everywhere automatically
 - **Performance**: Icons are optimized and tree-shakeable
 - **Accessibility**: Icons include proper ARIA attributes and semantic markup
-- **Theme Support**: Icons automatically adapt to theme changes
+- **Theme Support**: Icons automatically adapt to theme changes via semantic colors
+- **Color Consistency**: Semantic color classes ensure icons match the design system
+- **Automatic Theme Switching**: Dark/light theme colors applied automatically without code changes
 
 ## Testing Architecture
 
