@@ -17,8 +17,6 @@ export default defineConfig({
     threshold: 0.2,
     toHaveScreenshot: {
       animations: 'disabled',
-      // Higher threshold on CI to account for font rendering differences between macOS and Linux
-      threshold: process.env.CI ? 0.035 : 0.2,
     },
   },
 
