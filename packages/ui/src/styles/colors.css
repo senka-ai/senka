@@ -175,3 +175,52 @@
 /* Border semantic colors */
 .border-default { border-color: var(--color-border); }
 .border-strong { border-color: var(--color-border-strong); }
+
+/* ===========================================
+   STROKE COLORS
+   =========================================== */
+
+/* Highlight stroke colors */
+/* .stroke-highlight-50 { stroke: var(--color-highlight-50); }
+.stroke-highlight-100 { stroke: var(--color-highlight-100); }
+.stroke-highlight-200 { stroke: var(--color-highlight-200); }
+.stroke-highlight-300 { stroke: var(--color-highlight-300); }
+.stroke-highlight-400 { stroke: var(--color-highlight-400); } */
+.stroke-highlight { stroke: var(--color-highlight-400); }
+
+/* Neutral stroke colors */
+.stroke-neutral-50 { stroke: var(--color-neutral-50); }
+.stroke-neutral-100 { stroke: var(--color-neutral-100); }
+.stroke-neutral-200 { stroke: var(--color-neutral-200); }
+.stroke-neutral-300 { stroke: var(--color-neutral-300); }
+.stroke-neutral-400 { stroke: var(--color-neutral-400); }
+.stroke-neutral-500 { stroke: var(--color-neutral-500); }
+.stroke-neutral-600 { stroke: var(--color-neutral-600); }
+.stroke-neutral-700 { stroke: var(--color-neutral-700); }
+.stroke-neutral-800 { stroke: var(--color-neutral-800); }
+.stroke-neutral-900 { stroke: var(--color-neutral-900); }
+.stroke-neutral { stroke: var(--color-neutral-500); }
+
+/* Success stroke colors */
+/* .stroke-success-50 { stroke: var(--color-success-50); }
+.stroke-success-100 { stroke: var(--color-success-100); }
+.stroke-success-200 { stroke: var(--color-success-200); }
+.stroke-success-300 { stroke: var(--color-success-300); }
+.stroke-success-400 { stroke: var(--color-success-400); } */
+.stroke-success { stroke: var(--color-success-400); }
+
+/* Warning stroke colors */
+/* .stroke-warning-50 { stroke: var(--color-warning-50); }
+.stroke-warning-100 { stroke: var(--color-warning-100); }
+.stroke-warning-200 { stroke: var(--color-warning-200); }
+.stroke-warning-300 { stroke: var(--color-warning-300); }
+.stroke-warning-400 { stroke: var(--color-warning-400); } */
+.stroke-warning { stroke: var(--color-warning-400); }
+
+/* Error stroke colors */
+/* .stroke-error-50 { stroke: var(--color-error-50); }
+.stroke-error-100 { stroke: var(--color-error-100); }
+.stroke-error-200 { stroke: var(--color-error-200); }
+.stroke-error-300 { stroke: var(--color-error-300); }
+.stroke-error-400 { stroke: var(--color-error-400); } */
+.stroke-error { stroke: var(--color-error-400); }

@@ -652,15 +652,15 @@ export function createLoaderStyles(options: {
   const svg = svgSizes[size]
 
   // Background circle styles
-  const background = 'stroke-gray-200'
+  const background = 'stroke-neutral-200'
 
   // Foreground circle styles - colors and animations
   const colorStyles = {
-    primary: 'stroke-blue-500',
-    secondary: 'stroke-gray-500',
-    success: 'stroke-green-500',
-    warning: 'stroke-amber-500',
-    error: 'stroke-red-500',
+    primary: 'stroke-highlight',
+    secondary: 'stroke-neutral-600',
+    success: 'stroke-success',
+    warning: 'stroke-warning',
+    error: 'stroke-error',
   }
 
   const progressStyles = variant === 'progress' ? 'transition-all duration-300 ease-out' : ''
