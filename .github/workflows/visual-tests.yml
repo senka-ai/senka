@@ -1,0 +1,65 @@
+name: Visual Tests
+
+on:
+  pull_request:
+    branches: [main]
+    paths:
+      - 'packages/ui/src/**'
+      - 'packages/ui/tests/**'
+      - 'packages/ui/package.json'
+      - '.github/workflows/visual-tests.yml'
+  push:
+    branches: [main]
+    paths:
+      - 'packages/ui/src/**'
+      - 'packages/ui/tests/**'
+      - 'packages/ui/package.json'
+      - '.github/workflows/visual-tests.yml'
+
+jobs:
+  visual-tests:
+    timeout-minutes: 60
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+          cache: 'yarn'
+
+      - name: Install dependencies
+        run: yarn install --frozen-lockfile
+
+      - name: Install Playwright browsers
+        run: |
+          cd packages/ui
+          npx playwright install --with-deps
+
+      - name: Run visual tests
+        run: |
+          cd packages/ui
+          yarn test:visual
+        env:
+          CI: true
+
+      - name: Upload test results
+        uses: actions/upload-artifact@v4
+        if: failure()
+        with:
+          name: visual-test-results
+          path: |
+            packages/ui/tests/visual/test-results/
+            packages/ui/playwright-report/
+          retention-days: 30
+
+      - name: Upload visual screenshots
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: visual-screenshots
+          path: packages/ui/tests/visual/**/*.png
+          retention-days: 7
