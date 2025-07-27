@@ -9,6 +9,7 @@ import { visitStory, setTheme, getStoryContainer, waitForImages, mockExternalIma
 // All components with their actual working story names
 const allComponents = [
   { name: 'Accordion', story: 'overview', section: 'layout-accordion' },
+  { name: 'ActionSheet', story: 'overview', section: 'controls-actionsheet' },
   { name: 'Avatar', story: 'overview', section: 'media-avatar' },
   { name: 'Badge', story: 'overview', section: 'feedback-badge' },
   { name: 'Banner', story: 'overview', section: 'feedback-banner' },
@@ -19,6 +20,7 @@ const allComponents = [
   { name: 'Dialog', story: 'overview', section: 'feedback-dialog' },
   { name: 'Divider', story: 'overview', section: 'layout-divider' },
   { name: 'Dropdown', story: 'overview', section: 'forms-dropdown' },
+  { name: 'IconButton', story: 'overview', section: 'core-iconbutton' },
   { name: 'Icons', story: 'overview', section: 'icons-all-icons' },
   { name: 'Image', story: 'overview', section: 'media-image' },
   { name: 'IndividualIcons', story: 'add-icon', section: 'icons-individual-icons' },

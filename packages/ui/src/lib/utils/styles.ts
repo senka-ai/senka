@@ -591,7 +591,7 @@ export function createDialogStyles(options: { disabled?: boolean; className?: st
 
   // Close button styles
   const closeButton =
-    'absolute top-4 right-4 p-1 text-neutral-500 hover:text-neutral-700 transition-colors duration-200'
+    'absolute top-2 right-2 p-1 text-neutral-500 hover:text-neutral-700 transition-colors duration-200'
 
   // Content area styles
   const content = 'p-6 pr-12'
@@ -696,5 +696,129 @@ export function createLoaderStyles(options: {
     progressText,
     label,
     spinAnimation,
+  }
+}
+
+/**
+ * IconButton style composer for icon-only button components
+ * Provides consistent styling for different icon button variants, colors, and sizes
+ */
+export function createIconButtonStyles(options: {
+  variant?: 'ghost' | 'outlined' | 'filled'
+  color?: 'default' | 'neutral' | 'success' | 'warning' | 'error'
+  size?: 'small' | 'medium' | 'large'
+  disabled?: boolean
+  className?: string
+}): string {
+  const { variant = 'ghost', color = 'default', size = 'medium', disabled = false, className = '' } = options
+
+  const base =
+    'inline-flex items-center justify-center font-medium transition-all duration-200 focus:outline-none cursor-pointer'
+
+  // Color-specific styles for different variants
+  const colorVariants = {
+    default: {
+      ghost: 'hover:bg-highlight-50',
+      outlined: 'border border-highlight hover:border-highlight-600 hover:bg-highlight-50',
+      filled: 'text-white bg-highlight hover:bg-highlight-600',
+    },
+    neutral: {
+      ghost: 'hover:bg-neutral-100',
+      outlined: 'border border-neutral-300 hover:border-neutral-400 hover:bg-neutral-50',
+      filled: 'text-white bg-neutral-600 hover:bg-neutral-700',
+    },
+    success: {
+      ghost: 'hover:bg-success-50',
+      outlined: 'border border-success hover:border-success-400 hover:bg-success-50',
+      filled: 'text-white bg-success hover:bg-success-400',
+    },
+    warning: {
+      ghost: 'hover:bg-warning-50',
+      outlined: 'border border-warning hover:border-warning-400 hover:bg-warning-50',
+      filled: 'text-white bg-warning hover:bg-warning-400',
+    },
+    error: {
+      ghost: 'hover:bg-error-50',
+      outlined: 'border border-error hover:border-error-400 hover:bg-error-50',
+      filled: 'text-white bg-error hover:bg-error-400',
+    },
+  }
+
+  const sizes = {
+    small: 'h-8 w-8 rounded-lg',
+    medium: 'h-10 w-10 rounded-xl',
+    large: 'h-12 w-12 rounded-xl',
+  }
+
+  const disabledStyles = disabled ? 'disabled:opacity-50 disabled:cursor-not-allowed' : ''
+
+  return composeClasses(base, colorVariants[color][variant], sizes[size], disabledStyles, className)
+}
+
+/**
+ * ActionSheet style composer for modal action sheet components
+ * Provides consistent styling for overlay, positioning, and animations
+ */
+export function createActionSheetStyles(options: {
+  open: boolean
+  position: 'bottom' | 'top'
+  animationSpeed: 'slow' | 'normal' | 'fast'
+  disabled?: boolean
+  className?: string
+}): {
+  backdrop: string
+  container: string
+  header: string
+  title: string
+  content: string
+} {
+  const { open, position, animationSpeed, disabled = false, className = '' } = options
+
+  // Animation duration mapping
+  const animationDurations = {
+    slow: 'duration-500',
+    normal: 'duration-300',
+    fast: 'duration-200',
+  }
+
+  // Backdrop styles
+  const backdrop = composeClasses(
+    'fixed inset-0 z-50 flex items-end justify-center bg-black/50 transition-opacity',
+    animationDurations[animationSpeed],
+    open ? 'opacity-100' : 'opacity-0 pointer-events-none',
+    position === 'top' ? 'items-start' : 'items-end',
+    disabled && 'pointer-events-none'
+  )
+
+  // Container styles with position-based transforms
+  const positionStyles = {
+    bottom: open ? 'translate-y-0' : 'translate-y-full',
+    top: open ? 'translate-y-0' : '-translate-y-full',
+  }
+
+  const container = composeClasses(
+    'w-full max-w-md transform rounded-t-2xl bg-background shadow-xl transition-transform',
+    position === 'top' ? 'rounded-t-none rounded-b-2xl' : '',
+    animationDurations[animationSpeed],
+    positionStyles[position],
+    disabled && 'opacity-50',
+    className
+  )
+
+  // Header styles
+  const header = 'flex items-center justify-between border-b border-default px-6 py-4'
+
+  // Title styles
+  const title = 'text-heading-s font-semibold text-primary'
+
+  // Content styles
+  const content = 'p-4'
+
+  return {
+    backdrop,
+    container,
+    header,
+    title,
+    content,
   }
 }

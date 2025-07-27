@@ -3,6 +3,7 @@
   import type { BaseProps } from '../../types/component'
   import { createDialogStyles } from '../../utils/styles'
   import Button from '../core/Button.svelte'
+  import IconButton from '../core/IconButton.svelte'
 
   /**
    * Dialog component props interface
@@ -179,15 +180,15 @@
     >
       <!-- Close Button -->
       {#if showCloseButton}
-        <button
-          class={dialogClasses.closeButton}
-          onclick={handleCloseClick}
+        <IconButton
+          variant="ghost"
+          color="neutral"
+          icon={CloseIcon}
           aria-label="Close dialog"
-          type="button"
+          onclick={handleCloseClick}
           {disabled}
-        >
-          <CloseIcon class="h-5 w-5" size={20} />
-        </button>
+          class={dialogClasses.closeButton}
+        />
       {/if}
 
       <!-- Dialog Content -->

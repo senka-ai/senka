@@ -1023,9 +1023,9 @@ export default defineConfig({
 
 ### Quality Assurance
 
-- **Prettier**: Code formatting with Svelte and Tailwind support
 - **TypeScript**: Strict type checking (`yarn ui:typecheck`)
 - **Svelte Check**: Svelte-specific validation (`yarn ui:check`)
+- **Prettier**: Code formatting with Svelte and Tailwind support (`yarn format`)
 - **Visual Testing**: Automated screenshot comparison
 - **Storybook**: Component isolation and documentation
 

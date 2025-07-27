@@ -86,7 +86,7 @@
   {#if ButtonRenderer.shouldShowLoading(loading)}
     <SpinnerIcon class="h-3.5 w-3.5" />
   {:else if IconRenderer.shouldRender(leftIcon)}
-    <span class="flex items-center">
+    <span class="flex h-3.5 w-3.5 items-center">
       {#if IconRenderer.isStringIcon(leftIcon)}
         {leftIcon}
       {:else}
@@ -100,7 +100,7 @@
   {/if}
 
   {#if IconRenderer.shouldRender(rightIcon) && !ButtonRenderer.shouldShowLoading(loading)}
-    <span class="flex items-center">
+    <span class="flex h-3.5 w-3.5 items-center">
       {#if IconRenderer.isStringIcon(rightIcon)}
         {rightIcon}
       {:else}

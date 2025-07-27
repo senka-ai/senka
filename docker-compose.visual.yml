@@ -17,9 +17,9 @@ services:
       - CI=true
       - NODE_ENV=test
     ports:
-      - "6006:6006"  # Storybook port
+      - '6006:6006' # Storybook port
     command: yarn test:visual
-    
+
   visual-tests-update:
     build:
       context: .
@@ -37,9 +37,9 @@ services:
       - CI=true
       - NODE_ENV=test
     ports:
-      - "6007:6006"  # Different port to avoid conflicts
+      - '6007:6006' # Different port to avoid conflicts
     command: yarn test:visual --update-snapshots
-    
+
   storybook:
     build:
       context: .
@@ -53,5 +53,5 @@ services:
     environment:
       - NODE_ENV=development
     ports:
-      - "6006:6006"
+      - '6006:6006'
     command: yarn story

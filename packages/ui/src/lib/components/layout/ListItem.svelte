@@ -73,7 +73,7 @@
     {...restProps}
   >
     {#if IconRenderer.shouldRender(leftIcon)}
-      <div class="flex-shrink-0">
+      <div class="text-highlight flex-shrink-0">
         {#if IconRenderer.isStringIcon(leftIcon)}
           {leftIcon}
         {:else}
