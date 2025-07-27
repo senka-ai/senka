@@ -17,11 +17,10 @@ ENV NODE_ENV=test
 
 # Copy all necessary files for yarn install
 COPY package.json yarn.lock .yarnrc.yml ./
-COPY .yarn/ ./.yarn/
 COPY packages/ui/package.json ./packages/ui/package.json  
 COPY packages/app/package.json ./packages/app/package.json
 
-# Install dependencies
+# Install dependencies (Yarn will create .yarn/ directory during install)
 RUN yarn install --immutable
 
 # Copy the UI package source code
