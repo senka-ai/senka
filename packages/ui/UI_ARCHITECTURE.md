@@ -4,10 +4,8 @@
 
 The `@senka-ai/ui` library is a modern, type-safe Svelte 5 component library built with TypeScript, Tailwind CSS v4, and modern development practices. It provides a comprehensive set of reusable UI components, featuring full theme support, accessibility standards, and robust state management patterns.
 
-**Version**: 0.0.1  
-**License**: MIT  
-**Framework**: Svelte 5 with TypeScript  
-**Styling**: Tailwind CSS v4 + CSS Custom Properties  
+**Framework**: Svelte 5 with TypeScript
+**Styling**: Tailwind CSS v4 + CSS Custom Properties
 **Package Type**: ESM with TypeScript definitions
 
 ## Core Technologies
@@ -37,15 +35,15 @@ The library fully embraces Svelte 5's modern runes system:
 @senka-ai/ui/
 ├── src/
 │   ├── lib/
-│   │   ├── components/          # 28 UI components organized by category
-│   │   │   ├── core/                   # 2 core components
+│   │   ├── components/          # UI components organized by category
+│   │   │   ├── core/                   # core components
 │   │   │   ├── examples/               # Example components for documentation
-│   │   │   ├── forms/                  # 9 form components
-│   │   │   ├── feedback/               # 2 feedback components
-│   │   │   ├── layout/                 # 7 layout components
-│   │   │   ├── navigation/             # 2 navigation components
-│   │   │   └── media/                  # 6 media components
-│   │   ├── icons/               # 47 SVG icon components
+│   │   │   ├── forms/                  # form components
+│   │   │   ├── feedback/               # feedback components
+│   │   │   ├── layout/                 # layout components
+│   │   │   ├── navigation/             # navigation components
+│   │   │   └── media/                  # media components
+│   │   ├── icons/               # SVG icon components
 │   │   ├── types/
 │   │   │   └── component.ts     # Shared TypeScript interfaces
 │   │   ├── utils/               # Utility functions and state management
@@ -321,6 +319,8 @@ Flexible icon support for both string emojis and Svelte components:
   {/if}
 {/if}
 ```
+
+Usually, it's not advised to use string emojis.
 
 ## CSS Architecture
 
@@ -831,161 +831,7 @@ export function createNavigationHandler(
 }
 ```
 
-## Component Categories
-
-### Core Components (2 components)
-
-**Button** - Primary action button
-
-- Three variants, loading states, icons (left/right), full width support
-- Extends: `ButtonLikeComponent`, `IconComponent`
-
-**ThemeToggle** - Light/dark theme switcher
-
-- System preference detection, smooth transitions, icon switching
-- Extends: `BaseProps`, `ClickHandler`
-
-### Form Components (9 components)
-
-**TextField** - Text input with validation
-
-- Icons (left/right), validation, focus states, unit display
-- Extends: `FormInputComponent`, `IconComponent`, `ValidationComponent`
-
-**TextArea** - Multi-line text input
-
-- Resize control, row configuration, character counting
-- Extends: `FormInputComponent`, `ValidationComponent`
-
-**Dropdown** - Select dropdown with options
-
-- Keyboard navigation, search filtering, custom options
-- Extends: `FormInputComponent`, `ChangeHandler<string>`
-
-**SearchBar** - Search input with integrated icon
-
-- Built-in search icon, focus management, clear functionality
-- Extends: `BaseProps`, `FullWidthComponent`, `KeyboardHandler`
-
-**Checkbox** - Checkbox with label support
-
-- Container click handling, custom labels, indeterminate state
-- Extends: `BaseProps`, `SizedComponent`, `ChangeHandler<boolean>`, `ChildrenComponent`
-
-**RadioButton** - Radio button for single selection
-
-- Visual dot indicator, label support, group coordination
-- Extends: `BaseProps`, `SizedComponent`, `ChangeHandler<boolean>`, `ChildrenComponent`
-
-**RadioGroup** - Container for radio button groups
-
-- Context-based state management, keyboard navigation
-- Extends: `BaseProps`, `ChangeHandler<string>`
-
-**Toggle** - Switch/toggle component
-
-- Smooth animations, keyboard accessibility, size variants
-- Extends: `BaseProps`, `SizedComponent`, `ChangeHandler<boolean>`
-
-**FormField** - Wrapper for form field layout
-
-- Label, helper text, error display, consistent spacing
-- Extends: `BaseProps`, `ChildrenComponent`
-
-### Feedback Components (2 components)
-
-**Badge** - Status and count indicators
-
-- Number, icon, and dot types; success/warning/error variants
-- Extends: `BaseProps`, `SizedComponent`, `VariantComponent`
-
-**Tag** - Labeled chips/tags
-
-- Clickable functionality, left/right icons, style variants
-- Extends: `BaseProps`, `VariantComponent`, `IconComponent`, `ClickHandler`
-
-### Layout Components (7 components)
-
-**Card** - Content cards with actions
-
-- Image/icon support, action buttons, favorite functionality, compact mode
-- Extends: `CardComponent`
-
-**CardHorizontal** - Horizontal card layout
-
-- Side-by-side content and media layout
-- Extends: `BaseProps`, `ClickHandler`, `ChildrenComponent`
-
-**List** - Container for list items
-
-- Automatic ListItem rendering, dividers, title with actions
-- Extends: `BaseProps`, `ChildrenComponent`
-
-**ListItem** - Individual list item
-
-- Icons (left/right), right controls, chevron support, compact mode
-- Extends: `ListItemComponent`, `IconComponent`
-
-**ListTitle** - List section headers
-
-- Right action support, consistent styling
-- Extends: `BaseProps`, `ChildrenComponent`
-
-**Divider** - Section dividers
-
-- Horizontal/vertical orientation, spacing control, style variants
-- Extends: `BaseProps`, `VariantComponent<'solid' | 'dashed' | 'dotted'>`
-
-**Accordion** - Collapsible content sections
-
-- Smooth animations, keyboard navigation, multiple items
-- Extends: `BaseProps`, `ChildrenComponent`
-
-### Navigation Components (2 components)
-
-**TabBar** - Tab navigation
-
-- Active tab management, keyboard navigation, scroll support
-- Extends: `BaseProps`, `ChangeHandler<string>`
-
-**NavBar** - Navigation bar with items
-
-- Icon and text support, active states, responsive behavior
-- Extends: `BaseProps`, `ChildrenComponent`
-
-### Media Components (6 components)
-
-**Avatar** - User profile images
-
-- Multi-fallback system (image → initials → placeholder), status indicators
-- Extends: `BaseProps`, `ExtendedSizedComponent`, `StatusComponent`
-
-**AvatarPlaceholder** - Default avatar fallback
-
-- Consistent styling with Avatar component
-- Extends: `BaseProps`, `ExtendedSizedComponent`
-
-**Image** - Responsive image component
-
-- Aspect ratio control, placeholder/fallback system, loading states
-- Extends: `BaseProps`
-
-**ImagePlaceholder** - Image loading placeholder
-
-- Consistent styling with Image component
-- Extends: `BaseProps`
-
-**Video** - Video player component
-
-- Placeholder support, loading/error states, responsive sizing
-- Extends: `BaseProps`
-
-**VideoPlaceholder** - Video loading placeholder
-
-- Consistent styling with Video component
-- Extends: `BaseProps`
-
-## Icon System (47 icons)
+## Icon System
 
 ### Standardized Icon Pattern
 
@@ -1027,14 +873,18 @@ interface IconProps {
 
 ### Icon Integration
 
-Icons can be used as both strings (emoji) and Svelte components:
+Icons can be used as Svelte components:
+
+```svelte
+<!-- Component icon -->
+<Button leftIcon={ArrowRightIcon}>Continue</Button>
+```
+
+Icons can also be used as strings (emoji), though not usually recommended:
 
 ```svelte
 <!-- String icon -->
 <Button leftIcon="🚀">Launch</Button>
-
-<!-- Component icon -->
-<Button leftIcon={ArrowRightIcon}>Continue</Button>
 ```
 
 ### Icon Development Guidelines
@@ -1263,317 +1113,8 @@ theme.set('dark')
 - **Event Delegation**: Efficient event handling patterns
 - **Memory Management**: Proper cleanup in state utilities
 
-## No-Code Builder Component Requirements
-
 ### Modular Architecture for Easy Modifications
 
 **Every component designed for modification-first development:**
-
-#### Core Modification Principles
-
-- **Dependency Isolation**: Components have minimal interdependencies
-- **Configuration-Driven**: Behavior controlled through configuration objects
-- **Version-Safe Changes**: Modifications tracked with rollback capability
-- **Preview-First**: All changes shown in preview before application
-- **Non-Breaking Updates**: Modifications don't break existing functionality
-
-### Visual Builder Integration Components
-
-**Critical for Phase 1 No-Code Platform Development:**
-
-#### 1. **Visual Component Wrappers** (`@senka-ai/visual-components`)
-
-```typescript
-interface BuiltComponentWrapper {
-  // Visual editing handles
-  dragHandle: boolean
-  resizeHandles: ResizeHandle[]
-
-  // Visual state indicators
-  isSelected: boolean
-  isHovered: boolean
-  isDragging: boolean
-
-  // Layout constraints
-  constraints: LayoutConstraints
-  snapToGrid: boolean
-
-  // Component metadata for builder
-  componentType: string
-  builderProps: BuilderComponentProps
-
-  // Modification tracking
-  modificationHistory: ModificationRecord[]
-  dependencies: ComponentDependency[]
-  safeToModify: boolean
-
-  // Configuration-driven behavior
-  config: ComponentConfiguration
-  modifiableProperties: ModifiableProperty[]
-
-  // Preview capabilities
-  previewMode: boolean
-  originalState: ComponentState
-  previewState: ComponentState
-}
-
-interface ComponentConfiguration {
-  // Visual properties
-  styling: StyleConfiguration
-  layout: LayoutConfiguration
-  content: ContentConfiguration
-
-  // Behavioral properties
-  interactions: InteractionConfiguration
-  animations: AnimationConfiguration
-  validations: ValidationConfiguration
-
-  // Modification metadata
-  lastModified: Date
-  version: string
-  modificationSafety: 'safe' | 'caution' | 'breaking'
-}
-```
-
-#### 2. **Modification-Safe Drag-and-Drop System Components**
-
-- **DragHandle**: Visual handle for moving components with dependency checking
-- **ResizeHandle**: Corner/edge handles for resizing with constraint validation
-- **SelectionOverlay**: Visual selection indicator showing modification safety status
-- **SnapGrid**: Visual grid system for alignment with safe-zone indicators
-- **GuideLines**: Alignment guides showing impact on other components
-- **ModificationPreview**: Real-time preview of drag/resize effects on related components
-- **DependencyIndicator**: Visual indicators showing which components will be affected
-
-#### 3. **Real-Time Modification-Aware Preview Components**
-
-- **PreviewFrame**: Isolated preview showing before/after states during modifications
-- **ResponsiveViewport**: Multi-device preview showing modification impact across breakpoints
-- **LivePreview**: Real-time updates with modification safety indicators
-- **InteractionPreview**: Preview of component interactions with modification effects
-- **ModificationDiff**: Visual diff showing exactly what will change
-- **RollbackPreview**: Preview of rollback state for any modification
-
-#### 4. **Layout Constraint System**
-
-```typescript
-interface LayoutConstraints {
-  position: 'absolute' | 'relative' | 'flex' | 'grid'
-  minWidth?: number
-  maxWidth?: number
-  minHeight?: number
-  maxHeight?: number
-  aspectRatio?: number
-  alignSelf?: FlexAlign
-  gridArea?: string
-}
-```
-
-#### 5. **Modification-Ready Builder Component Variants**
-
-Each existing component enhanced for easy modifications:
-
-- **Button** → **ModifiableButton** (drag handles, property inspector, style preview, dependency tracking)
-- **TextField** → **ModifiableTextField** (validation setup UI, format preview, change impact analysis)
-- **Card** → **ModifiableCard** (content slot management, layout constraint visualization, safe resizing)
-- **List** → **ModifiableList** (item template editor, add/remove item preview, structure modification)
-- **Navigation** → **ModifiableNavigation** (route management, structure preview, link impact analysis)
-
-### Component Property Inspector Integration
-
-#### Modification-Aware Visual Property Controls
-
-```typescript
-interface PropertyInspectorProps {
-  // Visual styling controls (no CSS knowledge needed)
-  colorPicker: boolean
-  fontSelector: boolean
-  spacingSliders: boolean
-  shadowEditor: boolean
-
-  // Layout controls
-  positionEditor: boolean
-  sizeControls: boolean
-  alignmentTools: boolean
-
-  // Component-specific properties
-  componentProps: Record<string, PropertyControl>
-
-  // Advanced settings (collapsed by default)
-  advancedSettings: PropertyControl[]
-
-  // Modification safety and preview
-  modificationSafety: {
-    safetyLevel: 'safe' | 'caution' | 'breaking'
-    affectedComponents: ComponentReference[]
-    previewChanges: boolean
-    rollbackAvailable: boolean
-  }
-
-  // Change impact analysis
-  changeImpact: {
-    visualChanges: VisualChangeDescription[]
-    functionalChanges: FunctionalChangeDescription[]
-    dependencyChanges: DependencyChangeDescription[]
-    performanceImpact: PerformanceImpact
-  }
-
-  // Historical context
-  modificationHistory: PropertyChangeRecord[]
-  suggestedModifications: ModificationSuggestion[]
-}
-```
-
-#### Property Control Types
-
-- **ColorPicker**: Visual color selection with palette
-- **SizeSlider**: Numeric input with visual slider
-- **ToggleSwitch**: Boolean property toggle
-- **DropdownSelect**: Enumerated options
-- **TextInput**: String/number input with validation
-
-### Multi-Platform Template Integration Components
-
-#### Template Preview System
-
-```typescript
-interface TemplatePreviewComponent {
-  // Template metadata
-  templateId: string
-  templateName: string
-  templateCategory: string
-
-  // Platform support
-  supportedPlatforms: ('web' | 'mobile-web' | 'ios' | 'android')[]
-  primaryPlatform: 'mobile' | 'desktop' | 'responsive'
-
-  // Preview capabilities
-  thumbnailImage: string
-  livePreview: boolean
-  responsivePreview: boolean
-  mobilePreview: boolean
-  desktopPreview: boolean
-
-  // Platform-specific previews
-  iosPreview?: string
-  androidPreview?: string
-  pwaPreview?: string
-
-  // Customization hooks
-  customizableAreas: CustomizableArea[]
-  requiredData: DataRequirement[]
-
-  // Mobile-specific metadata
-  mobileOptimized: boolean
-  touchFriendly: boolean
-  nativeFeatures: string[]
-}
-```
-
-#### Platform-Adaptive Components
-
-```typescript
-interface ResponsiveComponent {
-  // Breakpoint behavior
-  mobileLayout: ComponentLayout
-  tabletLayout?: ComponentLayout
-  desktopLayout: ComponentLayout
-
-  // Platform-specific styling
-  mobileStyles: StyleDefinition
-  desktopStyles: StyleDefinition
-
-  // Touch vs mouse interactions
-  touchInteractions: TouchGesture[]
-  mouseInteractions: MouseEvent[]
-
-  // Native app adaptations
-  iosAdaptations?: PlatformAdaptation
-  androidAdaptations?: PlatformAdaptation
-}
-
-interface PlatformAdaptation {
-  navigationStyle: 'tab-bar' | 'side-menu' | 'stack'
-  statusBarStyle: 'light' | 'dark' | 'auto'
-  safeAreaHandling: boolean
-  platformColors: ColorScheme
-  nativeComponents: NativeComponentMapping[]
-}
-```
-
-#### Multi-Platform One-Click Customization
-
-- **BrandKitApplicator**: Apply user's brand colors/fonts across all platforms
-- **ContentWizard**: Guide user through content replacement with platform optimization
-- **ImageReplacer**: Smart image replacement with mobile/desktop variants
-- **ColorSchemeApplicator**: Platform-aware color scheme changes
-- **PlatformOptimizer**: Automatic platform-specific adaptations
-
-#### Native App Generation Components
-
-```typescript
-interface NativeWrapperGenerator {
-  // iOS wrapper generation
-  generateiOSWrapper(webApp: WebApplication): iOSAppBundle
-
-  // Android wrapper generation
-  generateAndroidWrapper(webApp: WebApplication): AndroidAppBundle
-
-  // PWA generation
-  generatePWA(webApp: WebApplication): PWAManifest
-
-  // Cross-platform configuration
-  platformConfigs: {
-    ios: iOSConfiguration
-    android: AndroidConfiguration
-    pwa: PWAConfiguration
-  }
-
-  // App store metadata
-  storeListings: {
-    appleAppStore: AppStoreMetadata
-    googlePlayStore: PlayStoreMetadata
-  }
-}
-
-interface MobileAppComponents {
-  // Mobile-specific navigation
-  tabBarNavigation: TabBarComponent
-  stackNavigation: StackNavigatorComponent
-  drawerNavigation: DrawerComponent
-
-  // Platform UI adaptations
-  iosStatusBar: StatusBarComponent
-  androidAppBar: AppBarComponent
-  safeAreaView: SafeAreaComponent
-
-  // Native feature integration
-  cameraAccess: CameraComponent
-  locationServices: LocationComponent
-  pushNotifications: NotificationComponent
-  deviceContacts: ContactsComponent
-}
-```
-
-## Future Roadmap
-
-### Planned Enhancements
-
-1. **Advanced Multi-Platform Visual Builder** - Complete drag-and-drop system with mobile/desktop constraint-based layouts
-2. **Cross-Platform Animation System** - Visual animation editor with platform-specific animations
-3. **Platform-Aware Validation** - Visual validation rule builder with mobile form patterns
-4. **Responsive Utilities** - Visual breakpoint editor with mobile-first design tools
-5. **Platform Component Variants** - Visual variant selector with iOS/Android/web customizations
-6. **Universal Accessibility** - Built-in accessibility checker for web and mobile standards
-7. **Multi-Platform Performance Monitoring** - Real-time performance feedback across all target platforms
-8. **Native Feature Integration** - Visual editor for camera, location, notifications, and device APIs
-9. **App Store Optimization** - Built-in ASO tools and automated store listing generation
-
-### API Stability
-
-- **Semantic Versioning**: Following semver for breaking changes
-- **Interface Stability**: Base interfaces maintained for compatibility
-- **Migration Guides**: Documentation for major version updates
-- **Deprecation Warnings**: Advance notice for API changes
 
 This architecture provides a solid foundation for building modern, accessible, and maintainable user interfaces while leveraging the full power of Svelte 5's innovative features and maintaining excellent developer experience.
