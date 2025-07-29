@@ -8,7 +8,7 @@ Before creating a new component, you always have to:
 - read `SENKA_SYSTEM_ARCHITECTURE.md` from the root monorepo folder
 - read `packages/ui/UI_COMPONENTS_STRUCTURE.md`
 - read `packages/ui/UI_ARCHITECTURE.md`
-- `../Downloads/claude/svelte-5.md` to make sure you respect the correct Svelte 5 coding patterns.
+- `/Users/catalin-ic/Downloads/claude/svelte-5.md` to make sure you respect the correct Svelte 5 coding patterns.
 - read the source code of a couple of components from `packages/ui/src/lib/components/`
 - see their design files from `packages/ui/design/already-built` folder
 

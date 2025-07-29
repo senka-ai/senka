@@ -59,7 +59,7 @@
   }: Props = $props()
 
   const focusState = useFocusState()
-  
+
   // Initialize validation state
   let validationState = $state({ error: '', isValid: true })
 
@@ -91,7 +91,7 @@
   const handleInput = (event: Event) => {
     const target = event.target as HTMLInputElement
     const numericValue = parseFloat(target.value)
-    
+
     if (!isNaN(numericValue)) {
       value = numericValue
       onchange?.(numericValue)
@@ -143,11 +143,11 @@
     <div class="relative">
       <!-- Value display -->
       {#if showValue}
-        <div class="mb-2 flex justify-between items-center">
+        <div class="mb-2 flex items-center justify-between">
           <span class="text-body-s text-secondary">
             {valueFormat === 'percentage' ? '0%' : String(min)}
           </span>
-          <span class="text-body-s font-medium text-primary">{displayValue}</span>
+          <span class="text-body-s text-primary font-medium">{displayValue}</span>
           <span class="text-body-s text-secondary">
             {valueFormat === 'percentage' ? '100%' : String(max)}
           </span>
@@ -159,17 +159,11 @@
         <!-- Track background -->
         <div class={sliderStyles.track}>
           <!-- Fill/progress bar -->
-          <div 
-            class={sliderStyles.fill}
-            style="width: {percentage}%"
-          ></div>
+          <div class={sliderStyles.fill} style="width: {percentage}%"></div>
         </div>
-        
+
         <!-- Thumb/handle -->
-        <div 
-          class={sliderStyles.thumb}
-          style="left: calc({percentage}% - 10px)"
-        ></div>
+        <div class={sliderStyles.thumb} style="left: calc({percentage}% - 10px)"></div>
       </div>
 
       <!-- Hidden native range input for functionality -->
@@ -183,7 +177,7 @@
         {id}
         {name}
         {required}
-        class="absolute inset-0 w-full h-full opacity-0 cursor-pointer disabled:cursor-not-allowed"
+        class="absolute inset-0 h-full w-full cursor-pointer opacity-0 disabled:cursor-not-allowed"
         aria-valuemin={min}
         aria-valuemax={max}
         aria-valuenow={value}

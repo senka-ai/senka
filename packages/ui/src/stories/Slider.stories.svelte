@@ -121,20 +121,8 @@
       <div>
         <h3 class="mb-4 text-lg font-semibold">Value Formats</h3>
         <div class="grid grid-cols-1 gap-6 md:grid-cols-2">
-          <Slider 
-            label="Progress (%)" 
-            value={75} 
-            showValue={true} 
-            valueFormat="percentage" 
-          />
-          <Slider 
-            label="Count" 
-            value={125} 
-            min={0} 
-            max={200} 
-            showValue={true} 
-            valueFormat="number" 
-          />
+          <Slider label="Progress (%)" value={75} showValue={true} valueFormat="percentage" />
+          <Slider label="Count" value={125} min={0} max={200} showValue={true} valueFormat="number" />
         </div>
       </div>
 
@@ -142,30 +130,9 @@
       <div>
         <h3 class="mb-4 text-lg font-semibold">Different Ranges</h3>
         <div class="grid grid-cols-1 gap-6 md:grid-cols-3">
-          <Slider 
-            label="Rating (1-5)" 
-            min={1} 
-            max={5} 
-            value={4} 
-            step={1} 
-            showValue={true}
-          />
-          <Slider 
-            label="Price ($0-$1000)" 
-            min={0} 
-            max={1000} 
-            value={250} 
-            step={10} 
-            showValue={true}
-          />
-          <Slider 
-            label="Decimal (0-1)" 
-            min={0} 
-            max={1} 
-            value={0.75} 
-            step={0.01} 
-            showValue={true}
-          />
+          <Slider label="Rating (1-5)" min={1} max={5} value={4} step={1} showValue={true} />
+          <Slider label="Price ($0-$1000)" min={0} max={1000} value={250} step={10} showValue={true} />
+          <Slider label="Decimal (0-1)" min={0} max={1} value={0.75} step={0.01} showValue={true} />
         </div>
       </div>
 
@@ -230,7 +197,11 @@
   {/snippet}
 </Story>
 
-<Story name="Percentage Format" args={{ showValue: true, valueFormat: 'percentage' }} parameters={{ layout: 'compact' }}>
+<Story
+  name="Percentage Format"
+  args={{ showValue: true, valueFormat: 'percentage' }}
+  parameters={{ layout: 'compact' }}
+>
   {#snippet template(args)}
     <Slider {...args} />
   {/snippet}
@@ -242,7 +213,11 @@
   {/snippet}
 </Story>
 
-<Story name="Small Steps" args={{ min: 0, max: 10, step: 0.5, value: 7.5, showValue: true }} parameters={{ layout: 'compact' }}>
+<Story
+  name="Small Steps"
+  args={{ min: 0, max: 10, step: 0.5, value: 7.5, showValue: true }}
+  parameters={{ layout: 'compact' }}
+>
   {#snippet template(args)}
     <Slider {...args} />
   {/snippet}
@@ -254,13 +229,21 @@
   {/snippet}
 </Story>
 
-<Story name="Required" args={{ required: true, label: 'Required Field', showValue: true }} parameters={{ layout: 'compact' }}>
+<Story
+  name="Required"
+  args={{ required: true, label: 'Required Field', showValue: true }}
+  parameters={{ layout: 'compact' }}
+>
   {#snippet template(args)}
     <Slider {...args} />
   {/snippet}
 </Story>
 
-<Story name="With Error" args={{ error: 'Value must be at least 25', value: 15, showValue: true }} parameters={{ layout: 'compact' }}>
+<Story
+  name="With Error"
+  args={{ error: 'Value must be at least 25', value: 15, showValue: true }}
+  parameters={{ layout: 'compact' }}
+>
   {#snippet template(args)}
     <Slider {...args} />
   {/snippet}
@@ -356,8 +339,8 @@
           validationRules.required('CPU limit is required'),
           {
             message: 'CPU usage should not exceed 85% for optimal performance',
-            validator: (value) => value <= 85
-          }
+            validator: (value) => value <= 85,
+          },
         ]}
         validateOnChange={true}
         required
@@ -370,7 +353,7 @@
   {#snippet template()}
     <div class="max-w-md space-y-6">
       <h3 class="text-lg font-medium">Media Player Controls</h3>
-      
+
       <Slider
         label="Volume"
         value={75}
@@ -380,7 +363,7 @@
         valueFormat="percentage"
         helperText="Audio volume level"
       />
-      
+
       <Slider
         label="Playback Speed"
         value={1}
@@ -390,7 +373,7 @@
         showValue={true}
         helperText="Playback speed multiplier"
       />
-      
+
       <Slider
         label="Bass"
         value={0}
