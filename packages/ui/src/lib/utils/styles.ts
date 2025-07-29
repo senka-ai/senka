@@ -603,7 +603,7 @@ export function createDialogStyles(options: { disabled?: boolean; className?: st
   const description = 'text-body-m text-neutral-700 leading-relaxed'
 
   // Actions/buttons area styles
-  const actions = 'flex gap-3 p-6 pt-0 border-t border-neutral-100'
+  const actions = 'flex gap-3 p-6 pt-0 border-neutral-100'
 
   return {
     backdrop,
