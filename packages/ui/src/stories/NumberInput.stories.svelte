@@ -107,7 +107,7 @@
       <!-- Button Layouts -->
       <div>
         <h3 class="mb-4 text-lg font-semibold">Button Layouts</h3>
-        <div class="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-4">
+        <div class="grid grid-cols-1 gap-4 md:grid-cols-4">
           <NumberInput label="Stacked Layout" buttonLayout="stacked" value={5} />
           <NumberInput label="Horizontal Layout" buttonLayout="horizontal" value={10} />
           <NumberInput label="Split Layout" buttonLayout="split" value={15} />

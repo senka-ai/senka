@@ -2,7 +2,7 @@
   import type { FormInputComponent, IconSizeComponent } from '../../types/component'
   import { useFocusState } from '../../utils/state.svelte'
   import { validateValue, type ValidationRule } from '../../utils/validation.svelte'
-  import { createInputStyles } from '../../utils/styles'
+  import { createInputStyles, createNumberInputButtonStyles } from '../../utils/styles'
   import { FormRenderer } from '../../utils/rendering'
   import FormField from './FormField.svelte'
   import { AddIcon, MinusIcon } from '../../icons'
@@ -178,6 +178,23 @@
       })(),
     })
   )
+
+  // Button styles using style composition utilities
+  let minusButtonClasses = $derived(
+    createNumberInputButtonStyles({
+      layout: buttonLayout,
+      position: buttonLayout === 'split' ? 'decrement' : buttonLayout === 'horizontal' ? 'decrement' : 'decrement',
+      disabled: isMinusDisabled,
+    })
+  )
+
+  let plusButtonClasses = $derived(
+    createNumberInputButtonStyles({
+      layout: buttonLayout,
+      position: buttonLayout === 'split' ? 'increment' : buttonLayout === 'horizontal' ? 'increment' : 'increment',
+      disabled: isPlusDisabled,
+    })
+  )
 </script>
 
 <FormField
@@ -223,7 +240,7 @@
           <!-- Decrement button (left) -->
           <button
             type="button"
-            class="flex h-8 w-8 items-center justify-center rounded-lg border-2 border-transparent text-neutral-600 transition-colors duration-200 hover:bg-neutral-100 hover:text-neutral-800 disabled:cursor-not-allowed disabled:text-neutral-400 disabled:hover:bg-transparent disabled:hover:text-neutral-400"
+            class={minusButtonClasses}
             disabled={isMinusDisabled}
             onclick={decrement}
             onkeydown={handleMinusKeydown}
@@ -235,7 +252,7 @@
           <!-- Increment button (right) -->
           <button
             type="button"
-            class="ml-1 flex h-8 w-8 items-center justify-center rounded-lg border-2 border-transparent text-neutral-600 transition-colors duration-200 hover:bg-neutral-100 hover:text-neutral-800 disabled:cursor-not-allowed disabled:text-neutral-400 disabled:hover:bg-transparent disabled:hover:text-neutral-400"
+            class={plusButtonClasses}
             disabled={isPlusDisabled}
             onclick={increment}
             onkeydown={handlePlusKeydown}
@@ -249,7 +266,7 @@
         <!-- Decrement button (far left) -->
         <button
           type="button"
-          class="absolute top-1/2 left-1 flex h-8 w-8 -translate-y-1/2 items-center justify-center rounded-lg border-2 border-transparent text-neutral-600 transition-colors duration-200 hover:bg-neutral-100 hover:text-neutral-800 disabled:cursor-not-allowed disabled:text-neutral-400 disabled:hover:bg-transparent disabled:hover:text-neutral-400"
+          class={minusButtonClasses}
           disabled={isMinusDisabled}
           onclick={decrement}
           onkeydown={handleMinusKeydown}
@@ -261,7 +278,7 @@
         <!-- Increment button (far right) -->
         <button
           type="button"
-          class="absolute top-1/2 right-1 flex h-8 w-8 -translate-y-1/2 items-center justify-center rounded-lg border-2 border-transparent text-neutral-600 transition-colors duration-200 hover:bg-neutral-100 hover:text-neutral-800 disabled:cursor-not-allowed disabled:text-neutral-400 disabled:hover:bg-transparent disabled:hover:text-neutral-400"
+          class={plusButtonClasses}
           disabled={isPlusDisabled}
           onclick={increment}
           onkeydown={handlePlusKeydown}
@@ -275,7 +292,7 @@
           <!-- Increment button (top) -->
           <button
             type="button"
-            class="flex h-4 w-8 items-center justify-center rounded-t-lg border-2 border-transparent text-neutral-600 transition-colors duration-200 hover:bg-neutral-100 hover:text-neutral-800 disabled:cursor-not-allowed disabled:text-neutral-400 disabled:hover:bg-transparent disabled:hover:text-neutral-400"
+            class={plusButtonClasses}
             disabled={isPlusDisabled}
             onclick={increment}
             onkeydown={handlePlusKeydown}
@@ -287,7 +304,7 @@
           <!-- Decrement button (bottom) -->
           <button
             type="button"
-            class="flex h-4 w-8 items-center justify-center rounded-b-lg border-2 border-transparent text-neutral-600 transition-colors duration-200 hover:bg-neutral-100 hover:text-neutral-800 disabled:cursor-not-allowed disabled:text-neutral-400 disabled:hover:bg-transparent disabled:hover:text-neutral-400"
+            class={minusButtonClasses}
             disabled={isMinusDisabled}
             onclick={decrement}
             onkeydown={handleMinusKeydown}

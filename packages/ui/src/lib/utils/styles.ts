@@ -756,6 +756,83 @@ export function createIconButtonStyles(options: {
 }
 
 /**
+ * NumberInput button style composer for increment/decrement buttons
+ * Provides consistent styling for button variants and layouts
+ */
+export function createNumberInputButtonStyles(options: {
+  layout: 'stacked' | 'horizontal' | 'split'
+  position?: 'increment' | 'decrement' | 'left' | 'right'
+  disabled?: boolean
+  className?: string
+}): string {
+  const { layout, position, disabled = false, className = '' } = options
+
+  const base =
+    'flex items-center justify-center border-2 border-transparent text-neutral-600 transition-colors duration-200 hover:bg-neutral-100 hover:text-neutral-800 disabled:cursor-not-allowed disabled:text-neutral-400 disabled:hover:bg-transparent disabled:hover:text-neutral-400'
+
+  const sizes = {
+    stacked: 'h-4 w-8',
+    horizontal: 'h-8 w-8',
+    split: 'h-8 w-8',
+  }
+
+  const roundings = {
+    stacked: position === 'increment' ? 'rounded-t-lg' : 'rounded-b-lg',
+    horizontal: 'rounded-lg',
+    split: 'rounded-lg',
+  }
+
+  const positioning = {
+    stacked: '',
+    horizontal: position === 'decrement' ? '' : 'ml-1',
+    split:
+      position === 'decrement'
+        ? 'absolute top-1/2 left-1 -translate-y-1/2'
+        : 'absolute top-1/2 right-1 -translate-y-1/2',
+  }
+
+  const disabledStyles = disabled ? 'cursor-not-allowed opacity-50' : ''
+
+  return composeClasses(base, sizes[layout], roundings[layout], positioning[layout], disabledStyles, className)
+}
+
+/**
+ * Slider style composer for custom slider components
+ * Provides consistent styling for track, fill, and thumb elements
+ */
+export function createSliderStyles(options: { focused?: boolean; disabled?: boolean; className?: string }): {
+  track: string
+  fill: string
+  thumb: string
+} {
+  const { focused = false, disabled = false, className = '' } = options
+
+  // Track styles
+  const trackBase = 'relative h-2 bg-neutral-200 rounded-full'
+  const trackState = disabled ? 'cursor-not-allowed opacity-50' : 'cursor-pointer'
+  const track = composeClasses(trackBase, trackState, className)
+
+  // Fill styles (progress bar)
+  const fillBase = 'absolute top-0 left-0 h-full bg-highlight rounded-full'
+  const fill = fillBase
+
+  // Thumb styles (draggable handle)
+  const thumbBase =
+    'absolute top-1/2 -translate-y-1/2 w-6 h-6 rounded-full border-6 border-white shadow-[0_0_8px_rgba(0,0,0,0.15)]'
+  const thumbColor = disabled ? 'bg-neutral-300' : 'bg-highlight'
+  const thumbFocus = focused ? '' : ''
+  const thumbHover = !disabled ? 'hover:scale-110' : ''
+  const thumbState = disabled ? 'cursor-not-allowed' : 'cursor-grab active:cursor-grabbing'
+  const thumb = composeClasses(thumbBase, thumbColor, thumbFocus, thumbHover, thumbState)
+
+  return {
+    track,
+    fill,
+    thumb,
+  }
+}
+
+/**
  * ActionSheet style composer for modal action sheet components
  * Provides consistent styling for overlay, positioning, and animations
  */

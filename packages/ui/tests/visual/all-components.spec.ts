@@ -33,6 +33,7 @@ const allComponents = [
   { name: 'ProgressBar', story: 'overview', section: 'feedback-progressbar' },
   { name: 'RadioGroup', story: 'overview', section: 'forms-radiogroup' },
   { name: 'SearchBar', story: 'overview', section: 'forms-searchbar' },
+  { name: 'Slider', story: 'overview', section: 'forms-slider' },
   { name: 'TabBar', story: 'overview', section: 'navigation-tabbar' },
   { name: 'Tag', story: 'overview', section: 'feedback-tag' },
   { name: 'TextArea', story: 'overview', section: 'forms-textarea' },
