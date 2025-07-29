@@ -992,7 +992,7 @@ This pattern ensures that stories not only demonstrate individual components but
 <svelte:component this={component} prop="value" />
 
 <!-- ✅ Use @render for dynamic components -->
-{@render component({ prop: "value" })}
+{@render component({ prop: 'value' })}
 ```
 
 ### 2. Story Structure Anti-Patterns

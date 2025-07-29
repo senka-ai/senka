@@ -369,64 +369,57 @@ All colors are defined in `src/styles/index.css` and `src/styles/colors.css`. Co
 
 ```svelte
 <!-- Correct: Using semantic color classes -->
-<div class="bg-surface text-primary border-default">
-  Content with proper semantic colors
-</div>
+<div class="bg-surface text-primary border-default">Content with proper semantic colors</div>
 
 <!-- Correct: Using design system color utilities -->
-<button class="bg-highlight text-white hover:bg-highlight-300">
-  Primary Button
-</button>
+<button class="bg-highlight hover:bg-highlight-300 text-white"> Primary Button </button>
 
 <!-- Correct: Using state-specific colors -->
-<div class="text-error border-error bg-error-50">
-  Error message with consistent error styling
-</div>
+<div class="text-error border-error bg-error-50">Error message with consistent error styling</div>
 ```
 
 **❌ Never use arbitrary colors:**
 
 ```svelte
 <!-- Wrong: Arbitrary color values -->
-<div style="background-color: #ff0000; color: #333333;">
-  Don't use arbitrary colors
-</div>
+<div style="background-color: #ff0000; color: #333333;">Don't use arbitrary colors</div>
 
 <!-- Wrong: Non-semantic Tailwind colors -->
-<div class="bg-red-500 text-gray-800 border-blue-300">
-  Don't use arbitrary Tailwind colors
-</div>
+<div class="border-blue-300 bg-red-500 text-gray-800">Don't use arbitrary Tailwind colors</div>
 
 <!-- Wrong: Inline CSS custom properties -->
-<div style="background-color: var(--some-custom-color);">
-  Don't define custom color variables
-</div>
+<div style="background-color: var(--some-custom-color);">Don't define custom color variables</div>
 ```
 
 #### Available Semantic Colors
 
 **Background Colors:**
+
 - `bg-background` - Main background color
 - `bg-surface` - Component surface color
 - `bg-surface-elevated` - Elevated surface color
 - `bg-surface-hover` - Hover state background
 
 **Text Colors:**
+
 - `text-primary` - Primary text color
 - `text-secondary` - Secondary text color
 - `text-muted` - Muted/disabled text color
 
 **Border Colors:**
+
 - `border-default` - Default border color
 - `border-strong` - Strong emphasis border
 
 **State Colors (by category):**
+
 - Highlight: `bg-highlight`, `text-highlight`, `border-highlight`
 - Success: `bg-success`, `text-success`, `border-success`
 - Warning: `bg-warning`, `text-warning`, `border-warning`
 - Error: `bg-error`, `text-error`, `border-error`
 
 **Scale Colors (50-400 for each category):**
+
 - `bg-highlight-50` through `bg-highlight-400`
 - `bg-neutral-50` through `bg-neutral-900`
 - `bg-success-50` through `bg-success-400`
@@ -462,9 +455,9 @@ export const createAlertStyles = createStyleComposer({
   base: 'border-2 rounded-lg p-4',
   variants: {
     success: 'bg-success-50 border-success text-success',
-    warning: 'bg-warning-50 border-warning text-warning', 
+    warning: 'bg-warning-50 border-warning text-warning',
     error: 'bg-error-50 border-error text-error',
-  }
+  },
 })
 ```
 
@@ -622,7 +615,7 @@ export const createCardStyles = createStyleComposer({
     success: 'bg-success-50 border-success text-success',
     warning: 'bg-warning-50 border-warning text-warning',
     error: 'bg-error-50 border-error text-error',
-  }
+  },
 })
 
 // ❌ Wrong: Using arbitrary Tailwind colors
@@ -630,8 +623,8 @@ export const createBadCardStyles = createStyleComposer({
   base: 'border-2 rounded-xl p-4',
   variants: {
     default: 'bg-gray-100 border-gray-300 text-gray-900', // Don't use arbitrary colors
-    error: 'bg-red-50 border-red-500 text-red-700',       // Don't use non-semantic colors
-  }
+    error: 'bg-red-50 border-red-500 text-red-700', // Don't use non-semantic colors
+  },
 })
 ```
 
@@ -1064,7 +1057,7 @@ When building components that need icons or placeholders:
 
 <!-- Placeholder with icon component using semantic colors -->
 <div class="placeholder">
-  <ImageIcon class="h-8 w-8 text-muted" size={32} />
+  <ImageIcon class="text-muted h-8 w-8" size={32} />
 </div>
 
 <!-- Success state with icon component using semantic colors -->
@@ -1091,7 +1084,7 @@ When building components that need icons or placeholders:
 
 <!-- ❌ Don't use arbitrary Tailwind colors -->
 <div class="success-message">
-  <CheckIcon class="text-green-500 h-5 w-5" size={20} />
+  <CheckIcon class="h-5 w-5 text-green-500" size={20} />
   <span class="text-green-700">Success!</span>
 </div>
 
