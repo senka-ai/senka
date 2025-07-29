@@ -21,7 +21,8 @@ packages/ui/src/lib/components/
 │   ├── Loader.svelte
 │   ├── ProgressBar.svelte
 │   ├── Tag.svelte
-│   └── Toast.svelte
+│   ├── Toast.svelte
+│   └── Tooltip.svelte
 ├── forms/
 │   ├── Checkbox.svelte
 │   ├── Dropdown.svelte
@@ -90,6 +91,8 @@ Components that provide users with information, status updates, and system respo
 **Tag** _(CONTENT)_ - Use tags to label or categorise items using keywords. Available in different styles with optional left and right icons.
 
 **Toast** _(INFORMATIVE)_ - Use a toast to provide brief feedback or notification on an operation. It should appear for a short period of time. Available in different styles (info, success, warning, error) with customizable title and description.
+
+**Tooltip** _(INFORMATIVE)_ - A tooltip provides contextual information when hovering over elements. It displays a title and optional description with positioning relative to the trigger element. Available in multiple sizes and positions (top, bottom, left, right) with customizable content and controlled/uncontrolled visibility modes.
 
 ### 📝 Forms
 

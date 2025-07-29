@@ -42,6 +42,7 @@ const allComponents = [
   { name: 'ThemeToggle', story: 'overview', section: 'core-themetoggle' },
   { name: 'Toast', story: 'overview', section: 'feedback-toast' },
   { name: 'Toggle', story: 'overview', section: 'forms-toggle' },
+  { name: 'Tooltip', story: 'overview', section: 'feedback-tooltip' },
   { name: 'ValidationExample', story: 'email-validation', section: 'forms-validation-example' },
   { name: 'Video', story: 'overview', section: 'media-video' },
 ]

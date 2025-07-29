@@ -917,3 +917,20 @@ export const createStarRatingStyles = createStyleComposer({
     large: 'gap-1.5',
   },
 })
+
+/**
+ * Tooltip style composer
+ */
+export const createTooltipStyles = createStyleComposer({
+  base: 'absolute z-50 bg-neutral-800 text-neutral-50 shadow-lg pointer-events-none transition-opacity duration-200',
+  variants: {
+    visible: 'opacity-100',
+    hidden: 'opacity-0',
+  },
+  sizes: {
+    auto: 'p-3 whitespace-nowrap rounded-lg',
+    small: 'p-3.5 max-w-xs min-w-28 rounded-xl',
+    medium: 'p-4 max-w-sm min-w-36 rounded-xl',
+    large: 'p-4.5 max-w-md min-w-48 rounded-2xl',
+  },
+})
