@@ -26,9 +26,10 @@ Before creating stories, you have to:
 - read `packages/ui/STORYBOOK_PATTERNS.md`
 - read the source code of a couple of stories in `packages/ui/src/stories/` folder
 
-Once I confirm a component is complete, you have to:
+Only once I confirm a component is complete, you have to:
 
 - update `UI_COMPONENTS_STRUCTURE.md` with the new component
 - update visual tests at `packages/ui/tests/visual/all-components.spec.ts`
 - move its image from `packages/ui/design/need-to-be-built` to `packages/ui/design/already-built`
 - run `yarn format` to prettify all files changed
+  Don't do these until I confirm everything looks ok.

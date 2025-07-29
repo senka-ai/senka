@@ -15,6 +15,7 @@ export { default as RadioButton } from './components/forms/RadioButton.svelte'
 export { default as RadioGroup } from './components/forms/RadioGroup.svelte'
 export { default as SearchBar } from './components/forms/SearchBar.svelte'
 export { default as Toggle } from './components/forms/Toggle.svelte'
+export { default as StarRating } from './components/forms/StarRating.svelte'
 
 // Feedback Components
 export { default as Badge } from './components/feedback/Badge.svelte'

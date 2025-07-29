@@ -31,6 +31,7 @@ packages/ui/src/lib/components/
 │   ├── RadioGroup.svelte
 │   ├── SearchBar.svelte
 │   ├── Slider.svelte
+│   ├── StarRating.svelte
 │   ├── TextArea.svelte
 │   ├── TextField.svelte
 │   └── Toggle.svelte
@@ -115,6 +116,8 @@ Input components that allow users to enter, select, and manipulate data.
 **TextField** _(INPUT)_ - Text Field is a component that allows the user to enter text. For long inputs, it is recommended to use the Text Area. Features title labels, placeholder text, support text, icons, and various states including error handling.
 
 **Toggle** _(INPUT, INTERACTIVE)_ - A toggle allows the user to select one of two option. The toggle must be used when the user can turn something on or off. Features on/off states with visual feedback.
+
+**StarRating** _(INPUT, INTERACTIVE)_ - Star Rating is a component which allows users to give a rating of 0 to 5 on a certain topic. It is often used to measure the preference level of the user regarding some content. Features interactive star selection, hover preview, keyboard navigation, and support for custom maximum ratings.
 
 ### 📐 Layout
 

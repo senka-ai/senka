@@ -899,3 +899,21 @@ export function createActionSheetStyles(options: {
     content,
   }
 }
+
+/**
+ * Star Rating style composer for rating input components
+ * Provides consistent styling for star rating container with different sizes and states
+ */
+export const createStarRatingStyles = createStyleComposer({
+  base: 'inline-flex items-center',
+  variants: {
+    default: '',
+    focused: 'ring-2 ring-highlight-200 ring-offset-2 rounded-lg',
+  },
+  sizes: {
+    xs: 'gap-0.5',
+    small: 'gap-0.5',
+    medium: 'gap-1',
+    large: 'gap-1.5',
+  },
+})
