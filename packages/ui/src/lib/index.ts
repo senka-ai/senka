@@ -25,9 +25,11 @@ export { default as Toast } from './components/feedback/Toast.svelte'
 export { default as ProgressBar } from './components/feedback/ProgressBar.svelte'
 export { default as Dialog } from './components/feedback/Dialog.svelte'
 export { default as Loader } from './components/feedback/Loader.svelte'
+export { default as Tooltip } from './components/feedback/Tooltip.svelte'
 
 // Control Components
 export { default as ActionSheet } from './components/controls/ActionSheet.svelte'
+export { default as ContentSwitcher } from './components/controls/ContentSwitcher.svelte'
 
 // Layout Components
 export { default as Card } from './components/layout/Card.svelte'

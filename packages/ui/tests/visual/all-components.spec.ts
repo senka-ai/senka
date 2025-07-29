@@ -17,6 +17,7 @@ const allComponents = [
   { name: 'Card', story: 'overview', section: 'layout-card' },
   { name: 'CardHorizontal', story: 'overview', section: 'layout-cardhorizontal' },
   { name: 'Checkbox', story: 'overview', section: 'forms-checkbox' },
+  { name: 'ContentSwitcher', story: 'overview', section: 'controls-contentswitcher' },
   { name: 'Dialog', story: 'overview', section: 'feedback-dialog' },
   { name: 'Divider', story: 'overview', section: 'layout-divider' },
   { name: 'Dropdown', story: 'overview', section: 'forms-dropdown' },
