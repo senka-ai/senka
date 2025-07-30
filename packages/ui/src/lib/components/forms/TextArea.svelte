@@ -71,7 +71,7 @@
 
     // Replace all transitions with color-only transitions for resizable textareas
     if (resize !== 'none') {
-      return baseStyles.replace('transition-all duration-200', 'transition-colors duration-200')
+      return baseStyles.replace('transition-all', 'transition-colors transition-shadow')
     }
 
     return baseStyles
