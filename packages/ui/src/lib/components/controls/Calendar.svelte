@@ -246,8 +246,13 @@
       })
     }
 
-    // Add next month's leading days to complete the grid (6 weeks = 42 days)
-    const remainingDays = 42 - days.length
+    // Add next month's leading days only if needed to complete partial weeks
+    // Calculate how many days we need to complete the current week
+    const totalDays = days.length
+    const weeksNeeded = Math.ceil(totalDays / 7)
+    const daysNeeded = weeksNeeded * 7
+    const remainingDays = daysNeeded - totalDays
+    
     for (let day = 1; day <= remainingDays; day++) {
       const date = new Date(monthYear.year, monthYear.month + 1, day)
       days.push({
