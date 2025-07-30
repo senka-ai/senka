@@ -20,6 +20,7 @@ packages/ui/src/lib/components/
 │   ├── Banner.svelte
 │   ├── Dialog.svelte
 │   ├── Loader.svelte
+│   ├── PaginationDots.svelte
 │   ├── ProgressBar.svelte
 │   ├── Tag.svelte
 │   ├── Toast.svelte
@@ -88,6 +89,8 @@ Components that provide users with information, status updates, and system respo
 **Dialog** _(INFORMATIVE)_ - A dialog interrupts the journey with information, details or urgent actions. A dialog has one or more actions and must inform the user of their result.
 
 **Loader** _(PROGRESS)_ - A loader is a non-interactive component that tells the user to wait for a certain activity to be completed. The loader component of this kit can be used to indicate progress (similar to a progress bar) or to represent loading spinners (no progress indication).
+
+**PaginationDots** _(PROGRESS)_ - Pagination Dots are used to indicate progress through pages. They display a series of dots where one dot represents the current active page. Features interactive navigation, keyboard support, multiple sizes, and accessibility compliance. Avoid using Pagination Dots with a very large number of pages.
 
 **ProgressBar** _(PROGRESS)_ - A progress bar is a visual representation of how the user is progressing on a certain journey. A progress bar is not interactive, but needs to be kept up to date. Available in continuous progress bar and stepped variants.
 

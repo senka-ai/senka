@@ -5,7 +5,6 @@ You have to follow the instructions below when creating a new component.
 
 Before creating a new component, you always have to:
 
-- read `SENKA_SYSTEM_ARCHITECTURE.md` from the root monorepo folder
 - read `packages/ui/UI_COMPONENTS_STRUCTURE.md`
 - read `packages/ui/UI_ARCHITECTURE.md`
 - `/Users/catalin-ic/Downloads/claude/svelte-5.md` to make sure you respect the correct Svelte 5 coding patterns.

@@ -31,6 +31,7 @@ const allComponents = [
   { name: 'Loader', story: 'overview', section: 'feedback-loader' },
   { name: 'NavBar', story: 'overview', section: 'navigation-navbar' },
   { name: 'NumberInput', story: 'overview', section: 'forms-numberinput' },
+  { name: 'PaginationDots', story: 'overview', section: 'feedback-paginationdots' },
   { name: 'ProgressBar', story: 'overview', section: 'feedback-progressbar' },
   { name: 'RadioGroup', story: 'overview', section: 'forms-radiogroup' },
   { name: 'SearchBar', story: 'overview', section: 'forms-searchbar' },

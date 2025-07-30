@@ -26,6 +26,7 @@ export { default as ProgressBar } from './components/feedback/ProgressBar.svelte
 export { default as Dialog } from './components/feedback/Dialog.svelte'
 export { default as Loader } from './components/feedback/Loader.svelte'
 export { default as Tooltip } from './components/feedback/Tooltip.svelte'
+export { default as PaginationDots } from './components/feedback/PaginationDots.svelte'
 
 // Control Components
 export { default as ActionSheet } from './components/controls/ActionSheet.svelte'

@@ -181,7 +181,7 @@
 <div class={containerClasses} role="tablist" aria-label="Content switcher" {id} {...restProps}>
   {#each items as item, index}
     {#if index > 0}
-      <div class="{dividerHeight} w-px bg-border-subtle"></div>
+      <div class="{dividerHeight} bg-border-subtle w-px"></div>
     {/if}
     <button
       type="button"
