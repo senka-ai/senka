@@ -14,6 +14,7 @@ const allComponents = [
   { name: 'Badge', story: 'overview', section: 'feedback-badge' },
   { name: 'Banner', story: 'overview', section: 'feedback-banner' },
   { name: 'Button', story: 'overview', section: 'core-button' },
+  { name: 'Calendar', story: 'overview', section: 'controls-calendar' },
   { name: 'Card', story: 'overview', section: 'layout-card' },
   { name: 'CardHorizontal', story: 'overview', section: 'layout-cardhorizontal' },
   { name: 'Checkbox', story: 'overview', section: 'forms-checkbox' },

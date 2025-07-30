@@ -30,6 +30,7 @@ export { default as PaginationDots } from './components/feedback/PaginationDots.
 
 // Control Components
 export { default as ActionSheet } from './components/controls/ActionSheet.svelte'
+export { default as Calendar } from './components/controls/Calendar.svelte'
 export { default as ContentSwitcher } from './components/controls/ContentSwitcher.svelte'
 
 // Layout Components

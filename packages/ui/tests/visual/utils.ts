@@ -8,7 +8,7 @@ import { type Page } from '@playwright/test'
  * Navigate to a specific Storybook story
  */
 export async function visitStory(page: Page, storyId: string) {
-  await page.goto(`/iframe.html?id=${storyId}`)
+  await page.goto(`/iframe.html?id=${storyId}&visualTest=true`)
   // Wait for the story to load
   await page.waitForSelector('#storybook-root')
   // Reduced wait time for faster execution

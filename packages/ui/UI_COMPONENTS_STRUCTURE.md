@@ -8,6 +8,7 @@ This document provides a comprehensive reference of all components in the Senka 
 packages/ui/src/lib/components/
 ├── controls/
 │   ├── ActionSheet.svelte
+│   ├── Calendar.svelte
 │   └── ContentSwitcher.svelte
 ├── core/
 │   ├── Button.svelte
@@ -65,6 +66,8 @@ packages/ui/src/lib/components/
 Interactive components that allow users to trigger actions or make selections.
 
 **ActionSheet** _(CONTROL)_ - An Action sheet consists of a list of a few options that the user can select. An action sheet is usually placed at the bottom of the screen.
+
+**Calendar** _(CONTROL, INTERACTIVE)_ - A Calendar allows users to view and select dates from a monthly grid layout. Features include month navigation, date selection, keyboard navigation (arrow keys for date navigation, Enter/Space for selection), accessibility support with ARIA attributes, size variants (small, medium, large), disabled and read-only states, date range restrictions, and internationalization support. Supports both controlled and uncontrolled modes for integration flexibility. Commonly used for date pickers, event scheduling, booking systems, and date input forms.
 
 **ContentSwitcher** _(CONTROL, INTERACTIVE)_ - A Content Switcher allows users to toggle between different content sections or views. It displays multiple sections in a horizontal tab-like interface where only one section can be active at a time. Features keyboard navigation (arrow keys, Enter, Space), accessibility support with ARIA attributes, size variants (small, medium, large), full-width option with equal distribution, disabled states for individual sections or the entire component, and form association support. Commonly used for view switching (list/grid), time period filters, data categories, and form section navigation.
 
