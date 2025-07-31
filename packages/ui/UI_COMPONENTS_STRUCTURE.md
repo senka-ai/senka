@@ -55,6 +55,7 @@ packages/ui/src/lib/components/
 │   ├── Image.svelte
 │   ├── ImagePlaceholder.svelte
 │   ├── LocationPin.svelte
+│   ├── MapPlaceholder.svelte
 │   ├── Video.svelte
 │   └── VideoPlaceholder.svelte
 └── navigation/
@@ -169,6 +170,8 @@ Components for displaying and managing visual content like images, videos, and u
 **ImagePlaceholder** - Fallback component displayed when images are loading or unavailable, maintaining layout structure.
 
 **LocationPin** _(INTERACTIVE, ASSETS)_ - A Location Pin component for indicating map locations and current position. Features two variants: 'pin' (classic location pin shape with transparent center) and 'current' (circular indicator with optional pulse animation). Supports interactive click handling with keyboard navigation, custom colors, size variants (small, medium, large), disabled states, and can be used both as a static visual indicator and as a clickable control. The pin variant uses the LocationPinIcon with a hollow center, while the current variant displays as a hollow ring with a centered solid dot and optional pulsing animation. Commonly used in maps, address displays, location-based interfaces, and navigation systems.
+
+**MapPlaceholder** _(ASSETS)_ - A map placeholder component used to represent map content before loading. Features three variants: 'default' (static street map pattern), 'loading' (animated loading state), and 'error' (error indication). Displays a comprehensive street map pattern background that covers the entire placeholder area, with optional overlay messages. Supports responsive sizing and maintains aspect ratio across different container dimensions. Uses unique SVG identifiers to prevent conflicts when multiple instances are rendered. Commonly used in location pickers, address displays, property listings, and navigation interfaces where interactive maps will be loaded.
 
 **Video** _(ASSETS)_ - Use this as a placeholder for videos. Simple video container with play button styling and no configurable properties.
 

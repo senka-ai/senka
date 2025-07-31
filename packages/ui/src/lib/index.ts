@@ -53,6 +53,7 @@ export { default as AvatarPlaceholder } from './components/media/AvatarPlacehold
 export { default as Image } from './components/media/Image.svelte'
 export { default as ImagePlaceholder } from './components/media/ImagePlaceholder.svelte'
 export { default as LocationPin } from './components/media/LocationPin.svelte'
+export { default as MapPlaceholder } from './components/media/MapPlaceholder.svelte'
 export { default as Video } from './components/media/Video.svelte'
 export { default as VideoPlaceholder } from './components/media/VideoPlaceholder.svelte'
 

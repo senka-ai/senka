@@ -13,12 +13,7 @@
     InteractiveHandlers,
   } from '../../types/component'
   import { createKeyboardHandler, KeySets } from '../../utils/events'
-  import {
-    createLocationPinStyles,
-    createLocationPinInnerDotStyles,
-    createLocationPinOuterRingStyles,
-    createLocationPinOuterCircleStyles,
-  } from '../../utils/styles'
+  import { createLocationPinStyles, createLocationPinInnerDotStyles } from '../../utils/styles'
 
   interface Props
     extends BaseProps,

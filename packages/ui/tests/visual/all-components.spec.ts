@@ -32,6 +32,7 @@ const allComponents = [
   { name: 'ListTitle', story: 'overview', section: 'layout-listtitle' },
   { name: 'Loader', story: 'overview', section: 'feedback-loader' },
   { name: 'LocationPin', story: 'overview', section: 'media-locationpin' },
+  { name: 'MapPlaceholder', story: 'overview', section: 'media-mapplaceholder' },
   { name: 'NavBar', story: 'overview', section: 'navigation-navbar' },
   { name: 'NumberInput', story: 'overview', section: 'forms-numberinput' },
   { name: 'PaginationDots', story: 'overview', section: 'feedback-paginationdots' },

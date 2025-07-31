@@ -26,9 +26,7 @@ Before creating stories, you have to:
 - read `packages/ui/STORYBOOK_PATTERNS.md`
 - read the source code of a couple of stories in `packages/ui/src/stories/` folder
 
-Once you created the stories, you need to open the browser (via playwright MCP) and check if the component design matches the component under its stories.
-
-Only once I confirm a component is complete, you have to:
+Only once I confirm a component is complete, you have to do the final chores:
 
 - update `UI_COMPONENTS_STRUCTURE.md` with the new component
 - update visual tests at `packages/ui/tests/visual/all-components.spec.ts`
