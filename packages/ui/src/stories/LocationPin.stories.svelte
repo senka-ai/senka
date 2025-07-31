@@ -6,6 +6,7 @@
 <script module>
   import { defineMeta } from '@storybook/addon-svelte-csf'
   import LocationPin from '../lib/components/media/LocationPin.svelte'
+  import MapPlaceholder from '../lib/components/media/MapPlaceholder.svelte'
 
   const { Story } = defineMeta({
     title: 'Media/LocationPin',
@@ -226,20 +227,23 @@
 <Story name="Map Example" args={{}}>
   {#snippet template()}
     <div class="relative h-64 w-full rounded-xl bg-gradient-to-br from-blue-100 to-green-100 p-4">
-      <h3 class="mb-4 text-lg font-medium">Interactive Map Locations</h3>
+      <h3 class="mb-4 text-lg font-medium">Interactive Map with MapPlaceholder</h3>
 
-      <!-- Simulated map with location pins -->
-      <div class="relative h-full w-full rounded-lg bg-neutral-100 p-4">
+      <!-- Map container with MapPlaceholder background -->
+      <div class="relative h-full w-full overflow-hidden rounded-lg">
+        <!-- MapPlaceholder as background -->
+        <MapPlaceholder variant="default" />
+
         <!-- Location pins at different positions -->
-        <div class="absolute top-12 left-8">
+        <div class="absolute top-12 left-8 z-10">
           <LocationPin variant="pin" size="small" onclick={() => console.log('Restaurant clicked')} />
         </div>
 
-        <div class="absolute top-8 right-16">
+        <div class="absolute top-8 right-16 z-10">
           <LocationPin variant="pin" size="medium" onclick={() => console.log('Hotel clicked')} />
         </div>
 
-        <div class="absolute top-1/3 left-1/2 -translate-x-1/2">
+        <div class="absolute top-1/3 left-1/2 z-10 -translate-x-1/2">
           <LocationPin
             variant="pin"
             size="large"
@@ -249,7 +253,7 @@
         </div>
 
         <!-- Current location indicator -->
-        <div class="absolute right-8 bottom-8">
+        <div class="absolute bottom-8 left-64 z-10">
           <LocationPin
             variant="current"
             size="medium"
@@ -259,7 +263,7 @@
         </div>
 
         <!-- Legend -->
-        <div class="absolute bottom-4 left-4 space-y-2 rounded-lg bg-white p-3 shadow-sm">
+        <div class="absolute bottom-4 left-4 z-10 space-y-2 rounded-lg bg-white/90 p-3 shadow-sm backdrop-blur-sm">
           <div class="flex items-center gap-2">
             <LocationPin variant="pin" size="small" />
             <span class="text-xs text-neutral-600">Places of Interest</span>
