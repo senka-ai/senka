@@ -1,4 +1,4 @@
-<script module>
+<script module lang="ts">
   import { defineMeta } from '@storybook/addon-svelte-csf'
   import StarRating from '../lib/components/forms/StarRating.svelte'
   import Button from '../lib/components/core/Button.svelte'

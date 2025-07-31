@@ -1,4 +1,4 @@
-<script module>
+<script module lang="ts">
   import { defineMeta } from '@storybook/addon-svelte-csf'
   import Button from '../lib/components/core/Button.svelte'
   import {
@@ -104,14 +104,6 @@
 </Story>
 
 <Story name="Tertiary" args={{ variant: 'tertiary' }} parameters={{ layout: 'compact' }}>
-  {#snippet template(args)}
-    <Button {...args}>
-      {#snippet children()}Button{/snippet}
-    </Button>
-  {/snippet}
-</Story>
-
-<Story name="Extra Small" args={{ size: 'xs' }} parameters={{ layout: 'compact' }}>
   {#snippet template(args)}
     <Button {...args}>
       {#snippet children()}Button{/snippet}

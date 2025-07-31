@@ -1,4 +1,4 @@
-<script module>
+<script module lang="ts">
   import { defineMeta } from '@storybook/addon-svelte-csf'
   import { AddIcon } from '../lib/icons'
 
@@ -21,7 +21,7 @@
   })
 </script>
 
-<script>
+<script lang="ts">
   import {
     SearchIcon,
     SettingsIcon,

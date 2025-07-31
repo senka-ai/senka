@@ -1,4 +1,4 @@
-<script module>
+<script module lang="ts">
   import { defineMeta } from '@storybook/addon-svelte-csf'
   import ListItem from '../lib/components/layout/ListItem.svelte'
   import Avatar from '../lib/components/media/Avatar.svelte'

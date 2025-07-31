@@ -1,4 +1,4 @@
-<script module>
+<script module lang="ts">
   import { defineMeta } from '@storybook/addon-svelte-csf'
   import Slider from '../lib/components/forms/Slider.svelte'
   import { validationRules } from '../lib/utils/validation.svelte'

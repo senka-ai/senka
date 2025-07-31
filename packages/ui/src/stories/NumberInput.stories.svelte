@@ -1,4 +1,4 @@
-<script module>
+<script module lang="ts">
   import { defineMeta } from '@storybook/addon-svelte-csf'
   import NumberInput from '../lib/components/forms/NumberInput.svelte'
   import { validationRules } from '../lib/utils/validation.svelte'

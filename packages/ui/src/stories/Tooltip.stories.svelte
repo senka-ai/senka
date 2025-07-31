@@ -1,4 +1,4 @@
-<script module>
+<script module lang="ts">
   import { defineMeta } from '@storybook/addon-svelte-csf'
   import Tooltip from '../lib/components/feedback/Tooltip.svelte'
   import Button from '../lib/components/core/Button.svelte'
@@ -238,9 +238,7 @@
 
           <Tooltip title="Icon Button" description="This is an icon button with a helpful tooltip" position="bottom">
             {#snippet children()}
-              <IconButton variant="ghost">
-                <span class="text-lg">⚙️</span>
-              </IconButton>
+              <IconButton variant="ghost" icon={SettingsIcon} aria-label="Settings" />
             {/snippet}
           </Tooltip>
 
@@ -435,7 +433,7 @@
     <div class="p-16">
       <Tooltip {...args}>
         {#snippet children()}
-          <IconButton variant="ghost" icon={SettingsIcon} />
+          <IconButton variant="ghost" icon={SettingsIcon} aria-label="Settings" />
         {/snippet}
       </Tooltip>
     </div>

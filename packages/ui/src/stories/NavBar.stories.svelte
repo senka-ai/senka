@@ -1,4 +1,4 @@
-<script module>
+<script module lang="ts">
   import { defineMeta } from '@storybook/addon-svelte-csf'
   import NavBar from '../lib/components/navigation/NavBar.svelte'
   import Button from '../lib/components/core/Button.svelte'

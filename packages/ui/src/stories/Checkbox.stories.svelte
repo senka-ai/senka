@@ -1,4 +1,4 @@
-<script module>
+<script module lang="ts">
   import { defineMeta } from '@storybook/addon-svelte-csf'
   import Checkbox from '../lib/components/forms/Checkbox.svelte'
 

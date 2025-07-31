@@ -403,9 +403,9 @@
         </div>
       {:else if selectedView === 'list'}
         <div class="space-y-3">
-          <CardHorizontal title="Product A" description="Available in stock" />
-          <CardHorizontal title="Product B" description="Limited quantity" />
-          <CardHorizontal title="Product C" description="Pre-order available" />
+          <CardHorizontal title="Product A" subtitle="Available in stock" />
+          <CardHorizontal title="Product B" subtitle="Limited quantity" />
+          <CardHorizontal title="Product C" subtitle="Pre-order available" />
         </div>
       {:else if selectedView === 'cards'}
         <div class="grid grid-cols-2 gap-4">
@@ -446,15 +446,15 @@
         <div class="space-y-3">
           <div class="flex items-center justify-between">
             <p class="text-body-m text-secondary">Page Load Time</p>
-            <Badge variant="success">1.2s</Badge>
+            <Badge variant="success" value="1.2s" />
           </div>
           <div class="flex items-center justify-between">
             <p class="text-body-m text-secondary">Time to First Byte</p>
-            <Badge variant="success">0.3s</Badge>
+            <Badge variant="success" value="0.3s" />
           </div>
           <div class="flex items-center justify-between">
             <p class="text-body-m text-secondary">Core Web Vitals</p>
-            <Badge variant="success">Good</Badge>
+            <Badge variant="success" value="Good" />
           </div>
         </div>
       {:else if selectedTab === 'users'}

@@ -1,4 +1,4 @@
-<script module>
+<script module lang="ts">
   import { defineMeta } from '@storybook/addon-svelte-csf'
   import RadioGroup from '../lib/components/forms/RadioGroup.svelte'
   import RadioButton from '../lib/components/forms/RadioButton.svelte'

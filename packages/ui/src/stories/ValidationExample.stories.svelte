@@ -1,4 +1,4 @@
-<script module>
+<script module lang="ts">
   import { defineMeta } from '@storybook/addon-svelte-csf'
   import TextField from '../lib/components/forms/TextField.svelte'
   import TextArea from '../lib/components/forms/TextArea.svelte'

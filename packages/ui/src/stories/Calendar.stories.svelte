@@ -1,4 +1,4 @@
-<script module>
+<script module lang="ts">
   import { defineMeta } from '@storybook/addon-svelte-csf'
   import Calendar from '../lib/components/controls/Calendar.svelte'
   import Toast from '../lib/components/feedback/Toast.svelte'
@@ -96,9 +96,9 @@
   })
 
   // Generic handler for calendar state updates
-  function createCalendarHandler(stateKey) {
-    return (date) => {
-      calendarStates[stateKey] = date
+  function createCalendarHandler(stateKey: string) {
+    return (date: Date) => {
+      ;(calendarStates as any)[stateKey] = date
       console.log(`${stateKey} calendar date selected:`, date)
     }
   }
@@ -472,7 +472,6 @@
         variant="info"
         title="Date Range Features"
         description="Disabled dates appear grayed out and are not selectable. This is perfect for booking systems, event registration, and any scenario requiring date restrictions."
-        showIcon={true}
         dismissible={false}
       />
     </div>
@@ -543,7 +542,6 @@
         variant="success"
         title="Custom Validation"
         description="The isDateDisabled function gives you complete control over which dates are selectable. Perfect for business rules, holidays, appointments, and complex scheduling logic."
-        showIcon={true}
         dismissible={false}
       />
     </div>
@@ -657,7 +655,6 @@
           variant="info"
           title="Instructions"
           description="Click on any date to select it. Click on the calendar grid and use arrow keys to navigate dates. Use Home/End to jump to start/end of month. Use Enter/Space to select the focused date."
-          showIcon={true}
           dismissible={false}
         />
       </div>
@@ -683,7 +680,6 @@
           variant="info"
           title="Tip"
           description="Only future dates through end of year are available for booking."
-          showIcon={true}
           dismissible={false}
         />
       </div>
