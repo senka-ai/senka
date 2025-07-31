@@ -7,7 +7,8 @@ Before creating a new component, you always have to:
 
 - read `packages/ui/UI_COMPONENTS_STRUCTURE.md`
 - read `packages/ui/UI_ARCHITECTURE.md`
-- `/Users/catalin-ic/Downloads/claude/svelte-5.md` to make sure you respect the correct Svelte 5 coding patterns.
+- read `/Users/catalin-ic/.claude/docs/coding.md`
+- read `/Users/catalin-ic/.claude/docs/svelte-5.md` to make sure you respect the correct Svelte 5 coding patterns.
 - read the source code of a couple of components from `packages/ui/src/lib/components/`
 - see their design files from `packages/ui/design/already-built` folder
 
@@ -24,6 +25,8 @@ Before creating stories, you have to:
 
 - read `packages/ui/STORYBOOK_PATTERNS.md`
 - read the source code of a couple of stories in `packages/ui/src/stories/` folder
+
+Once you created the stories, you need to open the browser (via playwright MCP) and check if the component design matches the component under its stories.
 
 Only once I confirm a component is complete, you have to:
 

@@ -7,7 +7,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 **ALWAYS read these files after reading this document:**
 
 - **`SENKA_SYSTEM_ARCHITECTURE.md`** - **CRITICAL: Complete system architecture and platform vision** (read this!)
-- **`../Downloads/claude/svelte-5.md`** - Essential Svelte 5 syntax and patterns (read this!)
+- **`/Users/catalin-ic/.claude/docs/svelte-5.md`** - Essential Svelte 5 syntax and patterns (read this!)
 - **`packages/ui/UI_ARCHITECTURE.md`** - Detailed component patterns and implementation (read this!)
 
 ## Project Overview
