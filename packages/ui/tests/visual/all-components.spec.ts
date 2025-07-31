@@ -22,6 +22,7 @@ const allComponents = [
   { name: 'Dialog', story: 'overview', section: 'feedback-dialog' },
   { name: 'Divider', story: 'overview', section: 'layout-divider' },
   { name: 'Dropdown', story: 'overview', section: 'forms-dropdown' },
+  { name: 'Filter', story: 'overview', section: 'controls-filter' },
   { name: 'IconButton', story: 'overview', section: 'core-iconbutton' },
   { name: 'Icons', story: 'overview', section: 'icons-all-icons' },
   { name: 'Image', story: 'overview', section: 'media-image' },

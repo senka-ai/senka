@@ -34,4 +34,5 @@ Only once I confirm a component is complete, you have to:
 - update visual tests at `packages/ui/tests/visual/all-components.spec.ts`
 - move its image from `packages/ui/design/need-to-be-built` to `packages/ui/design/already-built`
 - run `yarn format` to prettify all files changed
+- run `yarn ui:test:visual:update:all` to update visual tests
   Don't do these until I confirm everything looks ok.

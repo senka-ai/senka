@@ -96,6 +96,28 @@ export const createInputStyles = createStyleComposer({
 })
 
 /**
+ * Filter style composer - combines button appearance with form input border styling
+ * Default variant uses thin border like form inputs, other variants use button styling
+ */
+export const createFilterStyles = createStyleComposer({
+  base: 'inline-flex items-center justify-center gap-2 font-medium transition-all duration-200 focus:outline-none cursor-pointer',
+  variants: {
+    primary:
+      'border-2 border-transparent hover:bg-highlight-hover bg-highlight text-white disabled:bg-neutral-disabled disabled:text-neutral-disabled',
+    secondary:
+      'bg-transparent border border-neutral-400 hover:bg-highlight-light hover:border-highlight text-highlight disabled:border-neutral-disabled disabled:text-neutral-light',
+    tertiary:
+      'bg-transparent border-2 border-transparent hover:bg-highlight-light text-highlight disabled:text-neutral-light',
+  },
+  sizes: {
+    xs: 'px-2 py-1 text-action-s rounded-lg',
+    small: 'px-3 py-1.5 text-action-s rounded-lg',
+    medium: 'px-4 py-2.75 text-action-m rounded-xl',
+    large: 'px-6 py-4 text-action-l rounded-2xl',
+  },
+})
+
+/**
  * Card style composer that matches the original Card component design exactly
  */
 export function createCardStyles(options: {
