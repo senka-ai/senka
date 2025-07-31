@@ -26,6 +26,7 @@ const allComponents = [
   { name: 'IconButton', story: 'overview', section: 'core-iconbutton' },
   { name: 'Icons', story: 'overview', section: 'icons-all-icons' },
   { name: 'Image', story: 'overview', section: 'media-image' },
+  { name: 'ImagePlaceholder', story: 'overview', section: 'media-imageplaceholder' },
   { name: 'IndividualIcons', story: 'add-icon', section: 'icons-individual-icons' },
   { name: 'List', story: 'overview', section: 'layout-list' },
   { name: 'ListItem', story: 'overview', section: 'layout-listitem' },
@@ -52,6 +53,7 @@ const allComponents = [
   { name: 'Tooltip', story: 'overview', section: 'feedback-tooltip' },
   { name: 'ValidationExample', story: 'email-validation', section: 'forms-validation-example' },
   { name: 'Video', story: 'overview', section: 'media-video' },
+  { name: 'VideoPlaceholder', story: 'overview', section: 'media-videoplaceholder' },
 ]
 
 // Generate tests for each component (optimized for speed)

@@ -167,7 +167,7 @@ Components for displaying and managing visual content like images, videos, and u
 
 **Image** _(ASSETS)_ - Use this as a placeholder for images. Simple image container with no configurable properties.
 
-**ImagePlaceholder** - Fallback component displayed when images are loading or unavailable, maintaining layout structure.
+**ImagePlaceholder** _(ASSETS)_ - An image placeholder component used to represent image content before loading. Features three variants: 'default' (static image icon), 'loading' (animated loading state with pulse effect), and 'error' (error indication). Displays a centered image icon with optional overlay messages positioned below the icon. Supports responsive sizing that adapts to different container dimensions while maintaining proper icon proportions. Uses semantic color system with highlight background and neutral text colors. Commonly used in image galleries, profile photo uploads, content management systems, and any interface where images are dynamically loaded.
 
 **LocationPin** _(INTERACTIVE, ASSETS)_ - A Location Pin component for indicating map locations and current position. Features two variants: 'pin' (classic location pin shape with transparent center) and 'current' (circular indicator with optional pulse animation). Supports interactive click handling with keyboard navigation, custom colors, size variants (small, medium, large), disabled states, and can be used both as a static visual indicator and as a clickable control. The pin variant uses the LocationPinIcon with a hollow center, while the current variant displays as a hollow ring with a centered solid dot and optional pulsing animation. Commonly used in maps, address displays, location-based interfaces, and navigation systems.
 
@@ -175,7 +175,7 @@ Components for displaying and managing visual content like images, videos, and u
 
 **Video** _(ASSETS)_ - Use this as a placeholder for videos. Simple video container with play button styling and no configurable properties.
 
-**VideoPlaceholder** - Fallback component shown when videos are loading or unavailable, maintaining layout consistency.
+**VideoPlaceholder** _(ASSETS)_ - A video placeholder component used to represent video content before loading. Features three variants: 'default' (static video icon), 'loading' (animated loading state with pulse effect), and 'error' (error indication). Displays a centered video icon with optional overlay messages positioned below the icon. Supports responsive sizing that adapts to different container dimensions and aspect ratios while maintaining proper icon proportions. Uses semantic color system with highlight background and neutral text colors. The video icon is slightly larger than the image icon to better represent video content. Commonly used in video players, media galleries, course content, streaming interfaces, and any application where video content is dynamically loaded.
 
 ### 🧭 Navigation
 
