@@ -39,6 +39,7 @@ const allComponents = [
   { name: 'Slider', story: 'overview', section: 'forms-slider' },
   { name: 'StarRating', story: 'overview', section: 'forms-starrating' },
   { name: 'TabBar', story: 'overview', section: 'navigation-tabbar' },
+  { name: 'Tabs', story: 'overview', section: 'controls-tabs' },
   { name: 'Tag', story: 'overview', section: 'feedback-tag' },
   { name: 'TextArea', story: 'overview', section: 'forms-textarea' },
   { name: 'TextField', story: 'overview', section: 'forms-textfield' },

@@ -9,7 +9,8 @@ packages/ui/src/lib/components/
 ├── controls/
 │   ├── ActionSheet.svelte
 │   ├── Calendar.svelte
-│   └── ContentSwitcher.svelte
+│   ├── ContentSwitcher.svelte
+│   └── Tabs.svelte
 ├── core/
 │   ├── Button.svelte
 │   ├── IconButton.svelte
@@ -70,6 +71,8 @@ Interactive components that allow users to trigger actions or make selections.
 **Calendar** _(CONTROL, INTERACTIVE)_ - A Calendar allows users to view and select dates from a monthly grid layout. Features include month navigation, date selection, keyboard navigation (arrow keys for date navigation, Enter/Space for selection), accessibility support with ARIA attributes, size variants (small, medium, large), disabled and read-only states, date range restrictions, and internationalization support. Supports both controlled and uncontrolled modes for integration flexibility. Commonly used for date pickers, event scheduling, booking systems, and date input forms.
 
 **ContentSwitcher** _(CONTROL, INTERACTIVE)_ - A Content Switcher allows users to toggle between different content sections or views. It displays multiple sections in a horizontal tab-like interface where only one section can be active at a time. Features keyboard navigation (arrow keys, Enter, Space), accessibility support with ARIA attributes, size variants (small, medium, large), full-width option with equal distribution, disabled states for individual sections or the entire component, and form association support. Commonly used for view switching (list/grid), time period filters, data categories, and form section navigation.
+
+**Tabs** _(CONTROL, INTERACTIVE)_ - A Tabs component provides navigation between different content sections through clickable tab headers. Features include keyboard navigation (arrow keys for tab navigation, Enter/Space for selection), accessibility support with ARIA attributes, size variants (small, medium, large), full-width option with equal distribution, animated bottom border indicator, disabled states for individual tabs or the entire component, and typography differentiation between active and inactive tabs. Designed to prevent font flickering and layout shifts with intelligent width measurement. Commonly used for content organization, dashboard navigation, form sections, and data categorization.
 
 ### 🎯 Core
 

@@ -252,7 +252,7 @@
     const weeksNeeded = Math.ceil(totalDays / 7)
     const daysNeeded = weeksNeeded * 7
     const remainingDays = daysNeeded - totalDays
-    
+
     for (let day = 1; day <= remainingDays; day++) {
       const date = new Date(monthYear.year, monthYear.month + 1, day)
       days.push({
