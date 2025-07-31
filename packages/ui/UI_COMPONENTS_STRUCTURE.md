@@ -54,6 +54,7 @@ packages/ui/src/lib/components/
 │   ├── AvatarPlaceholder.svelte
 │   ├── Image.svelte
 │   ├── ImagePlaceholder.svelte
+│   ├── LocationPin.svelte
 │   ├── Video.svelte
 │   └── VideoPlaceholder.svelte
 └── navigation/
@@ -166,6 +167,8 @@ Components for displaying and managing visual content like images, videos, and u
 **Image** _(ASSETS)_ - Use this as a placeholder for images. Simple image container with no configurable properties.
 
 **ImagePlaceholder** - Fallback component displayed when images are loading or unavailable, maintaining layout structure.
+
+**LocationPin** _(INTERACTIVE, ASSETS)_ - A Location Pin component for indicating map locations and current position. Features two variants: 'pin' (classic location pin shape with transparent center) and 'current' (circular indicator with optional pulse animation). Supports interactive click handling with keyboard navigation, custom colors, size variants (small, medium, large), disabled states, and can be used both as a static visual indicator and as a clickable control. The pin variant uses the LocationPinIcon with a hollow center, while the current variant displays as a hollow ring with a centered solid dot and optional pulsing animation. Commonly used in maps, address displays, location-based interfaces, and navigation systems.
 
 **Video** _(ASSETS)_ - Use this as a placeholder for videos. Simple video container with play button styling and no configurable properties.
 

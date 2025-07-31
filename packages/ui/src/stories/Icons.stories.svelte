@@ -29,6 +29,7 @@
     InboxIcon,
     InfoIcon,
     LinkedInIcon,
+    LocationPinIcon,
     MinusIcon,
     PlaceholderIcon,
     PlayIcon,
@@ -181,6 +182,10 @@
       <div class="flex flex-col items-center gap-2">
         <LinkedInIcon {...args} />
         <span class="text-xs text-neutral-600">LinkedInIcon</span>
+      </div>
+      <div class="flex flex-col items-center gap-2">
+        <LocationPinIcon {...args} />
+        <span class="text-xs text-neutral-600">LocationPinIcon</span>
       </div>
       <div class="flex flex-col items-center gap-2">
         <MinusIcon {...args} />

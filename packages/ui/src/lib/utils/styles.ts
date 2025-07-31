@@ -956,3 +956,107 @@ export const createTooltipStyles = createStyleComposer({
     large: 'p-4.5 max-w-md min-w-48 rounded-2xl',
   },
 })
+
+/**
+ * LocationPin style composer for location pin and current location indicators
+ * Provides consistent styling for different variants and sizes with optional pulse animations
+ */
+export function createLocationPinStyles(options: {
+  variant: 'pin' | 'current'
+  size: 'small' | 'medium' | 'large'
+  interactive?: boolean
+  disabled?: boolean
+  pulse?: boolean
+  className?: string
+}): string {
+  const { variant, size, interactive = false, disabled = false, pulse = false, className = '' } = options
+
+  const base = 'relative inline-flex items-center justify-center text-highlight transition-all duration-200'
+
+  const variants = {
+    pin: 'cursor-default',
+    current: 'cursor-default rounded-full',
+  }
+
+  const sizes = {
+    small: variant === 'pin' ? 'h-6 w-6' : 'h-8 w-8',
+    medium: variant === 'pin' ? 'h-8 w-8' : 'h-10 w-10',
+    large: variant === 'pin' ? 'h-10 w-10' : 'h-13 w-13',
+  }
+
+  // Interactive styles
+  const interactiveStyles = interactive && !disabled ? 'cursor-pointer hover:scale-110 active:scale-95' : ''
+
+  // Disabled styles
+  const disabledStyles = disabled ? 'opacity-50 cursor-not-allowed' : ''
+
+  // Pulse animation for current location variant
+  const pulseStyles = pulse && variant === 'current' ? 'animate-ping scale-70' : ''
+
+  // Current location specific styling - use border instead of background for ring effect
+  const borderWidths = {
+    small: 'border-8',
+    medium: 'border-10',
+    large: 'border-14',
+  }
+  const currentStyles = variant === 'current' ? `${borderWidths[size]} border-highlight-50` : ''
+
+  return composeClasses(
+    base,
+    variants[variant],
+    sizes[size],
+    interactiveStyles,
+    disabledStyles,
+    pulseStyles,
+    currentStyles,
+    className
+  )
+}
+
+/**
+ * LocationPin current location inner dot styles
+ * Provides consistent styling for the inner solid dot of current location indicators
+ */
+export function createLocationPinInnerDotStyles(size: 'small' | 'medium' | 'large'): string {
+  const base = 'rounded-full bg-current'
+
+  const sizes = {
+    small: 'h-2 w-2',
+    medium: 'h-2.75 w-2.75',
+    large: 'h-3 w-3',
+  }
+
+  return composeClasses(base, sizes[size])
+}
+
+/**
+ * LocationPin current location outer ring styles for pulse animation
+ * Provides consistent styling for the outer pulsing ring of current location indicators
+ */
+export function createLocationPinOuterRingStyles(size: 'small' | 'medium' | 'large'): string {
+  const base = 'absolute rounded-full animate-ping'
+
+  const sizes = {
+    small: 'h-4 w-4',
+    medium: 'h-6 w-6',
+    large: 'h-8 w-8',
+  }
+
+  return composeClasses(base, sizes[size])
+}
+
+/**
+ * LocationPin current location outer circle styles (static border)
+ * Provides consistent styling for the outer circle border of current location indicators
+ */
+export function createLocationPinOuterCircleStyles(size: 'small' | 'medium' | 'large'): string {
+  const base = 'absolute rounded-full border-2'
+
+  const sizes = {
+    small: 'h-5 w-5',
+    medium: 'h-6 w-6',
+    large: 'h-8 w-8',
+  }
+
+  return composeClasses(base, sizes[size])
+}
