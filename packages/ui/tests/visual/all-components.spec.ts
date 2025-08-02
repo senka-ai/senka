@@ -42,6 +42,7 @@ const allComponents = [
   { name: 'SearchBar', story: 'overview', section: 'forms-searchbar' },
   { name: 'Slider', story: 'overview', section: 'forms-slider' },
   { name: 'StarRating', story: 'overview', section: 'forms-starrating' },
+  { name: 'Stepper', story: 'overview', section: 'controls-stepper' },
   { name: 'TabBar', story: 'overview', section: 'navigation-tabbar' },
   { name: 'Tabs', story: 'overview', section: 'controls-tabs' },
   { name: 'Tag', story: 'overview', section: 'feedback-tag' },

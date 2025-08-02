@@ -32,6 +32,7 @@ export { default as PaginationDots } from './components/feedback/PaginationDots.
 export { default as ActionSheet } from './components/controls/ActionSheet.svelte'
 export { default as Calendar } from './components/controls/Calendar.svelte'
 export { default as ContentSwitcher } from './components/controls/ContentSwitcher.svelte'
+export { default as Stepper } from './components/controls/Stepper.svelte'
 export { default as Tabs } from './components/controls/Tabs.svelte'
 
 // Layout Components
