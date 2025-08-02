@@ -7,6 +7,8 @@
   import { defineMeta } from '@storybook/addon-svelte-csf'
   import LocationPin from '../lib/components/media/LocationPin.svelte'
   import MapPlaceholder from '../lib/components/media/MapPlaceholder.svelte'
+  import Tag from '../lib/components/feedback/Tag.svelte'
+  import { LocationPinIcon, PlaceholderIcon } from '../lib/icons'
 
   const { Story } = defineMeta({
     title: 'Media/LocationPin',
@@ -226,7 +228,7 @@
 
 <Story name="Map Example" args={{}}>
   {#snippet template()}
-    <div class="relative h-64 w-full rounded-xl bg-gradient-to-br from-blue-100 to-green-100 p-4">
+    <div class="relative h-72 w-full rounded-xl bg-gradient-to-br p-4">
       <h3 class="mb-4 text-lg font-medium">Interactive Map with MapPlaceholder</h3>
 
       <!-- Map container with MapPlaceholder background -->
@@ -239,11 +241,11 @@
           <LocationPin variant="pin" size="small" onclick={() => console.log('Restaurant clicked')} />
         </div>
 
-        <div class="absolute top-8 right-16 z-10">
+        <div class="absolute top-8 right-20 z-10">
           <LocationPin variant="pin" size="medium" onclick={() => console.log('Hotel clicked')} />
         </div>
 
-        <div class="absolute top-1/3 left-1/2 z-10 -translate-x-1/2">
+        <div class="absolute top-1/3 left-2/3 z-10 -translate-x-1/2">
           <LocationPin
             variant="pin"
             size="large"
@@ -253,7 +255,7 @@
         </div>
 
         <!-- Current location indicator -->
-        <div class="absolute bottom-8 left-64 z-10">
+        <div class="absolute bottom-20 left-44 z-10">
           <LocationPin
             variant="current"
             size="medium"
@@ -263,15 +265,17 @@
         </div>
 
         <!-- Legend -->
-        <div class="absolute bottom-4 left-4 z-10 space-y-2 rounded-lg bg-white/90 p-3 shadow-sm backdrop-blur-sm">
-          <div class="flex items-center gap-2">
-            <LocationPin variant="pin" size="small" />
-            <span class="text-xs text-neutral-600">Places of Interest</span>
-          </div>
-          <div class="flex items-center gap-2">
-            <LocationPin variant="current" size="small" />
-            <span class="text-xs text-neutral-600">Your Location</span>
-          </div>
+        <div class="absolute bottom-2 left-4 z-10 space-y-2">
+          <Tag variant="primary" text="Places of Interest">
+            {#snippet leftIcon()}
+              <LocationPinIcon size={12} />
+            {/snippet}
+          </Tag>
+          <Tag variant="primary" text="Your location">
+            {#snippet leftIcon()}
+              <PlaceholderIcon size={12} />
+            {/snippet}
+          </Tag>
         </div>
       </div>
     </div>

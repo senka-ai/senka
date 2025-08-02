@@ -42,17 +42,23 @@
       <div>
         <h3 class="mb-4 text-lg font-semibold">Variants</h3>
         <div class="grid grid-cols-3 gap-6">
-          <div class="relative h-48 w-full max-w-md overflow-hidden rounded-xl bg-neutral-100">
+          <div class="relative h-48 w-full max-w-md overflow-hidden rounded-xl">
             <ImagePlaceholder variant="default" />
-            <div class="absolute bottom-2 left-2 rounded bg-white/90 px-2 py-1 text-xs">Default</div>
+            <div class="bg-surface-elevated text-secondary text-body-s absolute bottom-2 left-2 rounded px-2 py-1">
+              Default
+            </div>
           </div>
-          <div class="relative h-48 w-full max-w-md overflow-hidden rounded-xl bg-neutral-100">
+          <div class="relative h-48 w-full max-w-md overflow-hidden rounded-xl">
             <ImagePlaceholder variant="loading" />
-            <div class="absolute bottom-2 left-2 rounded bg-white/90 px-2 py-1 text-xs">Loading</div>
+            <div class="bg-surface-elevated text-secondary text-body-s absolute bottom-2 left-2 rounded px-2 py-1">
+              Loading
+            </div>
           </div>
-          <div class="relative h-48 w-full max-w-md overflow-hidden rounded-xl bg-neutral-100">
+          <div class="relative h-48 w-full max-w-md overflow-hidden rounded-xl">
             <ImagePlaceholder variant="error" />
-            <div class="absolute bottom-2 left-2 rounded bg-white/90 px-2 py-1 text-xs">Error</div>
+            <div class="bg-surface-elevated text-secondary text-body-s absolute bottom-2 left-2 rounded px-2 py-1">
+              Error
+            </div>
           </div>
         </div>
       </div>
@@ -61,10 +67,10 @@
       <div>
         <h3 class="mb-4 text-lg font-semibold">With Messages</h3>
         <div class="grid grid-cols-2 gap-6">
-          <div class="relative h-48 w-full max-w-md overflow-hidden rounded-xl bg-neutral-100">
+          <div class="relative h-48 w-full max-w-md overflow-hidden rounded-xl">
             <ImagePlaceholder variant="default" message="Loading image..." />
           </div>
-          <div class="relative h-48 w-full max-w-md overflow-hidden rounded-xl bg-neutral-100">
+          <div class="relative h-48 w-full max-w-md overflow-hidden rounded-xl">
             <ImagePlaceholder variant="error" message="Failed to load image" />
           </div>
         </div>
@@ -74,10 +80,10 @@
       <div>
         <h3 class="mb-4 text-lg font-semibold">Different Container Sizes</h3>
         <div class="space-y-4">
-          <div class="relative h-32 w-full overflow-hidden rounded-xl bg-neutral-100">
+          <div class="relative h-32 w-full overflow-hidden rounded-xl">
             <ImagePlaceholder variant="default" message="Small container" />
           </div>
-          <div class="relative h-64 w-full overflow-hidden rounded-xl bg-neutral-100">
+          <div class="relative h-64 w-full overflow-hidden rounded-xl">
             <ImagePlaceholder variant="default" message="Large container" />
           </div>
         </div>
@@ -88,7 +94,7 @@
 
 <Story name="Default" args={{}} parameters={{ layout: 'fullscreen' }}>
   {#snippet template(args)}
-    <div class="relative h-48 w-full max-w-md overflow-hidden rounded-xl bg-neutral-100">
+    <div class="relative h-48 w-full max-w-md overflow-hidden rounded-xl">
       <ImagePlaceholder {...args} />
     </div>
   {/snippet}
@@ -96,7 +102,7 @@
 
 <Story name="Loading Variant" args={{ variant: 'loading' }} parameters={{ layout: 'fullscreen' }}>
   {#snippet template(args)}
-    <div class="relative h-48 w-full max-w-md overflow-hidden rounded-xl bg-neutral-100">
+    <div class="relative h-48 w-full max-w-md overflow-hidden rounded-xl">
       <ImagePlaceholder {...args} />
     </div>
   {/snippet}
@@ -104,7 +110,7 @@
 
 <Story name="Error Variant" args={{ variant: 'error' }} parameters={{ layout: 'fullscreen' }}>
   {#snippet template(args)}
-    <div class="relative h-48 w-full max-w-md overflow-hidden rounded-xl bg-neutral-100">
+    <div class="relative h-48 w-full max-w-md overflow-hidden rounded-xl">
       <ImagePlaceholder {...args} variant="error" />
     </div>
   {/snippet}
@@ -112,7 +118,7 @@
 
 <Story name="With Message" args={{ message: 'Loading image data...' }} parameters={{ layout: 'fullscreen' }}>
   {#snippet template(args)}
-    <div class="relative h-48 w-full max-w-md overflow-hidden rounded-xl bg-neutral-100">
+    <div class="relative h-48 w-full max-w-md overflow-hidden rounded-xl">
       <ImagePlaceholder {...args} />
     </div>
   {/snippet}
@@ -124,7 +130,7 @@
   parameters={{ layout: 'fullscreen' }}
 >
   {#snippet template(args)}
-    <div class="relative h-48 w-full max-w-md overflow-hidden rounded-xl bg-neutral-100">
+    <div class="relative h-48 w-full max-w-md overflow-hidden rounded-xl">
       <ImagePlaceholder {...args} />
     </div>
   {/snippet}
@@ -136,7 +142,7 @@
   parameters={{ layout: 'fullscreen' }}
 >
   {#snippet template(args)}
-    <div class="relative h-48 w-full max-w-md overflow-hidden rounded-xl bg-neutral-100">
+    <div class="relative h-48 w-full max-w-md overflow-hidden rounded-xl">
       <ImagePlaceholder {...args} />
     </div>
   {/snippet}

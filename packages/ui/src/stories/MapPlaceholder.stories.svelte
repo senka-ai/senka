@@ -1,6 +1,7 @@
 <script module>
   import { defineMeta } from '@storybook/addon-svelte-csf'
   import MapPlaceholder from '../lib/components/media/MapPlaceholder.svelte'
+  import Tag from '../lib/components/feedback/Tag.svelte'
 
   const { Story } = defineMeta({
     title: 'Media/MapPlaceholder',
@@ -42,17 +43,14 @@
       <div>
         <h3 class="mb-4 text-lg font-semibold">Variants</h3>
         <div class="grid grid-cols-3 gap-6">
-          <div class="relative h-48 w-full max-w-md overflow-hidden rounded-xl bg-neutral-100">
-            <MapPlaceholder variant="default" />
-            <div class="absolute bottom-2 left-2 rounded bg-white/90 px-2 py-1 text-xs">Default</div>
+          <div class="relative h-48 w-full max-w-md overflow-hidden rounded-xl">
+            <MapPlaceholder variant="default" message="Default" />
           </div>
-          <div class="relative h-48 w-full max-w-md overflow-hidden rounded-xl bg-neutral-100">
-            <MapPlaceholder variant="loading" />
-            <div class="absolute bottom-2 left-2 rounded bg-white/90 px-2 py-1 text-xs">Loading</div>
+          <div class="relative h-48 w-full max-w-md overflow-hidden rounded-xl">
+            <MapPlaceholder variant="loading" message="Loading" />
           </div>
-          <div class="relative h-48 w-full max-w-md overflow-hidden rounded-xl bg-neutral-100">
-            <MapPlaceholder variant="error" />
-            <div class="absolute bottom-2 left-2 rounded bg-white/90 px-2 py-1 text-xs">Error</div>
+          <div class="relative h-48 w-full max-w-md overflow-hidden rounded-xl">
+            <MapPlaceholder variant="error" message="Error" />
           </div>
         </div>
       </div>
@@ -61,10 +59,10 @@
       <div>
         <h3 class="mb-4 text-lg font-semibold">With Messages</h3>
         <div class="grid grid-cols-2 gap-6">
-          <div class="relative h-48 w-full max-w-md overflow-hidden rounded-xl bg-neutral-100">
+          <div class="relative h-48 w-full max-w-md overflow-hidden rounded-xl">
             <MapPlaceholder variant="default" message="Loading map data..." />
           </div>
-          <div class="relative h-48 w-full max-w-md overflow-hidden rounded-xl bg-neutral-100">
+          <div class="relative h-48 w-full max-w-md overflow-hidden rounded-xl">
             <MapPlaceholder variant="error" message="Failed to load map" />
           </div>
         </div>
@@ -74,10 +72,10 @@
       <div>
         <h3 class="mb-4 text-lg font-semibold">Different Container Sizes</h3>
         <div class="space-y-4">
-          <div class="relative h-32 w-full overflow-hidden rounded-xl bg-neutral-100">
+          <div class="relative h-32 w-full overflow-hidden rounded-xl">
             <MapPlaceholder variant="default" message="Small container" />
           </div>
-          <div class="relative h-64 w-full overflow-hidden rounded-xl bg-neutral-100">
+          <div class="relative h-64 w-full overflow-hidden rounded-xl">
             <MapPlaceholder variant="default" message="Large container" />
           </div>
         </div>
@@ -88,7 +86,7 @@
 
 <Story name="Default" args={{}} parameters={{ layout: 'fullscreen' }}>
   {#snippet template(args)}
-    <div class="relative h-48 w-full max-w-md overflow-hidden rounded-xl bg-neutral-100">
+    <div class="relative h-48 w-full max-w-md overflow-hidden rounded-xl">
       <MapPlaceholder {...args} />
     </div>
   {/snippet}
@@ -96,7 +94,7 @@
 
 <Story name="Loading Variant" args={{ variant: 'loading' }} parameters={{ layout: 'fullscreen' }}>
   {#snippet template(args)}
-    <div class="relative h-48 w-full max-w-md overflow-hidden rounded-xl bg-neutral-100">
+    <div class="relative h-48 w-full max-w-md overflow-hidden rounded-xl">
       <MapPlaceholder {...args} />
     </div>
   {/snippet}
@@ -104,7 +102,7 @@
 
 <Story name="Error Variant" args={{ variant: 'error' }} parameters={{ layout: 'fullscreen' }}>
   {#snippet template(args)}
-    <div class="relative h-48 w-full max-w-md overflow-hidden rounded-xl bg-neutral-100">
+    <div class="relative h-48 w-full max-w-md overflow-hidden rounded-xl">
       <MapPlaceholder {...args} />
     </div>
   {/snippet}
@@ -112,7 +110,7 @@
 
 <Story name="With Message" args={{ message: 'Loading map data...' }} parameters={{ layout: 'fullscreen' }}>
   {#snippet template(args)}
-    <div class="relative h-48 w-full max-w-md overflow-hidden rounded-xl bg-neutral-100">
+    <div class="relative h-48 w-full max-w-md overflow-hidden rounded-xl">
       <MapPlaceholder {...args} />
     </div>
   {/snippet}
@@ -124,7 +122,7 @@
   parameters={{ layout: 'fullscreen' }}
 >
   {#snippet template(args)}
-    <div class="relative h-48 w-full max-w-md overflow-hidden rounded-xl bg-neutral-100">
+    <div class="relative h-48 w-full max-w-md overflow-hidden rounded-xl">
       <MapPlaceholder {...args} />
     </div>
   {/snippet}
@@ -136,7 +134,7 @@
   parameters={{ layout: 'fullscreen' }}
 >
   {#snippet template(args)}
-    <div class="relative h-48 w-full max-w-md overflow-hidden rounded-xl bg-neutral-100">
+    <div class="relative h-48 w-full max-w-md overflow-hidden rounded-xl">
       <MapPlaceholder {...args} />
     </div>
   {/snippet}
@@ -146,15 +144,15 @@
   {#snippet template()}
     <div class="max-w-2xl space-y-6">
       <h3 class="text-lg font-medium">Location Picker</h3>
-      <div class="space-y-4 rounded-lg border border-neutral-300 p-4">
+      <div class="border-default space-y-4 rounded-lg border p-4">
         <div class="flex items-center justify-between">
           <span class="text-sm font-medium">Select Location</span>
-          <span class="text-xs text-neutral-500">Click on map to select</span>
+          <span class="text-muted text-xs">Click on map to select</span>
         </div>
-        <div class="relative h-64 w-full overflow-hidden rounded-lg border border-neutral-400">
+        <div class="border-strong relative h-64 w-full overflow-hidden rounded-lg border">
           <MapPlaceholder variant="loading" message="Loading interactive map..." />
         </div>
-        <div class="text-xs text-neutral-600">Map data provided by OpenStreetMap</div>
+        <div class="text-secondary text-xs">Map data provided by OpenStreetMap</div>
       </div>
     </div>
   {/snippet}
