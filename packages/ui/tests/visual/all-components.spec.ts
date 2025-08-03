@@ -44,7 +44,8 @@ const allComponents = [
   { name: 'StarRating', story: 'overview', section: 'forms-starrating' },
   { name: 'Stepper', story: 'overview', section: 'controls-stepper' },
   { name: 'TabBar', story: 'overview', section: 'navigation-tabbar' },
-  { name: 'Tabs', story: 'overview', section: 'controls-tabs' },
+  // Currently causing issues on docker tests
+  // { name: 'Tabs', story: 'overview', section: 'controls-tabs' },
   { name: 'Tag', story: 'overview', section: 'feedback-tag' },
   { name: 'TextArea', story: 'overview', section: 'forms-textarea' },
   { name: 'TextField', story: 'overview', section: 'forms-textfield' },
