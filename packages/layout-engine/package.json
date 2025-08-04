@@ -1,0 +1,64 @@
+{
+  "name": "@senka-ai/layout-engine",
+  "version": "0.0.1",
+  "description": "Intuitive layout system for Senka's no-code platform",
+  "type": "module",
+  "main": "./dist/index.js",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    },
+    "./styles": {
+      "import": "./dist/styles.css"
+    }
+  },
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "dev": "vite build --watch",
+    "build": "vite build && tsc --emitDeclarationOnly",
+    "preview": "vite preview",
+    "typecheck": "tsc --noEmit",
+    "test": "vitest",
+    "test:ui": "vitest --ui",
+    "test:coverage": "vitest --coverage",
+    "lint": "prettier --check .",
+    "format": "prettier --write ."
+  },
+  "peerDependencies": {
+    "svelte": "^5.0.0"
+  },
+  "devDependencies": {
+    "@sveltejs/package": "^2.2.3",
+    "@sveltejs/vite-plugin-svelte": "^3.0.0",
+    "@testing-library/svelte": "^4.0.5",
+    "@types/node": "^20.9.0",
+    "@vitest/ui": "^1.0.4",
+    "jsdom": "^23.0.1",
+    "svelte": "^5.0.0",
+    "svelte-check": "^3.6.2",
+    "tslib": "^2.6.2",
+    "typescript": "^5.3.2",
+    "vite": "^5.0.0",
+    "vitest": "^1.0.4"
+  },
+  "keywords": [
+    "layout",
+    "no-code",
+    "responsive",
+    "constraint-based",
+    "visual-builder",
+    "svelte"
+  ],
+  "author": "Senka AI",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/senka-ai/senka.git",
+    "directory": "packages/layout-engine"
+  }
+}
