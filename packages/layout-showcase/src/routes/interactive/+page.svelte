@@ -1,0 +1,268 @@
+<!-- 
+packages/layout-showcase/src/routes/interactive/+page.svelte
+Interactive layout builder with live controls and preview
+Allows real-time experimentation with layout engine properties
+RELEVANT FILES: packages/layout-showcase/src/lib/components/LayoutControls.svelte, packages/layout-engine/src/lib/engine.ts, packages/ui/src/lib/components/layout/Card.svelte, packages/layout-engine/src/lib/types/index.ts
+-->
+
+<script lang="ts">
+  import { LayoutEngine } from '@senka-ai/layout-engine'
+  import type { LayoutContainer } from '@senka-ai/layout-engine'
+  import LayoutControls from '$lib/components/LayoutControls.svelte'
+  import { 
+    Button, 
+    Card, 
+    Tag, 
+    TextField, 
+    Badge,
+    Banner
+  } from '@senka-ai/ui'
+
+  // Create layout engine instance
+  const engine = new LayoutEngine({
+    cssOptimization: true,
+    vendorPrefixes: true,
+  })
+
+  // Initial layout configuration
+  let currentLayout = $state<LayoutContainer>({
+    id: 'interactive-demo',
+    arrangement: {
+      type: 'stack',
+      direction: 'vertical',
+    },
+    autoLayout: {
+      mode: 'hug-contents',
+      primaryAxis: 'packed',
+      counterAxis: 'stretch',
+      gap: { scale: 'normal' },
+      padding: { all: { scale: 'normal' } },
+    },
+  })
+
+  // Generate CSS reactively
+  let generatedCSS = $derived(engine.generateCSS(currentLayout))
+  let formattedCSS = $derived(formatCSS(generatedCSS))
+
+  // State for display options
+  let showCSS = $state(false)
+  let componentSet = $state('mixed')
+
+  // Update layout handler
+  const handleLayoutChange = (newLayout: LayoutContainer) => {
+    currentLayout = newLayout
+  }
+
+  // Format CSS for better display
+  function formatCSS(css: string): string {
+    return css
+      .replace(/;/g, ';\n  ')
+      .replace(/{/g, ' {\n  ')
+      .replace(/}/g, '\n}')
+      .replace(/^\s+/gm, '  ')
+  }
+
+  // Component sets for demo
+  const componentSets = {
+    cards: [
+      { component: Card, props: { title: 'Dashboard', description: 'View analytics and metrics' } },
+      { component: Card, props: { title: 'Projects', description: 'Manage your active projects' } },
+      { component: Card, props: { title: 'Team', description: 'Collaborate with team members' } },
+      { component: Card, props: { title: 'Settings', description: 'Configure your preferences' } },
+    ],
+    buttons: [
+      { component: Button, props: { variant: 'primary' as const }, content: 'Save Changes' },
+      { component: Button, props: { variant: 'secondary' as const }, content: 'Cancel' },
+      { component: Button, props: { variant: 'tertiary' as const }, content: 'Preview' },
+      { component: Button, props: { variant: 'tertiary' as const }, content: 'Export' },
+    ],
+    tags: [
+      { component: Tag, content: 'React' },
+      { component: Tag, content: 'Svelte' },
+      { component: Tag, content: 'TypeScript' },
+      { component: Tag, content: 'Tailwind' },
+      { component: Tag, content: 'Vite' },
+      { component: Tag, content: 'SvelteKit' },
+      { component: Tag, content: 'Storybook' },
+      { component: Tag, content: 'Playwright' },
+    ],
+    mixed: [
+      { component: Banner, props: { title: 'Welcome!', description: 'Get started with your new project', variant: 'info' } },
+      { component: Card, props: { title: 'Quick Start', description: 'Follow these steps to begin' } },
+      { component: 'div', props: { class: 'flex gap-2' }, content: [
+        { component: Button, props: { variant: 'primary', size: 'small' }, content: 'Continue' },
+        { component: Button, props: { variant: 'secondary', size: 'small' }, content: 'Learn More' },
+      ]},
+      { component: 'div', props: { class: 'flex gap-2 flex-wrap' }, content: [
+        { component: Tag, content: 'Getting Started' },
+        { component: Tag, content: 'Tutorial' },
+        { component: Badge, props: { variant: 'success' }, content: 'New' },
+      ]},
+    ],
+  }
+</script>
+
+<svelte:head>
+  <title>Interactive Layout Builder - Senka Layout Engine</title>
+</svelte:head>
+
+<div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+  <!-- Layout Controls Panel -->
+  <div class="lg:col-span-1">
+    <div class="sticky top-8 space-y-6">
+      <LayoutControls layout={currentLayout} onLayoutChange={handleLayoutChange} />
+      
+      <!-- Component Set Selector -->
+      <Card title="Demo Components">
+        <div class="space-y-2">
+          <span class="property-label">Component Set</span>
+          <div class="space-y-2">
+            <button 
+              class="w-full text-left px-3 py-2 rounded border {componentSet === 'mixed' ? 'bg-highlight text-white border-highlight' : 'bg-surface border-default text-primary'}"
+              onclick={() => componentSet = 'mixed'}
+            >
+              Mixed Components
+            </button>
+            <button 
+              class="w-full text-left px-3 py-2 rounded border {componentSet === 'cards' ? 'bg-highlight text-white border-highlight' : 'bg-surface border-default text-primary'}"
+              onclick={() => componentSet = 'cards'}
+            >
+              Cards Only
+            </button>
+            <button 
+              class="w-full text-left px-3 py-2 rounded border {componentSet === 'buttons' ? 'bg-highlight text-white border-highlight' : 'bg-surface border-default text-primary'}"
+              onclick={() => componentSet = 'buttons'}
+            >
+              Buttons Only
+            </button>
+            <button 
+              class="w-full text-left px-3 py-2 rounded border {componentSet === 'tags' ? 'bg-highlight text-white border-highlight' : 'bg-surface border-default text-primary'}"
+              onclick={() => componentSet = 'tags'}
+            >
+              Tags Only
+            </button>
+          </div>
+        </div>
+      </Card>
+
+      <!-- Display Options -->
+      <Card title="Display Options">
+        <div class="space-y-3">
+          <button 
+            class="w-full text-left px-3 py-2 rounded border bg-surface border-default text-primary hover:bg-surface-hover"
+            onclick={() => showCSS = !showCSS}
+          >
+            {showCSS ? 'Hide' : 'Show'} Generated CSS
+          </button>
+        </div>
+      </Card>
+    </div>
+  </div>
+
+  <!-- Layout Preview -->
+  <div class="lg:col-span-2 space-y-6">
+    <!-- Header -->
+    <div>
+      <h1 class="text-h1 font-bold text-primary mb-2">Interactive Layout Builder</h1>
+      <p class="text-body-l text-secondary">
+        Experiment with different layout arrangements and see the results in real-time. 
+        Adjust properties in the control panel to explore the layout engine's capabilities.
+      </p>
+    </div>
+
+    <!-- Current Layout Info -->
+    <Card title="Current Configuration" class="bg-surface-elevated">
+      <div class="grid grid-cols-2 gap-4 text-body-s">
+        <div>
+          <span class="font-medium text-primary">Type:</span>
+          <span class="text-secondary ml-2 capitalize">{currentLayout.arrangement.type}</span>
+        </div>
+        <div>
+          <span class="font-medium text-primary">Mode:</span>
+          <span class="text-secondary ml-2">{currentLayout.autoLayout?.mode || 'default'}</span>
+        </div>
+        <div>
+          <span class="font-medium text-primary">Gap:</span>
+          <span class="text-secondary ml-2 capitalize">{currentLayout.autoLayout?.gap?.scale || 'normal'}</span>
+        </div>
+        <div>
+          <span class="font-medium text-primary">Padding:</span>
+          <span class="text-secondary ml-2 capitalize">{currentLayout.autoLayout?.padding?.all?.scale || 'normal'}</span>
+        </div>
+      </div>
+    </Card>
+
+    <!-- Live Preview -->
+    <div class="layout-demo">
+      <h2 class="layout-demo-title">Live Preview</h2>
+      <p class="layout-demo-description">
+        The layout below updates automatically as you change the controls.
+        Components are arranged using the generated CSS from your configuration.
+      </p>
+      
+      <div class="generated-layout border-2 border-dashed border-neutral-300 rounded-xl p-6" style={generatedCSS}>
+        {#if componentSet === 'cards'}
+          {#each componentSets.cards as item}
+            <Card {...item.props} />
+          {/each}
+        {:else if componentSet === 'buttons'}
+          {#each componentSets.buttons as item}
+            <Button {...item.props}>
+              {#snippet children()}{item.content}{/snippet}
+            </Button>
+          {/each}
+        {:else if componentSet === 'tags'}
+          {#each componentSets.tags as item}
+            <Tag text={item.content} />
+          {/each}
+        {:else if componentSet === 'mixed'}
+          <Banner 
+            title="Welcome!" 
+            description="Get started with your new project" 
+            variant="info" 
+          />
+          <Card title="Quick Start" description="Follow these steps to begin" />
+          <div class="flex gap-2">
+            <Button variant="primary" size="small">
+              {#snippet children()}Continue{/snippet}
+            </Button>
+            <Button variant="secondary" size="small">
+              {#snippet children()}Learn More{/snippet}
+            </Button>
+          </div>
+          <div class="flex gap-2 flex-wrap">
+            <Tag text="Getting Started" />
+            <Tag text="Tutorial" />
+            <Badge variant="success" value="New" />
+          </div>
+        {/if}
+      </div>
+    </div>
+
+    <!-- Generated CSS -->
+    {#if showCSS}
+      <Card title="Generated CSS" class="bg-surface">
+        <div class="code-output">
+          <pre class="text-body-xs font-mono whitespace-pre-wrap">{formattedCSS}</pre>
+        </div>
+        <div class="mt-4 text-body-s text-secondary">
+          <p>This CSS is automatically generated from your layout configuration. 
+          Copy and use it in your own projects, or use the Layout Engine programmatically.</p>
+        </div>
+      </Card>
+    {/if}
+
+    <!-- Usage Example -->
+    <Card title="Usage Example" class="bg-surface-elevated">
+      <div class="code-output">
+        <pre class="text-body-xs font-mono">{`import { LayoutEngine } from '@senka-ai/layout-engine'
+
+const engine = new LayoutEngine()
+const layout = ${JSON.stringify(currentLayout, null, 2)}
+
+const css = engine.generateCSS(layout)
+// Apply the generated CSS to your container`}</pre>
+      </div>
+    </Card>
+  </div>
+</div>

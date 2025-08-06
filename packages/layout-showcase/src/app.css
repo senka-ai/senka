@@ -1,0 +1,105 @@
+/* Import complete CSS bundle from UI library - includes design system + all utilities */
+@import '@senka-ai/ui/styles';
+
+/* Custom showcase styles using semantic design system classes */
+.showcase-section {
+  padding-top: 2rem;
+  padding-bottom: 2rem;
+  border-bottom: 1px solid var(--color-border);
+}
+
+.showcase-section:last-child {
+  border-bottom: none;
+}
+
+.showcase-header {
+  font-size: 2rem;
+  font-weight: 600;
+  margin-bottom: 1.5rem;
+  color: var(--color-text-primary);
+}
+
+.showcase-description {
+  font-size: 1.125rem;
+  color: var(--color-text-secondary);
+  margin-bottom: 2rem;
+}
+
+.layout-demo {
+  border: 2px dashed var(--color-neutral-300);
+  border-radius: 0.75rem;
+  padding: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.layout-demo-title {
+  font-size: 1.25rem;
+  font-weight: 500;
+  margin-bottom: 1rem;
+  color: var(--color-text-primary);
+}
+
+.layout-demo-description {
+  font-size: 1rem;
+  color: var(--color-text-secondary);
+  margin-bottom: 1rem;
+}
+
+.code-output {
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: 0.5rem;
+  padding: 1rem;
+  font-size: 0.875rem;
+  font-family: ui-monospace, SFMono-Regular, 'SF Mono', monospace;
+  overflow: auto;
+}
+
+.property-controls {
+  background-color: var(--color-surface-elevated);
+  border: 1px solid var(--color-border);
+  border-radius: 0.5rem;
+  padding: 1rem;
+}
+
+.property-controls > * + * {
+  margin-top: 1rem;
+}
+
+.property-label {
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--color-text-primary);
+}
+
+/* Demo-specific styles */
+.generated-layout {
+  min-height: 6rem;
+  background-color: var(--color-surface);
+  border-radius: 0.5rem;
+  border: 1px solid var(--color-border);
+}
+
+/* Responsive showcase helpers */
+.mobile-preview {
+  max-width: 24rem;
+  margin: 0 auto;
+  border: 2px solid var(--color-neutral-400);
+  border-radius: 0.75rem;
+  overflow: hidden;
+}
+
+.tablet-preview {
+  max-width: 48rem;
+  margin: 0 auto;
+  border: 2px solid var(--color-neutral-400);
+  border-radius: 0.75rem;
+  overflow: hidden;
+}
+
+.desktop-preview {
+  width: 100%;
+  border: 2px solid var(--color-neutral-400);
+  border-radius: 0.75rem;
+  overflow: hidden;
+}
