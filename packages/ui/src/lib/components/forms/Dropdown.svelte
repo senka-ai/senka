@@ -2,10 +2,9 @@
   import ArrowDownIcon from '../../icons/ArrowDownIcon.svelte'
   import FormField from './FormField.svelte'
   import type { FormInputComponent, ChangeHandler, ChildrenComponent } from '../../types/component'
-  import { useSelectState, useFocusState } from '../../utils/state.svelte'
+  import { useFocusState } from '../../utils/state.svelte'
   import { createInputStyles, composeClasses } from '../../utils/styles'
   import { FormRenderer, DropdownRenderer } from '../../utils/rendering'
-  import { createKeyboardHandler, KeySets } from '../../utils/events'
 
   interface Option {
     value: string
@@ -40,12 +39,12 @@
   let dropdownRef: HTMLDivElement
   let buttonRef: HTMLButtonElement
 
-  const selectState = useSelectState(value || '', value, onchange)
   const focusState = useFocusState()
+  let isOpen = $state(false)
 
-  let selectedOption = $derived(DropdownRenderer.findSelectedOption(options, selectState.value()))
+  let selectedOption = $derived(DropdownRenderer.findSelectedOption(options, value))
 
-  let currentState = $derived(FormRenderer.getInputState(focusState.focused() || selectState.isOpen(), error, disabled))
+  let currentState = $derived(FormRenderer.getInputState(focusState.focused() || isOpen, error, disabled))
 
   let dropdownClasses = $derived('relative')
 
@@ -61,20 +60,21 @@
   let menuClasses = $derived(
     composeClasses(
       'absolute z-50 w-full mt-1 bg-surface-elevated border border-default rounded-xl shadow-lg max-h-60 overflow-y-auto transition-all duration-200',
-      selectState.isOpen() ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-1 pointer-events-none'
+      isOpen ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-1 pointer-events-none'
     )
   )
 
   function toggleDropdown() {
     if (!disabled) {
-      selectState.toggle()
+      isOpen = !isOpen
     }
   }
 
   function selectOption(option: Option) {
     if (!option.disabled) {
-      value = option.value
-      selectState.select(option.value)
+      value = option.value  // Update bindable value
+      onchange?.(option.value)  // Call onChange if provided
+      isOpen = false  // Close dropdown
       buttonRef?.focus()
     }
   }
@@ -89,13 +89,13 @@
         toggleDropdown()
         break
       case 'Escape':
-        selectState.close()
+        isOpen = false
         buttonRef?.focus()
         break
       case 'ArrowDown':
         event.preventDefault()
-        if (!selectState.isOpen()) {
-          selectState.open()
+        if (!isOpen) {
+          isOpen = true
         } else {
           // Focus next option
           focusNextOption()
@@ -103,8 +103,8 @@
         break
       case 'ArrowUp':
         event.preventDefault()
-        if (!selectState.isOpen()) {
-          selectState.open()
+        if (!isOpen) {
+          isOpen = true
         } else {
           // Focus previous option
           focusPreviousOption()
@@ -133,12 +133,12 @@
 
   function handleClickOutside(event: MouseEvent) {
     if (dropdownRef && !dropdownRef.contains(event.target as Node)) {
-      selectState.close()
+      isOpen = false
     }
   }
 
   $effect(() => {
-    if (selectState.isOpen()) {
+    if (isOpen) {
       document.addEventListener('click', handleClickOutside)
     } else {
       document.removeEventListener('click', handleClickOutside)
@@ -172,7 +172,7 @@
         {disabled}
         {id}
         {name}
-        aria-expanded={selectState.isOpen()}
+        aria-expanded={isOpen}
         aria-haspopup="listbox"
         onclick={toggleDropdown}
         onkeydown={handleKeydown}
@@ -180,10 +180,10 @@
         onblur={focusState.handleBlur}
       >
         <span class={selectedOption ? 'text-neutral-900' : 'text-neutral-500'}>
-          {DropdownRenderer.getDisplayText(options, selectState.value(), placeholder)}
+          {DropdownRenderer.getDisplayText(options, value, placeholder)}
         </span>
         <ArrowDownIcon
-          class={`transition-transform duration-200 ${selectState.isOpen() ? 'rotate-180' : ''} ${disabled ? 'text-neutral-400' : 'text-neutral-500'}`}
+          class={`transition-transform duration-200 ${isOpen ? 'rotate-180' : ''} ${disabled ? 'text-neutral-400' : 'text-neutral-500'}`}
           size={12}
         />
       </button>
@@ -194,10 +194,10 @@
             type="button"
             class={`text-body-m w-full px-3.25 py-2.5 text-left transition-colors duration-150 ${
               option.disabled ? 'text-muted cursor-not-allowed' : 'text-primary hover:bg-surface-hover'
-            } ${option.value === selectState.value() ? 'bg-highlight-50 text-highlight-700' : ''}`}
+            } ${option.value === value ? 'bg-highlight-50 text-highlight-700' : ''}`}
             disabled={option.disabled}
             role="option"
-            aria-selected={option.value === selectState.value()}
+            aria-selected={option.value === value}
             onclick={() => selectOption(option)}
           >
             {option.label}
