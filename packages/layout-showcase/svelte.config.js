@@ -8,12 +8,6 @@ const config = {
   kit: {
     adapter: adapter(),
   },
-
-  vite: {
-    optimizeDeps: {
-      include: ['@senka-ai/ui', '@senka-ai/layout-engine'],
-    },
-  },
 }
 
 export default config

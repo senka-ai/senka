@@ -1,5 +1,148 @@
-/* Import complete CSS bundle from UI library - includes design system + all utilities */
-@import '@senka-ai/ui/styles';
+/* Import Google Fonts first */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+
+/* Import Tailwind CSS */
+@import 'tailwindcss';
+
+/* Import UI library styles (color definitions and variables) */
+@import '../../ui/src/styles/colors.css';
+@import '../../ui/src/styles/typography.css';
+@import '../../ui/src/styles/spacing.css';
+@import '../../ui/src/styles/transitions.css';
+@import '../../ui/src/styles/focus-states.css';
+@import '../../ui/src/styles/hover-states.css';
+
+/* Color variables from the UI library */
+:root {
+  font-family:
+    Inter,
+    -apple-system,
+    BlinkMacSystemFont,
+    'Segoe UI',
+    Roboto,
+    Oxygen,
+    Ubuntu,
+    Cantarell,
+    'Fira Sans',
+    'Droid Sans',
+    'Helvetica Neue',
+    sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+
+  color-scheme: light dark;
+  color: var(--color-text-primary);
+  background-color: var(--color-background);
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-text-size-adjust: 100%;
+
+  /* Highlight colors (Brand Blue) */
+  --color-highlight-50: #eaf2ff;
+  --color-highlight-100: #b4dbff;
+  --color-highlight-200: #6fbaff;
+  --color-highlight-300: #2897ff;
+  --color-highlight-400: #006ffd;
+
+  /* Neutral colors (Light) */
+  --color-neutral-50: #ffffff;
+  --color-neutral-100: #f8f9fe;
+  --color-neutral-200: #e8e9f1;
+  --color-neutral-300: #d4d6dd;
+  --color-neutral-400: #c5c6cc;
+  --color-neutral-500: #8f9098;
+  --color-neutral-600: #71727a;
+  --color-neutral-700: #494a50;
+  --color-neutral-800: #2f3036;
+  --color-neutral-900: #1f2024;
+
+  /* Success colors */
+  --color-success-50: #e7f4e8;
+  --color-success-100: #c3e9c5;
+  --color-success-200: #8dd790;
+  --color-success-300: #3ac0a0;
+  --color-success-400: #298267;
+
+  /* Warning colors */
+  --color-warning-50: #fff4e4;
+  --color-warning-100: #ffe4c2;
+  --color-warning-200: #ffc784;
+  --color-warning-300: #ffb37c;
+  --color-warning-400: #e86339;
+
+  /* Error colors */
+  --color-error-50: #ffe2e5;
+  --color-error-100: #ffc4cc;
+  --color-error-200: #ff8599;
+  --color-error-300: #ff616d;
+  --color-error-400: #ed3241;
+
+  /* Semantic color mappings */
+  --color-background: var(--color-neutral-50);
+  --color-surface: var(--color-neutral-100);
+  --color-surface-elevated: var(--color-neutral-50);
+  --color-surface-hover: var(--color-neutral-200);
+  --color-text-primary: var(--color-neutral-900);
+  --color-text-secondary: var(--color-neutral-600);
+  --color-text-muted: var(--color-neutral-500);
+  --color-border: var(--color-neutral-200);
+  --color-border-default: var(--color-neutral-200);
+  --color-border-strong: var(--color-neutral-300);
+  --color-border-subtle: var(--color-neutral-300);
+}
+
+/* Dark theme support */
+[data-theme='dark'] {
+  --color-neutral-50: #1f2024;
+  --color-neutral-100: #2f3036;
+  --color-neutral-200: #494a50;
+  --color-neutral-300: #71727a;
+  --color-neutral-400: #8f9098;
+  --color-neutral-500: #c5c6cc;
+  --color-neutral-600: #d4d6dd;
+  --color-neutral-700: #e8e9f1;
+  --color-neutral-800: #f8f9fe;
+  --color-neutral-900: #ffffff;
+
+  --color-highlight-50: #0a1929;
+  --color-highlight-100: #1e3a5f;
+  --color-highlight-200: #2d5aa0;
+  --color-highlight-300: #4785ff;
+  --color-highlight-400: #80b3ff;
+
+  --color-success-50: #0d2818;
+  --color-success-100: #1a4c2f;
+  --color-success-200: #2d7050;
+  --color-success-300: #4ca376;
+  --color-success-400: #7dd3a7;
+
+  --color-warning-50: #2d1b0a;
+  --color-warning-100: #5a3514;
+  --color-warning-200: #8b5a28;
+  --color-warning-300: #c8804a;
+  --color-warning-400: #ffab73;
+
+  --color-error-50: #2d0a0f;
+  --color-error-100: #5a141f;
+  --color-error-200: #8b2332;
+  --color-error-300: #c8444f;
+  --color-error-400: #ff7580;
+
+  --color-background: var(--color-neutral-50);
+  --color-surface: var(--color-neutral-100);
+  --color-surface-elevated: var(--color-neutral-200);
+  --color-surface-hover: var(--color-neutral-300);
+  --color-text-primary: var(--color-neutral-900);
+  --color-text-secondary: var(--color-neutral-600);
+  --color-text-muted: var(--color-neutral-500);
+  --color-border: var(--color-neutral-200);
+  --color-border-default: var(--color-neutral-200);
+  --color-border-strong: var(--color-neutral-300);
+  --color-border-subtle: var(--color-neutral-200);
+}
 
 /* Custom showcase styles using semantic design system classes */
 .showcase-section {

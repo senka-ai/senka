@@ -57,7 +57,20 @@ Ensure your `tsconfig.json` includes the `verbatimModuleSyntax` option:
 }
 ```
 
-### 3. CSS Integration
+### 3. Required Dependencies
+
+Any package that wants to use the UI library MUST include these specific Tailwind CSS versions in their package.json:
+
+```json
+{
+  "devDependencies": {
+    "@tailwindcss/vite": "4.0.0-beta.10",
+    "tailwindcss": "4.0.0-beta.10"
+  }
+}
+```
+
+### 4. CSS Integration
 
 Import the UI library styles in your main CSS file:
 
