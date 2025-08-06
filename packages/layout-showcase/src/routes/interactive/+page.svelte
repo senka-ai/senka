@@ -113,8 +113,8 @@ RELEVANT FILES: packages/layout-showcase/src/lib/components/LayoutControls.svelt
       <LayoutControls layout={currentLayout} onLayoutChange={handleLayoutChange} />
 
       <!-- Component Set Selector -->
-      <section class="bg-surface border-2 border-default rounded-xl p-6">
-        <h3 class="text-h4 font-semibold mb-4" style="color: var(--color-text-primary);">Demo Components</h3>
+      <section class="bg-surface border-default rounded-xl border-2 p-6">
+        <h3 class="text-h4 mb-4 font-semibold" style="color: var(--color-text-primary);">Demo Components</h3>
         <div class="space-y-2">
           <span class="property-label">Component Set</span>
           <div class="space-y-2">
@@ -155,8 +155,8 @@ RELEVANT FILES: packages/layout-showcase/src/lib/components/LayoutControls.svelt
       </section>
 
       <!-- Display Options -->
-      <section class="bg-surface border-2 border-default rounded-xl p-6">
-        <h3 class="text-h4 font-semibold mb-4" style="color: var(--color-text-primary);">Display Options</h3>
+      <section class="bg-surface border-default rounded-xl border-2 p-6">
+        <h3 class="text-h4 mb-4 font-semibold" style="color: var(--color-text-primary);">Display Options</h3>
         <div class="space-y-3">
           <button
             class="bg-surface border-default text-primary hover:bg-surface-hover w-full rounded border px-3 py-2 text-left"
@@ -181,8 +181,8 @@ RELEVANT FILES: packages/layout-showcase/src/lib/components/LayoutControls.svelt
     </div>
 
     <!-- Current Layout Info -->
-    <section class="bg-surface-elevated border-2 border-default rounded-xl p-6">
-      <h3 class="text-h3 font-semibold mb-4" style="color: var(--color-text-primary);">Current Configuration</h3>
+    <section class="bg-surface-elevated border-default rounded-xl border-2 p-6">
+      <h3 class="text-h3 mb-4 font-semibold" style="color: var(--color-text-primary);">Current Configuration</h3>
       <div class="text-body-s grid grid-cols-2 gap-4">
         <div>
           <span class="text-primary font-medium">Type:</span>
@@ -238,10 +238,10 @@ RELEVANT FILES: packages/layout-showcase/src/lib/components/LayoutControls.svelt
               {#snippet children()}Learn More{/snippet}
             </Button>
           </div>
-          <div class="flex flex-wrap gap-2">
+          <div class="flex flex-wrap items-center gap-2">
             <Tag text="Getting Started" />
             <Tag text="Tutorial" />
-            <Badge variant="success" value="New" />
+            <Badge type="number" value={5} />
           </div>
         {/if}
       </div>
@@ -249,8 +249,8 @@ RELEVANT FILES: packages/layout-showcase/src/lib/components/LayoutControls.svelt
 
     <!-- Generated CSS -->
     {#if showCSS}
-      <section class="bg-surface border-2 border-default rounded-xl p-6">
-        <h3 class="text-h3 font-semibold mb-4" style="color: var(--color-text-primary);">Generated CSS</h3>
+      <section class="bg-surface border-default rounded-xl border-2 p-6">
+        <h3 class="text-h3 mb-4 font-semibold" style="color: var(--color-text-primary);">Generated CSS</h3>
         <div class="code-output">
           <pre class="text-body-xs font-mono whitespace-pre-wrap">{formattedCSS}</pre>
         </div>
@@ -264,8 +264,8 @@ RELEVANT FILES: packages/layout-showcase/src/lib/components/LayoutControls.svelt
     {/if}
 
     <!-- Usage Example -->
-    <section class="bg-surface-elevated border-2 border-default rounded-xl p-6">
-      <h3 class="text-h3 font-semibold mb-4" style="color: var(--color-text-primary);">Usage Example</h3>
+    <section class="bg-surface-elevated border-default rounded-xl border-2 p-6">
+      <h3 class="text-h3 mb-4 font-semibold" style="color: var(--color-text-primary);">Usage Example</h3>
       <div class="code-output">
         <pre class="text-body-xs font-mono">{`import { LayoutEngine } from '@senka-ai/layout-engine'
 

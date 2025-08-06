@@ -28,7 +28,7 @@ RELEVANT FILES: packages/layout-engine/src/lib/engine.ts, packages/ui/src/lib/co
       primaryAxis: 'packed',
       counterAxis: 'stretch',
       gap: { scale: 'normal' },
-      padding: { all: { scale: 'comfortable' } },
+      padding: { all: { scale: 'none' } },
     },
   }
 
@@ -43,7 +43,7 @@ RELEVANT FILES: packages/layout-engine/src/lib/engine.ts, packages/ui/src/lib/co
       primaryAxis: 'packed',
       counterAxis: 'center',
       gap: { scale: 'normal' },
-      padding: { all: { scale: 'normal' } },
+      padding: { all: { scale: 'none' } },
     },
   }
 
@@ -62,7 +62,7 @@ RELEVANT FILES: packages/layout-engine/src/lib/engine.ts, packages/ui/src/lib/co
       primaryAxis: 'packed',
       counterAxis: 'start',
       gap: { scale: 'normal' },
-      padding: { all: { scale: 'normal' } },
+      padding: { all: { scale: 'none' } },
     },
   }
 
@@ -77,7 +77,7 @@ RELEVANT FILES: packages/layout-engine/src/lib/engine.ts, packages/ui/src/lib/co
       primaryAxis: 'packed',
       counterAxis: 'center',
       gap: { scale: 'cozy' },
-      padding: { all: { scale: 'normal' } },
+      padding: { all: { scale: 'none' } },
     },
   }
 

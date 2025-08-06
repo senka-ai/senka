@@ -7,7 +7,7 @@ RELEVANT FILES: packages/layout-engine/src/lib/types/index.ts, packages/ui/src/l
 
 <script lang="ts">
   import type { LayoutContainer, ArrangementType } from '@senka-ai/layout-engine'
-  import { Dropdown, Slider, Toggle, Card } from '@senka-ai/ui'
+  import { Dropdown, Toggle } from '@senka-ai/ui'
   import type { BaseProps } from '@senka-ai/ui'
 
   interface Props extends BaseProps {
