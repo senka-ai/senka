@@ -19,9 +19,12 @@ ENV NODE_ENV=test
 COPY package.json yarn.lock .yarnrc.yml ./
 COPY packages/ui/package.json ./packages/ui/package.json  
 COPY packages/app/package.json ./packages/app/package.json
+COPY packages/layout-engine/package.json ./packages/layout-engine/package.json
+COPY packages/layout-showcase/package.json ./packages/layout-showcase/package.json
+COPY packages/ui-showcase/package.json ./packages/ui-showcase/package.json
 
 # Install dependencies (Yarn will create .yarn/ directory during install)
-RUN yarn install --immutable
+RUN yarn install
 
 # Copy the UI package source code
 COPY packages/ui/ ./packages/ui/
