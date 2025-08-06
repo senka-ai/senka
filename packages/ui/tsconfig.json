@@ -17,6 +17,7 @@
     "declarationMap": true,
     "isolatedModules": true,
     "noUncheckedIndexedAccess": true,
+    "verbatimModuleSyntax": true,
     "types": ["svelte", "vite/client", "@storybook/addon-svelte-csf"],
     "paths": {
       "$lib": ["./src/lib"],
