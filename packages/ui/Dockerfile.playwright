@@ -24,7 +24,7 @@ COPY packages/layout-showcase/package.json ./packages/layout-showcase/package.js
 COPY packages/ui-showcase/package.json ./packages/ui-showcase/package.json
 
 # Install dependencies (Yarn will create .yarn/ directory during install)
-RUN yarn install
+RUN yarn install --immutable
 
 # Copy the UI package source code
 COPY packages/ui/ ./packages/ui/
