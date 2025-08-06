@@ -138,7 +138,8 @@ RELEVANT FILES: packages/layout-engine/src/lib/types/index.ts, packages/ui/src/l
   let currentWrap = $derived(layout.arrangement.wrap || false)
 </script>
 
-<Card title="Layout Controls" class="property-controls">
+<section class="property-controls bg-surface border-2 border-default rounded-xl p-6">
+  <h3 class="text-h3 font-semibold mb-6" style="color: var(--color-text-primary);">Layout Controls</h3>
   <div class="space-y-6">
     <!-- Arrangement Type -->
     <div>
@@ -237,4 +238,4 @@ RELEVANT FILES: packages/layout-engine/src/lib/types/index.ts, packages/ui/src/l
       />
     </div>
   </div>
-</Card>
+</section>

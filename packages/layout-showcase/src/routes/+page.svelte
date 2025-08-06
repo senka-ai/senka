@@ -8,7 +8,7 @@ RELEVANT FILES: packages/layout-engine/src/lib/engine.ts, packages/ui/src/lib/co
 <script lang="ts">
   import { LayoutEngine } from '@senka-ai/layout-engine'
   import type { LayoutContainer } from '@senka-ai/layout-engine'
-  import { Button, Card, Tag, TextField, Dropdown, Banner } from '@senka-ai/ui'
+  import { Button, Card, Tag, TextField, Dropdown, Banner, CardHorizontal } from '@senka-ai/ui'
 
   // Create layout engine instance
   const engine = new LayoutEngine({
@@ -97,8 +97,8 @@ RELEVANT FILES: packages/layout-engine/src/lib/engine.ts, packages/ui/src/lib/co
   <section class="text-center">
     <h2 class="text-h1 mb-4 font-bold" style="color: var(--color-text-primary);">Powerful Layout System</h2>
     <p class="text-body-xl mx-auto max-w-3xl" style="color: var(--color-text-secondary);">
-      The Senka Layout Engine provides semantic, Figma-inspired arrangements that work seamlessly with our UI component
-      library. Create responsive, accessible layouts with minimal code.
+      The Senka Layout Engine provides semantic arrangements that work seamlessly with our UI component library. Create
+      responsive, accessible layouts with minimal code.
     </p>
   </section>
 
@@ -139,9 +139,9 @@ RELEVANT FILES: packages/layout-engine/src/lib/engine.ts, packages/ui/src/lib/co
         </p>
 
         <div class="generated-layout" style={stackCSS}>
-          <Card title="Welcome to Senka" description="Build powerful applications with our no-code platform" />
-          <Card title="Getting Started" description="Learn the basics with our step-by-step tutorials" />
-          <Card title="Advanced Features" description="Explore powerful tools for complex workflows" />
+          <CardHorizontal title="Welcome to Senka" subtitle="Build powerful applications with our no-code platform" />
+          <CardHorizontal title="Getting Started" subtitle="Learn the basics with our step-by-step tutorials" />
+          <CardHorizontal title="Advanced Features" subtitle="Explore powerful tools for complex workflows" />
         </div>
 
         {#if showCSS}
@@ -288,7 +288,8 @@ RELEVANT FILES: packages/layout-engine/src/lib/engine.ts, packages/ui/src/lib/co
       </div>
 
       <!-- Form section with stack layout -->
-      <Card title="Quick Actions" class="p-6">
+      <section class="bg-surface border-default rounded-xl border-2 p-6">
+        <h3 class="text-h3 mb-6 font-semibold" style="color: var(--color-text-primary);">Quick Actions</h3>
         <div style={stackCSS}>
           <TextField label="Project Name" placeholder="Enter project name" showLabel={true} />
           <Dropdown
@@ -310,7 +311,7 @@ RELEVANT FILES: packages/layout-engine/src/lib/engine.ts, packages/ui/src/lib/co
             </Button>
           </div>
         </div>
-      </Card>
+      </section>
     </div>
   </section>
 

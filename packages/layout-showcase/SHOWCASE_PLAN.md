@@ -40,7 +40,7 @@ Create a comprehensive showcase demonstrating the layout engine's capabilities u
 
 **Components Used**: Complex combinations
 
-- **Auto-Layout**: Figma-style automatic sizing and distribution
+- **Auto-Layout**: Automatic sizing and distribution
 - **Constraints**: Element positioning and sizing constraints
 - **Container Queries**: Layout changes based on container size
 - **Custom Arrangements**: Creating new arrangement types
