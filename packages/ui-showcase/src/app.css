@@ -14,7 +14,19 @@
 
 /* Color variables from the UI library */
 :root {
-  font-family: Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+  font-family:
+    Inter,
+    -apple-system,
+    BlinkMacSystemFont,
+    'Segoe UI',
+    Roboto,
+    Oxygen,
+    Ubuntu,
+    Cantarell,
+    'Fira Sans',
+    'Droid Sans',
+    'Helvetica Neue',
+    sans-serif;
   line-height: 1.5;
   font-weight: 400;
 
@@ -135,7 +147,14 @@
 /* Additional showcase-specific styles */
 body {
   margin: 0;
-  font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  font-family:
+    Inter,
+    system-ui,
+    -apple-system,
+    BlinkMacSystemFont,
+    'Segoe UI',
+    Roboto,
+    sans-serif;
 }
 
 .showcase-container {
@@ -149,12 +168,12 @@ body {
 }
 
 .showcase-title {
-  @apply text-xl font-bold mb-4;
+  @apply mb-4 text-xl font-bold;
   color: var(--color-text-primary);
 }
 
 .showcase-description {
-  @apply text-base mb-6;
+  @apply mb-6 text-base;
   color: var(--color-text-secondary);
 }
 
@@ -173,7 +192,7 @@ body {
 }
 
 .example-title {
-  @apply text-sm font-semibold mb-3;
+  @apply mb-3 text-sm font-semibold;
   color: var(--color-text-primary);
 }
 

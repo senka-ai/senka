@@ -7,7 +7,9 @@ Create a comprehensive showcase demonstrating the layout engine's capabilities u
 ## Showcase Structure
 
 ### 1. Basic Arrangements Demo
+
 **Components Used**: Cards, Buttons, Tags
+
 - **Stack Layout**: Vertical card list with consistent spacing
 - **Row Layout**: Horizontal button group with responsive wrapping
 - **Grid Layout**: Product card grid with auto-columns
@@ -16,7 +18,9 @@ Create a comprehensive showcase demonstrating the layout engine's capabilities u
 - **Frame Layout**: Constrained content with specific dimensions
 
 ### 2. Real-World UI Patterns
+
 **Components Used**: Various UI components
+
 - **Dashboard Layout**: Cards arranged in responsive grid
 - **Form Layout**: TextField, Dropdown, Button arranged vertically
 - **Navigation Layout**: Tabs/TabBar with responsive behavior
@@ -24,14 +28,18 @@ Create a comprehensive showcase demonstrating the layout engine's capabilities u
 - **Sidebar Layout**: Navigation + main content overlay pattern
 
 ### 3. Responsive Showcase
+
 **Components Used**: All categories
+
 - **Mobile-First**: How layouts adapt from mobile to desktop
 - **Breakpoint Behavior**: Visual demonstration of responsive changes
 - **Touch Optimization**: Spacing adjustments for mobile devices
 - **Platform Optimization**: Web vs mobile-specific adaptations
 
 ### 4. Advanced Features Demo
+
 **Components Used**: Complex combinations
+
 - **Auto-Layout**: Figma-style automatic sizing and distribution
 - **Constraints**: Element positioning and sizing constraints
 - **Container Queries**: Layout changes based on container size
@@ -40,14 +48,18 @@ Create a comprehensive showcase demonstrating the layout engine's capabilities u
 ## Implementation Approach
 
 ### Phase 1: Basic Showcase Package
+
 Create `packages/layout-showcase` as a SvelteKit app that:
+
 1. Imports both `@senka-ai/ui` and `@senka-ai/layout-engine`
 2. Demonstrates each arrangement type with real components
 3. Provides interactive controls to modify layout properties
 4. Shows generated CSS output for educational purposes
 
 ### Phase 2: Interactive Playground
+
 Add features like:
+
 1. **Live Editor**: JSON config editor for layout properties
 2. **Component Picker**: Select which UI components to arrange
 3. **Theme Toggle**: Test layouts in light/dark themes
@@ -55,7 +67,9 @@ Add features like:
 5. **Responsive Preview**: Simulate different screen sizes
 
 ### Phase 3: Visual Builder Integration
+
 Prepare for future visual builder by:
+
 1. **Drag & Drop**: Basic component reordering within layouts
 2. **Property Panels**: Visual editors for layout properties
 3. **Template Library**: Save and reuse layout configurations
@@ -73,6 +87,7 @@ Prepare for future visual builder by:
 ## Technical Integration
 
 The showcase will demonstrate:
+
 - **Type Safety**: Layout engine works with typed UI components
 - **Theme Compatibility**: Layouts respect design system colors/spacing
 - **Accessibility**: Proper focus management and keyboard navigation

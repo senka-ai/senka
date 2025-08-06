@@ -8,14 +8,7 @@ RELEVANT FILES: packages/layout-engine/src/lib/engine.ts, packages/ui/src/lib/co
 <script lang="ts">
   import { LayoutEngine } from '@senka-ai/layout-engine'
   import type { LayoutContainer } from '@senka-ai/layout-engine'
-  import { 
-    Button, 
-    Card, 
-    Tag, 
-    TextField, 
-    Dropdown,
-    Banner
-  } from '@senka-ai/ui'
+  import { Button, Card, Tag, TextField, Dropdown, Banner } from '@senka-ai/ui'
 
   // Create layout engine instance
   const engine = new LayoutEngine({
@@ -102,50 +95,32 @@ RELEVANT FILES: packages/layout-engine/src/lib/engine.ts, packages/ui/src/lib/co
 <div class="space-y-12">
   <!-- Introduction -->
   <section class="text-center">
-    <h2 class="text-h1 font-bold mb-4" style="color: var(--color-text-primary);">
-      Powerful Layout System
-    </h2>
-    <p class="text-body-xl max-w-3xl mx-auto" style="color: var(--color-text-secondary);">
-      The Senka Layout Engine provides semantic, Figma-inspired arrangements that work seamlessly 
-      with our UI component library. Create responsive, accessible layouts with minimal code.
+    <h2 class="text-h1 mb-4 font-bold" style="color: var(--color-text-primary);">Powerful Layout System</h2>
+    <p class="text-body-xl mx-auto max-w-3xl" style="color: var(--color-text-secondary);">
+      The Senka Layout Engine provides semantic, Figma-inspired arrangements that work seamlessly with our UI component
+      library. Create responsive, accessible layouts with minimal code.
     </p>
   </section>
 
   <!-- Quick Demo Selector -->
   <section class="showcase-section">
-    <div class="flex flex-wrap gap-4 justify-center mb-8">
-      <Button 
-        variant={selectedDemo === 'stack' ? 'primary' : 'secondary'}
-        onclick={() => selectedDemo = 'stack'}
-      >
+    <div class="mb-8 flex flex-wrap justify-center gap-4">
+      <Button variant={selectedDemo === 'stack' ? 'primary' : 'secondary'} onclick={() => (selectedDemo = 'stack')}>
         {#snippet children()}Stack Layout{/snippet}
       </Button>
-      <Button 
-        variant={selectedDemo === 'row' ? 'primary' : 'secondary'}
-        onclick={() => selectedDemo = 'row'}
-      >
+      <Button variant={selectedDemo === 'row' ? 'primary' : 'secondary'} onclick={() => (selectedDemo = 'row')}>
         {#snippet children()}Row Layout{/snippet}
       </Button>
-      <Button 
-        variant={selectedDemo === 'grid' ? 'primary' : 'secondary'}
-        onclick={() => selectedDemo = 'grid'}
-      >
+      <Button variant={selectedDemo === 'grid' ? 'primary' : 'secondary'} onclick={() => (selectedDemo = 'grid')}>
         {#snippet children()}Grid Layout{/snippet}
       </Button>
-      <Button 
-        variant={selectedDemo === 'flow' ? 'primary' : 'secondary'}
-        onclick={() => selectedDemo = 'flow'}
-      >
+      <Button variant={selectedDemo === 'flow' ? 'primary' : 'secondary'} onclick={() => (selectedDemo = 'flow')}>
         {#snippet children()}Flow Layout{/snippet}
       </Button>
     </div>
 
-    <div class="flex items-center justify-center gap-4 mb-6">
-      <Button 
-        variant="tertiary" 
-        size="small"
-        onclick={() => showCSS = !showCSS}
-      >
+    <div class="mb-6 flex items-center justify-center gap-4">
+      <Button variant="tertiary" size="small" onclick={() => (showCSS = !showCSS)}>
         {#snippet children()}
           {showCSS ? 'Hide' : 'Show'} Generated CSS
         {/snippet}
@@ -159,10 +134,10 @@ RELEVANT FILES: packages/layout-engine/src/lib/engine.ts, packages/ui/src/lib/co
       <div class="layout-demo">
         <h3 class="layout-demo-title">Stack Layout - Vertical Card List</h3>
         <p class="layout-demo-description">
-          Perfect for forms, content lists, and vertical navigation. 
-          Maintains consistent spacing and full-width alignment.
+          Perfect for forms, content lists, and vertical navigation. Maintains consistent spacing and full-width
+          alignment.
         </p>
-        
+
         <div class="generated-layout" style={stackCSS}>
           <Card title="Welcome to Senka" description="Build powerful applications with our no-code platform" />
           <Card title="Getting Started" description="Learn the basics with our step-by-step tutorials" />
@@ -184,10 +159,10 @@ RELEVANT FILES: packages/layout-engine/src/lib/engine.ts, packages/ui/src/lib/co
       <div class="layout-demo">
         <h3 class="layout-demo-title">Row Layout - Horizontal Button Group</h3>
         <p class="layout-demo-description">
-          Ideal for action bars, navigation, and control groups. 
-          Automatically wraps on smaller screens with responsive spacing.
+          Ideal for action bars, navigation, and control groups. Automatically wraps on smaller screens with responsive
+          spacing.
         </p>
-        
+
         <div class="generated-layout" style={rowCSS}>
           <Button variant="primary">
             {#snippet children()}Save Changes{/snippet}
@@ -218,10 +193,9 @@ RELEVANT FILES: packages/layout-engine/src/lib/engine.ts, packages/ui/src/lib/co
       <div class="layout-demo">
         <h3 class="layout-demo-title">Grid Layout - Responsive Card Grid</h3>
         <p class="layout-demo-description">
-          Auto-responsive grid with minimum column width. 
-          Perfect for dashboards, galleries, and product catalogs.
+          Auto-responsive grid with minimum column width. Perfect for dashboards, galleries, and product catalogs.
         </p>
-        
+
         <div class="generated-layout" style={gridCSS}>
           <Card title="Analytics" description="View detailed metrics and insights" />
           <Card title="Users" description="Manage user accounts and permissions" />
@@ -246,10 +220,9 @@ RELEVANT FILES: packages/layout-engine/src/lib/engine.ts, packages/ui/src/lib/co
       <div class="layout-demo">
         <h3 class="layout-demo-title">Flow Layout - Tag Cloud</h3>
         <p class="layout-demo-description">
-          Natural text flow with wrapping. 
-          Great for tags, filters, and dynamic content collections.
+          Natural text flow with wrapping. Great for tags, filters, and dynamic content collections.
         </p>
-        
+
         <div class="generated-layout" style={flowCSS}>
           <Tag text="React" />
           <Tag text="Svelte" />
@@ -278,13 +251,13 @@ RELEVANT FILES: packages/layout-engine/src/lib/engine.ts, packages/ui/src/lib/co
   <section class="showcase-section">
     <h2 class="showcase-header">Real-World Application Layout</h2>
     <p class="showcase-description">
-      See how multiple layout arrangements work together to create a complete user interface.
-      This example combines stack, row, and grid layouts with responsive behavior.
+      See how multiple layout arrangements work together to create a complete user interface. This example combines
+      stack, row, and grid layouts with responsive behavior.
     </p>
 
     <div class="layout-demo">
       <h3 class="layout-demo-title">Dashboard Interface</h3>
-      
+
       <!-- Header with row layout -->
       <div style={rowCSS} class="mb-6">
         <h1 class="text-h2 font-semibold" style="color: var(--color-text-primary);">Project Dashboard</h1>
@@ -300,8 +273,8 @@ RELEVANT FILES: packages/layout-engine/src/lib/engine.ts, packages/ui/src/lib/co
 
       <!-- Banner notification -->
       <div class="mb-6">
-        <Banner 
-          title="System Update" 
+        <Banner
+          title="System Update"
           description="New features have been added to improve your workflow"
           variant="info"
         />
@@ -317,19 +290,15 @@ RELEVANT FILES: packages/layout-engine/src/lib/engine.ts, packages/ui/src/lib/co
       <!-- Form section with stack layout -->
       <Card title="Quick Actions" class="p-6">
         <div style={stackCSS}>
-          <TextField 
-            label="Project Name" 
-            placeholder="Enter project name" 
-            showLabel={true}
-          />
-          <Dropdown 
+          <TextField label="Project Name" placeholder="Enter project name" showLabel={true} />
+          <Dropdown
             label="Team"
             placeholder="Select team"
             showLabel={true}
             options={[
               { value: 'dev', label: 'Development Team' },
               { value: 'design', label: 'Design Team' },
-              { value: 'marketing', label: 'Marketing Team' }
+              { value: 'marketing', label: 'Marketing Team' },
             ]}
           />
           <div style={rowCSS}>
@@ -348,18 +317,24 @@ RELEVANT FILES: packages/layout-engine/src/lib/engine.ts, packages/ui/src/lib/co
   <!-- Features Overview -->
   <section class="showcase-section">
     <h2 class="showcase-header">Layout Engine Features</h2>
-    
+
     <div style={gridCSS}>
-      <Card title="Semantic Arrangements" description="Stack, Row, Grid, Flow, Overlay, and Frame layouts with intuitive naming" />
-      
-      <Card title="Auto-Layout System" description="Automatic sizing, distribution, and spacing based on content and constraints" />
-      
+      <Card
+        title="Semantic Arrangements"
+        description="Stack, Row, Grid, Flow, Overlay, and Frame layouts with intuitive naming"
+      />
+
+      <Card
+        title="Auto-Layout System"
+        description="Automatic sizing, distribution, and spacing based on content and constraints"
+      />
+
       <Card title="Responsive Design" description="Mobile-first approach with automatic breakpoint optimization" />
-      
+
       <Card title="CSS Generation" description="Optimized CSS output with vendor prefixes and modern features" />
-      
+
       <Card title="Type Safety" description="Full TypeScript support with comprehensive interface definitions" />
-      
+
       <Card title="Theme Integration" description="Seamless integration with design system colors and spacing" />
     </div>
   </section>

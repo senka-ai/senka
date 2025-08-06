@@ -51,7 +51,7 @@ Ensure your `tsconfig.json` includes the `verbatimModuleSyntax` option:
 ```json
 {
   "compilerOptions": {
-    "verbatimModuleSyntax": true,
+    "verbatimModuleSyntax": true
     // ... other options
   }
 }
@@ -132,11 +132,13 @@ toggleTheme()
 ## Available Component Categories
 
 ### Core Components
+
 - `Button` - Primary action component with multiple variants
-- `IconButton` - Icon-only button variant  
+- `IconButton` - Icon-only button variant
 - `ThemeToggle` - Dark/light mode switcher
 
 ### Form Components
+
 - `TextField` - Text input with validation
 - `TextArea` - Multi-line text input
 - `NumberInput` - Numeric input with controls
@@ -149,6 +151,7 @@ toggleTheme()
 - `StarRating` - Interactive rating component
 
 ### Feedback Components
+
 - `Badge` - Status indicators
 - `Tag` - Categorization labels
 - `Banner` - Alert/notification banners
@@ -160,6 +163,7 @@ toggleTheme()
 - `PaginationDots` - Page indicators
 
 ### Layout Components
+
 - `Card` - Content containers
 - `CardHorizontal` - Horizontal card layout
 - `Divider` - Visual separators
@@ -167,10 +171,12 @@ toggleTheme()
 - `Accordion` - Collapsible content
 
 ### Navigation Components
+
 - `TabBar` - Bottom navigation
 - `NavBar` - Top navigation
 
 ### Media Components
+
 - `Avatar` - User profile images
 - `Image` - Enhanced image component
 - `Video` - Video player component
@@ -185,17 +191,17 @@ The UI library uses CSS custom properties for theming. Key variables include:
   /* Primary colors */
   --color-primary: #3b82f6;
   --color-primary-hover: #2563eb;
-  
+
   /* Text colors */
   --color-text-primary: #1f2937;
   --color-text-secondary: #6b7280;
-  
+
   /* Background colors */
   --color-background: #ffffff;
   --color-surface: #f9fafb;
 }
 
-[data-theme="dark"] {
+[data-theme='dark'] {
   --color-background: #111827;
   --color-text-primary: #f9fafb;
   /* ... dark theme overrides */
@@ -205,21 +211,25 @@ The UI library uses CSS custom properties for theming. Key variables include:
 ## Best Practices
 
 ### 1. Component Usage
+
 - Always use the built components from `@senka-ai/ui`
 - Follow the established patterns shown in ui-showcase
 - Use Svelte 5 snippets for flexible content rendering
 
 ### 2. Styling
+
 - Rely on the built-in component variants and sizes
 - Use CSS custom properties for theme consistency
 - Avoid overriding internal component styles directly
 
 ### 3. Icons
+
 - Import icons individually to optimize bundle size
 - Use the icon size parameter provided by components
 - Prefer component icons over custom implementations
 
 ### 4. Development Workflow
+
 - Always run `yarn ui:build` after making changes to the UI library
 - Use `yarn typecheck` to verify TypeScript compatibility
 - Test components in ui-showcase before using in other packages
@@ -233,13 +243,13 @@ Here's a complete example of setting up a new package to use the UI library:
 <script lang="ts">
   import { Button, TextField, Card } from '@senka-ai/ui'
   import { SearchIcon, AddIcon } from '@senka-ai/ui/icons'
-  
+
   let searchValue = ''
-  
+
   function handleSearch() {
     console.log('Searching for:', searchValue)
   }
-  
+
   function handleAdd() {
     console.log('Adding new item')
   }
@@ -249,7 +259,7 @@ Here's a complete example of setting up a new package to use the UI library:
   <Card>
     {#snippet children()}
       <h1 class="text-2xl font-semibold mb-4">My Application</h1>
-      
+
       <div class="space-y-4">
         <TextField
           bind:value={searchValue}
@@ -259,14 +269,14 @@ Here's a complete example of setting up a new package to use the UI library:
             <SearchIcon {size} />
           {/snippet}
         </TextField>
-        
+
         <div class="flex gap-3">
           <Button variant="primary" onclick={handleSearch}>
             {#snippet children()}
               Search
             {/snippet}
           </Button>
-          
+
           <Button variant="secondary" onclick={handleAdd}>
             {#snippet leftIcon(size)}
               <AddIcon {size} />

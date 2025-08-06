@@ -61,9 +61,9 @@ resolve: {
 ```
 
 This allows imports like:
+
 ```svelte
-import { Button } from '@senka-ai/ui'
-import { AddIcon } from '@senka-ai/ui/icons'
+import {Button} from '@senka-ai/ui' import {AddIcon} from '@senka-ai/ui/icons'
 ```
 
 ### CSS Integration

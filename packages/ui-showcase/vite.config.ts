@@ -4,11 +4,11 @@ import { defineConfig } from 'vite'
 import path from 'path'
 
 export default defineConfig({
-	plugins: [tailwindcss(), sveltekit()],
-	resolve: {
-		alias: {
-			'@senka-ai/ui': path.resolve(__dirname, '../ui/dist'),
-			'@senka-ai/ui/icons': path.resolve(__dirname, '../ui/dist/icons'),
-		},
-	},
+  plugins: [tailwindcss(), sveltekit()],
+  resolve: {
+    alias: {
+      '@senka-ai/ui': path.resolve(__dirname, '../ui/dist'),
+      '@senka-ai/ui/icons': path.resolve(__dirname, '../ui/dist/icons'),
+    },
+  },
 })

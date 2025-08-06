@@ -155,8 +155,8 @@ RELEVANT FILES: packages/layout-engine/src/lib/types/index.ts, packages/ui/src/l
     <!-- Direction (for stack and row) -->
     {#if layout.arrangement.type === 'stack'}
       <div>
-        <span class="property-label block mb-2">Direction</span>
-        <div class="flex gap-4 items-center">
+        <span class="property-label mb-2 block">Direction</span>
+        <div class="flex items-center gap-4">
           <Toggle
             checked={currentDirection === 'vertical'}
             onchange={(checked) => updateDirection(checked ? 'vertical' : 'horizontal')}
@@ -169,12 +169,9 @@ RELEVANT FILES: packages/layout-engine/src/lib/types/index.ts, packages/ui/src/l
     <!-- Wrap (for row and flow) -->
     {#if ['row', 'flow'].includes(layout.arrangement.type)}
       <div>
-        <span class="property-label block mb-2">Allow Wrapping</span>
-        <div class="flex gap-4 items-center">
-          <Toggle
-            checked={currentWrap}
-            onchange={updateWrap}
-          />
+        <span class="property-label mb-2 block">Allow Wrapping</span>
+        <div class="flex items-center gap-4">
+          <Toggle checked={currentWrap} onchange={updateWrap} />
           <span class="text-body-s text-secondary">Wrap content to new lines</span>
         </div>
       </div>

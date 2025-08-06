@@ -9,14 +9,7 @@ RELEVANT FILES: packages/layout-showcase/src/lib/components/LayoutControls.svelt
   import { LayoutEngine } from '@senka-ai/layout-engine'
   import type { LayoutContainer } from '@senka-ai/layout-engine'
   import LayoutControls from '$lib/components/LayoutControls.svelte'
-  import { 
-    Button, 
-    Card, 
-    Tag, 
-    TextField, 
-    Badge,
-    Banner
-  } from '@senka-ai/ui'
+  import { Button, Card, Tag, TextField, Badge, Banner } from '@senka-ai/ui'
 
   // Create layout engine instance
   const engine = new LayoutEngine({
@@ -55,11 +48,7 @@ RELEVANT FILES: packages/layout-showcase/src/lib/components/LayoutControls.svelt
 
   // Format CSS for better display
   function formatCSS(css: string): string {
-    return css
-      .replace(/;/g, ';\n  ')
-      .replace(/{/g, ' {\n  ')
-      .replace(/}/g, '\n}')
-      .replace(/^\s+/gm, '  ')
+    return css.replace(/;/g, ';\n  ').replace(/{/g, ' {\n  ').replace(/}/g, '\n}').replace(/^\s+/gm, '  ')
   }
 
   // Component sets for demo
@@ -87,17 +76,28 @@ RELEVANT FILES: packages/layout-showcase/src/lib/components/LayoutControls.svelt
       { component: Tag, content: 'Playwright' },
     ],
     mixed: [
-      { component: Banner, props: { title: 'Welcome!', description: 'Get started with your new project', variant: 'info' } },
+      {
+        component: Banner,
+        props: { title: 'Welcome!', description: 'Get started with your new project', variant: 'info' },
+      },
       { component: Card, props: { title: 'Quick Start', description: 'Follow these steps to begin' } },
-      { component: 'div', props: { class: 'flex gap-2' }, content: [
-        { component: Button, props: { variant: 'primary', size: 'small' }, content: 'Continue' },
-        { component: Button, props: { variant: 'secondary', size: 'small' }, content: 'Learn More' },
-      ]},
-      { component: 'div', props: { class: 'flex gap-2 flex-wrap' }, content: [
-        { component: Tag, content: 'Getting Started' },
-        { component: Tag, content: 'Tutorial' },
-        { component: Badge, props: { variant: 'success' }, content: 'New' },
-      ]},
+      {
+        component: 'div',
+        props: { class: 'flex gap-2' },
+        content: [
+          { component: Button, props: { variant: 'primary', size: 'small' }, content: 'Continue' },
+          { component: Button, props: { variant: 'secondary', size: 'small' }, content: 'Learn More' },
+        ],
+      },
+      {
+        component: 'div',
+        props: { class: 'flex gap-2 flex-wrap' },
+        content: [
+          { component: Tag, content: 'Getting Started' },
+          { component: Tag, content: 'Tutorial' },
+          { component: Badge, props: { variant: 'success' }, content: 'New' },
+        ],
+      },
     ],
   }
 </script>
@@ -106,38 +106,46 @@ RELEVANT FILES: packages/layout-showcase/src/lib/components/LayoutControls.svelt
   <title>Interactive Layout Builder - Senka Layout Engine</title>
 </svelte:head>
 
-<div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+<div class="grid grid-cols-1 gap-8 lg:grid-cols-3">
   <!-- Layout Controls Panel -->
   <div class="lg:col-span-1">
     <div class="sticky top-8 space-y-6">
       <LayoutControls layout={currentLayout} onLayoutChange={handleLayoutChange} />
-      
+
       <!-- Component Set Selector -->
       <Card title="Demo Components">
         <div class="space-y-2">
           <span class="property-label">Component Set</span>
           <div class="space-y-2">
-            <button 
-              class="w-full text-left px-3 py-2 rounded border {componentSet === 'mixed' ? 'bg-highlight text-white border-highlight' : 'bg-surface border-default text-primary'}"
-              onclick={() => componentSet = 'mixed'}
+            <button
+              class="w-full rounded border px-3 py-2 text-left {componentSet === 'mixed'
+                ? 'bg-highlight border-highlight text-white'
+                : 'bg-surface border-default text-primary'}"
+              onclick={() => (componentSet = 'mixed')}
             >
               Mixed Components
             </button>
-            <button 
-              class="w-full text-left px-3 py-2 rounded border {componentSet === 'cards' ? 'bg-highlight text-white border-highlight' : 'bg-surface border-default text-primary'}"
-              onclick={() => componentSet = 'cards'}
+            <button
+              class="w-full rounded border px-3 py-2 text-left {componentSet === 'cards'
+                ? 'bg-highlight border-highlight text-white'
+                : 'bg-surface border-default text-primary'}"
+              onclick={() => (componentSet = 'cards')}
             >
               Cards Only
             </button>
-            <button 
-              class="w-full text-left px-3 py-2 rounded border {componentSet === 'buttons' ? 'bg-highlight text-white border-highlight' : 'bg-surface border-default text-primary'}"
-              onclick={() => componentSet = 'buttons'}
+            <button
+              class="w-full rounded border px-3 py-2 text-left {componentSet === 'buttons'
+                ? 'bg-highlight border-highlight text-white'
+                : 'bg-surface border-default text-primary'}"
+              onclick={() => (componentSet = 'buttons')}
             >
               Buttons Only
             </button>
-            <button 
-              class="w-full text-left px-3 py-2 rounded border {componentSet === 'tags' ? 'bg-highlight text-white border-highlight' : 'bg-surface border-default text-primary'}"
-              onclick={() => componentSet = 'tags'}
+            <button
+              class="w-full rounded border px-3 py-2 text-left {componentSet === 'tags'
+                ? 'bg-highlight border-highlight text-white'
+                : 'bg-surface border-default text-primary'}"
+              onclick={() => (componentSet = 'tags')}
             >
               Tags Only
             </button>
@@ -148,9 +156,9 @@ RELEVANT FILES: packages/layout-showcase/src/lib/components/LayoutControls.svelt
       <!-- Display Options -->
       <Card title="Display Options">
         <div class="space-y-3">
-          <button 
-            class="w-full text-left px-3 py-2 rounded border bg-surface border-default text-primary hover:bg-surface-hover"
-            onclick={() => showCSS = !showCSS}
+          <button
+            class="bg-surface border-default text-primary hover:bg-surface-hover w-full rounded border px-3 py-2 text-left"
+            onclick={() => (showCSS = !showCSS)}
           >
             {showCSS ? 'Hide' : 'Show'} Generated CSS
           </button>
@@ -160,34 +168,35 @@ RELEVANT FILES: packages/layout-showcase/src/lib/components/LayoutControls.svelt
   </div>
 
   <!-- Layout Preview -->
-  <div class="lg:col-span-2 space-y-6">
+  <div class="space-y-6 lg:col-span-2">
     <!-- Header -->
     <div>
-      <h1 class="text-h1 font-bold text-primary mb-2">Interactive Layout Builder</h1>
+      <h1 class="text-h1 text-primary mb-2 font-bold">Interactive Layout Builder</h1>
       <p class="text-body-l text-secondary">
-        Experiment with different layout arrangements and see the results in real-time. 
-        Adjust properties in the control panel to explore the layout engine's capabilities.
+        Experiment with different layout arrangements and see the results in real-time. Adjust properties in the control
+        panel to explore the layout engine's capabilities.
       </p>
     </div>
 
     <!-- Current Layout Info -->
     <Card title="Current Configuration" class="bg-surface-elevated">
-      <div class="grid grid-cols-2 gap-4 text-body-s">
+      <div class="text-body-s grid grid-cols-2 gap-4">
         <div>
-          <span class="font-medium text-primary">Type:</span>
+          <span class="text-primary font-medium">Type:</span>
           <span class="text-secondary ml-2 capitalize">{currentLayout.arrangement.type}</span>
         </div>
         <div>
-          <span class="font-medium text-primary">Mode:</span>
+          <span class="text-primary font-medium">Mode:</span>
           <span class="text-secondary ml-2">{currentLayout.autoLayout?.mode || 'default'}</span>
         </div>
         <div>
-          <span class="font-medium text-primary">Gap:</span>
+          <span class="text-primary font-medium">Gap:</span>
           <span class="text-secondary ml-2 capitalize">{currentLayout.autoLayout?.gap?.scale || 'normal'}</span>
         </div>
         <div>
-          <span class="font-medium text-primary">Padding:</span>
-          <span class="text-secondary ml-2 capitalize">{currentLayout.autoLayout?.padding?.all?.scale || 'normal'}</span>
+          <span class="text-primary font-medium">Padding:</span>
+          <span class="text-secondary ml-2 capitalize">{currentLayout.autoLayout?.padding?.all?.scale || 'normal'}</span
+          >
         </div>
       </div>
     </Card>
@@ -196,11 +205,11 @@ RELEVANT FILES: packages/layout-showcase/src/lib/components/LayoutControls.svelt
     <div class="layout-demo">
       <h2 class="layout-demo-title">Live Preview</h2>
       <p class="layout-demo-description">
-        The layout below updates automatically as you change the controls.
-        Components are arranged using the generated CSS from your configuration.
+        The layout below updates automatically as you change the controls. Components are arranged using the generated
+        CSS from your configuration.
       </p>
-      
-      <div class="generated-layout border-2 border-dashed border-neutral-300 rounded-xl p-6" style={generatedCSS}>
+
+      <div class="generated-layout rounded-xl border-2 border-dashed border-neutral-300 p-6" style={generatedCSS}>
         {#if componentSet === 'cards'}
           {#each componentSets.cards as item}
             <Card {...item.props} />
@@ -216,11 +225,7 @@ RELEVANT FILES: packages/layout-showcase/src/lib/components/LayoutControls.svelt
             <Tag text={item.content} />
           {/each}
         {:else if componentSet === 'mixed'}
-          <Banner 
-            title="Welcome!" 
-            description="Get started with your new project" 
-            variant="info" 
-          />
+          <Banner title="Welcome!" description="Get started with your new project" variant="info" />
           <Card title="Quick Start" description="Follow these steps to begin" />
           <div class="flex gap-2">
             <Button variant="primary" size="small">
@@ -230,7 +235,7 @@ RELEVANT FILES: packages/layout-showcase/src/lib/components/LayoutControls.svelt
               {#snippet children()}Learn More{/snippet}
             </Button>
           </div>
-          <div class="flex gap-2 flex-wrap">
+          <div class="flex flex-wrap gap-2">
             <Tag text="Getting Started" />
             <Tag text="Tutorial" />
             <Badge variant="success" value="New" />
@@ -245,9 +250,11 @@ RELEVANT FILES: packages/layout-showcase/src/lib/components/LayoutControls.svelt
         <div class="code-output">
           <pre class="text-body-xs font-mono whitespace-pre-wrap">{formattedCSS}</pre>
         </div>
-        <div class="mt-4 text-body-s text-secondary">
-          <p>This CSS is automatically generated from your layout configuration. 
-          Copy and use it in your own projects, or use the Layout Engine programmatically.</p>
+        <div class="text-body-s text-secondary mt-4">
+          <p>
+            This CSS is automatically generated from your layout configuration. Copy and use it in your own projects, or
+            use the Layout Engine programmatically.
+          </p>
         </div>
       </Card>
     {/if}

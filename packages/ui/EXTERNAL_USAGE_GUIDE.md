@@ -5,6 +5,7 @@ This guide explains how external applications, projects, and libraries can integ
 ## Overview
 
 `@senka-ai/ui` is a modern Svelte 5 component library that provides:
+
 - 29+ production-ready UI components
 - 48+ SVG icon components
 - Complete design system with semantic colors
@@ -77,13 +78,13 @@ export default app
 ```svelte
 <script>
   import { Button, Card, TextField } from '@senka-ai/ui'
-  
+
   let inputValue = ''
-  
+
   const handleClick = () => {
     console.log('Button clicked!')
   }
-  
+
   const handleInputChange = (value) => {
     inputValue = value
   }
@@ -91,13 +92,8 @@ export default app
 
 <Card title="Welcome" description="Get started with Senka UI">
   {#snippet children()}
-    <TextField
-      label="Your Name"
-      placeholder="Enter your name..."
-      value={inputValue}
-      onchange={handleInputChange}
-    />
-    
+    <TextField label="Your Name" placeholder="Enter your name..." value={inputValue} onchange={handleInputChange} />
+
     <Button variant="primary" onclick={handleClick}>
       {#snippet children()}
         Submit
@@ -138,7 +134,7 @@ Import icons separately from the icons package:
 </Button>
 
 <!-- Standalone icon -->
-<SearchIcon class="h-6 w-6 text-highlight" />
+<SearchIcon class="text-highlight h-6 w-6" />
 ```
 
 ### Theme Integration
@@ -161,17 +157,17 @@ Or programmatically control themes:
 ```svelte
 <script>
   import { useTheme } from '@senka-ai/ui'
-  
+
   const theme = useTheme()
-  
+
   const switchToDark = () => {
     theme.set('dark')
   }
-  
+
   const switchToLight = () => {
     theme.set('light')
   }
-  
+
   const toggleTheme = () => {
     theme.toggle()
   }
@@ -181,11 +177,13 @@ Or programmatically control themes:
 ## Available Components
 
 ### Core Components
+
 - `Button` - Primary, secondary, and tertiary button variants
 - `IconButton` - Icon-only button for compact interfaces
 - `ThemeToggle` - Light/dark theme switcher
 
 ### Form Components
+
 - `TextField` - Single-line text input with validation
 - `TextArea` - Multi-line text input
 - `Checkbox` - Single or grouped checkboxes
@@ -198,6 +196,7 @@ Or programmatically control themes:
 - `SearchBar` - Search input with icon
 
 ### Layout Components
+
 - `Card` - Content container with title and description
 - `CardHorizontal` - Horizontal layout card variant
 - `List` / `ListItem` / `ListTitle` - Structured list components
@@ -205,6 +204,7 @@ Or programmatically control themes:
 - `Divider` - Visual content separator
 
 ### Feedback Components
+
 - `Badge` - Status indicators and notifications
 - `Tag` - Content labels and categories
 - `Toast` - Temporary notifications
@@ -216,18 +216,21 @@ Or programmatically control themes:
 - `PaginationDots` - Page navigation indicators
 
 ### Navigation Components
+
 - `NavBar` - Top navigation with title and controls
 - `TabBar` - Bottom tab navigation
 - `Tabs` - Horizontal tab navigation
 - `ContentSwitcher` - Toggle between content views
 
 ### Control Components
+
 - `ActionSheet` - Bottom sheet with action options
 - `Calendar` - Date picker and calendar view
 - `Filter` - Filtering controls with badge counts
 - `Stepper` - Multi-step process navigation
 
 ### Media Components
+
 - `Avatar` / `AvatarPlaceholder` - User profile images
 - `Image` / `ImagePlaceholder` - Image display with loading states
 - `Video` / `VideoPlaceholder` - Video players with placeholders
@@ -292,10 +295,7 @@ The library includes a comprehensive validation system:
 <TextField
   label="Email Address"
   placeholder="Enter your email..."
-  validationRules={[
-    validationRules.required(),
-    validationRules.email()
-  ]}
+  validationRules={[validationRules.required(), validationRules.email()]}
   validateOnBlur={true}
   validateOnChange={false}
 />
@@ -303,10 +303,7 @@ The library includes a comprehensive validation system:
 <TextField
   label="Password"
   type="password"
-  validationRules={[
-    validationRules.required(),
-    validationRules.minLength(8, 'Password must be at least 8 characters')
-  ]}
+  validationRules={[validationRules.required(), validationRules.minLength(8, 'Password must be at least 8 characters')]}
 />
 ```
 
@@ -356,6 +353,7 @@ interface CustomButtonProps extends ButtonLikeComponent {
 ## Accessibility Features
 
 All components include:
+
 - **Keyboard Navigation**: Arrow keys, Enter, Space, Escape support
 - **Screen Reader Support**: Proper ARIA attributes and semantic markup
 - **Focus Management**: Visible focus indicators and logical tab order
