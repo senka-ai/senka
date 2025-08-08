@@ -1,8 +1,8 @@
 <script lang="ts">
-  import type { BaseProps, ExtendedSizedComponent, BadgeType, BadgeVariant } from '../../types/component'
-  import { createBadgeStyles } from '../../utils/styles'
-  import { BadgeRenderer, IconRenderer } from '../../utils/rendering'
-  import type { ExtendedComponentSize } from '../../types/component'
+  import type { BaseProps, ExtendedSizedComponent, BadgeType, BadgeVariant } from '@type/component'
+  import { createBadgeStyles } from '@utils/styles'
+  import { BadgeRenderer, IconRenderer } from '@utils/rendering'
+  import type { ExtendedComponentSize } from '@type/component'
 
   interface Props extends BaseProps, ExtendedSizedComponent {
     type?: BadgeType

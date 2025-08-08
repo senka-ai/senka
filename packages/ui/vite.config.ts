@@ -4,7 +4,6 @@ import { defineConfig } from 'vite'
 
 export default defineConfig({
   plugins: [tailwindcss(), svelte()],
-  // @ts-expect-error - Vitest config in Vite config file
   test: {
     environment: 'jsdom',
     include: ['src/**/*.{test,spec}.{js,ts}'],

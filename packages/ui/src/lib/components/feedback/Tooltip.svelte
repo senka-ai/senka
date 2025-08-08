@@ -1,6 +1,6 @@
 <script lang="ts">
-  import type { BaseProps, ChildrenComponent } from '../../types/component'
-  import { createTooltipStyles } from '../../utils/styles'
+  import type { BaseProps, ChildrenComponent } from '@type/component'
+  import { createTooltipStyles } from '@utils/styles'
 
   /**
    * Tooltip component props interface

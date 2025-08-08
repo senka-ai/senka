@@ -1,16 +1,16 @@
 <script module lang="ts">
   import { defineMeta } from '@storybook/addon-svelte-csf'
-  import ContentSwitcher from '../lib/components/controls/ContentSwitcher.svelte'
-  import Card from '../lib/components/layout/Card.svelte'
-  import CardHorizontal from '../lib/components/layout/CardHorizontal.svelte'
-  import Badge from '../lib/components/feedback/Badge.svelte'
-  import Button from '../lib/components/core/Button.svelte'
-  import TextField from '../lib/components/forms/TextField.svelte'
-  import TextArea from '../lib/components/forms/TextArea.svelte'
-  import Toggle from '../lib/components/forms/Toggle.svelte'
-  import Dropdown from '../lib/components/forms/Dropdown.svelte'
-  import ProgressBar from '../lib/components/feedback/ProgressBar.svelte'
-  import Loader from '../lib/components/feedback/Loader.svelte'
+  import ContentSwitcher from '@components/controls/ContentSwitcher.svelte'
+  import Card from '@components/layout/Card.svelte'
+  import CardHorizontal from '@components/layout/CardHorizontal.svelte'
+  import Badge from '@components/feedback/Badge.svelte'
+  import Button from '@components/core/Button.svelte'
+  import TextField from '@components/forms/TextField.svelte'
+  import TextArea from '@components/forms/TextArea.svelte'
+  import Toggle from '@components/forms/Toggle.svelte'
+  import Dropdown from '@components/forms/Dropdown.svelte'
+  import ProgressBar from '@components/feedback/ProgressBar.svelte'
+  import Loader from '@components/feedback/Loader.svelte'
 
   // State for interactive examples
   let selectedSection = $state('personal')

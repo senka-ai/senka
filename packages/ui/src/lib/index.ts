@@ -74,4 +74,4 @@ export * from './utils/focus.svelte'
 export * from './icons'
 
 // Type Definitions
-export type * from './types/component'
+export type * from './type/component'

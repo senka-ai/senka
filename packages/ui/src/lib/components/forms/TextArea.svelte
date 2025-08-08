@@ -1,10 +1,10 @@
 <script lang="ts">
-  import type { FormInputComponent } from '../../types/component'
-  import { useFocusState } from '../../utils/state.svelte'
-  import { validateValue, type ValidationRule } from '../../utils/validation.svelte'
-  import { createInputStyles } from '../../utils/styles'
-  import { FormRenderer } from '../../utils/rendering'
-  import FormField from './FormField.svelte'
+  import type { FormInputComponent } from '@type/component'
+  import { useFocusState } from '@utils/state.svelte'
+  import { validateValue, type ValidationRule } from '@utils/validation.svelte'
+  import { createInputStyles } from '@utils/styles'
+  import { FormRenderer } from '@utils/rendering'
+  import FormField from '@components/forms/FormField.svelte'
 
   interface Props extends FormInputComponent {
     inputState?: 'default' | 'focused' | 'error' | 'disabled'

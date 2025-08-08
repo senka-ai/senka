@@ -1,6 +1,6 @@
 <script lang="ts">
-  import type { BaseProps, VariantComponent } from '../../types/component'
-  import { createProgressBarStyles } from '../../utils/styles'
+  import type { BaseProps, VariantComponent } from '@type/component'
+  import { createProgressBarStyles } from '@utils/styles'
 
   /**
    * Progress Bar component props interface

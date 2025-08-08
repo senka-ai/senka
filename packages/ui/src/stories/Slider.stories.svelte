@@ -1,7 +1,7 @@
 <script module lang="ts">
   import { defineMeta } from '@storybook/addon-svelte-csf'
-  import Slider from '../lib/components/forms/Slider.svelte'
-  import { validationRules } from '../lib/utils/validation.svelte'
+  import Slider from '@components/forms/Slider.svelte'
+  import { validationRules } from '@utils/validation.svelte'
 
   const { Story } = defineMeta({
     title: 'Forms/Slider',

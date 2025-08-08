@@ -1,7 +1,7 @@
 <script lang="ts">
-  import type { BaseProps, ChangeHandler, ChildrenComponent } from '../../types/component'
-  import { useControlledState } from '../../utils/state.svelte'
-  import { composeClasses } from '../../utils/styles'
+  import type { BaseProps, ChangeHandler, ChildrenComponent } from '@type/component'
+  import { useControlledState } from '@utils/state.svelte'
+  import { composeClasses } from '@utils/styles'
   import { setContext } from 'svelte'
 
   interface Props extends BaseProps, ChangeHandler<string>, ChildrenComponent {

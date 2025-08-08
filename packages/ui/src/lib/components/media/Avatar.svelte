@@ -1,8 +1,8 @@
 <script lang="ts">
-  import AvatarPlaceholder from './AvatarPlaceholder.svelte'
-  import type { BaseProps, ExtendedSizedComponent, StatusComponent } from '../../types/component'
-  import { createAvatarStyles } from '../../utils/styles'
-  import { AvatarRenderer } from '../../utils/rendering'
+  import AvatarPlaceholder from '@components/media/AvatarPlaceholder.svelte'
+  import type { BaseProps, ExtendedSizedComponent, StatusComponent } from '@type/component'
+  import { createAvatarStyles } from '@utils/styles'
+  import { AvatarRenderer } from '@utils/rendering'
 
   interface Props extends BaseProps, ExtendedSizedComponent, StatusComponent {
     src?: string

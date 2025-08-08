@@ -1,7 +1,7 @@
 <script module lang="ts">
   import { defineMeta } from '@storybook/addon-svelte-csf'
-  import ListTitle from '../lib/components/layout/ListTitle.svelte'
-  import { SearchIcon, EditIcon, FilterIcon } from '../lib/icons'
+  import ListTitle from '@components/layout/ListTitle.svelte'
+  import { SearchIcon, EditIcon, FilterIcon } from '@icons'
 
   const { Story } = defineMeta({
     title: 'Layout/ListTitle',

@@ -1,5 +1,5 @@
 <script lang="ts">
-  import type { BaseProps, FullWidthComponent, ChildrenComponent } from '../../types/component'
+  import type { BaseProps, FullWidthComponent, ChildrenComponent } from '@type/component'
 
   interface Props extends BaseProps, FullWidthComponent, ChildrenComponent {
     label?: string

@@ -1,12 +1,12 @@
 <script module lang="ts">
   import { defineMeta } from '@storybook/addon-svelte-csf'
-  import Tabs from '../lib/components/controls/Tabs.svelte'
-  import Card from '../lib/components/layout/Card.svelte'
-  import TextField from '../lib/components/forms/TextField.svelte'
-  import TextArea from '../lib/components/forms/TextArea.svelte'
-  import Button from '../lib/components/core/Button.svelte'
-  import Badge from '../lib/components/feedback/Badge.svelte'
-  import ProgressBar from '../lib/components/feedback/ProgressBar.svelte'
+  import Tabs from '@components/controls/Tabs.svelte'
+  import Card from '@components/layout/Card.svelte'
+  import TextField from '@components/forms/TextField.svelte'
+  import TextArea from '@components/forms/TextArea.svelte'
+  import Button from '@components/core/Button.svelte'
+  import Badge from '@components/feedback/Badge.svelte'
+  import ProgressBar from '@components/feedback/ProgressBar.svelte'
 
   // State for interactive examples
   let selectedTab = $state('overview')

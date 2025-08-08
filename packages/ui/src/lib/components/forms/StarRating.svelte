@@ -1,9 +1,9 @@
 <script lang="ts">
-  import { StarFilledIcon, StarOutlinedIcon } from '../../icons'
-  import type { BaseProps, ExtendedSizedComponent, ChangeHandler, InteractiveHandlers } from '../../types/component'
-  import { useControlledState } from '../../utils/state.svelte'
-  import { useFocusVisible } from '../../utils/focus.svelte'
-  import { createStarRatingStyles } from '../../utils/styles'
+  import { StarFilledIcon, StarOutlinedIcon } from '@icons'
+  import type { BaseProps, ExtendedSizedComponent, ChangeHandler, InteractiveHandlers } from '@type/component'
+  import { useControlledState } from '@utils/state.svelte'
+  import { useFocusVisible } from '@utils/focus.svelte'
+  import { createStarRatingStyles } from '@utils/styles'
 
   interface Props extends BaseProps, ExtendedSizedComponent, ChangeHandler<number>, InteractiveHandlers {
     /** Current rating value (0-5) */

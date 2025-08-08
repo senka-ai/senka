@@ -976,7 +976,7 @@ __metadata:
   resolution: "@senka-ai/layout-showcase@workspace:packages/layout-showcase"
   dependencies:
     "@senka-ai/layout-engine": "npm:^0.0.1"
-    "@senka-ai/ui": "npm:^0.0.2"
+    "@senka-ai/ui": "npm:^0.0.6"
     "@sveltejs/adapter-auto": "npm:6.0.1"
     "@sveltejs/kit": "npm:2.27.1"
     "@sveltejs/vite-plugin-svelte": "npm:6.1.0"
@@ -1007,7 +1007,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@senka-ai/ui@npm:^0.0.2, @senka-ai/ui@workspace:packages/ui":
+"@senka-ai/ui@npm:^0.0.6, @senka-ai/ui@workspace:packages/ui":
   version: 0.0.0-use.local
   resolution: "@senka-ai/ui@workspace:packages/ui"
   dependencies:

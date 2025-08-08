@@ -1,8 +1,8 @@
 <script lang="ts">
-  import type { BaseProps, SizedComponent, ChangeHandler, InteractiveHandlers } from '../../types/component'
-  import { ArrowLeftIcon, ArrowRightIcon } from '../../icons'
-  import { createStyleComposer } from '../../utils/styles'
-  import IconButton from '../core/IconButton.svelte'
+  import type { BaseProps, SizedComponent, ChangeHandler, InteractiveHandlers } from '@type/component'
+  import { ArrowLeftIcon, ArrowRightIcon } from '@icons'
+  import { createStyleComposer } from '@utils/styles'
+  import IconButton from '@components/core/IconButton.svelte'
 
   interface CalendarLabels {
     /** Month names (12 entries: January, February, ...) */

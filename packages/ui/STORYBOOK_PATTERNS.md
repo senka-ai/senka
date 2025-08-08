@@ -30,8 +30,8 @@ packages/ui/src/stories/
 ```svelte
 <script module>
   import { defineMeta } from '@storybook/addon-svelte-csf'
-  import ComponentName from '../lib/components/category/ComponentName.svelte'
-  import { IconName } from '../lib/icons' // If needed
+  import ComponentName from '@components/category/ComponentName.svelte'
+  import { IconName } from '@icons' // If needed
 
   const { Story } = defineMeta({
     title: 'Category/ComponentName',
@@ -597,7 +597,7 @@ Create separate `.svelte` files for complex examples:
 ```svelte
 <!-- RadioGroupExample.svelte -->
 <script lang="ts">
-  import RadioButton from '../lib/components/forms/RadioButton.svelte'
+  import RadioButton from '@components/forms/RadioButton.svelte'
 
   let selectedOption = $state('option1')
 </script>
@@ -888,14 +888,14 @@ This automatically creates visual regression tests for both light and dark theme
 ```svelte
 <script module>
   import { defineMeta } from '@storybook/addon-svelte-csf'
-  import MainComponent from '../lib/components/category/MainComponent.svelte'
+  import MainComponent from '@components/category/MainComponent.svelte'
 
   // Import other library components as needed
-  import Button from '../lib/components/core/Button.svelte'
-  import TextField from '../lib/components/forms/TextField.svelte'
-  import TextArea from '../lib/components/forms/TextArea.svelte'
-  import Card from '../lib/components/layout/Card.svelte'
-  import Badge from '../lib/components/feedback/Badge.svelte'
+  import Button from '@components/core/Button.svelte'
+  import TextField from '@components/forms/TextField.svelte'
+  import TextArea from '@components/forms/TextArea.svelte'
+  import Card from '@components/layout/Card.svelte'
+  import Badge from '@components/feedback/Badge.svelte'
 
   // ... story configuration
 </script>

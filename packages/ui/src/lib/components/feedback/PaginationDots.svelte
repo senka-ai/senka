@@ -1,8 +1,8 @@
 <script lang="ts">
-  import type { BaseProps, ExtendedSizedComponent, ChangeHandler, InteractiveHandlers } from '../../types/component'
-  import { useControlledState } from '../../utils/state.svelte'
-  import { createKeyboardHandler, KeySets } from '../../utils/events'
-  import { createStyleComposer } from '../../utils/styles'
+  import type { BaseProps, ExtendedSizedComponent, ChangeHandler, InteractiveHandlers } from '@type/component'
+  import { useControlledState } from '@utils/state.svelte'
+  import { createKeyboardHandler, KeySets } from '@utils/events'
+  import { createStyleComposer } from '@utils/styles'
 
   interface Props extends BaseProps, ExtendedSizedComponent, ChangeHandler<number>, InteractiveHandlers {
     /** Current active page index (0-based) */

@@ -1,8 +1,8 @@
 <script lang="ts">
-  import type { ListItemComponent, IconComponent, InteractiveHandlers } from '../../types/component'
-  import { IconRenderer } from '../../utils/rendering'
-  import { createKeyboardHandler, KeySets } from '../../utils/events'
-  import { createListItemStyles } from '../../utils/styles'
+  import type { ListItemComponent, IconComponent, InteractiveHandlers } from '@type/component'
+  import { IconRenderer } from '@utils/rendering'
+  import { createKeyboardHandler, KeySets } from '@utils/events'
+  import { createListItemStyles } from '@utils/styles'
 
   interface Props extends ListItemComponent, IconComponent, InteractiveHandlers {
     rightControl?: any

@@ -1,10 +1,10 @@
 <script module lang="ts">
   import { defineMeta } from '@storybook/addon-svelte-csf'
-  import NavBar from '../lib/components/navigation/NavBar.svelte'
-  import Button from '../lib/components/core/Button.svelte'
-  import Avatar from '../lib/components/media/Avatar.svelte'
-  import EditIcon from '../lib/icons/EditIcon.svelte'
-  import HeartOutlinedIcon from '../lib/icons/HeartOutlinedIcon.svelte'
+  import NavBar from '@components/navigation/NavBar.svelte'
+  import Button from '@components/core/Button.svelte'
+  import Avatar from '@components/media/Avatar.svelte'
+  import EditIcon from '@icons/EditIcon.svelte'
+  import HeartOutlinedIcon from '@icons/HeartOutlinedIcon.svelte'
 
   const { Story } = defineMeta({
     title: 'Navigation/NavBar',

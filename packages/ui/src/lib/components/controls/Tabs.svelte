@@ -1,5 +1,5 @@
 <script lang="ts">
-  import type { BaseProps, ChangeHandler, InteractiveHandlers } from '../../types/component'
+  import type { BaseProps, ChangeHandler, InteractiveHandlers } from '@type/component'
 
   interface TabItem {
     id: string

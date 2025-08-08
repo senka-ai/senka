@@ -1,5 +1,5 @@
 <script lang="ts">
-  import RadioButton from '../lib/components/forms/RadioButton.svelte'
+  import RadioButton from '@components/forms/RadioButton.svelte'
 
   let selectedValue = $state('simple1')
 </script>

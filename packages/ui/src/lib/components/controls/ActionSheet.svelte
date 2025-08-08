@@ -1,9 +1,9 @@
 <script lang="ts">
-  import type { BaseProps, ChildrenComponent } from '../../types/component'
-  import { createActionSheetStyles } from '../../utils/styles'
-  import { createKeyboardHandler, KeySets } from '../../utils/events'
-  import { CloseIcon } from '../../icons'
-  import IconButton from '../core/IconButton.svelte'
+  import type { BaseProps, ChildrenComponent } from '@type/component'
+  import { createActionSheetStyles } from '@utils/styles'
+  import { createKeyboardHandler, KeySets } from '@utils/events'
+  import { CloseIcon } from '@icons'
+  import IconButton from '@components/core/IconButton.svelte'
 
   /**
    * ActionSheet component props interface

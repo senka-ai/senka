@@ -1,5 +1,5 @@
 <script lang="ts">
-  import type { BaseProps } from '../../types/component'
+  import type { BaseProps } from '@type/component'
 
   interface Tab {
     id: string

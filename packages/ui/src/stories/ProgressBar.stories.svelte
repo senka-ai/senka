@@ -1,7 +1,7 @@
 <script module lang="ts">
   import { defineMeta } from '@storybook/addon-svelte-csf'
-  import ProgressBar from '../lib/components/feedback/ProgressBar.svelte'
-  import { CheckIcon, InfoIcon, MinusIcon } from '../lib/icons'
+  import ProgressBar from '@components/feedback/ProgressBar.svelte'
+  import { CheckIcon, InfoIcon, MinusIcon } from '@icons'
 
   const { Story } = defineMeta({
     title: 'Feedback/ProgressBar',

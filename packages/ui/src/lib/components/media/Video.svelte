@@ -1,9 +1,9 @@
 <script lang="ts">
-  import { VideoIcon } from '../../icons'
-  import VideoPlaceholder from './VideoPlaceholder.svelte'
-  import { useLoadingState } from '../../utils/state.svelte'
-  import { createMediaContainerStyles, createVideoStyles } from '../../utils/styles'
-  import type { BaseProps } from '../../types/component'
+  import { VideoIcon } from '@icons'
+  import VideoPlaceholder from '@components/media/VideoPlaceholder.svelte'
+  import { useLoadingState } from '@utils/state.svelte'
+  import { createMediaContainerStyles, createVideoStyles } from '@utils/styles'
+  import type { BaseProps } from '@type/component'
 
   interface Props extends BaseProps {
     src: string

@@ -1,6 +1,6 @@
 <script module lang="ts">
   import { defineMeta } from '@storybook/addon-svelte-csf'
-  import ImagePlaceholder from '../lib/components/media/ImagePlaceholder.svelte'
+  import ImagePlaceholder from '@components/media/ImagePlaceholder.svelte'
 
   const { Story } = defineMeta({
     title: 'Media/ImagePlaceholder',

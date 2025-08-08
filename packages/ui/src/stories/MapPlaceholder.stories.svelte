@@ -1,7 +1,7 @@
 <script module>
   import { defineMeta } from '@storybook/addon-svelte-csf'
-  import MapPlaceholder from '../lib/components/media/MapPlaceholder.svelte'
-  import Tag from '../lib/components/feedback/Tag.svelte'
+  import MapPlaceholder from '@components/media/MapPlaceholder.svelte'
+  import Tag from '@components/feedback/Tag.svelte'
 
   const { Story } = defineMeta({
     title: 'Media/MapPlaceholder',

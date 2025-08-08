@@ -47,7 +47,7 @@
     SuccessIcon,
     VideoIcon,
     WarningIcon,
-  } from '../lib/icons'
+  } from '@icons'
 
   const { Story } = defineMeta({
     title: 'Icons/All Icons',

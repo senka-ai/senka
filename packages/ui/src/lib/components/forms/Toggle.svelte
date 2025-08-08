@@ -1,9 +1,9 @@
 <script lang="ts">
-  import type { BaseProps, ExtendedSizedComponent, ChangeHandler, InteractiveHandlers } from '../../types/component'
-  import { useToggleState } from '../../utils/state.svelte'
-  import { useFocusVisible } from '../../utils/focus.svelte'
-  import { createKeyboardHandler, createClickHandler, KeySets } from '../../utils/events'
-  import { createToggleStyles } from '../../utils/styles'
+  import type { BaseProps, ExtendedSizedComponent, ChangeHandler, InteractiveHandlers } from '@type/component'
+  import { useToggleState } from '@utils/state.svelte'
+  import { useFocusVisible } from '@utils/focus.svelte'
+  import { createKeyboardHandler, createClickHandler, KeySets } from '@utils/events'
+  import { createToggleStyles } from '@utils/styles'
 
   interface Props extends BaseProps, ExtendedSizedComponent, ChangeHandler<boolean>, InteractiveHandlers {
     checked?: boolean

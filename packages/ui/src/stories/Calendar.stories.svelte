@@ -1,7 +1,7 @@
 <script module lang="ts">
   import { defineMeta } from '@storybook/addon-svelte-csf'
-  import Calendar from '../lib/components/controls/Calendar.svelte'
-  import Toast from '../lib/components/feedback/Toast.svelte'
+  import Calendar from '@components/controls/Calendar.svelte'
+  import Toast from '@components/feedback/Toast.svelte'
 
   const currentDate = new Date()
   const currentYear = currentDate.getFullYear()

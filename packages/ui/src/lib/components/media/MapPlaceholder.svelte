@@ -4,7 +4,7 @@
 <!-- RELEVANT FILES: ImagePlaceholder.svelte, VideoPlaceholder.svelte, LocationPinIcon.svelte, component.ts -->
 
 <script lang="ts">
-  import type { BaseProps, VariantComponent } from '../../types/component'
+  import type { BaseProps, VariantComponent } from '@type/component'
 
   interface Props extends BaseProps, VariantComponent<'default' | 'error' | 'loading'> {
     message?: string

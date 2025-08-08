@@ -1,5 +1,5 @@
 import { describe, it, expect, vi } from 'vitest'
-import { createSafeClickHandler, createKeyboardHandler, KeySets, isInteractiveElement } from '../events'
+import { createSafeClickHandler, createKeyboardHandler, KeySets, isInteractiveElement } from '@utils/events'
 
 describe('isInteractiveElement', () => {
   it('should identify interactive elements', () => {

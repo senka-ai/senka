@@ -1,10 +1,10 @@
 <script lang="ts">
-  import ArrowDownIcon from '../../icons/ArrowDownIcon.svelte'
-  import FormField from './FormField.svelte'
-  import type { FormInputComponent, ChangeHandler, ChildrenComponent } from '../../types/component'
-  import { useFocusState } from '../../utils/state.svelte'
-  import { createInputStyles, composeClasses } from '../../utils/styles'
-  import { FormRenderer, DropdownRenderer } from '../../utils/rendering'
+  import ArrowDownIcon from '@icons/ArrowDownIcon.svelte'
+  import FormField from '@components/forms/FormField.svelte'
+  import type { FormInputComponent, ChangeHandler, ChildrenComponent } from '@type/component'
+  import { useFocusState } from '@utils/state.svelte'
+  import { createInputStyles, composeClasses } from '@utils/styles'
+  import { FormRenderer, DropdownRenderer } from '@utils/rendering'
 
   interface Option {
     value: string

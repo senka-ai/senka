@@ -1,8 +1,8 @@
 <script module lang="ts">
   import { defineMeta } from '@storybook/addon-svelte-csf'
-  import TextField from '../lib/components/forms/TextField.svelte'
-  import TextArea from '../lib/components/forms/TextArea.svelte'
-  import { validationRules } from '../lib/utils/validation.svelte'
+  import TextField from '@components/forms/TextField.svelte'
+  import TextArea from '@components/forms/TextArea.svelte'
+  import { validationRules } from '@utils/validation.svelte'
 
   const { Story } = defineMeta({
     title: 'Forms/Validation Example',

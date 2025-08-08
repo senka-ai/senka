@@ -4,18 +4,18 @@
 <!-- RELEVANT FILES: Button.svelte, Badge.svelte, FilterIcon.svelte, component.ts -->
 
 <script lang="ts">
-  import { FilterIcon } from '../../icons'
-  import Badge from '../feedback/Badge.svelte'
+  import { FilterIcon } from '@icons'
+  import Badge from '@components/feedback/Badge.svelte'
   import type {
     BaseProps,
     SizedComponent,
     VariantComponent,
     ClickHandler,
     ChildrenComponent,
-  } from '../../types/component'
-  import { createKeyboardHandler, KeySets } from '../../utils/events'
-  import { createFilterStyles } from '../../utils/styles'
-  import { IconRenderer } from '../../utils/rendering'
+  } from '@type/component'
+  import { createKeyboardHandler, KeySets } from '@utils/events'
+  import { createFilterStyles } from '@utils/styles'
+  import { IconRenderer } from '@utils/rendering'
 
   interface Props
     extends BaseProps,

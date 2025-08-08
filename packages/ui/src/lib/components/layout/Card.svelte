@@ -1,10 +1,10 @@
 <script lang="ts">
-  import Button from '../core/Button.svelte'
-  import Image from '../media/Image.svelte'
-  import ImagePlaceholder from '../media/ImagePlaceholder.svelte'
-  import { ArrowRightIcon } from '../../icons'
-  import type { CardComponent } from '../../types/component'
-  import { createCardStyles, createCardContentStyles } from '../../utils/styles'
+  import Button from '@components/core/Button.svelte'
+  import Image from '@components/media/Image.svelte'
+  import ImagePlaceholder from '@components/media/ImagePlaceholder.svelte'
+  import { ArrowRightIcon } from '@icons'
+  import type { CardComponent } from '@type/component'
+  import { createCardStyles, createCardContentStyles } from '@utils/styles'
 
   interface Props extends CardComponent {
     image?: string

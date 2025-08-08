@@ -1,8 +1,8 @@
 <script lang="ts">
-  import ImagePlaceholder from './ImagePlaceholder.svelte'
-  import { useLoadingState } from '../../utils/state.svelte'
-  import { createMediaContainerStyles, createImageStyles } from '../../utils/styles'
-  import type { BaseProps } from '../../types/component'
+  import ImagePlaceholder from '@components/media/ImagePlaceholder.svelte'
+  import { useLoadingState } from '@utils/state.svelte'
+  import { createMediaContainerStyles, createImageStyles } from '@utils/styles'
+  import type { BaseProps } from '@type/component'
 
   interface Props extends BaseProps {
     src: string

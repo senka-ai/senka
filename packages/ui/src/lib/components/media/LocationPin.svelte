@@ -4,16 +4,16 @@
 <!-- RELEVANT FILES: LocationPinIcon.svelte, component.ts, styles.ts, rendering.ts -->
 
 <script lang="ts">
-  import { LocationPinIcon } from '../../icons'
+  import { LocationPinIcon } from '@icons'
   import type {
     BaseProps,
     SizedComponent,
     VariantComponent,
     ClickHandler,
     InteractiveHandlers,
-  } from '../../types/component'
-  import { createKeyboardHandler, KeySets } from '../../utils/events'
-  import { createLocationPinStyles, createLocationPinInnerDotStyles } from '../../utils/styles'
+  } from '@type/component'
+  import { createKeyboardHandler, KeySets } from '@utils/events'
+  import { createLocationPinStyles, createLocationPinInnerDotStyles } from '@utils/styles'
 
   interface Props
     extends BaseProps,

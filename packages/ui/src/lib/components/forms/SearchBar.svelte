@@ -1,7 +1,7 @@
 <script lang="ts">
-  import SearchIcon from '../../icons/SearchIcon.svelte'
-  import type { BaseProps, FullWidthComponent, KeyboardHandler } from '../../types/component'
-  import { useFocusState } from '../../utils/state.svelte'
+  import SearchIcon from '@icons/SearchIcon.svelte'
+  import type { BaseProps, FullWidthComponent, KeyboardHandler } from '@type/component'
+  import { useFocusState } from '@utils/state.svelte'
 
   interface Props extends BaseProps, FullWidthComponent, KeyboardHandler {
     placeholder?: string

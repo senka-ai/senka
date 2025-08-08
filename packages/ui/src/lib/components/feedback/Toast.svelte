@@ -1,7 +1,7 @@
 <script lang="ts">
-  import { InfoIcon, CheckIcon, WarningIcon, CloseIcon } from '../../icons'
-  import type { BaseProps, VariantComponent } from '../../types/component'
-  import { createToastStyles } from '../../utils/styles'
+  import { InfoIcon, CheckIcon, WarningIcon, CloseIcon } from '@icons'
+  import type { BaseProps, VariantComponent } from '@type/component'
+  import { createToastStyles } from '@utils/styles'
 
   /**
    * Toast component props interface

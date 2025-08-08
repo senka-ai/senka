@@ -1,6 +1,6 @@
 <script module lang="ts">
   import { defineMeta } from '@storybook/addon-svelte-csf'
-  import TabBar from '../lib/components/navigation/TabBar.svelte'
+  import TabBar from '@components/navigation/TabBar.svelte'
   import {
     ExploreIcon,
     CreateIcon,
@@ -10,7 +10,7 @@
     StarFilledIcon,
     CategoriesIcon,
     SearchIcon,
-  } from '../lib/icons'
+  } from '@icons'
 
   const basicTabs = [
     { id: 'tab1', label: 'Tab 1' },

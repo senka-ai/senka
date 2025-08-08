@@ -1,6 +1,6 @@
 <script module lang="ts">
   import { defineMeta } from '@storybook/addon-svelte-csf'
-  import Banner from '../lib/components/feedback/Banner.svelte'
+  import Banner from '@components/feedback/Banner.svelte'
 
   const { Story } = defineMeta({
     title: 'Feedback/Banner',

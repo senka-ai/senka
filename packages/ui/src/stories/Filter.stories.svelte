@@ -5,8 +5,8 @@
 
 <script module>
   import { defineMeta } from '@storybook/addon-svelte-csf'
-  import Filter from '../lib/components/controls/Filter.svelte'
-  import { SearchIcon, CategoriesIcon } from '../lib/icons'
+  import Filter from '@components/controls/Filter.svelte'
+  import { SearchIcon, CategoriesIcon } from '@icons'
 
   const { Story } = defineMeta({
     title: 'Controls/Filter',

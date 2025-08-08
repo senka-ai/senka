@@ -1,11 +1,11 @@
 <script lang="ts">
-  import type { FormInputComponent, IconSizeComponent } from '../../types/component'
-  import { useFocusState } from '../../utils/state.svelte'
-  import { validateValue, type ValidationRule } from '../../utils/validation.svelte'
-  import { createInputStyles, createNumberInputButtonStyles } from '../../utils/styles'
-  import { FormRenderer } from '../../utils/rendering'
-  import FormField from './FormField.svelte'
-  import { AddIcon, MinusIcon } from '../../icons'
+  import type { FormInputComponent, IconSizeComponent } from '@type/component'
+  import { useFocusState } from '@utils/state.svelte'
+  import { validateValue, type ValidationRule } from '@utils/validation.svelte'
+  import { createInputStyles, createNumberInputButtonStyles } from '@utils/styles'
+  import { FormRenderer } from '@utils/rendering'
+  import FormField from '@components/forms/FormField.svelte'
+  import { AddIcon, MinusIcon } from '@icons'
 
   interface Props extends Omit<FormInputComponent, 'value'>, IconSizeComponent {
     /** Minimum allowed value */

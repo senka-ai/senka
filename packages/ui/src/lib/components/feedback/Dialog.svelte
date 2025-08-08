@@ -1,9 +1,9 @@
 <script lang="ts">
-  import { CloseIcon } from '../../icons'
-  import type { BaseProps } from '../../types/component'
-  import { createDialogStyles } from '../../utils/styles'
-  import Button from '../core/Button.svelte'
-  import IconButton from '../core/IconButton.svelte'
+  import { CloseIcon } from '@icons'
+  import type { BaseProps } from '@type/component'
+  import { createDialogStyles } from '@utils/styles'
+  import Button from '@components/core/Button.svelte'
+  import IconButton from '@components/core/IconButton.svelte'
 
   /**
    * Dialog component props interface

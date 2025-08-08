@@ -1,6 +1,6 @@
 <script lang="ts">
-  import type { BaseProps, VariantComponent } from '../../types/component'
-  import { createLoaderStyles } from '../../utils/styles'
+  import type { BaseProps, VariantComponent } from '@type/component'
+  import { createLoaderStyles } from '@utils/styles'
 
   /**
    * Loader component props interface

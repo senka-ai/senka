@@ -1,6 +1,6 @@
 <script module>
   import { defineMeta } from '@storybook/addon-svelte-csf'
-  import Stepper from '../lib/components/controls/Stepper.svelte'
+  import Stepper from '@components/controls/Stepper.svelte'
 
   const { Story } = defineMeta({
     title: 'Controls/Stepper',
