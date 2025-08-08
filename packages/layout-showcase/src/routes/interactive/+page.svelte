@@ -212,7 +212,12 @@ RELEVANT FILES: packages/layout-showcase/src/lib/components/LayoutControls.svelt
         CSS from your configuration.
       </p>
 
-      <div class="generated-layout rounded-xl border-2 border-dashed border-neutral-300 p-6" style={generatedCSS}>
+      <!-- Container to show Auto Layout Mode effects -->
+      <div class="bg-neutral-100 rounded-xl border-2 border-dashed border-neutral-300 p-6" style="width: 600px; height: 400px; overflow: auto;">
+        <div class="bg-highlight-50 border-2 border-highlight-200 rounded-lg p-2 mb-4">
+          <span class="text-body-s font-medium text-highlight">Container: 600×400px (shows Auto Layout Mode effects)</span>
+        </div>
+        <div class="generated-layout bg-surface border-2 border-surface-elevated rounded-lg" style={generatedCSS}>
         {#if componentSet === 'cards'}
           {#each componentSets.cards as item}
             <CardHorizontal {...item.props} />
@@ -244,6 +249,15 @@ RELEVANT FILES: packages/layout-showcase/src/lib/components/LayoutControls.svelt
             <Badge type="number" value={5} />
           </div>
         {/if}
+        </div>
+        <div class="mt-4 text-body-xs text-secondary">
+          <p><strong>Auto Layout Mode Effects:</strong></p>
+          <ul class="list-disc list-inside mt-2 space-y-1">
+            <li><strong>Hug Contents:</strong> Layout shrinks to fit content size</li>
+            <li><strong>Fill Container:</strong> Layout expands to fill the 600×400px container</li>
+            <li><strong>Fixed Size:</strong> Layout uses natural size without constraints</li>
+          </ul>
+        </div>
       </div>
     </div>
 

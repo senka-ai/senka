@@ -212,6 +212,7 @@ export class LayoutEngine {
     return JSON.stringify({
       id: container.id,
       arrangement: container.arrangement,
+      autoLayout: container.autoLayout,
       constraints: container.constraints,
       responsive: container.responsive,
     })
