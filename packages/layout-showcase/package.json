@@ -24,7 +24,7 @@
   },
   "dependencies": {
     "@senka-ai/layout-engine": "^0.0.1",
-    "@senka-ai/ui": "^0.0.2"
+    "@senka-ai/ui": "^0.0.6"
   },
   "peerDependencies": {
     "svelte": "^5.0.0"
