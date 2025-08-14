@@ -1,5 +1,5 @@
 {
-  "name": "@senka-ai/barebones-package",
+  "name": "@senka-ai/package-template",
   "version": "0.0.1",
   "private": true,
   "scripts": {

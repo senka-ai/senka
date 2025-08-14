@@ -1,8 +1,8 @@
 # Rules before creating a new package
 
-## Copy packages/barebones-package
+## Copy packages/package-template
 
-- copy first all files from `packages/barebones-package` - this is a good starting point for every new package
+- copy first all files from `packages/package-template` - this is a good starting point for every new package
 - make adjustments (necessary renamings) based on the new package purpose
 
 ## Overall Senka platform
