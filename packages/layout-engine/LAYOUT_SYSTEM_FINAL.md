@@ -2,7 +2,7 @@
 
 ## Executive Summary
 
-The Senka Layout Engine combines intuitive spatial reasoning with sophisticated constraint-based positioning. This creates a powerful yet accessible layout system that enables non-technical users to build complex, responsive layouts through visual tools while maintaining the flexibility for advanced customizations.
+The Senka Layout Engine is a **data-driven layout transformation system** that processes configuration objects into optimized CSS. It serves as the core infrastructure for the Senka platform, converting visual builder actions, AI-generated specifications, and template definitions into production-ready layouts. The engine prioritizes simplicity, serializability, and performance while maintaining the flexibility needed for complex applications.
 
 **Package**: `@senka-ai/layout-engine` - A dedicated package within the Senka monorepo
 
@@ -27,20 +27,43 @@ The Senka Layout Engine combines intuitive spatial reasoning with sophisticated 
 
 ## Core Design Principles
 
-1. **Progressive Disclosure**: Simple by default, powerful when needed
-2. **Spatial Reasoning First**: Think in arrangements, not CSS
-3. **Constraint-Based Flexibility**: Relationships and constraints
-4. **Modification Safety**: Every change is preview-able and reversible
-5. **Responsive Intelligence**: Automatic mobile optimization with override capability
-6. **Visual Feedback**: Real-time preview with impact visualization
+1. **Data-Driven Architecture**: All layouts are serializable configuration objects that can be stored, transmitted, and modified
+2. **Single Source of Truth**: One configuration schema serves visual builders, AI generators, and templates
+3. **Progressive Complexity**: Simple configurations for basic layouts, advanced options when needed
+4. **Platform Agnostic**: Configurations can compile to CSS, React Native styles, or other targets
+5. **Modification Safety**: Every change is validated and preview-able before application
+6. **Responsive by Default**: Automatic mobile optimization with explicit override capability
 
 ## Architecture Overview
 
-### 1. Arrangement System
+### Data Flow Architecture
+
+The layout engine operates as a pure transformation pipeline:
+
+```
+Configuration Object → Validation → Optimization → CSS Generation
+         ↑                                              ↓
+    Visual Builder                                Generated CSS
+    AI Generator                                  React Native Styles
+    Template System                                  Flutter Widgets
+```
+
+Every input is a JSON-serializable configuration object that can be:
+- Stored in databases without transformation
+- Transmitted over networks efficiently
+- Modified through property panels in visual tools
+- Generated programmatically by AI systems
+- Version controlled in template files
+
+### 1. Configuration Schema
+
+The configuration schema is designed for simplicity and serializability:
 
 ```typescript
 interface LayoutContainer {
-  // User-friendly arrangement types
+  id: string // Unique identifier for the container
+  
+  // Core arrangement - simplified flat structure
   arrangement: {
     type: 'flow' | 'stack' | 'row' | 'grid' | 'overlay' | 'frame'
     direction?: 'horizontal' | 'vertical'
@@ -48,8 +71,8 @@ interface LayoutContainer {
     reverse?: boolean
   }
 
-  // Auto-layout properties
-  autoLayout: {
+  // Optional auto-layout for advanced control
+  autoLayout?: {
     mode: 'fixed' | 'hug-contents' | 'fill-container'
     primaryAxis: 'packed' | 'space-between' | 'center'
     counterAxis: 'start' | 'center' | 'end' | 'stretch'
@@ -57,8 +80,8 @@ interface LayoutContainer {
     padding: PaddingValue
   }
 
-  // Constraint system
-  constraints: {
+  // Optional constraints for precise positioning
+  constraints?: {
     horizontal: ConstraintRule
     vertical: ConstraintRule
     aspectRatio?: number | 'preserve'
@@ -66,12 +89,15 @@ interface LayoutContainer {
     maxSize?: { width?: number; height?: number }
   }
 
-  // Smart relationships
-  relationships: {
+  // Optional relationships for complex layouts
+  relationships?: {
     parent: PositionRelationship
     siblings: ElementRelationship[]
     children: LayoutBehavior
   }
+  
+  // Optional responsive overrides
+  responsive?: ResponsiveConfig
 }
 ```
 
@@ -131,35 +157,41 @@ interface SpacingSystem {
 }
 ```
 
-### 4. Visual Property Controls
+### 4. Processing Pipeline
 
-User-friendly controls that map to sophisticated behaviors:
+The engine processes configurations through a series of transformation stages:
 
 ```typescript
-interface VisualControls {
-  // Arrangement controls (simple mode)
-  simple: {
-    arrangement: ArrangementPicker // Visual icons for each type
-    spacing: SpacingSlider // Visual slider with presets
-    alignment: AlignmentGrid // 9-point alignment grid
-    distribution: DistributionPicker // Visual distribution options
+class LayoutEngine {
+  // Main transformation pipeline
+  process(config: LayoutContainer, options: ProcessOptions): Output {
+    // Stage 1: Validation
+    const validated = this.validator.validate(config)
+    
+    // Stage 2: Normalization
+    const normalized = this.normalizer.normalize(validated)
+    
+    // Stage 3: Optimization
+    const optimized = this.optimizer.optimize(normalized, options)
+    
+    // Stage 4: Platform-specific generation
+    return this.generator.generate(optimized, options.target)
   }
+  
+  // Support for different output targets
+  generators = {
+    css: new CSSGenerator(),
+    reactNative: new ReactNativeGenerator(),
+    flutter: new FlutterGenerator()
+  }
+}
 
-  // Advanced mode
-  advanced: {
-    autoLayout: AutoLayoutPanel
-    constraints: ConstraintPanel
-    effects: EffectsPanel
-    responsive: ResponsiveRulesPanel
-  }
-
-  // Context-aware suggestions
-  ai: {
-    suggestLayout: boolean
-    optimizeSpacing: boolean
-    fixAccessibility: boolean
-    improveResponsive: boolean
-  }
+interface ProcessOptions {
+  target: 'css' | 'react-native' | 'flutter'
+  optimize: boolean
+  minify: boolean
+  responsive: ResponsiveStrategy
+  platform: 'web' | 'mobile' | 'desktop'
 }
 ```
 
@@ -247,6 +279,39 @@ interface ModificationSafety {
 }
 ```
 
+## Configuration API Design
+
+### Factory Functions for Developer Convenience
+
+While the core engine processes pure data objects, factory functions provide type-safe configuration creation:
+
+```typescript
+// Simple factory functions that return properly typed configurations
+export const layout = {
+  stack: (id: string, options?: StackOptions): LayoutContainer => ({
+    id,
+    arrangement: { type: 'stack', ...options },
+    // Sensible defaults applied
+  }),
+  
+  grid: (id: string, columns: number = 'auto'): LayoutContainer => ({
+    id,
+    arrangement: { type: 'grid' },
+    grid: { columns }
+  })
+}
+
+// Usage remains serializable
+const config = layout.stack('main', { direction: 'vertical' })
+// config is a plain object that can be JSON.stringify'd
+```
+
+These factories:
+- Return plain, serializable objects
+- Provide type safety without `as const`
+- Apply sensible defaults
+- Remain optional (direct object creation still works)
+
 ## Implementation Architecture
 
 ### Package Structure
@@ -285,29 +350,38 @@ packages/layout-engine/
 
 #### 1. Arrangement Engine
 
+The arrangement engine transforms configuration objects into platform-specific output:
+
 ```typescript
 class ArrangementEngine {
-  // Convert user-friendly arrangements to CSS
+  // Pure data transformation - no state, fully deterministic
   private arrangements = {
-    flow: new FlowArrangement(), // flex-wrap
-    stack: new StackArrangement(), // flex-direction: column
-    row: new RowArrangement(), // flex-direction: row
-    grid: new GridArrangement(), // CSS Grid
-    overlay: new OverlayArrangement(), // position: relative/absolute
-    frame: new FrameArrangement(), // frames
+    flow: new FlowArrangement(),
+    stack: new StackArrangement(),
+    row: new RowArrangement(),
+    grid: new GridArrangement(),
+    overlay: new OverlayArrangement(),
+    frame: new FrameArrangement(),
   }
 
-  public generateCSS(container: LayoutContainer): CSSProperties {
+  // Transform configuration to CSS (pure function)
+  public toCSS(container: LayoutContainer): CSSProperties {
     const arrangement = this.arrangements[container.arrangement.type]
-    return arrangement.toCSS(container)
+    return arrangement.transform(container)
   }
 
-  public optimizeForPlatform(container: LayoutContainer, platform: 'web' | 'mobile' | 'native'): LayoutContainer {
-    // Platform-specific optimizations
-    return this.platformOptimizer.optimize(container, platform)
+  // Configuration remains unchanged, returns new optimized version
+  public optimize(container: LayoutContainer, platform: Platform): LayoutContainer {
+    return this.optimizer.optimize(container, platform)
   }
 }
 ```
+
+Key principles:
+- Pure functions with no side effects
+- Input configurations are never mutated
+- Output is always serializable
+- Deterministic results (same input = same output)
 
 #### 2. Constraint Solver
 
@@ -360,37 +434,53 @@ class ResponsiveManager {
 }
 ```
 
-#### 4. Visual Builder Integration
+#### 4. Integration Layer
+
+The engine provides clear integration points for platform components:
 
 ```typescript
-interface LayoutBuilderIntegration {
-  // Drag and drop
-  dragDrop: {
-    onDragStart: (element: DragElement) => DragPreview
-    onDragOver: (position: Position) => DropPreview
-    onDrop: (element: DragElement, position: Position) => Layout
-  }
+interface LayoutEngineAPI {
+  // Core transformation
+  process(config: LayoutContainer, options?: ProcessOptions): Output
+  
+  // Validation and analysis
+  validate(config: LayoutContainer): ValidationResult
+  analyze(config: LayoutContainer): AnalysisReport
+  
+  // Optimization suggestions
+  suggest(config: LayoutContainer): Suggestion[]
+  optimize(config: LayoutContainer): LayoutContainer
+  
+  // Preview generation
+  preview(config: LayoutContainer, viewport: Viewport): PreviewData
+  diff(before: LayoutContainer, after: LayoutContainer): Diff
+}
 
-  // Visual controls
-  controls: {
-    showArrangementPicker: (container: Container) => void
-    showConstraintPanel: (element: Element) => void
-    showSpacingControls: (selection: Selection) => void
-    showResponsivePanel: () => void
+// Visual Builder Integration
+class VisualBuilderAdapter {
+  private engine = new LayoutEngine()
+  
+  // Visual actions generate configuration updates
+  onPropertyChange(property: string, value: any) {
+    const newConfig = this.updateConfig(this.currentConfig, property, value)
+    const preview = this.engine.preview(newConfig, this.viewport)
+    this.renderPreview(preview)
   }
-
-  // Real-time preview
-  preview: {
-    updateLive: (changes: LayoutChange[]) => void
-    showImpact: (change: LayoutChange) => ImpactVisualization
-    compareStates: (before: Layout, after: Layout) => Comparison
+  
+  // Configurations are serialized for storage
+  save() {
+    return JSON.stringify(this.currentConfig)
   }
+}
 
-  // AI assistance
-  ai: {
-    suggestLayout: (content: Content[]) => LayoutSuggestion[]
-    improveLayout: (layout: Layout) => Improvement[]
-    fixAccessibility: (layout: Layout) => AccessibilityFix[]
+// AI Integration
+class AILayoutAdapter {
+  private engine = new LayoutEngine()
+  
+  // AI generates configuration objects
+  generateFromPrompt(prompt: string): LayoutContainer {
+    const config = this.ai.interpret(prompt)
+    return this.engine.validate(config).valid ? config : this.fallback
   }
 }
 ```
@@ -426,41 +516,62 @@ interface LayoutBuilderIntegration {
 ### With Visual Builder (`@senka-ai/visual-builder`)
 
 ```typescript
-// Visual builder uses layout engine
-import { LayoutEngine, VisualControls } from '@senka-ai/layout-engine'
+// Visual builder generates and modifies configuration objects
+import { LayoutEngine } from '@senka-ai/layout-engine'
 
-const builder = {
-  layoutEngine: new LayoutEngine(),
-  controls: new VisualControls(),
+class VisualBuilder {
+  private currentLayout: LayoutContainer
+  private engine = new LayoutEngine()
 
-  onElementDrop: (element, position) => {
-    const suggestion = layoutEngine.suggestPlacement(element, position)
-    return layoutEngine.applyLayout(suggestion)
-  },
+  // User actions modify configuration
+  handleDrop(element: Element, position: Position) {
+    this.currentLayout = this.modifyLayout(this.currentLayout, {
+      action: 'add',
+      element,
+      position
+    })
+    
+    // Generate CSS for preview
+    const css = this.engine.process(this.currentLayout, { target: 'css' })
+    this.updatePreview(css)
+  }
+  
+  // Save configuration to database
+  save() {
+    return this.storage.save(this.currentLayout) // Plain JSON
+  }
 }
 ```
 
 ### With AI Engine (`@senka-ai/ai-engine`)
 
 ```typescript
-// AI engine provides intelligent suggestions
-interface AILayoutIntegration {
-  analyzeContent: (elements: Element[]) => LayoutSuggestion
-  optimizeLayout: (layout: Layout) => OptimizedLayout
-  generateFromDescription: (description: string) => Layout
-  fixAccessibility: (layout: Layout) => AccessibleLayout
+// AI generates configuration objects from natural language
+class AILayoutGenerator {
+  generateLayout(prompt: string): LayoutContainer {
+    // AI interprets prompt and creates configuration
+    return {
+      id: 'ai-generated',
+      arrangement: { type: 'stack', direction: 'vertical' },
+      autoLayout: { mode: 'fill-container', gap: { scale: 'normal' } }
+    }
+  }
 }
 ```
 
 ### With Template Engine (`@senka-ai/template-engine`)
 
 ```typescript
-// Templates include layout definitions
-interface TemplateLayout {
-  baseLayout: LayoutDefinition
-  variations: LayoutVariation[]
-  responsivePresets: ResponsivePreset[]
-  customizationPoints: CustomizationPoint[]
+// Templates are configuration objects with variables
+interface Template {
+  name: string
+  config: LayoutContainer  // Base configuration
+  variables: Variable[]    // Customizable properties
+  
+  // Apply customizations
+  customize(values: Record<string, any>): LayoutContainer {
+    return applyVariables(this.config, values)
+  }
 }
 ```
 
@@ -533,6 +644,33 @@ interface TemplateLayout {
 - **AI suggestion accuracy**: > 85%
 - **Cross-platform consistency**: 100%
 
+## Architectural Benefits
+
+### Data-Driven Design Advantages
+
+1. **Universal Compatibility**: Configuration objects work everywhere - databases, APIs, files
+2. **Platform Agnostic**: Same configuration can generate CSS, React Native, Flutter
+3. **Time Travel**: Easy undo/redo by storing configuration history
+4. **Collaboration**: Multiple users can modify configurations simultaneously
+5. **AI-Friendly**: Simple for AI to generate and understand
+6. **Debugging**: Configuration objects are inspectable and understandable
+
+### Simplicity Through Constraints
+
+By focusing on data transformation rather than complex APIs:
+- **Reduced Complexity**: One way to represent layouts
+- **Clear Mental Model**: Configuration in → Styles out
+- **Testability**: Pure functions are easy to test
+- **Maintainability**: Less code, fewer abstractions
+- **Performance**: Optimizations can focus on transformation speed
+
 ## Conclusion
 
-By implementing this as a dedicated `@senka-ai/layout-engine` package, Senka will have a powerful, flexible, and user-friendly layout system that enables non-technical users to create professional layouts while providing the depth needed for complex applications.
+The Senka Layout Engine achieves power through simplicity. By treating layouts as data and focusing on pure transformation functions, it creates a system that is simultaneously:
+
+- **Simple enough** for non-technical users (through visual tools)
+- **Flexible enough** for complex applications
+- **Efficient enough** for production use
+- **Portable enough** for multiple platforms
+
+This data-driven architecture ensures the layout engine remains a stable, reliable foundation for the entire Senka platform, enabling rapid innovation in visual builders, AI generators, and template systems without changing the core engine.
