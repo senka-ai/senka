@@ -1,0 +1,2 @@
+/* Import all UI library styles (includes Tailwind, fonts, colors, typography, etc.) */
+@import '@senka-ai/ui/styles';

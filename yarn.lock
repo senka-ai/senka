@@ -950,7 +950,23 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@senka-ai/layout-engine@npm:^0.0.1, @senka-ai/layout-engine@workspace:packages/layout-engine":
+"@senka-ai/barebones-package@workspace:packages/barebones-package":
+  version: 0.0.0-use.local
+  resolution: "@senka-ai/barebones-package@workspace:packages/barebones-package"
+  dependencies:
+    "@sveltejs/adapter-auto": "npm:6.0.1"
+    "@sveltejs/kit": "npm:2.27.1"
+    "@sveltejs/vite-plugin-svelte": "npm:6.1.0"
+    "@tailwindcss/vite": "npm:4.0.0-beta.10"
+    svelte: "npm:5.37.3"
+    svelte-check: "npm:4.3.1"
+    tailwindcss: "npm:4.0.0-beta.10"
+    typescript: "npm:5.9.2"
+    vite: "npm:7.0.6"
+  languageName: unknown
+  linkType: soft
+
+"@senka-ai/layout-engine@workspace:packages/layout-engine":
   version: 0.0.0-use.local
   resolution: "@senka-ai/layout-engine@workspace:packages/layout-engine"
   dependencies:
@@ -966,26 +982,6 @@ __metadata:
     typescript: "npm:^5.3.2"
     vite: "npm:^6.0.0"
     vitest: "npm:^2.0.0"
-  peerDependencies:
-    svelte: ^5.0.0
-  languageName: unknown
-  linkType: soft
-
-"@senka-ai/layout-showcase@workspace:packages/layout-showcase":
-  version: 0.0.0-use.local
-  resolution: "@senka-ai/layout-showcase@workspace:packages/layout-showcase"
-  dependencies:
-    "@senka-ai/layout-engine": "npm:^0.0.1"
-    "@senka-ai/ui": "npm:^0.0.6"
-    "@sveltejs/adapter-auto": "npm:6.0.1"
-    "@sveltejs/kit": "npm:2.27.1"
-    "@sveltejs/vite-plugin-svelte": "npm:6.1.0"
-    "@tailwindcss/vite": "npm:4.0.0-beta.10"
-    svelte: "npm:5.37.3"
-    svelte-check: "npm:4.3.1"
-    tailwindcss: "npm:4.0.0-beta.10"
-    typescript: "npm:5.9.2"
-    vite: "npm:7.0.6"
   peerDependencies:
     svelte: ^5.0.0
   languageName: unknown
@@ -1007,7 +1003,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@senka-ai/ui@npm:^0.0.6, @senka-ai/ui@workspace:packages/ui":
+"@senka-ai/ui@workspace:packages/ui":
   version: 0.0.0-use.local
   resolution: "@senka-ai/ui@workspace:packages/ui"
   dependencies:
