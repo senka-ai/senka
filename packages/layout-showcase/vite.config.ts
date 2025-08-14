@@ -11,6 +11,7 @@ export default defineConfig({
       '@senka-ai/ui/styles.css': path.resolve(__dirname, '../ui/dist/styles.css'),
       '@senka-ai/ui': path.resolve(__dirname, '../ui/dist'),
       '@senka-ai/ui/icons': path.resolve(__dirname, '../ui/dist/icons'),
+      '@senka-ai/layout-engine': path.resolve(__dirname, '../layout-engine/dist'),
     },
   },
 })

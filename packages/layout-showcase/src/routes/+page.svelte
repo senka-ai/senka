@@ -39,14 +39,14 @@ RELEVANT FILES: packages/layout-engine/src/lib/index.ts, packages/ui/src/lib/ind
         </p>
         
         <div class="flex gap-3 mt-6">
-          <Button variant="primary">
+          <Button variant="primary" onclick={() => window.location.href = '/stack-demo'}>
             {#snippet children()}
-              Primary Action
+              Try Stack Demo
             {/snippet}
           </Button>
           <Button variant="secondary">
             {#snippet children()}
-              Secondary Action
+              View Documentation
             {/snippet}
           </Button>
         </div>
