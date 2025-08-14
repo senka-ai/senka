@@ -34,6 +34,8 @@ export default defineConfig({
   plugins: [sveltekit()],
   resolve: {
     alias: {
+      '@senka-ai/ui/styles': path.resolve(__dirname, '../ui/dist/styles.css'),
+      '@senka-ai/ui/styles.css': path.resolve(__dirname, '../ui/dist/styles.css'),
       '@senka-ai/ui': path.resolve(__dirname, '../ui/dist'),
       '@senka-ai/ui/icons': path.resolve(__dirname, '../ui/dist/icons'),
     },
@@ -43,6 +45,8 @@ export default defineConfig({
   },
 })
 ```
+
+**Important:** The CSS-specific aliases must come before the general `@senka-ai/ui` alias to ensure proper resolution of style imports.
 
 ### 2. TypeScript Configuration
 
@@ -76,11 +80,20 @@ Import the UI library styles in your main CSS file:
 
 ```css
 /* app.css */
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
 @import '@senka-ai/ui/styles';
 
 /* Your component-specific styles */
 ```
+
+**Note:** This uses the same syntax as external consumers! The monorepo Vite configuration includes specific aliases to resolve `@senka-ai/ui/styles` to the built CSS file.
+
+The UI library's styles include:
+- Google Fonts (Inter font family)
+- Tailwind CSS
+- All color definitions and CSS custom properties
+- Typography system
+- Spacing, hover states, focus states, and transitions
+- Light and dark theme support
 
 ## Component Imports
 

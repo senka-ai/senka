@@ -7,6 +7,8 @@ export default defineConfig({
   plugins: [tailwindcss(), sveltekit()],
   resolve: {
     alias: {
+      '@senka-ai/ui/styles': path.resolve(__dirname, '../ui/dist/styles.css'),
+      '@senka-ai/ui/styles.css': path.resolve(__dirname, '../ui/dist/styles.css'),
       '@senka-ai/ui': path.resolve(__dirname, '../ui/dist'),
       '@senka-ai/ui/icons': path.resolve(__dirname, '../ui/dist/icons'),
     },

@@ -194,8 +194,13 @@ import { AddIcon } from '@senka-ai/ui/icons'`}
       {`// app.css - Import UI library styles
 @import '@senka-ai/ui/styles';
 
-// Or in this monorepo:
-@import '../../ui/src/styles/index.css';`}
+// This single import includes:
+// - Google Fonts (Inter)
+// - Tailwind CSS
+// - All color definitions
+// - Typography system
+// - Spacing, hover, focus states
+// - Light and dark theme support`}
     </div>
   </div>
 </div>
