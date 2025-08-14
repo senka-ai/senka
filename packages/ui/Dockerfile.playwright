@@ -17,11 +17,9 @@ ENV NODE_ENV=test
 
 # Copy all necessary files for yarn install
 COPY package.json yarn.lock .yarnrc.yml ./
-COPY packages/ui/package.json ./packages/ui/package.json  
-COPY packages/app/package.json ./packages/app/package.json
-COPY packages/layout-engine/package.json ./packages/layout-engine/package.json
-COPY packages/layout-showcase/package.json ./packages/layout-showcase/package.json
-COPY packages/ui-showcase/package.json ./packages/ui-showcase/package.json
+# Copy all package.json files from packages/ directory
+# .dockerignore ensures only package.json files are copied, not source code
+COPY packages/ ./packages/
 
 # Install dependencies (Yarn will create .yarn/ directory during install)
 RUN yarn install --immutable
