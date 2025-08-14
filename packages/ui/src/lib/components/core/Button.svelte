@@ -8,6 +8,7 @@
   /**
    * Button component props interface
    * Extends core button functionality with icon support and interaction handlers
+   * Updated to trigger visual regression tests
    */
   interface Props extends ButtonLikeComponent, IconComponent, InteractiveHandlers {
     /** Size of the icons in pixels @default 16 */
