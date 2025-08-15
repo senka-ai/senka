@@ -1,4 +1,4 @@
-import type { LayoutContainer, CSSProperties, SpacingValue, AutoLayoutConfig, ArrangementConfig } from '$lib/types'
+import type { LayoutContainer, CSSProperties, SpacingValue, SpacingScale, PaddingValue } from '$lib/types'
 import { getSpacingValue } from '$lib/utils/spacing'
 
 /**
@@ -18,9 +18,9 @@ export abstract class BaseArrangement {
   abstract getResponsiveCSS(container: LayoutContainer, breakpoint: string): CSSProperties
 
   /**
-   * Validate the arrangement configuration
+   * Validate the layout container configuration
    */
-  abstract validate(config: ArrangementConfig): boolean
+  abstract validate(container: LayoutContainer): boolean
 
   /**
    * Common CSS properties for flex-based layouts
@@ -36,91 +36,153 @@ export abstract class BaseArrangement {
   }
 
   /**
-   * Get CSS for auto-layout configuration
+   * Get CSS for alignment properties
    */
-  protected getAutoLayoutCSS(config: AutoLayoutConfig): CSSProperties {
+  protected getAlignmentCSS(container: LayoutContainer): CSSProperties {
     const css: CSSProperties = {}
 
-    // Primary axis alignment
-    switch (config.primaryAxis) {
-      case 'packed':
-        css['justify-content'] = 'flex-start'
-        break
-      case 'space-between':
-        css['justify-content'] = 'space-between'
-        break
-      case 'space-around':
-        css['justify-content'] = 'space-around'
-        break
-      case 'space-evenly':
-        css['justify-content'] = 'space-evenly'
-        break
-      case 'center':
-        css['justify-content'] = 'center'
-        break
-    }
-
-    // Counter axis alignment
-    switch (config.counterAxis) {
-      case 'start':
-        css['align-items'] = 'flex-start'
-        break
-      case 'center':
-        css['align-items'] = 'center'
-        break
-      case 'end':
-        css['align-items'] = 'flex-end'
-        break
-      case 'stretch':
-        css['align-items'] = 'stretch'
-        break
-    }
-
-    // Gap
-    if (config.gap) {
-      css['gap'] = `${getSpacingValue(config.gap)}px`
-    }
-
-    // Padding
-    if (config.padding) {
-      const padding = []
-      const { top, right, bottom, left, all } = config.padding
-
-      if (all) {
-        css['padding'] = `${getSpacingValue(all)}px`
-      } else {
-        if (top) padding.push(`${getSpacingValue(top)}px`)
-        else padding.push('0')
-
-        if (right) padding.push(`${getSpacingValue(right)}px`)
-        else padding.push('0')
-
-        if (bottom) padding.push(`${getSpacingValue(bottom)}px`)
-        else padding.push('0')
-
-        if (left) padding.push(`${getSpacingValue(left)}px`)
-        else padding.push('0')
-
-        css['padding'] = padding.join(' ')
+    // Justify content (main axis)
+    if (container.justify) {
+      switch (container.justify) {
+        case 'packed':
+          css['justify-content'] = 'flex-start'
+          break
+        case 'space-between':
+          css['justify-content'] = 'space-between'
+          break
+        case 'space-around':
+          css['justify-content'] = 'space-around'
+          break
+        case 'space-evenly':
+          css['justify-content'] = 'space-evenly'
+          break
+        case 'center':
+          css['justify-content'] = 'center'
+          break
       }
     }
 
-    // Auto-layout mode
-    switch (config.mode) {
-      case 'fixed':
-        // Fixed size, no additional CSS needed
-        break
-      case 'hug-contents':
-        css['width'] = 'fit-content'
-        css['height'] = 'fit-content'
-        break
-      case 'fill-container':
-        css['width'] = '100%'
-        css['height'] = '100%'
-        break
+    // Align items (cross axis)
+    if (container.align) {
+      switch (container.align) {
+        case 'start':
+          css['align-items'] = 'flex-start'
+          break
+        case 'center':
+          css['align-items'] = 'center'
+          break
+        case 'end':
+          css['align-items'] = 'flex-end'
+          break
+        case 'stretch':
+          css['align-items'] = 'stretch'
+          break
+      }
     }
 
     return css
+  }
+
+  /**
+   * Get CSS for spacing properties
+   */
+  protected getSpacingCSS(container: LayoutContainer): CSSProperties {
+    const css: CSSProperties = {}
+
+    // Gap
+    if (container.gap !== undefined) {
+      css['gap'] = this.resolveSpacing(container.gap)
+    }
+
+    // Padding
+    if (container.padding !== undefined) {
+      css['padding'] = this.resolvePadding(container.padding)
+    }
+
+    return css
+  }
+
+  /**
+   * Get CSS for size behavior
+   */
+  protected getSizeBehaviorCSS(container: LayoutContainer): CSSProperties {
+    const css: CSSProperties = {}
+
+    if (container.fillContainer) {
+      css['width'] = '100%'
+      css['height'] = '100%'
+    } else if (!container.fixed) {
+      // Default is hug-contents
+      css['width'] = 'fit-content'
+      css['height'] = 'fit-content'
+    }
+    // Fixed mode doesn't add any CSS (uses natural sizing)
+
+    return css
+  }
+
+  /**
+   * Resolve spacing value to CSS string
+   */
+  protected resolveSpacing(value: SpacingValue | SpacingScale | number): string {
+    if (typeof value === 'number') {
+      return `${value}px`
+    }
+    if (typeof value === 'string') {
+      return `${this.getSpacingScaleValue(value)}px`
+    }
+    // SpacingValue object
+    return `${getSpacingValue(value)}px`
+  }
+
+  /**
+   * Resolve padding value to CSS string
+   */
+  protected resolvePadding(value: PaddingValue | SpacingScale | number): string {
+    if (typeof value === 'number') {
+      return `${value}px`
+    }
+    if (typeof value === 'string') {
+      return `${this.getSpacingScaleValue(value)}px`
+    }
+    
+    // PaddingValue object
+    const { top, right, bottom, left, all } = value
+    
+    if (all) {
+      return `${getSpacingValue(all)}px`
+    }
+    
+    const padding = []
+    if (top) padding.push(`${getSpacingValue(top)}px`)
+    else padding.push('0')
+    
+    if (right) padding.push(`${getSpacingValue(right)}px`)
+    else padding.push('0')
+    
+    if (bottom) padding.push(`${getSpacingValue(bottom)}px`)
+    else padding.push('0')
+    
+    if (left) padding.push(`${getSpacingValue(left)}px`)
+    else padding.push('0')
+    
+    return padding.join(' ')
+  }
+
+  /**
+   * Get spacing scale value in pixels
+   */
+  private getSpacingScaleValue(scale: SpacingScale): number {
+    const SPACING_SCALE = {
+      none: 0,
+      tight: 4,
+      cozy: 8,
+      normal: 16,
+      comfortable: 24,
+      spacious: 32,
+      custom: 0, // Will be overridden
+    }
+    return SPACING_SCALE[scale]
   }
 
   /**

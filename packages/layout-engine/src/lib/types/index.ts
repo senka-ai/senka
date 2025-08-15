@@ -179,16 +179,38 @@ export interface OverlayConfig {
   customPosition?: Position
 }
 
-// Main layout container
+// Main layout container - flattened schema
 export interface LayoutContainer {
   id: ElementId
-  arrangement: ArrangementConfig
-  autoLayout?: AutoLayoutConfig
+  type: ArrangementType
+  
+  // Layout properties (formerly in arrangement)
+  direction?: Direction
+  wrap?: boolean
+  reverse?: boolean
+  
+  // Size behavior (replaces autoLayout.mode)
+  fillContainer?: boolean  // defaults to false (hug-contents)
+  fixed?: boolean         // defaults to false
+  
+  // Spacing (direct properties from autoLayout)
+  gap?: SpacingValue | SpacingScale | number
+  padding?: PaddingValue | SpacingScale | number
+  
+  // Alignment (direct properties from autoLayout)
+  align?: Alignment        // counterAxis alignment
+  justify?: Distribution   // primaryAxis distribution
+  
+  // Type-specific properties
+  columns?: number | 'auto'  // grid
+  rows?: number | 'auto'     // grid
+  position?: 'center' | 'top-left' | 'top-right' | 'bottom-left' | 'bottom-right'  // overlay
+  zIndex?: number           // overlay
+  
+  // Advanced features (unchanged)
   constraints?: ConstraintConfig
   relationships?: RelationshipConfig
   responsive?: ResponsiveConfig
-  grid?: GridConfig
-  overlay?: OverlayConfig
   children?: LayoutElement[]
 }
 
@@ -307,6 +329,31 @@ export interface ImpactVisualization {
   affectedElements: ElementId[]
   highlights: Record<ElementId, string>
   arrows?: Arrow[]
+}
+
+// Type guards for specific arrangements
+export function isGridContainer(container: LayoutContainer): boolean {
+  return container.type === 'grid'
+}
+
+export function isStackContainer(container: LayoutContainer): boolean {
+  return container.type === 'stack'
+}
+
+export function isRowContainer(container: LayoutContainer): boolean {
+  return container.type === 'row'
+}
+
+export function isFlowContainer(container: LayoutContainer): boolean {
+  return container.type === 'flow'
+}
+
+export function isOverlayContainer(container: LayoutContainer): boolean {
+  return container.type === 'overlay'
+}
+
+export function isFrameContainer(container: LayoutContainer): boolean {
+  return container.type === 'frame'
 }
 
 export interface Arrow {

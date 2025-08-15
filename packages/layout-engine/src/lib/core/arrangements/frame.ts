@@ -1,5 +1,5 @@
 import { BaseArrangement } from './base'
-import type { LayoutContainer, CSSProperties, ArrangementConfig } from '$lib/types'
+import type { LayoutContainer, CSSProperties } from '$lib/types'
 
 /**
  * Frame arrangement - Container that can hold any other arrangement
@@ -9,23 +9,32 @@ export class FrameArrangement extends BaseArrangement {
   protected readonly type = 'frame'
 
   toCSS(container: LayoutContainer): CSSProperties {
-    const { autoLayout } = container
-
     let css: CSSProperties = {
       position: 'relative',
       display: 'block',
+      width: '100%',
+      'box-sizing': 'border-box',
     }
 
-    // Apply auto-layout if configured
-    if (autoLayout) {
-      // Frame with auto-layout behaves like a flex container
+    // If direction is specified, frame behaves like a flex container
+    if (container.direction || container.align || container.justify) {
       css['display'] = 'flex'
-      css['flex-direction'] = 'column'
-      css = { ...css, ...this.getAutoLayoutCSS(autoLayout) }
+      css['flex-direction'] = container.direction === 'horizontal' ? 'row' : 'column'
+      
+      // Apply alignment, spacing, and size behavior
+      css = { 
+        ...css, 
+        ...this.getAlignmentCSS(container),
+        ...this.getSpacingCSS(container),
+        ...this.getSizeBehaviorCSS(container)
+      }
     } else {
-      // Default frame behavior
-      css['width'] = '100%'
-      css['box-sizing'] = 'border-box'
+      // Basic frame with spacing and size behavior only
+      css = { 
+        ...css, 
+        ...this.getSpacingCSS(container),
+        ...this.getSizeBehaviorCSS(container)
+      }
     }
 
     // Frames often have borders or backgrounds
@@ -55,16 +64,16 @@ export class FrameArrangement extends BaseArrangement {
     return css
   }
 
-  validate(config: ArrangementConfig): boolean {
-    if (config.type !== 'frame') return false
+  validate(container: LayoutContainer): boolean {
+    if (container.type !== 'frame') return false
 
     // Frame can use direction for internal layout
-    if (config.direction && !['horizontal', 'vertical'].includes(config.direction)) {
+    if (container.direction && !['horizontal', 'vertical'].includes(container.direction)) {
       return false
     }
 
     // Other properties are not typically used
-    if (config.wrap || config.reverse) {
+    if (container.wrap || container.reverse) {
       console.warn('Frame arrangement does not typically use wrap or reverse properties')
     }
 

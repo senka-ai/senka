@@ -1,5 +1,5 @@
 import { BaseArrangement } from './base'
-import type { LayoutContainer, CSSProperties, ArrangementConfig } from '$lib/types'
+import type { LayoutContainer, CSSProperties } from '$lib/types'
 
 /**
  * Overlay arrangement - elements layered on top of each other
@@ -9,42 +9,22 @@ export class OverlayArrangement extends BaseArrangement {
   protected readonly type = 'overlay'
 
   toCSS(container: LayoutContainer): CSSProperties {
-    const { overlay, autoLayout } = container
-
     let css: CSSProperties = {
       position: 'relative',
       width: '100%',
       height: '100%',
     }
 
-    // Apply auto-layout padding if configured
-    if (autoLayout?.padding) {
-      const padding = []
-      const { top, right, bottom, left, all } = autoLayout.padding
-
-      if (all) {
-        css['padding'] = `${this.getSpacingPixels(all)}px`
-      } else {
-        if (top) padding.push(`${this.getSpacingPixels(top)}px`)
-        else padding.push('0')
-
-        if (right) padding.push(`${this.getSpacingPixels(right)}px`)
-        else padding.push('0')
-
-        if (bottom) padding.push(`${this.getSpacingPixels(bottom)}px`)
-        else padding.push('0')
-
-        if (left) padding.push(`${this.getSpacingPixels(left)}px`)
-        else padding.push('0')
-
-        css['padding'] = padding.join(' ')
-      }
+    // Apply spacing and size behavior
+    css = { 
+      ...css, 
+      ...this.getSpacingCSS(container),
+      ...this.getSizeBehaviorCSS(container)
     }
 
-    // Backdrop for overlay
-    if (overlay?.backdrop) {
-      // This would typically be handled by a pseudo-element or separate backdrop element
-      css['isolation'] = 'isolate'
+    // Set z-index if specified
+    if (container.zIndex !== undefined) {
+      css['z-index'] = container.zIndex.toString()
     }
 
     // Apply constraints
@@ -117,33 +97,25 @@ export class OverlayArrangement extends BaseArrangement {
     return css
   }
 
-  validate(config: ArrangementConfig): boolean {
-    if (config.type !== 'overlay') return false
+  validate(container: LayoutContainer): boolean {
+    if (container.type !== 'overlay') return false
 
     // Overlay doesn't use direction, wrap, or reverse
-    if (config.direction || config.wrap || config.reverse) {
+    if (container.direction || container.wrap || container.reverse) {
       console.warn('Overlay arrangement does not use direction, wrap, or reverse properties')
+    }
+
+    // Validate position
+    if (container.position && !['center', 'top-left', 'top-right', 'bottom-left', 'bottom-right'].includes(container.position)) {
+      return false
+    }
+
+    // Validate zIndex
+    if (container.zIndex !== undefined && typeof container.zIndex !== 'number') {
+      return false
     }
 
     return true
   }
 
-  private getSpacingPixels(value: any): number {
-    // Helper to convert spacing value to pixels
-    // This would use the spacing utility in real implementation
-    const spacingMap: Record<string, number> = {
-      none: 0,
-      tight: 4,
-      cozy: 8,
-      normal: 16,
-      comfortable: 24,
-      spacious: 32,
-    }
-
-    if (typeof value === 'object' && value.scale) {
-      return value.custom || spacingMap[value.scale] || 0
-    }
-
-    return 0
-  }
 }

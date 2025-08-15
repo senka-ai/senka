@@ -62,42 +62,36 @@ The configuration schema is designed for simplicity and serializability:
 ```typescript
 interface LayoutContainer {
   id: string // Unique identifier for the container
+  type: 'flow' | 'stack' | 'row' | 'grid' | 'overlay' | 'frame'
   
-  // Core arrangement - simplified flat structure
-  arrangement: {
-    type: 'flow' | 'stack' | 'row' | 'grid' | 'overlay' | 'frame'
-    direction?: 'horizontal' | 'vertical'
-    wrap?: boolean
-    reverse?: boolean
-  }
-
-  // Optional auto-layout for advanced control
-  autoLayout?: {
-    mode: 'fixed' | 'hug-contents' | 'fill-container'
-    primaryAxis: 'packed' | 'space-between' | 'center'
-    counterAxis: 'start' | 'center' | 'end' | 'stretch'
-    gap: SpacingValue
-    padding: PaddingValue
-  }
-
-  // Optional constraints for precise positioning
-  constraints?: {
-    horizontal: ConstraintRule
-    vertical: ConstraintRule
-    aspectRatio?: number | 'preserve'
-    minSize?: { width?: number; height?: number }
-    maxSize?: { width?: number; height?: number }
-  }
-
-  // Optional relationships for complex layouts
-  relationships?: {
-    parent: PositionRelationship
-    siblings: ElementRelationship[]
-    children: LayoutBehavior
-  }
+  // Layout properties (direct access)
+  direction?: 'horizontal' | 'vertical'
+  wrap?: boolean
+  reverse?: boolean
   
-  // Optional responsive overrides
+  // Size behavior
+  fillContainer?: boolean  // defaults to false (hug-contents)
+  fixed?: boolean         // defaults to false
+  
+  // Spacing (direct properties)
+  gap?: SpacingScale | number  // 'normal' | 'tight' | 'spacious' | 16
+  padding?: SpacingScale | number | PaddingObject
+  
+  // Alignment (direct properties)
+  align?: 'start' | 'center' | 'end' | 'stretch'  // cross-axis
+  justify?: 'packed' | 'space-between' | 'center' | 'space-around'  // main-axis
+  
+  // Type-specific properties
+  columns?: number | 'auto'  // grid
+  rows?: number | 'auto'     // grid
+  position?: 'center' | 'top-left' | 'top-right' | 'bottom-left' | 'bottom-right'  // overlay
+  zIndex?: number           // overlay
+  
+  // Advanced features (optional complexity)
+  constraints?: ConstraintConfig
+  relationships?: RelationshipConfig
   responsive?: ResponsiveConfig
+  children?: LayoutElement[]
 }
 ```
 
@@ -290,27 +284,31 @@ While the core engine processes pure data objects, factory functions provide typ
 export const layout = {
   stack: (id: string, options?: StackOptions): LayoutContainer => ({
     id,
-    arrangement: { type: 'stack', ...options },
-    // Sensible defaults applied
+    type: 'stack',
+    direction: 'vertical',
+    gap: 'normal',
+    ...options
   }),
   
-  grid: (id: string, columns: number = 'auto'): LayoutContainer => ({
+  grid: (id: string, columns: number | 'auto' = 'auto'): LayoutContainer => ({
     id,
-    arrangement: { type: 'grid' },
-    grid: { columns }
+    type: 'grid',
+    columns,
+    gap: 'normal'
   })
 }
 
-// Usage remains serializable
-const config = layout.stack('main', { direction: 'vertical' })
+// Usage remains serializable - no 'as const' needed!
+const config = layout.stack('main', { direction: 'horizontal' })
 // config is a plain object that can be JSON.stringify'd
 ```
 
 These factories:
 - Return plain, serializable objects
-- Provide type safety without `as const`
+- Provide type safety automatically
 - Apply sensible defaults
 - Remain optional (direct object creation still works)
+- No `as const` assertions needed
 
 ## Implementation Architecture
 
@@ -366,7 +364,7 @@ class ArrangementEngine {
 
   // Transform configuration to CSS (pure function)
   public toCSS(container: LayoutContainer): CSSProperties {
-    const arrangement = this.arrangements[container.arrangement.type]
+    const arrangement = this.arrangements[container.type]
     return arrangement.transform(container)
   }
 
@@ -552,8 +550,10 @@ class AILayoutGenerator {
     // AI interprets prompt and creates configuration
     return {
       id: 'ai-generated',
-      arrangement: { type: 'stack', direction: 'vertical' },
-      autoLayout: { mode: 'fill-container', gap: { scale: 'normal' } }
+      type: 'stack',
+      direction: 'vertical',
+      fillContainer: true,
+      gap: 'normal'
     }
   }
 }

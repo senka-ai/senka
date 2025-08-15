@@ -1,6 +1,5 @@
 import { BaseArrangement } from './base'
-import type { LayoutContainer, CSSProperties, ArrangementConfig } from '$lib/types'
-import { getSpacingValue } from '$lib/utils/spacing'
+import type { LayoutContainer, CSSProperties } from '$lib/types'
 
 /**
  * Grid arrangement - elements arranged in a structured grid
@@ -10,75 +9,46 @@ export class GridArrangement extends BaseArrangement {
   protected readonly type = 'grid'
 
   toCSS(container: LayoutContainer): CSSProperties {
-    const { grid, autoLayout } = container
-
     let css: CSSProperties = {
       display: 'grid',
     }
 
-    // Configure grid columns
-    if (grid) {
-      if (grid.columns === 'auto') {
-        // Auto-fit with minimum column width
-        const minWidth = grid.columnMinWidth || 200
-        css['grid-template-columns'] = `repeat(auto-fit, minmax(${minWidth}px, 1fr))`
+    // Configure grid columns using flat properties
+    if (container.columns !== undefined) {
+      if (container.columns === 'auto') {
+        // Auto-fit with minimum column width (200px default)
+        css['grid-template-columns'] = 'repeat(auto-fit, minmax(200px, 1fr))'
       } else {
         // Fixed number of columns
-        css['grid-template-columns'] = `repeat(${grid.columns}, 1fr)`
-      }
-
-      // Configure grid rows if specified
-      if (grid.rows) {
-        if (grid.rows === 'auto') {
-          css['grid-auto-rows'] = 'minmax(min-content, max-content)'
-        } else {
-          css['grid-template-rows'] = `repeat(${grid.rows}, 1fr)`
-        }
-      }
-
-      // Grid gap
-      if (grid.gap) {
-        css['gap'] = `${getSpacingValue(grid.gap)}px`
-      } else {
-        css['gap'] = '16px' // Default normal spacing
-      }
-
-      // Aspect ratio for grid items
-      if (grid.aspectRatio) {
-        css['grid-auto-rows'] = `minmax(0, 1fr)`
-        // Note: aspect-ratio would be applied to grid items, not the container
+        css['grid-template-columns'] = `repeat(${container.columns}, 1fr)`
       }
     } else {
       // Default grid configuration
       css['grid-template-columns'] = 'repeat(auto-fit, minmax(200px, 1fr))'
-      css['gap'] = '16px'
     }
 
-    // Apply auto-layout padding if configured
-    if (autoLayout?.padding) {
-      const padding = []
-      const { top, right, bottom, left, all } = autoLayout.padding
-
-      if (all) {
-        css['padding'] = `${getSpacingValue(all)}px`
+    // Configure grid rows if specified
+    if (container.rows !== undefined) {
+      if (container.rows === 'auto') {
+        css['grid-auto-rows'] = 'minmax(min-content, max-content)'
       } else {
-        if (top) padding.push(`${getSpacingValue(top)}px`)
-        else padding.push('0')
-
-        if (right) padding.push(`${getSpacingValue(right)}px`)
-        else padding.push('0')
-
-        if (bottom) padding.push(`${getSpacingValue(bottom)}px`)
-        else padding.push('0')
-
-        if (left) padding.push(`${getSpacingValue(left)}px`)
-        else padding.push('0')
-
-        css['padding'] = padding.join(' ')
+        css['grid-template-rows'] = `repeat(${container.rows}, 1fr)`
       }
     }
 
-    // Grid alignment
+    // Apply spacing and size behavior
+    css = { 
+      ...css, 
+      ...this.getSpacingCSS(container),
+      ...this.getSizeBehaviorCSS(container)
+    }
+
+    // Set default gap if not specified
+    if (container.gap === undefined) {
+      css['gap'] = '16px' // Default normal spacing
+    }
+
+    // Grid alignment defaults
     css['align-items'] = 'stretch'
     css['justify-items'] = 'stretch'
 
@@ -93,12 +63,10 @@ export class GridArrangement extends BaseArrangement {
 
     // Mobile optimizations
     if (breakpoint === 'mobile') {
-      const { grid } = container
-
       // Simplify grid on mobile - max 2 columns
-      if (grid && typeof grid.columns === 'number' && grid.columns > 2) {
+      if (typeof container.columns === 'number' && container.columns > 2) {
         css['grid-template-columns'] = 'repeat(2, 1fr)'
-      } else if (!grid || grid.columns === 'auto') {
+      } else if (container.columns === 'auto' || container.columns === undefined) {
         // Ensure minimum width is touch-friendly
         css['grid-template-columns'] = 'repeat(auto-fit, minmax(150px, 1fr))'
       }
@@ -112,10 +80,8 @@ export class GridArrangement extends BaseArrangement {
 
     // Tablet optimizations
     if (breakpoint === 'tablet') {
-      const { grid } = container
-
       // Adjust columns for tablet
-      if (grid && typeof grid.columns === 'number' && grid.columns > 3) {
+      if (typeof container.columns === 'number' && container.columns > 3) {
         css['grid-template-columns'] = 'repeat(3, 1fr)'
       }
     }
@@ -123,12 +89,32 @@ export class GridArrangement extends BaseArrangement {
     return css
   }
 
-  validate(config: ArrangementConfig): boolean {
-    if (config.type !== 'grid') return false
+  validate(container: LayoutContainer): boolean {
+    if (container.type !== 'grid') return false
 
     // Grid doesn't use direction, wrap, or reverse
-    if (config.direction || config.wrap || config.reverse) {
+    if (container.direction || container.wrap || container.reverse) {
       console.warn('Grid arrangement does not use direction, wrap, or reverse properties')
+    }
+
+    // Validate columns
+    if (container.columns !== undefined) {
+      if (typeof container.columns !== 'number' && container.columns !== 'auto') {
+        return false
+      }
+      if (typeof container.columns === 'number' && container.columns < 1) {
+        return false
+      }
+    }
+
+    // Validate rows
+    if (container.rows !== undefined) {
+      if (typeof container.rows !== 'number' && container.rows !== 'auto') {
+        return false
+      }
+      if (typeof container.rows === 'number' && container.rows < 1) {
+        return false
+      }
     }
 
     return true

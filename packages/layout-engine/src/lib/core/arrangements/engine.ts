@@ -31,15 +31,15 @@ export class ArrangementEngine {
    * Generate CSS for a layout container
    */
   generateCSS(container: LayoutContainer): CSSProperties {
-    const arrangement = this.getArrangement(container.arrangement.type)
+    const arrangement = this.getArrangement(container.type)
 
     if (!arrangement) {
-      throw new Error(`Unknown arrangement type: ${container.arrangement.type}`)
+      throw new Error(`Unknown arrangement type: ${container.type}`)
     }
 
     // Validate arrangement configuration
-    if (!arrangement.validate(container.arrangement)) {
-      throw new Error(`Invalid configuration for ${container.arrangement.type} arrangement`)
+    if (!arrangement.validate(container)) {
+      throw new Error(`Invalid configuration for ${container.type} arrangement`)
     }
 
     // Generate base CSS
@@ -57,10 +57,10 @@ export class ArrangementEngine {
    * Generate responsive CSS for different breakpoints
    */
   generateResponsiveCSS(container: LayoutContainer, breakpoint: string): CSSProperties {
-    const arrangement = this.getArrangement(container.arrangement.type)
+    const arrangement = this.getArrangement(container.type)
 
     if (!arrangement) {
-      throw new Error(`Unknown arrangement type: ${container.arrangement.type}`)
+      throw new Error(`Unknown arrangement type: ${container.type}`)
     }
 
     return arrangement.getResponsiveCSS(container, breakpoint)
@@ -110,36 +110,33 @@ class PlatformOptimizer {
     const optimized = { ...container }
 
     // Stack rows on mobile
-    if (container.arrangement.type === 'row') {
-      optimized.arrangement = {
-        ...container.arrangement,
-        type: 'stack',
-        direction: 'vertical',
-      }
+    if (container.type === 'row') {
+      optimized.type = 'stack'
+      optimized.direction = 'vertical'
     }
 
     // Simplify grids on mobile
-    if (container.arrangement.type === 'grid' && container.grid) {
-      optimized.grid = {
-        ...container.grid,
-        columns: typeof container.grid.columns === 'number' && container.grid.columns > 2 ? 2 : container.grid.columns,
+    if (container.type === 'grid' && container.columns) {
+      if (typeof container.columns === 'number' && container.columns > 2) {
+        optimized.columns = 2
       }
     }
 
     // Increase spacing for touch
-    if (container.autoLayout?.gap) {
-      const currentValue =
-        container.autoLayout.gap.scale === 'custom'
-          ? container.autoLayout.gap.custom || 16
-          : this.getSpacingValue(container.autoLayout.gap.scale)
-
-      optimized.autoLayout = {
-        ...container.autoLayout,
-        gap: {
-          scale: 'custom',
-          custom: Math.max(currentValue * 1.5, 16),
-        },
+    if (container.gap) {
+      let currentValue: number
+      if (typeof container.gap === 'number') {
+        currentValue = container.gap
+      } else if (typeof container.gap === 'string') {
+        currentValue = this.getSpacingValue(container.gap)
+      } else {
+        // SpacingValue object
+        currentValue = container.gap.scale === 'custom' 
+          ? container.gap.custom || 16
+          : this.getSpacingValue(container.gap.scale)
       }
+
+      optimized.gap = Math.max(currentValue * 1.5, 16)
     }
 
     return optimized

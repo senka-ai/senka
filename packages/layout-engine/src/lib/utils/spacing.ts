@@ -14,9 +14,16 @@ export const SPACING_SCALE: Record<SpacingScale, number> = {
 }
 
 /**
- * Get numeric spacing value from SpacingValue
+ * Get numeric spacing value from SpacingValue, SpacingScale, or number
  */
-export function getSpacingValue(spacing: SpacingValue): number {
+export function getSpacingValue(spacing: SpacingValue | SpacingScale | number): number {
+  if (typeof spacing === 'number') {
+    return spacing
+  }
+  if (typeof spacing === 'string') {
+    return SPACING_SCALE[spacing]
+  }
+  // SpacingValue object
   if (spacing.scale === 'custom' && spacing.custom !== undefined) {
     return spacing.custom
   }

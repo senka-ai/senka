@@ -4,7 +4,6 @@ import type {
   ValidationError,
   ValidationWarning,
   SpacingValue,
-  ArrangementConfig,
 } from '$lib/types'
 
 /**
@@ -22,14 +21,14 @@ export function validateLayout(container: LayoutContainer): ValidationResult {
     })
   }
 
-  // Validate arrangement
-  if (!container.arrangement) {
+  // Validate arrangement type
+  if (!container.type) {
     errors.push({
-      type: 'missing-arrangement',
-      message: 'Layout container must have an arrangement',
+      type: 'missing-type',
+      message: 'Layout container must have a type',
     })
   } else {
-    const arrangementValidation = validateArrangement(container.arrangement)
+    const arrangementValidation = validateArrangement(container)
     errors.push(...arrangementValidation.errors)
     warnings.push(...arrangementValidation.warnings)
   }
@@ -58,38 +57,38 @@ export function validateLayout(container: LayoutContainer): ValidationResult {
 /**
  * Validate arrangement configuration
  */
-function validateArrangement(arrangement: ArrangementConfig): ValidationResult {
+function validateArrangement(container: LayoutContainer): ValidationResult {
   const errors: ValidationError[] = []
   const warnings: ValidationWarning[] = []
 
   // Check valid arrangement type
   const validTypes = ['flow', 'stack', 'row', 'grid', 'overlay', 'frame']
-  if (!validTypes.includes(arrangement.type)) {
+  if (!validTypes.includes(container.type)) {
     errors.push({
       type: 'invalid-arrangement',
-      message: `Invalid arrangement type: ${arrangement.type}`,
-      path: 'arrangement.type',
+      message: `Invalid arrangement type: ${container.type}`,
+      path: 'type',
     })
   }
 
   // Type-specific validation
-  switch (arrangement.type) {
+  switch (container.type) {
     case 'stack':
-      if (arrangement.direction && !['horizontal', 'vertical'].includes(arrangement.direction)) {
+      if (container.direction && !['horizontal', 'vertical'].includes(container.direction)) {
         errors.push({
           type: 'invalid-direction',
-          message: `Invalid direction for stack: ${arrangement.direction}`,
-          path: 'arrangement.direction',
+          message: `Invalid direction for stack: ${container.direction}`,
+          path: 'direction',
         })
       }
       break
 
     case 'grid':
-      if (arrangement.direction || arrangement.wrap || arrangement.reverse) {
+      if (container.direction || container.wrap || container.reverse) {
         warnings.push({
           type: 'unused-property',
           message: 'Grid arrangement does not use direction, wrap, or reverse properties',
-          path: 'arrangement',
+          path: 'type',
         })
       }
       break

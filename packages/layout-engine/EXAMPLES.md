@@ -11,17 +11,12 @@ const engine = new LayoutEngine()
 
 const stackLayout = {
   id: 'main-content',
-  arrangement: {
-    type: 'stack',
-    direction: 'vertical',
-  },
-  autoLayout: {
-    mode: 'hug-contents',
-    primaryAxis: 'packed',
-    counterAxis: 'stretch',
-    gap: { scale: 'normal' }, // 16px
-    padding: { all: { scale: 'comfortable' } }, // 24px
-  },
+  type: 'stack',
+  direction: 'vertical',
+  gap: 'normal',        // 16px
+  padding: 'comfortable', // 24px
+  align: 'stretch',
+  justify: 'packed'
 }
 
 const css = engine.generateCSS(stackLayout)
@@ -33,17 +28,13 @@ const css = engine.generateCSS(stackLayout)
 ```typescript
 const rowLayout = {
   id: 'button-group',
-  arrangement: {
-    type: 'row',
-    wrap: true,
-  },
-  autoLayout: {
-    mode: 'fill-container',
-    primaryAxis: 'space-between',
-    counterAxis: 'center',
-    gap: { scale: 'cozy' }, // 8px
-    padding: { all: { scale: 'normal' } },
-  },
+  type: 'row',
+  wrap: true,
+  fillContainer: true,
+  gap: 'cozy',          // 8px
+  padding: 'normal',    // 16px
+  justify: 'space-between',
+  align: 'center'
 }
 
 const css = engine.generateCSS(rowLayout)
@@ -55,13 +46,10 @@ const css = engine.generateCSS(rowLayout)
 ```typescript
 const gridLayout = {
   id: 'product-grid',
-  arrangement: {
-    type: 'grid',
-  },
-  grid: {
-    columns: 3,
-    gap: { scale: 'normal' },
-  },
+  type: 'grid',
+  columns: 3,
+  gap: 'normal',        // 16px
+  fillContainer: true,
   constraints: {
     horizontal: { width: 'fill', height: 'hug' },
     vertical: { width: 'fill', height: 'hug' },
@@ -77,23 +65,19 @@ const css = engine.generateCSS(gridLayout)
 ```typescript
 const responsiveLayout = {
   id: 'hero-section',
-  arrangement: {
-    type: 'row',
-  },
-  autoLayout: {
-    mode: 'fill-container',
-    primaryAxis: 'center',
-    counterAxis: 'center',
-    gap: { scale: 'spacious' }, // 32px
-    padding: { all: { scale: 'spacious' } },
-  },
+  type: 'row',
+  fillContainer: true,
+  gap: 'spacious',      // 32px
+  padding: 'spacious',  // 32px
+  justify: 'center',
+  align: 'center',
   responsive: {
     breakpointRules: {
       mobile: {
         arrangement: { type: 'stack', direction: 'vertical' },
         spacing: {
-          gap: { scale: 'comfortable' }, // 24px on mobile
-          padding: { all: { scale: 'normal' } }, // 16px on mobile
+          gap: 'comfortable',  // 24px on mobile
+          padding: 'normal',   // 16px on mobile
         },
       },
     },
@@ -160,11 +144,11 @@ Container that can hold any other arrangement.
 - Best for: Sections, cards, layout boundaries
 - Can contain nested layouts
 
-## Auto-Layout Modes
+## Size Behavior
 
-- `fixed`: Container maintains its set size
-- `hug-contents`: Container shrinks to fit its content
-- `fill-container`: Container expands to fill available space
+- `fixed: true`: Container maintains its set size (default)
+- `fillContainer: false`: Container shrinks to fit its content (default)
+- `fillContainer: true`: Container expands to fill available space
 
 ## Responsive Features
 
@@ -235,45 +219,38 @@ if (!validation.valid) {
 ```typescript
 const dashboardLayout = {
   id: 'dashboard',
-  arrangement: {
-    type: 'frame',
-  },
-  autoLayout: {
-    mode: 'fill-container',
-    primaryAxis: 'packed',
-    counterAxis: 'stretch',
-    gap: { scale: 'none' },
-    padding: { all: { scale: 'none' } },
-  },
+  type: 'frame',
+  fillContainer: true,
+  gap: 'none',
+  padding: 'none',
+  justify: 'packed',
+  align: 'stretch',
   children: [
     // Header
     {
       id: 'header',
-      arrangement: { type: 'row' },
-      autoLayout: {
-        mode: 'fill-container',
-        primaryAxis: 'space-between',
-        counterAxis: 'center',
-        gap: { scale: 'normal' },
-        padding: { all: { scale: 'normal' } },
-      },
+      type: 'row',
+      fillContainer: true,
+      gap: 'normal',
+      padding: 'normal',
+      justify: 'space-between',
+      align: 'center'
     },
     // Main content area
     {
       id: 'main',
-      arrangement: { type: 'row' },
-      autoLayout: {
-        mode: 'fill-container',
-        primaryAxis: 'packed',
-        counterAxis: 'stretch',
-        gap: { scale: 'comfortable' },
-        padding: { all: { scale: 'comfortable' } },
-      },
+      type: 'row',
+      fillContainer: true,
+      gap: 'comfortable',
+      padding: 'comfortable',
+      justify: 'packed',
+      align: 'stretch',
       children: [
         // Sidebar
         {
           id: 'sidebar',
-          arrangement: { type: 'stack' },
+          type: 'stack',
+          fixed: true,
           constraints: {
             horizontal: { width: 'fixed' },
             vertical: { width: 'fill', height: 'fill' },

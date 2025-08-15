@@ -25,21 +25,14 @@ RELEVANT FILES: packages/layout-engine/src/lib/core/arrangements/stack.ts, packa
   let spacing = $state<'none' | 'tight' | 'cozy' | 'normal' | 'comfortable' | 'spacious'>('normal')
   let alignment = $state<'start' | 'center' | 'end' | 'stretch'>('stretch')
 
-  // Reactive container configuration
+  // Reactive container configuration - no more 'as const' needed!
   const testContainer = $derived({
     id: 'demo-stack',
-    arrangement: {
-      type: 'stack' as const,
-      direction,
-    },
-    autoLayout: {
-      mode: 'fill-container' as const,
-      gap: { scale: spacing },
-      primaryAxis: 'packed' as const,
-      counterAxis: alignment,
-    },
-    constraints: {},
-    relationships: {},
+    type: 'stack',
+    direction,
+    fillContainer: true,
+    gap: spacing,
+    align: alignment,
   })
 
   // Generate CSS reactively when configuration changes
@@ -143,7 +136,7 @@ RELEVANT FILES: packages/layout-engine/src/lib/core/arrangements/stack.ts, packa
           Reset Demo
         {/snippet}
       </Button>
-      <Button variant="secondary" onclick={() => window.location.href = '/'}>
+      <Button variant="secondary" onclick={() => (window.location.href = '/')}>
         {#snippet children()}
           Back to Home
         {/snippet}

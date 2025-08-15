@@ -13,17 +13,12 @@ const engine = new LayoutEngine({
 // Example 1: Simple stack layout
 const stackLayout: LayoutContainer = {
   id: 'main-stack',
-  arrangement: {
-    type: 'stack',
-    direction: 'vertical',
-  },
-  autoLayout: {
-    mode: 'hug-contents',
-    primaryAxis: 'packed',
-    counterAxis: 'stretch',
-    gap: { scale: 'normal' },
-    padding: { all: { scale: 'comfortable' } },
-  },
+  type: 'stack',
+  direction: 'vertical',
+  gap: 'normal',
+  padding: 'comfortable',
+  align: 'stretch',
+  justify: 'packed',
 }
 
 console.log('Stack Layout CSS:')
@@ -32,17 +27,13 @@ console.log(engine.generateCSS(stackLayout))
 // Example 2: Responsive row that stacks on mobile
 const responsiveRow: LayoutContainer = {
   id: 'nav-row',
-  arrangement: {
-    type: 'row',
-    wrap: true,
-  },
-  autoLayout: {
-    mode: 'fill-container',
-    primaryAxis: 'space-between',
-    counterAxis: 'center',
-    gap: { scale: 'normal' },
-    padding: { all: { scale: 'normal' } },
-  },
+  type: 'row',
+  wrap: true,
+  fillContainer: true,
+  gap: 'normal',
+  padding: 'normal',
+  align: 'center',
+  justify: 'space-between',
   responsive: {
     automatic: {
       enabled: true,
@@ -70,14 +61,9 @@ console.log(engine.generateCSS(responsiveRow))
 // Example 3: Grid layout with auto columns
 const gridLayout: LayoutContainer = {
   id: 'product-grid',
-  arrangement: {
-    type: 'grid',
-  },
-  grid: {
-    columns: 'auto',
-    columnMinWidth: 250,
-    gap: { scale: 'normal' },
-  },
+  type: 'grid',
+  columns: 'auto',
+  gap: 'normal',
   constraints: {
     horizontal: {
       width: 'fill',

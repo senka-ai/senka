@@ -1,5 +1,5 @@
 import { BaseArrangement } from './base'
-import type { LayoutContainer, CSSProperties, ArrangementConfig } from '$lib/types'
+import type { LayoutContainer, CSSProperties } from '$lib/types'
 
 /**
  * Flow arrangement - elements flow naturally like text, wrapping when needed
@@ -9,21 +9,30 @@ export class FlowArrangement extends BaseArrangement {
   protected readonly type = 'flow'
 
   toCSS(container: LayoutContainer): CSSProperties {
-    const { arrangement, autoLayout } = container
-
     // Flow always wraps
     let css: CSSProperties = {
-      ...this.getFlexCSS('row', true, arrangement.reverse),
+      ...this.getFlexCSS('row', true, !!container.reverse),
     }
 
-    // Apply auto-layout if configured
-    if (autoLayout) {
-      css = { ...css, ...this.getAutoLayoutCSS(autoLayout) }
-    } else {
-      // Default flow behavior - like inline elements
+    // Apply alignment, spacing, and size behavior
+    css = { 
+      ...css, 
+      ...this.getAlignmentCSS(container),
+      ...this.getSpacingCSS(container),
+      ...this.getSizeBehaviorCSS(container)
+    }
+
+    // Set defaults for flow behavior if not specified
+    if (!container.align) {
       css['align-items'] = 'flex-start'
       css['align-content'] = 'flex-start'
+    }
+    if (!container.justify) {
       css['justify-content'] = 'flex-start'
+    }
+
+    // Set default gap if not specified (cozy spacing for flow)
+    if (container.gap === undefined) {
       css['gap'] = '8px' // Cozy spacing for flow
     }
 
@@ -51,21 +60,21 @@ export class FlowArrangement extends BaseArrangement {
     return css
   }
 
-  validate(config: ArrangementConfig): boolean {
-    if (config.type !== 'flow') return false
+  validate(container: LayoutContainer): boolean {
+    if (container.type !== 'flow') return false
 
     // Flow doesn't use direction (always flows like text)
-    if (config.direction) {
+    if (container.direction) {
       console.warn('Flow arrangement does not use direction property')
     }
 
     // Wrap is always true for flow
-    if (config.wrap !== undefined && config.wrap !== true) {
+    if (container.wrap !== undefined && container.wrap !== true) {
       console.warn('Flow arrangement always wraps - wrap property will be ignored')
     }
 
     // Reverse is optional boolean
-    if (config.reverse !== undefined && typeof config.reverse !== 'boolean') {
+    if (container.reverse !== undefined && typeof container.reverse !== 'boolean') {
       return false
     }
 

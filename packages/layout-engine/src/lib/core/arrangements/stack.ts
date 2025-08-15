@@ -1,5 +1,5 @@
 import { BaseArrangement } from './base'
-import type { LayoutContainer, CSSProperties, ArrangementConfig } from '$lib/types'
+import type { LayoutContainer, CSSProperties } from '$lib/types'
 
 /**
  * Stack arrangement - elements stacked vertically or horizontally
@@ -9,20 +9,28 @@ export class StackArrangement extends BaseArrangement {
   protected readonly type = 'stack'
 
   toCSS(container: LayoutContainer): CSSProperties {
-    const { arrangement, autoLayout } = container
-    const direction = arrangement.direction || 'vertical'
+    const direction = container.direction || 'vertical'
     const flexDirection = direction === 'vertical' ? 'column' : 'row'
 
     let css: CSSProperties = {
-      ...this.getFlexCSS(flexDirection, false, arrangement.reverse),
+      ...this.getFlexCSS(flexDirection, !!container.wrap, !!container.reverse),
     }
 
-    // Apply auto-layout if configured
-    if (autoLayout) {
-      css = { ...css, ...this.getAutoLayoutCSS(autoLayout) }
-    } else {
-      // Default stack behavior
+    // Apply alignment, spacing, and size behavior
+    css = { 
+      ...css, 
+      ...this.getAlignmentCSS(container),
+      ...this.getSpacingCSS(container),
+      ...this.getSizeBehaviorCSS(container)
+    }
+
+    // Set default alignment if not specified
+    if (!container.align) {
       css['align-items'] = 'stretch'
+    }
+
+    // Set default gap if not specified
+    if (container.gap === undefined) {
       css['gap'] = '16px' // Default normal spacing
     }
 
@@ -37,11 +45,9 @@ export class StackArrangement extends BaseArrangement {
 
     // Mobile optimizations
     if (breakpoint === 'mobile') {
-      const { arrangement } = container
-
       // Always stack vertically on mobile if currently horizontal
-      if (arrangement.direction === 'horizontal') {
-        css['flex-direction'] = arrangement.reverse ? 'column-reverse' : 'column'
+      if (container.direction === 'horizontal') {
+        css['flex-direction'] = container.reverse ? 'column-reverse' : 'column'
       }
 
       // Increase gap for touch
@@ -54,22 +60,22 @@ export class StackArrangement extends BaseArrangement {
     return css
   }
 
-  validate(config: ArrangementConfig): boolean {
-    if (config.type !== 'stack') return false
+  validate(container: LayoutContainer): boolean {
+    if (container.type !== 'stack') return false
 
     // Direction is optional but must be valid if provided
-    if (config.direction && !['horizontal', 'vertical'].includes(config.direction)) {
+    if (container.direction && !['horizontal', 'vertical'].includes(container.direction)) {
       return false
     }
 
     // Reverse is optional boolean
-    if (config.reverse !== undefined && typeof config.reverse !== 'boolean') {
+    if (container.reverse !== undefined && typeof container.reverse !== 'boolean') {
       return false
     }
 
-    // Wrap is not used in stack
-    if (config.wrap !== undefined) {
-      console.warn('Stack arrangement does not support wrap property')
+    // Wrap is not commonly used in stack but is valid
+    if (container.wrap !== undefined && typeof container.wrap !== 'boolean') {
+      return false
     }
 
     return true

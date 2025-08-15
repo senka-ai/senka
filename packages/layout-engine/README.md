@@ -20,19 +20,17 @@ npm install @senka-ai/layout-engine
 ## Basic Usage
 
 ```typescript
-import { LayoutEngine, ArrangementType } from '@senka-ai/layout-engine'
+import { LayoutEngine } from '@senka-ai/layout-engine'
 
 const engine = new LayoutEngine()
 
-// Create a simple stack layout
+// Create a simple stack layout - no 'as const' needed!
 const layout = {
-  arrangement: {
-    type: 'stack' as ArrangementType,
-    direction: 'vertical',
-  },
-  spacing: {
-    scale: 'normal',
-  },
+  id: 'main-layout',
+  type: 'stack',
+  direction: 'vertical',
+  gap: 'normal',
+  fillContainer: true,
   responsive: {
     automatic: {
       enabled: true,
@@ -53,11 +51,11 @@ Elements arranged vertically (or horizontally), one after another.
 
 ```typescript
 {
-  arrangement: {
-    type: 'stack',
-    direction: 'vertical', // or 'horizontal'
-    reverse: false
-  }
+  id: 'my-stack',
+  type: 'stack',
+  direction: 'vertical', // or 'horizontal'
+  reverse: false,
+  gap: 'normal'
 }
 ```
 
@@ -67,11 +65,12 @@ Elements arranged side-by-side horizontally.
 
 ```typescript
 {
-  arrangement: {
-    type: 'row',
-    wrap: true,
-    reverse: false
-  }
+  id: 'my-row',
+  type: 'row',
+  wrap: true,
+  reverse: false,
+  gap: 'normal',
+  align: 'center'
 }
 ```
 
@@ -81,13 +80,11 @@ Elements arranged in a structured grid pattern.
 
 ```typescript
 {
-  arrangement: {
-    type: 'grid'
-  },
-  grid: {
-    columns: 3,
-    gap: 'normal'
-  }
+  id: 'my-grid',
+  type: 'grid',
+  columns: 3,
+  gap: 'normal',
+  fillContainer: true
 }
 ```
 
@@ -97,10 +94,10 @@ Elements flow naturally like text, wrapping when needed.
 
 ```typescript
 {
-  arrangement: {
-    type: 'flow',
-    wrap: true
-  }
+  id: 'my-flow',
+  type: 'flow',
+  gap: 'cozy',
+  align: 'start'
 }
 ```
 
@@ -110,30 +107,41 @@ Elements layered on top of each other.
 
 ```typescript
 {
-  arrangement: {
-    type: 'overlay'
-  },
-  overlay: {
-    position: 'center'
-  }
+  id: 'my-overlay',
+  type: 'overlay',
+  position: 'center',
+  zIndex: 10
 }
 ```
 
 ## Spacing System
 
-Use semantic spacing values instead of pixels:
+Use semantic spacing values, direct numbers, or spacing objects:
 
 ```typescript
+// Semantic spacing (recommended)
 {
-  spacing: {
-    scale: 'tight',    // 4px
-    scale: 'cozy',     // 8px
-    scale: 'normal',   // 16px
-    scale: 'comfortable', // 24px
-    scale: 'spacious'  // 32px
+  gap: 'tight',        // 4px
+  padding: 'cozy',     // 8px
+}
+
+// Direct numbers
+{
+  gap: 16,             // 16px
+  padding: 24,         // 24px
+}
+
+// Spacing objects for custom values
+{
+  gap: { scale: 'custom', custom: 20 },
+  padding: {
+    top: { scale: 'normal' },    // 16px
+    horizontal: { scale: 'cozy' } // 8px
   }
 }
 ```
+
+**Available scales**: `'tight'` (4px), `'cozy'` (8px), `'normal'` (16px), `'comfortable'` (24px), `'spacious'` (32px)
 
 ## Responsive Features
 
@@ -163,11 +171,11 @@ Use semantic spacing values instead of pixels:
     breakpointRules: {
       mobile: {
         arrangement: { type: 'stack' },
-        spacing: { scale: 'comfortable' }
+        spacing: { gap: 'comfortable' }
       },
       desktop: {
         arrangement: { type: 'row' },
-        spacing: { scale: 'normal' }
+        spacing: { gap: 'normal' }
       }
     }
   }

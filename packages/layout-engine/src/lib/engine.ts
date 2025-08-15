@@ -163,8 +163,12 @@ export class LayoutEngine {
   private applyOverride(container: LayoutContainer, override: any): LayoutContainer {
     const result = { ...container }
 
+    // Apply arrangement overrides directly to flat properties
     if (override.arrangement) {
-      result.arrangement = { ...container.arrangement, ...override.arrangement }
+      if (override.arrangement.type) result.type = override.arrangement.type
+      if (override.arrangement.direction) result.direction = override.arrangement.direction
+      if (override.arrangement.wrap !== undefined) result.wrap = override.arrangement.wrap
+      if (override.arrangement.reverse !== undefined) result.reverse = override.arrangement.reverse
     }
 
     if (override.constraints) {
@@ -172,13 +176,8 @@ export class LayoutEngine {
     }
 
     if (override.spacing) {
-      if (result.autoLayout) {
-        result.autoLayout = {
-          ...result.autoLayout,
-          gap: override.spacing.gap || result.autoLayout.gap,
-          padding: override.spacing.padding || result.autoLayout.padding,
-        }
-      }
+      if (override.spacing.gap) result.gap = override.spacing.gap
+      if (override.spacing.padding) result.padding = override.spacing.padding
     }
 
     return result
@@ -211,8 +210,20 @@ export class LayoutEngine {
   private getCacheKey(container: LayoutContainer): string {
     return JSON.stringify({
       id: container.id,
-      arrangement: container.arrangement,
-      autoLayout: container.autoLayout,
+      type: container.type,
+      direction: container.direction,
+      wrap: container.wrap,
+      reverse: container.reverse,
+      fillContainer: container.fillContainer,
+      fixed: container.fixed,
+      gap: container.gap,
+      padding: container.padding,
+      align: container.align,
+      justify: container.justify,
+      columns: container.columns,
+      rows: container.rows,
+      position: container.position,
+      zIndex: container.zIndex,
       constraints: container.constraints,
       responsive: container.responsive,
     })
