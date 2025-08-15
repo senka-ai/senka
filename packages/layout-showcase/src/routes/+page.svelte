@@ -44,6 +44,11 @@ RELEVANT FILES: packages/layout-engine/src/lib/index.ts, packages/ui/src/lib/ind
               Try Stack Demo
             {/snippet}
           </Button>
+          <Button variant="primary" onclick={() => window.location.href = '/row-demo'}>
+            {#snippet children()}
+              Try Row Demo
+            {/snippet}
+          </Button>
           <Button variant="secondary">
             {#snippet children()}
               View Documentation
