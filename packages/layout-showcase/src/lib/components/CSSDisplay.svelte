@@ -6,18 +6,40 @@ RELEVANT FILES: packages/layout-engine/src/lib/utils/css.ts, packages/ui/src/lib
 -->
 
 <script lang="ts">
-  import { Button, Toast } from '@senka-ai/ui'
+  import { Button, Container } from '@senka-ai/ui'
   import { CheckIcon } from '@senka-ai/ui/icons'
+  import { StackArrangement, RowArrangement, cssPropertiesToString } from '@senka-ai/layout-engine'
 
   interface Props {
     css: string
     title?: string
-    variant?: 'success' | 'info' | 'warning'
+    variant?: 'success' | 'highlight' | 'warning'
   }
 
   let { css, title = 'Generated CSS', variant = 'success' }: Props = $props()
 
   let showCopySuccess = $state(false)
+
+  // Layout configurations
+  const stack = new StackArrangement()
+  const row = new RowArrangement()
+  
+  const headerConfig = {
+    id: 'css-header',
+    type: 'row',
+    justify: 'space-between',
+    align: 'center',
+    gap: 'tight',
+    fillContainer: true,
+  }
+  
+  const successConfig = {
+    id: 'css-success',
+    type: 'row',
+    gap: 'tight',
+    align: 'center',
+    fillContainer: false,
+  }
 
   // Clean up CSS formatting for display
   const cleanCSS = $derived(css.replace(/\n\s*/g, '\n').trim())
@@ -33,50 +55,45 @@ RELEVANT FILES: packages/layout-engine/src/lib/utils/css.ts, packages/ui/src/lib
       console.error('Failed to copy CSS:', err)
     }
   }
-
-  const variantClasses = {
-    success: {
-      container: 'bg-success-50 border-success',
-      text: 'text-success',
-      code: 'bg-success-100',
-    },
-    info: {
-      container: 'bg-info-50 border-info',
-      text: 'text-info',
-      code: 'bg-info-100',
-    },
-    warning: {
-      container: 'bg-warning-50 border-warning',
-      text: 'text-warning',
-      code: 'bg-warning-100',
-    },
-  }
-
-  const classes = $derived(variantClasses[variant])
 </script>
 
-<div class="{classes.container} rounded-lg border p-4">
-  <div class="mb-3 flex items-center justify-between">
-    <p class="{classes.text} text-body-s font-medium">
-      {title}
-    </p>
+<Container variant="bordered" color={variant} padding="normal" radius="normal">
+  {#snippet children()}
+    <div style={cssPropertiesToString(row.toCSS(headerConfig))}>
+      <p class="text-body-s text-primary font-medium">
+        {title}
+      </p>
 
-    <div class="flex items-center gap-2">
-      {#if showCopySuccess}
-        <span class="{classes.text} text-body-xs flex items-center gap-1">
-          <CheckIcon size={12} />
-          Copied!
-        </span>
-      {/if}
+      <div style={cssPropertiesToString(row.toCSS(successConfig))}>
+        {#if showCopySuccess}
+          <div style={cssPropertiesToString(row.toCSS({
+            id: 'copy-success',
+            type: 'row',
+            gap: 'tight',
+            align: 'center',
+            fillContainer: false,
+          }))}>
+            <span class="text-body-xs text-success">
+              <CheckIcon size={12} />
+            </span>
+            <span class="text-body-xs text-success">
+              Copied!
+            </span>
+          </div>
+        {/if}
 
-      <Button variant="secondary" size="small" onclick={copyToClipboard}>
-        {#snippet children()}
-          Copy CSS
-        {/snippet}
-      </Button>
+        <Button variant="secondary" size="small" onclick={copyToClipboard}>
+          {#snippet children()}
+            Copy CSS
+          {/snippet}
+        </Button>
+      </div>
     </div>
-  </div>
 
-  <pre
-    class="{classes.text} text-body-xs {classes.code} overflow-x-auto rounded p-3 font-mono leading-relaxed">{cleanCSS}</pre>
-</div>
+    <Container variant="default" color="neutral" padding="tight" radius="small">
+      {#snippet children()}
+        <pre class="text-body-xs text-primary overflow-x-auto font-mono leading-relaxed">{cleanCSS}</pre>
+      {/snippet}
+    </Container>
+  {/snippet}
+</Container>

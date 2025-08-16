@@ -6,7 +6,9 @@ RELEVANT FILES: packages/layout-engine/src/lib/types/index.ts, packages/ui/src/l
 -->
 
 <script lang="ts">
-  import { Button } from '@senka-ai/ui'
+  import { Button, Container } from '@senka-ai/ui'
+  import { ArrowUpIcon, ArrowDownIcon, ArrowLeftIcon, ArrowRightIcon, SettingsIcon } from '@senka-ai/ui/icons'
+  import { StackArrangement, RowArrangement, cssPropertiesToString } from '@senka-ai/layout-engine'
 
   type Alignment = 'start' | 'center' | 'end' | 'stretch'
 
@@ -18,30 +20,58 @@ RELEVANT FILES: packages/layout-engine/src/lib/types/index.ts, packages/ui/src/l
 
   let { value, onchange, disabled = false }: Props = $props()
 
+  // Layout configurations
+  const stack = new StackArrangement()
+  const row = new RowArrangement()
+  
+  const labelConfig = {
+    id: 'alignment-label',
+    type: 'stack',
+    direction: 'vertical',
+    gap: 'tight',
+    fillContainer: true,
+  }
+  
+  const buttonsConfig = {
+    id: 'alignment-buttons',
+    type: 'row',
+    gap: 'tight',
+    align: 'center',
+    fillContainer: false,
+  }
+  
+  const descriptionConfig = {
+    id: 'alignment-description',
+    type: 'stack',
+    direction: 'vertical',
+    gap: 'none',
+    fillContainer: true,
+  }
+
   const alignmentOptions = [
     {
       value: 'start' as const,
       label: 'Start',
       description: 'Align to top (for rows) / left (for stacks)',
-      icon: '⬆',
+      icon: ArrowUpIcon,
     },
     {
       value: 'center' as const,
       label: 'Center',
       description: 'Center vertically (for rows) / horizontally (for stacks)',
-      icon: '↔',
+      icon: ArrowRightIcon,
     },
     {
       value: 'end' as const,
       label: 'End',
       description: 'Align to bottom (for rows) / right (for stacks)',
-      icon: '⬇',
+      icon: ArrowDownIcon,
     },
     {
       value: 'stretch' as const,
       label: 'Stretch',
       description: 'Stretch to fill height (for rows) / width (for stacks)',
-      icon: '↕',
+      icon: SettingsIcon,
     },
   ]
 
@@ -51,27 +81,42 @@ RELEVANT FILES: packages/layout-engine/src/lib/types/index.ts, packages/ui/src/l
   }
 </script>
 
-<div class="space-y-3">
-  <span class="text-body-s text-secondary font-medium">Counter-axis Alignment:</span>
+<Container padding="none" background={false}>
+  {#snippet children()}
+    <div style={cssPropertiesToString(stack.toCSS(labelConfig))}>
+      <span class="text-body-s text-secondary font-medium">Counter-axis Alignment:</span>
 
-  <div class="flex gap-2">
-    {#each alignmentOptions as option}
-      <Button
-        variant={value === option.value ? 'primary' : 'secondary'}
-        {disabled}
-        onclick={() => handleAlignmentChange(option.value)}
-      >
-        {#snippet children()}
-          <span class="flex items-center gap-2">
-            <span class="text-sm">{option.icon}</span>
-            <span>{option.label}</span>
-          </span>
-        {/snippet}
-      </Button>
-    {/each}
-  </div>
+      <div style={cssPropertiesToString(row.toCSS(buttonsConfig))}>
+        {#each alignmentOptions as option}
+          <Button
+            variant={value === option.value ? 'primary' : 'secondary'}
+            size="small"
+            {disabled}
+            onclick={() => handleAlignmentChange(option.value)}
+          >
+            {#snippet leftIcon(size)}
+              {#if option.icon === ArrowUpIcon}
+                <ArrowUpIcon {size} />
+              {:else if option.icon === ArrowRightIcon}
+                <ArrowRightIcon {size} />
+              {:else if option.icon === ArrowDownIcon}
+                <ArrowDownIcon {size} />
+              {:else if option.icon === SettingsIcon}
+                <SettingsIcon {size} />
+              {/if}
+            {/snippet}
+            {#snippet children()}
+              {option.label}
+            {/snippet}
+          </Button>
+        {/each}
+      </div>
 
-  <span class="text-body-xs text-tertiary">
-    {alignmentOptions.find((opt) => opt.value === value)?.description}
-  </span>
-</div>
+      <div style={cssPropertiesToString(stack.toCSS(descriptionConfig))}>
+        <span class="text-body-xs text-muted">
+          {alignmentOptions.find((opt) => opt.value === value)?.description}
+        </span>
+      </div>
+    </div>
+  {/snippet}
+</Container>

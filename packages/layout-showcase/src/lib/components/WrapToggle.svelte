@@ -6,7 +6,8 @@ RELEVANT FILES: packages/layout-engine/src/lib/core/arrangements/row.ts, package
 -->
 
 <script lang="ts">
-  import { Button } from '@senka-ai/ui'
+  import { Button, Container } from '@senka-ai/ui'
+  import { RowArrangement, cssPropertiesToString } from '@senka-ai/layout-engine'
 
   interface Props {
     value: boolean
@@ -16,6 +17,16 @@ RELEVANT FILES: packages/layout-engine/src/lib/core/arrangements/row.ts, package
 
   let { value, onchange, disabled = false }: Props = $props()
 
+  // Layout configuration
+  const row = new RowArrangement()
+  const wrapConfig = {
+    id: 'wrap-control',
+    type: 'row',
+    gap: 'normal',
+    align: 'center',
+    fillContainer: true,
+  }
+
   function toggleWrap() {
     if (disabled) return
     const newWrap = !value
@@ -23,16 +34,20 @@ RELEVANT FILES: packages/layout-engine/src/lib/core/arrangements/row.ts, package
   }
 </script>
 
-<div class="flex items-center gap-3">
-  <span class="text-body-s text-secondary font-medium">Wrap:</span>
+<Container padding="none" background={false}>
+  {#snippet children()}
+    <div style={cssPropertiesToString(row.toCSS(wrapConfig))}>
+      <span class="text-body-s text-secondary font-medium">Wrap:</span>
 
-  <Button variant="secondary" {disabled} onclick={toggleWrap}>
-    {#snippet children()}
-      {value ? 'Enabled' : 'Disabled'}
-    {/snippet}
-  </Button>
+      <Button variant="secondary" {disabled} onclick={toggleWrap}>
+        {#snippet children()}
+          {value ? 'Enabled' : 'Disabled'}
+        {/snippet}
+      </Button>
 
-  <span class="text-body-xs text-tertiary">
-    {value ? 'Items wrap to new lines when needed' : 'Items stay on single line'}
-  </span>
-</div>
+      <span class="text-body-xs text-muted">
+        {value ? 'Items wrap to new lines when needed' : 'Items stay on single line'}
+      </span>
+    </div>
+  {/snippet}
+</Container>

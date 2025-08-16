@@ -18,4 +18,4 @@
 
 - read `packages/ui/UI_COMPONENTS_STRUCTURE.md`
 - read `packages/ui/UI_ARCHITECTURE.md`
-- IMPORTANT: before using any UI component, you must read its source code to understand what properties has and how it can be used
+- IMPORTANT: before using any UI component, you must read both its source code and its storybook stories to understand what properties has and how each component can be used

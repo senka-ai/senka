@@ -6,7 +6,8 @@ RELEVANT FILES: packages/ui/src/lib/index.ts
 -->
 
 <script lang="ts">
-  import { Divider } from '@senka-ai/ui'
+  import { Container, Divider } from '@senka-ai/ui'
+  import { StackArrangement, cssPropertiesToString } from '@senka-ai/layout-engine'
 
   interface Props {
     title?: string
@@ -15,21 +16,43 @@ RELEVANT FILES: packages/ui/src/lib/index.ts
   }
 
   let { title = 'Properties', description, children }: Props = $props()
+
+  // Save the children prop before we use it in the snippet context
+  const panelChildren = children
+
+  // Use StackArrangement for vertical layout of panel sections
+  const stack = new StackArrangement()
+  const headerConfig = {
+    id: 'panel-header',
+    type: 'stack',
+    direction: 'vertical',
+    gap: 'tight',
+    fillContainer: true,
+  }
+  const contentConfig = {
+    id: 'panel-content',
+    type: 'stack',
+    direction: 'vertical',
+    gap: 'comfortable',
+    fillContainer: true,
+  }
 </script>
 
-<div class="bg-surface border-default space-y-6 rounded-xl border-2 p-6">
-  <!-- Panel Header -->
-  <header class="space-y-2">
-    <h3 class="text-h4 text-primary font-medium">{title}</h3>
-    {#if description}
-      <p class="text-body-s text-secondary">{description}</p>
-    {/if}
-  </header>
+<Container variant="bordered" padding="comfortable" radius="large">
+  {#snippet children()}
+    <!-- Panel Header -->
+    <div style={cssPropertiesToString(stack.toCSS(headerConfig))}>
+      <h3 class="text-h4 text-primary font-medium">{title}</h3>
+      {#if description}
+        <p class="text-body-s text-secondary">{description}</p>
+      {/if}
+    </div>
 
-  <Divider />
+    <Divider />
 
-  <!-- Controls Content -->
-  <div class="space-y-6">
-    {@render children()}
-  </div>
-</div>
+    <!-- Controls Content -->
+    <div style={cssPropertiesToString(stack.toCSS(contentConfig))}>
+      {@render panelChildren()}
+    </div>
+  {/snippet}
+</Container>

@@ -6,7 +6,8 @@ RELEVANT FILES: packages/layout-engine/src/lib/utils/spacing.ts, packages/ui/src
 -->
 
 <script lang="ts">
-  import { Dropdown } from '@senka-ai/ui'
+  import { Dropdown, Container } from '@senka-ai/ui'
+  import { RowArrangement, StackArrangement, cssPropertiesToString } from '@senka-ai/layout-engine'
 
   type SpacingScale = 'none' | 'tight' | 'cozy' | 'normal' | 'comfortable' | 'spacious'
 
@@ -17,6 +18,18 @@ RELEVANT FILES: packages/layout-engine/src/lib/utils/spacing.ts, packages/ui/src
   }
 
   let { value, onchange, disabled = false }: Props = $props()
+
+  // Layout configurations
+  const row = new RowArrangement()
+  const stack = new StackArrangement()
+  
+  const spacingConfig = {
+    id: 'spacing-control',
+    type: 'row',
+    gap: 'normal',
+    align: 'center',
+    fillContainer: true,
+  }
 
   // Spacing options with descriptions and pixel values
   const spacingOptions = [
@@ -37,24 +50,30 @@ RELEVANT FILES: packages/layout-engine/src/lib/utils/spacing.ts, packages/ui/src
   const selectedOption = $derived(spacingOptions.find((opt) => opt.value === value))
 </script>
 
-<div class="flex items-center gap-3">
-  <span class="text-body-s text-secondary font-medium">Spacing:</span>
+<Container padding="none" background={false}>
+  {#snippet children()}
+    <div style={cssPropertiesToString(row.toCSS(spacingConfig))}>
+      <span class="text-body-s text-secondary font-medium">Spacing:</span>
 
-  <div class="min-w-48">
-    <Dropdown
-      options={spacingOptions.map((opt) => ({
-        value: opt.value,
-        label: `${opt.label}`,
-      }))}
-      {value}
-      onchange={handleSpacingChange}
-      {disabled}
-    />
-  </div>
+      <Container padding="none" background={false} style="min-width: 12rem;">
+        {#snippet children()}
+          <Dropdown
+            options={spacingOptions.map((opt) => ({
+              value: opt.value,
+              label: `${opt.label}`,
+            }))}
+            {value}
+            onchange={handleSpacingChange}
+            {disabled}
+          />
+        {/snippet}
+      </Container>
 
-  {#if selectedOption}
-    <span class="text-body-xs text-tertiary">
-      {selectedOption.description}
-    </span>
-  {/if}
-</div>
+      {#if selectedOption}
+        <span class="text-body-xs text-muted">
+          {selectedOption.description}
+        </span>
+      {/if}
+    </div>
+  {/snippet}
+</Container>

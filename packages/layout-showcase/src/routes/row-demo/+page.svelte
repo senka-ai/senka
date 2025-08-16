@@ -7,9 +7,9 @@ RELEVANT FILES: packages/layout-engine/src/lib/core/arrangements/row.ts, package
 
 <script lang="ts">
   // Import UI components
-  import { Button, Divider } from '@senka-ai/ui'
+  import { Button, Divider, Container } from '@senka-ai/ui'
   // Import layout engine - clean static import
-  import { RowArrangement, cssPropertiesToString } from '@senka-ai/layout-engine'
+  import { RowArrangement, StackArrangement, cssPropertiesToString } from '@senka-ai/layout-engine'
   // Import reusable control components
   import WrapToggle from '$lib/components/WrapToggle.svelte'
   import SpacingSlider from '$lib/components/SpacingSlider.svelte'
@@ -27,7 +27,49 @@ RELEVANT FILES: packages/layout-engine/src/lib/core/arrangements/row.ts, package
   let alignment = $state<'start' | 'center' | 'end' | 'stretch'>('center')
   let justify = $state<'packed' | 'space-between' | 'center' | 'space-around'>('packed')
 
-  // Reactive container configuration - no more 'as const' needed!
+  // Page layout configurations
+  const pageStack = new StackArrangement()
+  const pageRow = new RowArrangement()
+  const pageConfig = {
+    id: 'page-layout',
+    type: 'stack',
+    direction: 'vertical',
+    gap: 'spacious',
+    fillContainer: true,
+  }
+
+  const headerConfig = {
+    id: 'header-layout',
+    type: 'stack',
+    direction: 'vertical',
+    gap: 'normal',
+    fillContainer: true,
+  }
+
+  const sectionConfig = {
+    id: 'section-layout',
+    type: 'stack',
+    direction: 'vertical',
+    gap: 'comfortable',
+    fillContainer: true,
+  }
+
+  const previewConfig = {
+    id: 'preview-layout',
+    type: 'stack',
+    direction: 'vertical',
+    gap: 'normal',
+    fillContainer: true,
+  }
+
+  const actionsConfig = {
+    id: 'actions-layout',
+    type: 'row',
+    gap: 'normal',
+    align: 'center',
+    fillContainer: false,
+  }
+
   const testContainer = $derived({
     id: 'demo-row',
     type: 'row',
@@ -72,87 +114,101 @@ RELEVANT FILES: packages/layout-engine/src/lib/core/arrangements/row.ts, package
   <meta name="description" content="Testing Row arrangement from layout engine with horizontal layout" />
 </svelte:head>
 
-<main class="bg-background min-h-screen p-6">
-  <div class="mx-auto max-w-4xl">
-    <!-- Page Header -->
-    <header class="mb-8">
-      <div class="mb-4 flex items-center gap-4">
+<Container padding="comfortable" fullWidth background>
+  {#snippet children()}
+    <div style={cssPropertiesToString(pageStack.toCSS(pageConfig))}>
+      <!-- Page Header -->
+      <div style={cssPropertiesToString(pageStack.toCSS(headerConfig))}>
         <h1 class="text-h1 text-primary">Row Arrangement Demo</h1>
+        <p class="text-body-l text-secondary">
+          Testing the Row arrangement from the layout engine for horizontal layouts.
+        </p>
       </div>
-      <p class="text-body-l text-secondary">
-        Testing the Row arrangement from the layout engine for horizontal layouts.
-      </p>
-    </header>
 
-    <Divider />
+      <Divider />
 
-    <!-- Interactive Demo Section -->
-    <section class="mt-8">
-      <h2 class="text-h3 text-primary mb-4">Interactive Row Arrangement</h2>
-      <p class="text-body-m text-secondary mb-6">
-        Use the controls below to modify the row arrangement and see real-time CSS generation and layout updates.
-      </p>
+      <!-- Interactive Demo Section -->
+      <div style={cssPropertiesToString(pageStack.toCSS(sectionConfig))}>
+        <h2 class="text-h3 text-primary">Interactive Row Arrangement</h2>
+        <p class="text-body-m text-secondary">
+          Use the controls below to modify the row arrangement and see real-time CSS generation and layout updates.
+        </p>
 
-      <!-- Row Properties Panel -->
-      <PropertyPanel title="Row Properties" description="Adjust these settings to see live layout changes">
-        <WrapToggle value={wrap} onchange={handleWrapChange} />
+        <!-- Row Properties Panel -->
+        <PropertyPanel title="Row Properties" description="Adjust these settings to see live layout changes">
+          <WrapToggle value={wrap} onchange={handleWrapChange} />
 
-        <SpacingSlider value={spacing} onchange={handleSpacingChange} />
+          <SpacingSlider value={spacing} onchange={handleSpacingChange} />
 
-        <AlignmentPicker value={alignment} onchange={handleAlignmentChange} />
+          <AlignmentPicker value={alignment} onchange={handleAlignmentChange} />
 
-        <JustifyPicker value={justify} onchange={handleJustifyChange} />
-      </PropertyPanel>
+          <JustifyPicker value={justify} onchange={handleJustifyChange} />
+        </PropertyPanel>
 
-      <!-- Live Preview -->
-      <div class="mt-6 space-y-4">
-        <h3 class="text-h4 text-primary">Live Preview</h3>
+        <!-- Live Preview -->
+        <div style={cssPropertiesToString(pageStack.toCSS(previewConfig))}>
+          <h3 class="text-h4 text-primary">Live Preview</h3>
 
-        <div class="bg-surface border-default min-h-80 rounded-xl border-2 p-6">
-          <!-- Using layout engine generated CSS directly -->
-          <div style={cssPropertiesToString(generatedCSS)} class="h-full">
-            {#each demoElements as element, i}
-              <div
-                class="bg-surface-elevated border-default rounded-lg border p-4"
-                style="min-width: {120 + i * 20}px; height: {element.height}px;"
-              >
-                <div class="space-y-2">
-                  <span class="text-body-m text-primary block font-medium">{element.content}</span>
-                  <Button variant={element.type} size="small">
+          <Container variant="bordered" padding="comfortable" radius="large" style="min-height: 20rem;">
+            {#snippet children()}
+              <!-- Using layout engine generated CSS directly -->
+              <div style={cssPropertiesToString(generatedCSS)} class="h-full">
+                {#each demoElements as element, i}
+                  <Container
+                    variant="elevated"
+                    padding="normal"
+                    radius="normal"
+                    style="min-width: {120 + i * 20}px; height: {element.height}px;"
+                  >
                     {#snippet children()}
-                      Action
+                      <div
+                        style={cssPropertiesToString(
+                          pageStack.toCSS({
+                            id: 'element-content',
+                            type: 'stack',
+                            direction: 'vertical',
+                            gap: 'tight',
+                            fillContainer: true,
+                          })
+                        )}
+                      >
+                        <span class="text-body-m text-primary font-medium">{element.content}</span>
+                        <Button variant={element.type} size="small">
+                          {#snippet children()}
+                            Action
+                          {/snippet}
+                        </Button>
+                      </div>
                     {/snippet}
-                  </Button>
-                </div>
+                  </Container>
+                {/each}
               </div>
-            {/each}
-          </div>
+            {/snippet}
+          </Container>
+
+          <p class="text-body-xs text-secondary">
+            <strong>Current Configuration:</strong>
+            Wrap: {wrap ? 'enabled' : 'disabled'} • Spacing: {spacing} • Alignment: {alignment} • Justify: {justify}
+          </p>
         </div>
 
-        <div class="text-body-xs text-secondary">
-          <strong>Current Configuration:</strong>
-          Wrap: {wrap ? 'enabled' : 'disabled'} • Spacing: {spacing} • Alignment: {alignment} • Justify: {justify}
-        </div>
-      </div>
-
-      <!-- Generated CSS Display -->
-      <div class="mt-6">
+        <!-- Generated CSS Display -->
         <CSSDisplay css={cssPropertiesToString(generatedCSS)} title="Live Generated CSS" variant="success" />
       </div>
-    </section>
 
-    <!-- Action Buttons -->
-    <section class="mt-8 flex gap-3">
-      <Button variant="primary" onclick={() => window.location.reload()}>
-        {#snippet children()}
-          Reset Demo
-        {/snippet}
-      </Button>
-      <Button variant="secondary" onclick={() => (window.location.href = '/')}>
-        {#snippet children()}
-          Back to Home
-        {/snippet}
-      </Button>
-    </section>
-  </div>
-</main>
+      <!-- Action Buttons -->
+      <div style={cssPropertiesToString(pageRow.toCSS(actionsConfig))}>
+        <Button variant="primary" onclick={() => window.location.reload()}>
+          {#snippet children()}
+            Reset Demo
+          {/snippet}
+        </Button>
+        <Button variant="secondary" onclick={() => (window.location.href = '/')}>
+          {#snippet children()}
+            Back to Home
+          {/snippet}
+        </Button>
+      </div>
+    </div>
+  {/snippet}
+</Container>

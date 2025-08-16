@@ -6,8 +6,9 @@ RELEVANT FILES: packages/layout-engine/src/lib/types/index.ts, packages/ui/src/l
 -->
 
 <script lang="ts">
-  import { Button } from '@senka-ai/ui'
+  import { Button, Container } from '@senka-ai/ui'
   import { ArrowDownIcon, ArrowRightIcon } from '@senka-ai/ui/icons'
+  import { RowArrangement, cssPropertiesToString } from '@senka-ai/layout-engine'
 
   interface Props {
     value: 'vertical' | 'horizontal'
@@ -17,6 +18,16 @@ RELEVANT FILES: packages/layout-engine/src/lib/types/index.ts, packages/ui/src/l
 
   let { value, onchange, disabled = false }: Props = $props()
 
+  // Layout configuration
+  const row = new RowArrangement()
+  const directionConfig = {
+    id: 'direction-control',
+    type: 'row',
+    gap: 'normal',
+    align: 'center',
+    fillContainer: true,
+  }
+
   function toggleDirection() {
     if (disabled) return
     const newDirection = value === 'vertical' ? 'horizontal' : 'vertical'
@@ -24,23 +35,27 @@ RELEVANT FILES: packages/layout-engine/src/lib/types/index.ts, packages/ui/src/l
   }
 </script>
 
-<div class="flex items-center gap-3">
-  <span class="text-body-s text-secondary font-medium">Direction:</span>
+<Container padding="none" background={false}>
+  {#snippet children()}
+    <div style={cssPropertiesToString(row.toCSS(directionConfig))}>
+      <span class="text-body-s text-secondary font-medium">Direction:</span>
 
-  <Button variant="secondary" {disabled} onclick={toggleDirection}>
-    {#snippet leftIcon(size)}
-      {#if value === 'vertical'}
-        <ArrowDownIcon {size} />
-      {:else}
-        <ArrowRightIcon {size} />
-      {/if}
-    {/snippet}
-    {#snippet children()}
-      {value === 'vertical' ? 'Vertical' : 'Horizontal'}
-    {/snippet}
-  </Button>
+      <Button variant="secondary" {disabled} onclick={toggleDirection}>
+        {#snippet leftIcon(size)}
+          {#if value === 'vertical'}
+            <ArrowDownIcon {size} />
+          {:else}
+            <ArrowRightIcon {size} />
+          {/if}
+        {/snippet}
+        {#snippet children()}
+          {value === 'vertical' ? 'Vertical' : 'Horizontal'}
+        {/snippet}
+      </Button>
 
-  <span class="text-body-xs text-tertiary">
-    {value === 'vertical' ? 'Stack items top to bottom' : 'Stack items left to right'}
-  </span>
-</div>
+      <span class="text-body-xs text-muted">
+        {value === 'vertical' ? 'Stack items top to bottom' : 'Stack items left to right'}
+      </span>
+    </div>
+  {/snippet}
+</Container>
