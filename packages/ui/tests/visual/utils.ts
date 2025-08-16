@@ -8,11 +8,28 @@ import { type Page } from '@playwright/test'
  * Navigate to a specific Storybook story
  */
 export async function visitStory(page: Page, storyId: string) {
-  await page.goto(`/iframe.html?id=${storyId}&visualTest=true`)
+  await page.goto(`/iframe.html?id=${storyId}&visualTest=true`, {
+    waitUntil: 'networkidle',
+    timeout: 60000,
+  })
+  
+  // Disable animations and transitions for consistent visual testing
+  await page.addStyleTag({
+    content: `
+      *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        animation-delay: 0.01ms !important;
+        transition-duration: 0.01ms !important;
+        transition-delay: 0.01ms !important;
+        scroll-behavior: auto !important;
+      }
+    `,
+  })
+  
   // Wait for the story to load
   await page.waitForSelector('#storybook-root')
-  // Reduced wait time for faster execution
-  await page.waitForTimeout(200)
+  // Wait for any remaining dynamic content to stabilize
+  await page.waitForTimeout(500)
 }
 
 /**
