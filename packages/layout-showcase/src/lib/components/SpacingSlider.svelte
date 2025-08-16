@@ -22,7 +22,7 @@ RELEVANT FILES: packages/layout-engine/src/lib/utils/spacing.ts, packages/ui/src
   // Layout configurations
   const row = new RowArrangement()
   const stack = new StackArrangement()
-  
+
   const spacingConfig = {
     id: 'spacing-control',
     type: 'row',

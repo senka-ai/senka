@@ -12,7 +12,7 @@ export async function visitStory(page: Page, storyId: string) {
     waitUntil: 'networkidle',
     timeout: 60000,
   })
-  
+
   // Disable animations and transitions for consistent visual testing
   await page.addStyleTag({
     content: `
@@ -25,7 +25,7 @@ export async function visitStory(page: Page, storyId: string) {
       }
     `,
   })
-  
+
   // Wait for the story to load
   await page.waitForSelector('#storybook-root')
   // Wait for any remaining dynamic content to stabilize

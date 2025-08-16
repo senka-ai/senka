@@ -16,7 +16,7 @@ RELEVANT FILES: packages/layout-engine/src/lib/index.ts, packages/ui/src/lib/ind
   // Layout configurations
   const stack = new StackArrangement()
   const row = new RowArrangement()
-  
+
   const pageConfig = {
     id: 'page-layout',
     type: 'stack',
@@ -24,7 +24,7 @@ RELEVANT FILES: packages/layout-engine/src/lib/index.ts, packages/ui/src/lib/ind
     gap: 'spacious',
     fillContainer: true,
   }
-  
+
   const headerConfig = {
     id: 'header-layout',
     type: 'stack',
@@ -32,7 +32,7 @@ RELEVANT FILES: packages/layout-engine/src/lib/index.ts, packages/ui/src/lib/ind
     gap: 'comfortable',
     fillContainer: true,
   }
-  
+
   const sectionsConfig = {
     id: 'sections-layout',
     type: 'stack',
@@ -40,7 +40,7 @@ RELEVANT FILES: packages/layout-engine/src/lib/index.ts, packages/ui/src/lib/ind
     gap: 'spacious',
     fillContainer: true,
   }
-  
+
   const buttonsConfig = {
     id: 'buttons-layout',
     type: 'row',
@@ -49,7 +49,7 @@ RELEVANT FILES: packages/layout-engine/src/lib/index.ts, packages/ui/src/lib/ind
     wrap: true,
     fillContainer: false,
   }
-  
+
   const listConfig = {
     id: 'list-layout',
     type: 'stack',
@@ -89,8 +89,8 @@ RELEVANT FILES: packages/layout-engine/src/lib/index.ts, packages/ui/src/lib/ind
             <div style={cssPropertiesToString(stack.toCSS(listConfig))}>
               <h2 class="text-h3 text-primary">Ready for Layout Engine</h2>
               <p class="text-body-m text-secondary">
-                This package is configured and ready to showcase layout engine components. The project structure follows Senka
-                standards with proper UI library integration.
+                This package is configured and ready to showcase layout engine components. The project structure follows
+                Senka standards with proper UI library integration.
               </p>
 
               <div style={cssPropertiesToString(row.toCSS(buttonsConfig))}>

@@ -94,8 +94,8 @@ When you need content presentation with rich features:
 </script>
 
 <!-- Use Card for rich content presentation, NOT as a general container -->
-<Card 
-  title="Product Name" 
+<Card
+  title="Product Name"
   subtitle="Category"
   description="Product description here..."
   image="/product.jpg"

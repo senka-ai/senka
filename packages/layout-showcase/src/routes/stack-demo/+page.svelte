@@ -35,7 +35,7 @@ RELEVANT FILES: packages/layout-engine/src/lib/core/arrangements/stack.ts, packa
     gap: 'spacious',
     fillContainer: true,
   }
-  
+
   const headerConfig = {
     id: 'header-layout',
     type: 'stack',
@@ -43,7 +43,7 @@ RELEVANT FILES: packages/layout-engine/src/lib/core/arrangements/stack.ts, packa
     gap: 'normal',
     fillContainer: true,
   }
-  
+
   const sectionConfig = {
     id: 'section-layout',
     type: 'stack',
@@ -51,7 +51,7 @@ RELEVANT FILES: packages/layout-engine/src/lib/core/arrangements/stack.ts, packa
     gap: 'comfortable',
     fillContainer: true,
   }
-  
+
   const previewConfig = {
     id: 'preview-layout',
     type: 'stack',
@@ -59,7 +59,7 @@ RELEVANT FILES: packages/layout-engine/src/lib/core/arrangements/stack.ts, packa
     gap: 'normal',
     fillContainer: true,
   }
-  
+
   const actionsConfig = {
     id: 'actions-layout',
     type: 'row',
@@ -68,7 +68,6 @@ RELEVANT FILES: packages/layout-engine/src/lib/core/arrangements/stack.ts, packa
     fillContainer: false,
   }
 
-  // Reactive container configuration - no more 'as const' needed!
   const testContainer = $derived({
     id: 'demo-stack',
     type: 'stack',
@@ -125,14 +124,14 @@ RELEVANT FILES: packages/layout-engine/src/lib/core/arrangements/stack.ts, packa
           Use the controls below to modify the stack arrangement and see real-time CSS generation and layout updates.
         </p>
 
-      <!-- Stack Properties Panel -->
-      <PropertyPanel title="Stack Properties" description="Adjust these settings to see live layout changes">
-        <DirectionToggle value={direction} onchange={handleDirectionChange} />
+        <!-- Stack Properties Panel -->
+        <PropertyPanel title="Stack Properties" description="Adjust these settings to see live layout changes">
+          <DirectionToggle value={direction} onchange={handleDirectionChange} />
 
-        <SpacingSlider value={spacing} onchange={handleSpacingChange} />
+          <SpacingSlider value={spacing} onchange={handleSpacingChange} />
 
-        <AlignmentPicker value={alignment} onchange={handleAlignmentChange} />
-      </PropertyPanel>
+          <AlignmentPicker value={alignment} onchange={handleAlignmentChange} />
+        </PropertyPanel>
 
         <!-- Live Preview -->
         <div style={cssPropertiesToString(pageStack.toCSS(previewConfig))}>
@@ -145,13 +144,17 @@ RELEVANT FILES: packages/layout-engine/src/lib/core/arrangements/stack.ts, packa
                 {#each demoElements as element, i}
                   <Container variant="elevated" padding="normal" radius="normal" style="min-height: {60 + i * 40}px;">
                     {#snippet children()}
-                      <div style={cssPropertiesToString(pageStack.toCSS({
-                        id: 'element-content',
-                        type: 'stack',
-                        direction: 'vertical',
-                        gap: 'tight',
-                        fillContainer: true,
-                      }))}>
+                      <div
+                        style={cssPropertiesToString(
+                          pageStack.toCSS({
+                            id: 'element-content',
+                            type: 'stack',
+                            direction: 'vertical',
+                            gap: 'tight',
+                            fillContainer: true,
+                          })
+                        )}
+                      >
                         <span class="text-body-m text-primary font-medium">{element.content}</span>
                         <Button variant={element.type} size="small">
                           {#snippet children()}

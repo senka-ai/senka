@@ -23,7 +23,7 @@ RELEVANT FILES: packages/layout-engine/src/lib/types/index.ts, packages/ui/src/l
   // Layout configurations
   const stack = new StackArrangement()
   const row = new RowArrangement()
-  
+
   const labelConfig = {
     id: 'alignment-label',
     type: 'stack',
@@ -31,7 +31,7 @@ RELEVANT FILES: packages/layout-engine/src/lib/types/index.ts, packages/ui/src/l
     gap: 'tight',
     fillContainer: true,
   }
-  
+
   const buttonsConfig = {
     id: 'alignment-buttons',
     type: 'row',
@@ -39,7 +39,7 @@ RELEVANT FILES: packages/layout-engine/src/lib/types/index.ts, packages/ui/src/l
     align: 'center',
     fillContainer: false,
   }
-  
+
   const descriptionConfig = {
     id: 'alignment-description',
     type: 'stack',

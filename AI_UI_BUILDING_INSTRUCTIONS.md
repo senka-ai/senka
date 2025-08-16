@@ -51,19 +51,19 @@ Before writing ANY code, AI must:
 
 ### When User Says → AI Should Use
 
-| User Request              | UI Library Component                                | Layout Engine               |
-| ------------------------- | --------------------------------------------------- | --------------------------- |
-| "Create a settings panel" | `Container` with `TextField`, `Toggle`, `Dropdown` | `StackArrangement`          |
-| "Add a property editor"   | `Container` with `RadioGroup`, `Slider`             | `StackArrangement`          |
-| "Create a simple container" | `Container` with content                          | `StackArrangement`          |
-| "Show product info"       | `Card` with title, description, image, actions     | Built-in card layout        |
-| "Build a control group"   | `ContentSwitcher` or `RadioGroup`             | `RowArrangement`            |
-| "Make a list of items"    | `List` with `ListItem`                        | Built-in list layout        |
-| "Add spacing controls"    | `Slider` with semantic values                 | N/A                         |
-| "Create alignment picker" | `RadioGroup` with alignment options           | N/A                         |
-| "Add action buttons"      | `Button` with variants                        | `RowArrangement` for groups |
-| "Show status"             | `Badge` or `Tag`                              | N/A                         |
-| "Add divider"             | `Divider`                                     | N/A                         |
+| User Request                | UI Library Component                               | Layout Engine               |
+| --------------------------- | -------------------------------------------------- | --------------------------- |
+| "Create a settings panel"   | `Container` with `TextField`, `Toggle`, `Dropdown` | `StackArrangement`          |
+| "Add a property editor"     | `Container` with `RadioGroup`, `Slider`            | `StackArrangement`          |
+| "Create a simple container" | `Container` with content                           | `StackArrangement`          |
+| "Show product info"         | `Card` with title, description, image, actions     | Built-in card layout        |
+| "Build a control group"     | `ContentSwitcher` or `RadioGroup`                  | `RowArrangement`            |
+| "Make a list of items"      | `List` with `ListItem`                             | Built-in list layout        |
+| "Add spacing controls"      | `Slider` with semantic values                      | N/A                         |
+| "Create alignment picker"   | `RadioGroup` with alignment options                | N/A                         |
+| "Add action buttons"        | `Button` with variants                             | `RowArrangement` for groups |
+| "Show status"               | `Badge` or `Tag`                                   | N/A                         |
+| "Add divider"               | `Divider`                                          | N/A                         |
 
 ## 🛠️ COMPONENT USAGE TEMPLATES FOR AI
 
@@ -96,7 +96,7 @@ Before writing ANY code, AI must:
   import { Card } from '@senka-ai/ui'
 </script>
 
-<Card 
+<Card
   title="Product Name"
   subtitle="Category"
   description="Detailed product description..."

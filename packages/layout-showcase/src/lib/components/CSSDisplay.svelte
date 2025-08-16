@@ -23,7 +23,7 @@ RELEVANT FILES: packages/layout-engine/src/lib/utils/css.ts, packages/ui/src/lib
   // Layout configurations
   const stack = new StackArrangement()
   const row = new RowArrangement()
-  
+
   const headerConfig = {
     id: 'css-header',
     type: 'row',
@@ -32,7 +32,7 @@ RELEVANT FILES: packages/layout-engine/src/lib/utils/css.ts, packages/ui/src/lib
     gap: 'tight',
     fillContainer: true,
   }
-  
+
   const successConfig = {
     id: 'css-success',
     type: 'row',
@@ -66,19 +66,21 @@ RELEVANT FILES: packages/layout-engine/src/lib/utils/css.ts, packages/ui/src/lib
 
       <div style={cssPropertiesToString(row.toCSS(successConfig))}>
         {#if showCopySuccess}
-          <div style={cssPropertiesToString(row.toCSS({
-            id: 'copy-success',
-            type: 'row',
-            gap: 'tight',
-            align: 'center',
-            fillContainer: false,
-          }))}>
+          <div
+            style={cssPropertiesToString(
+              row.toCSS({
+                id: 'copy-success',
+                type: 'row',
+                gap: 'tight',
+                align: 'center',
+                fillContainer: false,
+              })
+            )}
+          >
             <span class="text-body-xs text-success">
               <CheckIcon size={12} />
             </span>
-            <span class="text-body-xs text-success">
-              Copied!
-            </span>
+            <span class="text-body-xs text-success"> Copied! </span>
           </div>
         {/if}
 

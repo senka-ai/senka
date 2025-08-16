@@ -23,7 +23,7 @@ RELEVANT FILES: packages/layout-engine/src/lib/types/index.ts, packages/ui/src/l
   // Layout configurations
   const stack = new StackArrangement()
   const row = new RowArrangement()
-  
+
   const labelConfig = {
     id: 'justify-label',
     type: 'stack',
@@ -31,7 +31,7 @@ RELEVANT FILES: packages/layout-engine/src/lib/types/index.ts, packages/ui/src/l
     gap: 'tight',
     fillContainer: true,
   }
-  
+
   const buttonsConfig = {
     id: 'justify-buttons',
     type: 'row',
@@ -40,7 +40,7 @@ RELEVANT FILES: packages/layout-engine/src/lib/types/index.ts, packages/ui/src/l
     wrap: true,
     fillContainer: false,
   }
-  
+
   const descriptionConfig = {
     id: 'justify-description',
     type: 'stack',
