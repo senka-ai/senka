@@ -1060,3 +1060,121 @@ export function createLocationPinOuterCircleStyles(size: 'small' | 'medium' | 'l
 
   return composeClasses(base, sizes[size])
 }
+
+/**
+ * Container style composer for generic container components
+ * Provides consistent styling for simple containers without the complexity of Card
+ */
+export function createContainerStyles(options: {
+  variant: 'default' | 'elevated' | 'bordered'
+  padding: 'none' | 'tight' | 'normal' | 'comfortable' | 'spacious'
+  radius: 'none' | 'small' | 'normal' | 'large'
+  background?: boolean
+  color?: 'neutral' | 'highlight' | 'success' | 'warning' | 'error'
+  fullWidth?: boolean
+  disabled?: boolean
+  className?: string
+}): string {
+  const {
+    variant,
+    padding,
+    radius,
+    background = false,
+    color = 'neutral',
+    fullWidth = false,
+    disabled = false,
+    className = '',
+  } = options
+
+  const base = 'block transition-all duration-200'
+
+  // Color-based styles for backgrounds and borders
+  const colorStyles = {
+    neutral: {
+      background: 'bg-surface',
+      border: 'border-default',
+      coloredBackground: 'bg-neutral-50',
+      coloredBorder: 'border-neutral-300',
+    },
+    highlight: {
+      background: 'bg-highlight-50',
+      border: 'border-highlight',
+      coloredBackground: 'bg-highlight-50',
+      coloredBorder: 'border-highlight-200',
+    },
+    success: {
+      background: 'bg-success-50',
+      border: 'border-success',
+      coloredBackground: 'bg-success-50',
+      coloredBorder: 'border-success-200',
+    },
+    warning: {
+      background: 'bg-warning-50',
+      border: 'border-warning',
+      coloredBackground: 'bg-warning-50',
+      coloredBorder: 'border-warning-200',
+    },
+    error: {
+      background: 'bg-error-50',
+      border: 'border-error',
+      coloredBackground: 'bg-error-50',
+      coloredBorder: 'border-error-200',
+    },
+  }
+
+  const variants = {
+    default: (() => {
+      if (color === 'neutral') {
+        return background ? colorStyles.neutral.background : ''
+      } else {
+        return colorStyles[color].coloredBackground
+      }
+    })(),
+    elevated: (() => {
+      if (color === 'neutral') {
+        return 'bg-surface-elevated shadow-[0_0_8px_rgba(0,0,0,0.1)]'
+      } else {
+        return `${colorStyles[color].coloredBackground} shadow-[0_0_8px_rgba(0,0,0,0.1)]`
+      }
+    })(),
+    bordered: (() => {
+      if (color === 'neutral') {
+        const bgClass = background ? colorStyles.neutral.background : ''
+        const borderClass = colorStyles.neutral.border
+        return `${bgClass} border ${borderClass}`.trim()
+      } else {
+        const bgClass = colorStyles[color].coloredBackground
+        const borderClass = colorStyles[color].coloredBorder
+        return `${bgClass} border ${borderClass}`
+      }
+    })(),
+  }
+
+  const paddings = {
+    none: '',
+    tight: 'p-2',
+    normal: 'p-4',
+    comfortable: 'p-6',
+    spacious: 'p-8',
+  }
+
+  const radiuses = {
+    none: '',
+    small: 'rounded-lg',
+    normal: 'rounded-xl',
+    large: 'rounded-2xl',
+  }
+
+  const fullWidthClass = fullWidth ? 'w-full' : ''
+  const disabledStyles = disabled ? 'opacity-50 cursor-not-allowed' : ''
+
+  return composeClasses(
+    base,
+    variants[variant],
+    paddings[padding],
+    radiuses[radius],
+    fullWidthClass,
+    disabledStyles,
+    className
+  )
+}

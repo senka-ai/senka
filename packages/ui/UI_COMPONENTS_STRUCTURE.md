@@ -46,6 +46,7 @@ packages/ui/src/lib/components/
 │   ├── Accordion.svelte
 │   ├── Card.svelte
 │   ├── CardHorizontal.svelte
+│   ├── Container.svelte
 │   ├── Divider.svelte
 │   ├── List.svelte
 │   ├── ListItem.svelte
@@ -151,6 +152,8 @@ Structural components that organize and present content in organized patterns.
 **Card** - Cards are containers that group information about a subject. Cards can contain images, text, tags, call to actions, links, descriptions, icons, etc. Available in multiple variants with configurable elements like icons, visuals, tags, titles, descriptions, and buttons.
 
 **CardHorizontal** - Horizontal layout variant of the Card component displaying content in side-by-side format with title, subtitle, and optional action elements.
+
+**Container** _(LAYOUT)_ - A simple, semantic container component for general content containment. Provides flexible styling options with semantic color support, configurable padding, border radius, and three variants (default with subtle background, elevated with shadow, bordered with visible border). Unlike Card components, Container is purely for structural organization without built-in features like titles, images, or actions. Supports five semantic colors (neutral, highlight, success, warning, error) for backgrounds and borders, making it ideal for alerts, status messages, form sections, and content grouping. Features responsive design with full-width option and standard accessibility support.
 
 **Divider** _(CONTENT)_ - A divider can visually separate elements in the UI. Simple visual separator with no configurable properties.
 

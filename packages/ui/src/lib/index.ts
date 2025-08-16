@@ -38,6 +38,7 @@ export { default as Tabs } from './components/controls/Tabs.svelte'
 // Layout Components
 export { default as Card } from './components/layout/Card.svelte'
 export { default as CardHorizontal } from './components/layout/CardHorizontal.svelte'
+export { default as Container } from './components/layout/Container.svelte'
 export { default as Divider } from './components/layout/Divider.svelte'
 export { default as List } from './components/layout/List.svelte'
 export { default as ListItem } from './components/layout/ListItem.svelte'

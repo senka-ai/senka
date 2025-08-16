@@ -88,6 +88,7 @@ Import the UI library styles in your main CSS file:
 **Note:** This uses the same syntax as external consumers! The monorepo Vite configuration includes specific aliases to resolve `@senka-ai/ui/styles` to the built CSS file.
 
 The UI library's styles include:
+
 - Google Fonts (Inter font family)
 - Tailwind CSS
 - All color definitions and CSS custom properties
