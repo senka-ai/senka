@@ -18,11 +18,11 @@ RELEVANT FILES: packages/layout-engine/src/lib/index.ts, packages/ui/src/lib/ind
   <meta name="description" content={description} />
 </svelte:head>
 
-<main class="min-h-screen bg-background">
-  <div class="max-w-4xl mx-auto px-6 py-12">
-    <header class="text-center mb-12">
+<main class="bg-background min-h-screen">
+  <div class="mx-auto max-w-4xl px-6 py-12">
+    <header class="mb-12 text-center">
       <h1 class="text-h1 text-primary mb-4">{showcaseTitle}</h1>
-      <p class="text-body-l text-secondary max-w-2xl mx-auto">
+      <p class="text-body-l text-secondary mx-auto max-w-2xl">
         {description}. This is a barebones package ready for layout engine integration.
       </p>
       <div class="mt-6">
@@ -31,20 +31,20 @@ RELEVANT FILES: packages/layout-engine/src/lib/index.ts, packages/ui/src/lib/ind
     </header>
 
     <section class="space-y-8">
-      <div class="space-y-4 p-6 bg-surface border-2 border-default rounded-xl">
+      <div class="bg-surface border-default space-y-4 rounded-xl border-2 p-6">
         <h2 class="text-h3 text-primary">Ready for Layout Engine</h2>
         <p class="text-body-m text-secondary">
-          This package is configured and ready to showcase layout engine components.
-          The project structure follows Senka standards with proper UI library integration.
+          This package is configured and ready to showcase layout engine components. The project structure follows Senka
+          standards with proper UI library integration.
         </p>
-        
-        <div class="flex gap-3 mt-6">
-          <Button variant="primary" onclick={() => window.location.href = '/stack-demo'}>
+
+        <div class="mt-6 flex gap-3">
+          <Button variant="primary" onclick={() => (window.location.href = '/stack-demo')}>
             {#snippet children()}
               Try Stack Demo
             {/snippet}
           </Button>
-          <Button variant="primary" onclick={() => window.location.href = '/row-demo'}>
+          <Button variant="primary" onclick={() => (window.location.href = '/row-demo')}>
             {#snippet children()}
               Try Row Demo
             {/snippet}
@@ -57,7 +57,7 @@ RELEVANT FILES: packages/layout-engine/src/lib/index.ts, packages/ui/src/lib/ind
         </div>
       </div>
 
-      <div class="space-y-4 p-6 bg-surface border-2 border-default rounded-xl">
+      <div class="bg-surface border-default space-y-4 rounded-xl border-2 p-6">
         <h2 class="text-h3 text-primary">Package Configuration</h2>
         <ul class="text-body-m text-secondary space-y-2">
           <li>✅ UI library integration configured</li>

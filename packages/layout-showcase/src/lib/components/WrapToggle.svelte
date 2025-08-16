@@ -7,15 +7,15 @@ RELEVANT FILES: packages/layout-engine/src/lib/core/arrangements/row.ts, package
 
 <script lang="ts">
   import { Button } from '@senka-ai/ui'
-  
+
   interface Props {
     value: boolean
     onchange?: (newWrap: boolean) => void
     disabled?: boolean
   }
-  
+
   let { value, onchange, disabled = false }: Props = $props()
-  
+
   function toggleWrap() {
     if (disabled) return
     const newWrap = !value
@@ -25,17 +25,13 @@ RELEVANT FILES: packages/layout-engine/src/lib/core/arrangements/row.ts, package
 
 <div class="flex items-center gap-3">
   <span class="text-body-s text-secondary font-medium">Wrap:</span>
-  
-  <Button
-    variant="secondary"
-    {disabled}
-    onclick={toggleWrap}
-  >
+
+  <Button variant="secondary" {disabled} onclick={toggleWrap}>
     {#snippet children()}
       {value ? 'Enabled' : 'Disabled'}
     {/snippet}
   </Button>
-  
+
   <span class="text-body-xs text-tertiary">
     {value ? 'Items wrap to new lines when needed' : 'Items stay on single line'}
   </span>

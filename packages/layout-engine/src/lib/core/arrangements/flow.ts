@@ -15,11 +15,11 @@ export class FlowArrangement extends BaseArrangement {
     }
 
     // Apply alignment, spacing, and size behavior
-    css = { 
-      ...css, 
+    css = {
+      ...css,
       ...this.getAlignmentCSS(container),
       ...this.getSpacingCSS(container),
-      ...this.getSizeBehaviorCSS(container)
+      ...this.getSizeBehaviorCSS(container),
     }
 
     // Set defaults for flow behavior if not specified

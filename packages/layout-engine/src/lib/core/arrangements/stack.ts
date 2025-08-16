@@ -17,11 +17,11 @@ export class StackArrangement extends BaseArrangement {
     }
 
     // Apply alignment, spacing, and size behavior
-    css = { 
-      ...css, 
+    css = {
+      ...css,
       ...this.getAlignmentCSS(container),
       ...this.getSpacingCSS(container),
-      ...this.getSizeBehaviorCSS(container)
+      ...this.getSizeBehaviorCSS(container),
     }
 
     // Set default alignment if not specified

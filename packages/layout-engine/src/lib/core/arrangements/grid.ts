@@ -37,10 +37,10 @@ export class GridArrangement extends BaseArrangement {
     }
 
     // Apply spacing and size behavior
-    css = { 
-      ...css, 
+    css = {
+      ...css,
       ...this.getSpacingCSS(container),
-      ...this.getSizeBehaviorCSS(container)
+      ...this.getSizeBehaviorCSS(container),
     }
 
     // Set default gap if not specified

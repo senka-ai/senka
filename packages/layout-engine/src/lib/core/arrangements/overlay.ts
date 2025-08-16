@@ -16,10 +16,10 @@ export class OverlayArrangement extends BaseArrangement {
     }
 
     // Apply spacing and size behavior
-    css = { 
-      ...css, 
+    css = {
+      ...css,
       ...this.getSpacingCSS(container),
-      ...this.getSizeBehaviorCSS(container)
+      ...this.getSizeBehaviorCSS(container),
     }
 
     // Set z-index if specified
@@ -106,7 +106,10 @@ export class OverlayArrangement extends BaseArrangement {
     }
 
     // Validate position
-    if (container.position && !['center', 'top-left', 'top-right', 'bottom-left', 'bottom-right'].includes(container.position)) {
+    if (
+      container.position &&
+      !['center', 'top-left', 'top-right', 'bottom-left', 'bottom-right'].includes(container.position)
+    ) {
       return false
     }
 
@@ -117,5 +120,4 @@ export class OverlayArrangement extends BaseArrangement {
 
     return true
   }
-
 }

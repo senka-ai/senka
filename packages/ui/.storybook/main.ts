@@ -25,13 +25,13 @@ const config: StorybookConfig = {
     const { resolve } = await import('path')
     const { fileURLToPath } = await import('url')
     const { dirname } = await import('path')
-    
+
     // Get __dirname equivalent in ESM
     const __filename = fileURLToPath(import.meta.url)
     const __dirname = dirname(__filename)
-    
+
     config.plugins?.push(tailwindcss())
-    
+
     // Add path aliases for Storybook (needed because Storybook runs its own Vite instance)
     config.resolve = config.resolve || {}
     config.resolve.alias = {
@@ -42,7 +42,7 @@ const config: StorybookConfig = {
       '@type': resolve(__dirname, '../src/lib/type'),
       '@styles': resolve(__dirname, '../src/styles'),
     }
-    
+
     return config
   },
 }

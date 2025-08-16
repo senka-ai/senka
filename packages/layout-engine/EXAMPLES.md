@@ -13,10 +13,10 @@ const stackLayout = {
   id: 'main-content',
   type: 'stack',
   direction: 'vertical',
-  gap: 'normal',        // 16px
+  gap: 'normal', // 16px
   padding: 'comfortable', // 24px
   align: 'stretch',
-  justify: 'packed'
+  justify: 'packed',
 }
 
 const css = engine.generateCSS(stackLayout)
@@ -31,10 +31,10 @@ const rowLayout = {
   type: 'row',
   wrap: true,
   fillContainer: true,
-  gap: 'cozy',          // 8px
-  padding: 'normal',    // 16px
+  gap: 'cozy', // 8px
+  padding: 'normal', // 16px
   justify: 'space-between',
-  align: 'center'
+  align: 'center',
 }
 
 const css = engine.generateCSS(rowLayout)
@@ -48,7 +48,7 @@ const gridLayout = {
   id: 'product-grid',
   type: 'grid',
   columns: 3,
-  gap: 'normal',        // 16px
+  gap: 'normal', // 16px
   fillContainer: true,
   constraints: {
     horizontal: { width: 'fill', height: 'hug' },
@@ -67,8 +67,8 @@ const responsiveLayout = {
   id: 'hero-section',
   type: 'row',
   fillContainer: true,
-  gap: 'spacious',      // 32px
-  padding: 'spacious',  // 32px
+  gap: 'spacious', // 32px
+  padding: 'spacious', // 32px
   justify: 'center',
   align: 'center',
   responsive: {
@@ -76,8 +76,8 @@ const responsiveLayout = {
       mobile: {
         arrangement: { type: 'stack', direction: 'vertical' },
         spacing: {
-          gap: 'comfortable',  // 24px on mobile
-          padding: 'normal',   // 16px on mobile
+          gap: 'comfortable', // 24px on mobile
+          padding: 'normal', // 16px on mobile
         },
       },
     },
@@ -234,7 +234,7 @@ const dashboardLayout = {
       gap: 'normal',
       padding: 'normal',
       justify: 'space-between',
-      align: 'center'
+      align: 'center',
     },
     // Main content area
     {

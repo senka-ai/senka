@@ -145,27 +145,27 @@ export abstract class BaseArrangement {
     if (typeof value === 'string') {
       return `${this.getSpacingScaleValue(value)}px`
     }
-    
+
     // PaddingValue object
     const { top, right, bottom, left, all } = value
-    
+
     if (all) {
       return `${getSpacingValue(all)}px`
     }
-    
+
     const padding = []
     if (top) padding.push(`${getSpacingValue(top)}px`)
     else padding.push('0')
-    
+
     if (right) padding.push(`${getSpacingValue(right)}px`)
     else padding.push('0')
-    
+
     if (bottom) padding.push(`${getSpacingValue(bottom)}px`)
     else padding.push('0')
-    
+
     if (left) padding.push(`${getSpacingValue(left)}px`)
     else padding.push('0')
-    
+
     return padding.join(' ')
   }
 

@@ -59,7 +59,9 @@ packages/layout-showcase/
 ## Available Demos
 
 ### Stack Demo (`/stack-demo`)
+
 Interactive demonstration of the Stack arrangement with:
+
 - **Direction Control** - Switch between vertical and horizontal stacking
 - **Spacing Control** - Select from semantic spacing scales (tight, normal, spacious, etc.)
 - **Alignment Control** - Choose cross-axis alignment (start, center, end, stretch)
@@ -69,7 +71,9 @@ Interactive demonstration of the Stack arrangement with:
 ### Reusable Components
 
 #### `PropertyPanel.svelte`
+
 Container component for organizing demo controls:
+
 ```svelte
 <PropertyPanel title="Stack Properties" description="Adjust settings">
   <!-- Controls go here -->
@@ -77,25 +81,33 @@ Container component for organizing demo controls:
 ```
 
 #### `DirectionToggle.svelte`
+
 Toggle for layout direction:
+
 ```svelte
 <DirectionToggle value={direction} onchange={handleDirectionChange} />
 ```
 
 #### `SpacingSlider.svelte`
+
 Semantic spacing selector:
+
 ```svelte
 <SpacingSlider value={spacing} onchange={handleSpacingChange} />
 ```
 
 #### `AlignmentPicker.svelte`
+
 Visual alignment picker:
+
 ```svelte
 <AlignmentPicker value={alignment} onchange={handleAlignmentChange} />
 ```
 
 #### `CSSDisplay.svelte`
+
 CSS output with copy functionality:
+
 ```svelte
 <CSSDisplay css={generatedCSS} title="Generated CSS" variant="success" />
 ```
@@ -103,6 +115,7 @@ CSS output with copy functionality:
 ## Development
 
 ### Setup
+
 ```bash
 # Install dependencies
 yarn install
@@ -114,6 +127,7 @@ yarn dev
 ```
 
 ### Build
+
 ```bash
 # Build for production
 yarn build
@@ -123,6 +137,7 @@ yarn preview
 ```
 
 ### Type Checking
+
 ```bash
 # Check TypeScript
 yarn typecheck
@@ -136,25 +151,28 @@ yarn check
 The showcase demonstrates the new **flattened schema** of the layout engine:
 
 ### Before (Old Schema)
+
 ```typescript
 // Required 'as const' assertions
 const layout = {
   arrangement: { type: 'stack' as const },
-  autoLayout: { mode: 'fill-container' as const }
+  autoLayout: { mode: 'fill-container' as const },
 }
 ```
 
 ### After (New Schema)
+
 ```typescript
 // Clean, intuitive API
 const layout = {
   type: 'stack',
   fillContainer: true,
-  gap: 'normal'
+  gap: 'normal',
 }
 ```
 
 ### Example Implementation
+
 ```typescript
 // Create layout configuration
 const testContainer = {
@@ -163,7 +181,7 @@ const testContainer = {
   direction: 'vertical',
   fillContainer: true,
   gap: 'normal',
-  align: 'stretch'
+  align: 'stretch',
 }
 
 // Generate CSS
@@ -184,7 +202,7 @@ const css = stackArrangement.toCSS(testContainer)
 The showcase is designed to easily accommodate new arrangement types:
 
 - **Row Demo** - Horizontal layouts with wrapping
-- **Grid Demo** - Multi-column grid layouts  
+- **Grid Demo** - Multi-column grid layouts
 - **Flow Demo** - Text-like flowing elements
 - **Overlay Demo** - Layered positioning
 - **Frame Demo** - Container arrangements

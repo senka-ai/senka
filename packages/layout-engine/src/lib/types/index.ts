@@ -183,30 +183,30 @@ export interface OverlayConfig {
 export interface LayoutContainer {
   id: ElementId
   type: ArrangementType
-  
+
   // Layout properties (formerly in arrangement)
   direction?: Direction
   wrap?: boolean
   reverse?: boolean
-  
+
   // Size behavior (replaces autoLayout.mode)
-  fillContainer?: boolean  // defaults to false (hug-contents)
-  fixed?: boolean         // defaults to false
-  
+  fillContainer?: boolean // defaults to false (hug-contents)
+  fixed?: boolean // defaults to false
+
   // Spacing (direct properties from autoLayout)
   gap?: SpacingValue | SpacingScale | number
   padding?: PaddingValue | SpacingScale | number
-  
+
   // Alignment (direct properties from autoLayout)
-  align?: Alignment        // counterAxis alignment
-  justify?: Distribution   // primaryAxis distribution
-  
+  align?: Alignment // counterAxis alignment
+  justify?: Distribution // primaryAxis distribution
+
   // Type-specific properties
-  columns?: number | 'auto'  // grid
-  rows?: number | 'auto'     // grid
-  position?: 'center' | 'top-left' | 'top-right' | 'bottom-left' | 'bottom-right'  // overlay
-  zIndex?: number           // overlay
-  
+  columns?: number | 'auto' // grid
+  rows?: number | 'auto' // grid
+  position?: 'center' | 'top-left' | 'top-right' | 'bottom-left' | 'bottom-right' // overlay
+  zIndex?: number // overlay
+
   // Advanced features (unchanged)
   constraints?: ConstraintConfig
   relationships?: RelationshipConfig

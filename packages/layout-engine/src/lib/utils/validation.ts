@@ -1,10 +1,4 @@
-import type {
-  LayoutContainer,
-  ValidationResult,
-  ValidationError,
-  ValidationWarning,
-  SpacingValue,
-} from '$lib/types'
+import type { LayoutContainer, ValidationResult, ValidationError, ValidationWarning, SpacingValue } from '$lib/types'
 
 /**
  * Validate a complete layout container

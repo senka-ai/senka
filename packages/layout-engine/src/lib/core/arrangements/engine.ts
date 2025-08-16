@@ -131,9 +131,8 @@ class PlatformOptimizer {
         currentValue = this.getSpacingValue(container.gap)
       } else {
         // SpacingValue object
-        currentValue = container.gap.scale === 'custom' 
-          ? container.gap.custom || 16
-          : this.getSpacingValue(container.gap.scale)
+        currentValue =
+          container.gap.scale === 'custom' ? container.gap.custom || 16 : this.getSpacingValue(container.gap.scale)
       }
 
       optimized.gap = Math.max(currentValue * 1.5, 16)

@@ -9,6 +9,7 @@ This document outlines the step-by-step development plan for completing the `@se
 ### Layout Engine (`@senka-ai/layout-engine`)
 
 **Completed:**
+
 - Basic package structure and configuration
 - Core type definitions in `types/index.ts`
 - Basic arrangement implementations (Stack, Row, Grid, Flow, Frame, Overlay)
@@ -17,6 +18,7 @@ This document outlines the step-by-step development plan for completing the `@se
 - Package build configuration
 
 **Needs Implementation:**
+
 - Auto-layout system with fill/hug/fixed modes
 - Constraint solver system
 - Spacing system with semantic scales
@@ -35,6 +37,7 @@ This document outlines the step-by-step development plan for completing the `@se
 ### Phase 1: Complete Core Layout Engine (Week 1)
 
 #### 1.1 Auto-Layout System
+
 - [ ] Implement auto-layout modes (fixed, hug-contents, fill-container)
 - [ ] Add primary axis alignment (packed, space-between, center)
 - [ ] Add counter axis alignment (start, center, end, stretch)
@@ -42,6 +45,7 @@ This document outlines the step-by-step development plan for completing the `@se
 - [ ] Test with all arrangement types
 
 #### 1.2 Constraint System
+
 - [ ] Create PinConstraint interface implementation
 - [ ] Build ConstraintSolver class
 - [ ] Add position resolution logic
@@ -50,6 +54,7 @@ This document outlines the step-by-step development plan for completing the `@se
 - [ ] Add constraint validation and conflict detection
 
 #### 1.3 Spacing System
+
 - [ ] Implement semantic spacing scale (none, tight, cozy, normal, comfortable, spacious)
 - [ ] Create spacing utilities
 - [ ] Add responsive spacing adjustments
@@ -59,12 +64,14 @@ This document outlines the step-by-step development plan for completing the `@se
 ### Phase 2: Responsive System (Week 2)
 
 #### 2.1 Breakpoint Management
+
 - [ ] Create default breakpoints (mobile: 640px, tablet: 1024px, desktop: 1440px)
 - [ ] Implement custom breakpoint support
 - [ ] Add breakpoint validation
 - [ ] Create breakpoint utilities
 
 #### 2.2 Responsive Rules Engine
+
 - [ ] Implement automatic mobile optimization
 - [ ] Create rule override system per breakpoint
 - [ ] Add container query support
@@ -72,6 +79,7 @@ This document outlines the step-by-step development plan for completing the `@se
 - [ ] Add platform-specific optimizations
 
 #### 2.3 Mobile-First Optimization
+
 - [ ] Auto-stack rows on mobile
 - [ ] Touch-friendly spacing adjustments
 - [ ] Grid simplification for small screens
@@ -81,6 +89,7 @@ This document outlines the step-by-step development plan for completing the `@se
 ### Phase 3: CSS Generation (Week 3)
 
 #### 3.1 CSS Generator
+
 - [ ] Create modular CSS generator
 - [ ] Add vendor prefixes where needed
 - [ ] Implement CSS optimization
@@ -88,6 +97,7 @@ This document outlines the step-by-step development plan for completing the `@se
 - [ ] Generate reusable utility classes
 
 #### 3.2 Browser Compatibility
+
 - [ ] Add fallback generation for older browsers
 - [ ] Create polyfill detection
 - [ ] Add feature detection
@@ -96,6 +106,7 @@ This document outlines the step-by-step development plan for completing the `@se
 ### Phase 4: Create Layout Showcase App (Week 4-5)
 
 #### 4.1 Showcase App Setup (Following ui-showcase patterns)
+
 - [ ] Create new SvelteKit app in `packages/layout-showcase`
 - [ ] Use exact dependency versions from ui-showcase:
   - `@sveltejs/adapter-auto`: 6.0.1
@@ -118,6 +129,7 @@ This document outlines the step-by-step development plan for completing the `@se
 - [ ] Configure Tailwind CSS v4 with @tailwindcss/vite plugin
 
 #### 4.2 Core Showcase Features
+
 - [ ] Interactive arrangement selector
 - [ ] Live preview panel with device frames
 - [ ] Property controls panel
@@ -125,34 +137,30 @@ This document outlines the step-by-step development plan for completing the `@se
 - [ ] Responsive preview modes
 
 #### 4.3 Arrangement Demonstrations
+
 - [ ] **Stack Arrangement** showcase
   - Vertical stacking examples
   - Spacing controls
   - Alignment options
   - Auto-layout modes
-  
 - [ ] **Row Arrangement** showcase
   - Horizontal layouts
   - Wrap behavior
   - Distribution options
   - Responsive stacking
-  
 - [ ] **Grid Arrangement** showcase
   - Grid templates
   - Gap controls
   - Item placement
   - Responsive grid changes
-  
 - [ ] **Flow Arrangement** showcase
   - Flex-wrap behavior
   - Direction controls
   - Alignment options
-  
 - [ ] **Frame Arrangement** showcase
   - Fixed positioning
   - Aspect ratio maintenance
   - Nested frames
-  
 - [ ] **Overlay Arrangement** showcase
   - Z-index management
   - Positioning options
@@ -161,6 +169,7 @@ This document outlines the step-by-step development plan for completing the `@se
 ### Phase 5: Advanced Showcase Features (Week 6)
 
 #### 5.1 Auto-Layout Demonstrations
+
 - [ ] Fill mode examples
 - [ ] Hug mode examples
 - [ ] Fixed mode examples
@@ -168,6 +177,7 @@ This document outlines the step-by-step development plan for completing the `@se
 - [ ] Nested auto-layout
 
 #### 5.2 Constraint System Showcase
+
 - [ ] Pin constraints demo
 - [ ] Center constraints demo
 - [ ] Relative constraints demo
@@ -175,12 +185,14 @@ This document outlines the step-by-step development plan for completing the `@se
 - [ ] Min/max size constraints
 
 #### 5.3 Responsive Behavior
+
 - [ ] Breakpoint transitions
 - [ ] Mobile optimization demos
 - [ ] Container query examples
 - [ ] Platform-specific layouts
 
 #### 5.4 Spacing System
+
 - [ ] Semantic spacing examples
 - [ ] Auto-spacing demonstrations
 - [ ] Touch-friendly adjustments
@@ -189,6 +201,7 @@ This document outlines the step-by-step development plan for completing the `@se
 ### Phase 6: Visual Controls & Integration (Week 7)
 
 #### 6.1 Visual Control Components
+
 - [ ] ArrangementPicker component
 - [ ] SpacingSlider component
 - [ ] AlignmentGrid component
@@ -197,6 +210,7 @@ This document outlines the step-by-step development plan for completing the `@se
 - [ ] ResponsiveRulesPanel component
 
 #### 6.2 Showcase Integration
+
 - [ ] Integrate visual controls into showcase
 - [ ] Add real-time preview updates
 - [ ] Implement undo/redo system
@@ -206,18 +220,21 @@ This document outlines the step-by-step development plan for completing the `@se
 ### Phase 7: Polish & Documentation (Week 8)
 
 #### 7.1 Testing
+
 - [ ] Unit tests for all core functionality
 - [ ] Visual regression tests for showcase
 - [ ] Performance benchmarks
 - [ ] Cross-browser testing
 
 #### 7.2 Documentation
+
 - [ ] API documentation
 - [ ] Usage examples
 - [ ] Best practices guide
 - [ ] Migration guide
 
 #### 7.3 Performance Optimization
+
 - [ ] CSS output optimization
 - [ ] Layout calculation performance
 - [ ] Render optimization
@@ -270,7 +287,7 @@ packages/layout-showcase/
 **CRITICAL**: Before using any Senka UI component, you MUST:
 
 1. **Read Component Source**: Always read the full source file of each component to understand its interface, props, and usage patterns
-2. **Consult UI_COMPONENTS_STRUCTURE.md**: Review component categories, purposes, and proper usage guidelines  
+2. **Consult UI_COMPONENTS_STRUCTURE.md**: Review component categories, purposes, and proper usage guidelines
 3. **Follow Semantic Usage**: Use components according to their intended purpose (e.g., Button for actions, TextField for input, Card for content grouping)
 
 ### For Layout Engine
@@ -293,13 +310,15 @@ packages/layout-showcase/
 ## Success Metrics
 
 ### Layout Engine
+
 - [ ] 100% TypeScript coverage
-- [ ] >90% test coverage
+- [ ] > 90% test coverage
 - [ ] <2KB average CSS output
 - [ ] <16ms layout calculation time
 - [ ] Zero runtime dependencies
 
 ### Layout Showcase
+
 - [ ] All arrangement types demonstrated
 - [ ] All auto-layout modes showcased
 - [ ] All constraint types visible
@@ -317,12 +336,14 @@ packages/layout-showcase/
 ## Communication Protocol
 
 After implementing each sub-feature:
+
 1. Show working demonstration in showcase
 2. Wait for confirmation before proceeding
 3. Make adjustments based on feedback
 4. Document any changes to plan
 
 This iterative approach ensures:
+
 - Quality at each step
 - Early feedback integration
 - Manageable conversation history

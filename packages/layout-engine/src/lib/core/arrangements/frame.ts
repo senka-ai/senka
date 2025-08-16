@@ -20,20 +20,20 @@ export class FrameArrangement extends BaseArrangement {
     if (container.direction || container.align || container.justify) {
       css['display'] = 'flex'
       css['flex-direction'] = container.direction === 'horizontal' ? 'row' : 'column'
-      
+
       // Apply alignment, spacing, and size behavior
-      css = { 
-        ...css, 
+      css = {
+        ...css,
         ...this.getAlignmentCSS(container),
         ...this.getSpacingCSS(container),
-        ...this.getSizeBehaviorCSS(container)
+        ...this.getSizeBehaviorCSS(container),
       }
     } else {
       // Basic frame with spacing and size behavior only
-      css = { 
-        ...css, 
+      css = {
+        ...css,
         ...this.getSpacingCSS(container),
-        ...this.getSizeBehaviorCSS(container)
+        ...this.getSizeBehaviorCSS(container),
       }
     }
 

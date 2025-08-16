@@ -8,15 +8,15 @@ RELEVANT FILES: packages/layout-engine/src/lib/types/index.ts, packages/ui/src/l
 <script lang="ts">
   import { Button } from '@senka-ai/ui'
   import { ArrowDownIcon, ArrowRightIcon } from '@senka-ai/ui/icons'
-  
+
   interface Props {
     value: 'vertical' | 'horizontal'
     onchange?: (newDirection: 'vertical' | 'horizontal') => void
     disabled?: boolean
   }
-  
+
   let { value, onchange, disabled = false }: Props = $props()
-  
+
   function toggleDirection() {
     if (disabled) return
     const newDirection = value === 'vertical' ? 'horizontal' : 'vertical'
@@ -26,12 +26,8 @@ RELEVANT FILES: packages/layout-engine/src/lib/types/index.ts, packages/ui/src/l
 
 <div class="flex items-center gap-3">
   <span class="text-body-s text-secondary font-medium">Direction:</span>
-  
-  <Button
-    variant="secondary"
-    {disabled}
-    onclick={toggleDirection}
-  >
+
+  <Button variant="secondary" {disabled} onclick={toggleDirection}>
     {#snippet leftIcon(size)}
       {#if value === 'vertical'}
         <ArrowDownIcon {size} />
@@ -43,7 +39,7 @@ RELEVANT FILES: packages/layout-engine/src/lib/types/index.ts, packages/ui/src/l
       {value === 'vertical' ? 'Vertical' : 'Horizontal'}
     {/snippet}
   </Button>
-  
+
   <span class="text-body-xs text-tertiary">
     {value === 'vertical' ? 'Stack items top to bottom' : 'Stack items left to right'}
   </span>

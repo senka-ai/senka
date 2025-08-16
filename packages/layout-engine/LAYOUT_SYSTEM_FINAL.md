@@ -12,6 +12,7 @@ The Senka Layout Engine is a **data-driven layout transformation system** that p
 **Last Updated**: January 2025
 
 ### What's Built
+
 - Core type system with comprehensive interfaces
 - Six arrangement types (Stack, Row, Grid, Flow, Overlay, Frame)
 - ArrangementEngine with platform optimization
@@ -19,6 +20,7 @@ The Senka Layout Engine is a **data-driven layout transformation system** that p
 - Foundation for auto-layout and constraints
 
 ### What's Next
+
 - Complete auto-layout implementation
 - Build constraint solver system
 - Add responsive breakpoint management
@@ -49,6 +51,7 @@ Configuration Object → Validation → Optimization → CSS Generation
 ```
 
 Every input is a JSON-serializable configuration object that can be:
+
 - Stored in databases without transformation
 - Transmitted over networks efficiently
 - Modified through property panels in visual tools
@@ -63,30 +66,30 @@ The configuration schema is designed for simplicity and serializability:
 interface LayoutContainer {
   id: string // Unique identifier for the container
   type: 'flow' | 'stack' | 'row' | 'grid' | 'overlay' | 'frame'
-  
+
   // Layout properties (direct access)
   direction?: 'horizontal' | 'vertical'
   wrap?: boolean
   reverse?: boolean
-  
+
   // Size behavior
-  fillContainer?: boolean  // defaults to false (hug-contents)
-  fixed?: boolean         // defaults to false
-  
+  fillContainer?: boolean // defaults to false (hug-contents)
+  fixed?: boolean // defaults to false
+
   // Spacing (direct properties)
-  gap?: SpacingScale | number  // 'normal' | 'tight' | 'spacious' | 16
+  gap?: SpacingScale | number // 'normal' | 'tight' | 'spacious' | 16
   padding?: SpacingScale | number | PaddingObject
-  
+
   // Alignment (direct properties)
-  align?: 'start' | 'center' | 'end' | 'stretch'  // cross-axis
-  justify?: 'packed' | 'space-between' | 'center' | 'space-around'  // main-axis
-  
+  align?: 'start' | 'center' | 'end' | 'stretch' // cross-axis
+  justify?: 'packed' | 'space-between' | 'center' | 'space-around' // main-axis
+
   // Type-specific properties
-  columns?: number | 'auto'  // grid
-  rows?: number | 'auto'     // grid
-  position?: 'center' | 'top-left' | 'top-right' | 'bottom-left' | 'bottom-right'  // overlay
-  zIndex?: number           // overlay
-  
+  columns?: number | 'auto' // grid
+  rows?: number | 'auto' // grid
+  position?: 'center' | 'top-left' | 'top-right' | 'bottom-left' | 'bottom-right' // overlay
+  zIndex?: number // overlay
+
   // Advanced features (optional complexity)
   constraints?: ConstraintConfig
   relationships?: RelationshipConfig
@@ -161,22 +164,22 @@ class LayoutEngine {
   process(config: LayoutContainer, options: ProcessOptions): Output {
     // Stage 1: Validation
     const validated = this.validator.validate(config)
-    
+
     // Stage 2: Normalization
     const normalized = this.normalizer.normalize(validated)
-    
+
     // Stage 3: Optimization
     const optimized = this.optimizer.optimize(normalized, options)
-    
+
     // Stage 4: Platform-specific generation
     return this.generator.generate(optimized, options.target)
   }
-  
+
   // Support for different output targets
   generators = {
     css: new CSSGenerator(),
     reactNative: new ReactNativeGenerator(),
-    flutter: new FlutterGenerator()
+    flutter: new FlutterGenerator(),
   }
 }
 
@@ -287,15 +290,15 @@ export const layout = {
     type: 'stack',
     direction: 'vertical',
     gap: 'normal',
-    ...options
+    ...options,
   }),
-  
+
   grid: (id: string, columns: number | 'auto' = 'auto'): LayoutContainer => ({
     id,
     type: 'grid',
     columns,
-    gap: 'normal'
-  })
+    gap: 'normal',
+  }),
 }
 
 // Usage remains serializable - no 'as const' needed!
@@ -304,6 +307,7 @@ const config = layout.stack('main', { direction: 'horizontal' })
 ```
 
 These factories:
+
 - Return plain, serializable objects
 - Provide type safety automatically
 - Apply sensible defaults
@@ -376,6 +380,7 @@ class ArrangementEngine {
 ```
 
 Key principles:
+
 - Pure functions with no side effects
 - Input configurations are never mutated
 - Output is always serializable
@@ -440,15 +445,15 @@ The engine provides clear integration points for platform components:
 interface LayoutEngineAPI {
   // Core transformation
   process(config: LayoutContainer, options?: ProcessOptions): Output
-  
+
   // Validation and analysis
   validate(config: LayoutContainer): ValidationResult
   analyze(config: LayoutContainer): AnalysisReport
-  
+
   // Optimization suggestions
   suggest(config: LayoutContainer): Suggestion[]
   optimize(config: LayoutContainer): LayoutContainer
-  
+
   // Preview generation
   preview(config: LayoutContainer, viewport: Viewport): PreviewData
   diff(before: LayoutContainer, after: LayoutContainer): Diff
@@ -457,14 +462,14 @@ interface LayoutEngineAPI {
 // Visual Builder Integration
 class VisualBuilderAdapter {
   private engine = new LayoutEngine()
-  
+
   // Visual actions generate configuration updates
   onPropertyChange(property: string, value: any) {
     const newConfig = this.updateConfig(this.currentConfig, property, value)
     const preview = this.engine.preview(newConfig, this.viewport)
     this.renderPreview(preview)
   }
-  
+
   // Configurations are serialized for storage
   save() {
     return JSON.stringify(this.currentConfig)
@@ -474,7 +479,7 @@ class VisualBuilderAdapter {
 // AI Integration
 class AILayoutAdapter {
   private engine = new LayoutEngine()
-  
+
   // AI generates configuration objects
   generateFromPrompt(prompt: string): LayoutContainer {
     const config = this.ai.interpret(prompt)
@@ -526,14 +531,14 @@ class VisualBuilder {
     this.currentLayout = this.modifyLayout(this.currentLayout, {
       action: 'add',
       element,
-      position
+      position,
     })
-    
+
     // Generate CSS for preview
     const css = this.engine.process(this.currentLayout, { target: 'css' })
     this.updatePreview(css)
   }
-  
+
   // Save configuration to database
   save() {
     return this.storage.save(this.currentLayout) // Plain JSON
@@ -553,7 +558,7 @@ class AILayoutGenerator {
       type: 'stack',
       direction: 'vertical',
       fillContainer: true,
-      gap: 'normal'
+      gap: 'normal',
     }
   }
 }
@@ -567,7 +572,7 @@ interface Template {
   name: string
   config: LayoutContainer  // Base configuration
   variables: Variable[]    // Customizable properties
-  
+
   // Apply customizations
   customize(values: Record<string, any>): LayoutContainer {
     return applyVariables(this.config, values)
@@ -658,6 +663,7 @@ interface Template {
 ### Simplicity Through Constraints
 
 By focusing on data transformation rather than complex APIs:
+
 - **Reduced Complexity**: One way to represent layouts
 - **Clear Mental Model**: Configuration in → Styles out
 - **Testability**: Pure functions are easy to test

@@ -7,11 +7,12 @@ This document outlines the step-by-step implementation plan for the `@senka-ai/l
 ## Current Implementation Status (January 2025)
 
 ### ✅ **COMPLETED - SCHEMA REFACTOR**
+
 - **Flattened schema implementation** - No more `as const` assertions needed
 - Package structure and configuration
 - Core type definitions with **flat LayoutContainer interface**
 - **All six arrangement implementations** (Stack, Row, Grid, Flow, Frame, Overlay)
-- ArrangementEngine orchestrator with platform optimization  
+- ArrangementEngine orchestrator with platform optimization
 - **Enhanced spacing utilities** - Supports direct numbers, strings, and objects
 - CSS generation utilities
 - Build configuration (Vite, TypeScript)
@@ -19,6 +20,7 @@ This document outlines the step-by-step implementation plan for the `@senka-ai/l
 - **Validation system updated** for flat schema
 
 ### 🚧 In Progress / Future Enhancements
+
 - Constraint system (types defined, solver partially implemented)
 - Responsive system (types defined, engine partially implemented)
 - Visual control components (Svelte 5)
@@ -28,6 +30,7 @@ This document outlines the step-by-step implementation plan for the `@senka-ai/l
 - Integration with visual builder
 
 ### ❌ Deprecated / Removed
+
 - Old nested schema (arrangement.type, autoLayout object)
 - `as const` assertion requirements
 - Complex nested configuration objects
@@ -226,30 +229,30 @@ packages/layout-engine/
 export interface LayoutContainer {
   id: string
   type: 'flow' | 'stack' | 'row' | 'grid' | 'overlay' | 'frame'
-  
+
   // Layout properties (direct access)
   direction?: 'horizontal' | 'vertical'
   wrap?: boolean
   reverse?: boolean
-  
-  // Size behavior  
+
+  // Size behavior
   fillContainer?: boolean
   fixed?: boolean
-  
+
   // Spacing (direct properties)
   gap?: SpacingScale | number
   padding?: SpacingScale | number | PaddingObject
-  
+
   // Alignment (direct properties)
   align?: 'start' | 'center' | 'end' | 'stretch'
   justify?: 'packed' | 'space-between' | 'center' | 'space-around'
-  
+
   // Type-specific properties
-  columns?: number | 'auto'  // grid
-  rows?: number | 'auto'     // grid
-  position?: 'center' | 'top-left' | 'top-right' | 'bottom-left' | 'bottom-right'  // overlay
-  zIndex?: number           // overlay
-  
+  columns?: number | 'auto' // grid
+  rows?: number | 'auto' // grid
+  position?: 'center' | 'top-left' | 'top-right' | 'bottom-left' | 'bottom-right' // overlay
+  zIndex?: number // overlay
+
   // Advanced features (optional)
   constraints?: ConstraintConfig
   relationships?: RelationshipConfig
@@ -386,7 +389,7 @@ export class ResponsiveManager {
 
 - [x] **Intuitive API** - `{ type: 'stack', gap: 'normal' }`
 - [x] **TypeScript inference** - No type casting required
-- [x] **Layout showcase demo** working with new API  
+- [x] **Layout showcase demo** working with new API
 - [ ] Arrangement selection < 1 second (future)
 - [ ] Live preview updates < 16ms (future)
 - [ ] Visual controls intuitive (future)
@@ -395,7 +398,7 @@ export class ResponsiveManager {
 
 1. **✅ Schema Refactor**: Flattened LayoutContainer interface
 2. **✅ Core Implementation**: All six arrangement types updated
-3. **✅ Enhanced Spacing**: Direct number/string/object support  
+3. **✅ Enhanced Spacing**: Direct number/string/object support
 4. **✅ CSS Generation**: Updated for flat properties
 5. **✅ Validation**: Updated for new schema
 6. **✅ Documentation**: All examples updated to new API

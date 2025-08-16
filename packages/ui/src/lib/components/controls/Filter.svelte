@@ -6,13 +6,7 @@
 <script lang="ts">
   import { FilterIcon } from '@icons'
   import Badge from '@components/feedback/Badge.svelte'
-  import type {
-    BaseProps,
-    SizedComponent,
-    VariantComponent,
-    ClickHandler,
-    ChildrenComponent,
-  } from '@type/component'
+  import type { BaseProps, SizedComponent, VariantComponent, ClickHandler, ChildrenComponent } from '@type/component'
   import { createKeyboardHandler, KeySets } from '@utils/events'
   import { createFilterStyles } from '@utils/styles'
   import { IconRenderer } from '@utils/rendering'
