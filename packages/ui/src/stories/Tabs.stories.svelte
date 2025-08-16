@@ -1,7 +1,7 @@
 <script module lang="ts">
   import { defineMeta } from '@storybook/addon-svelte-csf'
   import Tabs from '@components/controls/Tabs.svelte'
-  import Card from '@components/layout/Card.svelte'
+  import Card from '@components/content/Card.svelte'
   import TextField from '@components/forms/TextField.svelte'
   import TextArea from '@components/forms/TextArea.svelte'
   import Button from '@components/core/Button.svelte'

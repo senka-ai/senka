@@ -17,16 +17,19 @@ packages/ui/src/lib/components/
 │   ├── Button.svelte
 │   ├── IconButton.svelte
 │   └── ThemeToggle.svelte
+├── content/
+│   ├── Banner.svelte
+│   ├── Card.svelte
+│   ├── CardHorizontal.svelte
+│   └── Tag.svelte
 ├── examples/
 │   └── UtilityExample.svelte
 ├── feedback/
 │   ├── Badge.svelte
-│   ├── Banner.svelte
 │   ├── Dialog.svelte
 │   ├── Loader.svelte
 │   ├── PaginationDots.svelte
 │   ├── ProgressBar.svelte
-│   ├── Tag.svelte
 │   ├── Toast.svelte
 │   └── Tooltip.svelte
 ├── forms/
@@ -44,8 +47,6 @@ packages/ui/src/lib/components/
 │   └── Toggle.svelte
 ├── layout/
 │   ├── Accordion.svelte
-│   ├── Card.svelte
-│   ├── CardHorizontal.svelte
 │   ├── Container.svelte
 │   ├── Divider.svelte
 │   ├── List.svelte
@@ -93,13 +94,23 @@ Essential interactive elements that form the foundation of user interfaces.
 
 **ThemeToggle** - A specialized control component that allows users to switch between light and dark themes in the application.
 
+### 📄 Content
+
+Components for presenting structured information and content to users.
+
+**Banner** _(INFORMATIVE)_ - A banner displays an important and succinct message and provides actions for users. The banner can be used for notifications or to highlight specific content. They may or may not contain a supporting image.
+
+**Card** - Cards are containers that group information about a subject. Cards can contain images, text, tags, call to actions, links, descriptions, icons, etc. Available in multiple variants with configurable elements like icons, visuals, tags, titles, descriptions, and buttons.
+
+**CardHorizontal** - Horizontal layout variant of the Card component displaying content in side-by-side format with title, subtitle, and optional action elements.
+
+**Tag** _(CONTENT)_ - Use tags to label or categorise items using keywords. Available in different styles with optional left and right icons.
+
 ### 💬 Feedback
 
 Components that provide users with information, status updates, and system responses.
 
 **Badge** _(INFORMATIVE)_ - A Badge can indicate a status or notification through a small amount of information. Use the Badge to draw the user's attention to some UI component. It can carry different types of content such as a number or an icon.
-
-**Banner** _(INFORMATIVE)_ - A banner displays an important and succinct message and provides actions for users. The banner can be used for notifications or to highlight specific content. They may or may not contain a supporting image.
 
 **Dialog** _(INFORMATIVE)_ - A dialog interrupts the journey with information, details or urgent actions. A dialog has one or more actions and must inform the user of their result.
 
@@ -108,8 +119,6 @@ Components that provide users with information, status updates, and system respo
 **PaginationDots** _(PROGRESS)_ - Pagination Dots are used to indicate progress through pages. They display a series of dots where one dot represents the current active page. Features interactive navigation, keyboard support, multiple sizes, and accessibility compliance. Avoid using Pagination Dots with a very large number of pages.
 
 **ProgressBar** _(PROGRESS)_ - A progress bar is a visual representation of how the user is progressing on a certain journey. A progress bar is not interactive, but needs to be kept up to date. Available in continuous progress bar and stepped variants.
-
-**Tag** _(CONTENT)_ - Use tags to label or categorise items using keywords. Available in different styles with optional left and right icons.
 
 **Toast** _(INFORMATIVE)_ - Use a toast to provide brief feedback or notification on an operation. It should appear for a short period of time. Available in different styles (info, success, warning, error) with customizable title and description.
 
@@ -148,10 +157,6 @@ Input components that allow users to enter, select, and manipulate data.
 Structural components that organize and present content in organized patterns.
 
 **Accordion** _(CONTENT, INTERACTIVE)_ - An accordion allows the user to show and hide content sections. Features expandable/collapsible sections with title and content areas and state management.
-
-**Card** - Cards are containers that group information about a subject. Cards can contain images, text, tags, call to actions, links, descriptions, icons, etc. Available in multiple variants with configurable elements like icons, visuals, tags, titles, descriptions, and buttons.
-
-**CardHorizontal** - Horizontal layout variant of the Card component displaying content in side-by-side format with title, subtitle, and optional action elements.
 
 **Container** _(LAYOUT)_ - A simple, semantic container component for general content containment. Provides flexible styling options with semantic color support, configurable padding, border radius, and three variants (default with subtle background, elevated with shadow, bordered with visible border). Unlike Card components, Container is purely for structural organization without built-in features like titles, images, or actions. Supports five semantic colors (neutral, highlight, success, warning, error) for backgrounds and borders, making it ideal for alerts, status messages, form sections, and content grouping. Features responsive design with full-width option and standard accessibility support.
 

@@ -7,7 +7,7 @@
   import { defineMeta } from '@storybook/addon-svelte-csf'
   import LocationPin from '@components/media/LocationPin.svelte'
   import MapPlaceholder from '@components/media/MapPlaceholder.svelte'
-  import Tag from '@components/feedback/Tag.svelte'
+  import Tag from '@components/content/Tag.svelte'
   import { LocationPinIcon, PlaceholderIcon } from '@icons'
 
   const { Story } = defineMeta({

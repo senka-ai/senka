@@ -4,7 +4,7 @@
   import Button from '@components/core/Button.svelte'
   import TextField from '@components/forms/TextField.svelte'
   import Badge from '@components/feedback/Badge.svelte'
-  import Tag from '@components/feedback/Tag.svelte'
+  import Tag from '@components/content/Tag.svelte'
 
   const { Story } = defineMeta({
     title: 'Layout/Container',

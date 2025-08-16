@@ -1,8 +1,8 @@
 <script module lang="ts">
   import { defineMeta } from '@storybook/addon-svelte-csf'
   import ContentSwitcher from '@components/controls/ContentSwitcher.svelte'
-  import Card from '@components/layout/Card.svelte'
-  import CardHorizontal from '@components/layout/CardHorizontal.svelte'
+  import Card from '@components/content/Card.svelte'
+  import CardHorizontal from '@components/content/CardHorizontal.svelte'
   import Badge from '@components/feedback/Badge.svelte'
   import Button from '@components/core/Button.svelte'
   import TextField from '@components/forms/TextField.svelte'

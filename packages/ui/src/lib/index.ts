@@ -19,8 +19,6 @@ export { default as StarRating } from './components/forms/StarRating.svelte'
 
 // Feedback Components
 export { default as Badge } from './components/feedback/Badge.svelte'
-export { default as Tag } from './components/feedback/Tag.svelte'
-export { default as Banner } from './components/feedback/Banner.svelte'
 export { default as Toast } from './components/feedback/Toast.svelte'
 export { default as ProgressBar } from './components/feedback/ProgressBar.svelte'
 export { default as Dialog } from './components/feedback/Dialog.svelte'
@@ -35,9 +33,13 @@ export { default as ContentSwitcher } from './components/controls/ContentSwitche
 export { default as Stepper } from './components/controls/Stepper.svelte'
 export { default as Tabs } from './components/controls/Tabs.svelte'
 
+// Content Components
+export { default as Card } from './components/content/Card.svelte'
+export { default as CardHorizontal } from './components/content/CardHorizontal.svelte'
+export { default as Banner } from './components/content/Banner.svelte'
+export { default as Tag } from './components/content/Tag.svelte'
+
 // Layout Components
-export { default as Card } from './components/layout/Card.svelte'
-export { default as CardHorizontal } from './components/layout/CardHorizontal.svelte'
 export { default as Container } from './components/layout/Container.svelte'
 export { default as Divider } from './components/layout/Divider.svelte'
 export { default as List } from './components/layout/List.svelte'
