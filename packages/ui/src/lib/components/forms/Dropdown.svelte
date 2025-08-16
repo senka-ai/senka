@@ -72,9 +72,9 @@
 
   function selectOption(option: Option) {
     if (!option.disabled) {
-      value = option.value  // Update bindable value
-      onchange?.(option.value)  // Call onChange if provided
-      isOpen = false  // Close dropdown
+      value = option.value // Update bindable value
+      onchange?.(option.value) // Call onChange if provided
+      isOpen = false // Close dropdown
       buttonRef?.focus()
     }
   }

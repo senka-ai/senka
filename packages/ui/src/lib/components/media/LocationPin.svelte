@@ -5,13 +5,7 @@
 
 <script lang="ts">
   import { LocationPinIcon } from '@icons'
-  import type {
-    BaseProps,
-    SizedComponent,
-    VariantComponent,
-    ClickHandler,
-    InteractiveHandlers,
-  } from '@type/component'
+  import type { BaseProps, SizedComponent, VariantComponent, ClickHandler, InteractiveHandlers } from '@type/component'
   import { createKeyboardHandler, KeySets } from '@utils/events'
   import { createLocationPinStyles, createLocationPinInnerDotStyles } from '@utils/styles'
 
