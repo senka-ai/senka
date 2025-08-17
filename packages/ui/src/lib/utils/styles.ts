@@ -1073,6 +1073,10 @@ export function createContainerStyles(options: {
   color?: 'neutral' | 'highlight' | 'success' | 'warning' | 'error'
   fullWidth?: boolean
   disabled?: boolean
+  minHeight?: 'xs' | 'small' | 'medium' | 'large' | 'xl' | 'xxl' | 'preview'
+  height?: 'auto' | 'full' | 'screen' | 'xs' | 'small' | 'medium' | 'large' | 'xl'
+  minWidth?: 'xs' | 'small' | 'medium' | 'large' | 'xl' | 'xxl'
+  width?: 'auto' | 'full'
   className?: string
 }): string {
   const {
@@ -1083,6 +1087,10 @@ export function createContainerStyles(options: {
     color = 'neutral',
     fullWidth = false,
     disabled = false,
+    minHeight,
+    height,
+    minWidth,
+    width,
     className = '',
   } = options
 
@@ -1165,7 +1173,46 @@ export function createContainerStyles(options: {
     large: 'rounded-2xl',
   }
 
+  const minHeights = {
+    xs: 'min-h-16',        // 4rem = 64px
+    small: 'min-h-24',     // 6rem = 96px
+    medium: 'min-h-32',    // 8rem = 128px
+    large: 'min-h-48',     // 12rem = 192px
+    xl: 'min-h-64',        // 16rem = 256px
+    xxl: 'min-h-80',       // 20rem = 320px
+    preview: 'min-h-[20rem]', // 20rem = 320px for preview containers
+  }
+
+  const heights = {
+    auto: 'h-auto',
+    full: 'h-full',
+    screen: 'h-screen',
+    xs: 'h-16',           // 4rem = 64px
+    small: 'h-24',        // 6rem = 96px
+    medium: 'h-32',       // 8rem = 128px
+    large: 'h-48',        // 12rem = 192px
+    xl: 'h-64',           // 16rem = 256px
+  }
+
+  const minWidths = {
+    xs: 'min-w-16',        // 4rem = 64px
+    small: 'min-w-24',     // 6rem = 96px
+    medium: 'min-w-32',    // 8rem = 128px
+    large: 'min-w-48',     // 12rem = 192px
+    xl: 'min-w-64',        // 16rem = 256px
+    xxl: 'min-w-80',       // 20rem = 320px
+  }
+
+  const widths = {
+    auto: 'w-auto',
+    full: 'w-full',
+  }
+
   const fullWidthClass = fullWidth ? 'w-full' : ''
+  const minHeightClass = minHeight ? minHeights[minHeight] : ''
+  const heightClass = height ? heights[height] : ''
+  const minWidthClass = minWidth ? minWidths[minWidth] : ''
+  const widthClass = width ? widths[width] : ''
   const disabledStyles = disabled ? 'opacity-50 cursor-not-allowed' : ''
 
   return composeClasses(
@@ -1174,6 +1221,10 @@ export function createContainerStyles(options: {
     paddings[padding],
     radiuses[radius],
     fullWidthClass,
+    minHeightClass,
+    heightClass,
+    minWidthClass,
+    widthClass,
     disabledStyles,
     className
   )

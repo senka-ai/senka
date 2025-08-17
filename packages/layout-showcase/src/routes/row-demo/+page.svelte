@@ -102,10 +102,28 @@ RELEVANT FILES: packages/layout-engine/src/lib/core/arrangements/row.ts, package
 
   // Demo elements with different heights to show cross-axis alignment
   let demoElements = [
-    { id: 'item1', content: 'Short Item', height: 60 },
-    { id: 'item2', content: 'Medium Height Item', type: 'primary' as const, height: 100 },
-    { id: 'item3', content: 'Tall Item with More Content', type: 'secondary' as const, height: 140 },
-    { id: 'item4', content: 'Another Short', type: 'primary' as const, height: 80 },
+    { id: 'item1', content: 'Short Item', height: 'small' as const, minWidth: 'medium' as const },
+    {
+      id: 'item2',
+      content: 'Medium Height Item',
+      type: 'primary' as const,
+      height: 'medium' as const,
+      minWidth: 'medium' as const,
+    },
+    {
+      id: 'item3',
+      content: 'Tall Item with More Content',
+      type: 'secondary' as const,
+      height: 'large' as const,
+      minWidth: 'large' as const,
+    },
+    {
+      id: 'item4',
+      content: 'Another Short',
+      type: 'primary' as const,
+      height: 'small' as const,
+      minWidth: 'large' as const,
+    },
   ]
 </script>
 
@@ -149,16 +167,17 @@ RELEVANT FILES: packages/layout-engine/src/lib/core/arrangements/row.ts, package
         <div style={cssPropertiesToString(pageStack.toCSS(previewConfig))}>
           <h3 class="text-h4 text-primary">Live Preview</h3>
 
-          <Container variant="bordered" padding="comfortable" radius="large" style="min-height: 20rem;">
+          <Container variant="bordered" padding="comfortable" radius="large" minHeight="preview">
             {#snippet children()}
               <!-- Using layout engine generated CSS directly -->
               <div style={cssPropertiesToString(generatedCSS)} class="h-full">
-                {#each demoElements as element, i}
+                {#each demoElements as element}
                   <Container
                     variant="elevated"
                     padding="normal"
                     radius="normal"
-                    style="min-width: {120 + i * 20}px; height: {element.height}px;"
+                    height={element.height}
+                    minWidth={element.minWidth}
                   >
                     {#snippet children()}
                       <div

@@ -55,7 +55,7 @@ RELEVANT FILES: packages/layout-engine/src/lib/utils/spacing.ts, packages/ui/src
     <div style={cssPropertiesToString(row.toCSS(spacingConfig))}>
       <span class="text-body-s text-secondary font-medium">Spacing:</span>
 
-      <Container padding="none" background={false} style="min-width: 12rem;">
+      <Container padding="none" background={false} minWidth="large">
         {#snippet children()}
           <Dropdown
             options={spacingOptions.map((opt) => ({

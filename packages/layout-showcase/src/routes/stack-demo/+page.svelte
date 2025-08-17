@@ -95,9 +95,9 @@ RELEVANT FILES: packages/layout-engine/src/lib/core/arrangements/stack.ts, packa
 
   // Simple demo elements for testing
   let demoElements = [
-    { id: 'header', content: 'Header Element', type: 'primary' as const },
-    { id: 'content', content: 'Content Area', type: 'secondary' as const },
-    { id: 'footer', content: 'Footer Element', type: 'tertiary' as const },
+    { id: 'header', content: 'Header Element', type: 'primary' as const, minHeight: 'xs' as const },
+    { id: 'content', content: 'Content Area', type: 'secondary' as const, minHeight: 'small' as const },
+    { id: 'footer', content: 'Footer Element', type: 'tertiary' as const, minHeight: 'medium' as const },
   ]
 </script>
 
@@ -137,12 +137,12 @@ RELEVANT FILES: packages/layout-engine/src/lib/core/arrangements/stack.ts, packa
         <div style={cssPropertiesToString(pageStack.toCSS(previewConfig))}>
           <h3 class="text-h4 text-primary">Live Preview</h3>
 
-          <Container variant="bordered" padding="comfortable" radius="large" style="min-height: 20rem;">
+          <Container variant="bordered" padding="comfortable" radius="large" minHeight="preview">
             {#snippet children()}
               <!-- Using layout engine generated CSS directly -->
               <div style={cssPropertiesToString(generatedCSS)} class="h-full">
                 {#each demoElements as element, i}
-                  <Container variant="elevated" padding="normal" radius="normal" style="min-height: {60 + i * 40}px;">
+                  <Container variant="elevated" padding="normal" radius="normal" minHeight={element.minHeight}>
                     {#snippet children()}
                       <div
                         style={cssPropertiesToString(

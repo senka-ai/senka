@@ -21,6 +21,14 @@
     background?: boolean
     /** Semantic color for background and borders @default 'neutral' */
     color?: 'neutral' | 'highlight' | 'success' | 'warning' | 'error'
+    /** Minimum height variant for layout containers */
+    minHeight?: 'xs' | 'small' | 'medium' | 'large' | 'xl' | 'xxl' | 'preview'
+    /** Height variant for fixed height containers */
+    height?: 'auto' | 'full' | 'screen' | 'xs' | 'small' | 'medium' | 'large' | 'xl'
+    /** Minimum width variant for layout containers */
+    minWidth?: 'xs' | 'small' | 'medium' | 'large' | 'xl' | 'xxl'
+    /** Width variant for fixed width containers */
+    width?: 'auto' | 'full'
   }
 
   let {
@@ -31,6 +39,10 @@
     color = 'neutral',
     fullWidth = false,
     disabled = false,
+    minHeight,
+    height,
+    minWidth,
+    width,
     class: className = '',
     id,
     children,
@@ -46,6 +58,10 @@
       color,
       fullWidth,
       disabled,
+      minHeight,
+      height,
+      minWidth,
+      width,
       className,
     })
   )
