@@ -18,4 +18,16 @@
 
 - read `packages/ui/UI_COMPONENTS_STRUCTURE.md`
 - read `packages/ui/UI_ARCHITECTURE.md`
+- read `AI_UI_BUILDING_INSTRUCTIONS.md`
+- read `AI_UI_QUICK_REFERENCE.md`
+- read `PATH_ALIAS_STANDARDS.md`
 - IMPORTANT: before using any UI component, you must read both its source code and its storybook stories to understand what properties has and how each component can be used
+
+## Icon Libraries Available
+
+In addition to icons from `@senka-ai/ui/icons`, you can also use icons from these installed libraries:
+
+- **svelte-heros**: Heroicons for Svelte - excellent for general UI icons
+- **svelte-remix**: Remix Icons for Svelte - excellent for layout, design, and alignment concepts
+
+IMPORTANT: Always prioritize semantic meaning - choose icons that clearly represent the concept rather than generic arrows or shapes.

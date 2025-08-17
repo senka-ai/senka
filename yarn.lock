@@ -981,6 +981,8 @@ __metadata:
     "@tailwindcss/vite": "npm:4.0.0-beta.10"
     svelte: "npm:5.37.3"
     svelte-check: "npm:4.3.1"
+    svelte-heros: "npm:^7.0.2"
+    svelte-remix: "npm:^2.0.1"
     tailwindcss: "npm:4.0.0-beta.10"
     typescript: "npm:5.9.2"
     vite: "npm:7.0.6"
@@ -5499,6 +5501,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"svelte-heros@npm:^7.0.2":
+  version: 7.0.2
+  resolution: "svelte-heros@npm:7.0.2"
+  peerDependencies:
+    svelte: ^5.0.0
+  checksum: 10c0/b30f7c66691005bda67a909e671fe74aee2a856352b62c36887f5f761e44ff0d3ef76857e177ae4803c66219667ea1989540112f2e8d6324e53a8b4bd2e38ba3
+  languageName: node
+  linkType: hard
+
 "svelte-preprocess@npm:^5.1.3":
   version: 5.1.4
   resolution: "svelte-preprocess@npm:5.1.4"
@@ -5542,6 +5553,15 @@ __metadata:
     typescript:
       optional: true
   checksum: 10c0/fe968ee1d599a2c59c5a695e23cd3c2d15c5c316ce76ae644908521476f2e81b69dcf0cd3492deeb0a06140af497f994e4baf524d3d2c93986fad1c9267524ae
+  languageName: node
+  linkType: hard
+
+"svelte-remix@npm:^2.0.1":
+  version: 2.0.1
+  resolution: "svelte-remix@npm:2.0.1"
+  peerDependencies:
+    svelte: ^5.0.0
+  checksum: 10c0/4c19dc38f939186705188cc4f7ace5fb382f4a05d4cc1a86838552339328f5cea325bb4bb3876837e5585800ee365e7769e28b72eb364d8c999bbe7f68b1ae48
   languageName: node
   linkType: hard
 

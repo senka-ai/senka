@@ -45,7 +45,7 @@ Before writing ANY code, AI must:
 - [ ] Identify which UI components to use (no custom components)
 - [ ] Plan layout using layout-engine arrangements
 - [ ] Verify semantic colors are available
-- [ ] Check if icons are needed (import from UI library)
+- [ ] Check if icons are needed (import from UI library, svelte-heros, or svelte-remix)
 
 ## 🎯 PATTERN MATCHING FOR AI
 
@@ -205,8 +205,13 @@ Before writing ANY code, AI must:
 4. **ALWAYS use icon components**
 
    ```svelte
-   import { ArrowRightIcon } from '@senka-ai/ui'
+   // Preferred: UI library icons
+   import { ArrowRightIcon } from '@senka-ai/ui/icons'
    <Button leftIcon={ArrowRightIcon}>
+
+   // Alternative: External icon libraries for specific needs
+   import { SwitchHorizontal } from 'svelte-heros'
+   import { AlignItemTopLineDesign } from 'svelte-remix'
    ```
 
 5. **ALWAYS use snippet pattern for children**
@@ -337,6 +342,34 @@ Before generating code, AI should ask itself:
 - `GridArrangement` - Grid layout
 - `FlowArrangement` - Flow layout
 - `OverlayArrangement` - Layered layout
+
+### Available Icon Libraries
+
+#### @senka-ai/ui/icons (Primary - Use First)
+- `ArrowUpIcon`, `ArrowDownIcon`, `ArrowLeftIcon`, `ArrowRightIcon`
+- `AddIcon`, `CloseIcon`, `EditIcon`, `DeleteIcon`
+- `CheckIcon`, `WarningIcon`, `InfoIcon`, `SuccessIcon`
+- `SettingsIcon`, `SearchIcon`, `FilterIcon`, `SortIcon`
+- And many more standard UI icons
+
+#### svelte-heros (Secondary - For General UI)
+- `SwitchHorizontal`, `SwitchVertical` - Perfect for direction toggles
+- `ViewGrid`, `ViewList`, `Menu` - Layout view modes
+- `Collection` - Grouping and organization
+- Great for general interface icons not in UI library
+
+#### svelte-remix (Specialized - For Layout Concepts)
+- `AlignItemTopLineDesign`, `AlignItemBottomLineDesign` - Alignment
+- `AlignItemLeftLineDesign`, `AlignItemRightLineDesign` - Justification  
+- `AlignItemHorizontalCenterLineDesign`, `AlignItemVerticalCenterLineDesign` - Centering
+- `ExpandHorizontalLineArrows`, `ExpandVerticalLineArrows` - Stretching/spacing
+- Perfect for layout, alignment, and design tool interfaces
+
+#### Icon Selection Priority
+1. **First**: Check `@senka-ai/ui/icons` for standard icons
+2. **Second**: Use `svelte-heros` for general UI icons
+3. **Third**: Use `svelte-remix` for layout/design-specific concepts
+4. **Always**: Choose semantic icons that clearly represent the function
 
 ## 🚀 AI SUCCESS METRICS
 

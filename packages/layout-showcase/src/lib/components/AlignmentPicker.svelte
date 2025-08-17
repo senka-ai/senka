@@ -7,7 +7,7 @@ RELEVANT FILES: packages/layout-engine/src/lib/types/index.ts, packages/ui/src/l
 
 <script lang="ts">
   import { Button, Container } from '@senka-ai/ui'
-  import { ArrowUpIcon, ArrowDownIcon, ArrowLeftIcon, ArrowRightIcon, SettingsIcon } from '@senka-ai/ui/icons'
+  import { AlignItemTopLineDesign, AlignItemHorizontalCenterLineDesign, AlignItemBottomLineDesign, ExpandVerticalLineArrows } from 'svelte-remix'
   import { StackArrangement, RowArrangement, cssPropertiesToString } from '@senka-ai/layout-engine'
 
   type Alignment = 'start' | 'center' | 'end' | 'stretch'
@@ -53,25 +53,25 @@ RELEVANT FILES: packages/layout-engine/src/lib/types/index.ts, packages/ui/src/l
       value: 'start' as const,
       label: 'Start',
       description: 'Align to top (for rows) / left (for stacks)',
-      icon: ArrowUpIcon,
+      icon: AlignItemTopLineDesign,
     },
     {
       value: 'center' as const,
       label: 'Center',
       description: 'Center vertically (for rows) / horizontally (for stacks)',
-      icon: ArrowRightIcon,
+      icon: AlignItemHorizontalCenterLineDesign,
     },
     {
       value: 'end' as const,
       label: 'End',
       description: 'Align to bottom (for rows) / right (for stacks)',
-      icon: ArrowDownIcon,
+      icon: AlignItemBottomLineDesign,
     },
     {
       value: 'stretch' as const,
       label: 'Stretch',
       description: 'Stretch to fill height (for rows) / width (for stacks)',
-      icon: SettingsIcon,
+      icon: ExpandVerticalLineArrows,
     },
   ]
 
@@ -95,14 +95,14 @@ RELEVANT FILES: packages/layout-engine/src/lib/types/index.ts, packages/ui/src/l
             onclick={() => handleAlignmentChange(option.value)}
           >
             {#snippet leftIcon(size)}
-              {#if option.icon === ArrowUpIcon}
-                <ArrowUpIcon {size} />
-              {:else if option.icon === ArrowRightIcon}
-                <ArrowRightIcon {size} />
-              {:else if option.icon === ArrowDownIcon}
-                <ArrowDownIcon {size} />
-              {:else if option.icon === SettingsIcon}
-                <SettingsIcon {size} />
+              {#if option.icon === AlignItemTopLineDesign}
+                <AlignItemTopLineDesign {size} />
+              {:else if option.icon === AlignItemHorizontalCenterLineDesign}
+                <AlignItemHorizontalCenterLineDesign {size} />
+              {:else if option.icon === AlignItemBottomLineDesign}
+                <AlignItemBottomLineDesign {size} />
+              {:else if option.icon === ExpandVerticalLineArrows}
+                <ExpandVerticalLineArrows {size} />
               {/if}
             {/snippet}
             {#snippet children()}

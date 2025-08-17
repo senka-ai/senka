@@ -7,7 +7,7 @@ RELEVANT FILES: packages/layout-engine/src/lib/types/index.ts, packages/ui/src/l
 
 <script lang="ts">
   import { Button, Container } from '@senka-ai/ui'
-  import { ArrowDownIcon, ArrowRightIcon } from '@senka-ai/ui/icons'
+  import { SwitchVertical, SwitchHorizontal } from 'svelte-heros'
   import { RowArrangement, cssPropertiesToString } from '@senka-ai/layout-engine'
 
   interface Props {
@@ -43,9 +43,9 @@ RELEVANT FILES: packages/layout-engine/src/lib/types/index.ts, packages/ui/src/l
       <Button variant="secondary" {disabled} onclick={toggleDirection}>
         {#snippet leftIcon(size)}
           {#if value === 'vertical'}
-            <ArrowDownIcon {size} />
+            <SwitchVertical {size} />
           {:else}
-            <ArrowRightIcon {size} />
+            <SwitchHorizontal {size} />
           {/if}
         {/snippet}
         {#snippet children()}

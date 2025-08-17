@@ -8,6 +8,7 @@ RELEVANT FILES: packages/layout-engine/src/lib/core/arrangements/row.ts, package
 <script lang="ts">
   import { Button, Container } from '@senka-ai/ui'
   import { RowArrangement, cssPropertiesToString } from '@senka-ai/layout-engine'
+  import { ViewList, Menu } from 'svelte-heros'
 
   interface Props {
     value: boolean
@@ -40,6 +41,13 @@ RELEVANT FILES: packages/layout-engine/src/lib/core/arrangements/row.ts, package
       <span class="text-body-s text-secondary font-medium">Wrap:</span>
 
       <Button variant="secondary" {disabled} onclick={toggleWrap}>
+        {#snippet leftIcon(size)}
+          {#if value}
+            <ViewList {size} />
+          {:else}
+            <Menu {size} />
+          {/if}
+        {/snippet}
         {#snippet children()}
           {value ? 'Enabled' : 'Disabled'}
         {/snippet}

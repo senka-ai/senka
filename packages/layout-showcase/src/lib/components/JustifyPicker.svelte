@@ -7,7 +7,7 @@ RELEVANT FILES: packages/layout-engine/src/lib/types/index.ts, packages/ui/src/l
 
 <script lang="ts">
   import { Button, Container } from '@senka-ai/ui'
-  import { ArrowLeftIcon, ArrowRightIcon, SettingsIcon, CategoriesIcon } from '@senka-ai/ui/icons'
+  import { AlignItemLeftLineDesign, AlignItemHorizontalCenterLineDesign, AlignItemRightLineDesign, ExpandHorizontalLineArrows } from 'svelte-remix'
   import { StackArrangement, RowArrangement, cssPropertiesToString } from '@senka-ai/layout-engine'
 
   type Justify = 'packed' | 'space-between' | 'center' | 'space-around'
@@ -54,25 +54,25 @@ RELEVANT FILES: packages/layout-engine/src/lib/types/index.ts, packages/ui/src/l
       value: 'packed' as const,
       label: 'Packed',
       description: 'Items grouped at start',
-      icon: ArrowLeftIcon,
+      icon: AlignItemLeftLineDesign,
     },
     {
       value: 'center' as const,
       label: 'Center',
       description: 'Items centered in container',
-      icon: CategoriesIcon,
+      icon: AlignItemHorizontalCenterLineDesign,
     },
     {
       value: 'space-between' as const,
       label: 'Space Between',
       description: 'Items spread with space between',
-      icon: ArrowRightIcon,
+      icon: AlignItemRightLineDesign,
     },
     {
       value: 'space-around' as const,
       label: 'Space Around',
       description: 'Items with equal space around',
-      icon: SettingsIcon,
+      icon: ExpandHorizontalLineArrows,
     },
   ]
 
@@ -96,14 +96,14 @@ RELEVANT FILES: packages/layout-engine/src/lib/types/index.ts, packages/ui/src/l
             onclick={() => handleJustifyChange(option.value)}
           >
             {#snippet leftIcon(size)}
-              {#if option.icon === ArrowLeftIcon}
-                <ArrowLeftIcon {size} />
-              {:else if option.icon === CategoriesIcon}
-                <CategoriesIcon {size} />
-              {:else if option.icon === ArrowRightIcon}
-                <ArrowRightIcon {size} />
-              {:else if option.icon === SettingsIcon}
-                <SettingsIcon {size} />
+              {#if option.icon === AlignItemLeftLineDesign}
+                <AlignItemLeftLineDesign {size} />
+              {:else if option.icon === AlignItemHorizontalCenterLineDesign}
+                <AlignItemHorizontalCenterLineDesign {size} />
+              {:else if option.icon === AlignItemRightLineDesign}
+                <AlignItemRightLineDesign {size} />
+              {:else if option.icon === ExpandHorizontalLineArrows}
+                <ExpandHorizontalLineArrows {size} />
               {/if}
             {/snippet}
             {#snippet children()}

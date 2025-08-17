@@ -33,8 +33,10 @@ Tabs/switching?    → Tabs, ContentSwitcher, TabBar
   // Layout
   import { StackArrangement, RowArrangement, cssPropertiesToString } from '@senka-ai/layout-engine'
 
-  // Icons (if needed)
-  import { ArrowRightIcon, CheckIcon } from '@senka-ai/ui'
+  // Icons (choose based on need)
+  import { ArrowRightIcon, CheckIcon } from '@senka-ai/ui/icons'  // Primary choice
+  import { SwitchHorizontal, ViewGrid } from 'svelte-heros'       // General UI icons
+  import { AlignItemTopLineDesign } from 'svelte-remix'           // Layout-specific icons
 </script>
 ```
 
@@ -145,7 +147,9 @@ Scales:     bg-[color]-[50|100|200|300|400]
 <div class="text-primary bg-surface">
 
 <!-- ✅ Icon components -->
-<Button leftIcon={ArrowRightIcon}>
+<Button leftIcon={ArrowRightIcon}>         <!-- UI library icon -->
+<Button leftIcon={SwitchHorizontal}>       <!-- Heroicon for UI -->
+<Button leftIcon={AlignItemTopLineDesign}> <!-- Remix icon for layout -->
 
 <!-- ✅ Layout engine -->
 <div style={cssPropertiesToString(stack.toCSS(config))}>
@@ -161,6 +165,24 @@ Before committing:
 - [ ] No emoji icons?
 - [ ] No inline SVG?
 - [ ] Layout handled by layout-engine?
+
+## 🎨 ICON QUICK REFERENCE
+
+```svelte
+// ✅ Primary: UI library icons
+import { ArrowRightIcon, SettingsIcon, CheckIcon } from '@senka-ai/ui/icons'
+
+// ✅ Secondary: General UI icons
+import { SwitchHorizontal, ViewGrid, Menu } from 'svelte-heros'
+
+// ✅ Specialized: Layout/design icons
+import { AlignItemTopLineDesign, ExpandVerticalLineArrows } from 'svelte-remix'
+```
+
+**Icon Selection Guide:**
+- 🥇 **First**: Check `@senka-ai/ui/icons` 
+- 🥈 **Second**: Use `svelte-heros` for general UI
+- 🥉 **Third**: Use `svelte-remix` for layout concepts
 
 ## 🚀 COMPLETE EXAMPLE
 
