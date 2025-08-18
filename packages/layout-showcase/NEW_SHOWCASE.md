@@ -29,5 +29,6 @@ In addition to icons from `@senka-ai/ui/icons`, you can also use icons from thes
 
 - **svelte-heros**: Heroicons for Svelte - excellent for general UI icons
 - **svelte-remix**: Remix Icons for Svelte - excellent for layout, design, and alignment concepts
+- **svelte-bootstrap-svg-icons**
 
 IMPORTANT: Always prioritize semantic meaning - choose icons that clearly represent the concept rather than generic arrows or shapes.

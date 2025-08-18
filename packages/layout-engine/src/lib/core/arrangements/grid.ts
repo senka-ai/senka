@@ -48,9 +48,49 @@ export class GridArrangement extends BaseArrangement {
       css['gap'] = '16px' // Default normal spacing
     }
 
-    // Grid alignment defaults
-    css['align-items'] = 'stretch'
-    css['justify-items'] = 'stretch'
+    // Grid alignment - apply container alignment settings
+    if (container.align) {
+      switch (container.align) {
+        case 'start':
+          css['align-items'] = 'start'
+          break
+        case 'center':
+          css['align-items'] = 'center'
+          break
+        case 'end':
+          css['align-items'] = 'end'
+          break
+        case 'stretch':
+          css['align-items'] = 'stretch'
+          break
+      }
+    } else {
+      // Default alignment
+      css['align-items'] = 'stretch'
+    }
+    
+    // Grid justify-items - horizontal alignment within grid cells
+    // For grids, we interpret justify as justify-items (item alignment within cells)
+    if (container.justify) {
+      switch (container.justify) {
+        case 'packed': // Treat as start for grids
+          css['justify-items'] = 'start'
+          break
+        case 'center':
+          css['justify-items'] = 'center'
+          break
+        case 'space-between': // Treat as end for grids since space-between doesn't apply to justify-items
+          css['justify-items'] = 'end'
+          break
+        case 'space-around': // Treat as stretch for grids
+        case 'space-evenly': // Treat as stretch for grids
+          css['justify-items'] = 'stretch'
+          break
+      }
+    } else {
+      // Default justify-items
+      css['justify-items'] = 'stretch'
+    }
 
     // Apply constraints
     css = this.applyConstraints(css, container)

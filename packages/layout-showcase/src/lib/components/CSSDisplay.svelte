@@ -92,7 +92,7 @@ RELEVANT FILES: packages/layout-engine/src/lib/utils/css.ts, packages/ui/src/lib
       </div>
     </div>
 
-    <Container variant="default" color="neutral" padding="tight" radius="small">
+    <Container variant="default" color={variant} padding="tight" radius="small">
       {#snippet children()}
         <pre class="text-body-xs text-primary overflow-x-auto font-mono leading-relaxed">{cleanCSS}</pre>
       {/snippet}

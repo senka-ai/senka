@@ -104,6 +104,11 @@ RELEVANT FILES: packages/layout-engine/src/lib/index.ts, packages/ui/src/lib/ind
                     Try Row Demo
                   {/snippet}
                 </Button>
+                <Button variant="primary" onclick={() => (window.location.href = '/grid-demo')}>
+                  {#snippet children()}
+                    Try Grid Demo
+                  {/snippet}
+                </Button>
                 <Button variant="secondary">
                   {#snippet children()}
                     View Documentation
