@@ -6,9 +6,8 @@ RELEVANT FILES: packages/layout-engine/src/lib/core/arrangements/row.ts, package
 -->
 
 <script lang="ts">
-  import { Button, Container } from '@senka-ai/ui'
+  import { Toggle, Container } from '@senka-ai/ui'
   import { RowArrangement, cssPropertiesToString } from '@senka-ai/layout-engine'
-  import { ViewList, Menu } from 'svelte-heros'
 
   interface Props {
     value: boolean
@@ -28,10 +27,8 @@ RELEVANT FILES: packages/layout-engine/src/lib/core/arrangements/row.ts, package
     fillContainer: true,
   }
 
-  function toggleWrap() {
-    if (disabled) return
-    const newWrap = !value
-    onchange?.(newWrap)
+  function handleToggle(newValue: boolean) {
+    onchange?.(newValue)
   }
 </script>
 
@@ -40,18 +37,12 @@ RELEVANT FILES: packages/layout-engine/src/lib/core/arrangements/row.ts, package
     <div style={cssPropertiesToString(row.toCSS(wrapConfig))}>
       <span class="text-body-s text-secondary font-medium">Wrap:</span>
 
-      <Button variant="secondary" {disabled} onclick={toggleWrap}>
-        {#snippet leftIcon(size)}
-          {#if value}
-            <ViewList {size} />
-          {:else}
-            <Menu {size} />
-          {/if}
-        {/snippet}
-        {#snippet children()}
-          {value ? 'Enabled' : 'Disabled'}
-        {/snippet}
-      </Button>
+      <Toggle
+        checked={value}
+        {disabled}
+        onchange={handleToggle}
+        size="medium"
+      />
 
       <span class="text-body-xs text-muted">
         {value ? 'Items wrap to new lines when needed' : 'Items stay on single line'}

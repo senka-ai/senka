@@ -979,7 +979,9 @@ __metadata:
     "@sveltejs/kit": "npm:2.27.1"
     "@sveltejs/vite-plugin-svelte": "npm:6.1.0"
     "@tailwindcss/vite": "npm:4.0.0-beta.10"
+    remixicon: "npm:^4.6.0"
     svelte: "npm:5.37.3"
+    svelte-bootstrap-svg-icons: "npm:^2.0.0"
     svelte-check: "npm:4.3.1"
     svelte-heros: "npm:^7.0.2"
     svelte-remix: "npm:^2.0.1"
@@ -4820,6 +4822,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"remixicon@npm:^4.6.0":
+  version: 4.6.0
+  resolution: "remixicon@npm:4.6.0"
+  checksum: 10c0/940b898cb9db5c2706b54a23244223991f1b746866452cff1e9604d602ccb64872babab046b63d9958fdc33c896e329f9b4a5cddc5c70793fe03940ecea82a24
+  languageName: node
+  linkType: hard
+
 "require-from-string@npm:^2.0.2":
   version: 2.0.2
   resolution: "require-from-string@npm:2.0.2"
@@ -5444,6 +5453,15 @@ __metadata:
   peerDependencies:
     svelte: ^5.0.0
   checksum: 10c0/93e38b4a29895860f9ea6084e247c5049e658ec32ef55a2a0b42a5264e712ecf2a57653b6834cf12479b803eb104cbdf81451316c22205cea33b9a934fbaff47
+  languageName: node
+  linkType: hard
+
+"svelte-bootstrap-svg-icons@npm:^2.0.0":
+  version: 2.0.0
+  resolution: "svelte-bootstrap-svg-icons@npm:2.0.0"
+  peerDependencies:
+    svelte: ^5.0.0
+  checksum: 10c0/95290064267ee43a2bea2ad1579bc8e9f42632f7816a268983d3ffd9e8d4723df6e03d34086dc0a487e1004925fd9279b10a86e1d4fd5f8d46276c432d8fc21d
   languageName: node
   linkType: hard
 

@@ -7,7 +7,12 @@ RELEVANT FILES: packages/layout-engine/src/lib/types/index.ts, packages/ui/src/l
 
 <script lang="ts">
   import { Button, Container } from '@senka-ai/ui'
-  import { AlignItemTopLineDesign, AlignItemHorizontalCenterLineDesign, AlignItemBottomLineDesign, ExpandVerticalLineArrows } from 'svelte-remix'
+  import {
+    AlignItemTopLineDesign,
+    AlignItemVerticalCenterLineDesign,
+    AlignItemBottomLineDesign,
+    ExpandVerticalLineArrows,
+  } from 'svelte-remix'
   import { StackArrangement, RowArrangement, cssPropertiesToString } from '@senka-ai/layout-engine'
 
   type Alignment = 'start' | 'center' | 'end' | 'stretch'
@@ -59,7 +64,7 @@ RELEVANT FILES: packages/layout-engine/src/lib/types/index.ts, packages/ui/src/l
       value: 'center' as const,
       label: 'Center',
       description: 'Center vertically (for rows) / horizontally (for stacks)',
-      icon: AlignItemHorizontalCenterLineDesign,
+      icon: AlignItemVerticalCenterLineDesign,
     },
     {
       value: 'end' as const,
@@ -97,8 +102,8 @@ RELEVANT FILES: packages/layout-engine/src/lib/types/index.ts, packages/ui/src/l
             {#snippet leftIcon(size)}
               {#if option.icon === AlignItemTopLineDesign}
                 <AlignItemTopLineDesign {size} />
-              {:else if option.icon === AlignItemHorizontalCenterLineDesign}
-                <AlignItemHorizontalCenterLineDesign {size} />
+              {:else if option.icon === AlignItemVerticalCenterLineDesign}
+                <AlignItemVerticalCenterLineDesign {size} />
               {:else if option.icon === AlignItemBottomLineDesign}
                 <AlignItemBottomLineDesign {size} />
               {:else if option.icon === ExpandVerticalLineArrows}

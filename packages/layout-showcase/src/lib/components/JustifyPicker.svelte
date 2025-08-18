@@ -7,7 +7,8 @@ RELEVANT FILES: packages/layout-engine/src/lib/types/index.ts, packages/ui/src/l
 
 <script lang="ts">
   import { Button, Container } from '@senka-ai/ui'
-  import { AlignItemLeftLineDesign, AlignItemHorizontalCenterLineDesign, AlignItemRightLineDesign, ExpandHorizontalLineArrows } from 'svelte-remix'
+  import { ExpandWidthFillArrows, ContractLeftRightFillArrows, ExpandHorizontalSFillArrows } from 'svelte-remix'
+  import { AlignCenter } from 'svelte-bootstrap-svg-icons'
   import { StackArrangement, RowArrangement, cssPropertiesToString } from '@senka-ai/layout-engine'
 
   type Justify = 'packed' | 'space-between' | 'center' | 'space-around'
@@ -54,25 +55,25 @@ RELEVANT FILES: packages/layout-engine/src/lib/types/index.ts, packages/ui/src/l
       value: 'packed' as const,
       label: 'Packed',
       description: 'Items grouped at start',
-      icon: AlignItemLeftLineDesign,
+      icon: ContractLeftRightFillArrows,
     },
     {
       value: 'center' as const,
       label: 'Center',
       description: 'Items centered in container',
-      icon: AlignItemHorizontalCenterLineDesign,
+      icon: AlignCenter,
     },
     {
       value: 'space-between' as const,
       label: 'Space Between',
       description: 'Items spread with space between',
-      icon: AlignItemRightLineDesign,
+      icon: ExpandWidthFillArrows,
     },
     {
       value: 'space-around' as const,
       label: 'Space Around',
       description: 'Items with equal space around',
-      icon: ExpandHorizontalLineArrows,
+      icon: ExpandHorizontalSFillArrows,
     },
   ]
 
@@ -96,14 +97,14 @@ RELEVANT FILES: packages/layout-engine/src/lib/types/index.ts, packages/ui/src/l
             onclick={() => handleJustifyChange(option.value)}
           >
             {#snippet leftIcon(size)}
-              {#if option.icon === AlignItemLeftLineDesign}
-                <AlignItemLeftLineDesign {size} />
-              {:else if option.icon === AlignItemHorizontalCenterLineDesign}
-                <AlignItemHorizontalCenterLineDesign {size} />
-              {:else if option.icon === AlignItemRightLineDesign}
-                <AlignItemRightLineDesign {size} />
-              {:else if option.icon === ExpandHorizontalLineArrows}
-                <ExpandHorizontalLineArrows {size} />
+              {#if option.icon === ContractLeftRightFillArrows}
+                <ContractLeftRightFillArrows {size} />
+              {:else if option.icon === AlignCenter}
+                <AlignCenter {size} />
+              {:else if option.icon === ExpandHorizontalSFillArrows}
+                <ExpandHorizontalSFillArrows {size} />
+              {:else if option.icon === ExpandWidthFillArrows}
+                <ExpandWidthFillArrows {size} />
               {/if}
             {/snippet}
             {#snippet children()}

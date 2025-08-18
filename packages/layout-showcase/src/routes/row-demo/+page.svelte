@@ -178,6 +178,7 @@ RELEVANT FILES: packages/layout-engine/src/lib/core/arrangements/row.ts, package
                     radius="normal"
                     height={element.height}
                     minWidth={element.minWidth}
+                    minHeight={alignment === 'stretch' ? 'large' : undefined}
                   >
                     {#snippet children()}
                       <div
