@@ -7,9 +7,9 @@ RELEVANT FILES: packages/layout-engine/src/lib/core/arrangements/stack.ts, packa
 
 <script lang="ts">
   // Import UI components
-  import { Button, Divider, Container } from '@senka-ai/ui'
-  // Import layout engine - clean static import
-  import { StackArrangement, RowArrangement, cssPropertiesToString } from '@senka-ai/layout-engine'
+  import { Button, Divider, Container, LayoutDiv } from '@senka-ai/ui'
+  // Import layout engine types
+  import type { LayoutContainer } from '@senka-ai/layout-engine'
   // Import reusable control components
   import DirectionToggle from '$lib/components/DirectionToggle.svelte'
   import SpacingSlider from '$lib/components/SpacingSlider.svelte'
@@ -17,18 +17,13 @@ RELEVANT FILES: packages/layout-engine/src/lib/core/arrangements/stack.ts, packa
   import PropertyPanel from '$lib/components/PropertyPanel.svelte'
   import CSSDisplay from '$lib/components/CSSDisplay.svelte'
 
-  // Create layout engine instance
-  const stackArrangement = new StackArrangement()
-
   // Reactive configuration state
   let direction = $state<'vertical' | 'horizontal'>('vertical')
   let spacing = $state<'none' | 'tight' | 'cozy' | 'normal' | 'comfortable' | 'spacious'>('normal')
   let alignment = $state<'start' | 'center' | 'end' | 'stretch'>('stretch')
 
   // Page layout configurations
-  const pageStack = new StackArrangement()
-  const pageRow = new RowArrangement()
-  const pageConfig = {
+  const pageConfig: LayoutContainer = {
     id: 'page-layout',
     type: 'stack',
     direction: 'vertical',
@@ -36,7 +31,7 @@ RELEVANT FILES: packages/layout-engine/src/lib/core/arrangements/stack.ts, packa
     fillContainer: true,
   }
 
-  const headerConfig = {
+  const headerConfig: LayoutContainer = {
     id: 'header-layout',
     type: 'stack',
     direction: 'vertical',
@@ -44,7 +39,7 @@ RELEVANT FILES: packages/layout-engine/src/lib/core/arrangements/stack.ts, packa
     fillContainer: true,
   }
 
-  const sectionConfig = {
+  const sectionConfig: LayoutContainer = {
     id: 'section-layout',
     type: 'stack',
     direction: 'vertical',
@@ -52,7 +47,7 @@ RELEVANT FILES: packages/layout-engine/src/lib/core/arrangements/stack.ts, packa
     fillContainer: true,
   }
 
-  const previewConfig = {
+  const previewConfig: LayoutContainer = {
     id: 'preview-layout',
     type: 'stack',
     direction: 'vertical',
@@ -60,7 +55,7 @@ RELEVANT FILES: packages/layout-engine/src/lib/core/arrangements/stack.ts, packa
     fillContainer: true,
   }
 
-  const actionsConfig = {
+  const actionsConfig: LayoutContainer = {
     id: 'actions-layout',
     type: 'row',
     gap: 'normal',
@@ -68,7 +63,16 @@ RELEVANT FILES: packages/layout-engine/src/lib/core/arrangements/stack.ts, packa
     fillContainer: false,
   }
 
-  const testContainer = $derived({
+  const elementContentConfig: LayoutContainer = {
+    id: 'element-content',
+    type: 'stack',
+    direction: 'vertical',
+    gap: 'tight',
+    fillContainer: true,
+  }
+
+  // Demo stack configuration that changes based on controls
+  const testContainer = $derived<LayoutContainer>({
     id: 'demo-stack',
     type: 'stack',
     direction,
@@ -76,9 +80,6 @@ RELEVANT FILES: packages/layout-engine/src/lib/core/arrangements/stack.ts, packa
     gap: spacing,
     align: alignment,
   })
-
-  // Generate CSS reactively when configuration changes
-  const generatedCSS = $derived(stackArrangement.toCSS(testContainer))
 
   // Handle control changes
   function handleDirectionChange(newDirection: 'vertical' | 'horizontal') {
@@ -108,90 +109,94 @@ RELEVANT FILES: packages/layout-engine/src/lib/core/arrangements/stack.ts, packa
 
 <Container padding="comfortable" fullWidth background>
   {#snippet children()}
-    <div style={cssPropertiesToString(pageStack.toCSS(pageConfig))}>
-      <!-- Page Header -->
-      <div style={cssPropertiesToString(pageStack.toCSS(headerConfig))}>
-        <h1 class="text-h1 text-primary">Stack Arrangement Demo</h1>
-        <p class="text-body-l text-secondary">Testing the basic Stack arrangement from the layout engine.</p>
-      </div>
-
-      <Divider />
-
-      <!-- Interactive Demo Section -->
-      <div style={cssPropertiesToString(pageStack.toCSS(sectionConfig))}>
-        <h2 class="text-h3 text-primary">Interactive Stack Arrangement</h2>
-        <p class="text-body-m text-secondary">
-          Use the controls below to modify the stack arrangement and see real-time CSS generation and layout updates.
-        </p>
-
-        <!-- Stack Properties Panel -->
-        <PropertyPanel title="Stack Properties" description="Adjust these settings to see live layout changes">
-          <DirectionToggle value={direction} onchange={handleDirectionChange} />
-
-          <SpacingSlider value={spacing} onchange={handleSpacingChange} />
-
-          <AlignmentPicker value={alignment} onchange={handleAlignmentChange} />
-        </PropertyPanel>
-
-        <!-- Live Preview -->
-        <div style={cssPropertiesToString(pageStack.toCSS(previewConfig))}>
-          <h3 class="text-h4 text-primary">Live Preview</h3>
-
-          <Container variant="bordered" padding="comfortable" radius="large" minHeight="preview">
-            {#snippet children()}
-              <!-- Using layout engine generated CSS directly -->
-              <div style={cssPropertiesToString(generatedCSS)} class="h-full">
-                {#each demoElements as element, i}
-                  <Container variant="elevated" padding="normal" radius="normal" minHeight={element.minHeight}>
-                    {#snippet children()}
-                      <div
-                        style={cssPropertiesToString(
-                          pageStack.toCSS({
-                            id: 'element-content',
-                            type: 'stack',
-                            direction: 'vertical',
-                            gap: 'tight',
-                            fillContainer: true,
-                          })
-                        )}
-                      >
-                        <span class="text-body-m text-primary font-medium">{element.content}</span>
-                        <Button variant={element.type} size="small">
-                          {#snippet children()}
-                            Action
-                          {/snippet}
-                        </Button>
-                      </div>
-                    {/snippet}
-                  </Container>
-                {/each}
-              </div>
-            {/snippet}
-          </Container>
-
-          <p class="text-body-xs text-secondary">
-            <strong>Current Configuration:</strong>
-            Direction: {direction} • Spacing: {spacing} • Alignment: {alignment}
-          </p>
-        </div>
-
-        <!-- Generated CSS Display -->
-        <CSSDisplay css={cssPropertiesToString(generatedCSS)} title="Live Generated CSS" variant="success" />
-      </div>
-
-      <!-- Action Buttons -->
-      <div style={cssPropertiesToString(pageRow.toCSS(actionsConfig))}>
-        <Button variant="primary" onclick={() => window.location.reload()}>
+    <LayoutDiv config={pageConfig}>
+      {#snippet children()}
+        <!-- Page Header -->
+        <LayoutDiv config={headerConfig}>
           {#snippet children()}
-            Reset Demo
+            <h1 class="text-h1 text-primary">Stack Arrangement Demo</h1>
+            <p class="text-body-l text-secondary">Testing the basic Stack arrangement from the layout engine.</p>
           {/snippet}
-        </Button>
-        <Button variant="secondary" onclick={() => (window.location.href = '/')}>
+        </LayoutDiv>
+
+        <Divider />
+
+        <!-- Interactive Demo Section -->
+        <LayoutDiv config={sectionConfig}>
           {#snippet children()}
-            Back to Home
+            <h2 class="text-h3 text-primary">Interactive Stack Arrangement</h2>
+            <p class="text-body-m text-secondary">
+              Use the controls below to modify the stack arrangement and see real-time CSS generation and layout updates.
+            </p>
+
+            <!-- Stack Properties Panel -->
+            <PropertyPanel title="Stack Properties" description="Adjust these settings to see live layout changes">
+              <DirectionToggle value={direction} onchange={handleDirectionChange} />
+
+              <SpacingSlider value={spacing} onchange={handleSpacingChange} />
+
+              <AlignmentPicker value={alignment} onchange={handleAlignmentChange} />
+            </PropertyPanel>
+
+            <!-- Live Preview -->
+            <LayoutDiv config={previewConfig}>
+              {#snippet children()}
+                <h3 class="text-h4 text-primary">Live Preview</h3>
+
+                <Container variant="bordered" padding="comfortable" radius="large" minHeight="preview">
+                  {#snippet children()}
+                    <!-- Using layout engine generated CSS directly -->
+                    <LayoutDiv config={testContainer} class="h-full">
+                      {#snippet children()}
+                        {#each demoElements as element, i}
+                          <Container variant="elevated" padding="normal" radius="normal" minHeight={element.minHeight}>
+                            {#snippet children()}
+                              <LayoutDiv config={elementContentConfig}>
+                                {#snippet children()}
+                                  <span class="text-body-m text-primary font-medium">{element.content}</span>
+                                  <Button variant={element.type} size="small">
+                                    {#snippet children()}
+                                      Action
+                                    {/snippet}
+                                  </Button>
+                                {/snippet}
+                              </LayoutDiv>
+                            {/snippet}
+                          </Container>
+                        {/each}
+                      {/snippet}
+                    </LayoutDiv>
+                  {/snippet}
+                </Container>
+
+                <p class="text-body-xs text-secondary">
+                  <strong>Current Configuration:</strong>
+                  Direction: {direction} • Spacing: {spacing} • Alignment: {alignment}
+                </p>
+              {/snippet}
+            </LayoutDiv>
+
+            <!-- Generated CSS Display -->
+            <CSSDisplay css={JSON.stringify(testContainer, null, 2)} title="Live Configuration Object" variant="success" />
           {/snippet}
-        </Button>
-      </div>
-    </div>
+        </LayoutDiv>
+
+        <!-- Action Buttons -->
+        <LayoutDiv config={actionsConfig}>
+          {#snippet children()}
+            <Button variant="primary" onclick={() => window.location.reload()}>
+              {#snippet children()}
+                Reset Demo
+              {/snippet}
+            </Button>
+            <Button variant="secondary" onclick={() => (window.location.href = '/')}>
+              {#snippet children()}
+                Back to Home
+              {/snippet}
+            </Button>
+          {/snippet}
+        </LayoutDiv>
+      {/snippet}
+    </LayoutDiv>
   {/snippet}
 </Container>

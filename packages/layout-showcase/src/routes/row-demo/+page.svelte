@@ -7,9 +7,9 @@ RELEVANT FILES: packages/layout-engine/src/lib/core/arrangements/row.ts, package
 
 <script lang="ts">
   // Import UI components
-  import { Button, Divider, Container } from '@senka-ai/ui'
-  // Import layout engine - clean static import
-  import { RowArrangement, StackArrangement, cssPropertiesToString } from '@senka-ai/layout-engine'
+  import { Button, Divider, Container, LayoutDiv } from '@senka-ai/ui'
+  // Import layout engine types
+  import type { LayoutContainer } from '@senka-ai/layout-engine'
   // Import reusable control components
   import WrapToggle from '$lib/components/WrapToggle.svelte'
   import SpacingSlider from '$lib/components/SpacingSlider.svelte'
@@ -18,9 +18,6 @@ RELEVANT FILES: packages/layout-engine/src/lib/core/arrangements/row.ts, package
   import PropertyPanel from '$lib/components/PropertyPanel.svelte'
   import CSSDisplay from '$lib/components/CSSDisplay.svelte'
 
-  // Create layout engine instance
-  const rowArrangement = new RowArrangement()
-
   // Reactive configuration state
   let wrap = $state<boolean>(false)
   let spacing = $state<'none' | 'tight' | 'cozy' | 'normal' | 'comfortable' | 'spacious'>('normal')
@@ -28,9 +25,7 @@ RELEVANT FILES: packages/layout-engine/src/lib/core/arrangements/row.ts, package
   let justify = $state<'packed' | 'space-between' | 'center' | 'space-around'>('packed')
 
   // Page layout configurations
-  const pageStack = new StackArrangement()
-  const pageRow = new RowArrangement()
-  const pageConfig = {
+  const pageConfig: LayoutContainer = {
     id: 'page-layout',
     type: 'stack',
     direction: 'vertical',
@@ -38,7 +33,7 @@ RELEVANT FILES: packages/layout-engine/src/lib/core/arrangements/row.ts, package
     fillContainer: true,
   }
 
-  const headerConfig = {
+  const headerConfig: LayoutContainer = {
     id: 'header-layout',
     type: 'stack',
     direction: 'vertical',
@@ -46,7 +41,7 @@ RELEVANT FILES: packages/layout-engine/src/lib/core/arrangements/row.ts, package
     fillContainer: true,
   }
 
-  const sectionConfig = {
+  const sectionConfig: LayoutContainer = {
     id: 'section-layout',
     type: 'stack',
     direction: 'vertical',
@@ -54,7 +49,7 @@ RELEVANT FILES: packages/layout-engine/src/lib/core/arrangements/row.ts, package
     fillContainer: true,
   }
 
-  const previewConfig = {
+  const previewConfig: LayoutContainer = {
     id: 'preview-layout',
     type: 'stack',
     direction: 'vertical',
@@ -62,7 +57,7 @@ RELEVANT FILES: packages/layout-engine/src/lib/core/arrangements/row.ts, package
     fillContainer: true,
   }
 
-  const actionsConfig = {
+  const actionsConfig: LayoutContainer = {
     id: 'actions-layout',
     type: 'row',
     gap: 'normal',
@@ -70,7 +65,7 @@ RELEVANT FILES: packages/layout-engine/src/lib/core/arrangements/row.ts, package
     fillContainer: false,
   }
 
-  const testContainer = $derived({
+  const testContainer = $derived<LayoutContainer>({
     id: 'demo-row',
     type: 'row',
     wrap,
@@ -79,9 +74,6 @@ RELEVANT FILES: packages/layout-engine/src/lib/core/arrangements/row.ts, package
     align: alignment,
     justify: justify,
   })
-
-  // Generate CSS reactively when configuration changes
-  const generatedCSS = $derived(rowArrangement.toCSS(testContainer))
 
   // Handle control changes
   function handleWrapChange(newWrap: boolean) {
@@ -134,101 +126,111 @@ RELEVANT FILES: packages/layout-engine/src/lib/core/arrangements/row.ts, package
 
 <Container padding="comfortable" fullWidth background>
   {#snippet children()}
-    <div style={cssPropertiesToString(pageStack.toCSS(pageConfig))}>
-      <!-- Page Header -->
-      <div style={cssPropertiesToString(pageStack.toCSS(headerConfig))}>
-        <h1 class="text-h1 text-primary">Row Arrangement Demo</h1>
-        <p class="text-body-l text-secondary">
-          Testing the Row arrangement from the layout engine for horizontal layouts.
-        </p>
-      </div>
-
-      <Divider />
-
-      <!-- Interactive Demo Section -->
-      <div style={cssPropertiesToString(pageStack.toCSS(sectionConfig))}>
-        <h2 class="text-h3 text-primary">Interactive Row Arrangement</h2>
-        <p class="text-body-m text-secondary">
-          Use the controls below to modify the row arrangement and see real-time CSS generation and layout updates.
-        </p>
-
-        <!-- Row Properties Panel -->
-        <PropertyPanel title="Row Properties" description="Adjust these settings to see live layout changes">
-          <WrapToggle value={wrap} onchange={handleWrapChange} />
-
-          <SpacingSlider value={spacing} onchange={handleSpacingChange} />
-
-          <AlignmentPicker value={alignment} onchange={handleAlignmentChange} />
-
-          <JustifyPicker value={justify} onchange={handleJustifyChange} />
-        </PropertyPanel>
-
-        <!-- Live Preview -->
-        <div style={cssPropertiesToString(pageStack.toCSS(previewConfig))}>
-          <h3 class="text-h4 text-primary">Live Preview</h3>
-
-          <Container variant="bordered" padding="comfortable" radius="large" minHeight="preview">
-            {#snippet children()}
-              <!-- Using layout engine generated CSS directly -->
-              <div style={cssPropertiesToString(generatedCSS)} class="h-full">
-                {#each demoElements as element}
-                  <Container
-                    variant="elevated"
-                    padding="normal"
-                    radius="normal"
-                    height={element.height}
-                    minWidth={element.minWidth}
-                    minHeight={alignment === 'stretch' ? 'large' : undefined}
-                  >
-                    {#snippet children()}
-                      <div
-                        style={cssPropertiesToString(
-                          pageStack.toCSS({
-                            id: 'element-content',
-                            type: 'stack',
-                            direction: 'vertical',
-                            gap: 'tight',
-                            fillContainer: true,
-                          })
-                        )}
-                      >
-                        <span class="text-body-m text-primary font-medium">{element.content}</span>
-                        <Button variant={element.type} size="small">
-                          {#snippet children()}
-                            Action
-                          {/snippet}
-                        </Button>
-                      </div>
-                    {/snippet}
-                  </Container>
-                {/each}
-              </div>
-            {/snippet}
-          </Container>
-
-          <p class="text-body-xs text-secondary">
-            <strong>Current Configuration:</strong>
-            Wrap: {wrap ? 'enabled' : 'disabled'} • Spacing: {spacing} • Alignment: {alignment} • Justify: {justify}
-          </p>
-        </div>
-
-        <!-- Generated CSS Display -->
-        <CSSDisplay css={cssPropertiesToString(generatedCSS)} title="Live Generated CSS" variant="success" />
-      </div>
-
-      <!-- Action Buttons -->
-      <div style={cssPropertiesToString(pageRow.toCSS(actionsConfig))}>
-        <Button variant="primary" onclick={() => window.location.reload()}>
+    <LayoutDiv config={pageConfig}>
+      {#snippet children()}
+        <!-- Page Header -->
+        <LayoutDiv config={headerConfig}>
           {#snippet children()}
-            Reset Demo
+            <h1 class="text-h1 text-primary">Row Arrangement Demo</h1>
+            <p class="text-body-l text-secondary">
+              Testing the Row arrangement from the layout engine for horizontal layouts.
+            </p>
           {/snippet}
-        </Button>
-        <Button variant="secondary" onclick={() => (window.location.href = '/')}>
+        </LayoutDiv>
+
+        <Divider />
+
+        <!-- Interactive Demo Section -->
+        <LayoutDiv config={sectionConfig}>
           {#snippet children()}
-            Back to Home
+            <h2 class="text-h3 text-primary">Interactive Row Arrangement</h2>
+            <p class="text-body-m text-secondary">
+              Use the controls below to modify the row arrangement and see real-time CSS generation and layout updates.
+            </p>
+
+            <!-- Row Properties Panel -->
+            <PropertyPanel title="Row Properties" description="Adjust these settings to see live layout changes">
+              <WrapToggle value={wrap} onchange={handleWrapChange} />
+
+              <SpacingSlider value={spacing} onchange={handleSpacingChange} />
+
+              <AlignmentPicker value={alignment} onchange={handleAlignmentChange} />
+
+              <JustifyPicker value={justify} onchange={handleJustifyChange} />
+            </PropertyPanel>
+
+            <!-- Live Preview -->
+            <LayoutDiv config={previewConfig}>
+              {#snippet children()}
+                <h3 class="text-h4 text-primary">Live Preview</h3>
+
+                <Container variant="bordered" padding="comfortable" radius="large" minHeight="preview">
+                  {#snippet children()}
+                    <!-- Using layout engine generated CSS directly -->
+                    <LayoutDiv config={testContainer} class="h-full">
+                      {#snippet children()}
+                        {#each demoElements as element}
+                          <Container
+                            variant="elevated"
+                            padding="normal"
+                            radius="normal"
+                            height={element.height}
+                            minWidth={element.minWidth}
+                            minHeight={alignment === 'stretch' ? 'large' : undefined}
+                          >
+                            {#snippet children()}
+                              <LayoutDiv config={{
+                                id: 'element-content',
+                                type: 'stack',
+                                direction: 'vertical',
+                                gap: 'tight',
+                                fillContainer: true,
+                              }}>
+                                {#snippet children()}
+                                  <span class="text-body-m text-primary font-medium">{element.content}</span>
+                                  <Button variant={element.type} size="small">
+                                    {#snippet children()}
+                                      Action
+                                    {/snippet}
+                                  </Button>
+                                {/snippet}
+                              </LayoutDiv>
+                            {/snippet}
+                          </Container>
+                        {/each}
+                      {/snippet}
+                    </LayoutDiv>
+                  {/snippet}
+                </Container>
+
+                <p class="text-body-xs text-secondary">
+                  <strong>Current Configuration:</strong>
+                  Wrap: {wrap ? 'enabled' : 'disabled'} • Spacing: {spacing} • Alignment: {alignment} • Justify: {justify}
+                </p>
+              {/snippet}
+            </LayoutDiv>
+
+            <!-- Generated CSS Display -->
+            <CSSDisplay css={JSON.stringify(testContainer, null, 2)} title="Live Configuration Object" variant="success" />
           {/snippet}
-        </Button>
-      </div>
-    </div>
+        </LayoutDiv>
+
+        <!-- Action Buttons -->
+        <LayoutDiv config={actionsConfig}>
+          {#snippet children()}
+            <Button variant="primary" onclick={() => window.location.reload()}>
+              {#snippet children()}
+                Reset Demo
+              {/snippet}
+            </Button>
+            <Button variant="secondary" onclick={() => (window.location.href = '/')}>
+              {#snippet children()}
+                Back to Home
+              {/snippet}
+            </Button>
+          {/snippet}
+        </LayoutDiv>
+      {/snippet}
+    </LayoutDiv>
   {/snippet}
 </Container>

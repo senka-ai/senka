@@ -47,6 +47,16 @@ export { default as ListItem } from './components/layout/ListItem.svelte'
 export { default as ListTitle } from './components/layout/ListTitle.svelte'
 export { default as Accordion } from './components/layout/Accordion.svelte'
 
+// Layout Engine Integration Components
+export { default as LayoutDiv } from './components/layout-engine/LayoutDiv.svelte'
+export { default as LayoutContainer } from './components/layout-engine/LayoutContainer.svelte'
+export { default as StackLayout } from './components/layout-engine/StackLayout.svelte'
+export { default as RowLayout } from './components/layout-engine/RowLayout.svelte'
+export { default as GridLayout } from './components/layout-engine/GridLayout.svelte'
+
+// Layout Presets and Utilities
+export { LAYOUT_PRESETS, getLayoutPreset, isLayoutPreset, type LayoutPreset } from './layout-presets'
+
 // Navigation Components
 export { default as TabBar } from './components/navigation/TabBar.svelte'
 export { default as NavBar } from './components/navigation/NavBar.svelte'
@@ -73,8 +83,8 @@ export * from './utils/styles'
 export * from './utils/rendering'
 export * from './utils/focus.svelte'
 
-// Icons
-export * from './icons'
+// Icons - Import specific icons as needed from '@senka-ai/ui/icons'
+// Individual icon imports available via the separate '/icons' export path
 
 // Type Definitions
 export type * from './type/component'
