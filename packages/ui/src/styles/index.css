@@ -6,8 +6,17 @@
 /* Import Google Fonts first */
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
 
-/* Import Tailwind CSS */
-@import 'tailwindcss';
+/* Import Tailwind CSS with no automatic content scanning */
+@import 'tailwindcss' source(none);
+
+/* 
+ * Tailwind CSS v4 @source directives:
+ * These lines explicitly specify which files Tailwind should scan for class usage.
+ * This replaces the older automatic content scanning and ensures only the component library files are included.
+ */
+@source '../lib/**/*.svelte';
+@source '../lib/**/*.ts';
+@source '../lib/**/*.js';
 
 /* Import design tokens and component styles */
 @import './colors.css';
