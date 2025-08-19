@@ -6,7 +6,7 @@ RELEVANT FILES: packages/layout-showcase/src/app.css, packages/ui/src/styles/ind
 -->
 
 <script lang="ts">
-  import '../app.css'
+  import '../app.generated.css'
 </script>
 
 <div>

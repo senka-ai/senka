@@ -98,30 +98,6 @@
 	}
 }
 
-/* Specific spacing for educational app layouts */
-.spacing-classroom {
-	padding: var(--space-lg);
-	margin-bottom: var(--space-xl);
-}
-
-.spacing-assignment {
-	padding: var(--space-md) var(--space-lg);
-	gap: var(--space-md);
-}
-
-.spacing-student-list {
-	gap: var(--space-sm);
-}
-
-.spacing-grade-input {
-	padding: var(--space-sm) var(--space-md);
-}
-
-.spacing-notification {
-	padding: var(--space-md);
-	margin-bottom: var(--space-md);
-}
-
 /* Compact layouts for data-dense interfaces */
 .spacing-compact {
 	--space-card-padding: var(--space-md);
