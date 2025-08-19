@@ -10,6 +10,7 @@ RELEVANT FILES: packages/layout-engine/src/lib/core/arrangements/row.ts, package
   import { Button, Divider, Container, LayoutDiv } from '@senka-ai/ui'
   // Import layout engine types
   import type { LayoutContainer } from '@senka-ai/layout-engine'
+  import DemoNavigation from '$lib/components/DemoNavigation.svelte'
   // Import reusable control components
   import WrapToggle from '$lib/components/WrapToggle.svelte'
   import SpacingSlider from '$lib/components/SpacingSlider.svelte'
@@ -128,6 +129,9 @@ RELEVANT FILES: packages/layout-engine/src/lib/core/arrangements/row.ts, package
   {#snippet children()}
     <LayoutDiv config={pageConfig}>
       {#snippet children()}
+        <!-- Demo Navigation -->
+        <DemoNavigation currentPage="row" />
+
         <!-- Page Header -->
         <LayoutDiv config={headerConfig}>
           {#snippet children()}
@@ -138,16 +142,9 @@ RELEVANT FILES: packages/layout-engine/src/lib/core/arrangements/row.ts, package
           {/snippet}
         </LayoutDiv>
 
-        <Divider />
-
         <!-- Interactive Demo Section -->
         <LayoutDiv config={sectionConfig}>
           {#snippet children()}
-            <h2 class="text-h3 text-primary">Interactive Row Arrangement</h2>
-            <p class="text-body-m text-secondary">
-              Use the controls below to modify the row arrangement and see real-time CSS generation and layout updates.
-            </p>
-
             <!-- Row Properties Panel -->
             <PropertyPanel title="Row Properties" description="Adjust these settings to see live layout changes">
               <WrapToggle value={wrap} onchange={handleWrapChange} />
@@ -179,13 +176,15 @@ RELEVANT FILES: packages/layout-engine/src/lib/core/arrangements/row.ts, package
                             minHeight={alignment === 'stretch' ? 'large' : undefined}
                           >
                             {#snippet children()}
-                              <LayoutDiv config={{
-                                id: 'element-content',
-                                type: 'stack',
-                                direction: 'vertical',
-                                gap: 'tight',
-                                fillContainer: true,
-                              }}>
+                              <LayoutDiv
+                                config={{
+                                  id: 'element-content',
+                                  type: 'stack',
+                                  direction: 'vertical',
+                                  gap: 'tight',
+                                  fillContainer: true,
+                                }}
+                              >
                                 {#snippet children()}
                                   <span class="text-body-m text-primary font-medium">{element.content}</span>
                                   <Button variant={element.type} size="small">
@@ -211,7 +210,11 @@ RELEVANT FILES: packages/layout-engine/src/lib/core/arrangements/row.ts, package
             </LayoutDiv>
 
             <!-- Generated CSS Display -->
-            <CSSDisplay css={JSON.stringify(testContainer, null, 2)} title="Live Configuration Object" variant="success" />
+            <CSSDisplay
+              css={JSON.stringify(testContainer, null, 2)}
+              title="Live Configuration Object"
+              variant="success"
+            />
           {/snippet}
         </LayoutDiv>
 

@@ -7,8 +7,9 @@ RELEVANT FILES: packages/layout-engine/src/lib/index.ts, packages/ui/src/lib/ind
 
 <script lang="ts">
   // Import UI components - including new layout components
-  import { Button, Badge, Container, LayoutDiv } from '@senka-ai/ui'
+  import { Badge, Container, LayoutDiv } from '@senka-ai/ui'
   import type { LayoutContainer } from '@senka-ai/layout-engine'
+  import DemoNavigation from '$lib/components/DemoNavigation.svelte'
 
   let showcaseTitle = 'Layout Showcase'
   let description = 'This package demonstrates the layout engine capabilities'
@@ -45,15 +46,6 @@ RELEVANT FILES: packages/layout-engine/src/lib/index.ts, packages/ui/src/lib/ind
     gap: 'normal',
     fillContainer: true,
   }
-
-  const buttonsConfig: LayoutContainer = {
-    id: 'buttons-layout',
-    type: 'row',
-    direction: 'horizontal',
-    gap: 'normal',
-    wrap: true,
-    fillContainer: false,
-  }
 </script>
 
 <svelte:head>
@@ -65,6 +57,9 @@ RELEVANT FILES: packages/layout-engine/src/lib/index.ts, packages/ui/src/lib/ind
   {#snippet children()}
     <LayoutDiv config={pageConfig}>
       {#snippet children()}
+        <!-- Demo Navigation -->
+        <DemoNavigation currentPage="home" />
+
         <Container variant="default" padding="spacious" background={false}>
           {#snippet children()}
             <LayoutDiv config={headerConfig}>
@@ -73,11 +68,6 @@ RELEVANT FILES: packages/layout-engine/src/lib/index.ts, packages/ui/src/lib/ind
                 <p class="text-body-l text-secondary">
                   {description}. This is a barebones package ready for layout engine integration.
                 </p>
-                <Container variant="default" padding="none" background={false}>
-                  {#snippet children()}
-                    <Badge value="Under Development" />
-                  {/snippet}
-                </Container>
               {/snippet}
             </LayoutDiv>
           {/snippet}
@@ -85,45 +75,6 @@ RELEVANT FILES: packages/layout-engine/src/lib/index.ts, packages/ui/src/lib/ind
 
         <LayoutDiv config={sectionsConfig}>
           {#snippet children()}
-            <Container variant="elevated" padding="comfortable" radius="large">
-              {#snippet children()}
-                <LayoutDiv config={listConfig}>
-                  {#snippet children()}
-                    <h2 class="text-h3 text-primary">Ready for Layout Engine</h2>
-                    <p class="text-body-m text-secondary">
-                      This package is configured and ready to showcase layout engine components. The project structure
-                      follows Senka standards with proper UI library integration.
-                    </p>
-
-                    <LayoutDiv config={buttonsConfig}>
-                      {#snippet children()}
-                        <Button variant="primary" onclick={() => (window.location.href = '/stack-demo')}>
-                          {#snippet children()}
-                            Try Stack Demo
-                          {/snippet}
-                        </Button>
-                        <Button variant="primary" onclick={() => (window.location.href = '/row-demo')}>
-                          {#snippet children()}
-                            Try Row Demo
-                          {/snippet}
-                        </Button>
-                        <Button variant="primary" onclick={() => (window.location.href = '/grid-demo')}>
-                          {#snippet children()}
-                            Try Grid Demo
-                          {/snippet}
-                        </Button>
-                        <Button variant="secondary">
-                          {#snippet children()}
-                            View Documentation
-                          {/snippet}
-                        </Button>
-                      {/snippet}
-                    </LayoutDiv>
-                  {/snippet}
-                </LayoutDiv>
-              {/snippet}
-            </Container>
-
             <Container variant="elevated" padding="comfortable" radius="large">
               {#snippet children()}
                 <LayoutDiv config={listConfig}>

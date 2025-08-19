@@ -10,6 +10,7 @@ RELEVANT FILES: packages/layout-engine/src/lib/core/arrangements/grid.ts, packag
   import { Button, Divider, Container, LayoutDiv } from '@senka-ai/ui'
   // Import layout engine types
   import type { LayoutContainer } from '@senka-ai/layout-engine'
+  import DemoNavigation from '$lib/components/DemoNavigation.svelte'
   // Import reusable control components
   import ColumnsPicker from '$lib/components/ColumnsPicker.svelte'
   import SpacingSlider from '$lib/components/SpacingSlider.svelte'
@@ -150,6 +151,9 @@ RELEVANT FILES: packages/layout-engine/src/lib/core/arrangements/grid.ts, packag
   {#snippet children()}
     <LayoutDiv config={pageConfig}>
       {#snippet children()}
+        <!-- Demo Navigation -->
+        <DemoNavigation currentPage="grid" />
+
         <!-- Page Header -->
         <LayoutDiv config={headerConfig}>
           {#snippet children()}
@@ -160,16 +164,9 @@ RELEVANT FILES: packages/layout-engine/src/lib/core/arrangements/grid.ts, packag
           {/snippet}
         </LayoutDiv>
 
-        <Divider />
-
         <!-- Interactive Demo Section -->
         <LayoutDiv config={sectionConfig}>
           {#snippet children()}
-            <h2 class="text-h3 text-primary">Interactive Grid Arrangement</h2>
-            <p class="text-body-m text-secondary">
-              Use the controls below to modify the grid arrangement and see real-time CSS generation and layout updates.
-            </p>
-
             <!-- Grid Properties Panel -->
             <PropertyPanel title="Grid Properties" description="Adjust these settings to see live layout changes">
               <ColumnsPicker value={columns} onchange={handleColumnsChange} />
@@ -225,7 +222,11 @@ RELEVANT FILES: packages/layout-engine/src/lib/core/arrangements/grid.ts, packag
             </LayoutDiv>
 
             <!-- Generated CSS Display -->
-            <CSSDisplay css={JSON.stringify(testContainer, null, 2)} title="Live Configuration Object" variant="success" />
+            <CSSDisplay
+              css={JSON.stringify(testContainer, null, 2)}
+              title="Live Configuration Object"
+              variant="success"
+            />
           {/snippet}
         </LayoutDiv>
 

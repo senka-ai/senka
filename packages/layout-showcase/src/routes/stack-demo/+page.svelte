@@ -10,6 +10,7 @@ RELEVANT FILES: packages/layout-engine/src/lib/core/arrangements/stack.ts, packa
   import { Button, Divider, Container, LayoutDiv } from '@senka-ai/ui'
   // Import layout engine types
   import type { LayoutContainer } from '@senka-ai/layout-engine'
+  import DemoNavigation from '$lib/components/DemoNavigation.svelte'
   // Import reusable control components
   import DirectionToggle from '$lib/components/DirectionToggle.svelte'
   import SpacingSlider from '$lib/components/SpacingSlider.svelte'
@@ -111,6 +112,9 @@ RELEVANT FILES: packages/layout-engine/src/lib/core/arrangements/stack.ts, packa
   {#snippet children()}
     <LayoutDiv config={pageConfig}>
       {#snippet children()}
+        <!-- Demo Navigation -->
+        <DemoNavigation currentPage="stack" />
+
         <!-- Page Header -->
         <LayoutDiv config={headerConfig}>
           {#snippet children()}
@@ -119,16 +123,9 @@ RELEVANT FILES: packages/layout-engine/src/lib/core/arrangements/stack.ts, packa
           {/snippet}
         </LayoutDiv>
 
-        <Divider />
-
         <!-- Interactive Demo Section -->
         <LayoutDiv config={sectionConfig}>
           {#snippet children()}
-            <h2 class="text-h3 text-primary">Interactive Stack Arrangement</h2>
-            <p class="text-body-m text-secondary">
-              Use the controls below to modify the stack arrangement and see real-time CSS generation and layout updates.
-            </p>
-
             <!-- Stack Properties Panel -->
             <PropertyPanel title="Stack Properties" description="Adjust these settings to see live layout changes">
               <DirectionToggle value={direction} onchange={handleDirectionChange} />
@@ -177,7 +174,11 @@ RELEVANT FILES: packages/layout-engine/src/lib/core/arrangements/stack.ts, packa
             </LayoutDiv>
 
             <!-- Generated CSS Display -->
-            <CSSDisplay css={JSON.stringify(testContainer, null, 2)} title="Live Configuration Object" variant="success" />
+            <CSSDisplay
+              css={JSON.stringify(testContainer, null, 2)}
+              title="Live Configuration Object"
+              variant="success"
+            />
           {/snippet}
         </LayoutDiv>
 
