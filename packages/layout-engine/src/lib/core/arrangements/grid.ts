@@ -68,7 +68,7 @@ export class GridArrangement extends BaseArrangement {
       // Default alignment
       css['align-items'] = 'stretch'
     }
-    
+
     // Grid justify-items - horizontal alignment within grid cells
     // For grids, we interpret justify as justify-items (item alignment within cells)
     if (container.justify) {

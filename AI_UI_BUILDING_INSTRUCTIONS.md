@@ -346,6 +346,7 @@ Before generating code, AI should ask itself:
 ### Available Icon Libraries
 
 #### @senka-ai/ui/icons (Primary - Use First)
+
 - `ArrowUpIcon`, `ArrowDownIcon`, `ArrowLeftIcon`, `ArrowRightIcon`
 - `AddIcon`, `CloseIcon`, `EditIcon`, `DeleteIcon`
 - `CheckIcon`, `WarningIcon`, `InfoIcon`, `SuccessIcon`
@@ -353,19 +354,22 @@ Before generating code, AI should ask itself:
 - And many more standard UI icons
 
 #### svelte-heros (Secondary - For General UI)
+
 - `SwitchHorizontal`, `SwitchVertical` - Perfect for direction toggles
 - `ViewGrid`, `ViewList`, `Menu` - Layout view modes
 - `Collection` - Grouping and organization
 - Great for general interface icons not in UI library
 
 #### svelte-remix (Specialized - For Layout Concepts)
+
 - `AlignItemTopLineDesign`, `AlignItemBottomLineDesign` - Alignment
-- `AlignItemLeftLineDesign`, `AlignItemRightLineDesign` - Justification  
+- `AlignItemLeftLineDesign`, `AlignItemRightLineDesign` - Justification
 - `AlignItemHorizontalCenterLineDesign`, `AlignItemVerticalCenterLineDesign` - Centering
 - `ExpandHorizontalLineArrows`, `ExpandVerticalLineArrows` - Stretching/spacing
 - Perfect for layout, alignment, and design tool interfaces
 
 #### Icon Selection Priority
+
 1. **First**: Check `@senka-ai/ui/icons` for standard icons
 2. **Second**: Use `svelte-heros` for general UI icons
 3. **Third**: Use `svelte-remix` for layout/design-specific concepts

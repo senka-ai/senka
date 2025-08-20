@@ -4,8 +4,8 @@ import { resolve } from 'path'
 
 /**
  * Simple Tailwind CSS v4 build script for monorepo
- * 
- * The key insight: Running from the UI dist directory allows Tailwind 
+ *
+ * The key insight: Running from the UI dist directory allows Tailwind
  * to properly scan template literals for decimal classes like py-2.5
  */
 
@@ -18,12 +18,7 @@ const CONTENT_GLOB = '../**/*.{html,js,svelte,ts}'
 const WORKING_DIR = '../ui/dist'
 
 // Build command arguments
-const args = [
-  'tailwindcss',
-  '-i', INPUT_CSS,
-  '-o', OUTPUT_CSS,
-  '--content', CONTENT_GLOB
-]
+const args = ['tailwindcss', '-i', INPUT_CSS, '-o', OUTPUT_CSS, '--content', CONTENT_GLOB]
 
 if (isWatch) {
   args.push('--watch')
@@ -35,7 +30,7 @@ if (isWatch) {
 // Run from UI dist directory for proper template literal scanning
 const child = spawn('npx', args, {
   stdio: 'inherit',
-  cwd: resolve(process.cwd(), WORKING_DIR)
+  cwd: resolve(process.cwd(), WORKING_DIR),
 })
 
 child.on('close', (code) => {

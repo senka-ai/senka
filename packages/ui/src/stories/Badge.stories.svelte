@@ -104,7 +104,11 @@
   {/snippet}
 </Story>
 
-<Story name="Status Text Badge" args={{ type: 'number', value: 'PREMIUM', variant: 'success' }} parameters={{ layout: 'compact' }}>
+<Story
+  name="Status Text Badge"
+  args={{ type: 'number', value: 'PREMIUM', variant: 'success' }}
+  parameters={{ layout: 'compact' }}
+>
   {#snippet template(args)}
     <Badge {...args} />
   {/snippet}

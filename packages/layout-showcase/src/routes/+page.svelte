@@ -177,8 +177,7 @@ RELEVANT FILES: packages/layout-engine/LAYOUT_SYSTEM_FINAL.md, packages/ui/UI_AR
     <StackLayout gap="normal">
       <h1 class="text-h1 text-primary">Layout Engine Architecture</h1>
       <p class="text-body-l text-secondary">
-        A comprehensive demonstration of the data-driven layout transformation system that powers the Senka
-        platform.
+        A comprehensive demonstration of the data-driven layout transformation system that powers the Senka platform.
       </p>
     </StackLayout>
 
@@ -202,8 +201,8 @@ RELEVANT FILES: packages/layout-engine/LAYOUT_SYSTEM_FINAL.md, packages/ui/UI_AR
             <StackLayout align="start">
               <h2 class="text-h2 text-primary">Data-Driven Layout System</h2>
               <p class="text-body-l text-secondary">
-                Every layout is a serializable configuration object that transforms into optimized CSS. One
-                schema serves visual builders, AI generators, and templates.
+                Every layout is a serializable configuration object that transforms into optimized CSS. One schema
+                serves visual builders, AI generators, and templates.
               </p>
               <Tag variant="primary" text="Zero Custom CSS Required" />
             </StackLayout>
@@ -323,13 +322,7 @@ RELEVANT FILES: packages/layout-engine/LAYOUT_SYSTEM_FINAL.md, packages/ui/UI_AR
             <!-- Composed Layout Content -->
             <RowLayout gap="comfortable" align="start">
               <!-- Sidebar (Stack) -->
-              <Container
-                variant="elevated"
-                padding="normal"
-                radius="normal"
-                minWidth="medium"
-                minHeight="large"
-              >
+              <Container variant="elevated" padding="normal" radius="normal" minWidth="medium" minHeight="large">
                 <StackLayout gap="normal" fillContainer={false}>
                   <h4 class="text-h5 text-primary">Navigation</h4>
                   <Button variant="tertiary" size="small" fullWidth>Dashboard</Button>
@@ -498,13 +491,7 @@ RELEVANT FILES: packages/layout-engine/LAYOUT_SYSTEM_FINAL.md, packages/ui/UI_AR
             <StackLayout gap="normal">
               <h3 class="text-h4 text-primary">Image Overlay</h3>
 
-              <Container
-                variant="default"
-                padding="comfortable"
-                radius="normal"
-                minHeight="medium"
-                class="relative"
-              >
+              <Container variant="default" padding="comfortable" radius="normal" minHeight="medium" class="relative">
                 <OverlayLayout position="center" class="h-24">
                   <!-- Background -->
                   <div class="bg-surface border-default absolute inset-0 rounded border-2"></div>
@@ -534,9 +521,7 @@ RELEVANT FILES: packages/layout-engine/LAYOUT_SYSTEM_FINAL.md, packages/ui/UI_AR
 
     <!-- Action Buttons -->
     <RowLayout gap="normal" align="center" justify="space-between">
-      <Button variant="primary" onclick={() => window.location.reload()}>
-        Reset Demo
-      </Button>
+      <Button variant="primary" onclick={() => window.location.reload()}>Reset Demo</Button>
     </RowLayout>
   </StackLayout>
 </Container>

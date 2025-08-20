@@ -7,7 +7,7 @@
 
 <script lang="ts">
   import LayoutDiv from './LayoutDiv.svelte'
-  
+
   interface Props {
     /** Overlay position @default 'center' */
     position?: 'center' | 'top-left' | 'top-right' | 'bottom-left' | 'bottom-right'
@@ -22,16 +22,16 @@
     /** Allow other HTML attributes to pass through */
     [key: string]: any
   }
-  
-  let { 
+
+  let {
     position = 'center',
     zIndex,
     fillContainer = true,
-    class: className = '', 
-    children, 
-    ...restProps 
+    class: className = '',
+    children,
+    ...restProps
   }: Props = $props()
-  
+
   // Generate layout config for overlay arrangement
   const overlayConfig = $derived({
     id: `overlay-${position}-${zIndex || 'auto'}`,

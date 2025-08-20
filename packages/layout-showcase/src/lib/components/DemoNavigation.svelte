@@ -34,22 +34,34 @@ RELEVANT FILES: packages/ui/src/lib/index.ts, packages/layout-engine/src/lib/ind
             Home
           {/snippet}
         </Button>
-        <Button variant={currentPage === 'stack' ? 'primary' : 'secondary'} onclick={() => (window.location.href = '/stack-demo')}>
+        <Button
+          variant={currentPage === 'stack' ? 'primary' : 'secondary'}
+          onclick={() => (window.location.href = '/stack-demo')}
+        >
           {#snippet children()}
             Stack Demo
           {/snippet}
         </Button>
-        <Button variant={currentPage === 'row' ? 'primary' : 'secondary'} onclick={() => (window.location.href = '/row-demo')}>
+        <Button
+          variant={currentPage === 'row' ? 'primary' : 'secondary'}
+          onclick={() => (window.location.href = '/row-demo')}
+        >
           {#snippet children()}
             Row Demo
           {/snippet}
         </Button>
-        <Button variant={currentPage === 'grid' ? 'primary' : 'secondary'} onclick={() => (window.location.href = '/grid-demo')}>
+        <Button
+          variant={currentPage === 'grid' ? 'primary' : 'secondary'}
+          onclick={() => (window.location.href = '/grid-demo')}
+        >
           {#snippet children()}
             Grid Demo
           {/snippet}
         </Button>
-        <Button variant={currentPage === 'flow' ? 'primary' : 'secondary'} onclick={() => (window.location.href = '/flow-demo')}>
+        <Button
+          variant={currentPage === 'flow' ? 'primary' : 'secondary'}
+          onclick={() => (window.location.href = '/flow-demo')}
+        >
           {#snippet children()}
             Flow Demo
           {/snippet}

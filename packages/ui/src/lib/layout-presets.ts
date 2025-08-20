@@ -19,7 +19,7 @@ export const LAYOUT_PRESETS = {
     gap: 'spacious',
     fillContainer: true,
   },
-  
+
   'page-content': {
     id: 'page-content',
     type: 'stack',
@@ -27,7 +27,7 @@ export const LAYOUT_PRESETS = {
     gap: 'comfortable',
     fillContainer: true,
   },
-  
+
   // Header layouts
   'header-row': {
     id: 'header-row',
@@ -37,7 +37,7 @@ export const LAYOUT_PRESETS = {
     justify: 'space-between',
     fillContainer: true,
   },
-  
+
   'header-actions': {
     id: 'header-actions',
     type: 'row',
@@ -46,7 +46,7 @@ export const LAYOUT_PRESETS = {
     justify: 'packed',
     fillContainer: false,
   },
-  
+
   // Section layouts
   'section-stack': {
     id: 'section-stack',
@@ -55,7 +55,7 @@ export const LAYOUT_PRESETS = {
     gap: 'normal',
     fillContainer: true,
   },
-  
+
   'section-header': {
     id: 'section-header',
     type: 'stack',
@@ -63,7 +63,7 @@ export const LAYOUT_PRESETS = {
     gap: 'tight',
     fillContainer: true,
   },
-  
+
   // Content layouts
   'content-grid': {
     id: 'content-grid',
@@ -73,7 +73,7 @@ export const LAYOUT_PRESETS = {
     align: 'stretch',
     fillContainer: true,
   },
-  
+
   'content-list': {
     id: 'content-list',
     type: 'stack',
@@ -81,7 +81,7 @@ export const LAYOUT_PRESETS = {
     gap: 'tight',
     fillContainer: true,
   },
-  
+
   // Card layouts
   'card-content': {
     id: 'card-content',
@@ -90,7 +90,7 @@ export const LAYOUT_PRESETS = {
     gap: 'normal',
     fillContainer: true,
   },
-  
+
   'card-actions': {
     id: 'card-actions',
     type: 'row',
@@ -99,7 +99,7 @@ export const LAYOUT_PRESETS = {
     justify: 'packed',
     fillContainer: false,
   },
-  
+
   // Form layouts
   'form-stack': {
     id: 'form-stack',
@@ -108,7 +108,7 @@ export const LAYOUT_PRESETS = {
     gap: 'comfortable',
     fillContainer: true,
   },
-  
+
   'form-row': {
     id: 'form-row',
     type: 'row',
@@ -117,7 +117,7 @@ export const LAYOUT_PRESETS = {
     wrap: true,
     fillContainer: true,
   },
-  
+
   'form-actions': {
     id: 'form-actions',
     type: 'row',
@@ -126,7 +126,7 @@ export const LAYOUT_PRESETS = {
     justify: 'space-between',
     fillContainer: true,
   },
-  
+
   // Navigation layouts
   'nav-horizontal': {
     id: 'nav-horizontal',
@@ -136,7 +136,7 @@ export const LAYOUT_PRESETS = {
     justify: 'packed',
     fillContainer: false,
   },
-  
+
   'nav-vertical': {
     id: 'nav-vertical',
     type: 'stack',
@@ -144,7 +144,7 @@ export const LAYOUT_PRESETS = {
     gap: 'tight',
     fillContainer: true,
   },
-  
+
   // Sidebar layouts
   'sidebar-content': {
     id: 'sidebar-content',
@@ -153,7 +153,7 @@ export const LAYOUT_PRESETS = {
     gap: 'comfortable',
     fillContainer: true,
   },
-  
+
   // Dashboard layouts
   'dashboard-grid': {
     id: 'dashboard-grid',
@@ -163,7 +163,7 @@ export const LAYOUT_PRESETS = {
     align: 'stretch',
     fillContainer: true,
   },
-  
+
   'dashboard-cards': {
     id: 'dashboard-cards',
     type: 'grid',
@@ -172,7 +172,6 @@ export const LAYOUT_PRESETS = {
     align: 'stretch',
     fillContainer: true,
   },
-  
 } as const satisfies Record<string, LayoutContainer>
 
 /**

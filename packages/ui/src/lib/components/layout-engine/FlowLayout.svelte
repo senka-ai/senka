@@ -7,7 +7,7 @@
 
 <script lang="ts">
   import LayoutDiv from './LayoutDiv.svelte'
-  
+
   interface Props {
     /** Gap between items @default 'cozy' */
     gap?: 'none' | 'tight' | 'cozy' | 'normal' | 'comfortable' | 'spacious'
@@ -26,18 +26,18 @@
     /** Allow other HTML attributes to pass through */
     [key: string]: any
   }
-  
-  let { 
-    gap = 'cozy', 
+
+  let {
+    gap = 'cozy',
     align = 'start',
     fillContainer = true,
     expandChildren = false,
     expand = false,
-    class: className = '', 
-    children, 
-    ...restProps 
+    class: className = '',
+    children,
+    ...restProps
   }: Props = $props()
-  
+
   // Generate layout config for flow arrangement
   const flowConfig = $derived({
     id: `flow-${gap}-${align}-${expandChildren}`,
@@ -47,7 +47,7 @@
     fillContainer,
     expandChildren,
   })
-  
+
   // Add CSS classes based on expansion props
   const combinedClassName = $derived(
     (

@@ -7,7 +7,7 @@
 
 <script lang="ts">
   import LayoutDiv from './LayoutDiv.svelte'
-  
+
   interface Props {
     /** Gap between items @default 'normal' */
     gap?: 'none' | 'tight' | 'cozy' | 'normal' | 'comfortable' | 'spacious'
@@ -20,15 +20,9 @@
     /** Allow other HTML attributes to pass through */
     [key: string]: any
   }
-  
-  let { 
-    gap = 'normal',
-    fillContainer = true,
-    class: className = '', 
-    children, 
-    ...restProps 
-  }: Props = $props()
-  
+
+  let { gap = 'normal', fillContainer = true, class: className = '', children, ...restProps }: Props = $props()
+
   // Generate layout config for frame arrangement
   const frameConfig = $derived({
     id: `frame-${gap}`,

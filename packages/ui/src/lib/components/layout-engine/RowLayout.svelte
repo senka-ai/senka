@@ -7,7 +7,7 @@
 
 <script lang="ts">
   import LayoutDiv from './LayoutDiv.svelte'
-  
+
   interface Props {
     /** Gap between items @default 'normal' */
     gap?: 'none' | 'tight' | 'cozy' | 'normal' | 'comfortable' | 'spacious'
@@ -30,20 +30,20 @@
     /** Allow other HTML attributes to pass through */
     [key: string]: any
   }
-  
-  let { 
-    gap = 'normal', 
+
+  let {
+    gap = 'normal',
     align = 'center',
     justify = 'packed',
     wrap = false,
     fillContainer = true,
     expandChildren = false,
     expand = false,
-    class: className = '', 
-    children, 
-    ...restProps 
+    class: className = '',
+    children,
+    ...restProps
   }: Props = $props()
-  
+
   // Generate layout config for row arrangement
   const rowConfig = $derived({
     id: `row-${gap}-${align}-${justify}-${expandChildren}`,
@@ -55,7 +55,7 @@
     fillContainer,
     expandChildren,
   })
-  
+
   // Add CSS classes based on expansion props
   const combinedClassName = $derived(
     (

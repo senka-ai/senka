@@ -13,7 +13,9 @@ Tailwind CSS v4's content scanner has difficulty detecting classes inside JavaSc
 ## Implementation
 
 ### 1. Dependencies
+
 Add Tailwind v4 to your package dependencies:
+
 ```json
 {
   "devDependencies": {
@@ -24,14 +26,18 @@ Add Tailwind v4 to your package dependencies:
 ```
 
 ### 2. CSS Setup
+
 Create a simple CSS file importing only the UI library styles:
+
 ```css
 /* src/app.css */
 @import '@senka-ai/ui/styles';
 ```
 
 ### 3. Build Script
+
 Create `scripts/build-css.js`:
+
 ```javascript
 #!/usr/bin/env node
 import { spawn } from 'child_process'
@@ -45,19 +51,14 @@ const OUTPUT_CSS = '../your-package/src/app.generated.css'
 const CONTENT_GLOB = '../**/*.{html,js,svelte,ts}'
 const WORKING_DIR = '../ui/dist'
 
-const args = [
-  'tailwindcss',
-  '-i', INPUT_CSS,
-  '-o', OUTPUT_CSS,
-  '--content', CONTENT_GLOB
-]
+const args = ['tailwindcss', '-i', INPUT_CSS, '-o', OUTPUT_CSS, '--content', CONTENT_GLOB]
 
 if (isWatch) args.push('--watch')
 
 // CRITICAL: Run from UI dist directory
 const child = spawn('npx', args, {
   stdio: 'inherit',
-  cwd: resolve(process.cwd(), WORKING_DIR)
+  cwd: resolve(process.cwd(), WORKING_DIR),
 })
 
 child.on('close', (code) => {
@@ -66,6 +67,7 @@ child.on('close', (code) => {
 ```
 
 ### 4. Package Scripts
+
 ```json
 {
   "scripts": {
@@ -77,7 +79,9 @@ child.on('close', (code) => {
 ```
 
 ### 5. Layout Integration
+
 Import the generated CSS in your layout:
+
 ```svelte
 <!-- +layout.svelte -->
 <script>

@@ -7,7 +7,7 @@
 
 <script lang="ts">
   import LayoutDiv from './LayoutDiv.svelte'
-  
+
   interface Props {
     /** Stack direction @default 'vertical' */
     direction?: 'horizontal' | 'vertical'
@@ -28,19 +28,19 @@
     /** Allow other HTML attributes to pass through */
     [key: string]: any
   }
-  
-  let { 
-    direction = 'vertical', 
-    gap = 'normal', 
+
+  let {
+    direction = 'vertical',
+    gap = 'normal',
     align = 'stretch',
     fillContainer = true,
     expandChildren = false,
     expand = false,
-    class: className = '', 
-    children, 
-    ...restProps 
+    class: className = '',
+    children,
+    ...restProps
   }: Props = $props()
-  
+
   // Generate layout config for stack arrangement
   const stackConfig = $derived({
     id: `stack-${direction}-${gap}-${align}-${expandChildren}`,
@@ -51,7 +51,7 @@
     fillContainer,
     expandChildren,
   })
-  
+
   // Add CSS classes based on expansion props
   const combinedClassName = $derived(
     (

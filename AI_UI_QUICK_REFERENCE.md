@@ -34,9 +34,9 @@ Tabs/switching?    → Tabs, ContentSwitcher, TabBar
   import { StackArrangement, RowArrangement, cssPropertiesToString } from '@senka-ai/layout-engine'
 
   // Icons (choose based on need)
-  import { ArrowRightIcon, CheckIcon } from '@senka-ai/ui/icons'  // Primary choice
-  import { SwitchHorizontal, ViewGrid } from 'svelte-heros'       // General UI icons
-  import { AlignItemTopLineDesign } from 'svelte-remix'           // Layout-specific icons
+  import { ArrowRightIcon, CheckIcon } from '@senka-ai/ui/icons' // Primary choice
+  import { SwitchHorizontal, ViewGrid } from 'svelte-heros' // General UI icons
+  import { AlignItemTopLineDesign } from 'svelte-remix' // Layout-specific icons
 </script>
 ```
 
@@ -169,18 +169,14 @@ Before committing:
 ## 🎨 ICON QUICK REFERENCE
 
 ```svelte
-// ✅ Primary: UI library icons
-import { ArrowRightIcon, SettingsIcon, CheckIcon } from '@senka-ai/ui/icons'
-
-// ✅ Secondary: General UI icons
-import { SwitchHorizontal, ViewGrid, Menu } from 'svelte-heros'
-
-// ✅ Specialized: Layout/design icons
-import { AlignItemTopLineDesign, ExpandVerticalLineArrows } from 'svelte-remix'
+// ✅ Primary: UI library icons import {(ArrowRightIcon, SettingsIcon, CheckIcon)} from '@senka-ai/ui/icons' // ✅ Secondary:
+General UI icons import {(SwitchHorizontal, ViewGrid, Menu)} from 'svelte-heros' // ✅ Specialized: Layout/design icons import
+{(AlignItemTopLineDesign, ExpandVerticalLineArrows)} from 'svelte-remix'
 ```
 
 **Icon Selection Guide:**
-- 🥇 **First**: Check `@senka-ai/ui/icons` 
+
+- 🥇 **First**: Check `@senka-ai/ui/icons`
 - 🥈 **Second**: Use `svelte-heros` for general UI
 - 🥉 **Third**: Use `svelte-remix` for layout concepts
 

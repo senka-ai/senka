@@ -37,12 +37,7 @@ RELEVANT FILES: packages/layout-engine/src/lib/core/arrangements/row.ts, package
     <div style={cssPropertiesToString(row.toCSS(wrapConfig))}>
       <span class="text-body-s text-secondary font-medium">Wrap:</span>
 
-      <Toggle
-        checked={value}
-        {disabled}
-        onchange={handleToggle}
-        size="medium"
-      />
+      <Toggle checked={value} {disabled} onchange={handleToggle} size="medium" />
 
       <span class="text-body-xs text-muted">
         {value ? 'Items wrap to new lines when needed' : 'Items stay on single line'}

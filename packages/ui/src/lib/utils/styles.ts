@@ -194,26 +194,12 @@ export function createBadgeStyles(options: {
 
   // Different sizing strategy for text vs numeric/icon badges
   const sizes = {
-    xs: type === 'dot' 
-      ? 'h-1.5 w-1.5' 
-      : isText
-        ? 'h-3 px-1.5 min-w-3 text-caption-m'
-        : 'h-3 w-3 min-w-3 text-caption-m',
-    small: type === 'dot' 
-      ? 'h-2 w-2' 
-      : isText
-        ? 'h-4 px-2 min-w-4 text-caption-m'
-        : 'h-4 w-4 min-w-4 text-caption-m',
-    medium: type === 'dot' 
-      ? 'h-3 w-3' 
-      : isText
-        ? 'h-5 px-2.5 min-w-5 text-caption-m'
-        : 'h-5 w-5 min-w-5 text-caption-m',
-    large: type === 'dot' 
-      ? 'h-4 w-4' 
-      : isText
-        ? 'h-6 px-3 min-w-6 text-caption-m'
-        : 'h-6 w-6 min-w-6 text-caption-m',
+    xs:
+      type === 'dot' ? 'h-1.5 w-1.5' : isText ? 'h-3 px-1.5 min-w-3 text-caption-m' : 'h-3 w-3 min-w-3 text-caption-m',
+    small: type === 'dot' ? 'h-2 w-2' : isText ? 'h-4 px-2 min-w-4 text-caption-m' : 'h-4 w-4 min-w-4 text-caption-m',
+    medium:
+      type === 'dot' ? 'h-3 w-3' : isText ? 'h-5 px-2.5 min-w-5 text-caption-m' : 'h-5 w-5 min-w-5 text-caption-m',
+    large: type === 'dot' ? 'h-4 w-4' : isText ? 'h-6 px-3 min-w-6 text-caption-m' : 'h-6 w-6 min-w-6 text-caption-m',
   }
 
   // Use rounded corners for text, full circle for numbers/icons
@@ -1193,12 +1179,12 @@ export function createContainerStyles(options: {
   }
 
   const minHeights = {
-    xs: 'min-h-16',        // 4rem = 64px
-    small: 'min-h-24',     // 6rem = 96px
-    medium: 'min-h-32',    // 8rem = 128px
-    large: 'min-h-48',     // 12rem = 192px
-    xl: 'min-h-64',        // 16rem = 256px
-    xxl: 'min-h-80',       // 20rem = 320px
+    xs: 'min-h-16', // 4rem = 64px
+    small: 'min-h-24', // 6rem = 96px
+    medium: 'min-h-32', // 8rem = 128px
+    large: 'min-h-48', // 12rem = 192px
+    xl: 'min-h-64', // 16rem = 256px
+    xxl: 'min-h-80', // 20rem = 320px
     preview: 'min-h-[20rem]', // 20rem = 320px for preview containers
   }
 
@@ -1206,20 +1192,20 @@ export function createContainerStyles(options: {
     auto: 'h-auto',
     full: 'h-full',
     screen: 'h-screen',
-    xs: 'h-16',           // 4rem = 64px
-    small: 'h-24',        // 6rem = 96px
-    medium: 'h-32',       // 8rem = 128px
-    large: 'h-48',        // 12rem = 192px
-    xl: 'h-64',           // 16rem = 256px
+    xs: 'h-16', // 4rem = 64px
+    small: 'h-24', // 6rem = 96px
+    medium: 'h-32', // 8rem = 128px
+    large: 'h-48', // 12rem = 192px
+    xl: 'h-64', // 16rem = 256px
   }
 
   const minWidths = {
-    xs: 'min-w-16',        // 4rem = 64px
-    small: 'min-w-24',     // 6rem = 96px
-    medium: 'min-w-32',    // 8rem = 128px
-    large: 'min-w-48',     // 12rem = 192px
-    xl: 'min-w-64',        // 16rem = 256px
-    xxl: 'min-w-80',       // 20rem = 320px
+    xs: 'min-w-16', // 4rem = 64px
+    small: 'min-w-24', // 6rem = 96px
+    medium: 'min-w-32', // 8rem = 128px
+    large: 'min-w-48', // 12rem = 192px
+    xl: 'min-w-64', // 16rem = 256px
+    xxl: 'min-w-80', // 20rem = 320px
   }
 
   const widths = {

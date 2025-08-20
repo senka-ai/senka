@@ -7,7 +7,7 @@
 
 <script lang="ts">
   import LayoutDiv from './LayoutDiv.svelte'
-  
+
   interface Props {
     /** Number of columns @default 'auto' */
     columns?: number | 'auto'
@@ -30,20 +30,20 @@
     /** Allow other HTML attributes to pass through */
     [key: string]: any
   }
-  
-  let { 
+
+  let {
     columns = 'auto',
-    gap = 'normal', 
+    gap = 'normal',
     align = 'stretch',
     justify = 'space-around',
     fillContainer = true,
     expandChildren = false,
     expand = false,
-    class: className = '', 
-    children, 
-    ...restProps 
+    class: className = '',
+    children,
+    ...restProps
   }: Props = $props()
-  
+
   // Generate layout config for grid arrangement
   const gridConfig = $derived({
     id: `grid-${columns}-${gap}-${align}-${justify}-${expandChildren}`,
@@ -55,7 +55,7 @@
     fillContainer,
     expandChildren,
   })
-  
+
   // Add CSS classes based on expansion props
   const combinedClassName = $derived(
     (
