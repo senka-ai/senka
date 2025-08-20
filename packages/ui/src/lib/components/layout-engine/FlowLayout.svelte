@@ -1,7 +1,7 @@
 <!--
-  packages/ui/src/lib/components/layout-engine/GridLayout.svelte
-  Quick grid layout component with sensible defaults
-  Wrapper around LayoutDiv specifically optimized for grid layouts
+  packages/ui/src/lib/components/layout-engine/FlowLayout.svelte
+  Quick flow layout component with sensible defaults
+  Wrapper around LayoutDiv specifically optimized for flow layouts
   RELEVANT FILES: LayoutDiv.svelte, @senka-ai/layout-engine
 -->
 
@@ -9,14 +9,10 @@
   import LayoutDiv from './LayoutDiv.svelte'
   
   interface Props {
-    /** Number of columns @default 'auto' */
-    columns?: number | 'auto'
-    /** Gap between items @default 'normal' */
+    /** Gap between items @default 'cozy' */
     gap?: 'none' | 'tight' | 'cozy' | 'normal' | 'comfortable' | 'spacious'
-    /** Cross-axis alignment @default 'stretch' */
+    /** Cross-axis alignment @default 'start' */
     align?: 'start' | 'center' | 'end' | 'stretch'
-    /** Main-axis justification @default 'space-around' (stretch) */
-    justify?: 'packed' | 'space-between' | 'center' | 'space-around'
     /** Whether to fill container @default true */
     fillContainer?: boolean
     /** Make all children expand to fill main-axis space @default false */
@@ -32,10 +28,8 @@
   }
   
   let { 
-    columns = 'auto',
-    gap = 'normal', 
-    align = 'stretch',
-    justify = 'space-around',
+    gap = 'cozy', 
+    align = 'start',
     fillContainer = true,
     expandChildren = false,
     expand = false,
@@ -44,14 +38,12 @@
     ...restProps 
   }: Props = $props()
   
-  // Generate layout config for grid arrangement
-  const gridConfig = $derived({
-    id: `grid-${columns}-${gap}-${align}-${justify}-${expandChildren}`,
-    type: 'grid' as const,
-    columns,
+  // Generate layout config for flow arrangement
+  const flowConfig = $derived({
+    id: `flow-${gap}-${align}-${expandChildren}`,
+    type: 'flow' as const,
     gap,
     align,
-    justify,
     fillContainer,
     expandChildren,
   })
@@ -59,13 +51,13 @@
   // Add CSS classes based on expansion props
   const combinedClassName = $derived(
     (
-      (expandChildren ? ' grid-expand-children' : '') +
+      (expandChildren ? ' flow-expand-children' : '') +
       (expand ? ' expand' : '') +
       (className ? ` ${className}` : '')
     ).trim()
   )
 </script>
 
-<LayoutDiv config={gridConfig} class={combinedClassName} {...restProps}>
+<LayoutDiv config={flowConfig} class={combinedClassName} {...restProps}>
   {@render children()}
 </LayoutDiv>

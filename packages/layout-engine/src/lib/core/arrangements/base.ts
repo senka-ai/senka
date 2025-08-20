@@ -104,11 +104,13 @@ export abstract class BaseArrangement {
 
   /**
    * Get CSS for size behavior
+   * Override in subclasses to provide direction-specific behavior
    */
   protected getSizeBehaviorCSS(container: LayoutContainer): CSSProperties {
     const css: CSSProperties = {}
 
     if (container.fillContainer) {
+      // Default behavior - subclasses should override for direction-specific sizing
       css['width'] = '100%'
       css['height'] = '100%'
     } else if (!container.fixed) {

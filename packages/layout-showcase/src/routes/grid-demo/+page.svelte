@@ -7,7 +7,7 @@ RELEVANT FILES: packages/layout-engine/src/lib/core/arrangements/grid.ts, packag
 
 <script lang="ts">
   // Import UI components - including new layout components
-  import { Button, Divider, Container, LayoutDiv } from '@senka-ai/ui'
+  import { Button, Divider, Container, LayoutDiv, StackLayout, RowLayout, GridLayout } from '@senka-ai/ui'
   // Import layout engine types
   import type { LayoutContainer } from '@senka-ai/layout-engine'
   import DemoNavigation from '$lib/components/DemoNavigation.svelte'
@@ -25,54 +25,7 @@ RELEVANT FILES: packages/layout-engine/src/lib/core/arrangements/grid.ts, packag
   let alignment = $state<'start' | 'center' | 'end' | 'stretch'>('stretch')
   let justify = $state<'packed' | 'center' | 'space-between' | 'space-around'>('space-around')
 
-  // Page layout configurations
-  const pageConfig: LayoutContainer = {
-    id: 'page-layout',
-    type: 'stack',
-    direction: 'vertical',
-    gap: 'spacious',
-    fillContainer: true,
-  }
-
-  const headerConfig: LayoutContainer = {
-    id: 'header-layout',
-    type: 'stack',
-    direction: 'vertical',
-    gap: 'normal',
-    fillContainer: true,
-  }
-
-  const sectionConfig: LayoutContainer = {
-    id: 'section-layout',
-    type: 'stack',
-    direction: 'vertical',
-    gap: 'comfortable',
-    fillContainer: true,
-  }
-
-  const previewConfig: LayoutContainer = {
-    id: 'preview-layout',
-    type: 'stack',
-    direction: 'vertical',
-    gap: 'normal',
-    fillContainer: true,
-  }
-
-  const actionsConfig: LayoutContainer = {
-    id: 'actions-layout',
-    type: 'row',
-    gap: 'normal',
-    align: 'center',
-    fillContainer: false,
-  }
-
-  const elementContentConfig: LayoutContainer = {
-    id: 'element-content',
-    type: 'stack',
-    direction: 'vertical',
-    gap: 'tight',
-    fillContainer: true,
-  }
+  // Keep testContainer for demo purposes - shows the config object approach
 
   const testContainer = $derived<LayoutContainer>({
     id: 'demo-grid',
@@ -149,23 +102,23 @@ RELEVANT FILES: packages/layout-engine/src/lib/core/arrangements/grid.ts, packag
 
 <Container padding="comfortable" fullWidth background>
   {#snippet children()}
-    <LayoutDiv config={pageConfig}>
+    <StackLayout direction="vertical" gap="spacious">
       {#snippet children()}
         <!-- Demo Navigation -->
         <DemoNavigation currentPage="grid" />
 
         <!-- Page Header -->
-        <LayoutDiv config={headerConfig}>
+        <StackLayout gap="normal">
           {#snippet children()}
             <h1 class="text-h1 text-primary">Grid Arrangement Demo</h1>
             <p class="text-body-l text-secondary">
               Testing the Grid arrangement from the layout engine for multi-column layouts.
             </p>
           {/snippet}
-        </LayoutDiv>
+        </StackLayout>
 
         <!-- Interactive Demo Section -->
-        <LayoutDiv config={sectionConfig}>
+        <StackLayout gap="comfortable">
           {#snippet children()}
             <!-- Grid Properties Panel -->
             <PropertyPanel title="Grid Properties" description="Adjust these settings to see live layout changes">
@@ -179,13 +132,14 @@ RELEVANT FILES: packages/layout-engine/src/lib/core/arrangements/grid.ts, packag
             </PropertyPanel>
 
             <!-- Live Preview -->
-            <LayoutDiv config={previewConfig}>
+            <StackLayout gap="normal">
               {#snippet children()}
                 <h3 class="text-h4 text-primary">Live Preview</h3>
 
                 <Container variant="bordered" padding="comfortable" radius="large" minHeight="preview">
                   {#snippet children()}
-                    <LayoutDiv config={testContainer} class="h-full">
+                    <!-- Demonstrating GridLayout component usage -->
+                    <GridLayout {columns} gap={spacing} align={alignment} {justify} class="h-full">
                       {#snippet children()}
                         {#each demoElements as element}
                           <Container
@@ -196,7 +150,7 @@ RELEVANT FILES: packages/layout-engine/src/lib/core/arrangements/grid.ts, packag
                             minHeight={alignment === 'stretch' ? 'large' : undefined}
                           >
                             {#snippet children()}
-                              <LayoutDiv config={elementContentConfig}>
+                              <StackLayout gap="tight">
                                 {#snippet children()}
                                   <span class="text-body-m text-primary font-medium">{element.title}</span>
                                   <Button variant={element.type} size="small">
@@ -205,12 +159,12 @@ RELEVANT FILES: packages/layout-engine/src/lib/core/arrangements/grid.ts, packag
                                     {/snippet}
                                   </Button>
                                 {/snippet}
-                              </LayoutDiv>
+                              </StackLayout>
                             {/snippet}
                           </Container>
                         {/each}
                       {/snippet}
-                    </LayoutDiv>
+                    </GridLayout>
                   {/snippet}
                 </Container>
 
@@ -219,19 +173,23 @@ RELEVANT FILES: packages/layout-engine/src/lib/core/arrangements/grid.ts, packag
                   Columns: {columns} • Spacing: {spacing} • Alignment: {alignment} • Justify: {justify}
                 </p>
               {/snippet}
-            </LayoutDiv>
+            </StackLayout>
 
-            <!-- Generated CSS Display -->
+            <!-- Show config object approach for comparison -->
+            <h4 class="text-h4 text-primary">Configuration Object Approach</h4>
+            <p class="text-body-m text-secondary">
+              This same layout can also be created using LayoutDiv with configuration objects:
+            </p>
             <CSSDisplay
               css={JSON.stringify(testContainer, null, 2)}
-              title="Live Configuration Object"
+              title="Equivalent Configuration Object"
               variant="success"
             />
           {/snippet}
-        </LayoutDiv>
+        </StackLayout>
 
-        <!-- Action Buttons -->
-        <LayoutDiv config={actionsConfig}>
+        <!-- Action Buttons using RowLayout -->
+        <RowLayout gap="normal" align="center" fillContainer={false}>
           {#snippet children()}
             <Button variant="primary" onclick={() => window.location.reload()}>
               {#snippet children()}
@@ -244,8 +202,8 @@ RELEVANT FILES: packages/layout-engine/src/lib/core/arrangements/grid.ts, packag
               {/snippet}
             </Button>
           {/snippet}
-        </LayoutDiv>
+        </RowLayout>
       {/snippet}
-    </LayoutDiv>
+    </StackLayout>
   {/snippet}
 </Container>

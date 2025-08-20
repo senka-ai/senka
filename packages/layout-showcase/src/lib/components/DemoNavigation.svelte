@@ -10,7 +10,7 @@ RELEVANT FILES: packages/ui/src/lib/index.ts, packages/layout-engine/src/lib/ind
   import type { LayoutContainer } from '@senka-ai/layout-engine'
 
   interface Props {
-    currentPage?: 'home' | 'stack' | 'row' | 'grid'
+    currentPage?: 'home' | 'stack' | 'row' | 'grid' | 'flow'
   }
 
   let { currentPage = 'home' }: Props = $props()
@@ -47,6 +47,11 @@ RELEVANT FILES: packages/ui/src/lib/index.ts, packages/layout-engine/src/lib/ind
         <Button variant={currentPage === 'grid' ? 'primary' : 'secondary'} onclick={() => (window.location.href = '/grid-demo')}>
           {#snippet children()}
             Grid Demo
+          {/snippet}
+        </Button>
+        <Button variant={currentPage === 'flow' ? 'primary' : 'secondary'} onclick={() => (window.location.href = '/flow-demo')}>
+          {#snippet children()}
+            Flow Demo
           {/snippet}
         </Button>
       {/snippet}

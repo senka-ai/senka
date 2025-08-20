@@ -21,7 +21,7 @@ export class StackArrangement extends BaseArrangement {
       ...css,
       ...this.getAlignmentCSS(container),
       ...this.getSpacingCSS(container),
-      ...this.getSizeBehaviorCSS(container),
+      ...this.getStackSizeBehaviorCSS(container),
     }
 
     // Set default alignment if not specified
@@ -32,6 +32,11 @@ export class StackArrangement extends BaseArrangement {
     // Set default gap if not specified
     if (container.gap === undefined) {
       css['gap'] = '16px' // Default normal spacing
+    }
+
+    // Handle expandChildren property
+    if (container.expandChildren) {
+      css['&>*'] = 'flex-grow: 1;'
     }
 
     // Apply constraints
@@ -79,5 +84,30 @@ export class StackArrangement extends BaseArrangement {
     }
 
     return true
+  }
+
+  /**
+   * Stack-specific size behavior - fill based on direction when fillContainer is true
+   */
+  private getStackSizeBehaviorCSS(container: LayoutContainer): CSSProperties {
+    const css: CSSProperties = {}
+    const direction = container.direction || 'vertical'
+
+    if (container.fillContainer) {
+      if (direction === 'vertical') {
+        // Vertical stack: fill height, width remains content-based
+        css['height'] = '100%'
+      } else {
+        // Horizontal stack: fill width, height remains content-based
+        css['width'] = '100%'
+      }
+    } else if (!container.fixed) {
+      // Default is hug-contents
+      css['width'] = 'fit-content'
+      css['height'] = 'fit-content'
+    }
+    // Fixed mode doesn't add any CSS (uses natural sizing)
+
+    return css
   }
 }

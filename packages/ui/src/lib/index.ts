@@ -53,6 +53,9 @@ export { default as LayoutContainer } from './components/layout-engine/LayoutCon
 export { default as StackLayout } from './components/layout-engine/StackLayout.svelte'
 export { default as RowLayout } from './components/layout-engine/RowLayout.svelte'
 export { default as GridLayout } from './components/layout-engine/GridLayout.svelte'
+export { default as FlowLayout } from './components/layout-engine/FlowLayout.svelte'
+export { default as OverlayLayout } from './components/layout-engine/OverlayLayout.svelte'
+export { default as FrameLayout } from './components/layout-engine/FrameLayout.svelte'
 
 // Layout Presets and Utilities
 export { LAYOUT_PRESETS, getLayoutPreset, isLayoutPreset, type LayoutPreset } from './layout-presets'

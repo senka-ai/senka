@@ -192,6 +192,7 @@ export interface LayoutContainer {
   // Size behavior (replaces autoLayout.mode)
   fillContainer?: boolean // defaults to false (hug-contents)
   fixed?: boolean // defaults to false
+  expandChildren?: boolean // make all children expand to fill main-axis space (stack only)
 
   // Spacing (direct properties from autoLayout)
   gap?: SpacingValue | SpacingScale | number

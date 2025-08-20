@@ -178,9 +178,10 @@ export function createBadgeStyles(options: {
   variant: 'default' | 'success' | 'warning' | 'error'
   size: 'xs' | 'small' | 'medium' | 'large'
   type: 'dot' | 'number' | 'icon'
+  isText?: boolean
   className?: string
 }): string {
-  const { variant, size, type, className = '' } = options
+  const { variant, size, type, isText = false, className = '' } = options
 
   const base = 'inline-flex items-center justify-center font-medium'
 
@@ -191,14 +192,32 @@ export function createBadgeStyles(options: {
     error: 'bg-error text-white',
   }
 
+  // Different sizing strategy for text vs numeric/icon badges
   const sizes = {
-    xs: type === 'dot' ? 'h-1.5 w-1.5' : 'h-3 w-3 min-w-3 text-caption-m',
-    small: type === 'dot' ? 'h-2 w-2' : 'h-4 w-4 min-w-4 text-caption-m',
-    medium: type === 'dot' ? 'h-3 w-3' : 'h-5 w-5 min-w-5 text-caption-m',
-    large: type === 'dot' ? 'h-4 w-4' : 'h-6 w-6 min-w-6 text-caption-m',
+    xs: type === 'dot' 
+      ? 'h-1.5 w-1.5' 
+      : isText
+        ? 'h-3 px-1.5 min-w-3 text-caption-m'
+        : 'h-3 w-3 min-w-3 text-caption-m',
+    small: type === 'dot' 
+      ? 'h-2 w-2' 
+      : isText
+        ? 'h-4 px-2 min-w-4 text-caption-m'
+        : 'h-4 w-4 min-w-4 text-caption-m',
+    medium: type === 'dot' 
+      ? 'h-3 w-3' 
+      : isText
+        ? 'h-5 px-2.5 min-w-5 text-caption-m'
+        : 'h-5 w-5 min-w-5 text-caption-m',
+    large: type === 'dot' 
+      ? 'h-4 w-4' 
+      : isText
+        ? 'h-6 px-3 min-w-6 text-caption-m'
+        : 'h-6 w-6 min-w-6 text-caption-m',
   }
 
-  const shape = 'rounded-full'
+  // Use rounded corners for text, full circle for numbers/icons
+  const shape = type === 'dot' || !isText ? 'rounded-full' : 'rounded-lg'
 
   return composeClasses(base, variants[variant], sizes[size], shape, className)
 }

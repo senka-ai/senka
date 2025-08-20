@@ -29,8 +29,8 @@
         description: 'Badge size',
       },
       value: {
-        control: { type: 'number' },
-        description: 'Badge value',
+        control: { type: 'text' },
+        description: 'Badge value (number or string)',
       },
       max: {
         control: { type: 'number' },
@@ -59,6 +59,11 @@
         <Badge type="number" value={5} size="medium" />
         <Badge type="number" value={5} size="large" />
       </div>
+      <div class="flex items-center gap-4">
+        <Badge type="number" value="NEW" size="small" />
+        <Badge type="number" value="UPDATED" size="medium" />
+        <Badge type="number" value="PREMIUM" size="large" variant="success" />
+      </div>
     </div>
   {/snippet}
 </Story>
@@ -82,6 +87,24 @@
 </Story>
 
 <Story name="Large Number" args={{ type: 'number', value: 99, max: 99 }} parameters={{ layout: 'compact' }}>
+  {#snippet template(args)}
+    <Badge {...args} />
+  {/snippet}
+</Story>
+
+<Story name="Text Badge" args={{ type: 'number', value: 'NEW' }} parameters={{ layout: 'compact' }}>
+  {#snippet template(args)}
+    <Badge {...args} />
+  {/snippet}
+</Story>
+
+<Story name="Long Text Badge" args={{ type: 'number', value: 'UPDATED' }} parameters={{ layout: 'compact' }}>
+  {#snippet template(args)}
+    <Badge {...args} />
+  {/snippet}
+</Story>
+
+<Story name="Status Text Badge" args={{ type: 'number', value: 'PREMIUM', variant: 'success' }} parameters={{ layout: 'compact' }}>
   {#snippet template(args)}
     <Badge {...args} />
   {/snippet}

@@ -18,7 +18,7 @@ export class RowArrangement extends BaseArrangement {
       ...css,
       ...this.getAlignmentCSS(container),
       ...this.getSpacingCSS(container),
-      ...this.getSizeBehaviorCSS(container),
+      ...this.getRowSizeBehaviorCSS(container),
     }
 
     // Set default alignment if not specified
@@ -82,5 +82,24 @@ export class RowArrangement extends BaseArrangement {
     }
 
     return true
+  }
+
+  /**
+   * Row-specific size behavior - only fill width when fillContainer is true
+   */
+  private getRowSizeBehaviorCSS(container: LayoutContainer): CSSProperties {
+    const css: CSSProperties = {}
+
+    if (container.fillContainer) {
+      // Row arrangement: fill width only, height remains content-based
+      css['width'] = '100%'
+    } else if (!container.fixed) {
+      // Default is hug-contents
+      css['width'] = 'fit-content'
+      css['height'] = 'fit-content'
+    }
+    // Fixed mode doesn't add any CSS (uses natural sizing)
+
+    return css
   }
 }

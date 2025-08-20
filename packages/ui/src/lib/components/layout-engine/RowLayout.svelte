@@ -17,8 +17,12 @@
     justify?: 'packed' | 'space-between' | 'center' | 'space-around'
     /** Whether to wrap items @default false */
     wrap?: boolean
-    /** Whether to fill container @default false for rows */
+    /** Whether to fill container @default true for justification to work */
     fillContainer?: boolean
+    /** Make all children expand to fill main-axis space @default false */
+    expandChildren?: boolean
+    /** Make this component expand within its parent container @default false */
+    expand?: boolean
     /** Additional CSS classes to apply */
     class?: string
     /** Child content */
@@ -32,7 +36,9 @@
     align = 'center',
     justify = 'packed',
     wrap = false,
-    fillContainer = false,
+    fillContainer = true,
+    expandChildren = false,
+    expand = false,
     class: className = '', 
     children, 
     ...restProps 
@@ -40,16 +46,26 @@
   
   // Generate layout config for row arrangement
   const rowConfig = $derived({
-    id: `row-${gap}-${align}-${justify}`,
+    id: `row-${gap}-${align}-${justify}-${expandChildren}`,
     type: 'row' as const,
     gap,
     align,
     justify,
     wrap,
     fillContainer,
+    expandChildren,
   })
+  
+  // Add CSS classes based on expansion props
+  const combinedClassName = $derived(
+    (
+      (expandChildren ? ' row-expand-children' : '') +
+      (expand ? ' expand' : '') +
+      (className ? ` ${className}` : '')
+    ).trim()
+  )
 </script>
 
-<LayoutDiv config={rowConfig} class={className} {...restProps}>
+<LayoutDiv config={rowConfig} class={combinedClassName} {...restProps}>
   {@render children()}
 </LayoutDiv>

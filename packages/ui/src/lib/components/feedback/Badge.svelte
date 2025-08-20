@@ -27,16 +27,27 @@
     // If type is explicitly set, use it
     if (type !== 'number') return type
     // Otherwise, auto-detect based on props
-    return BadgeRenderer.getBadgeType(typeof value === 'number' ? value : undefined, icon, false)
+    if (typeof value === 'number' || typeof value === 'string') return 'number'
+    return BadgeRenderer.getBadgeType(undefined, icon, false)
   })
 
-  let displayValue = $derived(BadgeRenderer.formatNumber(typeof value === 'number' ? value : 0, max))
+  let displayValue = $derived.by(() => {
+    if (typeof value === 'number') {
+      return BadgeRenderer.formatNumber(value, max)
+    } else if (typeof value === 'string') {
+      return value
+    }
+    return BadgeRenderer.formatNumber(0, max)
+  })
+
+  let isTextBadge = $derived(typeof value === 'string' && value.length > 2)
 
   let badgeClasses = $derived(
     createBadgeStyles({
       variant,
       size,
       type: effectiveType,
+      isText: isTextBadge,
       className,
     })
   )
