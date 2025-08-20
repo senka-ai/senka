@@ -105,15 +105,11 @@
         <h3 class="text-h4 text-primary mb-4">Rich Content</h3>
         <div class="space-y-3">
           <Checkbox>
-            {#snippet children()}
-              I agree to the <strong>terms and conditions</strong> and
-              <a href="/privacy" class="text-highlight underline">privacy policy</a>
-            {/snippet}
+            I agree to the <strong>terms and conditions</strong> and
+            <a href="/privacy" class="text-highlight underline">privacy policy</a>
           </Checkbox>
           <Checkbox checked={true}>
-            {#snippet children()}
-              <strong>Important:</strong> Enable notifications for updates
-            {/snippet}
+            <strong>Important:</strong> Enable notifications for updates
           </Checkbox>
         </div>
       </div>
@@ -194,20 +190,14 @@
       <p class="text-neutral-600">Examples of rich content in checkboxes:</p>
       <div class="flex flex-col gap-3">
         <Checkbox>
-          {#snippet children()}
-            I agree to the <strong>terms and conditions</strong> and
-            <a href="/terms" class="text-highlight underline">privacy policy</a>
-          {/snippet}
+          I agree to the <strong>terms and conditions</strong> and
+          <a href="/terms" class="text-highlight underline">privacy policy</a>
         </Checkbox>
         <Checkbox>
-          {#snippet children()}
-            <strong>Important:</strong> Enable notifications for updates
-          {/snippet}
+          <strong>Important:</strong> Enable notifications for updates
         </Checkbox>
         <Checkbox>
-          {#snippet children()}
-            Subscribe to our <em>newsletter</em> for <strong>exclusive</strong> offers
-          {/snippet}
+          Subscribe to our <em>newsletter</em> for <strong>exclusive</strong> offers
         </Checkbox>
       </div>
     </div>
@@ -222,10 +212,8 @@
         <Checkbox label="Simple text option" />
         <Checkbox label="Another simple option" />
         <Checkbox>
-          {#snippet children()}
-            Rich content with <strong>bold text</strong> and
-            <a href="https://example.com" class="text-highlight underline">links</a>
-          {/snippet}
+          Rich content with <strong>bold text</strong> and
+          <a href="https://example.com" class="text-highlight underline">links</a>
         </Checkbox>
         <Checkbox label="Disabled option" disabled />
       </div>

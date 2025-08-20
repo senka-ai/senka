@@ -496,12 +496,8 @@
           <TextField label="Email Address" type="email" placeholder="your.email@example.com" />
           <TextField label="Phone Number" type="tel" placeholder="+1 (555) 123-4567" />
           <div class="flex gap-3 pt-2">
-            <Button variant="primary">
-              {#snippet children()}Save Changes{/snippet}
-            </Button>
-            <Button variant="secondary">
-              {#snippet children()}Cancel{/snippet}
-            </Button>
+            <Button variant="primary">Save Changes</Button>
+            <Button variant="secondary">Cancel</Button>
           </div>
         </div>
       {:else if selectedSection === 'security'}
@@ -513,9 +509,7 @@
             <Toggle checked={true} />
           </div>
           <div class="flex gap-3 pt-2">
-            <Button variant="primary">
-              {#snippet children()}Update Password{/snippet}
-            </Button>
+            <Button variant="primary">Update Password</Button>
           </div>
         </div>
       {:else if selectedSection === 'preferences'}
@@ -540,9 +534,7 @@
             ]}
           />
           <div class="flex gap-3 pt-2">
-            <Button variant="primary">
-              {#snippet children()}Save Preferences{/snippet}
-            </Button>
+            <Button variant="primary">Save Preferences</Button>
           </div>
         </div>
       {/if}

@@ -67,9 +67,7 @@
             buttonText="Button"
             showAction={true}
           >
-            {#snippet children()}
-              <ChatIcon class="h-8 w-8" />
-            {/snippet}
+            <ChatIcon class="h-8 w-8" />
           </Card>
           <Card
             title="Simple Card"
@@ -86,9 +84,7 @@
         <h3 class="mb-4 text-lg font-semibold">Compact Variant</h3>
         <div class="grid grid-cols-1 gap-4 md:grid-cols-2">
           <Card variant="compact" title="Compact Card" subtitle="Subtitle" buttonText="Button" showAction={true}>
-            {#snippet children()}
-              <ProfileIcon class="h-6 w-6" />
-            {/snippet}
+            <ProfileIcon class="h-6 w-6" />
           </Card>
           <Card variant="compact" title="With Arrow" subtitle="Subtitle" actionType="arrow" showAction={true} />
         </div>
@@ -227,9 +223,7 @@
         onButtonClick={args.onButtonClick}
         onFavoriteClick={args.onFavoriteClick}
       >
-        {#snippet children()}
-          <ProfileIcon class="h-8 w-8" />
-        {/snippet}
+        <ProfileIcon class="h-8 w-8" />
       </Card>
     </div>
   {/snippet}

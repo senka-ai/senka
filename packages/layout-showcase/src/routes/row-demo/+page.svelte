@@ -87,110 +87,78 @@ RELEVANT FILES: packages/layout-engine/src/lib/core/arrangements/row.ts, package
 </svelte:head>
 
 <Container padding="comfortable" fullWidth background>
-  {#snippet children()}
-    <StackLayout direction="vertical" gap="spacious">
-      {#snippet children()}
-        <!-- Demo Navigation -->
-        <DemoNavigation currentPage="row" />
+  <StackLayout direction="vertical" gap="spacious">
+    <!-- Demo Navigation -->
+    <DemoNavigation currentPage="row" />
 
-        <!-- Page Header -->
-        <StackLayout gap="normal">
-          {#snippet children()}
-            <h1 class="text-h1 text-primary">Row Arrangement Demo</h1>
-            <p class="text-body-l text-secondary">
-              Testing the Row arrangement from the layout engine for horizontal layouts.
-            </p>
-          {/snippet}
-        </StackLayout>
-
-        <!-- Interactive Demo Section -->
-        <StackLayout gap="comfortable">
-          {#snippet children()}
-            <!-- Row Properties Panel -->
-            <PropertyPanel title="Row Properties" description="Adjust these settings to see live layout changes">
-              <WrapToggle value={wrap} onchange={handleWrapChange} />
-
-              <SpacingSlider value={spacing} onchange={handleSpacingChange} />
-
-              <AlignmentPicker value={alignment} onchange={handleAlignmentChange} />
-
-              <JustifyPicker value={justify} onchange={handleJustifyChange} />
-            </PropertyPanel>
-
-            <!-- Live Preview -->
-            <StackLayout gap="normal">
-              {#snippet children()}
-                <h3 class="text-h4 text-primary">Live Preview</h3>
-
-                <Container variant="bordered" padding="comfortable" radius="large" minHeight="preview">
-                  {#snippet children()}
-                    <!-- Demonstrating RowLayout component usage -->
-                    <RowLayout {wrap} gap={spacing} align={alignment} {justify} class="h-full">
-                      {#snippet children()}
-                        {#each demoElements as element}
-                          <Container
-                            variant="elevated"
-                            padding="normal"
-                            radius="normal"
-                            height={element.height}
-                            minWidth={element.minWidth}
-                            minHeight={alignment === 'stretch' ? 'large' : undefined}
-                          >
-                            {#snippet children()}
-                              <StackLayout gap="tight">
-                                {#snippet children()}
-                                  <span class="text-body-m text-primary font-medium">{element.content}</span>
-                                  <Button variant={element.type} size="small">
-                                    {#snippet children()}
-                                      Action
-                                    {/snippet}
-                                  </Button>
-                                {/snippet}
-                              </StackLayout>
-                            {/snippet}
-                          </Container>
-                        {/each}
-                      {/snippet}
-                    </RowLayout>
-                  {/snippet}
-                </Container>
-
-                <p class="text-body-xs text-secondary">
-                  <strong>Current Configuration:</strong>
-                  Wrap: {wrap ? 'enabled' : 'disabled'} • Spacing: {spacing} • Alignment: {alignment} • Justify: {justify}
-                </p>
-              {/snippet}
-            </StackLayout>
-
-            <!-- Show config object approach for comparison -->
-            <h4 class="text-h4 text-primary">Configuration Object Approach</h4>
-            <p class="text-body-m text-secondary">
-              This same layout can also be created using LayoutDiv with configuration objects:
-            </p>
-            <CSSDisplay
-              css={JSON.stringify(testContainer, null, 2)}
-              title="Equivalent Configuration Object"
-              variant="success"
-            />
-          {/snippet}
-        </StackLayout>
-
-        <!-- Action Buttons using RowLayout -->
-        <RowLayout gap="normal" align="center" fillContainer={false}>
-          {#snippet children()}
-            <Button variant="primary" onclick={() => window.location.reload()}>
-              {#snippet children()}
-                Reset Demo
-              {/snippet}
-            </Button>
-            <Button variant="secondary" onclick={() => (window.location.href = '/')}>
-              {#snippet children()}
-                Back to Home
-              {/snippet}
-            </Button>
-          {/snippet}
-        </RowLayout>
-      {/snippet}
+    <!-- Page Header -->
+    <StackLayout gap="normal">
+      <h1 class="text-h1 text-primary">Row Arrangement Demo</h1>
+      <p class="text-body-l text-secondary">
+        Testing the Row arrangement from the layout engine for horizontal layouts.
+      </p>
     </StackLayout>
-  {/snippet}
+
+    <!-- Interactive Demo Section -->
+    <StackLayout gap="comfortable">
+      <!-- Row Properties Panel -->
+      <PropertyPanel title="Row Properties" description="Adjust these settings to see live layout changes">
+        <WrapToggle value={wrap} onchange={handleWrapChange} />
+
+        <SpacingSlider value={spacing} onchange={handleSpacingChange} />
+
+        <AlignmentPicker value={alignment} onchange={handleAlignmentChange} />
+
+        <JustifyPicker value={justify} onchange={handleJustifyChange} />
+      </PropertyPanel>
+
+      <!-- Live Preview -->
+      <StackLayout gap="normal">
+        <h3 class="text-h4 text-primary">Live Preview</h3>
+
+        <Container variant="bordered" padding="comfortable" radius="large" minHeight="preview">
+          <!-- Demonstrating RowLayout component usage -->
+          <RowLayout {wrap} gap={spacing} align={alignment} {justify} class="h-full">
+            {#each demoElements as element}
+              <Container
+                variant="elevated"
+                padding="normal"
+                radius="normal"
+                height={element.height}
+                minWidth={element.minWidth}
+                minHeight={alignment === 'stretch' ? 'large' : undefined}
+              >
+                <StackLayout gap="tight">
+                  <span class="text-body-m text-primary font-medium">{element.content}</span>
+                  <Button variant={element.type} size="small">Action</Button>
+                </StackLayout>
+              </Container>
+            {/each}
+          </RowLayout>
+        </Container>
+
+        <p class="text-body-xs text-secondary">
+          <strong>Current Configuration:</strong>
+          Wrap: {wrap ? 'enabled' : 'disabled'} • Spacing: {spacing} • Alignment: {alignment} • Justify: {justify}
+        </p>
+      </StackLayout>
+
+      <!-- Show config object approach for comparison -->
+      <h4 class="text-h4 text-primary">Configuration Object Approach</h4>
+      <p class="text-body-m text-secondary">
+        This same layout can also be created using LayoutDiv with configuration objects:
+      </p>
+      <CSSDisplay
+        css={JSON.stringify(testContainer, null, 2)}
+        title="Equivalent Configuration Object"
+        variant="success"
+      />
+    </StackLayout>
+
+    <!-- Action Buttons using RowLayout -->
+    <RowLayout gap="normal" align="center" fillContainer={false}>
+      <Button variant="primary" onclick={() => window.location.reload()}>Reset Demo</Button>
+      <Button variant="secondary" onclick={() => (window.location.href = '/')}>Back to Home</Button>
+    </RowLayout>
+  </StackLayout>
 </Container>

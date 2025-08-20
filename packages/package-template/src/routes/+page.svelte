@@ -17,8 +17,6 @@
     {#snippet leftIcon(size)}
       <AddIcon {size} />
     {/snippet}
-    {#snippet children()}
-      Button
-    {/snippet}
+    Button
   </Button>
 </div>

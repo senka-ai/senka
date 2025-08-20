@@ -51,29 +51,25 @@ RELEVANT FILES: packages/layout-engine/src/lib/utils/spacing.ts, packages/ui/src
 </script>
 
 <Container padding="none" background={false}>
-  {#snippet children()}
-    <div style={cssPropertiesToString(row.toCSS(spacingConfig))}>
-      <span class="text-body-s text-secondary font-medium">Spacing:</span>
+  <div style={cssPropertiesToString(row.toCSS(spacingConfig))}>
+    <span class="text-body-s text-secondary font-medium">Spacing:</span>
 
-      <Container padding="none" background={false} minWidth="large">
-        {#snippet children()}
-          <Dropdown
-            options={spacingOptions.map((opt) => ({
-              value: opt.value,
-              label: `${opt.label}`,
-            }))}
-            {value}
-            onchange={handleSpacingChange}
-            {disabled}
-          />
-        {/snippet}
-      </Container>
+    <Container padding="none" background={false} minWidth="large">
+      <Dropdown
+        options={spacingOptions.map((opt) => ({
+          value: opt.value,
+          label: `${opt.label}`,
+        }))}
+        {value}
+        onchange={handleSpacingChange}
+        {disabled}
+      />
+    </Container>
 
-      {#if selectedOption}
-        <span class="text-body-xs text-muted">
-          {selectedOption.description}
-        </span>
-      {/if}
-    </div>
-  {/snippet}
+    {#if selectedOption}
+      <span class="text-body-xs text-muted">
+        {selectedOption.description}
+      </span>
+    {/if}
+  </div>
 </Container>

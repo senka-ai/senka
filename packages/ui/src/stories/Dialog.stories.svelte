@@ -284,16 +284,14 @@
       onSecondaryClick={() => console.log('Cancel clicked')}
       onClose={() => console.log('Dialog closed')}
     >
-      {#snippet children()}
-        <div class="space-y-4">
-          <h2 class="text-h3 font-semibold text-neutral-900">Contact Form</h2>
-          <div class="space-y-3">
-            <TextField label="Name" placeholder="Your name" showLabel={false} />
-            <TextField label="Email" type="email" placeholder="Your email" showLabel={false} />
-            <TextArea label="Message" placeholder="Your message" rows={3} showLabel={false} />
-          </div>
+      <div class="space-y-4">
+        <h2 class="text-h3 font-semibold text-neutral-900">Contact Form</h2>
+        <div class="space-y-3">
+          <TextField label="Name" placeholder="Your name" showLabel={false} />
+          <TextField label="Email" type="email" placeholder="Your email" showLabel={false} />
+          <TextArea label="Message" placeholder="Your message" rows={3} showLabel={false} />
         </div>
-      {/snippet}
+      </div>
     </Dialog>
   {/snippet}
 </Story>
@@ -304,17 +302,11 @@
       <h3 class="mb-4 text-lg font-medium">Dialog Examples</h3>
 
       <div class="space-y-3">
-        <Button onclick={() => (showConfirmDialog = true)}>
-          {#snippet children()}Show Confirmation Dialog{/snippet}
-        </Button>
+        <Button onclick={() => (showConfirmDialog = true)}>Show Confirmation Dialog</Button>
 
-        <Button onclick={() => (showSaveDialog = true)}>
-          {#snippet children()}Show Save Dialog{/snippet}
-        </Button>
+        <Button onclick={() => (showSaveDialog = true)}>Show Save Dialog</Button>
 
-        <Button onclick={() => (showAlertDialog = true)}>
-          {#snippet children()}Show Alert Dialog{/snippet}
-        </Button>
+        <Button onclick={() => (showAlertDialog = true)}>Show Alert Dialog</Button>
       </div>
 
       <!-- Confirmation Dialog -->

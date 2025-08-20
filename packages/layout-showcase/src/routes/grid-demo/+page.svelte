@@ -101,109 +101,77 @@ RELEVANT FILES: packages/layout-engine/src/lib/core/arrangements/grid.ts, packag
 </svelte:head>
 
 <Container padding="comfortable" fullWidth background>
-  {#snippet children()}
-    <StackLayout direction="vertical" gap="spacious">
-      {#snippet children()}
-        <!-- Demo Navigation -->
-        <DemoNavigation currentPage="grid" />
+  <StackLayout direction="vertical" gap="spacious">
+    <!-- Demo Navigation -->
+    <DemoNavigation currentPage="grid" />
 
-        <!-- Page Header -->
-        <StackLayout gap="normal">
-          {#snippet children()}
-            <h1 class="text-h1 text-primary">Grid Arrangement Demo</h1>
-            <p class="text-body-l text-secondary">
-              Testing the Grid arrangement from the layout engine for multi-column layouts.
-            </p>
-          {/snippet}
-        </StackLayout>
-
-        <!-- Interactive Demo Section -->
-        <StackLayout gap="comfortable">
-          {#snippet children()}
-            <!-- Grid Properties Panel -->
-            <PropertyPanel title="Grid Properties" description="Adjust these settings to see live layout changes">
-              <ColumnsPicker value={columns} onchange={handleColumnsChange} />
-
-              <SpacingSlider value={spacing} onchange={handleSpacingChange} />
-
-              <AlignmentPicker value={alignment} onchange={handleAlignmentChange} />
-
-              <GridJustifyPicker value={justify} onchange={handleJustifyChange} />
-            </PropertyPanel>
-
-            <!-- Live Preview -->
-            <StackLayout gap="normal">
-              {#snippet children()}
-                <h3 class="text-h4 text-primary">Live Preview</h3>
-
-                <Container variant="bordered" padding="comfortable" radius="large" minHeight="preview">
-                  {#snippet children()}
-                    <!-- Demonstrating GridLayout component usage -->
-                    <GridLayout {columns} gap={spacing} align={alignment} {justify} class="h-full">
-                      {#snippet children()}
-                        {#each demoElements as element}
-                          <Container
-                            variant="elevated"
-                            padding="normal"
-                            radius="normal"
-                            height={alignment === 'stretch' ? 'auto' : element.height}
-                            minHeight={alignment === 'stretch' ? 'large' : undefined}
-                          >
-                            {#snippet children()}
-                              <StackLayout gap="tight">
-                                {#snippet children()}
-                                  <span class="text-body-m text-primary font-medium">{element.title}</span>
-                                  <Button variant={element.type} size="small">
-                                    {#snippet children()}
-                                      Open
-                                    {/snippet}
-                                  </Button>
-                                {/snippet}
-                              </StackLayout>
-                            {/snippet}
-                          </Container>
-                        {/each}
-                      {/snippet}
-                    </GridLayout>
-                  {/snippet}
-                </Container>
-
-                <p class="text-body-xs text-secondary">
-                  <strong>Current Configuration:</strong>
-                  Columns: {columns} • Spacing: {spacing} • Alignment: {alignment} • Justify: {justify}
-                </p>
-              {/snippet}
-            </StackLayout>
-
-            <!-- Show config object approach for comparison -->
-            <h4 class="text-h4 text-primary">Configuration Object Approach</h4>
-            <p class="text-body-m text-secondary">
-              This same layout can also be created using LayoutDiv with configuration objects:
-            </p>
-            <CSSDisplay
-              css={JSON.stringify(testContainer, null, 2)}
-              title="Equivalent Configuration Object"
-              variant="success"
-            />
-          {/snippet}
-        </StackLayout>
-
-        <!-- Action Buttons using RowLayout -->
-        <RowLayout gap="normal" align="center" fillContainer={false}>
-          {#snippet children()}
-            <Button variant="primary" onclick={() => window.location.reload()}>
-              {#snippet children()}
-                Reset Demo
-              {/snippet}
-            </Button>
-            <Button variant="secondary" onclick={() => (window.location.href = '/')}>
-              {#snippet children()}
-                Back to Home
-              {/snippet}
-            </Button>
-          {/snippet}
-        </RowLayout>
-      {/snippet}
+    <!-- Page Header -->
+    <StackLayout gap="normal">
+      <h1 class="text-h1 text-primary">Grid Arrangement Demo</h1>
+      <p class="text-body-l text-secondary">
+        Testing the Grid arrangement from the layout engine for multi-column layouts.
+      </p>
     </StackLayout>
-  {/snippet}
+
+    <!-- Interactive Demo Section -->
+    <StackLayout gap="comfortable">
+      <!-- Grid Properties Panel -->
+      <PropertyPanel title="Grid Properties" description="Adjust these settings to see live layout changes">
+        <ColumnsPicker value={columns} onchange={handleColumnsChange} />
+
+        <SpacingSlider value={spacing} onchange={handleSpacingChange} />
+
+        <AlignmentPicker value={alignment} onchange={handleAlignmentChange} />
+
+        <GridJustifyPicker value={justify} onchange={handleJustifyChange} />
+      </PropertyPanel>
+
+      <!-- Live Preview -->
+      <StackLayout gap="normal">
+        <h3 class="text-h4 text-primary">Live Preview</h3>
+
+        <Container variant="bordered" padding="comfortable" radius="large" minHeight="preview">
+          <!-- Demonstrating GridLayout component usage -->
+          <GridLayout {columns} gap={spacing} align={alignment} {justify} class="h-full">
+            {#each demoElements as element}
+              <Container
+                variant="elevated"
+                padding="normal"
+                radius="normal"
+                height={alignment === 'stretch' ? 'auto' : element.height}
+                minHeight={alignment === 'stretch' ? 'large' : undefined}
+              >
+                <StackLayout gap="tight">
+                  <span class="text-body-m text-primary font-medium">{element.title}</span>
+                  <Button variant={element.type} size="small">Open</Button>
+                </StackLayout>
+              </Container>
+            {/each}
+          </GridLayout>
+        </Container>
+
+        <p class="text-body-xs text-secondary">
+          <strong>Current Configuration:</strong>
+          Columns: {columns} • Spacing: {spacing} • Alignment: {alignment} • Justify: {justify}
+        </p>
+      </StackLayout>
+
+      <!-- Show config object approach for comparison -->
+      <h4 class="text-h4 text-primary">Configuration Object Approach</h4>
+      <p class="text-body-m text-secondary">
+        This same layout can also be created using LayoutDiv with configuration objects:
+      </p>
+      <CSSDisplay
+        css={JSON.stringify(testContainer, null, 2)}
+        title="Equivalent Configuration Object"
+        variant="success"
+      />
+    </StackLayout>
+
+    <!-- Action Buttons using RowLayout -->
+    <RowLayout gap="normal" align="center" fillContainer={false}>
+      <Button variant="primary" onclick={() => window.location.reload()}>Reset Demo</Button>
+      <Button variant="secondary" onclick={() => (window.location.href = '/')}>Back to Home</Button>
+    </RowLayout>
+  </StackLayout>
 </Container>

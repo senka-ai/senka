@@ -47,29 +47,25 @@ RELEVANT FILES: packages/layout-engine/src/lib/core/arrangements/grid.ts, packag
 </script>
 
 <Container padding="none" background={false}>
-  {#snippet children()}
-    <div style={cssPropertiesToString(row.toCSS(controlConfig))}>
-      <span class="text-body-s text-secondary font-medium">Columns:</span>
+  <div style={cssPropertiesToString(row.toCSS(controlConfig))}>
+    <span class="text-body-s text-secondary font-medium">Columns:</span>
 
-      <Container padding="none" background={false} minWidth="large">
-        {#snippet children()}
-          <Dropdown
-            options={columnOptions.map((opt) => ({
-              value: opt.value.toString(),
-              label: opt.label,
-            }))}
-            value={value.toString()}
-            onchange={handleColumnsChange}
-            {disabled}
-          />
-        {/snippet}
-      </Container>
+    <Container padding="none" background={false} minWidth="large">
+      <Dropdown
+        options={columnOptions.map((opt) => ({
+          value: opt.value.toString(),
+          label: opt.label,
+        }))}
+        value={value.toString()}
+        onchange={handleColumnsChange}
+        {disabled}
+      />
+    </Container>
 
-      {#if selectedOption}
-        <span class="text-body-xs text-muted">
-          {selectedOption.description}
-        </span>
-      {/if}
-    </div>
-  {/snippet}
+    {#if selectedOption}
+      <span class="text-body-xs text-muted">
+        {selectedOption.description}
+      </span>
+    {/if}
+  </div>
 </Container>

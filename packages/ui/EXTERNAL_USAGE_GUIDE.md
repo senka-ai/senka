@@ -91,15 +91,9 @@ export default app
 </script>
 
 <Card title="Welcome" description="Get started with Senka UI">
-  {#snippet children()}
-    <TextField label="Your Name" placeholder="Enter your name..." value={inputValue} onchange={handleInputChange} />
+  <TextField label="Your Name" placeholder="Enter your name..." value={inputValue} onchange={handleInputChange} />
 
-    <Button variant="primary" onclick={handleClick}>
-      {#snippet children()}
-        Submit
-      {/snippet}
-    </Button>
-  {/snippet}
+  <Button variant="primary" onclick={handleClick}>Submit</Button>
 </Card>
 ```
 
@@ -118,16 +112,12 @@ Import icons separately from the icons package:
   {#snippet leftIcon(size)}
     <AddIcon {size} />
   {/snippet}
-  {#snippet children()}
-    Add Item
-  {/snippet}
+  Add Item
 </Button>
 
 <!-- Button with right icon -->
 <Button variant="tertiary">
-  {#snippet children()}
-    Favorite
-  {/snippet}
+  Favorite
   {#snippet rightIcon(size)}
     <HeartFilledIcon {size} />
   {/snippet}

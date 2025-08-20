@@ -482,12 +482,8 @@
           <TextField label="Email Address" type="email" placeholder="your.email@example.com" />
           <TextArea label="Bio" placeholder="Tell us about yourself" rows={3} />
           <div class="flex gap-3 pt-2">
-            <Button variant="primary">
-              {#snippet children()}Save Changes{/snippet}
-            </Button>
-            <Button variant="secondary">
-              {#snippet children()}Cancel{/snippet}
-            </Button>
+            <Button variant="primary">Save Changes</Button>
+            <Button variant="secondary">Cancel</Button>
           </div>
         </div>
       {:else if selectedSection === 'security'}
@@ -496,9 +492,7 @@
           <TextField label="New Password" type="password" placeholder="Enter new password" />
           <TextField label="Confirm Password" type="password" placeholder="Confirm new password" />
           <div class="flex gap-3 pt-2">
-            <Button variant="primary">
-              {#snippet children()}Update Password{/snippet}
-            </Button>
+            <Button variant="primary">Update Password</Button>
           </div>
         </div>
       {:else if selectedSection === 'notifications'}
@@ -507,9 +501,7 @@
           <Card variant="compact" title="Push Notifications" description="Browser notifications" />
           <Card variant="compact" title="SMS Alerts" description="Text message updates" />
           <div class="flex gap-3 pt-2">
-            <Button variant="primary">
-              {#snippet children()}Save Preferences{/snippet}
-            </Button>
+            <Button variant="primary">Save Preferences</Button>
           </div>
         </div>
       {/if}

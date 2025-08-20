@@ -39,20 +39,18 @@ RELEVANT FILES: packages/ui/src/lib/index.ts
 </script>
 
 <Container variant="bordered" padding="comfortable" radius="large">
-  {#snippet children()}
-    <!-- Panel Header -->
-    <div style={cssPropertiesToString(stack.toCSS(headerConfig))}>
-      <h3 class="text-h4 text-primary font-medium">{title}</h3>
-      {#if description}
-        <p class="text-body-s text-secondary">{description}</p>
-      {/if}
-    </div>
+  <!-- Panel Header -->
+  <div style={cssPropertiesToString(stack.toCSS(headerConfig))}>
+    <h3 class="text-h4 text-primary font-medium">{title}</h3>
+    {#if description}
+      <p class="text-body-s text-secondary">{description}</p>
+    {/if}
+  </div>
 
-    <Divider />
+  <Divider />
 
-    <!-- Controls Content -->
-    <div style={cssPropertiesToString(stack.toCSS(contentConfig))}>
-      {@render panelChildren()}
-    </div>
-  {/snippet}
+  <!-- Controls Content -->
+  <div style={cssPropertiesToString(stack.toCSS(contentConfig))}>
+    {@render panelChildren()}
+  </div>
 </Container>

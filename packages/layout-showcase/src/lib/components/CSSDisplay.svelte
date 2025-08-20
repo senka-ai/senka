@@ -58,44 +58,36 @@ RELEVANT FILES: packages/layout-engine/src/lib/utils/css.ts, packages/ui/src/lib
 </script>
 
 <Container variant="bordered" color={variant} padding="normal" radius="normal">
-  {#snippet children()}
-    <div style={cssPropertiesToString(row.toCSS(headerConfig))}>
-      <p class="text-body-s text-primary font-medium">
-        {title}
-      </p>
+  <div style={cssPropertiesToString(row.toCSS(headerConfig))}>
+    <p class="text-body-s text-primary font-medium">
+      {title}
+    </p>
 
-      <div style={cssPropertiesToString(row.toCSS(successConfig))}>
-        {#if showCopySuccess}
-          <div
-            style={cssPropertiesToString(
-              row.toCSS({
-                id: 'copy-success',
-                type: 'row',
-                gap: 'tight',
-                align: 'center',
-                fillContainer: false,
-              })
-            )}
-          >
-            <span class="text-body-xs text-success">
-              <CheckIcon size={12} />
-            </span>
-            <span class="text-body-xs text-success"> Copied! </span>
-          </div>
-        {/if}
+    <div style={cssPropertiesToString(row.toCSS(successConfig))}>
+      {#if showCopySuccess}
+        <div
+          style={cssPropertiesToString(
+            row.toCSS({
+              id: 'copy-success',
+              type: 'row',
+              gap: 'tight',
+              align: 'center',
+              fillContainer: false,
+            })
+          )}
+        >
+          <span class="text-body-xs text-success">
+            <CheckIcon size={12} />
+          </span>
+          <span class="text-body-xs text-success"> Copied! </span>
+        </div>
+      {/if}
 
-        <Button variant="secondary" size="small" onclick={copyToClipboard}>
-          {#snippet children()}
-            Copy CSS
-          {/snippet}
-        </Button>
-      </div>
+      <Button variant="secondary" size="small" onclick={copyToClipboard}>Copy CSS</Button>
     </div>
+  </div>
 
-    <Container variant="default" color={variant} padding="tight" radius="small">
-      {#snippet children()}
-        <pre class="text-body-xs text-primary overflow-x-auto font-mono leading-relaxed">{cleanCSS}</pre>
-      {/snippet}
-    </Container>
-  {/snippet}
+  <Container variant="default" color={variant} padding="tight" radius="small">
+    <pre class="text-body-xs text-primary overflow-x-auto font-mono leading-relaxed">{cleanCSS}</pre>
+  </Container>
 </Container>

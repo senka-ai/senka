@@ -95,9 +95,7 @@ Scales:     bg-[color]-[50|100|200|300|400]
 ### Buttons
 
 ```svelte
-<Button variant="primary">
-  {#snippet children()}Click me{/snippet}
-</Button>
+<Button variant="primary">Click me</Button>
 ```
 
 ### Lists
@@ -215,9 +213,7 @@ General UI icons import {(SwitchHorizontal, ViewGrid, Menu)} from 'svelte-heros'
 
     <Divider />
 
-    <Button variant="primary" fullWidth>
-      {#snippet children()}Apply{/snippet}
-    </Button>
+    <Button variant="primary" fullWidth>Apply</Button>
   </div>
 </Card>
 ```

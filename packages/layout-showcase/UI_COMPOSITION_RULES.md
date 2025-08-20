@@ -163,11 +163,7 @@ When displaying lists of items:
   <ListTitle>My Items</ListTitle>
   {#each items as item}
     <ListItem title={item.title} description={item.description} onclick={() => handleItemClick(item)}>
-      {#snippet children()}
-        <Button size="small" variant="secondary">
-          {#snippet children()}Edit{/snippet}
-        </Button>
-      {/snippet}
+      <Button size="small" variant="secondary">Edit</Button>
     </ListItem>
   {/each}
 </List>
@@ -199,9 +195,7 @@ When building forms:
 
     <Dropdown label="Category" options={categories} fullWidth />
 
-    <Button variant="primary" fullWidth>
-      {#snippet children()}Save Settings{/snippet}
-    </Button>
+    <Button variant="primary" fullWidth>Save Settings</Button>
   </div>
 </Container>
 ```
@@ -387,13 +381,9 @@ Here's how to build a property panel correctly:
     <Divider />
 
     <!-- Action Buttons -->
-    <Button variant="primary" fullWidth>
-      {#snippet children()}Apply Changes{/snippet}
-    </Button>
+    <Button variant="primary" fullWidth>Apply Changes</Button>
 
-    <Button variant="secondary" fullWidth>
-      {#snippet children()}Reset to Defaults{/snippet}
-    </Button>
+    <Button variant="secondary" fullWidth>Reset to Defaults</Button>
   </div>
 </Container>
 ```

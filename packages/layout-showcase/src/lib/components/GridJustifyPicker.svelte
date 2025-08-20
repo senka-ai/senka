@@ -96,41 +96,37 @@ RELEVANT FILES: packages/layout-engine/src/lib/core/arrangements/grid.ts, packag
 </script>
 
 <Container padding="none" background={false}>
-  {#snippet children()}
-    <div style={cssPropertiesToString(stack.toCSS(labelConfig))}>
-      <span class="text-body-s text-secondary font-medium">Horizontal Alignment:</span>
+  <div style={cssPropertiesToString(stack.toCSS(labelConfig))}>
+    <span class="text-body-s text-secondary font-medium">Horizontal Alignment:</span>
 
-      <div style={cssPropertiesToString(row.toCSS(buttonsConfig))}>
-        {#each gridJustifyOptions as option}
-          <Button
-            variant={value === option.value ? 'primary' : 'secondary'}
-            size="small"
-            {disabled}
-            onclick={() => handleJustifyChange(option.value)}
-          >
-            {#snippet leftIcon(size)}
-              {#if option.icon === AlignItemLeftLineDesign}
-                <AlignItemLeftLineDesign {size} />
-              {:else if option.icon === AlignItemHorizontalCenterLineDesign}
-                <AlignItemHorizontalCenterLineDesign {size} />
-              {:else if option.icon === AlignItemRightLineDesign}
-                <AlignItemRightLineDesign {size} />
-              {:else if option.icon === ExpandHorizontalLineArrows}
-                <ExpandHorizontalLineArrows {size} />
-              {/if}
-            {/snippet}
-            {#snippet children()}
-              {option.label}
-            {/snippet}
-          </Button>
-        {/each}
-      </div>
-
-      <div style={cssPropertiesToString(stack.toCSS(descriptionConfig))}>
-        <span class="text-body-xs text-muted">
-          {selectedOption?.description} (justify-items: {selectedOption?.gridValue})
-        </span>
-      </div>
+    <div style={cssPropertiesToString(row.toCSS(buttonsConfig))}>
+      {#each gridJustifyOptions as option}
+        <Button
+          variant={value === option.value ? 'primary' : 'secondary'}
+          size="small"
+          {disabled}
+          onclick={() => handleJustifyChange(option.value)}
+        >
+          {#snippet leftIcon(size)}
+            {#if option.icon === AlignItemLeftLineDesign}
+              <AlignItemLeftLineDesign {size} />
+            {:else if option.icon === AlignItemHorizontalCenterLineDesign}
+              <AlignItemHorizontalCenterLineDesign {size} />
+            {:else if option.icon === AlignItemRightLineDesign}
+              <AlignItemRightLineDesign {size} />
+            {:else if option.icon === ExpandHorizontalLineArrows}
+              <ExpandHorizontalLineArrows {size} />
+            {/if}
+          {/snippet}
+          {option.label}
+        </Button>
+      {/each}
     </div>
-  {/snippet}
+
+    <div style={cssPropertiesToString(stack.toCSS(descriptionConfig))}>
+      <span class="text-body-xs text-muted">
+        {selectedOption?.description} (justify-items: {selectedOption?.gridValue})
+      </span>
+    </div>
+  </div>
 </Container>

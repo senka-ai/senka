@@ -106,9 +106,7 @@ import { Button, TextField, Card } from '@senka-ai/ui'
 
 // Usage in Svelte component
 <Button variant="primary" onclick={handleClick}>
-  {#snippet children()}
-    Click me
-  {/snippet}
+  Click me
 </Button>
 ```
 
@@ -123,9 +121,7 @@ import { AddIcon, HeartFilledIcon, ArrowRightIcon } from '@senka-ai/ui/icons'
   {#snippet leftIcon(size)}
     <AddIcon {size} />
   {/snippet}
-  {#snippet children()}
-    Add Item
-  {/snippet}
+  Add Item
 </Button>
 ```
 
@@ -271,37 +267,31 @@ Here's a complete example of setting up a new package to use the UI library:
 
 <div class="p-6 space-y-6">
   <Card>
-    {#snippet children()}
-      <h1 class="text-2xl font-semibold mb-4">My Application</h1>
+    <h1 class="text-2xl font-semibold mb-4">My Application</h1>
 
-      <div class="space-y-4">
-        <TextField
-          bind:value={searchValue}
-          placeholder="Search items..."
-        >
+    <div class="space-y-4">
+      <TextField
+        bind:value={searchValue}
+        placeholder="Search items..."
+      >
+        {#snippet leftIcon(size)}
+          <SearchIcon {size} />
+        {/snippet}
+      </TextField>
+
+      <div class="flex gap-3">
+        <Button variant="primary" onclick={handleSearch}>
+          Search
+        </Button>
+
+        <Button variant="secondary" onclick={handleAdd}>
           {#snippet leftIcon(size)}
-            <SearchIcon {size} />
+            <AddIcon {size} />
           {/snippet}
-        </TextField>
-
-        <div class="flex gap-3">
-          <Button variant="primary" onclick={handleSearch}>
-            {#snippet children()}
-              Search
-            {/snippet}
-          </Button>
-
-          <Button variant="secondary" onclick={handleAdd}>
-            {#snippet leftIcon(size)}
-              <AddIcon {size} />
-            {/snippet}
-            {#snippet children()}
-              Add Item
-            {/snippet}
-          </Button>
-        </div>
+          Add Item
+        </Button>
       </div>
-    {/snippet}
+    </div>
   </Card>
 </div>
 ```

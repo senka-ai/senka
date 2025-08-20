@@ -32,23 +32,11 @@
     <div class="example-card">
       <h3 class="example-title">Basic Variants</h3>
       <div class="component-examples">
-        <Button variant="primary" onclick={handleButtonClick}>
-          {#snippet children()}
-            Primary Button
-          {/snippet}
-        </Button>
+        <Button variant="primary" onclick={handleButtonClick}>Primary Button</Button>
 
-        <Button variant="secondary" onclick={handleButtonClick}>
-          {#snippet children()}
-            Secondary Button
-          {/snippet}
-        </Button>
+        <Button variant="secondary" onclick={handleButtonClick}>Secondary Button</Button>
 
-        <Button variant="tertiary" onclick={handleButtonClick}>
-          {#snippet children()}
-            Tertiary Button
-          {/snippet}
-        </Button>
+        <Button variant="tertiary" onclick={handleButtonClick}>Tertiary Button</Button>
       </div>
       <p class="text-sm" style="color: var(--color-text-secondary)">Click count: {clickCount}</p>
     </div>
@@ -57,23 +45,11 @@
     <div class="example-card">
       <h3 class="example-title">Button Sizes</h3>
       <div class="component-examples items-center">
-        <Button variant="primary" size="small" onclick={handleButtonClick}>
-          {#snippet children()}
-            Small
-          {/snippet}
-        </Button>
+        <Button variant="primary" size="small" onclick={handleButtonClick}>Small</Button>
 
-        <Button variant="primary" size="medium" onclick={handleButtonClick}>
-          {#snippet children()}
-            Medium
-          {/snippet}
-        </Button>
+        <Button variant="primary" size="medium" onclick={handleButtonClick}>Medium</Button>
 
-        <Button variant="primary" size="large" onclick={handleButtonClick}>
-          {#snippet children()}
-            Large
-          {/snippet}
-        </Button>
+        <Button variant="primary" size="large" onclick={handleButtonClick}>Large</Button>
       </div>
     </div>
 
@@ -85,15 +61,11 @@
           {#snippet leftIcon(size)}
             <AddIcon {size} />
           {/snippet}
-          {#snippet children()}
-            Add Item
-          {/snippet}
+          Add Item
         </Button>
 
         <Button variant="tertiary" onclick={handleFavoriteClick}>
-          {#snippet children()}
-            Favorite
-          {/snippet}
+          Favorite
           {#snippet rightIcon(size)}
             <HeartFilledIcon {size} />
           {/snippet}
@@ -103,9 +75,7 @@
           {#snippet leftIcon(size)}
             <ArrowRightIcon {size} />
           {/snippet}
-          {#snippet children()}
-            Continue
-          {/snippet}
+          Continue
           {#snippet rightIcon(size)}
             <ArrowRightIcon {size} />
           {/snippet}
@@ -117,45 +87,25 @@
     <div class="example-card">
       <h3 class="example-title">Disabled States</h3>
       <div class="component-examples">
-        <Button variant="primary" disabled={true}>
-          {#snippet children()}
-            Disabled Primary
-          {/snippet}
-        </Button>
+        <Button variant="primary" disabled={true}>Disabled Primary</Button>
 
-        <Button variant="secondary" disabled={true}>
-          {#snippet children()}
-            Disabled Secondary
-          {/snippet}
-        </Button>
+        <Button variant="secondary" disabled={true}>Disabled Secondary</Button>
 
-        <Button variant="tertiary" disabled={true}>
-          {#snippet children()}
-            Disabled Tertiary
-          {/snippet}
-        </Button>
+        <Button variant="tertiary" disabled={true}>Disabled Tertiary</Button>
       </div>
     </div>
 
     <!-- Full Width -->
     <div class="example-card">
       <h3 class="example-title">Full Width Button</h3>
-      <Button variant="primary" fullWidth={true} onclick={handleButtonClick}>
-        {#snippet children()}
-          Full Width Button
-        {/snippet}
-      </Button>
+      <Button variant="primary" fullWidth={true} onclick={handleButtonClick}>Full Width Button</Button>
     </div>
 
     <!-- Loading State -->
     <div class="example-card">
       <h3 class="example-title">Loading State</h3>
       <div class="component-examples">
-        <Button variant="primary" loading={true}>
-          {#snippet children()}
-            Loading...
-          {/snippet}
-        </Button>
+        <Button variant="primary" loading={true}>Loading...</Button>
       </div>
     </div>
   </div>

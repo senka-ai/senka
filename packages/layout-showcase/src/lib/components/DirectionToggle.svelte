@@ -36,26 +36,22 @@ RELEVANT FILES: packages/layout-engine/src/lib/types/index.ts, packages/ui/src/l
 </script>
 
 <Container padding="none" background={false}>
-  {#snippet children()}
-    <div style={cssPropertiesToString(row.toCSS(directionConfig))}>
-      <span class="text-body-s text-secondary font-medium">Direction:</span>
+  <div style={cssPropertiesToString(row.toCSS(directionConfig))}>
+    <span class="text-body-s text-secondary font-medium">Direction:</span>
 
-      <Button variant="secondary" {disabled} onclick={toggleDirection}>
-        {#snippet leftIcon(size)}
-          {#if value === 'vertical'}
-            <SwitchVertical {size} />
-          {:else}
-            <SwitchHorizontal {size} />
-          {/if}
-        {/snippet}
-        {#snippet children()}
-          {value === 'vertical' ? 'Vertical' : 'Horizontal'}
-        {/snippet}
-      </Button>
+    <Button variant="secondary" {disabled} onclick={toggleDirection}>
+      {#snippet leftIcon(size)}
+        {#if value === 'vertical'}
+          <SwitchVertical {size} />
+        {:else}
+          <SwitchHorizontal {size} />
+        {/if}
+      {/snippet}
+      {value === 'vertical' ? 'Vertical' : 'Horizontal'}
+    </Button>
 
-      <span class="text-body-xs text-muted">
-        {value === 'vertical' ? 'Stack items top to bottom' : 'Stack items left to right'}
-      </span>
-    </div>
-  {/snippet}
+    <span class="text-body-xs text-muted">
+      {value === 'vertical' ? 'Stack items top to bottom' : 'Stack items left to right'}
+    </span>
+  </div>
 </Container>

@@ -84,12 +84,8 @@
       <div>
         <h3 class="mb-4 text-lg font-semibold">Positions</h3>
         <div class="flex items-start gap-4">
-          <Button onclick={() => (showBasicSheet = true)}>
-            {#snippet children()}Bottom Sheet{/snippet}
-          </Button>
-          <Button onclick={() => (showTopSheet = true)}>
-            {#snippet children()}Top Sheet{/snippet}
-          </Button>
+          <Button onclick={() => (showBasicSheet = true)}>Bottom Sheet</Button>
+          <Button onclick={() => (showTopSheet = true)}>Top Sheet</Button>
         </div>
       </div>
 
@@ -97,15 +93,9 @@
       <div>
         <h3 class="mb-4 text-lg font-semibold">Content Types</h3>
         <div class="flex items-start gap-4">
-          <Button variant="secondary" onclick={() => (showOptionsSheet = true)}>
-            {#snippet children()}Options Menu{/snippet}
-          </Button>
-          <Button variant="secondary" onclick={() => (showDestructiveSheet = true)}>
-            {#snippet children()}With Destructive Action{/snippet}
-          </Button>
-          <Button variant="secondary" onclick={() => (showPhotoSheet = true)}>
-            {#snippet children()}Photo Actions{/snippet}
-          </Button>
+          <Button variant="secondary" onclick={() => (showOptionsSheet = true)}>Options Menu</Button>
+          <Button variant="secondary" onclick={() => (showDestructiveSheet = true)}>With Destructive Action</Button>
+          <Button variant="secondary" onclick={() => (showPhotoSheet = true)}>Photo Actions</Button>
         </div>
       </div>
 
@@ -123,100 +113,90 @@
 
     <!-- Basic Bottom Sheet -->
     <ActionSheet open={showBasicSheet} title="Choose Action" onClose={() => (showBasicSheet = false)}>
-      {#snippet children()}
-        <div class="space-y-1">
-          <ListItem
-            title="Edit"
-            description="Make changes to this item"
-            leftIcon={EditIcon}
-            clickable={true}
-            onclick={() => handleBasicAction('edit')}
-          />
-          <ListItem
-            title="Share"
-            description="Share with others"
-            leftIcon={SendIcon}
-            clickable={true}
-            onclick={() => handleBasicAction('share')}
-          />
-          <ListItem
-            title="Add to Collection"
-            leftIcon={AddIcon}
-            clickable={true}
-            onclick={() => handleBasicAction('add')}
-          />
-        </div>
-      {/snippet}
+      <div class="space-y-1">
+        <ListItem
+          title="Edit"
+          description="Make changes to this item"
+          leftIcon={EditIcon}
+          clickable={true}
+          onclick={() => handleBasicAction('edit')}
+        />
+        <ListItem
+          title="Share"
+          description="Share with others"
+          leftIcon={SendIcon}
+          clickable={true}
+          onclick={() => handleBasicAction('share')}
+        />
+        <ListItem
+          title="Add to Collection"
+          leftIcon={AddIcon}
+          clickable={true}
+          onclick={() => handleBasicAction('add')}
+        />
+      </div>
     </ActionSheet>
 
     <!-- Top Position Sheet -->
     <ActionSheet open={showTopSheet} title="Top Action Sheet" position="top" onClose={() => (showTopSheet = false)}>
-      {#snippet children()}
-        <div class="space-y-1">
-          <ListItem title="Top Action 1" clickable={true} onclick={() => handleBasicAction('top1')} />
-          <ListItem title="Top Action 2" clickable={true} onclick={() => handleBasicAction('top2')} />
-        </div>
-      {/snippet}
+      <div class="space-y-1">
+        <ListItem title="Top Action 1" clickable={true} onclick={() => handleBasicAction('top1')} />
+        <ListItem title="Top Action 2" clickable={true} onclick={() => handleBasicAction('top2')} />
+      </div>
     </ActionSheet>
 
     <!-- Options Menu Sheet -->
     <ActionSheet open={showOptionsSheet} title="More Options" onClose={() => (showOptionsSheet = false)}>
-      {#snippet children()}
-        <div class="space-y-1">
-          <ListItem
-            title="Settings"
-            description="Preferences and configuration"
-            clickable={true}
-            onclick={() => handleBasicAction('settings')}
-          />
-          <ListItem
-            title="Help"
-            description="Get support and documentation"
-            clickable={true}
-            onclick={() => handleBasicAction('help')}
-          />
-          <ListItem title="About" clickable={true} onclick={() => handleBasicAction('about')} />
-        </div>
-      {/snippet}
+      <div class="space-y-1">
+        <ListItem
+          title="Settings"
+          description="Preferences and configuration"
+          clickable={true}
+          onclick={() => handleBasicAction('settings')}
+        />
+        <ListItem
+          title="Help"
+          description="Get support and documentation"
+          clickable={true}
+          onclick={() => handleBasicAction('help')}
+        />
+        <ListItem title="About" clickable={true} onclick={() => handleBasicAction('about')} />
+      </div>
     </ActionSheet>
 
     <!-- Destructive Action Sheet -->
     <ActionSheet open={showDestructiveSheet} title="Confirm Action" onClose={() => (showDestructiveSheet = false)}>
-      {#snippet children()}
-        <div class="space-y-1">
-          <ListItem title="Edit Item" leftIcon={EditIcon} clickable={true} onclick={() => handleBasicAction('edit')} />
-          <ListItem
-            title="Delete Item"
-            description="This action cannot be undone"
-            leftIcon={DeleteIcon}
-            class="text-error-600"
-            clickable={true}
-            onclick={() => handleBasicAction('delete')}
-          />
-        </div>
-      {/snippet}
+      <div class="space-y-1">
+        <ListItem title="Edit Item" leftIcon={EditIcon} clickable={true} onclick={() => handleBasicAction('edit')} />
+        <ListItem
+          title="Delete Item"
+          description="This action cannot be undone"
+          leftIcon={DeleteIcon}
+          class="text-error-600"
+          clickable={true}
+          onclick={() => handleBasicAction('delete')}
+        />
+      </div>
     </ActionSheet>
 
     <!-- Photo Actions Sheet -->
     <ActionSheet open={showPhotoSheet} title="Choose Photo Source" onClose={() => (showPhotoSheet = false)}>
-      {#snippet children()}
-        <div class="space-y-1">
-          <ListItem
-            title="Take Photo"
-            description="Use camera to take a new photo"
-            leftIcon={CameraIcon}
-            clickable={true}
-            onclick={() => handleBasicAction('camera')}
-          />
-          <ListItem
-            title="Choose from Gallery"
-            description="Select existing photo"
-            leftIcon={ImageIcon}
-            clickable={true}
-            onclick={() => handleBasicAction('gallery')}
-          />
-        </div>
-      {/snippet}
+      <div class="space-y-1">
+        <ListItem
+          title="Take Photo"
+          description="Use camera to take a new photo"
+          leftIcon={CameraIcon}
+          clickable={true}
+          onclick={() => handleBasicAction('camera')}
+        />
+        <ListItem
+          title="Choose from Gallery"
+          description="Select existing photo"
+          leftIcon={ImageIcon}
+          clickable={true}
+          onclick={() => handleBasicAction('gallery')}
+        />
+      </div>
     </ActionSheet>
   {/snippet}
 </Story>
@@ -229,16 +209,14 @@
       position={args.position}
       onClose={() => console.log('Close')}
     >
-      {#snippet children()}
-        <div class="space-y-1">
-          <ListItem
-            title="Bottom Action"
-            description="This sheet slides up from bottom"
-            clickable={true}
-            onclick={() => console.log('Bottom action')}
-          />
-        </div>
-      {/snippet}
+      <div class="space-y-1">
+        <ListItem
+          title="Bottom Action"
+          description="This sheet slides up from bottom"
+          clickable={true}
+          onclick={() => console.log('Bottom action')}
+        />
+      </div>
     </ActionSheet>
   {/snippet}
 </Story>
@@ -251,16 +229,14 @@
       position={args.position}
       onClose={() => console.log('Close')}
     >
-      {#snippet children()}
-        <div class="space-y-1">
-          <ListItem
-            title="Top Action"
-            description="This sheet slides down from top"
-            clickable={true}
-            onclick={() => console.log('Top action')}
-          />
-        </div>
-      {/snippet}
+      <div class="space-y-1">
+        <ListItem
+          title="Top Action"
+          description="This sheet slides down from top"
+          clickable={true}
+          onclick={() => console.log('Top action')}
+        />
+      </div>
     </ActionSheet>
   {/snippet}
 </Story>
@@ -268,32 +244,30 @@
 <Story name="With Icons" args={{ open: true }} parameters={{ layout: 'compact' }}>
   {#snippet template(args)}
     <ActionSheet open={args.open} title="Actions with Icons" onClose={() => console.log('Close')}>
-      {#snippet children()}
-        <div class="space-y-1">
-          <ListItem
-            title="Edit"
-            description="Make changes to this item"
-            leftIcon={EditIcon}
-            clickable={true}
-            onclick={() => console.log('Edit')}
-          />
-          <ListItem
-            title="Share"
-            description="Share with others"
-            leftIcon={SendIcon}
-            clickable={true}
-            onclick={() => console.log('Share')}
-          />
-          <ListItem
-            title="Delete"
-            description="Remove this item"
-            leftIcon={DeleteIcon}
-            class="text-error-600"
-            clickable={true}
-            onclick={() => console.log('Delete')}
-          />
-        </div>
-      {/snippet}
+      <div class="space-y-1">
+        <ListItem
+          title="Edit"
+          description="Make changes to this item"
+          leftIcon={EditIcon}
+          clickable={true}
+          onclick={() => console.log('Edit')}
+        />
+        <ListItem
+          title="Share"
+          description="Share with others"
+          leftIcon={SendIcon}
+          clickable={true}
+          onclick={() => console.log('Share')}
+        />
+        <ListItem
+          title="Delete"
+          description="Remove this item"
+          leftIcon={DeleteIcon}
+          class="text-error-600"
+          clickable={true}
+          onclick={() => console.log('Delete')}
+        />
+      </div>
     </ActionSheet>
   {/snippet}
 </Story>
@@ -301,19 +275,17 @@
 <Story name="Destructive Actions" args={{ open: true }} parameters={{ layout: 'compact' }}>
   {#snippet template(args)}
     <ActionSheet open={args.open} title="Confirm Action" onClose={() => console.log('Close')}>
-      {#snippet children()}
-        <div class="space-y-1">
-          <ListItem title="Edit Item" leftIcon={EditIcon} clickable={true} onclick={() => console.log('Edit')} />
-          <ListItem
-            title="Delete Item"
-            description="This action cannot be undone"
-            leftIcon={DeleteIcon}
-            class="text-error-600"
-            clickable={true}
-            onclick={() => console.log('Delete')}
-          />
-        </div>
-      {/snippet}
+      <div class="space-y-1">
+        <ListItem title="Edit Item" leftIcon={EditIcon} clickable={true} onclick={() => console.log('Edit')} />
+        <ListItem
+          title="Delete Item"
+          description="This action cannot be undone"
+          leftIcon={DeleteIcon}
+          class="text-error-600"
+          clickable={true}
+          onclick={() => console.log('Delete')}
+        />
+      </div>
     </ActionSheet>
   {/snippet}
 </Story>
@@ -326,12 +298,10 @@
       showCloseButton={args.showCloseButton}
       onClose={() => console.log('Close')}
     >
-      {#snippet children()}
-        <div class="space-y-1">
-          <ListItem title="Action 1" clickable={true} onclick={() => console.log('Action 1')} />
-          <ListItem title="Cancel" clickable={true} onclick={() => console.log('Cancel')} />
-        </div>
-      {/snippet}
+      <div class="space-y-1">
+        <ListItem title="Action 1" clickable={true} onclick={() => console.log('Action 1')} />
+        <ListItem title="Cancel" clickable={true} onclick={() => console.log('Cancel')} />
+      </div>
     </ActionSheet>
   {/snippet}
 </Story>
@@ -346,16 +316,14 @@
         animationSpeed={args.animationSpeed || 'normal'}
         onClose={() => console.log('Close')}
       >
-        {#snippet children()}
-          <div class="space-y-1">
-            <ListItem
-              title="Test Action"
-              description={`Animation speed: ${args.animationSpeed || 'normal'}`}
-              clickable={true}
-              onclick={() => console.log('Test action')}
-            />
-          </div>
-        {/snippet}
+        <div class="space-y-1">
+          <ListItem
+            title="Test Action"
+            description={`Animation speed: ${args.animationSpeed || 'normal'}`}
+            clickable={true}
+            onclick={() => console.log('Test action')}
+          />
+        </div>
       </ActionSheet>
     </div>
   {/snippet}
@@ -369,63 +337,59 @@
 
       <div class="space-y-3">
         <Button variant="primary" fullWidth leftIcon={CameraIcon} onclick={() => (showPhotoSheet = true)}>
-          {#snippet children()}Add Photo{/snippet}
+          Add Photo
         </Button>
 
         <Button variant="secondary" fullWidth leftIcon={SettingsIcon} onclick={() => (showOptionsSheet = true)}>
-          {#snippet children()}More Options{/snippet}
+          More Options
         </Button>
       </div>
 
       <!-- Photo Action Sheet -->
       <ActionSheet open={showPhotoSheet} title="Add Photo" onClose={() => (showPhotoSheet = false)}>
-        {#snippet children()}
-          <div class="space-y-1">
-            <ListItem
-              title="Take Photo"
-              description="Use camera to take a new photo"
-              leftIcon={CameraIcon}
-              clickable={true}
-              onclick={() => handleBasicAction('camera')}
-            />
-            <ListItem
-              title="Choose from Gallery"
-              description="Select from existing photos"
-              leftIcon={ImageIcon}
-              clickable={true}
-              onclick={() => handleBasicAction('gallery')}
-            />
-          </div>
-        {/snippet}
+        <div class="space-y-1">
+          <ListItem
+            title="Take Photo"
+            description="Use camera to take a new photo"
+            leftIcon={CameraIcon}
+            clickable={true}
+            onclick={() => handleBasicAction('camera')}
+          />
+          <ListItem
+            title="Choose from Gallery"
+            description="Select from existing photos"
+            leftIcon={ImageIcon}
+            clickable={true}
+            onclick={() => handleBasicAction('gallery')}
+          />
+        </div>
       </ActionSheet>
 
       <!-- Options Action Sheet -->
       <ActionSheet open={showOptionsSheet} title="Photo Options" onClose={() => (showOptionsSheet = false)}>
-        {#snippet children()}
-          <div class="space-y-1">
-            <ListItem
-              title="Share Album"
-              description="Share with friends and family"
-              leftIcon={SendIcon}
-              clickable={true}
-              onclick={() => handleBasicAction('share')}
-            />
-            <ListItem
-              title="Export Photos"
-              description="Download all photos"
-              clickable={true}
-              onclick={() => handleBasicAction('export')}
-            />
-            <ListItem
-              title="Delete Album"
-              description="This will remove all photos"
-              leftIcon={DeleteIcon}
-              class="text-error-600"
-              clickable={true}
-              onclick={() => handleBasicAction('delete')}
-            />
-          </div>
-        {/snippet}
+        <div class="space-y-1">
+          <ListItem
+            title="Share Album"
+            description="Share with friends and family"
+            leftIcon={SendIcon}
+            clickable={true}
+            onclick={() => handleBasicAction('share')}
+          />
+          <ListItem
+            title="Export Photos"
+            description="Download all photos"
+            clickable={true}
+            onclick={() => handleBasicAction('export')}
+          />
+          <ListItem
+            title="Delete Album"
+            description="This will remove all photos"
+            leftIcon={DeleteIcon}
+            class="text-error-600"
+            clickable={true}
+            onclick={() => handleBasicAction('delete')}
+          />
+        </div>
       </ActionSheet>
     </div>
   {/snippet}

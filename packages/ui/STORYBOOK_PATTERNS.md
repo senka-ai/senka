@@ -109,11 +109,7 @@ packages/ui/src/stories/
 ```svelte
 <Story name="Default" args={{}} parameters={{ layout: 'compact' }}>
   {#snippet template(args)}
-    <Component {...args}>
-      {#snippet children()}
-        Default Content
-      {/snippet}
-    </Component>
+    <Component {...args}>Default Content</Component>
   {/snippet}
 </Story>
 ```
@@ -131,17 +127,13 @@ packages/ui/src/stories/
 ```svelte
 <Story name="Primary" args={{ variant: 'primary' }} parameters={{ layout: 'compact' }}>
   {#snippet template(args)}
-    <Component {...args}>
-      {#snippet children()}Button{/snippet}
-    </Component>
+    <Component {...args}>Button</Component>
   {/snippet}
 </Story>
 
 <Story name="Secondary" args={{ variant: 'secondary' }} parameters={{ layout: 'compact' }}>
   {#snippet template(args)}
-    <Component {...args}>
-      {#snippet children()}Button{/snippet}
-    </Component>
+    <Component {...args}>Button</Component>
   {/snippet}
 </Story>
 ```
@@ -153,17 +145,13 @@ packages/ui/src/stories/
 ```svelte
 <Story name="Disabled" args={{ disabled: true }} parameters={{ layout: 'compact' }}>
   {#snippet template(args)}
-    <Component {...args}>
-      {#snippet children()}Disabled State{/snippet}
-    </Component>
+    <Component {...args}>Disabled State</Component>
   {/snippet}
 </Story>
 
 <Story name="Loading" args={{ loading: true }} parameters={{ layout: 'compact' }}>
   {#snippet template(args)}
-    <Component {...args}>
-      {#snippet children()}Loading State{/snippet}
-    </Component>
+    <Component {...args}>Loading State</Component>
   {/snippet}
 </Story>
 ```
@@ -194,18 +182,18 @@ packages/ui/src/stories/
 
 ### 1. Component Children Pattern
 
-**Always use snippet syntax for component children:**
+**Use direct content for component children (not the children() snippet):**
 
 ```svelte
-<!-- ✅ Correct: Snippet syntax -->
+<!-- ✅ Correct: Direct content -->
+<Component>Content goes here</Component>
+
+<!-- ❌ Wrong: Incorrect snippet syntax -->
 <Component>
   {#snippet children()}
     Content goes here
   {/snippet}
 </Component>
-
-<!-- ❌ Wrong: Direct content -->
-<Component>Content goes here</Component>
 ```
 
 ### 2. Template Function Pattern
@@ -216,9 +204,7 @@ packages/ui/src/stories/
 <!-- ✅ Correct: Template function with args -->
 <Story name="Interactive" args={{ variant: 'primary' }}>
   {#snippet template(args)}
-    <Component {...args}>
-      {#snippet children()}Content{/snippet}
-    </Component>
+    <Component {...args}>Content</Component>
   {/snippet}
 </Story>
 
@@ -311,20 +297,14 @@ packages/ui/src/stories/
 
 ```svelte
 <!-- With Icon Component -->
-<Component leftIcon={ArrowIcon}>
-  {#snippet children()}With Icon{/snippet}
-</Component>
+<Component leftIcon={ArrowIcon}>With Icon</Component>
 
 <!-- With String Icon -->
-<Component leftIcon="🚀">
-  {#snippet children()}With Emoji{/snippet}
-</Component>
+<Component leftIcon="🚀">With Emoji</Component>
 
 <!-- Icon as Children -->
 <Component>
-  {#snippet children()}
-    <ChatIcon class="h-8 w-8" />
-  {/snippet}
+  <ChatIcon class="h-8 w-8" />
 </Component>
 ```
 
@@ -540,9 +520,7 @@ If you don't specify a `layout` parameter, the system will automatically apply s
         validationRules={[validationRules.required(), validationRules.email()]}
       />
 
-      <Button variant="primary" fullWidth>
-        {#snippet children()}Submit{/snippet}
-      </Button>
+      <Button variant="primary" fullWidth>Submit</Button>
     </div>
   {/snippet}
 </Story>
@@ -809,17 +787,15 @@ This automatically creates visual regression tests for both light and dark theme
 <Story name="Custom Content Example">
   {#snippet template()}
     <Dialog open={true}>
-      {#snippet children()}
-        <div class="space-y-4">
-          <h2 class="text-h3 font-semibold text-neutral-900">Contact Form</h2>
-          <div class="space-y-3">
-            <!-- Use library components -->
-            <TextField label="Name" placeholder="Your name" showLabel={false} />
-            <TextField label="Email" type="email" placeholder="Your email" showLabel={false} />
-            <TextArea label="Message" placeholder="Your message" rows={3} showLabel={false} />
-          </div>
+      <div class="space-y-4">
+        <h2 class="text-h3 font-semibold text-neutral-900">Contact Form</h2>
+        <div class="space-y-3">
+          <!-- Use library components -->
+          <TextField label="Name" placeholder="Your name" showLabel={false} />
+          <TextField label="Email" type="email" placeholder="Your email" showLabel={false} />
+          <TextArea label="Message" placeholder="Your message" rows={3} showLabel={false} />
         </div>
-      {/snippet}
+      </div>
     </Dialog>
   {/snippet}
 </Story>
@@ -828,9 +804,7 @@ This automatically creates visual regression tests for both light and dark theme
   {#snippet template()}
     <div class="space-y-4">
       <!-- Use library Button component -->
-      <Button onclick={handleAction} fullWidth>
-        {#snippet children()}Start Process{/snippet}
-      </Button>
+      <Button onclick={handleAction} fullWidth>Start Process</Button>
 
       <!-- Use library Loader component -->
       <Loader variant="progress" progress={progressValue} showProgress />
@@ -845,17 +819,15 @@ This automatically creates visual regression tests for both light and dark theme
 <Story name="Custom Content Example">
   {#snippet template()}
     <Dialog open={true}>
-      {#snippet children()}
-        <div class="space-y-4">
-          <h2 class="text-h3 font-semibold text-neutral-900">Contact Form</h2>
-          <div class="space-y-3">
-            <!-- Don't use raw HTML inputs -->
-            <input type="text" placeholder="Your name" class="w-full rounded-lg border px-3 py-2" />
-            <input type="email" placeholder="Your email" class="w-full rounded-lg border px-3 py-2" />
-            <textarea placeholder="Your message" rows="3" class="w-full rounded-lg border px-3 py-2"></textarea>
-          </div>
+      <div class="space-y-4">
+        <h2 class="text-h3 font-semibold text-neutral-900">Contact Form</h2>
+        <div class="space-y-3">
+          <!-- Don't use raw HTML inputs -->
+          <input type="text" placeholder="Your name" class="w-full rounded-lg border px-3 py-2" />
+          <input type="email" placeholder="Your email" class="w-full rounded-lg border px-3 py-2" />
+          <textarea placeholder="Your message" rows="3" class="w-full rounded-lg border px-3 py-2"></textarea>
         </div>
-      {/snippet}
+      </div>
     </Dialog>
   {/snippet}
 </Story>
@@ -909,25 +881,21 @@ This automatically creates visual regression tests for both light and dark theme
 <Story name="Contact Form">
   {#snippet template()}
     <Card variant="default">
-      {#snippet children()}
-        <div class="space-y-4">
-          <TextField
-            label="Full Name"
-            placeholder="Enter your full name"
-            validationRules={[validationRules.required()]}
-          />
-          <TextField
-            label="Email"
-            type="email"
-            placeholder="your.email@example.com"
-            validationRules={[validationRules.required(), validationRules.email()]}
-          />
-          <TextArea label="Message" placeholder="How can we help you?" rows={4} />
-          <Button variant="primary" fullWidth>
-            {#snippet children()}Send Message{/snippet}
-          </Button>
-        </div>
-      {/snippet}
+      <div class="space-y-4">
+        <TextField
+          label="Full Name"
+          placeholder="Enter your full name"
+          validationRules={[validationRules.required()]}
+        />
+        <TextField
+          label="Email"
+          type="email"
+          placeholder="your.email@example.com"
+          validationRules={[validationRules.required(), validationRules.email()]}
+        />
+        <TextArea label="Message" placeholder="How can we help you?" rows={4} />
+        <Button variant="primary" fullWidth>Send Message</Button>
+      </div>
     </Card>
   {/snippet}
 </Story>
@@ -939,29 +907,25 @@ This automatically creates visual regression tests for both light and dark theme
 <Story name="Dashboard Widget">
   {#snippet template()}
     <Card variant="default">
-      {#snippet children()}
-        <div class="space-y-4">
-          <div class="flex items-center justify-between">
-            <h3 class="text-lg font-semibold">Analytics</h3>
-            <Badge variant="success">Live</Badge>
-          </div>
-
-          <div class="grid grid-cols-2 gap-4">
-            <div class="text-center">
-              <Loader variant="progress" progress={75} showProgress color="success" />
-              <p class="mt-2 text-sm text-neutral-600">Server Health</p>
-            </div>
-            <div class="text-center">
-              <Loader variant="spinner" color="primary" />
-              <p class="mt-2 text-sm text-neutral-600">Loading Data</p>
-            </div>
-          </div>
-
-          <Button variant="secondary" fullWidth>
-            {#snippet children()}Refresh Dashboard{/snippet}
-          </Button>
+      <div class="space-y-4">
+        <div class="flex items-center justify-between">
+          <h3 class="text-lg font-semibold">Analytics</h3>
+          <Badge variant="success">Live</Badge>
         </div>
-      {/snippet}
+
+        <div class="grid grid-cols-2 gap-4">
+          <div class="text-center">
+            <Loader variant="progress" progress={75} showProgress color="success" />
+            <p class="mt-2 text-sm text-neutral-600">Server Health</p>
+          </div>
+          <div class="text-center">
+            <Loader variant="spinner" color="primary" />
+            <p class="mt-2 text-sm text-neutral-600">Loading Data</p>
+          </div>
+        </div>
+
+        <Button variant="secondary" fullWidth>Refresh Dashboard</Button>
+      </div>
     </Card>
   {/snippet}
 </Story>
@@ -983,10 +947,8 @@ This pattern ensures that stories not only demonstrate individual components but
 <!-- ❌ Don't use direct content in components -->
 <Button>Click me</Button>
 
-<!-- ✅ Use snippet syntax -->
-<Button>
-  {#snippet children()}Click me{/snippet}
-</Button>
+<!-- ✅ Use direct content -->
+<Button>Click me</Button>
 
 <!-- ❌ Don't use svelte:component for dynamic components -->
 <svelte:component this={component} prop="value" />

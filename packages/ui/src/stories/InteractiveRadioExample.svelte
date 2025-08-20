@@ -27,10 +27,8 @@
       checked={selectedValue === 'rich'}
       onchange={() => (selectedValue = 'rich')}
     >
-      {#snippet children()}
-        Rich content with <strong>bold text</strong> and
-        <a href="https://example.com" class="text-highlight underline">links</a>
-      {/snippet}
+      Rich content with <strong>bold text</strong> and
+      <a href="https://example.com" class="text-highlight underline">links</a>
     </RadioButton>
     <RadioButton name="example" value="disabled" label="Disabled option" disabled />
   </div>

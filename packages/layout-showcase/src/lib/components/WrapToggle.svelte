@@ -33,15 +33,13 @@ RELEVANT FILES: packages/layout-engine/src/lib/core/arrangements/row.ts, package
 </script>
 
 <Container padding="none" background={false}>
-  {#snippet children()}
-    <div style={cssPropertiesToString(row.toCSS(wrapConfig))}>
-      <span class="text-body-s text-secondary font-medium">Wrap:</span>
+  <div style={cssPropertiesToString(row.toCSS(wrapConfig))}>
+    <span class="text-body-s text-secondary font-medium">Wrap:</span>
 
-      <Toggle checked={value} {disabled} onchange={handleToggle} size="medium" />
+    <Toggle checked={value} {disabled} onchange={handleToggle} size="medium" />
 
-      <span class="text-body-xs text-muted">
-        {value ? 'Items wrap to new lines when needed' : 'Items stay on single line'}
-      </span>
-    </div>
-  {/snippet}
+    <span class="text-body-xs text-muted">
+      {value ? 'Items wrap to new lines when needed' : 'Items stay on single line'}
+    </span>
+  </div>
 </Container>

@@ -84,41 +84,37 @@ RELEVANT FILES: packages/layout-engine/src/lib/types/index.ts, packages/ui/src/l
 </script>
 
 <Container padding="none" background={false}>
-  {#snippet children()}
-    <div style={cssPropertiesToString(stack.toCSS(labelConfig))}>
-      <span class="text-body-s text-secondary font-medium">Main-axis Justification:</span>
+  <div style={cssPropertiesToString(stack.toCSS(labelConfig))}>
+    <span class="text-body-s text-secondary font-medium">Main-axis Justification:</span>
 
-      <div style={cssPropertiesToString(row.toCSS(buttonsConfig))}>
-        {#each justifyOptions as option}
-          <Button
-            variant={value === option.value ? 'primary' : 'secondary'}
-            size="small"
-            {disabled}
-            onclick={() => handleJustifyChange(option.value)}
-          >
-            {#snippet leftIcon(size)}
-              {#if option.icon === ContractLeftRightFillArrows}
-                <ContractLeftRightFillArrows {size} />
-              {:else if option.icon === AlignCenter}
-                <AlignCenter {size} />
-              {:else if option.icon === ExpandHorizontalSFillArrows}
-                <ExpandHorizontalSFillArrows {size} />
-              {:else if option.icon === ExpandWidthFillArrows}
-                <ExpandWidthFillArrows {size} />
-              {/if}
-            {/snippet}
-            {#snippet children()}
-              {option.label}
-            {/snippet}
-          </Button>
-        {/each}
-      </div>
-
-      <div style={cssPropertiesToString(stack.toCSS(descriptionConfig))}>
-        <span class="text-body-xs text-muted">
-          {justifyOptions.find((opt) => opt.value === value)?.description}
-        </span>
-      </div>
+    <div style={cssPropertiesToString(row.toCSS(buttonsConfig))}>
+      {#each justifyOptions as option}
+        <Button
+          variant={value === option.value ? 'primary' : 'secondary'}
+          size="small"
+          {disabled}
+          onclick={() => handleJustifyChange(option.value)}
+        >
+          {#snippet leftIcon(size)}
+            {#if option.icon === ContractLeftRightFillArrows}
+              <ContractLeftRightFillArrows {size} />
+            {:else if option.icon === AlignCenter}
+              <AlignCenter {size} />
+            {:else if option.icon === ExpandHorizontalSFillArrows}
+              <ExpandHorizontalSFillArrows {size} />
+            {:else if option.icon === ExpandWidthFillArrows}
+              <ExpandWidthFillArrows {size} />
+            {/if}
+          {/snippet}
+          {option.label}
+        </Button>
+      {/each}
     </div>
-  {/snippet}
+
+    <div style={cssPropertiesToString(stack.toCSS(descriptionConfig))}>
+      <span class="text-body-xs text-muted">
+        {justifyOptions.find((opt) => opt.value === value)?.description}
+      </span>
+    </div>
+  </div>
 </Container>

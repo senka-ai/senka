@@ -96,9 +96,7 @@
         <h3 class="text-h4 text-primary mb-4">With Custom Icons</h3>
         <div class="max-w-md space-y-4">
           <CardHorizontal title="Favorite Item" subtitle="Added to favorites" iconType="custom" showAction={false}>
-            {#snippet children()}
-              <HeartFilledIcon class="h-6 w-6 text-red-500" />
-            {/snippet}
+            <HeartFilledIcon class="h-6 w-6 text-red-500" />
           </CardHorizontal>
           <CardHorizontal
             title="User Profile"
@@ -107,9 +105,7 @@
             actionType="arrow"
             showAction={true}
           >
-            {#snippet children()}
-              <ProfileIcon class="h-6 w-6 text-blue-500" />
-            {/snippet}
+            <ProfileIcon class="h-6 w-6 text-blue-500" />
           </CardHorizontal>
           <CardHorizontal
             title="Chat Message"
@@ -119,9 +115,7 @@
             showAction={true}
             actionType="button"
           >
-            {#snippet children()}
-              <ChatIcon class="h-6 w-6 text-green-500" />
-            {/snippet}
+            <ChatIcon class="h-6 w-6 text-green-500" />
           </CardHorizontal>
         </div>
       </div>
@@ -146,15 +140,11 @@
             showAction={true}
             actionType="button"
           >
-            {#snippet children()}
-              <div class="flex h-10 w-10 items-center justify-center rounded-lg bg-purple-100 text-purple-600">
-                <svg class="h-5 w-5" fill="currentColor" viewBox="0 0 20 20">
-                  <path
-                    d="M4 3a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V5a2 2 0 00-2-2H4zm12 12H4l4-8 3 6 2-4 3 6z"
-                  />
-                </svg>
-              </div>
-            {/snippet}
+            <div class="flex h-10 w-10 items-center justify-center rounded-lg bg-purple-100 text-purple-600">
+              <svg class="h-5 w-5" fill="currentColor" viewBox="0 0 20 20">
+                <path d="M4 3a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V5a2 2 0 00-2-2H4zm12 12H4l4-8 3 6 2-4 3 6z" />
+              </svg>
+            </div>
           </CardHorizontal>
           <CardHorizontal
             title="Meeting Reminder"
@@ -162,17 +152,15 @@
             iconType="custom"
             showAction={false}
           >
-            {#snippet children()}
-              <div class="flex h-10 w-10 items-center justify-center rounded-lg bg-yellow-100 text-yellow-600">
-                <svg class="h-5 w-5" fill="currentColor" viewBox="0 0 20 20">
-                  <path
-                    fill-rule="evenodd"
-                    d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l2.828 2.829a1 1 0 101.415-1.415L11 9.586V6z"
-                    clip-rule="evenodd"
-                  />
-                </svg>
-              </div>
-            {/snippet}
+            <div class="flex h-10 w-10 items-center justify-center rounded-lg bg-yellow-100 text-yellow-600">
+              <svg class="h-5 w-5" fill="currentColor" viewBox="0 0 20 20">
+                <path
+                  fill-rule="evenodd"
+                  d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l2.828 2.829a1 1 0 101.415-1.415L11 9.586V6z"
+                  clip-rule="evenodd"
+                />
+              </svg>
+            </div>
           </CardHorizontal>
         </div>
       </div>
@@ -251,9 +239,7 @@
       onclick={args.onclick}
       onButtonClick={args.onButtonClick}
     >
-      {#snippet children()}
-        <ProfileIcon class="h-6 w-6" />
-      {/snippet}
+      <ProfileIcon class="h-6 w-6" />
     </CardHorizontal>
   {/snippet}
 </Story>
@@ -275,9 +261,7 @@
       onclick={args.onclick}
       onButtonClick={args.onButtonClick}
     >
-      {#snippet children()}
-        <HeartFilledIcon class="h-6 w-6" />
-      {/snippet}
+      <HeartFilledIcon class="h-6 w-6" />
     </CardHorizontal>
   {/snippet}
 </Story>
@@ -300,9 +284,7 @@
       onclick={args.onclick}
       onButtonClick={args.onButtonClick}
     >
-      {#snippet children()}
-        <ChatIcon class="text-highlight h-6 w-6" />
-      {/snippet}
+      <ChatIcon class="text-highlight h-6 w-6" />
     </CardHorizontal>
   {/snippet}
 </Story>
@@ -466,9 +448,7 @@
             showAction={true}
             actionType="button"
           >
-            {#snippet children()}
-              <ProfileIcon class="h-6 w-6" />
-            {/snippet}
+            <ProfileIcon class="h-6 w-6" />
           </CardHorizontal>
           <CardHorizontal
             title="Avatar + Arrow"
@@ -477,14 +457,10 @@
             showAction={true}
             actionType="arrow"
           >
-            {#snippet children()}
-              <ProfileIcon class="h-6 w-6" />
-            {/snippet}
+            <ProfileIcon class="h-6 w-6" />
           </CardHorizontal>
           <CardHorizontal title="Avatar Only" subtitle="Subtitle" iconType="custom" showAction={false}>
-            {#snippet children()}
-              <ProfileIcon class="h-6 w-6" />
-            {/snippet}
+            <ProfileIcon class="h-6 w-6" />
           </CardHorizontal>
         </div>
       </div>
@@ -501,9 +477,7 @@
             showAction={true}
             actionType="button"
           >
-            {#snippet children()}
-              <HeartFilledIcon class="h-6 w-6" />
-            {/snippet}
+            <HeartFilledIcon class="h-6 w-6" />
           </CardHorizontal>
           <CardHorizontal
             title="Heart + Arrow"
@@ -512,14 +486,10 @@
             showAction={true}
             actionType="arrow"
           >
-            {#snippet children()}
-              <HeartFilledIcon class="h-6 w-6" />
-            {/snippet}
+            <HeartFilledIcon class="h-6 w-6" />
           </CardHorizontal>
           <CardHorizontal title="Heart Only" subtitle="Subtitle" iconType="custom" showAction={false}>
-            {#snippet children()}
-              <HeartFilledIcon class="h-6 w-6" />
-            {/snippet}
+            <HeartFilledIcon class="h-6 w-6" />
           </CardHorizontal>
         </div>
       </div>
@@ -553,9 +523,7 @@
             onclick={() => console.log('Card clicked')}
             onButtonClick={() => console.log('Button clicked')}
           >
-            {#snippet children()}
-              <ProfileIcon class="h-6 w-6" />
-            {/snippet}
+            <ProfileIcon class="h-6 w-6" />
           </CardHorizontal>
           <CardHorizontal
             title="Disabled Card"
@@ -565,9 +533,7 @@
             showAction={true}
             disabled={true}
           >
-            {#snippet children()}
-              <HeartFilledIcon class="h-6 w-6" />
-            {/snippet}
+            <HeartFilledIcon class="h-6 w-6" />
           </CardHorizontal>
         </div>
       </div>

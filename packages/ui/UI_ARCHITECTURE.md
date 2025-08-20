@@ -294,11 +294,7 @@ Components consistently use the snippet pattern for flexible content:
 
 ```svelte
 <!-- Component usage -->
-<Button variant="primary">
-  {#snippet children()}
-    Click me!
-  {/snippet}
-</Button>
+<Button variant="primary">Click me!</Button>
 
 <!-- Component implementation -->
 {#if children}
@@ -1055,9 +1051,7 @@ import '@senka-ai/ui/styles'
 import { Button, TextField, Card } from '@senka-ai/ui'
 
 <Button variant="primary" onclick={() => console.log('clicked')}>
-  {#snippet children()}
-    Click me!
-  {/snippet}
+  Click me!
 </Button>
 ```
 

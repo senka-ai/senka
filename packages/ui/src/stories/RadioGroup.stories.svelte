@@ -42,21 +42,17 @@
           <div>
             <p class="text-body-s text-secondary mb-3">Default</p>
             <RadioGroup name="colors-default">
-              {#snippet children()}
-                <RadioButton value="red" label="Red" />
-                <RadioButton value="blue" label="Blue" />
-                <RadioButton value="green" label="Green" />
-              {/snippet}
+              <RadioButton value="red" label="Red" />
+              <RadioButton value="blue" label="Blue" />
+              <RadioButton value="green" label="Green" />
             </RadioGroup>
           </div>
           <div>
             <p class="text-body-s text-secondary mb-3">Disabled</p>
             <RadioGroup name="colors-disabled" disabled={true}>
-              {#snippet children()}
-                <RadioButton value="red" label="Red" />
-                <RadioButton value="blue" label="Blue" />
-                <RadioButton value="green" label="Green" />
-              {/snippet}
+              <RadioButton value="red" label="Red" />
+              <RadioButton value="blue" label="Blue" />
+              <RadioButton value="green" label="Green" />
             </RadioGroup>
           </div>
         </div>
@@ -66,11 +62,9 @@
       <div>
         <h3 class="text-h4 text-primary mb-4">Horizontal Layout</h3>
         <RadioGroup name="yes-no" class="flex-row gap-6">
-          {#snippet children()}
-            <RadioButton value="yes" label="Yes" />
-            <RadioButton value="no" label="No" />
-            <RadioButton value="maybe" label="Maybe" />
-          {/snippet}
+          <RadioButton value="yes" label="Yes" />
+          <RadioButton value="no" label="No" />
+          <RadioButton value="maybe" label="Maybe" />
         </RadioGroup>
       </div>
 
@@ -78,11 +72,9 @@
       <div>
         <h3 class="text-h4 text-primary mb-4">Different Sizes</h3>
         <RadioGroup name="sizes">
-          {#snippet children()}
-            <RadioButton value="small" size="small" label="Small" />
-            <RadioButton value="medium" size="medium" label="Medium" />
-            <RadioButton value="large" size="large" label="Large" />
-          {/snippet}
+          <RadioButton value="small" size="small" label="Small" />
+          <RadioButton value="medium" size="medium" label="Medium" />
+          <RadioButton value="large" size="large" label="Large" />
         </RadioGroup>
       </div>
 
@@ -90,32 +82,24 @@
       <div>
         <h3 class="text-h4 text-primary mb-4">Rich Content Options</h3>
         <RadioGroup name="plans-overview" class="space-y-4">
-          {#snippet children()}
-            <RadioButton value="free">
-              {#snippet children()}
-                <div class="flex flex-col">
-                  <strong>Free Plan</strong>
-                  <span class="text-sm text-neutral-600">Basic features, limited usage</span>
-                </div>
-              {/snippet}
-            </RadioButton>
-            <RadioButton value="pro">
-              {#snippet children()}
-                <div class="flex flex-col">
-                  <strong>Pro Plan - $9.99/month</strong>
-                  <span class="text-sm text-neutral-600">Advanced features, unlimited usage</span>
-                </div>
-              {/snippet}
-            </RadioButton>
-            <RadioButton value="enterprise">
-              {#snippet children()}
-                <div class="flex flex-col">
-                  <strong>Enterprise Plan</strong>
-                  <span class="text-sm text-neutral-600">Custom pricing for large teams</span>
-                </div>
-              {/snippet}
-            </RadioButton>
-          {/snippet}
+          <RadioButton value="free">
+            <div class="flex flex-col">
+              <strong>Free Plan</strong>
+              <span class="text-sm text-neutral-600">Basic features, limited usage</span>
+            </div>
+          </RadioButton>
+          <RadioButton value="pro">
+            <div class="flex flex-col">
+              <strong>Pro Plan - $9.99/month</strong>
+              <span class="text-sm text-neutral-600">Advanced features, unlimited usage</span>
+            </div>
+          </RadioButton>
+          <RadioButton value="enterprise">
+            <div class="flex flex-col">
+              <strong>Enterprise Plan</strong>
+              <span class="text-sm text-neutral-600">Custom pricing for large teams</span>
+            </div>
+          </RadioButton>
         </RadioGroup>
       </div>
     </div>
@@ -125,11 +109,9 @@
 <Story name="Default" args={{}}>
   {#snippet template()}
     <RadioGroup name="colors">
-      {#snippet children()}
-        <RadioButton value="red" label="Red" />
-        <RadioButton value="blue" label="Blue" />
-        <RadioButton value="green" label="Green" />
-      {/snippet}
+      <RadioButton value="red" label="Red" />
+      <RadioButton value="blue" label="Blue" />
+      <RadioButton value="green" label="Green" />
     </RadioGroup>
   {/snippet}
 </Story>
@@ -137,11 +119,9 @@
 <Story name="Different Sizes" args={{}}>
   {#snippet template()}
     <RadioGroup name="mixed-sizes">
-      {#snippet children()}
-        <RadioButton value="small" size="small" label="Small" />
-        <RadioButton value="medium" size="medium" label="Medium" />
-        <RadioButton value="large" size="large" label="Large" />
-      {/snippet}
+      <RadioButton value="small" size="small" label="Small" />
+      <RadioButton value="medium" size="medium" label="Medium" />
+      <RadioButton value="large" size="large" label="Large" />
     </RadioGroup>
   {/snippet}
 </Story>
@@ -149,32 +129,24 @@
 <Story name="Rich Content Options" args={{}}>
   {#snippet template()}
     <RadioGroup name="plans">
-      {#snippet children()}
-        <RadioButton value="free">
-          {#snippet children()}
-            <div class="flex flex-col">
-              <strong>Free Plan</strong>
-              <span class="text-sm text-neutral-600">Basic features, limited usage</span>
-            </div>
-          {/snippet}
-        </RadioButton>
-        <RadioButton value="pro">
-          {#snippet children()}
-            <div class="flex flex-col">
-              <strong>Pro Plan - $9.99/month</strong>
-              <span class="text-sm text-neutral-600">Advanced features, unlimited usage</span>
-            </div>
-          {/snippet}
-        </RadioButton>
-        <RadioButton value="enterprise">
-          {#snippet children()}
-            <div class="flex flex-col">
-              <strong>Enterprise Plan</strong>
-              <span class="text-sm text-neutral-600">Custom pricing for large teams</span>
-            </div>
-          {/snippet}
-        </RadioButton>
-      {/snippet}
+      <RadioButton value="free">
+        <div class="flex flex-col">
+          <strong>Free Plan</strong>
+          <span class="text-sm text-neutral-600">Basic features, limited usage</span>
+        </div>
+      </RadioButton>
+      <RadioButton value="pro">
+        <div class="flex flex-col">
+          <strong>Pro Plan - $9.99/month</strong>
+          <span class="text-sm text-neutral-600">Advanced features, unlimited usage</span>
+        </div>
+      </RadioButton>
+      <RadioButton value="enterprise">
+        <div class="flex flex-col">
+          <strong>Enterprise Plan</strong>
+          <span class="text-sm text-neutral-600">Custom pricing for large teams</span>
+        </div>
+      </RadioButton>
     </RadioGroup>
   {/snippet}
 </Story>
@@ -182,11 +154,9 @@
 <Story name="Disabled Group" args={{}}>
   {#snippet template()}
     <RadioGroup name="disabled-options" disabled={true}>
-      {#snippet children()}
-        <RadioButton value="option1" label="Option 1" />
-        <RadioButton value="option2" label="Option 2" />
-        <RadioButton value="option3" label="Option 3" />
-      {/snippet}
+      <RadioButton value="option1" label="Option 1" />
+      <RadioButton value="option2" label="Option 2" />
+      <RadioButton value="option3" label="Option 3" />
     </RadioGroup>
   {/snippet}
 </Story>
@@ -194,11 +164,9 @@
 <Story name="Horizontal Layout" args={{}}>
   {#snippet template()}
     <RadioGroup name="horizontal" class="flex-row gap-6">
-      {#snippet children()}
-        <RadioButton value="yes" label="Yes" />
-        <RadioButton value="no" label="No" />
-        <RadioButton value="maybe" label="Maybe" />
-      {/snippet}
+      <RadioButton value="yes" label="Yes" />
+      <RadioButton value="no" label="No" />
+      <RadioButton value="maybe" label="Maybe" />
     </RadioGroup>
   {/snippet}
 </Story>

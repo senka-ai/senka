@@ -75,31 +75,19 @@
               position="top"
               open={true}
             >
-              {#snippet children()}
-                <Button variant="secondary">
-                  {#snippet children()}Top{/snippet}
-                </Button>
-              {/snippet}
+              <Button variant="secondary">Top</Button>
             </Tooltip>
           </div>
 
           <div class="flex justify-center">
             <Tooltip title="Bottom Tooltip" description="This tooltip appears below the trigger" position="bottom">
-              {#snippet children()}
-                <Button variant="secondary">
-                  {#snippet children()}Bottom{/snippet}
-                </Button>
-              {/snippet}
+              <Button variant="secondary">Bottom</Button>
             </Tooltip>
           </div>
 
           <div class="flex justify-center">
             <Tooltip title="Left Tooltip" description="This tooltip appears to the left of the trigger" position="left">
-              {#snippet children()}
-                <Button variant="secondary">
-                  {#snippet children()}Left{/snippet}
-                </Button>
-              {/snippet}
+              <Button variant="secondary">Left</Button>
             </Tooltip>
           </div>
 
@@ -109,11 +97,7 @@
               description="This tooltip appears to the right of the trigger"
               position="right"
             >
-              {#snippet children()}
-                <Button variant="secondary">
-                  {#snippet children()}Right{/snippet}
-                </Button>
-              {/snippet}
+              <Button variant="secondary">Right</Button>
             </Tooltip>
           </div>
         </div>
@@ -124,11 +108,7 @@
         <h3 class="mb-4 text-lg font-semibold">Sizes</h3>
         <div class="flex items-center justify-center gap-8 py-12">
           <Tooltip title="Auto" size="auto">
-            {#snippet children()}
-              <Button variant="secondary" size="small">
-                {#snippet children()}Auto{/snippet}
-              </Button>
-            {/snippet}
+            <Button variant="secondary" size="small">Auto</Button>
           </Tooltip>
 
           <Tooltip
@@ -136,11 +116,7 @@
             description="This is a small tooltip with less padding and smaller max width"
             size="small"
           >
-            {#snippet children()}
-              <Button variant="secondary">
-                {#snippet children()}Small{/snippet}
-              </Button>
-            {/snippet}
+            <Button variant="secondary">Small</Button>
           </Tooltip>
 
           <Tooltip
@@ -148,11 +124,7 @@
             description="This is a medium tooltip with balanced padding and width"
             size="medium"
           >
-            {#snippet children()}
-              <Button variant="secondary">
-                {#snippet children()}Medium{/snippet}
-              </Button>
-            {/snippet}
+            <Button variant="secondary">Medium</Button>
           </Tooltip>
 
           <Tooltip
@@ -160,11 +132,7 @@
             description="This is a large tooltip with generous padding and wider max width for longer content"
             size="large"
           >
-            {#snippet children()}
-              <Button variant="secondary">
-                {#snippet children()}Large{/snippet}
-              </Button>
-            {/snippet}
+            <Button variant="secondary">Large</Button>
           </Tooltip>
         </div>
       </div>
@@ -174,27 +142,15 @@
         <h3 class="mb-4 text-lg font-semibold">Content Variants</h3>
         <div class="flex items-center justify-center gap-12 py-12">
           <Tooltip title="Title Only" showDescription={false} size="auto">
-            {#snippet children()}
-              <Button variant="tertiary">
-                {#snippet children()}Title Only{/snippet}
-              </Button>
-            {/snippet}
+            <Button variant="tertiary">Title Only</Button>
           </Tooltip>
 
           <Tooltip description="Description only tooltip without a title" showTitle={false}>
-            {#snippet children()}
-              <Button variant="tertiary">
-                {#snippet children()}Description Only{/snippet}
-              </Button>
-            {/snippet}
+            <Button variant="tertiary">Description Only</Button>
           </Tooltip>
 
           <Tooltip title="Complete Tooltip" description="This tooltip has both title and description text">
-            {#snippet children()}
-              <Button variant="tertiary">
-                {#snippet children()}Complete{/snippet}
-              </Button>
-            {/snippet}
+            <Button variant="tertiary">Complete</Button>
           </Tooltip>
         </div>
       </div>
@@ -204,19 +160,11 @@
         <h3 class="mb-4 text-lg font-semibold">Auto vs Fixed Width</h3>
         <div class="flex items-center justify-center gap-8 py-8">
           <Tooltip title="Save" size="auto">
-            {#snippet children()}
-              <Button variant="secondary" size="small">
-                {#snippet children()}Auto Width{/snippet}
-              </Button>
-            {/snippet}
+            <Button variant="secondary" size="small">Auto Width</Button>
           </Tooltip>
 
           <Tooltip title="Save" size="small">
-            {#snippet children()}
-              <Button variant="secondary" size="small">
-                {#snippet children()}Fixed Width{/snippet}
-              </Button>
-            {/snippet}
+            <Button variant="secondary" size="small">Fixed Width</Button>
           </Tooltip>
         </div>
         <p class="mt-2 text-center text-sm text-neutral-600">
@@ -229,17 +177,11 @@
         <h3 class="mb-4 text-lg font-semibold">Interactive Examples</h3>
         <div class="flex items-center justify-center gap-8 py-8">
           <Tooltip title="Button Tooltip" description="Hover over this button to see the tooltip" delay={300}>
-            {#snippet children()}
-              <Button variant="primary">
-                {#snippet children()}Hover Me{/snippet}
-              </Button>
-            {/snippet}
+            <Button variant="primary">Hover Me</Button>
           </Tooltip>
 
           <Tooltip title="Icon Button" description="This is an icon button with a helpful tooltip" position="bottom">
-            {#snippet children()}
-              <IconButton variant="ghost" icon={SettingsIcon} aria-label="Settings" />
-            {/snippet}
+            <IconButton variant="ghost" icon={SettingsIcon} aria-label="Settings" />
           </Tooltip>
 
           <Tooltip
@@ -247,9 +189,7 @@
             description="Even text elements can have tooltips for additional context"
             position="top"
           >
-            {#snippet children()}
-              <span class="text-highlight cursor-help underline"> Helpful Text </span>
-            {/snippet}
+            <span class="text-highlight cursor-help underline"> Helpful Text </span>
           </Tooltip>
         </div>
       </div>
@@ -270,11 +210,7 @@
         delay={args.delay}
         disabled={args.disabled}
       >
-        {#snippet children()}
-          <Button variant="primary">
-            {#snippet children()}Hover me{/snippet}
-          </Button>
-        {/snippet}
+        <Button variant="primary">Hover me</Button>
       </Tooltip>
     </div>
   {/snippet}
@@ -284,11 +220,7 @@
   {#snippet template(args)}
     <div class="pt-32 pb-4">
       <Tooltip {...args}>
-        {#snippet children()}
-          <Button variant="secondary">
-            {#snippet children()}Top Tooltip{/snippet}
-          </Button>
-        {/snippet}
+        <Button variant="secondary">Top Tooltip</Button>
       </Tooltip>
     </div>
   {/snippet}
@@ -298,11 +230,7 @@
   {#snippet template(args)}
     <div class="pt-4 pb-16">
       <Tooltip {...args}>
-        {#snippet children()}
-          <Button variant="secondary">
-            {#snippet children()}Bottom Tooltip{/snippet}
-          </Button>
-        {/snippet}
+        <Button variant="secondary">Bottom Tooltip</Button>
       </Tooltip>
     </div>
   {/snippet}
@@ -312,11 +240,7 @@
   {#snippet template(args)}
     <div class="py-4 pr-4 pl-32">
       <Tooltip {...args}>
-        {#snippet children()}
-          <Button variant="secondary">
-            {#snippet children()}Left Tooltip{/snippet}
-          </Button>
-        {/snippet}
+        <Button variant="secondary">Left Tooltip</Button>
       </Tooltip>
     </div>
   {/snippet}
@@ -326,11 +250,7 @@
   {#snippet template(args)}
     <div class="py-4 pr-32 pl-4">
       <Tooltip {...args}>
-        {#snippet children()}
-          <Button variant="secondary">
-            {#snippet children()}Right Tooltip{/snippet}
-          </Button>
-        {/snippet}
+        <Button variant="secondary">Right Tooltip</Button>
       </Tooltip>
     </div>
   {/snippet}
@@ -340,11 +260,7 @@
   {#snippet template(args)}
     <div class="pt-16 pb-4 pl-32">
       <Tooltip {...args}>
-        {#snippet children()}
-          <Button variant="secondary">
-            {#snippet children()}Auto Size{/snippet}
-          </Button>
-        {/snippet}
+        <Button variant="secondary">Auto Size</Button>
       </Tooltip>
     </div>
   {/snippet}
@@ -354,11 +270,7 @@
   {#snippet template(args)}
     <div class="pt-32 pb-4">
       <Tooltip {...args}>
-        {#snippet children()}
-          <Button variant="secondary">
-            {#snippet children()}Small Tooltip{/snippet}
-          </Button>
-        {/snippet}
+        <Button variant="secondary">Small Tooltip</Button>
       </Tooltip>
     </div>
   {/snippet}
@@ -368,11 +280,7 @@
   {#snippet template(args)}
     <div class="pt-32 pb-4">
       <Tooltip {...args}>
-        {#snippet children()}
-          <Button variant="secondary">
-            {#snippet children()}Medium Tooltip{/snippet}
-          </Button>
-        {/snippet}
+        <Button variant="secondary">Medium Tooltip</Button>
       </Tooltip>
     </div>
   {/snippet}
@@ -382,11 +290,7 @@
   {#snippet template(args)}
     <div class="pt-32 pb-4 pl-8">
       <Tooltip {...args}>
-        {#snippet children()}
-          <Button variant="secondary">
-            {#snippet children()}Large Tooltip{/snippet}
-          </Button>
-        {/snippet}
+        <Button variant="secondary">Large Tooltip</Button>
       </Tooltip>
     </div>
   {/snippet}
@@ -396,11 +300,7 @@
   {#snippet template(args)}
     <div class="pt-12 pb-4">
       <Tooltip {...args} size="auto">
-        {#snippet children()}
-          <Button variant="tertiary">
-            {#snippet children()}Title Only{/snippet}
-          </Button>
-        {/snippet}
+        <Button variant="tertiary">Title Only</Button>
       </Tooltip>
     </div>
   {/snippet}
@@ -414,11 +314,7 @@
   {#snippet template(args)}
     <div class="pt-12 pb-4">
       <Tooltip {...args}>
-        {#snippet children()}
-          <Button variant="tertiary">
-            {#snippet children()}Description Only{/snippet}
-          </Button>
-        {/snippet}
+        <Button variant="tertiary">Description Only</Button>
       </Tooltip>
     </div>
   {/snippet}
@@ -432,9 +328,7 @@
   {#snippet template(args)}
     <div class="p-16">
       <Tooltip {...args}>
-        {#snippet children()}
-          <IconButton variant="ghost" icon={SettingsIcon} aria-label="Settings" />
-        {/snippet}
+        <IconButton variant="ghost" icon={SettingsIcon} aria-label="Settings" />
       </Tooltip>
     </div>
   {/snippet}
@@ -453,11 +347,7 @@
   {#snippet template(args)}
     <div class="p-20 pt-40">
       <Tooltip {...args}>
-        {#snippet children()}
-          <Button variant="secondary">
-            {#snippet children()}Long Content{/snippet}
-          </Button>
-        {/snippet}
+        <Button variant="secondary">Long Content</Button>
       </Tooltip>
     </div>
   {/snippet}
@@ -467,11 +357,7 @@
   {#snippet template(args)}
     <div class="pt-12 pb-4">
       <Tooltip {...args}>
-        {#snippet children()}
-          <Button variant="secondary" disabled>
-            {#snippet children()}Disabled Tooltip{/snippet}
-          </Button>
-        {/snippet}
+        <Button variant="secondary" disabled>Disabled Tooltip</Button>
       </Tooltip>
     </div>
   {/snippet}

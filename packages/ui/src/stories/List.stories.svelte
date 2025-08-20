@@ -271,31 +271,29 @@
 <Story name="Using Children" args={{}} parameters={{ layout: 'default' }}>
   {#snippet template()}
     <List title="Custom Content" rightText="Edit">
-      {#snippet children()}
-        <ListItem title="Custom Item 1" description="Custom description">
-          {#snippet leftIcon()}
-            <HeartFilledIcon size={24} class="text-highlight" />
-          {/snippet}
-        </ListItem>
+      <ListItem title="Custom Item 1" description="Custom description">
+        {#snippet leftIcon()}
+          <HeartFilledIcon size={24} class="text-highlight" />
+        {/snippet}
+      </ListItem>
 
-        <ListItem title="Custom Item 2" description="Another custom description">
-          {#snippet leftIcon()}
-            <StarFilledIcon size={24} class="text-highlight" />
-          {/snippet}
-          {#snippet rightControl()}
-            <Toggle />
-          {/snippet}
-        </ListItem>
+      <ListItem title="Custom Item 2" description="Another custom description">
+        {#snippet leftIcon()}
+          <StarFilledIcon size={24} class="text-highlight" />
+        {/snippet}
+        {#snippet rightControl()}
+          <Toggle />
+        {/snippet}
+      </ListItem>
 
-        <ListItem title="Custom Item 3" description="Third custom item">
-          {#snippet leftIcon()}
-            <Avatar size="small" alt="User" initials="U" />
-          {/snippet}
-          {#snippet rightIcon()}
-            <div class="bg-success h-3 w-3 rounded-full"></div>
-          {/snippet}
-        </ListItem>
-      {/snippet}
+      <ListItem title="Custom Item 3" description="Third custom item">
+        {#snippet leftIcon()}
+          <Avatar size="small" alt="User" initials="U" />
+        {/snippet}
+        {#snippet rightIcon()}
+          <div class="bg-success h-3 w-3 rounded-full"></div>
+        {/snippet}
+      </ListItem>
     </List>
   {/snippet}
 </Story>
@@ -305,28 +303,26 @@
     <div class="space-y-8">
       <!-- Contacts List -->
       <List title="Contacts" rightText="Add" onRightClick={() => alert('Add contact clicked!')}>
-        {#snippet children()}
-          {#each contactItems as contact}
-            <ListItem
-              title={contact.title}
-              description={contact.description}
-              clickable={contact.clickable}
-              showChevron={contact.showChevron}
-              onclick={contact.onclick}
-            >
-              {#snippet leftIcon()}
-                <Avatar
-                  size="small"
-                  alt={contact.title}
-                  initials={contact.title
-                    .split(' ')
-                    .map((n) => n[0])
-                    .join('')}
-                />
-              {/snippet}
-            </ListItem>
-          {/each}
-        {/snippet}
+        {#each contactItems as contact}
+          <ListItem
+            title={contact.title}
+            description={contact.description}
+            clickable={contact.clickable}
+            showChevron={contact.showChevron}
+            onclick={contact.onclick}
+          >
+            {#snippet leftIcon()}
+              <Avatar
+                size="small"
+                alt={contact.title}
+                initials={contact.title
+                  .split(' ')
+                  .map((n) => n[0])
+                  .join('')}
+              />
+            {/snippet}
+          </ListItem>
+        {/each}
       </List>
 
       <!-- Settings List -->
@@ -334,88 +330,83 @@
         {#snippet rightIcon()}
           <FilterIcon size={20} />
         {/snippet}
-        {#snippet children()}
-          {#each settingsItems as setting, index}
-            <ListItem
-              title={setting.title}
-              description={setting.description}
-              clickable={setting.clickable ?? true}
-              showChevron={setting.showChevron ?? true}
-              onclick={setting.onclick}
-            >
-              {#if index < 2}
-                {#snippet rightControl()}
-                  <Toggle />
-                {/snippet}
-              {/if}
-            </ListItem>
-          {/each}
-        {/snippet}
+
+        {#each settingsItems as setting, index}
+          <ListItem
+            title={setting.title}
+            description={setting.description}
+            clickable={setting.clickable ?? true}
+            showChevron={setting.showChevron ?? true}
+            onclick={setting.onclick}
+          >
+            {#if index < 2}
+              {#snippet rightControl()}
+                <Toggle />
+              {/snippet}
+            {/if}
+          </ListItem>
+        {/each}
       </List>
 
       <!-- Tasks List -->
       <List title="Tasks" rightText="Edit" compact={true}>
-        {#snippet children()}
-          {#each taskItems as task}
-            <ListItem title={task.title} description={task.description}>
-              {#snippet leftIcon()}
-                <div class="bg-highlight flex h-6 w-6 items-center justify-center rounded-full">
-                  <svg class="h-4 w-4 text-white" fill="currentColor" viewBox="0 0 20 20">
-                    <path
-                      fill-rule="evenodd"
-                      d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                      clip-rule="evenodd"
-                    />
-                  </svg>
-                </div>
-              {/snippet}
-              {#snippet rightControl()}
-                <Checkbox />
-              {/snippet}
-            </ListItem>
-          {/each}
-        {/snippet}
-      </List>
-
-      <!-- Mixed Content List -->
-      <List title="Dashboard" showDividers={false}>
-        {#snippet children()}
-          <ListItem title="Recent Activity" description="5 new notifications" clickable={true} showChevron={true}>
+        {#each taskItems as task}
+          <ListItem title={task.title} description={task.description}>
             {#snippet leftIcon()}
-              <div class="bg-highlight-50 flex h-10 w-10 items-center justify-center rounded-xl">
-                <svg class="text-highlight h-5 w-5" fill="currentColor" viewBox="0 0 20 20">
-                  <path d="M10 2L13 8l6 1-4.5 4.5L16 20l-6-3-6 3 1.5-6.5L1 9l6-1 3-6z" />
-                </svg>
-              </div>
-            {/snippet}
-          </ListItem>
-
-          <ListItem title="Storage" description="2.5 GB of 15 GB used">
-            {#snippet leftIcon()}
-              <div class="bg-success-50 flex h-10 w-10 items-center justify-center rounded-xl">
-                <svg class="text-success h-5 w-5" fill="currentColor" viewBox="0 0 20 20">
+              <div class="bg-highlight flex h-6 w-6 items-center justify-center rounded-full">
+                <svg class="h-4 w-4 text-white" fill="currentColor" viewBox="0 0 20 20">
                   <path
-                    d="M3 4a1 1 0 011-1h12a1 1 0 011 1v2a1 1 0 01-1 1H4a1 1 0 01-1-1V4zM3 10a1 1 0 011-1h6a1 1 0 011 1v6a1 1 0 01-1 1H4a1 1 0 01-1-1v-6zM14 9a1 1 0 00-1 1v6a1 1 0 001 1h2a1 1 0 001-1v-6a1 1 0 00-1-1h-2z"
+                    fill-rule="evenodd"
+                    d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                    clip-rule="evenodd"
                   />
                 </svg>
               </div>
             {/snippet}
-            {#snippet rightIcon()}
-              <span class="text-body-s text-success font-medium">17%</span>
+            {#snippet rightControl()}
+              <Checkbox />
             {/snippet}
           </ListItem>
+        {/each}
+      </List>
 
-          <ListItem
-            title="Account Settings"
-            description="Update your profile and preferences"
-            clickable={true}
-            showChevron={true}
-          >
-            {#snippet leftIcon()}
-              <Avatar size="small" alt="Profile" initials="P" />
-            {/snippet}
-          </ListItem>
-        {/snippet}
+      <!-- Mixed Content List -->
+      <List title="Dashboard" showDividers={false}>
+        <ListItem title="Recent Activity" description="5 new notifications" clickable={true} showChevron={true}>
+          {#snippet leftIcon()}
+            <div class="bg-highlight-50 flex h-10 w-10 items-center justify-center rounded-xl">
+              <svg class="text-highlight h-5 w-5" fill="currentColor" viewBox="0 0 20 20">
+                <path d="M10 2L13 8l6 1-4.5 4.5L16 20l-6-3-6 3 1.5-6.5L1 9l6-1 3-6z" />
+              </svg>
+            </div>
+          {/snippet}
+        </ListItem>
+
+        <ListItem title="Storage" description="2.5 GB of 15 GB used">
+          {#snippet leftIcon()}
+            <div class="bg-success-50 flex h-10 w-10 items-center justify-center rounded-xl">
+              <svg class="text-success h-5 w-5" fill="currentColor" viewBox="0 0 20 20">
+                <path
+                  d="M3 4a1 1 0 011-1h12a1 1 0 011 1v2a1 1 0 01-1 1H4a1 1 0 01-1-1V4zM3 10a1 1 0 011-1h6a1 1 0 011 1v6a1 1 0 01-1 1H4a1 1 0 01-1-1v-6zM14 9a1 1 0 00-1 1v6a1 1 0 001 1h2a1 1 0 001-1v-6a1 1 0 00-1-1h-2z"
+                />
+              </svg>
+            </div>
+          {/snippet}
+          {#snippet rightIcon()}
+            <span class="text-body-s text-success font-medium">17%</span>
+          {/snippet}
+        </ListItem>
+
+        <ListItem
+          title="Account Settings"
+          description="Update your profile and preferences"
+          clickable={true}
+          showChevron={true}
+        >
+          {#snippet leftIcon()}
+            <Avatar size="small" alt="Profile" initials="P" />
+          {/snippet}
+        </ListItem>
       </List>
     </div>
   {/snippet}

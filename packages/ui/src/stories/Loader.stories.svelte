@@ -305,9 +305,7 @@
         {#if !isLoading}
           <div class="space-y-3">
             <p class="text-body-m text-neutral-700">Ready to upload your files</p>
-            <Button onclick={simulateProgress} fullWidth>
-              {#snippet children()}Start Upload{/snippet}
-            </Button>
+            <Button onclick={simulateProgress} fullWidth>Start Upload</Button>
           </div>
         {:else}
           <div class="space-y-4">
@@ -364,7 +362,7 @@
 
       <div class="space-y-4">
         <Button onclick={simulateProgress} fullWidth disabled={isLoading}>
-          {#snippet children()}{isLoading ? 'Processing...' : 'Start Progress Demo'}{/snippet}
+          {isLoading ? 'Processing...' : 'Start Progress Demo'}
         </Button>
 
         <div class="flex justify-center">

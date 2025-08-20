@@ -1,5 +1,6 @@
 <script lang="ts">
-  import { TabBar, Avatar, ExploreIcon } from '@senka-ai/ui'
+  import { TabBar, Avatar } from '@senka-ai/ui'
+  import { ExploreIcon } from '@senka-ai/ui/icons'
   import { page } from '$app/stores'
   import { goto } from '$app/navigation'
   import { browser } from '$app/environment'

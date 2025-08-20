@@ -26,47 +26,33 @@ RELEVANT FILES: packages/ui/src/lib/index.ts, packages/layout-engine/src/lib/ind
 </script>
 
 <Container variant="elevated" padding="normal" radius="normal" fullWidth>
-  {#snippet children()}
-    <LayoutDiv config={navConfig}>
-      {#snippet children()}
-        <Button variant={currentPage === 'home' ? 'primary' : 'secondary'} onclick={() => (window.location.href = '/')}>
-          {#snippet children()}
-            Home
-          {/snippet}
-        </Button>
-        <Button
-          variant={currentPage === 'stack' ? 'primary' : 'secondary'}
-          onclick={() => (window.location.href = '/stack-demo')}
-        >
-          {#snippet children()}
-            Stack Demo
-          {/snippet}
-        </Button>
-        <Button
-          variant={currentPage === 'row' ? 'primary' : 'secondary'}
-          onclick={() => (window.location.href = '/row-demo')}
-        >
-          {#snippet children()}
-            Row Demo
-          {/snippet}
-        </Button>
-        <Button
-          variant={currentPage === 'grid' ? 'primary' : 'secondary'}
-          onclick={() => (window.location.href = '/grid-demo')}
-        >
-          {#snippet children()}
-            Grid Demo
-          {/snippet}
-        </Button>
-        <Button
-          variant={currentPage === 'flow' ? 'primary' : 'secondary'}
-          onclick={() => (window.location.href = '/flow-demo')}
-        >
-          {#snippet children()}
-            Flow Demo
-          {/snippet}
-        </Button>
-      {/snippet}
-    </LayoutDiv>
-  {/snippet}
+  <LayoutDiv config={navConfig}>
+    <Button variant={currentPage === 'home' ? 'primary' : 'secondary'} onclick={() => (window.location.href = '/')}>
+      Home
+    </Button>
+    <Button
+      variant={currentPage === 'stack' ? 'primary' : 'secondary'}
+      onclick={() => (window.location.href = '/stack-demo')}
+    >
+      Stack Demo
+    </Button>
+    <Button
+      variant={currentPage === 'row' ? 'primary' : 'secondary'}
+      onclick={() => (window.location.href = '/row-demo')}
+    >
+      Row Demo
+    </Button>
+    <Button
+      variant={currentPage === 'grid' ? 'primary' : 'secondary'}
+      onclick={() => (window.location.href = '/grid-demo')}
+    >
+      Grid Demo
+    </Button>
+    <Button
+      variant={currentPage === 'flow' ? 'primary' : 'secondary'}
+      onclick={() => (window.location.href = '/flow-demo')}
+    >
+      Flow Demo
+    </Button>
+  </LayoutDiv>
 </Container>

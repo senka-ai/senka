@@ -35,29 +35,23 @@
           <div>
             <p class="text-body-s text-secondary mb-2">Closed</p>
             <Accordion title="Closed Accordion" open={false}>
-              {#snippet children()}
-                <p class="text-body-m text-secondary">
-                  This content is hidden by default and can be revealed by clicking the header.
-                </p>
-              {/snippet}
+              <p class="text-body-m text-secondary">
+                This content is hidden by default and can be revealed by clicking the header.
+              </p>
             </Accordion>
           </div>
           <div>
             <p class="text-body-s text-secondary mb-2">Open</p>
             <Accordion title="Open Accordion" open={true}>
-              {#snippet children()}
-                <p class="text-body-m text-secondary">
-                  This content is visible by default. The chevron points up to indicate it's expanded.
-                </p>
-              {/snippet}
+              <p class="text-body-m text-secondary">
+                This content is visible by default. The chevron points up to indicate it's expanded.
+              </p>
             </Accordion>
           </div>
           <div>
             <p class="text-body-s text-secondary mb-2">Disabled</p>
             <Accordion title="Disabled Accordion" disabled={true}>
-              {#snippet children()}
-                <p class="text-body-m text-secondary">This accordion cannot be toggled because it's disabled.</p>
-              {/snippet}
+              <p class="text-body-m text-secondary">This accordion cannot be toggled because it's disabled.</p>
             </Accordion>
           </div>
         </div>
@@ -67,20 +61,18 @@
       <div>
         <h3 class="text-h4 text-primary mb-4">Rich Content</h3>
         <Accordion title="Detailed Information" open={false}>
-          {#snippet children()}
-            <div class="space-y-3">
-              <h4 class="text-h4 text-primary">Features</h4>
-              <p class="text-body-m text-secondary">This accordion contains complex content with multiple elements.</p>
-              <ul class="list-disc space-y-1 pl-6">
-                <li class="text-body-s text-secondary">Support for rich HTML content</li>
-                <li class="text-body-s text-secondary">Smooth animations</li>
-                <li class="text-body-s text-secondary">Keyboard accessibility</li>
-              </ul>
-              <div class="mt-3 rounded-lg bg-neutral-100 p-3">
-                <p class="text-body-s text-secondary">Pro tip: You can nest any content inside an accordion.</p>
-              </div>
+          <div class="space-y-3">
+            <h4 class="text-h4 text-primary">Features</h4>
+            <p class="text-body-m text-secondary">This accordion contains complex content with multiple elements.</p>
+            <ul class="list-disc space-y-1 pl-6">
+              <li class="text-body-s text-secondary">Support for rich HTML content</li>
+              <li class="text-body-s text-secondary">Smooth animations</li>
+              <li class="text-body-s text-secondary">Keyboard accessibility</li>
+            </ul>
+            <div class="mt-3 rounded-lg bg-neutral-100 p-3">
+              <p class="text-body-s text-secondary">Pro tip: You can nest any content inside an accordion.</p>
             </div>
-          {/snippet}
+          </div>
         </Accordion>
       </div>
 
@@ -89,30 +81,23 @@
         <h3 class="text-h4 text-primary mb-4">FAQ Example</h3>
         <div class="space-y-3">
           <Accordion title="What is your return policy?" open={false}>
-            {#snippet children()}
-              <p class="text-body-m text-secondary">
-                We offer a 30-day return policy for all items. Products must be in original condition with tags
-                attached.
-              </p>
-            {/snippet}
+            <p class="text-body-m text-secondary">
+              We offer a 30-day return policy for all items. Products must be in original condition with tags attached.
+            </p>
           </Accordion>
           <Accordion title="How long does shipping take?" open={false}>
-            {#snippet children()}
-              <div class="space-y-2">
-                <p class="text-body-m text-secondary">Shipping times depend on your location:</p>
-                <ul class="list-disc space-y-1 pl-6">
-                  <li class="text-body-s text-secondary">Domestic: 3-5 business days</li>
-                  <li class="text-body-s text-secondary">International: 7-14 business days</li>
-                </ul>
-              </div>
-            {/snippet}
+            <div class="space-y-2">
+              <p class="text-body-m text-secondary">Shipping times depend on your location:</p>
+              <ul class="list-disc space-y-1 pl-6">
+                <li class="text-body-s text-secondary">Domestic: 3-5 business days</li>
+                <li class="text-body-s text-secondary">International: 7-14 business days</li>
+              </ul>
+            </div>
           </Accordion>
           <Accordion title="Do you offer customer support?" open={true}>
-            {#snippet children()}
-              <p class="text-body-m text-secondary">
-                Yes! Our customer support team is available 24/7 via email or live chat.
-              </p>
-            {/snippet}
+            <p class="text-body-m text-secondary">
+              Yes! Our customer support team is available 24/7 via email or live chat.
+            </p>
           </Accordion>
         </div>
       </div>
@@ -131,12 +116,10 @@
       onToggle={args.onToggle}
       onkeydown={args.onkeydown}
     >
-      {#snippet children()}
-        <p class="text-body-m text-secondary">
-          This is the content inside the accordion. It can contain any HTML elements like text, images, or other
-          components.
-        </p>
-      {/snippet}
+      <p class="text-body-m text-secondary">
+        This is the content inside the accordion. It can contain any HTML elements like text, images, or other
+        components.
+      </p>
     </Accordion>
   {/snippet}
 </Story>
@@ -152,11 +135,9 @@
       onToggle={args.onToggle}
       onkeydown={args.onkeydown}
     >
-      {#snippet children()}
-        <p class="text-body-m text-secondary">
-          This accordion starts in an open state. The chevron icon points up and the content is visible.
-        </p>
-      {/snippet}
+      <p class="text-body-m text-secondary">
+        This accordion starts in an open state. The chevron icon points up and the content is visible.
+      </p>
     </Accordion>
   {/snippet}
 </Story>
@@ -172,22 +153,20 @@
       onToggle={args.onToggle}
       onkeydown={args.onkeydown}
     >
-      {#snippet children()}
-        <div class="space-y-3">
-          <h4 class="text-h4 text-primary">Rich Content Example</h4>
-          <p class="text-body-m text-secondary">
-            This accordion contains multiple elements including headings, paragraphs, and lists.
-          </p>
-          <ul class="list-disc space-y-1 pl-6">
-            <li class="text-body-s text-secondary">First item in the list</li>
-            <li class="text-body-s text-secondary">Second item in the list</li>
-            <li class="text-body-s text-secondary">Third item in the list</li>
-          </ul>
-          <div class="mt-3 rounded-lg bg-neutral-100 p-3">
-            <p class="text-body-s text-secondary">This is a highlighted section within the accordion content.</p>
-          </div>
+      <div class="space-y-3">
+        <h4 class="text-h4 text-primary">Rich Content Example</h4>
+        <p class="text-body-m text-secondary">
+          This accordion contains multiple elements including headings, paragraphs, and lists.
+        </p>
+        <ul class="list-disc space-y-1 pl-6">
+          <li class="text-body-s text-secondary">First item in the list</li>
+          <li class="text-body-s text-secondary">Second item in the list</li>
+          <li class="text-body-s text-secondary">Third item in the list</li>
+        </ul>
+        <div class="mt-3 rounded-lg bg-neutral-100 p-3">
+          <p class="text-body-s text-secondary">This is a highlighted section within the accordion content.</p>
         </div>
-      {/snippet}
+      </div>
     </Accordion>
   {/snippet}
 </Story>
@@ -203,9 +182,7 @@
       onToggle={args.onToggle}
       onkeydown={args.onkeydown}
     >
-      {#snippet children()}
-        <p class="text-body-m text-secondary">This accordion is disabled and cannot be toggled.</p>
-      {/snippet}
+      <p class="text-body-m text-secondary">This accordion is disabled and cannot be toggled.</p>
     </Accordion>
   {/snippet}
 </Story>
@@ -221,11 +198,9 @@
       onToggle={(open) => console.log('Accordion toggled:', open)}
       onkeydown={args.onkeydown}
     >
-      {#snippet children()}
-        <p class="text-body-m text-secondary">
-          This accordion logs to the console when toggled. Check the browser console to see the output.
-        </p>
-      {/snippet}
+      <p class="text-body-m text-secondary">
+        This accordion logs to the console when toggled. Check the browser console to see the output.
+      </p>
     </Accordion>
   {/snippet}
 </Story>
@@ -234,25 +209,17 @@
   {#snippet template()}
     <div class="space-y-4">
       <Accordion title="First Section" open={true}>
-        {#snippet children()}
-          <p class="text-body-m text-secondary">This is the content of the first accordion section. It starts open.</p>
-        {/snippet}
+        <p class="text-body-m text-secondary">This is the content of the first accordion section. It starts open.</p>
       </Accordion>
 
       <Accordion title="Second Section" open={false}>
-        {#snippet children()}
-          <p class="text-body-m text-secondary">
-            This is the content of the second accordion section. It starts closed.
-          </p>
-        {/snippet}
+        <p class="text-body-m text-secondary">This is the content of the second accordion section. It starts closed.</p>
       </Accordion>
 
       <Accordion title="Third Section" open={false}>
-        {#snippet children()}
-          <p class="text-body-m text-secondary">
-            This is the content of the third accordion section. It also starts closed.
-          </p>
-        {/snippet}
+        <p class="text-body-m text-secondary">
+          This is the content of the third accordion section. It also starts closed.
+        </p>
       </Accordion>
     </div>
   {/snippet}
@@ -264,41 +231,33 @@
       <h2 class="text-h3 text-primary mb-4">Frequently Asked Questions</h2>
 
       <Accordion title="What is your return policy?" open={false}>
-        {#snippet children()}
-          <p class="text-body-m text-secondary">
-            We offer a 30-day return policy for all items. Products must be in original condition with tags attached.
-          </p>
-        {/snippet}
+        <p class="text-body-m text-secondary">
+          We offer a 30-day return policy for all items. Products must be in original condition with tags attached.
+        </p>
       </Accordion>
 
       <Accordion title="How long does shipping take?" open={false}>
-        {#snippet children()}
-          <div class="space-y-2">
-            <p class="text-body-m text-secondary">Shipping times depend on your location:</p>
-            <ul class="list-disc space-y-1 pl-6">
-              <li class="text-body-s text-secondary">Domestic: 3-5 business days</li>
-              <li class="text-body-s text-secondary">International: 7-14 business days</li>
-            </ul>
-          </div>
-        {/snippet}
+        <div class="space-y-2">
+          <p class="text-body-m text-secondary">Shipping times depend on your location:</p>
+          <ul class="list-disc space-y-1 pl-6">
+            <li class="text-body-s text-secondary">Domestic: 3-5 business days</li>
+            <li class="text-body-s text-secondary">International: 7-14 business days</li>
+          </ul>
+        </div>
       </Accordion>
 
       <Accordion title="Do you offer customer support?" open={false}>
-        {#snippet children()}
-          <p class="text-body-m text-secondary">
-            Yes! Our customer support team is available 24/7 via email at support@example.com or through our live chat
-            system.
-          </p>
-        {/snippet}
+        <p class="text-body-m text-secondary">
+          Yes! Our customer support team is available 24/7 via email at support@example.com or through our live chat
+          system.
+        </p>
       </Accordion>
 
       <Accordion title="Can I track my order?" open={false}>
-        {#snippet children()}
-          <p class="text-body-m text-secondary">
-            Absolutely! Once your order ships, you'll receive a tracking number via email. You can also track your order
-            in the "My Orders" section of your account.
-          </p>
-        {/snippet}
+        <p class="text-body-m text-secondary">
+          Absolutely! Once your order ships, you'll receive a tracking number via email. You can also track your order
+          in the "My Orders" section of your account.
+        </p>
       </Accordion>
     </div>
   {/snippet}

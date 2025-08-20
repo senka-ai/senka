@@ -119,8 +119,8 @@ Before writing ANY code, AI must:
 </script>
 
 <div style={cssPropertiesToString(row.toCSS(config))}>
-  <Button variant="primary">{#snippet children()}Primary{/snippet}</Button>
-  <Button variant="secondary">{#snippet children()}Secondary{/snippet}</Button>
+  <Button variant="primary">Primary</Button>
+  <Button variant="secondary">Secondary</Button>
 </div>
 ```
 
@@ -139,9 +139,7 @@ Before writing ANY code, AI must:
   <div style={cssPropertiesToString(stack.toCSS(config))}>
     <TextField label="Name" fullWidth />
     <Dropdown label="Type" {options} fullWidth />
-    <Button variant="primary" fullWidth>
-      {#snippet children()}Submit{/snippet}
-    </Button>
+    <Button variant="primary" fullWidth>Submit</Button>
   </div>
 </Container>
 ```
@@ -216,7 +214,7 @@ Before writing ANY code, AI must:
 
 5. **ALWAYS use snippet pattern for children**
    ```svelte
-   <Button>{#snippet children()}Click me{/snippet}</Button>
+   <Button>Click me</Button>
    ```
 
 ## 🔍 AI VALIDATION PROMPTS

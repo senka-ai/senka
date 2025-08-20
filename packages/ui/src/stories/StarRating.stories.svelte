@@ -387,9 +387,7 @@
               console.log('Form submitted')
             }}
           >
-            {#snippet children()}
-              Submit Feedback
-            {/snippet}
+            Submit Feedback
           </Button>
         </div>
       </form>
