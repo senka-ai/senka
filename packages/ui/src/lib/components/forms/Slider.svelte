@@ -139,53 +139,51 @@
   class={containerClasses}
   {...restProps}
 >
-  {#snippet children()}
-    <div class="relative">
-      <!-- Value display -->
-      {#if showValue}
-        <div class="mb-2 flex items-center justify-between">
-          <span class="text-body-s text-secondary">
-            {valueFormat === 'percentage' ? '0%' : String(min)}
-          </span>
-          <span class="text-body-s text-primary font-medium">{displayValue}</span>
-          <span class="text-body-s text-secondary">
-            {valueFormat === 'percentage' ? '100%' : String(max)}
-          </span>
-        </div>
-      {/if}
+  <div class="relative">
+    <!-- Value display -->
+    {#if showValue}
+      <div class="mb-2 flex items-center justify-between">
+        <span class="text-body-s text-secondary">
+          {valueFormat === 'percentage' ? '0%' : String(min)}
+        </span>
+        <span class="text-body-s text-primary font-medium">{displayValue}</span>
+        <span class="text-body-s text-secondary">
+          {valueFormat === 'percentage' ? '100%' : String(max)}
+        </span>
+      </div>
+    {/if}
 
-      <!-- Slider track and visual elements -->
-      <div class="relative py-2">
-        <!-- Track background -->
-        <div class={sliderStyles.track}>
-          <!-- Fill/progress bar -->
-          <div class={sliderStyles.fill} style="width: {percentage}%"></div>
-        </div>
-
-        <!-- Thumb/handle -->
-        <div class={sliderStyles.thumb} style="left: calc({percentage}% - 10px)"></div>
+    <!-- Slider track and visual elements -->
+    <div class="relative py-2">
+      <!-- Track background -->
+      <div class={sliderStyles.track}>
+        <!-- Fill/progress bar -->
+        <div class={sliderStyles.fill} style="width: {percentage}%"></div>
       </div>
 
-      <!-- Hidden native range input for functionality -->
-      <input
-        bind:value
-        type="range"
-        {min}
-        {max}
-        {step}
-        {disabled}
-        {id}
-        {name}
-        {required}
-        class="absolute inset-0 h-full w-full cursor-pointer opacity-0 disabled:cursor-not-allowed"
-        aria-valuemin={min}
-        aria-valuemax={max}
-        aria-valuenow={value}
-        aria-valuetext={displayValue}
-        oninput={handleInput}
-        onfocus={handleFocus}
-        onblur={handleBlur}
-      />
+      <!-- Thumb/handle -->
+      <div class={sliderStyles.thumb} style="left: calc({percentage}% - 10px)"></div>
     </div>
-  {/snippet}
+
+    <!-- Hidden native range input for functionality -->
+    <input
+      bind:value
+      type="range"
+      {min}
+      {max}
+      {step}
+      {disabled}
+      {id}
+      {name}
+      {required}
+      class="absolute inset-0 h-full w-full cursor-pointer opacity-0 disabled:cursor-not-allowed"
+      aria-valuemin={min}
+      aria-valuemax={max}
+      aria-valuenow={value}
+      aria-valuetext={displayValue}
+      oninput={handleInput}
+      onfocus={handleFocus}
+      onblur={handleBlur}
+    />
+  </div>
 </FormField>

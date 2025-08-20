@@ -163,47 +163,45 @@
   {id}
   {...restProps}
 >
-  {#snippet children()}
-    <div class={dropdownClasses} bind:this={dropdownRef}>
-      <button
-        bind:this={buttonRef}
-        type="button"
-        class={buttonClasses}
-        {disabled}
-        {id}
-        {name}
-        aria-expanded={isOpen}
-        aria-haspopup="listbox"
-        onclick={toggleDropdown}
-        onkeydown={handleKeydown}
-        onfocus={focusState.handleFocus}
-        onblur={focusState.handleBlur}
-      >
-        <span class={selectedOption ? 'text-neutral-900' : 'text-neutral-500'}>
-          {DropdownRenderer.getDisplayText(options, value, placeholder)}
-        </span>
-        <ArrowDownIcon
-          class={`transition-transform duration-200 ${isOpen ? 'rotate-180' : ''} ${disabled ? 'text-neutral-400' : 'text-neutral-500'}`}
-          size={12}
-        />
-      </button>
+  <div class={dropdownClasses} bind:this={dropdownRef}>
+    <button
+      bind:this={buttonRef}
+      type="button"
+      class={buttonClasses}
+      {disabled}
+      {id}
+      {name}
+      aria-expanded={isOpen}
+      aria-haspopup="listbox"
+      onclick={toggleDropdown}
+      onkeydown={handleKeydown}
+      onfocus={focusState.handleFocus}
+      onblur={focusState.handleBlur}
+    >
+      <span class={selectedOption ? 'text-neutral-900' : 'text-neutral-500'}>
+        {DropdownRenderer.getDisplayText(options, value, placeholder)}
+      </span>
+      <ArrowDownIcon
+        class={`transition-transform duration-200 ${isOpen ? 'rotate-180' : ''} ${disabled ? 'text-neutral-400' : 'text-neutral-500'}`}
+        size={12}
+      />
+    </button>
 
-      <div class={menuClasses} role="listbox">
-        {#each options as option}
-          <button
-            type="button"
-            class={`text-body-m w-full px-3.25 py-2.5 text-left transition-colors duration-150 ${
-              option.disabled ? 'text-muted cursor-not-allowed' : 'text-primary hover:bg-surface-hover'
-            } ${option.value === value ? 'bg-highlight-50 text-highlight-700' : ''}`}
-            disabled={option.disabled}
-            role="option"
-            aria-selected={option.value === value}
-            onclick={() => selectOption(option)}
-          >
-            {option.label}
-          </button>
-        {/each}
-      </div>
+    <div class={menuClasses} role="listbox">
+      {#each options as option}
+        <button
+          type="button"
+          class={`text-body-m w-full px-3.25 py-2.5 text-left transition-colors duration-150 ${
+            option.disabled ? 'text-muted cursor-not-allowed' : 'text-primary hover:bg-surface-hover'
+          } ${option.value === value ? 'bg-highlight-50 text-highlight-700' : ''}`}
+          disabled={option.disabled}
+          role="option"
+          aria-selected={option.value === value}
+          onclick={() => selectOption(option)}
+        >
+          {option.label}
+        </button>
+      {/each}
     </div>
-  {/snippet}
+  </div>
 </FormField>

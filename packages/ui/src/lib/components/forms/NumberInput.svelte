@@ -209,61 +209,34 @@
   class={className}
   {...restProps}
 >
-  {#snippet children()}
-    <input
-      bind:value={inputValue}
-      class={inputClasses}
-      {disabled}
-      {id}
-      {placeholder}
-      {name}
-      {required}
-      type="number"
-      {min}
-      {max}
-      {step}
-      onfocus={focusState.handleFocus}
-      onblur={(e) => {
-        focusState.handleBlur(e)
-        // Always validate on blur
-        if (validationRules && validationRules.length > 0 && value !== undefined) {
-          validateCurrentValue(value)
-        }
-      }}
-      oninput={handleInputChange}
-    />
+  <input
+    bind:value={inputValue}
+    class={inputClasses}
+    {disabled}
+    {id}
+    {placeholder}
+    {name}
+    {required}
+    type="number"
+    {min}
+    {max}
+    {step}
+    onfocus={focusState.handleFocus}
+    onblur={(e) => {
+      focusState.handleBlur(e)
+      // Always validate on blur
+      if (validationRules && validationRules.length > 0 && value !== undefined) {
+        validateCurrentValue(value)
+      }
+    }}
+    oninput={handleInputChange}
+  />
 
-    {#if showButtons}
-      {#if buttonLayout === 'horizontal'}
-        <!-- Horizontal layout: both buttons on right side -->
-        <div class="absolute top-1/2 right-1 flex -translate-y-1/2">
-          <!-- Decrement button (left) -->
-          <button
-            type="button"
-            class={minusButtonClasses}
-            disabled={isMinusDisabled}
-            onclick={decrement}
-            onkeydown={handleMinusKeydown}
-            aria-label="Decrease value"
-          >
-            <MinusIcon class="h-3 w-3" size={12} />
-          </button>
-
-          <!-- Increment button (right) -->
-          <button
-            type="button"
-            class={plusButtonClasses}
-            disabled={isPlusDisabled}
-            onclick={increment}
-            onkeydown={handlePlusKeydown}
-            aria-label="Increase value"
-          >
-            <AddIcon class="h-3 w-3" size={12} />
-          </button>
-        </div>
-      {:else if buttonLayout === 'split'}
-        <!-- Split layout: - button on far left, + button on far right -->
-        <!-- Decrement button (far left) -->
+  {#if showButtons}
+    {#if buttonLayout === 'horizontal'}
+      <!-- Horizontal layout: both buttons on right side -->
+      <div class="absolute top-1/2 right-1 flex -translate-y-1/2">
+        <!-- Decrement button (left) -->
         <button
           type="button"
           class={minusButtonClasses}
@@ -275,7 +248,7 @@
           <MinusIcon class="h-3 w-3" size={12} />
         </button>
 
-        <!-- Increment button (far right) -->
+        <!-- Increment button (right) -->
         <button
           type="button"
           class={plusButtonClasses}
@@ -286,34 +259,59 @@
         >
           <AddIcon class="h-3 w-3" size={12} />
         </button>
-      {:else}
-        <!-- Stacked layout: buttons stacked vertically on right -->
-        <div class="absolute top-1/2 right-1 flex -translate-y-1/2 flex-col">
-          <!-- Increment button (top) -->
-          <button
-            type="button"
-            class={plusButtonClasses}
-            disabled={isPlusDisabled}
-            onclick={increment}
-            onkeydown={handlePlusKeydown}
-            aria-label="Increase value"
-          >
-            <AddIcon class="h-2.5 w-2.5" size={10} />
-          </button>
+      </div>
+    {:else if buttonLayout === 'split'}
+      <!-- Split layout: - button on far left, + button on far right -->
+      <!-- Decrement button (far left) -->
+      <button
+        type="button"
+        class={minusButtonClasses}
+        disabled={isMinusDisabled}
+        onclick={decrement}
+        onkeydown={handleMinusKeydown}
+        aria-label="Decrease value"
+      >
+        <MinusIcon class="h-3 w-3" size={12} />
+      </button>
 
-          <!-- Decrement button (bottom) -->
-          <button
-            type="button"
-            class={minusButtonClasses}
-            disabled={isMinusDisabled}
-            onclick={decrement}
-            onkeydown={handleMinusKeydown}
-            aria-label="Decrease value"
-          >
-            <MinusIcon class="h-2.5 w-2.5" size={10} />
-          </button>
-        </div>
-      {/if}
+      <!-- Increment button (far right) -->
+      <button
+        type="button"
+        class={plusButtonClasses}
+        disabled={isPlusDisabled}
+        onclick={increment}
+        onkeydown={handlePlusKeydown}
+        aria-label="Increase value"
+      >
+        <AddIcon class="h-3 w-3" size={12} />
+      </button>
+    {:else}
+      <!-- Stacked layout: buttons stacked vertically on right -->
+      <div class="absolute top-1/2 right-1 flex -translate-y-1/2 flex-col">
+        <!-- Increment button (top) -->
+        <button
+          type="button"
+          class={plusButtonClasses}
+          disabled={isPlusDisabled}
+          onclick={increment}
+          onkeydown={handlePlusKeydown}
+          aria-label="Increase value"
+        >
+          <AddIcon class="h-2.5 w-2.5" size={10} />
+        </button>
+
+        <!-- Decrement button (bottom) -->
+        <button
+          type="button"
+          class={minusButtonClasses}
+          disabled={isMinusDisabled}
+          onclick={decrement}
+          onkeydown={handleMinusKeydown}
+          aria-label="Decrease value"
+        >
+          <MinusIcon class="h-2.5 w-2.5" size={10} />
+        </button>
+      </div>
     {/if}
-  {/snippet}
+  {/if}
 </FormField>

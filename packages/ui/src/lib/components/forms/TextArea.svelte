@@ -102,40 +102,38 @@
     for={id}
     {...restProps}
   >
-    {#snippet children()}
-      <textarea
-        bind:this={textareaRef}
-        bind:value
-        class={textareaClasses}
-        {disabled}
-        {id}
-        {placeholder}
-        {name}
-        {rows}
-        {maxlength}
-        onfocus={focusState.handleFocus}
-        onblur={(e) => {
-          focusState.handleBlur(e)
-          // Always validate on blur
-          if (validationRules && validationRules.length > 0) {
-            const result = validateValue(value || '', validationRules)
-            validationState.error = result.errors[0] || ''
-            validationState.isValid = result.isValid
-          }
-          ;(restProps as any).onblur?.(e)
-        }}
-        oninput={(e) => {
-          const target = e.target as HTMLTextAreaElement
-          if (validateOnChange && validationRules && validationRules.length > 0) {
-            const result = validateValue(target.value, validationRules)
-            validationState.error = result.errors[0] || ''
-            validationState.isValid = result.isValid
-          }
-          ;(restProps as any).oninput?.(e)
-        }}
-        {...restProps}
-      ></textarea>
-    {/snippet}
+    <textarea
+      bind:this={textareaRef}
+      bind:value
+      class={textareaClasses}
+      {disabled}
+      {id}
+      {placeholder}
+      {name}
+      {rows}
+      {maxlength}
+      onfocus={focusState.handleFocus}
+      onblur={(e) => {
+        focusState.handleBlur(e)
+        // Always validate on blur
+        if (validationRules && validationRules.length > 0) {
+          const result = validateValue(value || '', validationRules)
+          validationState.error = result.errors[0] || ''
+          validationState.isValid = result.isValid
+        }
+        ;(restProps as any).onblur?.(e)
+      }}
+      oninput={(e) => {
+        const target = e.target as HTMLTextAreaElement
+        if (validateOnChange && validationRules && validationRules.length > 0) {
+          const result = validateValue(target.value, validationRules)
+          validationState.error = result.errors[0] || ''
+          validationState.isValid = result.isValid
+        }
+        ;(restProps as any).oninput?.(e)
+      }}
+      {...restProps}
+    ></textarea>
   </FormField>
 
   {#if showCustomHelperArea}

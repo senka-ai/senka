@@ -106,7 +106,7 @@
     <div class="flex flex-shrink-0 items-center bg-neutral-100 p-4">
       {#if actionType === 'button'}
         <Button variant="secondary" size="medium" onclick={() => handleButtonClick()} {disabled}>
-          {#snippet children()}{buttonText}{/snippet}
+          {buttonText}
         </Button>
       {:else if actionType === 'arrow'}
         <button

@@ -223,7 +223,7 @@
               {disabled}
               fullWidth={!hasMultipleButtons}
             >
-              {#snippet children()}{tertiaryButtonText}{/snippet}
+              {tertiaryButtonText}
             </Button>
           {/if}
 
@@ -235,7 +235,7 @@
               {disabled}
               fullWidth={!hasMultipleButtons}
             >
-              {#snippet children()}{secondaryButtonText}{/snippet}
+              {secondaryButtonText}
             </Button>
           {/if}
 
@@ -247,7 +247,7 @@
               {disabled}
               fullWidth={!hasMultipleButtons}
             >
-              {#snippet children()}{primaryButtonText}{/snippet}
+              {primaryButtonText}
             </Button>
           {/if}
         </div>

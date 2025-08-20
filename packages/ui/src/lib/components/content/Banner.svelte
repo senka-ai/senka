@@ -100,9 +100,7 @@
     {#if showButton && (buttonText || children)}
       <div class="mt-4">
         <Button variant="primary" size="medium" onclick={handleButtonClick} {disabled}>
-          {#snippet children()}
-            {buttonText}
-          {/snippet}
+          {buttonText}
         </Button>
       </div>
     {/if}

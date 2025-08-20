@@ -145,7 +145,7 @@
       <div class="flex items-center justify-between">
         {#if actionType === 'button'}
           <Button variant="secondary" size="medium" fullWidth={true} onclick={() => handleButtonClick()} {disabled}>
-            {#snippet children()}{buttonText}{/snippet}
+            {buttonText}
           </Button>
         {:else if actionType === 'arrow'}
           <button

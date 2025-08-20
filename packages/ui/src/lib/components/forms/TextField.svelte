@@ -88,61 +88,59 @@
   class={className}
   {...restProps}
 >
-  {#snippet children()}
-    {#if IconRenderer.shouldRender(leftIcon, showIcon)}
-      <div class={getInputIconClasses('left')}>
-        {#if IconRenderer.isStringIcon(leftIcon)}
-          {leftIcon}
-        {:else}
-          {@render leftIcon?.(iconSize)}
-        {/if}
-      </div>
-    {/if}
+  {#if IconRenderer.shouldRender(leftIcon, showIcon)}
+    <div class={getInputIconClasses('left')}>
+      {#if IconRenderer.isStringIcon(leftIcon)}
+        {leftIcon}
+      {:else}
+        {@render leftIcon?.(iconSize)}
+      {/if}
+    </div>
+  {/if}
 
-    <input
-      bind:value
-      class={inputClasses}
-      {disabled}
-      {id}
-      {placeholder}
-      {type}
-      {name}
-      {required}
-      onfocus={focusState.handleFocus}
-      onblur={(e) => {
-        focusState.handleBlur(e)
-        // Always validate on blur
-        if (validationRules && validationRules.length > 0) {
-          const result = validateValue(value || '', validationRules)
-          validationState.error = result.errors[0] || ''
-          validationState.isValid = result.isValid
-        }
-        ;(restProps as any).onblur?.(e)
-      }}
-      oninput={(e) => {
-        const target = e.target as HTMLInputElement
-        if (validateOnChange && validationRules && validationRules.length > 0) {
-          const result = validateValue(target.value, validationRules)
-          validationState.error = result.errors[0] || ''
-          validationState.isValid = result.isValid
-        }
-        ;(restProps as any).oninput?.(e)
-      }}
-      {...restProps}
-    />
+  <input
+    bind:value
+    class={inputClasses}
+    {disabled}
+    {id}
+    {placeholder}
+    {type}
+    {name}
+    {required}
+    onfocus={focusState.handleFocus}
+    onblur={(e) => {
+      focusState.handleBlur(e)
+      // Always validate on blur
+      if (validationRules && validationRules.length > 0) {
+        const result = validateValue(value || '', validationRules)
+        validationState.error = result.errors[0] || ''
+        validationState.isValid = result.isValid
+      }
+      ;(restProps as any).onblur?.(e)
+    }}
+    oninput={(e) => {
+      const target = e.target as HTMLInputElement
+      if (validateOnChange && validationRules && validationRules.length > 0) {
+        const result = validateValue(target.value, validationRules)
+        validationState.error = result.errors[0] || ''
+        validationState.isValid = result.isValid
+      }
+      ;(restProps as any).oninput?.(e)
+    }}
+    {...restProps}
+  />
 
-    {#if IconRenderer.shouldRender(rightIcon, showIcon)}
-      <div class={getInputIconClasses('right')}>
-        {#if IconRenderer.isStringIcon(rightIcon)}
-          {rightIcon}
-        {:else}
-          {@render rightIcon?.(iconSize)}
-        {/if}
-      </div>
-    {:else if unit && (showUnit ?? true)}
-      <div class="text-body-m absolute top-1/2 right-3.25 -translate-y-1/2 transform text-neutral-600">
-        {unit}
-      </div>
-    {/if}
-  {/snippet}
+  {#if IconRenderer.shouldRender(rightIcon, showIcon)}
+    <div class={getInputIconClasses('right')}>
+      {#if IconRenderer.isStringIcon(rightIcon)}
+        {rightIcon}
+      {:else}
+        {@render rightIcon?.(iconSize)}
+      {/if}
+    </div>
+  {:else if unit && (showUnit ?? true)}
+    <div class="text-body-m absolute top-1/2 right-3.25 -translate-y-1/2 transform text-neutral-600">
+      {unit}
+    </div>
+  {/if}
 </FormField>
