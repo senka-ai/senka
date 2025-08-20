@@ -12,7 +12,7 @@ RELEVANT FILES: packages/layout-engine/src/lib/types/index.ts, packages/ui/src/l
     AlignItemVerticalCenterLineDesign,
     AlignItemBottomLineDesign,
     ExpandVerticalLineArrows,
-  } from 'svelte-remix'
+  } from '@senka-ai/ui/icons'
   import { StackArrangement, RowArrangement, cssPropertiesToString } from '@senka-ai/layout-engine'
 
   type Alignment = 'start' | 'center' | 'end' | 'stretch'

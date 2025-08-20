@@ -7,7 +7,7 @@ RELEVANT FILES: packages/layout-engine/src/lib/types/index.ts, packages/ui/src/l
 
 <script lang="ts">
   import { Button, Container } from '@senka-ai/ui'
-  import { SwitchVertical, SwitchHorizontal } from 'svelte-heros'
+  import { SwitchVertical, SwitchHorizontal } from '@senka-ai/ui/icons'
   import { RowArrangement, cssPropertiesToString } from '@senka-ai/layout-engine'
 
   interface Props {

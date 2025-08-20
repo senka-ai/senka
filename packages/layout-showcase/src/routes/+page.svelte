@@ -24,9 +24,16 @@ RELEVANT FILES: packages/layout-engine/LAYOUT_SYSTEM_FINAL.md, packages/ui/UI_AR
   // Import layout engine types
   import type { LayoutContainer } from '@senka-ai/layout-engine'
   // Import icons from available libraries
-  import { PlayIcon, SettingsIcon, CategoriesIcon } from '@senka-ai/ui/icons'
-  import { SwitchHorizontal, ViewGrid, Menu } from 'svelte-heros'
-  import { AlignItemHorizontalCenterLineDesign, ExpandHorizontalLineArrows } from 'svelte-remix'
+  import {
+    PlayIcon,
+    SettingsIcon,
+    CategoriesIcon,
+    AlignItemHorizontalCenterLineDesign,
+    ExpandHorizontalLineArrows,
+    SwitchHorizontal,
+    ViewGrid,
+    Menu,
+  } from '@senka-ai/ui/icons'
   import DemoNavigation from '$lib/components/DemoNavigation.svelte'
   import PropertyPanel from '$lib/components/PropertyPanel.svelte'
   import CSSDisplay from '$lib/components/CSSDisplay.svelte'

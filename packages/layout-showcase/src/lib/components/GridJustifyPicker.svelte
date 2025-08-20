@@ -12,7 +12,7 @@ RELEVANT FILES: packages/layout-engine/src/lib/core/arrangements/grid.ts, packag
     AlignItemHorizontalCenterLineDesign,
     AlignItemRightLineDesign,
     ExpandHorizontalLineArrows,
-  } from 'svelte-remix'
+  } from '@senka-ai/ui/icons'
   import { StackArrangement, RowArrangement, cssPropertiesToString } from '@senka-ai/layout-engine'
 
   // For grids, we map the flex justify values to grid justify-items semantically

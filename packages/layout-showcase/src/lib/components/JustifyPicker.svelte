@@ -7,8 +7,12 @@ RELEVANT FILES: packages/layout-engine/src/lib/types/index.ts, packages/ui/src/l
 
 <script lang="ts">
   import { Button, Container } from '@senka-ai/ui'
-  import { ExpandWidthFillArrows, ContractLeftRightFillArrows, ExpandHorizontalSFillArrows } from 'svelte-remix'
-  import { AlignCenter } from 'svelte-bootstrap-svg-icons'
+  import {
+    ExpandWidthFillArrows,
+    ContractLeftRightFillArrows,
+    ExpandHorizontalSFillArrows,
+    AlignItemHorizontalCenterLineDesign,
+  } from '@senka-ai/ui/icons'
   import { StackArrangement, RowArrangement, cssPropertiesToString } from '@senka-ai/layout-engine'
 
   type Justify = 'packed' | 'space-between' | 'center' | 'space-around'
@@ -61,7 +65,7 @@ RELEVANT FILES: packages/layout-engine/src/lib/types/index.ts, packages/ui/src/l
       value: 'center' as const,
       label: 'Center',
       description: 'Items centered in container',
-      icon: AlignCenter,
+      icon: AlignItemHorizontalCenterLineDesign,
     },
     {
       value: 'space-between' as const,
@@ -98,8 +102,8 @@ RELEVANT FILES: packages/layout-engine/src/lib/types/index.ts, packages/ui/src/l
           {#snippet leftIcon(size)}
             {#if option.icon === ContractLeftRightFillArrows}
               <ContractLeftRightFillArrows {size} />
-            {:else if option.icon === AlignCenter}
-              <AlignCenter {size} />
+            {:else if option.icon === AlignItemHorizontalCenterLineDesign}
+              <AlignItemHorizontalCenterLineDesign {size} />
             {:else if option.icon === ExpandHorizontalSFillArrows}
               <ExpandHorizontalSFillArrows {size} />
             {:else if option.icon === ExpandWidthFillArrows}

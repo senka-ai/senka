@@ -13,4 +13,7 @@ export default defineConfig({
       '@senka-ai/layout-engine': path.resolve(__dirname, '../layout-engine/dist'),
     },
   },
+  optimizeDeps: {
+    include: ['@senka-ai/ui', '@senka-ai/ui/icons', '@senka-ai/layout-engine'], // Force pre-bundling even for local package
+  },
 })

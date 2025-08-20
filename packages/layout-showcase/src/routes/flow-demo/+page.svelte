@@ -118,7 +118,7 @@ RELEVANT FILES: packages/layout-engine/src/lib/core/arrangements/flow.ts, packag
         <h3 class="text-h4 text-primary">Tag Cloud Example</h3>
         <p class="text-body-m text-secondary">Tags flowing naturally like text, wrapping to new lines when needed.</p>
 
-        <Container variant="bordered" padding="comfortable" radius="large" minHeight="preview">
+        <Container variant="bordered" padding="comfortable" radius="large" minHeight="large">
           <!-- Demonstrating FlowLayout component usage -->
           <FlowLayout gap={spacing} align={alignment} class="h-full">
             {#each demoTags as tag, i}
@@ -167,7 +167,7 @@ RELEVANT FILES: packages/layout-engine/src/lib/core/arrangements/flow.ts, packag
           Different types of content flowing together naturally in the same container.
         </p>
 
-        <Container variant="bordered" padding="comfortable" radius="large" minHeight="large">
+        <Container variant="bordered" padding="comfortable" radius="large" minHeight="medium">
           <FlowLayout gap={spacing} align={alignment}>
             <Badge variant="success" value="Project Status: Active" />
             <Tag variant="primary" text="Frontend" />
