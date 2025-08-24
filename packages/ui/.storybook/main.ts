@@ -1,19 +1,23 @@
+import { createRequire } from "node:module";
+import { dirname, join } from "node:path";
 import type { StorybookConfig } from '@storybook/sveltekit'
+
+const require = createRequire(import.meta.url);
 
 const config: StorybookConfig = {
   stories: ['../src/**/*.stories.@(js|ts|svelte)'],
   addons: [
     {
-      name: '@storybook/addon-svelte-csf',
+      name: getAbsolutePath("@storybook/addon-svelte-csf"),
       options: {
         legacyTemplate: false,
       },
     },
-    '@chromatic-com/storybook',
-    '@storybook/addon-docs',
+    getAbsolutePath("@chromatic-com/storybook"),
+    getAbsolutePath("@storybook/addon-docs"),
   ],
   framework: {
-    name: '@storybook/sveltekit',
+    name: getAbsolutePath("@storybook/sveltekit"),
     options: {},
   },
   features: {
@@ -47,3 +51,7 @@ const config: StorybookConfig = {
   },
 }
 export default config
+
+function getAbsolutePath(value: string): any {
+  return dirname(require.resolve(join(value, "package.json")));
+}
