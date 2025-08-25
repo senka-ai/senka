@@ -3557,27 +3557,6 @@ button:disabled {
 ::-moz-selection {
   background-color: var(--color-neutral-200);
 }
-.stack-expand-children > * {
-  flex-grow: 1;
-}
-.row-expand-children > * {
-  flex-grow: 1;
-}
-.grid-expand-children > * {
-  flex-grow: 1;
-}
-.flow-expand-children > * {
-  flex-grow: 1;
-}
-.expand {
-  flex-grow: 1;
-}
-.fill-height {
-  flex-grow: 1;
-}
-.no-expand {
-  flex-grow: 0;
-}
 @property --tw-translate-x {
   syntax: "*";
   inherits: false;

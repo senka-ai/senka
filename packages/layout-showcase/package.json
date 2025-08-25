@@ -12,7 +12,7 @@
     "check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json"
   },
   "dependencies": {
-    "@senka-ai/ui": "workspace:*"
+    "@senka-ai/ui": "latest"
   },
   "devDependencies": {
     "@sveltejs/adapter-auto": "6.0.1",
