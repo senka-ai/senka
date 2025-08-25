@@ -52,7 +52,6 @@
 
   // Enhanced click handler with disabled state support
   const handleClick = () => {
-    console.log('handleClick')
     if (isDisabled) return
     onclick?.()
   }
