@@ -5,13 +5,15 @@
   import { setContext } from 'svelte'
 
   interface Props extends BaseProps, ChangeHandler<string>, ChildrenComponent {
-    value?: string // Currently selected value
+    value?: string // Value (initial for uncontrolled, current for controlled)
+    controlled?: boolean // Whether the component is controlled by parent
     name: string // Required for radio group functionality
     disabled?: boolean
   }
 
   let {
-    value: controlledValue,
+    value = '',
+    controlled = false,
     name,
     disabled = false,
     class: className = '',
@@ -23,8 +25,8 @@
 
   // Use controlled state to manage the selected value
   const { value: getSelectedValue, setValue } = useControlledState(
-    '', // default value (empty string means no selection)
-    controlledValue,
+    value, // initial value for uncontrolled mode
+    controlled ? value : undefined, // controlled value only if controlled=true
     onchange
   )
 
@@ -37,13 +39,15 @@
     }
   }
 
-  // Provide context for child RadioButton components
-  setContext('radioGroup', {
-    name,
+  // Provide reactive context for child RadioButton components
+  const radioGroupContext = {
+    get name() { return name },
     selectedValue: () => selectedValue,
-    disabled,
+    get disabled() { return disabled },
     onRadioChange: handleRadioChange,
-  })
+  }
+  
+  setContext('radioGroup', radioGroupContext)
 
   let groupClasses = $derived(composeClasses('flex flex-col gap-2', disabled && 'opacity-50', className))
 </script>

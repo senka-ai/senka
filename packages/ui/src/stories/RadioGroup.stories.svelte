@@ -41,7 +41,7 @@
         <div class="grid grid-cols-1 gap-8 md:grid-cols-2">
           <div>
             <p class="text-body-s text-secondary mb-3">Default</p>
-            <RadioGroup name="colors-default">
+            <RadioGroup name="colors-default" value="red">
               <RadioButton value="red" label="Red" />
               <RadioButton value="blue" label="Blue" />
               <RadioButton value="green" label="Green" />
@@ -107,12 +107,42 @@
 </Story>
 
 <Story name="Default" args={{}}>
-  {#snippet template()}
-    <RadioGroup name="colors">
+  {#snippet template(args)}
+    <RadioGroup {...args} name="default-example">
       <RadioButton value="red" label="Red" />
       <RadioButton value="blue" label="Blue" />
       <RadioButton value="green" label="Green" />
     </RadioGroup>
+  {/snippet}
+</Story>
+
+<Story name="With Initial Value" args={{}}>
+  {#snippet template()}
+    <div class="space-y-4">
+      <p class="text-body-s text-secondary">
+        Uncontrolled RadioGroup with value="blue" (initial value). You can click to change selection.
+      </p>
+      <RadioGroup name="initial-value-example" value="blue">
+        <RadioButton value="red" label="Red" />
+        <RadioButton value="blue" label="Blue" />
+        <RadioButton value="green" label="Green" />
+      </RadioGroup>
+    </div>
+  {/snippet}
+</Story>
+
+<Story name="Controlled" args={{ value: 'blue', controlled: true }}>
+  {#snippet template(args)}
+    <div class="space-y-4">
+      <p class="text-body-s text-secondary">
+        Controlled RadioGroup with value="blue" and controlled=true. Clicks fire events but selection stays fixed.
+      </p>
+      <RadioGroup {...args} name="controlled-example">
+        <RadioButton value="red" label="Red" />
+        <RadioButton value="blue" label="Blue" />
+        <RadioButton value="green" label="Green" />
+      </RadioGroup>
+    </div>
   {/snippet}
 </Story>
 
