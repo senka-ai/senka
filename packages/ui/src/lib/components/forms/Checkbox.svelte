@@ -1,15 +1,15 @@
 <script lang="ts">
-  import { CheckIcon } from '@icons'
+  import { CheckIcon } from '@ui/icons'
   import type {
     BaseProps,
     SizedComponent,
     ChangeHandler,
     ChildrenComponent,
     InteractiveHandlers,
-  } from '@type/component'
-  import { useControlledState } from '@utils/state.svelte'
-  import { createKeyboardHandler, createSafeClickHandler, KeySets } from '@utils/events'
-  import { createCheckboxStyles, composeClasses } from '@utils/styles'
+  } from '@ui/type/component'
+  import { useControlledState } from '@ui/utils/state.svelte'
+  import { createKeyboardHandler, createSafeClickHandler, KeySets } from '@ui/utils/events'
+  import { createCheckboxStyles, composeClasses } from '@ui/utils/styles'
 
   interface Props extends BaseProps, SizedComponent, ChangeHandler<boolean>, ChildrenComponent, InteractiveHandlers {
     checked?: boolean

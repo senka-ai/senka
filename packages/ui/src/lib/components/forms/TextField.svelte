@@ -1,11 +1,11 @@
 <script lang="ts">
-  import type { FormInputComponent, IconComponent, IconSizeComponent, InputHandlers } from '@type/component'
-  import { useFocusState } from '@utils/state.svelte'
-  import { getInputPadding, getInputIconClasses } from '@utils/icons'
-  import { validateValue, type ValidationRule } from '@utils/validation.svelte'
-  import { createInputStyles } from '@utils/styles'
-  import { FormRenderer, IconRenderer } from '@utils/rendering'
-  import FormField from '@components/forms/FormField.svelte'
+  import type { FormInputComponent, IconComponent, IconSizeComponent, InputHandlers } from '@ui/type/component'
+  import { useFocusState } from '@ui/utils/state.svelte'
+  import { getInputPadding, getInputIconClasses } from '@ui/utils/icons'
+  import { validateValue, type ValidationRule } from '@ui/utils/validation.svelte'
+  import { createInputStyles } from '@ui/utils/styles'
+  import { FormRenderer, IconRenderer } from '@ui/utils/rendering'
+  import FormField from '@ui/components/forms/FormField.svelte'
 
   interface Props extends FormInputComponent, IconComponent, IconSizeComponent, InputHandlers {
     unit?: string

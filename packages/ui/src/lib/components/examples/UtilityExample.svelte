@@ -3,11 +3,11 @@
   This shows the proper patterns for using utilities with Svelte 5 runes
 -->
 <script lang="ts">
-  import { createButtonStyles, createInputStyles } from '@utils/styles'
-  import { FormRenderer, IconRenderer, ButtonRenderer } from '@utils/rendering'
-  import { useFocusManagement } from '@utils/focus.svelte'
-  import { createKeyboardHandler } from '@utils/events'
-  import type { ButtonLikeComponent } from '@type/component'
+  import { createButtonStyles, createInputStyles } from '@ui/utils/styles'
+  import { FormRenderer, IconRenderer, ButtonRenderer } from '@ui/utils/rendering'
+  import { useFocusManagement } from '@ui/utils/focus.svelte'
+  import { createKeyboardHandler } from '@ui/utils/events'
+  import type { ButtonLikeComponent } from '@ui/type/component'
 
   interface Props extends ButtonLikeComponent {
     label?: string

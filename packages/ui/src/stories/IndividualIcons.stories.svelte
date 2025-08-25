@@ -1,6 +1,6 @@
 <script module lang="ts">
   import { defineMeta } from '@storybook/addon-svelte-csf'
-  import { AddIcon } from '@icons'
+  import { AddIcon } from '@ui/icons'
 
   const { Story } = defineMeta({
     title: 'Icons/Individual Icons',
@@ -42,7 +42,7 @@
     StarOutlinedIcon,
     ShoppingBagFilledIcon,
     ShoppingBagOutlinedIcon,
-  } from '@icons'
+  } from '@ui/icons'
 </script>
 
 <Story name="Add Icon" args={{}} parameters={{ layout: 'compact' }}>

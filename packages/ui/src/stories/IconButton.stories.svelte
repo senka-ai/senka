@@ -1,6 +1,6 @@
 <script module lang="ts">
   import { defineMeta } from '@storybook/addon-svelte-csf'
-  import IconButton from '@components/core/IconButton.svelte'
+  import IconButton from '@ui/components/core/IconButton.svelte'
   import {
     CloseIcon,
     AddIcon,
@@ -18,7 +18,7 @@
     CheckIcon,
     WarningIcon,
     InfoIcon,
-  } from '@icons'
+  } from '@ui/icons'
 
   // State for interactive examples
   let isLiked = $state(false)

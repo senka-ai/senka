@@ -5,9 +5,9 @@
     ChangeHandler,
     ChildrenComponent,
     InteractiveHandlers,
-  } from '@type/component'
-  import { createKeyboardHandler, createSafeClickHandler, KeySets } from '@utils/events'
-  import { createRadioStyles, composeClasses } from '@utils/styles'
+  } from '@ui/type/component'
+  import { createKeyboardHandler, createSafeClickHandler, KeySets } from '@ui/utils/events'
+  import { createRadioStyles, composeClasses } from '@ui/utils/styles'
   import { getContext } from 'svelte'
 
   interface Props extends BaseProps, SizedComponent, ChangeHandler<boolean>, ChildrenComponent, InteractiveHandlers {

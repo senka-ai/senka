@@ -1,7 +1,7 @@
 <script lang="ts">
-  import type { BaseProps, ChangeHandler, ChildrenComponent } from '@type/component'
-  import { useControlledState } from '@utils/state.svelte'
-  import { composeClasses } from '@utils/styles'
+  import type { BaseProps, ChangeHandler, ChildrenComponent } from '@ui/type/component'
+  import { useControlledState } from '@ui/utils/state.svelte'
+  import { composeClasses } from '@ui/utils/styles'
   import { setContext } from 'svelte'
 
   interface Props extends BaseProps, ChangeHandler<string>, ChildrenComponent {
@@ -41,12 +41,16 @@
 
   // Provide reactive context for child RadioButton components
   const radioGroupContext = {
-    get name() { return name },
+    get name() {
+      return name
+    },
     selectedValue: () => selectedValue,
-    get disabled() { return disabled },
+    get disabled() {
+      return disabled
+    },
     onRadioChange: handleRadioChange,
   }
-  
+
   setContext('radioGroup', radioGroupContext)
 
   let groupClasses = $derived(composeClasses('flex flex-col gap-2', disabled && 'opacity-50', className))

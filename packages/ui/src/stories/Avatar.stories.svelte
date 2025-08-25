@@ -1,6 +1,6 @@
 <script module lang="ts">
   import { defineMeta } from '@storybook/addon-svelte-csf'
-  import Avatar from '@components/media/Avatar.svelte'
+  import Avatar from '@ui/components/media/Avatar.svelte'
 
   const { Story } = defineMeta({
     title: 'Media/Avatar',

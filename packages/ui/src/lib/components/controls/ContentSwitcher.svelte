@@ -1,8 +1,8 @@
 <script lang="ts">
-  import type { BaseProps, ChangeHandler, InteractiveHandlers } from '@type/component'
-  import { createKeyboardHandler, KeySets } from '@utils/events'
-  import { useFocusVisible } from '@utils/focus.svelte'
-  import { createStyleComposer } from '@utils/styles'
+  import type { BaseProps, ChangeHandler, InteractiveHandlers } from '@ui/type/component'
+  import { createKeyboardHandler, KeySets } from '@ui/utils/events'
+  import { useFocusVisible } from '@ui/utils/focus.svelte'
+  import { createStyleComposer } from '@ui/utils/styles'
 
   interface ContentSwitcherItem {
     id: string

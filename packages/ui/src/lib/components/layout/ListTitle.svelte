@@ -1,6 +1,6 @@
 <script lang="ts">
-  import type { BaseProps } from '@type/component'
-  import { shouldRenderIcon, isStringIcon } from '@utils/icons'
+  import type { BaseProps } from '@ui/type/component'
+  import { shouldRenderIcon, isStringIcon } from '@ui/utils/icons'
 
   interface Props extends BaseProps {
     title: string

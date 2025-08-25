@@ -1,6 +1,6 @@
 <script module lang="ts">
   import { defineMeta } from '@storybook/addon-svelte-csf'
-  import Video from '@components/media/Video.svelte'
+  import Video from '@ui/components/media/Video.svelte'
 
   const { Story } = defineMeta({
     title: 'Media/Video',

@@ -1,9 +1,9 @@
 <script lang="ts">
-  import type { FormInputComponent } from '@type/component'
-  import { useFocusState } from '@utils/state.svelte'
-  import { validateValue, type ValidationRule } from '@utils/validation.svelte'
-  import { createSliderStyles } from '@utils/styles'
-  import FormField from '@components/forms/FormField.svelte'
+  import type { FormInputComponent } from '@ui/type/component'
+  import { useFocusState } from '@ui/utils/state.svelte'
+  import { validateValue, type ValidationRule } from '@ui/utils/validation.svelte'
+  import { createSliderStyles } from '@ui/utils/styles'
+  import FormField from '@ui/components/forms/FormField.svelte'
 
   interface Props extends Omit<FormInputComponent, 'value'> {
     /** Current numeric value */

@@ -1,6 +1,6 @@
 <script module lang="ts">
   import { defineMeta } from '@storybook/addon-svelte-csf'
-  import Checkbox from '@components/forms/Checkbox.svelte'
+  import Checkbox from '@ui/components/forms/Checkbox.svelte'
 
   const { Story } = defineMeta({
     title: 'Forms/Checkbox',

@@ -1,8 +1,8 @@
 <script lang="ts">
-  import type { BaseProps, IconComponent, InteractiveHandlers } from '@type/component'
-  import { createKeyboardHandler, KeySets } from '@utils/events'
-  import { createIconButtonStyles } from '@utils/styles'
-  import { IconRenderer } from '@utils/rendering'
+  import type { BaseProps, IconComponent, InteractiveHandlers } from '@ui/type/component'
+  import { createKeyboardHandler, KeySets } from '@ui/utils/events'
+  import { createIconButtonStyles } from '@ui/utils/styles'
+  import { IconRenderer } from '@ui/utils/rendering'
 
   /**
    * IconButton component props interface

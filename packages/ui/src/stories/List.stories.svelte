@@ -1,11 +1,11 @@
 <script module lang="ts">
   import { defineMeta } from '@storybook/addon-svelte-csf'
-  import List from '@components/layout/List.svelte'
-  import ListItem from '@components/layout/ListItem.svelte'
-  import Avatar from '@components/media/Avatar.svelte'
-  import Toggle from '@components/forms/Toggle.svelte'
-  import Checkbox from '@components/forms/Checkbox.svelte'
-  import { HeartFilledIcon, StarFilledIcon, SearchIcon, FilterIcon } from '@icons'
+  import List from '@ui/components/layout/List.svelte'
+  import ListItem from '@ui/components/layout/ListItem.svelte'
+  import Avatar from '@ui/components/media/Avatar.svelte'
+  import Toggle from '@ui/components/forms/Toggle.svelte'
+  import Checkbox from '@ui/components/forms/Checkbox.svelte'
+  import { HeartFilledIcon, StarFilledIcon, SearchIcon, FilterIcon } from '@ui/icons'
 
   const { Story } = defineMeta({
     title: 'Layout/List',

@@ -1,8 +1,8 @@
 <script lang="ts">
-  import type { BaseProps, ChildrenComponent, KeyboardHandler } from '@type/component'
-  import { useToggleState } from '@utils/state.svelte'
-  import { createKeyboardHandler, KeySets } from '@utils/events'
-  import { composeClasses } from '@utils/styles'
+  import type { BaseProps, ChildrenComponent, KeyboardHandler } from '@ui/type/component'
+  import { useToggleState } from '@ui/utils/state.svelte'
+  import { createKeyboardHandler, KeySets } from '@ui/utils/events'
+  import { composeClasses } from '@ui/utils/styles'
 
   interface Props extends BaseProps, ChildrenComponent, KeyboardHandler {
     title: string

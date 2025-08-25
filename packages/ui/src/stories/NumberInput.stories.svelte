@@ -1,7 +1,7 @@
 <script module lang="ts">
   import { defineMeta } from '@storybook/addon-svelte-csf'
-  import NumberInput from '@components/forms/NumberInput.svelte'
-  import { validationRules } from '@utils/validation.svelte'
+  import NumberInput from '@ui/components/forms/NumberInput.svelte'
+  import { validationRules } from '@ui/utils/validation.svelte'
 
   const { Story } = defineMeta({
     title: 'Forms/NumberInput',

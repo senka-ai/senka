@@ -1,6 +1,6 @@
 <script module lang="ts">
   import { defineMeta } from '@storybook/addon-svelte-csf'
-  import ThemeToggle from '@components/core/ThemeToggle.svelte'
+  import ThemeToggle from '@ui/components/core/ThemeToggle.svelte'
 
   const { Story } = defineMeta({
     title: 'Core/ThemeToggle',

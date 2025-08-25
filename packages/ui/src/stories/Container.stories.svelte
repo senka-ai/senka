@@ -1,10 +1,10 @@
 <script module lang="ts">
   import { defineMeta } from '@storybook/addon-svelte-csf'
-  import Container from '@components/layout/Container.svelte'
-  import Button from '@components/core/Button.svelte'
-  import TextField from '@components/forms/TextField.svelte'
-  import Badge from '@components/feedback/Badge.svelte'
-  import Tag from '@components/content/Tag.svelte'
+  import Container from '@ui/components/layout/Container.svelte'
+  import Button from '@ui/components/core/Button.svelte'
+  import TextField from '@ui/components/forms/TextField.svelte'
+  import Badge from '@ui/components/feedback/Badge.svelte'
+  import Tag from '@ui/components/content/Tag.svelte'
 
   const { Story } = defineMeta({
     title: 'Layout/Container',

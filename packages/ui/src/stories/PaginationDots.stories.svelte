@@ -1,6 +1,6 @@
 <script module lang="ts">
   import { defineMeta } from '@storybook/addon-svelte-csf'
-  import PaginationDots from '@components/feedback/PaginationDots.svelte'
+  import PaginationDots from '@ui/components/feedback/PaginationDots.svelte'
 
   const { Story } = defineMeta({
     title: 'Feedback/PaginationDots',

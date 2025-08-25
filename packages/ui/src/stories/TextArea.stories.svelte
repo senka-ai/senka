@@ -1,6 +1,6 @@
 <script module lang="ts">
   import { defineMeta } from '@storybook/addon-svelte-csf'
-  import TextArea from '@components/forms/TextArea.svelte'
+  import TextArea from '@ui/components/forms/TextArea.svelte'
 
   const { Story } = defineMeta({
     title: 'Forms/TextArea',

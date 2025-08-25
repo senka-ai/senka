@@ -11,10 +11,9 @@ const config = {
   preprocess: vitePreprocess(),
   kit: {
     adapter: adapter(),
-    files: {
-      lib: 'src/lib',
-    },
     alias: {
+      '@ui': resolve(__dirname, 'src/lib'),
+      '@ui/styles': resolve(__dirname, 'src/styles'),
       '@components': resolve(__dirname, 'src/lib/components'),
       '@icons': resolve(__dirname, 'src/lib/icons'),
       '@utils': resolve(__dirname, 'src/lib/utils'),

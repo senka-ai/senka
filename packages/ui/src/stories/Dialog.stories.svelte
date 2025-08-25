@@ -1,9 +1,9 @@
 <script module lang="ts">
   import { defineMeta } from '@storybook/addon-svelte-csf'
-  import Dialog from '@components/feedback/Dialog.svelte'
-  import Button from '@components/core/Button.svelte'
-  import TextField from '@components/forms/TextField.svelte'
-  import TextArea from '@components/forms/TextArea.svelte'
+  import Dialog from '@ui/components/feedback/Dialog.svelte'
+  import Button from '@ui/components/core/Button.svelte'
+  import TextField from '@ui/components/forms/TextField.svelte'
+  import TextArea from '@ui/components/forms/TextArea.svelte'
 
   // State for interactive example
   let showConfirmDialog = $state(false)

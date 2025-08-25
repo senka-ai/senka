@@ -215,8 +215,8 @@ All components follow this consistent pattern:
 
 ```typescript
 <script lang="ts">
-  import type { ButtonLikeComponent, IconComponent } from '@type/component'
-  import { createButtonStyles } from '@utils/styles'
+  import type { ButtonLikeComponent, IconComponent } from '@ui/type/component'
+  import { createButtonStyles } from '@ui/utils/styles'
 
   // 1. Interface definition (always explicit)
   interface Props extends ButtonLikeComponent, IconComponent {
@@ -898,7 +898,7 @@ When building components that need icons or placeholders:
 
 ```svelte
 <script lang="ts">
-  import { ImageIcon, CheckIcon } from '@icons'
+  import { ImageIcon, CheckIcon } from '@ui/icons'
 </script>
 
 <!-- Placeholder with icon component using semantic colors -->

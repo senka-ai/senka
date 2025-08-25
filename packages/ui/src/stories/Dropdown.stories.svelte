@@ -1,6 +1,6 @@
 <script module lang="ts">
   import { defineMeta } from '@storybook/addon-svelte-csf'
-  import Dropdown from '@components/forms/Dropdown.svelte'
+  import Dropdown from '@ui/components/forms/Dropdown.svelte'
 
   const sampleOptions = [
     { value: 'option1', label: 'Option 1' },

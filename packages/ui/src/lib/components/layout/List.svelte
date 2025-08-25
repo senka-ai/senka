@@ -1,8 +1,8 @@
 <script lang="ts">
-  import ListTitle from '@components/layout/ListTitle.svelte'
-  import ListItem from '@components/layout/ListItem.svelte'
-  import Divider from '@components/layout/Divider.svelte'
-  import type { BaseProps } from '@type/component'
+  import ListTitle from '@ui/components/layout/ListTitle.svelte'
+  import ListItem from '@ui/components/layout/ListItem.svelte'
+  import Divider from '@ui/components/layout/Divider.svelte'
+  import type { BaseProps } from '@ui/type/component'
 
   interface ListItemData {
     id?: string

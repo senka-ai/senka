@@ -1,6 +1,6 @@
 <script lang="ts">
-  import { ProfileIcon } from '@icons'
-  import type { BaseProps, ExtendedSizedComponent } from '@type/component'
+  import { ProfileIcon } from '@ui/icons'
+  import type { BaseProps, ExtendedSizedComponent } from '@ui/type/component'
 
   interface Props extends BaseProps, ExtendedSizedComponent {}
 

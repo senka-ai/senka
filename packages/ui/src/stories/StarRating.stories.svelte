@@ -1,7 +1,7 @@
 <script module lang="ts">
   import { defineMeta } from '@storybook/addon-svelte-csf'
-  import StarRating from '@components/forms/StarRating.svelte'
-  import Button from '@components/core/Button.svelte'
+  import StarRating from '@ui/components/forms/StarRating.svelte'
+  import Button from '@ui/components/core/Button.svelte'
 
   const { Story } = defineMeta({
     title: 'Forms/StarRating',

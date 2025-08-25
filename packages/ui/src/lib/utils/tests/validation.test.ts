@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest'
-import { validateValue, validationRules, useFieldValidation } from '@utils/validation.svelte'
+import { validateValue, validationRules, useFieldValidation } from '@ui/utils/validation.svelte'
 
 describe('validateValue', () => {
   it('should return valid result for empty rules', () => {

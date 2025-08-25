@@ -5,10 +5,10 @@
 
 <script module>
   import { defineMeta } from '@storybook/addon-svelte-csf'
-  import LocationPin from '@components/media/LocationPin.svelte'
-  import MapPlaceholder from '@components/media/MapPlaceholder.svelte'
-  import Tag from '@components/content/Tag.svelte'
-  import { LocationPinIcon, PlaceholderIcon } from '@icons'
+  import LocationPin from '@ui/components/media/LocationPin.svelte'
+  import MapPlaceholder from '@ui/components/media/MapPlaceholder.svelte'
+  import Tag from '@ui/components/content/Tag.svelte'
+  import { LocationPinIcon, PlaceholderIcon } from '@ui/icons'
 
   const { Story } = defineMeta({
     title: 'Media/LocationPin',

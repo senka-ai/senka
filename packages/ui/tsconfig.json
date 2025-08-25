@@ -20,6 +20,8 @@
     "verbatimModuleSyntax": true,
     "types": ["svelte", "vite/client", "@storybook/addon-svelte-csf"],
     "paths": {
+      "@ui/*": ["./src/lib/*"],
+      "@ui/styles/*": ["./src/styles/*"],
       "@components/*": ["./src/lib/components/*"],
       "@icons": ["./src/lib/icons"],
       "@icons/*": ["./src/lib/icons/*"],

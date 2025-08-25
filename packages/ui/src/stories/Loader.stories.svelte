@@ -1,7 +1,7 @@
 <script module lang="ts">
   import { defineMeta } from '@storybook/addon-svelte-csf'
-  import Loader from '@components/feedback/Loader.svelte'
-  import Button from '@components/core/Button.svelte'
+  import Loader from '@ui/components/feedback/Loader.svelte'
+  import Button from '@ui/components/core/Button.svelte'
 
   // State for interactive examples
   let progressValue = $state(0)

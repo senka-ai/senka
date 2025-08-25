@@ -1,10 +1,10 @@
 <script lang="ts">
-  import Button from '@components/core/Button.svelte'
-  import Image from '@components/media/Image.svelte'
-  import ImagePlaceholder from '@components/media/ImagePlaceholder.svelte'
-  import { ArrowRightIcon } from '@icons'
+  import Button from '@ui/components/core/Button.svelte'
+  import Image from '@ui/components/media/Image.svelte'
+  import ImagePlaceholder from '@ui/components/media/ImagePlaceholder.svelte'
+  import { ArrowRightIcon } from '@ui/icons'
 
-  import type { BaseProps, ChildrenComponent, ClickHandler } from '@type/component'
+  import type { BaseProps, ChildrenComponent, ClickHandler } from '@ui/type/component'
 
   interface Props extends BaseProps, ChildrenComponent, ClickHandler {
     title: string

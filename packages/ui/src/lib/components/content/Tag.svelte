@@ -1,8 +1,8 @@
 <script lang="ts">
-  import type { BaseProps, VariantComponent, IconComponent, InteractiveHandlers } from '@type/component'
-  import { IconRenderer } from '@utils/rendering'
-  import { createKeyboardHandler, KeySets } from '@utils/events'
-  import { createTagStyles } from '@utils/styles'
+  import type { BaseProps, VariantComponent, IconComponent, InteractiveHandlers } from '@ui/type/component'
+  import { IconRenderer } from '@ui/utils/rendering'
+  import { createKeyboardHandler, KeySets } from '@ui/utils/events'
+  import { createTagStyles } from '@ui/utils/styles'
 
   interface Props
     extends BaseProps,

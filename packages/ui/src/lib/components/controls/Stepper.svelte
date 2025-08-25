@@ -4,9 +4,9 @@
 <!-- RELEVANT FILES: PaginationDots.svelte, ProgressBar.svelte, Tabs.svelte, component.ts -->
 
 <script lang="ts">
-  import { CheckIcon } from '@icons'
-  import type { BaseProps, SizedComponent, ChangeHandler, InteractiveHandlers } from '@type/component'
-  import { createStyleComposer } from '@utils/styles'
+  import { CheckIcon } from '@ui/icons'
+  import type { BaseProps, SizedComponent, ChangeHandler, InteractiveHandlers } from '@ui/type/component'
+  import { createStyleComposer } from '@ui/utils/styles'
 
   export interface StepItem {
     /** Unique identifier for the step */

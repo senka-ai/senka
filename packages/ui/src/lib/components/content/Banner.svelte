@@ -1,8 +1,8 @@
 <script lang="ts">
-  import Button from '@components/core/Button.svelte'
-  import { ImageIcon } from '@icons'
-  import type { BaseProps, ChildrenComponent, ClickHandler } from '@type/component'
-  import { createBannerStyles } from '@utils/styles'
+  import Button from '@ui/components/core/Button.svelte'
+  import { ImageIcon } from '@ui/icons'
+  import type { BaseProps, ChildrenComponent, ClickHandler } from '@ui/type/component'
+  import { createBannerStyles } from '@ui/utils/styles'
 
   /**
    * Banner component props interface

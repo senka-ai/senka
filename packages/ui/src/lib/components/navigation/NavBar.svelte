@@ -1,7 +1,7 @@
 <script lang="ts">
-  import ArrowLeftIcon from '@icons/ArrowLeftIcon.svelte'
+  import ArrowLeftIcon from '@ui/icons/ArrowLeftIcon.svelte'
 
-  import type { BaseProps } from '@type/component'
+  import type { BaseProps } from '@ui/type/component'
 
   interface Props extends BaseProps {
     title: string

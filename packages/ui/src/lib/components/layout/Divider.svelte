@@ -1,6 +1,6 @@
 <script lang="ts">
-  import type { BaseProps, VariantComponent } from '@type/component'
-  import { createDividerStyles } from '@utils/styles'
+  import type { BaseProps, VariantComponent } from '@ui/type/component'
+  import { createDividerStyles } from '@ui/utils/styles'
 
   interface Props extends BaseProps, VariantComponent<'solid' | 'dashed' | 'dotted'> {
     orientation?: 'horizontal' | 'vertical'

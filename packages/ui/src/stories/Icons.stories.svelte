@@ -47,7 +47,7 @@
     SuccessIcon,
     VideoIcon,
     WarningIcon,
-  } from '@icons'
+  } from '@ui/icons'
 
   const { Story } = defineMeta({
     title: 'Icons/All Icons',

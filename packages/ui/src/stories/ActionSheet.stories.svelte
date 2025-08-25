@@ -1,9 +1,9 @@
 <script module lang="ts">
   import { defineMeta } from '@storybook/addon-svelte-csf'
-  import ActionSheet from '@components/controls/ActionSheet.svelte'
-  import ListItem from '@components/layout/ListItem.svelte'
-  import Button from '@components/core/Button.svelte'
-  import { AddIcon, EditIcon, DeleteIcon, SendIcon, CameraIcon, ImageIcon, SettingsIcon } from '@icons'
+  import ActionSheet from '@ui/components/controls/ActionSheet.svelte'
+  import ListItem from '@ui/components/layout/ListItem.svelte'
+  import Button from '@ui/components/core/Button.svelte'
+  import { AddIcon, EditIcon, DeleteIcon, SendIcon, CameraIcon, ImageIcon, SettingsIcon } from '@ui/icons'
 
   // State for interactive examples
   let showBasicSheet = $state(false)

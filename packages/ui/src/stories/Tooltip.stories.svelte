@@ -1,9 +1,9 @@
 <script module lang="ts">
   import { defineMeta } from '@storybook/addon-svelte-csf'
-  import Tooltip from '@components/feedback/Tooltip.svelte'
-  import Button from '@components/core/Button.svelte'
-  import IconButton from '@components/core/IconButton.svelte'
-  import { SettingsIcon } from '@icons'
+  import Tooltip from '@ui/components/feedback/Tooltip.svelte'
+  import Button from '@ui/components/core/Button.svelte'
+  import IconButton from '@ui/components/core/IconButton.svelte'
+  import { SettingsIcon } from '@ui/icons'
 
   const { Story } = defineMeta({
     title: 'Feedback/Tooltip',

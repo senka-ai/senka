@@ -5,8 +5,8 @@
   RELEVANT FILES: Card.svelte, List.svelte, component.ts, styles.ts
 -->
 <script lang="ts">
-  import type { BaseProps, VariantComponent, FullWidthComponent, ChildrenComponent } from '@type/component'
-  import { createContainerStyles } from '@utils/styles'
+  import type { BaseProps, VariantComponent, FullWidthComponent, ChildrenComponent } from '@ui/type/component'
+  import { createContainerStyles } from '@ui/utils/styles'
 
   interface Props
     extends BaseProps,

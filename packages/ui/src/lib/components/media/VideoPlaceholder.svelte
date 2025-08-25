@@ -1,6 +1,6 @@
 <script lang="ts">
-  import { VideoIcon } from '@icons'
-  import type { BaseProps, VariantComponent } from '@type/component'
+  import { VideoIcon } from '@ui/icons'
+  import type { BaseProps, VariantComponent } from '@ui/type/component'
 
   interface Props extends BaseProps, VariantComponent<'default' | 'error' | 'loading'> {
     message?: string
