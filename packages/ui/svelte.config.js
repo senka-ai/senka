@@ -13,12 +13,6 @@ const config = {
     adapter: adapter(),
     alias: {
       '@ui': resolve(__dirname, 'src/lib'),
-      '@ui/styles': resolve(__dirname, 'src/styles'),
-      '@components': resolve(__dirname, 'src/lib/components'),
-      '@icons': resolve(__dirname, 'src/lib/icons'),
-      '@utils': resolve(__dirname, 'src/lib/utils'),
-      '@type': resolve(__dirname, 'src/lib/type'),
-      '@styles': resolve(__dirname, 'src/styles'),
     },
   },
 }

@@ -41,11 +41,6 @@ const config: StorybookConfig = {
     config.resolve.alias = {
       ...config.resolve.alias,
       '@ui': resolve(__dirname, '../src/lib'),
-      '@components': resolve(__dirname, '../src/lib/components'),
-      '@icons': resolve(__dirname, '../src/lib/icons'),
-      '@utils': resolve(__dirname, '../src/lib/utils'),
-      '@type': resolve(__dirname, '../src/lib/type'),
-      '@styles': resolve(__dirname, '../src/styles'),
     }
 
     return config
