@@ -15,11 +15,7 @@ const config = {
     adapter: adapter(),
     alias: {
       '@senka-ai/ui': resolve(__dirname, '../ui/src/lib'),
-      '@components': resolve(__dirname, '../ui/src/lib/components'),
-      '@icons': resolve(__dirname, '../ui/src/lib/icons'),
-      '@utils': resolve(__dirname, '../ui/src/lib/utils'),
-      '@type': resolve(__dirname, '../ui/src/lib/type'),
-      '@styles': resolve(__dirname, '../ui/src/styles'),
+      '@ui': resolve(__dirname, '../ui/src/lib'),
     },
   },
 }

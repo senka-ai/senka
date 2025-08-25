@@ -4,6 +4,7 @@
 
 - `packages/layout-engine/LAYOUT_SYSTEM_FINAL.md`
 - `packages/layout-engine/README.md`
+- read files under `packages/layout-engine/src/lib/core/arrangements/`
 
 ## Respect existing patterns
 
@@ -21,4 +22,4 @@
 - read `AI_UI_BUILDING_INSTRUCTIONS.md`
 - read `AI_UI_QUICK_REFERENCE.md`
 - read `PATH_ALIAS_STANDARDS.md`
-- IMPORTANT: before using any UI component, you must read both its source code and its storybook stories to understand what properties has and how each component can be used
+- IMPORTANT: before using any UI component, you must read both its source code and its storybook stories to understand what properties has and how each component can be used. YOU ARE NOT ALLOWED to use a UI component if you haven't read it's source code and its stories first.
