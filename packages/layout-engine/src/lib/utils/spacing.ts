@@ -1,4 +1,4 @@
-import type { SpacingValue, SpacingScale } from '$lib/types'
+import type { SpacingValue, SpacingScale } from '@layout-engine/types'
 
 /**
  * Spacing scale values in pixels

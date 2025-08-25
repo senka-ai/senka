@@ -16,6 +16,8 @@ const config = {
     alias: {
       '@senka-ai/ui': resolve(__dirname, '../ui/src/lib'),
       '@ui': resolve(__dirname, '../ui/src/lib'),
+      '@senka-ai/layout-engine': resolve(__dirname, '../layout-engine/src/lib'),
+      '@layout-engine': resolve(__dirname, '../layout-engine/src/lib'),
     },
   },
 }

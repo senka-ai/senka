@@ -14,6 +14,7 @@ RELEVANT FILES: packages/layout-engine/src/lib/types/index.ts, packages/ui/src/l
     ExpandVerticalLineArrows,
   } from '@senka-ai/ui/icons'
   import { StackArrangement, RowArrangement, cssPropertiesToString } from '@senka-ai/layout-engine'
+  import type { LayoutContainer } from '@senka-ai/layout-engine'
 
   type Alignment = 'start' | 'center' | 'end' | 'stretch'
 
@@ -29,7 +30,7 @@ RELEVANT FILES: packages/layout-engine/src/lib/types/index.ts, packages/ui/src/l
   const stack = new StackArrangement()
   const row = new RowArrangement()
 
-  const labelConfig = {
+  const labelConfig: LayoutContainer = {
     id: 'alignment-label',
     type: 'stack',
     direction: 'vertical',
@@ -37,7 +38,7 @@ RELEVANT FILES: packages/layout-engine/src/lib/types/index.ts, packages/ui/src/l
     fillContainer: true,
   }
 
-  const buttonsConfig = {
+  const buttonsConfig: LayoutContainer = {
     id: 'alignment-buttons',
     type: 'row',
     gap: 'tight',
@@ -45,7 +46,7 @@ RELEVANT FILES: packages/layout-engine/src/lib/types/index.ts, packages/ui/src/l
     fillContainer: false,
   }
 
-  const descriptionConfig = {
+  const descriptionConfig: LayoutContainer = {
     id: 'alignment-description',
     type: 'stack',
     direction: 'vertical',

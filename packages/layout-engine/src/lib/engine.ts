@@ -1,16 +1,14 @@
 import type {
   LayoutContainer,
-  CSSProperties,
-  ResponsiveCSS,
   ValidationResult,
   LayoutEngineOptions,
   Platform,
   ResponsiveConfig,
-} from './types'
-import { ArrangementEngine } from './core/arrangements'
-import { validateLayout } from './utils/validation'
-import { cssPropertiesToString, generateCSSClass, addVendorPrefixes, optimizeCSS } from './utils/css'
-import { generateMediaQuery, sortBreakpoints } from './utils/responsive'
+} from '@layout-engine/types'
+import { ArrangementEngine } from '@layout-engine/core/arrangements'
+import { validateLayout } from '@layout-engine/utils/validation'
+import { cssPropertiesToString, generateCSSClass, addVendorPrefixes, optimizeCSS } from '@layout-engine/utils/css'
+import { generateMediaQuery, sortBreakpoints } from '@layout-engine/utils/responsive'
 
 /**
  * Main Layout Engine for generating CSS from layout definitions

@@ -1,8 +1,8 @@
 /**
  * Example usage of the Layout Engine
  */
-import { LayoutEngine } from './engine'
-import type { LayoutContainer } from './types'
+import { LayoutEngine } from '@layout-engine/engine'
+import type { LayoutContainer } from '@layout-engine/types'
 
 // Create a layout engine instance
 const engine = new LayoutEngine({

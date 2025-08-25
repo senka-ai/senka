@@ -8,6 +8,7 @@ RELEVANT FILES: packages/layout-engine/src/lib/core/arrangements/row.ts, package
 <script lang="ts">
   import { Toggle, Container } from '@senka-ai/ui'
   import { RowArrangement, cssPropertiesToString } from '@senka-ai/layout-engine'
+  import type { LayoutContainer } from '@senka-ai/layout-engine'
 
   interface Props {
     value: boolean
@@ -19,7 +20,7 @@ RELEVANT FILES: packages/layout-engine/src/lib/core/arrangements/row.ts, package
 
   // Layout configuration
   const row = new RowArrangement()
-  const wrapConfig = {
+  const wrapConfig: LayoutContainer = {
     id: 'wrap-control',
     type: 'row',
     gap: 'normal',

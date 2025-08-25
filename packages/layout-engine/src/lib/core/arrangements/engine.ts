@@ -1,11 +1,11 @@
-import type { LayoutContainer, CSSProperties, Platform, ArrangementType } from '$lib/types'
-import { BaseArrangement } from './base'
-import { StackArrangement } from './stack'
-import { RowArrangement } from './row'
-import { GridArrangement } from './grid'
-import { FlowArrangement } from './flow'
-import { OverlayArrangement } from './overlay'
-import { FrameArrangement } from './frame'
+import type { LayoutContainer, CSSProperties, Platform, ArrangementType } from '@layout-engine/types'
+import { BaseArrangement } from '@layout-engine/core/arrangements/base'
+import { StackArrangement } from '@layout-engine/core/arrangements/stack'
+import { RowArrangement } from '@layout-engine/core/arrangements/row'
+import { GridArrangement } from '@layout-engine/core/arrangements/grid'
+import { FlowArrangement } from '@layout-engine/core/arrangements/flow'
+import { OverlayArrangement } from '@layout-engine/core/arrangements/overlay'
+import { FrameArrangement } from '@layout-engine/core/arrangements/frame'
 
 /**
  * Main engine for converting arrangements to CSS

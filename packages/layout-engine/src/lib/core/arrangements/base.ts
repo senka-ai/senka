@@ -1,5 +1,5 @@
-import type { LayoutContainer, CSSProperties, SpacingValue, SpacingScale, PaddingValue } from '$lib/types'
-import { getSpacingValue } from '$lib/utils/spacing'
+import type { LayoutContainer, CSSProperties, SpacingValue, SpacingScale, PaddingValue } from '@layout-engine/types'
+import { getSpacingValue } from '@layout-engine/utils/spacing'
 
 /**
  * Base class for all arrangement implementations

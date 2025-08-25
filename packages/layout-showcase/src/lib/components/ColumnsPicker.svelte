@@ -8,6 +8,7 @@ RELEVANT FILES: packages/layout-engine/src/lib/core/arrangements/grid.ts, packag
 <script lang="ts">
   import { Dropdown, Container } from '@senka-ai/ui'
   import { RowArrangement, cssPropertiesToString } from '@senka-ai/layout-engine'
+  import type { LayoutContainer } from '@senka-ai/layout-engine'
 
   interface Props {
     value: number | 'auto'
@@ -19,7 +20,7 @@ RELEVANT FILES: packages/layout-engine/src/lib/core/arrangements/grid.ts, packag
 
   // Layout configuration
   const row = new RowArrangement()
-  const controlConfig = {
+  const controlConfig: LayoutContainer = {
     id: 'columns-control',
     type: 'row',
     gap: 'normal',

@@ -1,4 +1,4 @@
-import type { ResponsiveBreakpoint } from '$lib/types'
+import type { ResponsiveBreakpoint } from '@layout-engine/types'
 
 /**
  * Default breakpoint values

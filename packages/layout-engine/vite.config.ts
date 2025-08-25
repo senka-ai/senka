@@ -24,7 +24,7 @@ export default defineConfig({
   },
   resolve: {
     alias: {
-      $lib: resolve(__dirname, './src/lib'),
+      '@layout-engine': resolve(__dirname, './src/lib'),
     },
   },
 })

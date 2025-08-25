@@ -8,6 +8,7 @@ RELEVANT FILES: packages/layout-engine/src/lib/utils/spacing.ts, packages/ui/src
 <script lang="ts">
   import { Dropdown, Container } from '@senka-ai/ui'
   import { RowArrangement, StackArrangement, cssPropertiesToString } from '@senka-ai/layout-engine'
+  import type { LayoutContainer } from '@senka-ai/layout-engine'
 
   type SpacingScale = 'none' | 'tight' | 'cozy' | 'normal' | 'comfortable' | 'spacious'
 
@@ -23,7 +24,7 @@ RELEVANT FILES: packages/layout-engine/src/lib/utils/spacing.ts, packages/ui/src
   const row = new RowArrangement()
   const stack = new StackArrangement()
 
-  const spacingConfig = {
+  const spacingConfig: LayoutContainer = {
     id: 'spacing-control',
     type: 'row',
     gap: 'normal',

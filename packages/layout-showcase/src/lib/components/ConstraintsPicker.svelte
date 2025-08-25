@@ -8,6 +8,7 @@ RELEVANT FILES: packages/ui/src/lib/index.ts
 <script lang="ts">
   import { RadioGroup, RadioButton, Toggle, Container, StackLayout, Divider } from '@senka-ai/ui'
   import { StackArrangement, cssPropertiesToString } from '@senka-ai/layout-engine'
+  import type { LayoutContainer } from '@senka-ai/layout-engine'
 
   interface ConstraintConfig {
     width: 'fixed' | 'fill' | 'hug' | 'relative'
@@ -59,7 +60,7 @@ RELEVANT FILES: packages/ui/src/lib/index.ts
   }
 
   const stack = new StackArrangement()
-  const config = {
+  const config: LayoutContainer = {
     id: 'constraints-controls',
     type: 'stack',
     direction: 'vertical',

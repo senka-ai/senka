@@ -14,6 +14,7 @@ RELEVANT FILES: packages/layout-engine/src/lib/core/arrangements/grid.ts, packag
     ExpandHorizontalLineArrows,
   } from '@senka-ai/ui/icons'
   import { StackArrangement, RowArrangement, cssPropertiesToString } from '@senka-ai/layout-engine'
+  import type { LayoutContainer } from '@senka-ai/layout-engine'
 
   // For grids, we map the flex justify values to grid justify-items semantically
   type GridJustify = 'packed' | 'center' | 'space-between' | 'space-around'
@@ -30,7 +31,7 @@ RELEVANT FILES: packages/layout-engine/src/lib/core/arrangements/grid.ts, packag
   const stack = new StackArrangement()
   const row = new RowArrangement()
 
-  const labelConfig = {
+  const labelConfig: LayoutContainer = {
     id: 'grid-justify-label',
     type: 'stack',
     direction: 'vertical',
@@ -38,7 +39,7 @@ RELEVANT FILES: packages/layout-engine/src/lib/core/arrangements/grid.ts, packag
     fillContainer: true,
   }
 
-  const buttonsConfig = {
+  const buttonsConfig: LayoutContainer = {
     id: 'grid-justify-buttons',
     type: 'row',
     gap: 'tight',
@@ -47,7 +48,7 @@ RELEVANT FILES: packages/layout-engine/src/lib/core/arrangements/grid.ts, packag
     fillContainer: false,
   }
 
-  const descriptionConfig = {
+  const descriptionConfig: LayoutContainer = {
     id: 'grid-justify-description',
     type: 'stack',
     direction: 'vertical',

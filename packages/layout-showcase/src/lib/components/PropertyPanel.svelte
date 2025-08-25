@@ -8,6 +8,7 @@ RELEVANT FILES: packages/ui/src/lib/index.ts
 <script lang="ts">
   import { Container, Divider } from '@senka-ai/ui'
   import { StackArrangement, cssPropertiesToString } from '@senka-ai/layout-engine'
+  import type { LayoutContainer } from '@senka-ai/layout-engine'
 
   interface Props {
     title?: string
@@ -22,14 +23,14 @@ RELEVANT FILES: packages/ui/src/lib/index.ts
 
   // Use StackArrangement for vertical layout of panel sections
   const stack = new StackArrangement()
-  const headerConfig = {
+  const headerConfig: LayoutContainer = {
     id: 'panel-header',
     type: 'stack',
     direction: 'vertical',
     gap: 'tight',
     fillContainer: true,
   }
-  const contentConfig = {
+  const contentConfig: LayoutContainer = {
     id: 'panel-content',
     type: 'stack',
     direction: 'vertical',

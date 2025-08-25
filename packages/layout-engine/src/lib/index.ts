@@ -5,7 +5,7 @@
  */
 
 // Main engine
-export { LayoutEngine } from './engine'
+export { LayoutEngine } from '@layout-engine/engine'
 
 // Arrangements
 export {
@@ -17,13 +17,13 @@ export {
   OverlayArrangement,
   FrameArrangement,
   ArrangementEngine,
-} from './core/arrangements'
+} from '@layout-engine/core/arrangements'
 
 // Types
-export * from './types'
+export * from '@layout-engine/types'
 
 // Utilities
-export * from './utils'
+export * from '@layout-engine/utils'
 
 // Version
 export const VERSION = '0.0.1'

@@ -6,7 +6,7 @@ All Senka packages must use semantic path aliases to ensure consistent, maintain
 
 ## Standard Alias Patterns
 
-### Aliases Examples
+### Aliases Examples for `ui` package
 
 **tsconfig.json**
 
@@ -14,24 +14,20 @@ All Senka packages must use semantic path aliases to ensure consistent, maintain
 {
   "compilerOptions": {
     "paths": {
-      "@components/*": ["./src/lib/components/*"],
-      "@icons": ["./src/lib/icons"],
-      "@utils/*": ["./src/lib/utils/*"],
-      "@type/*": ["./src/lib/types/*"],
-      "@styles/*": ["./src/styles/*"]
+      "@ui/*": ["./src/lib/*"]
     }
   }
 }
 ```
 
-### Import Examples
+### Import Examples for `ui` package
 
 ```typescript
 // ✅ Correct - Use semantic aliases
-import Button from '@components/core/Button.svelte'
-import { SpinnerIcon } from '@icons'
-import { createStyles } from '@utils/styles'
-import type { BaseProps } from '@type/component'
+import Button from '@ui/components/core/Button.svelte'
+import { SpinnerIcon } from '@ui/icons'
+import { createStyles } from '@ui/utils/styles'
+import type { BaseProps } from '@ui/type/component'
 
 // ❌ Wrong - No relative paths
 import Button from '../lib/components/core/Button.svelte'
@@ -39,7 +35,7 @@ import { SpinnerIcon } from '../../icons'
 import { createStyles } from '../../utils/styles'
 ```
 
-## Configuration
+## Configuration for `ui` package
 
 ### Minimal Setup
 
@@ -56,11 +52,7 @@ const __dirname = dirname(__filename)
 const config = {
   kit: {
     alias: {
-      '@components': resolve(__dirname, 'src/lib/components'),
-      '@icons': resolve(__dirname, 'src/lib/icons'),
-      '@utils': resolve(__dirname, 'src/lib/utils'),
-      '@type': resolve(__dirname, 'src/lib/type'),
-      '@styles': resolve(__dirname, 'src/styles'),
+      '@ui': resolve(__dirname, 'src/lib'),
     },
   },
 }
@@ -69,9 +61,8 @@ const config = {
 ## Rules
 
 1. **Zero relative imports** - Use semantic aliases everywhere
-2. **Consistent naming** - `@type` (singular), not `@types`
-3. **Minimal config** - Only define aliases where actually needed
-4. **Same-directory imports** - Use aliases even for `./Component.svelte`
+2. **Minimal config** - Only define aliases where actually needed
+3. **Same-directory imports** - Use aliases even for `./Component.svelte`
 
 ## Benefits
 

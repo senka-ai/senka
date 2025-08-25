@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest'
-import { LayoutEngine, VERSION } from './index.js'
+import { LayoutEngine, VERSION } from '@layout-engine/index'
 
 describe('LayoutEngine', () => {
   it('should export LayoutEngine class', () => {

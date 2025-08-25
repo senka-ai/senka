@@ -1,5 +1,5 @@
-import { BaseArrangement } from './base'
-import type { LayoutContainer, CSSProperties } from '$lib/types'
+import { BaseArrangement } from '@layout-engine/core/arrangements/base'
+import type { LayoutContainer, CSSProperties } from '@layout-engine/types'
 
 /**
  * Flow arrangement - elements flow naturally like text, wrapping when needed

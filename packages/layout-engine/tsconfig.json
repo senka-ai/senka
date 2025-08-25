@@ -8,8 +8,7 @@
     "composite": true,
     "tsBuildInfoFile": "./dist/.tsbuildinfo",
     "paths": {
-      "$lib": ["./src/lib"],
-      "$lib/*": ["./src/lib/*"]
+      "@layout-engine/*": ["./src/lib/*"]
     }
   },
   "include": ["src/**/*"],

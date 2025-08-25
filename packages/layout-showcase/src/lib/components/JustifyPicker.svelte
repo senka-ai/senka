@@ -14,6 +14,7 @@ RELEVANT FILES: packages/layout-engine/src/lib/types/index.ts, packages/ui/src/l
     AlignItemHorizontalCenterLineDesign,
   } from '@senka-ai/ui/icons'
   import { StackArrangement, RowArrangement, cssPropertiesToString } from '@senka-ai/layout-engine'
+  import type { LayoutContainer } from '@senka-ai/layout-engine'
 
   type Justify = 'packed' | 'space-between' | 'center' | 'space-around'
 
@@ -29,7 +30,7 @@ RELEVANT FILES: packages/layout-engine/src/lib/types/index.ts, packages/ui/src/l
   const stack = new StackArrangement()
   const row = new RowArrangement()
 
-  const labelConfig = {
+  const labelConfig: LayoutContainer = {
     id: 'justify-label',
     type: 'stack',
     direction: 'vertical',
@@ -37,7 +38,7 @@ RELEVANT FILES: packages/layout-engine/src/lib/types/index.ts, packages/ui/src/l
     fillContainer: true,
   }
 
-  const buttonsConfig = {
+  const buttonsConfig: LayoutContainer = {
     id: 'justify-buttons',
     type: 'row',
     gap: 'tight',
@@ -46,7 +47,7 @@ RELEVANT FILES: packages/layout-engine/src/lib/types/index.ts, packages/ui/src/l
     fillContainer: false,
   }
 
-  const descriptionConfig = {
+  const descriptionConfig: LayoutContainer = {
     id: 'justify-description',
     type: 'stack',
     direction: 'vertical',

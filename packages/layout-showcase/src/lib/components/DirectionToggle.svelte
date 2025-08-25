@@ -9,6 +9,7 @@ RELEVANT FILES: packages/layout-engine/src/lib/types/index.ts, packages/ui/src/l
   import { Button, Container } from '@senka-ai/ui'
   import { SwitchVertical, SwitchHorizontal } from '@senka-ai/ui/icons'
   import { RowArrangement, cssPropertiesToString } from '@senka-ai/layout-engine'
+  import type { LayoutContainer } from '@senka-ai/layout-engine'
 
   interface Props {
     value: 'vertical' | 'horizontal'
@@ -20,7 +21,7 @@ RELEVANT FILES: packages/layout-engine/src/lib/types/index.ts, packages/ui/src/l
 
   // Layout configuration
   const row = new RowArrangement()
-  const directionConfig = {
+  const directionConfig: LayoutContainer = {
     id: 'direction-control',
     type: 'row',
     gap: 'normal',

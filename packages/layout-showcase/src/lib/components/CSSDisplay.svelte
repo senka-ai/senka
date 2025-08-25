@@ -9,6 +9,7 @@ RELEVANT FILES: packages/layout-engine/src/lib/utils/css.ts, packages/ui/src/lib
   import { Button, Container } from '@senka-ai/ui'
   import { CheckIcon } from '@senka-ai/ui/icons'
   import { StackArrangement, RowArrangement, cssPropertiesToString } from '@senka-ai/layout-engine'
+  import type { LayoutContainer } from '@senka-ai/layout-engine'
 
   interface Props {
     css: string
@@ -24,7 +25,7 @@ RELEVANT FILES: packages/layout-engine/src/lib/utils/css.ts, packages/ui/src/lib
   const stack = new StackArrangement()
   const row = new RowArrangement()
 
-  const headerConfig = {
+  const headerConfig: LayoutContainer = {
     id: 'css-header',
     type: 'row',
     justify: 'space-between',
@@ -33,7 +34,7 @@ RELEVANT FILES: packages/layout-engine/src/lib/utils/css.ts, packages/ui/src/lib
     fillContainer: true,
   }
 
-  const successConfig = {
+  const successConfig: LayoutContainer = {
     id: 'css-success',
     type: 'row',
     gap: 'tight',

@@ -1,4 +1,4 @@
-import type { CSSProperties } from '$lib/types'
+import type { CSSProperties } from '@layout-engine/types'
 
 /**
  * Convert CSSProperties object to CSS string
