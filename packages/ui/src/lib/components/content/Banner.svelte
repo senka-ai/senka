@@ -1,8 +1,14 @@
+<!--
+  packages/ui/src/lib/components/content/Banner.svelte
+  An informative banner component that displays important messages and provides actions for users.
+  Refactored to use the Container component for consistent styling and layout patterns.
+  RELEVANT FILES: Container.svelte, Button.svelte, component.ts, styles.ts
+-->
 <script lang="ts">
   import Button from '@ui/components/core/Button.svelte'
+  import Container from '@ui/components/layout/Container.svelte'
   import { ImageIcon } from '@ui/icons'
   import type { BaseProps, ChildrenComponent, ClickHandler } from '@ui/type/component'
-  import { createBannerStyles } from '@ui/utils/styles'
 
   /**
    * Banner component props interface
@@ -56,14 +62,21 @@
     ...restProps
   }: Props = $props()
 
-  let bannerClasses = $derived(
-    createBannerStyles({
-      variant,
-      disabled,
-      clickable: Boolean(onclick || onBannerClick),
-      className,
-    })
-  )
+  // Map Banner variant to Container color system
+  let containerColor = $derived(() => {
+    switch (variant) {
+      case 'info':
+        return 'highlight'
+      case 'success':
+        return 'success'
+      case 'warning':
+        return 'warning'
+      case 'error':
+        return 'error'
+      default:
+        return 'neutral'
+    }
+  })
 
   function handleBannerClick() {
     if (!disabled && (onclick || onBannerClick)) {
@@ -79,60 +92,57 @@
   }
 </script>
 
-{#snippet bannerContent()}
-  <!-- Content Section -->
-  <div class="flex flex-1 flex-col">
-    <!-- Title -->
-    {#if showTitle && title}
-      <h4 class="text-h4">
-        {title}
-      </h4>
-    {/if}
+<Container
+  variant="bordered"
+  padding="comfortable"
+  radius="large"
+  background={true}
+  color={containerColor()}
+  {disabled}
+  onclick={(onclick || onBannerClick) ? handleBannerClick : undefined}
+  class={className}
+  {id}
+  {...restProps}
+>
+  <div class="flex items-start gap-4">
+    <!-- Content Section -->
+    <div class="flex flex-1 flex-col">
+      <!-- Title -->
+      {#if showTitle && title}
+        <h4 class="text-h4">
+          {title}
+        </h4>
+      {/if}
 
-    <!-- Description -->
-    {#if showDescription && description}
-      <p class="text-body-s mt-1 text-neutral-700">
-        {description}
-      </p>
-    {/if}
+      <!-- Description -->
+      {#if showDescription && description}
+        <p class="text-body-s mt-1 text-neutral-700">
+          {description}
+        </p>
+      {/if}
 
-    <!-- Button -->
-    {#if showButton && (buttonText || children)}
-      <div class="mt-4">
-        <Button variant="primary" size="medium" onclick={handleButtonClick} {disabled}>
-          {buttonText}
-        </Button>
+      <!-- Button -->
+      {#if showButton && (buttonText || children)}
+        <div class="mt-4">
+          <Button variant="primary" size="medium" onclick={handleButtonClick} {disabled}>
+            {buttonText}
+          </Button>
+        </div>
+      {/if}
+    </div>
+
+    <!-- Image Section -->
+    {#if showImage && image}
+      <div class="ml-4 flex-shrink-0">
+        <img src={image} alt={imageAlt} class="h-16 w-16 rounded-lg object-cover" />
+      </div>
+    {:else if showImage && !image}
+      <!-- Placeholder when showImage is true but no image provided -->
+      <div class="ml-4 flex-shrink-0">
+        <div class="flex h-16 w-16 items-center justify-center rounded-lg bg-neutral-100">
+          <ImageIcon class="h-8 w-8 text-neutral-400" size={32} />
+        </div>
       </div>
     {/if}
   </div>
-
-  <!-- Image Section -->
-  {#if showImage && image}
-    <div class="ml-4 flex-shrink-0">
-      <img src={image} alt={imageAlt} class="h-16 w-16 rounded-lg object-cover" />
-    </div>
-  {:else if showImage && !image}
-    <!-- Placeholder when showImage is true but no image provided -->
-    <div class="ml-4 flex-shrink-0">
-      <div class="flex h-16 w-16 items-center justify-center rounded-lg bg-neutral-100">
-        <ImageIcon class="h-8 w-8 text-neutral-400" size={32} />
-      </div>
-    </div>
-  {/if}
-{/snippet}
-
-{#if onclick || onBannerClick}
-  <button
-    class="{bannerClasses} border-none bg-transparent p-0 text-left"
-    {id}
-    onclick={handleBannerClick}
-    {disabled}
-    {...restProps}
-  >
-    {@render bannerContent()}
-  </button>
-{:else}
-  <div class={bannerClasses} {id} {...restProps}>
-    {@render bannerContent()}
-  </div>
-{/if}
+</Container>

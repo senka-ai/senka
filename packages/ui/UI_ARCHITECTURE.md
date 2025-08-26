@@ -737,11 +737,6 @@ The library organizes related components into families that share base styling p
 - `NumberInput.svelte` - Numeric input with controls
 - `Dropdown.svelte` - Selection input
 
-**Container Family** (shares `createContainerStyles`):
-
-- `Banner.svelte` - Informational banner with actions
-- `Container.svelte` - Generic content container
-
 **Unique Components** (internal styles):
 
 - `TabBar.svelte` - Complex navigation-specific logic
