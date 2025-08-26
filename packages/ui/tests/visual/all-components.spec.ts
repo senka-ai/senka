@@ -48,6 +48,7 @@ const allComponents = [
   // Currently causing issues on docker tests
   // { name: 'Tabs', story: 'overview', section: 'controls-tabs' },
   { name: 'Tag', story: 'overview', section: 'content-tag' },
+  { name: 'Text', story: 'overview', section: 'core-text' },
   { name: 'TextArea', story: 'overview', section: 'forms-textarea' },
   { name: 'TextField', story: 'overview', section: 'forms-textfield' },
   { name: 'ThemeToggle', story: 'overview', section: 'core-themetoggle' },

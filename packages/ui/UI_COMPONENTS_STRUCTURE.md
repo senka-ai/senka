@@ -16,6 +16,7 @@ packages/ui/src/lib/components/
 ├── core/
 │   ├── Button.svelte
 │   ├── IconButton.svelte
+│   ├── Text.svelte
 │   └── ThemeToggle.svelte
 ├── content/
 │   ├── Banner.svelte
@@ -91,6 +92,8 @@ Essential interactive elements that form the foundation of user interfaces.
 **Button** _(CONTROL)_ - Buttons communicate actions users can perform by tapping it. They are typically placed where the user can take any action throughout your UI – such as in Dialogs, Forms, Banners, Cards, etc. Use different types of buttons to reflect the hierarchy of actions: Primary (filled button), Secondary (outlined button), and Tertiary (text-only button). Supports text content with optional left and right icons.
 
 **IconButton** - A specialized button component designed specifically for icon-only interactions, providing a compact touch target for actions.
+
+**Text** _(TYPOGRAPHY)_ - The foundational typography component for displaying all text content throughout the application. Provides semantic sizing with intuitive variant names (`xl`, `lg`, `md`, `sm`, `xs` for body text, `h1-h5` for headings, `button`, `label`, `caption` for semantic purposes) and automatic HTML element mapping (headings render as proper `<h1-h5>` elements, body text as `<div>` by default). Features comprehensive color support (`primary`, `secondary`, `muted`, `highlight`, `success`, `warning`, `error`), disabled states, and flexible HTML element overrides. Supports both direct text content via `text` prop and rich inline composition via children. **CRITICAL**: This is the ONLY component that should be used for text rendering - never use raw HTML text elements.
 
 **ThemeToggle** - A specialized control component that allows users to switch between light and dark themes in the application.
 
@@ -226,6 +229,7 @@ Interactive components typically support these states:
 
 ### Component Selection
 
+- Use **Text** for ALL text content - never use raw HTML text elements (`<p>`, `<span>`, `<div>`, etc.)
 - Use **Button** for primary actions, **IconButton** for space-constrained actions
 - Choose **TextField** for single-line input, **TextArea** for multi-line content
 - Use **Dialog** for urgent actions, **Toast** for brief feedback, **Banner** for persistent messages

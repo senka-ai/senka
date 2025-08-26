@@ -44,7 +44,7 @@ The library fully embraces Svelte 5's modern runes system:
 │   │   │   ├── navigation/             # navigation components
 │   │   │   └── media/                  # media components
 │   │   ├── icons/               # SVG icon components
-│   │   ├── types/
+│   │   ├── type/
 │   │   │   └── component.ts     # Shared TypeScript interfaces
 │   │   ├── utils/               # Utility functions and state management
 │   │   │   ├── events.ts        # Event handling utilities
@@ -302,6 +302,61 @@ Components consistently use the snippet pattern for flexible content:
 {/if}
 ```
 
+### Text Rendering Requirements
+
+**CRITICAL: All components MUST use the Text component for text content. Never use raw HTML text elements.**
+
+#### Component Implementation Rules
+
+1. **Import Text component** for any text rendering needs:
+
+```svelte
+<script lang="ts">
+  import Text from '@ui/components/core/Text.svelte'
+</script>
+```
+
+2. **Use Text component for all text content**:
+
+```svelte
+<!-- ✅ CORRECT: Component using Text -->
+<div class="card">
+  <Text variant="h3">{title}</Text>
+  <Text variant="md" color="secondary">{description}</Text>
+  <Text variant="caption" color="muted">{helperText}</Text>
+</div>
+
+<!-- ❌ WRONG: Raw HTML text elements -->
+<div class="card">
+  <h3>{title}</h3>
+  <p>{description}</p>
+  <span>{helperText}</span>
+</div>
+```
+
+3. **Compose Text with other components**:
+
+```svelte
+<!-- Rich text composition -->
+<Text variant="lg">
+  Welcome back, <Text variant="button" color="highlight">{userName}</Text>!
+</Text>
+
+<!-- Button text using Text component -->
+<button class={buttonClasses}>
+  <Text variant="button">Save Changes</Text>
+</button>
+```
+
+#### Benefits of This Approach
+
+- **Design system consistency** - All text follows typography scale
+- **Automatic semantic HTML** - Headings render as proper heading elements
+- **Color system integration** - Semantic colors applied consistently
+- **Accessibility** - Proper heading hierarchy and ARIA support
+- **Maintainability** - Central control over all text styling
+- **Theme support** - Text colors adapt automatically to theme changes
+
 ### Icon Integration Pattern
 
 Flexible icon support for both string emojis and Svelte components:
@@ -471,86 +526,72 @@ This approach ensures that all components maintain visual consistency, support t
 
 ### Typography System
 
-Semantic typography classes with consistent sizing:
+**CRITICAL RULE: All text content in the application MUST use the Text component. Never use raw HTML text elements like `<p>`, `<span>`, `<div>`, or heading tags directly.**
 
-```css
-/* Heading scale */
-.text-h1 {
-  font-size: 24px;
-  font-weight: 700;
-  line-height: 1.2;
-}
-.text-h2 {
-  font-size: 20px;
-  font-weight: 600;
-  line-height: 1.2;
-}
-.text-h3 {
-  font-size: 18px;
-  font-weight: 600;
-  line-height: 1.4;
-}
-.text-h4 {
-  font-size: 16px;
-  font-weight: 600;
-  line-height: 1.4;
-}
-.text-h5 {
-  font-size: 14px;
-  font-weight: 600;
-  line-height: 1.4;
-}
+The typography system is built around the foundational **Text component** (`@ui/components/core/Text.svelte`) which provides:
 
-/* Body text scale */
-.text-body-xl {
-  font-size: 18px;
-  font-weight: 400;
-  line-height: 1.4;
-}
-.text-body-l {
-  font-size: 16px;
-  font-weight: 400;
-  line-height: 1.4;
-}
-.text-body-m {
-  font-size: 14px;
-  font-weight: 400;
-  line-height: 1.4;
-}
-.text-body-s {
-  font-size: 12px;
-  font-weight: 400;
-  line-height: 1.4;
-}
-.text-body-xs {
-  font-size: 10px;
-  font-weight: 400;
-  line-height: 1.4;
-}
+#### Text Component API
 
-/* Action text for buttons */
-.text-action-l {
-  font-size: 16px;
-  font-weight: 500;
-  line-height: 1.2;
-}
-.text-action-m {
-  font-size: 14px;
-  font-weight: 500;
-  line-height: 1.2;
-}
-.text-action-s {
-  font-size: 12px;
-  font-weight: 500;
-  line-height: 1.2;
-}
+```typescript
+interface TextProps {
+  // Simplified, memorable variant names
+  variant?:
+    | 'h1'
+    | 'h2'
+    | 'h3'
+    | 'h4'
+    | 'h5' // Headings (auto-mapped to semantic HTML)
+    | 'xl'
+    | 'lg'
+    | 'md'
+    | 'sm'
+    | 'xs' // Body text sizes
+    | 'button'
+    | 'label'
+    | 'caption' // Semantic purposes
 
-/* Caption text */
-.text-caption-m {
-  font-size: 14px;
-  font-weight: 400;
-  line-height: 1.4;
+  // Semantic color system
+  color?: 'primary' | 'secondary' | 'muted' | 'highlight' | 'success' | 'warning' | 'error'
+
+  // HTML element (overrides automatic semantic mapping)
+  as?: 'p' | 'span' | 'div' | 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6'
+
+  // Text content options
+  text?: string // Direct text (convenience)
+  children?: any // Rich composition (preferred)
+
+  // Standard component props
+  disabled?: boolean
+  class?: string
 }
+```
+
+#### Automatic Semantic HTML Mapping
+
+The Text component automatically chooses the appropriate HTML element:
+
+- **`variant="h1"`** → Renders as `<h1>` element
+- **`variant="h2-h5"`** → Renders as corresponding heading elements
+- **Body variants (`xl`, `lg`, `md`, `sm`, `xs`)** → Render as `<div>` (block-level, no margins)
+- **Semantic variants (`button`, `label`, `caption`)** → Render as `<div>` by default
+
+#### Usage Examples
+
+```svelte
+<!-- ✅ CORRECT: Use Text component for all text -->
+<Text variant="h1">Page Title</Text>
+<!-- Renders as <h1> -->
+<Text variant="lg">Important body text</Text>
+<!-- Renders as <div> -->
+<Text variant="button">Action Label</Text>
+<!-- Renders as <div> -->
+<Text variant="caption" as="span">Helper</Text>
+<!-- Override to <span> -->
+
+<!-- ❌ WRONG: Never use raw HTML for text -->
+<h1>Page Title</h1>
+<p>Body text</p>
+<span>Helper text</span>
 ```
 
 ### Style Composition System

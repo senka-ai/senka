@@ -1,6 +1,7 @@
 // Core Components
 export { default as Button } from './components/core/Button.svelte'
 export { default as IconButton } from './components/core/IconButton.svelte'
+export { default as Text } from './components/core/Text.svelte'
 export { default as ThemeToggle } from './components/core/ThemeToggle.svelte'
 
 // Form Components
