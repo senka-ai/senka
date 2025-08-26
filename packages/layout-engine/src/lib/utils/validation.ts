@@ -1,4 +1,10 @@
-import type { LayoutContainer, ValidationResult, ValidationError, ValidationWarning, SpacingValue } from '@layout-engine/types'
+import type {
+  LayoutContainer,
+  ValidationResult,
+  ValidationError,
+  ValidationWarning,
+  SpacingValue,
+} from '@layout-engine/types'
 
 /**
  * Validate a complete layout container

@@ -13,6 +13,7 @@ const config = {
     adapter: adapter(),
     alias: {
       '@ui': resolve(__dirname, 'src/lib'),
+      '@layout-engine': resolve(__dirname, '../layout-engine/src/lib'),
     },
   },
 }

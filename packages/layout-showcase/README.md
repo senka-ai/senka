@@ -200,7 +200,7 @@ const css = stackArrangement.toCSS(testContainer)
 ## Available Demos
 
 - **Stack Demo** (`/stack-demo`) - Vertical/horizontal stacking with alignment and spacing controls
-- **Row Demo** (`/row-demo`) - Horizontal row arrangement with wrapping and alignment options  
+- **Row Demo** (`/row-demo`) - Horizontal row arrangement with wrapping and alignment options
 - **Grid Demo** (`/grid-demo`) - Responsive grid layouts with column control
 - **Flow Demo** (`/flow-demo`) - Natural flowing layout with wrapping behavior
 - **Overlay Demo** (`/overlay-demo`) - Layered positioning with z-index control
