@@ -665,6 +665,154 @@ export const createBadCardStyles = createStyleComposer({
 })
 ```
 
+### Component Styling Patterns
+
+**CRITICAL: The library uses a hybrid approach to component styling, combining external style composers for shared patterns with internal styles for unique component logic.**
+
+This approach balances reusability, maintainability, and pragmatism by using the most appropriate pattern for each use case.
+
+#### Styling Pattern Decision Tree
+
+Use this decision tree to determine which styling approach to use for new components:
+
+```
+Is the styling logic shared (or could be shared) by 2+ components?
+├─ YES → Use External Styles (createXXXStyles in shared-styles/xxx-styles.ts)
+│  └─ Benefits: Reusability, centralization, testability
+└─ NO → Is this part of a component "family" (buttons, inputs, containers)?
+   ├─ YES → Use External Styles (shared base composer)
+   │  └─ Benefits: Consistency across related components
+   └─ NO → Are the styles complex with multiple variants/states?
+      ├─ YES → Use External Styles (easier testing, better organization)
+      └─ NO → Use Internal Styles (simpler, more direct)
+```
+
+#### When to Use External Styles (shared-styles/xxx-styles.ts)
+
+**✅ Use External Styles for:**
+
+- Components sharing similar styling patterns (Button family, Input family)
+- Core components that define patterns others might follow
+
+**Examples:**
+
+```typescript
+// Shared input styles across TextField, TextArea, NumberInput
+export const createInputStyles = createStyleComposer({
+  base: 'w-full px-3.25 py-3.25 text-body-m transition-all duration-200',
+  variants: {
+    default: 'border-neutral-400',
+    focused: 'border-highlight ring-1 ring-highlight-400',
+    error: 'border-error-400 focus:ring-1 ring-error-400',
+  },
+})
+
+// Component usage
+let inputClasses = $derived(createInputStyles({ variant, size, className }))
+```
+
+#### When to Use Internal Styles (within component)
+
+**✅ Use Internal Styles for:**
+
+- Truly unique components with no shared patterns
+- Simple components with minimal styling logic
+- Components where styles are tightly coupled to component state
+- Temporary or experimental components
+
+#### Component Family Groupings
+
+The library organizes related components into families that share base styling patterns:
+
+**Button Family** (shares `createButtonStyles`):
+
+- `Button.svelte` - Primary interactive button
+- `IconButton.svelte` - Icon-only button variant
+- `Filter.svelte` - Filter control with button-like appearance
+
+**Input Family** (shares `createInputStyles`):
+
+- `TextField.svelte` - Single-line text input
+- `TextArea.svelte` - Multi-line text input
+- `NumberInput.svelte` - Numeric input with controls
+- `Dropdown.svelte` - Selection input
+
+**Container Family** (shares `createContainerStyles`):
+
+- `Banner.svelte` - Informational banner with actions
+- `Container.svelte` - Generic content container
+
+**Unique Components** (internal styles):
+
+- `TabBar.svelte` - Complex navigation-specific logic
+- `Text.svelte` - Typography component (centralized for consistency)
+
+#### Implementation Guidelines
+
+**For External Styles:**
+
+1. **Create style composer in shared-styles/xxx-styles.ts:**
+
+```typescript
+export const createComponentStyles = createStyleComposer({
+  base: 'base-classes-here',
+  variants: {
+    primary: 'variant-specific-classes',
+    secondary: 'other-variant-classes',
+  },
+  sizes: {
+    small: 'size-specific-classes',
+    medium: 'medium-size-classes',
+  },
+})
+```
+
+2. **Use in component:**
+
+```typescript
+let componentClasses = $derived(
+  createComponentStyles({
+    variant,
+    size,
+    disabled,
+    className,
+  })
+)
+```
+
+**For Internal Styles:**
+
+1. **Use composeClasses utility:**
+
+```typescript
+let componentClasses = $derived(() => {
+  const base = 'base-classes'
+  const conditionals = {
+    active: isActive ? 'active-classes' : '',
+    disabled: disabled ? 'disabled-classes' : '',
+  }
+  return composeClasses(base, conditionals.active, conditionals.disabled, className)
+})
+```
+
+#### Benefits of Hybrid Approach
+
+**External Styles Benefits:**
+
+- Reduced code duplication across component families
+- Centralized theme and design system changes
+- Better unit testing capabilities
+- Consistent patterns across the library
+
+**Internal Styles Benefits:**
+
+- Faster development for unique components
+- All component logic in one place
+- No abstraction overhead for simple cases
+- Easier to customize for specific needs
+
+This hybrid approach ensures the library scales efficiently while maintaining developer experience and code clarity.
+
 ## State Management Architecture
 
 ### Svelte 5 Runes-Based Utilities

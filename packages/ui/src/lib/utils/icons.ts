@@ -27,21 +27,6 @@ export function getIconSize(size?: number, defaultSize: number = 16): number {
 }
 
 /**
- * Gets standard icon container classes
- */
-export function getIconContainerClasses(position: 'left' | 'right' | 'center' = 'center'): string {
-  const base = 'flex items-center justify-center'
-
-  const positions = {
-    left: 'text-neutral-500',
-    right: 'text-neutral-500',
-    center: 'text-neutral-500',
-  }
-
-  return `${base} ${positions[position]}`
-}
-
-/**
  * Gets positioning classes for icons within inputs
  */
 export function getInputIconClasses(position: 'left' | 'right'): string {

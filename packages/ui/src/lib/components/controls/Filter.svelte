@@ -6,10 +6,10 @@
 <script lang="ts">
   import { FilterIcon } from '@ui/icons'
   import Badge from '@ui/components/feedback/Badge.svelte'
-  import type { BaseProps, SizedComponent, VariantComponent, ClickHandler, ChildrenComponent } from '@ui/type/component'
+  import type { BaseProps, SizedComponent, VariantComponent, ClickHandler, ChildrenComponent, IconComponent } from '@ui/type/component'
   import { createKeyboardHandler, KeySets } from '@ui/utils/events'
-  import { createFilterStyles } from '@ui/utils/styles'
-  import { IconRenderer } from '@ui/utils/rendering'
+  import { createButtonStyles, getButtonIconSize, getButtonIconContainerClasses } from '@ui/shared-styles/button-styles'
+  import { IconRenderer, ButtonRenderer } from '@ui/utils/rendering'
 
   interface Props
     extends BaseProps,
@@ -19,13 +19,13 @@
       ChildrenComponent {
     /** Title text displayed on the filter button @default 'Filter' */
     title?: string
-    /** Number of active filters to display in badge */
+    /** Number of active filters to display in badge (must be non-negative) */
     activeFilters?: number
     /** Whether to show the filter icon @default true */
     showIcon?: boolean
     /** Custom icon to display instead of default filter icon */
-    icon?: any
-    /** Size of the icon in pixels @default 16 */
+    icon?: IconComponent['leftIcon']
+    /** Size of the icon in pixels (auto-sized based on button size if not provided) */
     iconSize?: number
     /** Whether the filter is in an active state @default false */
     active?: boolean
@@ -51,45 +51,68 @@
   // Determine if we should show a badge
   let shouldShowBadge = $derived(activeFilters !== undefined && activeFilters > 0)
 
+  // Use rendering utilities for consistent logic
+  const isDisabled = $derived(ButtonRenderer.isEffectivelyDisabled(disabled, false))
+
   // Apply active state to variant if needed
   let effectiveVariant = $derived(active ? 'primary' : variant)
 
   let filterClasses = $derived(
-    createFilterStyles({
+    createButtonStyles({
+      buttonType: 'button',
       variant: effectiveVariant,
       size,
-      disabled,
+      disabled: isDisabled,
       className: `relative ${className}`,
+      thinBorder: true,
     })
   )
 
   // Determine which icon to use
   let displayIcon = $derived(icon || FilterIcon)
+  
+  // Use unified icon sizing system
+  const effectiveIconSize = $derived(iconSize || getButtonIconSize(size))
+  
+  // Get unified icon container classes
+  const iconContainerClasses = $derived(getButtonIconContainerClasses(size))
 
   const handleClick = () => {
-    if (disabled) return
+    if (isDisabled) return
     onclick?.()
   }
 
   const handleKeyDown = createKeyboardHandler(
     () => {
-      if (!disabled) onclick?.()
+      if (!isDisabled) onclick?.()
     },
     {
       keys: [...KeySets.ACTIVATION],
       preventDefault: true,
-      disabled,
+      disabled: false, // Handle disabled state in the handler itself
     }
   )
 </script>
 
-<button class={filterClasses} {id} {disabled} onclick={handleClick} onkeydown={handleKeyDown} {...restProps}>
+<button 
+  class={filterClasses} 
+  {id} 
+  disabled={isDisabled} 
+  aria-pressed={active}
+  onclick={handleClick} 
+  onkeydown={(event) => {
+    if (!isDisabled) handleKeyDown(event)
+  }} 
+  {...restProps}>
   {#if showIcon && IconRenderer.shouldRender(displayIcon)}
-    <span class="flex h-3.5 w-3.5 items-center">
+    <span class={iconContainerClasses}>
       {#if IconRenderer.isStringIcon(displayIcon)}
         {displayIcon}
+      {:else if typeof displayIcon === 'function'}
+        {@render displayIcon(effectiveIconSize)}
       {:else}
-        {@render displayIcon(iconSize)}
+        {@const IconComponent = displayIcon}
+        <IconComponent />
       {/if}
     </span>
   {/if}

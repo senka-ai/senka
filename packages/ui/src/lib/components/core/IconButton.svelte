@@ -1,30 +1,33 @@
 <script lang="ts">
+  import { SpinnerIcon } from '@ui/icons'
   import type { BaseProps, IconComponent, InteractiveHandlers } from '@ui/type/component'
   import { createKeyboardHandler, KeySets } from '@ui/utils/events'
-  import { createIconButtonStyles } from '@ui/utils/styles'
-  import { IconRenderer } from '@ui/utils/rendering'
+  import { createButtonStyles, getButtonIconSize, getButtonIconContainerClasses } from '@ui/shared-styles/button-styles'
+  import { IconRenderer, ButtonRenderer } from '@ui/utils/rendering'
 
   /**
    * IconButton component props interface
    * A button that displays only an icon, optimized for accessibility and common UI patterns
    */
   interface Props extends BaseProps, IconComponent, InteractiveHandlers {
-    /** Accessibility label (required) */
+    /** Accessibility label (required for icon-only buttons) */
     'aria-label': string
-    /** Button variant @default 'ghost' */
-    variant?: 'ghost' | 'outlined' | 'filled'
+    /** Button variant (now supports all unified variants) @default 'ghost' */
+    variant?: 'primary' | 'secondary' | 'tertiary' | 'ghost' | 'outlined' | 'filled'
     /** Semantic color @default 'default' */
     color?: 'default' | 'neutral' | 'success' | 'warning' | 'error'
     /** Button size @default 'medium' */
-    size?: 'small' | 'medium' | 'large'
+    size?: 'xs' | 'small' | 'medium' | 'large'
     /** Whether the button is in a loading state @default false */
     loading?: boolean
     /** HTML button type attribute @default 'button' */
     type?: 'button' | 'submit' | 'reset'
     /** Icon to display (required) */
-    icon: IconComponent['leftIcon']
+    icon: NonNullable<IconComponent['leftIcon']>
     /** Size of the icon in pixels (auto-sized based on button size if not provided) */
     iconSize?: number
+    /** Use thin border styling (for secondary/outlined variants) @default true */
+    thinBorder?: boolean
   }
 
   let {
@@ -36,6 +39,7 @@
     iconSize,
     loading = false,
     disabled = false,
+    thinBorder = true,
     class: className = '',
     id,
     type = 'button',
@@ -46,37 +50,27 @@
     ...restProps
   }: Props = $props()
 
-  // Generate icon CSS classes based on button size and color
-  const iconSizeClasses = $derived(size === 'small' ? 'h-3.5 w-3.5' : size === 'medium' ? 'h-4 w-4' : 'h-5 w-5')
+  // Use unified icon sizing system
+  const effectiveIconSize = $derived(iconSize || getButtonIconSize(size))
 
-  const iconColorClasses = $derived(
-    // For filled variants, icons are always white
-    variant === 'filled'
-      ? 'text-white'
-      : // For ghost and outlined variants, apply semantic color
-        color === 'default'
-        ? 'text-highlight'
-        : color === 'neutral'
-          ? 'text-neutral-600'
-          : color === 'success'
-            ? 'text-success'
-            : color === 'warning'
-              ? 'text-warning'
-              : color === 'error'
-                ? 'text-error'
-                : 'text-highlight'
-  )
+  // Get unified icon container classes and apply unified color system
+  const baseIconClasses = $derived(getButtonIconContainerClasses(size))
 
-  const iconClasses = $derived(`${iconSizeClasses} ${iconColorClasses}`)
+  // Icon color is handled by the unified button styles
+  // The button itself handles the color theming, icon just inherits currentColor
+  const iconClasses = $derived(`${baseIconClasses} text-current`)
 
-  const isDisabled = $derived(disabled || loading)
+  // Use rendering utilities for consistent logic
+  const isDisabled = $derived(ButtonRenderer.isEffectivelyDisabled(disabled, loading))
 
-  // Use style composition utility
+  // Use unified button styling system
   let buttonClasses = $derived(
-    createIconButtonStyles({
+    createButtonStyles({
+      buttonType: 'icon',
       variant,
-      color,
       size,
+      color,
+      thinBorder,
       disabled: isDisabled,
       className,
     })
@@ -116,12 +110,16 @@
   {onblur}
   {...restProps}
 >
-  {#if IconRenderer.shouldRender(icon)}
-    <span class="flex {iconClasses} items-center">
+  {#if ButtonRenderer.shouldShowLoading(loading)}
+    <span class="{iconClasses} overflow-hidden">
+      <SpinnerIcon class="!h-full !w-full" />
+    </span>
+  {:else if IconRenderer.shouldRender(icon)}
+    <span class={iconClasses}>
       {#if IconRenderer.isStringIcon(icon)}
         {icon}
       {:else if typeof icon === 'function'}
-        {@render icon(iconSize)}
+        {@render icon(effectiveIconSize)}
       {:else}
         {@const IconComponent = icon}
         <IconComponent />

@@ -3,7 +3,8 @@
   This shows the proper patterns for using utilities with Svelte 5 runes
 -->
 <script lang="ts">
-  import { createButtonStyles, createInputStyles } from '@ui/utils/styles'
+  import { createInputStyles } from '@ui/utils/styles'
+  import { createButtonStyles } from '@ui/shared-styles/button-styles'
   import { FormRenderer, IconRenderer, ButtonRenderer } from '@ui/utils/rendering'
   import { useFocusManagement } from '@ui/utils/focus.svelte'
   import { createKeyboardHandler } from '@ui/utils/events'
@@ -34,6 +35,7 @@
   // Use style composition utility (pre-configured)
   let classes = $derived(
     createButtonStyles({
+      buttonType: 'button',
       variant,
       size,
       disabled: ButtonRenderer.isEffectivelyDisabled(disabled, loading),

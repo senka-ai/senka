@@ -54,27 +54,6 @@ export function createStyleComposer<TVariant extends string = string, TSize exte
   }
 }
 
-/**
- * Standard button style composer
- * Updated to match Button component's original design
- */
-export const createButtonStyles = createStyleComposer({
-  base: 'inline-flex items-center justify-center gap-2 font-medium transition-all duration-200 focus:outline-none cursor-pointer',
-  variants: {
-    primary:
-      'border-2 border-transparent hover:bg-highlight-hover bg-highlight text-white disabled:bg-neutral-disabled disabled:text-neutral-disabled',
-    secondary:
-      'bg-transparent border-2 hover:bg-highlight-light text-highlight border-highlight disabled:border-neutral-disabled disabled:text-neutral-light',
-    tertiary:
-      'bg-transparent border-2 border-transparent hover:bg-highlight-light text-highlight disabled:text-neutral-light',
-  },
-  sizes: {
-    xs: 'px-2 py-1 text-action-s rounded-lg',
-    small: 'px-3 py-1.5 text-action-s rounded-lg',
-    medium: 'px-4 py-2.75 text-action-m rounded-xl',
-    large: 'px-6 py-4 text-action-l rounded-2xl',
-  },
-})
 
 /**
  * Standard input/form field style composer
@@ -95,27 +74,6 @@ export const createInputStyles = createStyleComposer({
   },
 })
 
-/**
- * Filter style composer - combines button appearance with form input border styling
- * Default variant uses thin border like form inputs, other variants use button styling
- */
-export const createFilterStyles = createStyleComposer({
-  base: 'inline-flex items-center justify-center gap-2 font-medium transition-all duration-200 focus:outline-none cursor-pointer',
-  variants: {
-    primary:
-      'border-2 border-transparent hover:bg-highlight-hover bg-highlight text-white disabled:bg-neutral-disabled disabled:text-neutral-disabled',
-    secondary:
-      'bg-transparent border border-neutral-400 hover:bg-highlight-light hover:border-highlight text-highlight disabled:border-neutral-disabled disabled:text-neutral-light',
-    tertiary:
-      'bg-transparent border-2 border-transparent hover:bg-highlight-light text-highlight disabled:text-neutral-light',
-  },
-  sizes: {
-    xs: 'px-2 py-1 text-action-s rounded-lg',
-    small: 'px-3 py-1.5 text-action-s rounded-lg',
-    medium: 'px-4 py-2.75 text-action-m rounded-xl',
-    large: 'px-6 py-4 text-action-l rounded-2xl',
-  },
-})
 
 /**
  * Card style composer that matches the original Card component design exactly
@@ -726,61 +684,6 @@ export function createLoaderStyles(options: {
   }
 }
 
-/**
- * IconButton style composer for icon-only button components
- * Provides consistent styling for different icon button variants, colors, and sizes
- */
-export function createIconButtonStyles(options: {
-  variant?: 'ghost' | 'outlined' | 'filled'
-  color?: 'default' | 'neutral' | 'success' | 'warning' | 'error'
-  size?: 'small' | 'medium' | 'large'
-  disabled?: boolean
-  className?: string
-}): string {
-  const { variant = 'ghost', color = 'default', size = 'medium', disabled = false, className = '' } = options
-
-  const base =
-    'inline-flex items-center justify-center font-medium transition-all duration-200 focus:outline-none cursor-pointer'
-
-  // Color-specific styles for different variants
-  const colorVariants = {
-    default: {
-      ghost: 'hover:bg-highlight-50',
-      outlined: 'border border-highlight hover:border-highlight-600 hover:bg-highlight-50',
-      filled: 'text-white bg-highlight hover:bg-highlight-600',
-    },
-    neutral: {
-      ghost: 'hover:bg-neutral-100',
-      outlined: 'border border-neutral-300 hover:border-neutral-400 hover:bg-neutral-50',
-      filled: 'text-white bg-neutral-600 hover:bg-neutral-700',
-    },
-    success: {
-      ghost: 'hover:bg-success-50',
-      outlined: 'border border-success hover:border-success-400 hover:bg-success-50',
-      filled: 'text-white bg-success hover:bg-success-400',
-    },
-    warning: {
-      ghost: 'hover:bg-warning-50',
-      outlined: 'border border-warning hover:border-warning-400 hover:bg-warning-50',
-      filled: 'text-white bg-warning hover:bg-warning-400',
-    },
-    error: {
-      ghost: 'hover:bg-error-50',
-      outlined: 'border border-error hover:border-error-400 hover:bg-error-50',
-      filled: 'text-white bg-error hover:bg-error-400',
-    },
-  }
-
-  const sizes = {
-    small: 'h-8 w-8 rounded-lg',
-    medium: 'h-10 w-10 rounded-xl',
-    large: 'h-12 w-12 rounded-xl',
-  }
-
-  const disabledStyles = disabled ? 'disabled:opacity-50 disabled:cursor-not-allowed' : ''
-
-  return composeClasses(base, colorVariants[color][variant], sizes[size], disabledStyles, className)
-}
 
 /**
  * NumberInput button style composer for increment/decrement buttons
