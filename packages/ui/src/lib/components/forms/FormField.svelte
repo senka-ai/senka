@@ -27,13 +27,13 @@
 
   let labelClasses = $derived.by(() => {
     const base = 'block text-h5 mb-1.5'
-    const color = disabled ? 'text-neutral-500' : 'text-neutral-800'
+    const color = disabled ? 'text-muted' : 'text-primary'
     return `${base} ${color}`
   })
 
   let helperTextClasses = $derived.by(() => {
     const base = 'text-body-s mt-1'
-    const color = error ? 'text-error-400' : 'text-neutral-600'
+    const color = error ? 'text-error' : disabled ? 'text-muted' : 'text-secondary'
     return `${base} ${color}`
   })
 

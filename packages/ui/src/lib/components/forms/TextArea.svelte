@@ -2,7 +2,7 @@
   import type { FormInputComponent } from '@ui/type/component'
   import { useFocusState } from '@ui/utils/state.svelte'
   import { validateValue, type ValidationRule } from '@ui/utils/validation.svelte'
-  import { createInputStyles } from '@ui/utils/styles'
+  import { createInputStyles } from '@ui/shared-styles/input-styles'
   import { FormRenderer } from '@ui/utils/rendering'
   import FormField from '@ui/components/forms/FormField.svelte'
 

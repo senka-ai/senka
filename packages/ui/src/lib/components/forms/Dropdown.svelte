@@ -3,7 +3,8 @@
   import FormField from '@ui/components/forms/FormField.svelte'
   import type { FormInputComponent, ChangeHandler, ChildrenComponent } from '@ui/type/component'
   import { useFocusState } from '@ui/utils/state.svelte'
-  import { createInputStyles, composeClasses } from '@ui/utils/styles'
+  import { createInputStyles } from '@ui/shared-styles/input-styles'
+  import { composeClasses } from '@ui/utils/styles'
   import { FormRenderer, DropdownRenderer } from '@ui/utils/rendering'
 
   interface Option {
@@ -178,7 +179,7 @@
       onfocus={focusState.handleFocus}
       onblur={focusState.handleBlur}
     >
-      <span class={selectedOption ? 'text-neutral-900' : 'text-neutral-500'}>
+      <span class={disabled ? 'text-muted' : selectedOption ? 'text-neutral-900' : 'text-neutral-500'}>
         {DropdownRenderer.getDisplayText(options, value, placeholder)}
       </span>
       <ArrowDownIcon

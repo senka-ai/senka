@@ -677,7 +677,7 @@ Use this decision tree to determine which styling approach to use for new compon
 
 ```
 Is the styling logic shared (or could be shared) by 2+ components?
-├─ YES → Use External Styles (createXXXStyles in shared-styles/xxx-styles.ts)
+├─ YES → Use External Styles (createXXXStyles in src/lib/shared-styles/xxx-styles.ts)
 │  └─ Benefits: Reusability, centralization, testability
 └─ NO → Is this part of a component "family" (buttons, inputs, containers)?
    ├─ YES → Use External Styles (shared base composer)
@@ -687,7 +687,7 @@ Is the styling logic shared (or could be shared) by 2+ components?
       └─ NO → Use Internal Styles (simpler, more direct)
 ```
 
-#### When to Use External Styles (shared-styles/xxx-styles.ts)
+#### When to Use External Styles (src/lib/shared-styles/xxx-styles.ts)
 
 **✅ Use External Styles for:**
 
@@ -746,7 +746,7 @@ The library organizes related components into families that share base styling p
 
 **For External Styles:**
 
-1. **Create style composer in shared-styles/xxx-styles.ts:**
+1. **Create style composer in src/lib/shared-styles/xxx-styles.ts:**
 
 ```typescript
 export const createComponentStyles = createStyleComposer({

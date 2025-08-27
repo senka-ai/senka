@@ -3,7 +3,7 @@
   import { useFocusState } from '@ui/utils/state.svelte'
   import { getInputPadding, getInputIconClasses } from '@ui/utils/icons'
   import { validateValue, type ValidationRule } from '@ui/utils/validation.svelte'
-  import { createInputStyles } from '@ui/utils/styles'
+  import { createInputStyles } from '@ui/shared-styles/input-styles'
   import { FormRenderer, IconRenderer } from '@ui/utils/rendering'
   import FormField from '@ui/components/forms/FormField.svelte'
 
@@ -139,7 +139,9 @@
       {/if}
     </div>
   {:else if unit && (showUnit ?? true)}
-    <div class="text-body-m absolute top-1/2 right-3.25 -translate-y-1/2 transform text-neutral-600">
+    <div
+      class={`text-body-m absolute top-1/2 right-3.25 -translate-y-1/2 transform ${disabled ? 'text-muted' : 'text-neutral-600'}`}
+    >
       {unit}
     </div>
   {/if}

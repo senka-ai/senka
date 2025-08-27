@@ -3,7 +3,7 @@
   This shows the proper patterns for using utilities with Svelte 5 runes
 -->
 <script lang="ts">
-  import { createInputStyles } from '@ui/utils/styles'
+  import { createInputStyles } from '@ui/shared-styles/input-styles'
   import { createButtonStyles } from '@ui/shared-styles/button-styles'
   import { FormRenderer, IconRenderer, ButtonRenderer } from '@ui/utils/rendering'
   import { useFocusManagement } from '@ui/utils/focus.svelte'

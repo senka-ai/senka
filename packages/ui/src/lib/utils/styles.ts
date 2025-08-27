@@ -55,25 +55,6 @@ export function createStyleComposer<TVariant extends string = string, TSize exte
 }
 
 /**
- * Standard input/form field style composer
- * Updated to match TextField component's original design
- */
-export const createInputStyles = createStyleComposer({
-  base: 'w-full px-3.25 py-3.25 text-body-m text-neutral-900 bg-neutral-50 border rounded-xl transition-all duration-200 focus:outline-none focus:ring-offset-0 placeholder:text-neutral-500',
-  variants: {
-    default: 'border-neutral-400',
-    focused: 'border-highlight ring-1 ring-highlight-400',
-    error: 'border-error-400 focus:ring-1 ring-error-400',
-    disabled: 'border-neutral-300 bg-neutral-100 text-neutral-500 cursor-not-allowed',
-  },
-  sizes: {
-    small: 'px-2.5 py-2 text-body-s rounded-lg',
-    medium: 'px-3.25 py-3.25 text-body-m rounded-xl',
-    large: 'px-4 py-4 text-body-l rounded-2xl',
-  },
-})
-
-/**
  * Card style composer that matches the original Card component design exactly
  */
 export function createCardStyles(options: {
@@ -937,4 +918,3 @@ export function createLocationPinOuterCircleStyles(size: 'small' | 'medium' | 'l
 
   return composeClasses(base, sizes[size])
 }
-
