@@ -2,7 +2,7 @@
   import type { BaseProps, VariantComponent, IconComponent, InteractiveHandlers } from '@ui/type/component'
   import { IconRenderer } from '@ui/utils/rendering'
   import { createKeyboardHandler, KeySets } from '@ui/utils/events'
-  import { createTagStyles } from '@ui/utils/styles'
+  import { createStyleComposer } from '@ui/utils/styles'
 
   interface Props
     extends BaseProps,
@@ -29,12 +29,24 @@
     ...restProps
   }: Props = $props()
 
+  const createTagStyles = createStyleComposer({
+    base: 'inline-flex items-center gap-1.5 font-medium transition-all duration-200 rounded-full uppercase h-6 px-3 text-caption-m tracking-wider',
+    variants: {
+      primary: 'bg-highlight text-white',
+      secondary: 'bg-transparent border border-highlight text-highlight', 
+      tertiary: 'bg-highlight-light text-highlight',
+    },
+  })
+
   let tagClasses = $derived(
     createTagStyles({
       variant,
-      interactive: Boolean(onclick),
       disabled,
       className,
+      modifiers: {
+        'cursor-pointer hover:opacity-80': Boolean(onclick) && !disabled,
+        'opacity-50 cursor-not-allowed': disabled,
+      },
     })
   )
 

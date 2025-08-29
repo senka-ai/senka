@@ -2,7 +2,7 @@
   import type { ListItemComponent, IconComponent, InteractiveHandlers } from '@ui/type/component'
   import { IconRenderer } from '@ui/utils/rendering'
   import { createKeyboardHandler, KeySets } from '@ui/utils/events'
-  import { createListItemStyles } from '@ui/utils/styles'
+  import { composeClasses } from '@ui/utils/styles'
 
   interface Props extends ListItemComponent, IconComponent, InteractiveHandlers {
     rightControl?: any
@@ -31,6 +31,23 @@
     children,
     ...restProps
   }: Props = $props()
+
+  function createListItemStyles(options: {
+    compact?: boolean
+    interactive?: boolean
+    disabled?: boolean
+    className?: string
+  }): string {
+    const { compact = false, interactive = false, disabled = false, className = '' } = options
+
+    const base = 'flex items-center gap-3 px-4 bg-background transition-colors duration-200'
+    const padding = compact ? 'py-2' : 'py-3'
+    const width = 'w-full text-left'
+    const interactiveStyle = interactive && !disabled ? 'cursor-pointer hover:bg-surface' : ''
+    const disabledStyles = disabled ? 'opacity-50 cursor-not-allowed' : ''
+
+    return composeClasses(base, padding, width, interactiveStyle, disabledStyles, className)
+  }
 
   let itemClasses = $derived(
     createListItemStyles({

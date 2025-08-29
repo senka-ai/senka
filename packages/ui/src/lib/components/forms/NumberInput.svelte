@@ -3,7 +3,7 @@
   import { useFocusState } from '@ui/utils/state.svelte'
   import { validateValue, type ValidationRule } from '@ui/utils/validation.svelte'
   import { createInputStyles } from '@ui/shared-styles/input-styles'
-  import { createNumberInputButtonStyles } from '@ui/utils/styles'
+  import { composeClasses } from '@ui/utils/styles'
   import { FormRenderer } from '@ui/utils/rendering'
   import FormField from '@ui/components/forms/FormField.svelte'
   import { AddIcon, MinusIcon } from '@ui/icons'
@@ -63,6 +63,43 @@
   }: Props = $props()
 
   const focusState = useFocusState()
+
+  function createNumberInputButtonStyles(options: {
+    layout: 'stacked' | 'horizontal' | 'split'
+    position?: 'increment' | 'decrement' | 'left' | 'right'
+    disabled?: boolean
+    className?: string
+  }): string {
+    const { layout, position, disabled = false, className = '' } = options
+
+    const base =
+      'flex items-center justify-center border-2 border-transparent text-neutral-600 transition-colors duration-200 hover:bg-neutral-100 hover:text-neutral-800 disabled:cursor-not-allowed disabled:text-neutral-400 disabled:hover:bg-transparent disabled:hover:text-neutral-400'
+
+    const sizes = {
+      stacked: 'h-4 w-8',
+      horizontal: 'h-8 w-8',
+      split: 'h-8 w-8',
+    }
+
+    const roundings = {
+      stacked: position === 'increment' ? 'rounded-t-lg' : 'rounded-b-lg',
+      horizontal: 'rounded-lg',
+      split: 'rounded-lg',
+    }
+
+    const positioning = {
+      stacked: '',
+      horizontal: position === 'decrement' ? '' : 'ml-1',
+      split:
+        position === 'decrement'
+          ? 'absolute top-1/2 left-1 -translate-y-1/2'
+          : 'absolute top-1/2 right-1 -translate-y-1/2',
+    }
+
+    const disabledStyles = disabled ? 'cursor-not-allowed opacity-50' : ''
+
+    return composeClasses(base, sizes[layout], roundings[layout], positioning[layout], disabledStyles, className)
+  }
 
   // Initialize validation state
   let validationState = $state({ error: '', isValid: true })

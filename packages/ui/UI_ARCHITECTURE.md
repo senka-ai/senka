@@ -692,7 +692,6 @@ Is the styling logic shared (or could be shared) by 2+ components?
 **✅ Use External Styles for:**
 
 - Components sharing similar styling patterns (Button family, Input family)
-- Core components that define patterns others might follow
 
 **Examples:**
 
@@ -715,7 +714,7 @@ let inputClasses = $derived(createInputStyles({ variant, size, className }))
 
 **✅ Use Internal Styles for:**
 
-- Truly unique components with no shared patterns
+- Unique components with no shared patterns
 - Simple components with minimal styling logic
 - Components where styles are tightly coupled to component state
 - Temporary or experimental components

@@ -7,7 +7,7 @@
     InteractiveHandlers,
   } from '@ui/type/component'
   import { createKeyboardHandler, createSafeClickHandler, KeySets } from '@ui/utils/events'
-  import { createRadioStyles, composeClasses } from '@ui/utils/styles'
+  import { createStyleComposer, composeClasses } from '@ui/utils/styles'
   import { getContext } from 'svelte'
 
   interface Props extends BaseProps, SizedComponent, ChangeHandler<boolean>, ChildrenComponent, InteractiveHandlers {
@@ -50,6 +50,19 @@
   const effectiveName = $derived(radioGroupContext?.name || name)
   const effectiveDisabled = $derived(radioGroupContext?.disabled || disabled)
   const effectiveChecked = $derived(radioGroupContext ? radioGroupContext.selectedValue() === value : checked)
+
+  const createRadioStyles = createStyleComposer({
+    base: 'relative inline-flex items-center justify-center cursor-pointer transition-all duration-200 rounded-full',
+    variants: {
+      unchecked: 'bg-surface border-2 border-neutral-300 hover:border-neutral-400',
+      checked: 'bg-highlight border-2 border-highlight',
+    },
+    sizes: {
+      small: 'h-4 w-4',
+      medium: 'h-6 w-6',
+      large: 'h-8 w-8',
+    },
+  })
 
   function handleSelect() {
     if (!effectiveDisabled) {

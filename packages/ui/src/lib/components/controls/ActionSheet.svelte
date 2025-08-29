@@ -1,6 +1,6 @@
 <script lang="ts">
   import type { BaseProps, ChildrenComponent } from '@ui/type/component'
-  import { createActionSheetStyles } from '@ui/utils/styles'
+  import { composeClasses } from '@ui/utils/styles'
   import { createKeyboardHandler, KeySets } from '@ui/utils/events'
   import { CloseIcon } from '@ui/icons'
   import IconButton from '@ui/components/core/IconButton.svelte'
@@ -43,6 +43,70 @@
     children,
     ...restProps
   }: Props = $props()
+
+  function createActionSheetStyles(options: {
+    open: boolean
+    position: 'bottom' | 'top'
+    animationSpeed: 'slow' | 'normal' | 'fast'
+    disabled?: boolean
+    className?: string
+  }): {
+    backdrop: string
+    container: string
+    header: string
+    title: string
+    content: string
+  } {
+    const { open, position, animationSpeed, disabled = false, className = '' } = options
+
+    // Animation duration mapping
+    const animationDurations = {
+      slow: 'duration-500',
+      normal: 'duration-300',
+      fast: 'duration-200',
+    }
+
+    // Backdrop styles
+    const backdrop = composeClasses(
+      'fixed inset-0 z-50 flex items-end justify-center bg-black/50 transition-opacity',
+      animationDurations[animationSpeed],
+      open ? 'opacity-100' : 'opacity-0 pointer-events-none',
+      position === 'top' ? 'items-start' : 'items-end',
+      disabled && 'pointer-events-none'
+    )
+
+    // Container styles with position-based transforms
+    const positionStyles = {
+      bottom: open ? 'translate-y-0' : 'translate-y-full',
+      top: open ? 'translate-y-0' : '-translate-y-full',
+    }
+
+    const container = composeClasses(
+      'w-full max-w-md transform rounded-t-2xl bg-background shadow-xl transition-transform',
+      position === 'top' ? 'rounded-t-none rounded-b-2xl' : '',
+      animationDurations[animationSpeed],
+      positionStyles[position],
+      disabled && 'opacity-50',
+      className
+    )
+
+    // Header styles
+    const header = 'flex items-center justify-between border-b border-default px-6 py-4'
+
+    // Title styles
+    const title = 'text-heading-s font-semibold text-primary'
+
+    // Content styles
+    const content = 'p-4'
+
+    return {
+      backdrop,
+      container,
+      header,
+      title,
+      content,
+    }
+  }
 
   let actionSheetClasses = $derived(
     createActionSheetStyles({

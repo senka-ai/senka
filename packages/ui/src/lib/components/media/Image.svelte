@@ -1,7 +1,8 @@
 <script lang="ts">
   import ImagePlaceholder from '@ui/components/media/ImagePlaceholder.svelte'
   import { useLoadingState } from '@ui/utils/state.svelte'
-  import { createMediaContainerStyles, createImageStyles } from '@ui/utils/styles'
+  import { createMediaContainerStyles } from '@ui/shared-styles/media-styles'
+  import { composeClasses } from '@ui/utils/styles'
   import type { BaseProps } from '@ui/type/component'
 
   interface Props extends BaseProps {
@@ -37,6 +38,29 @@
 
   const loadingState = useLoadingState(true) // Start with loading state
   let currentSrc = $state(src)
+
+  function createImageStyles(options: {
+    fit: 'cover' | 'contain' | 'fill' | 'scale-down' | 'none'
+    loading: boolean
+    hasSize?: boolean
+  }): string {
+    const { fit, loading, hasSize = false } = options
+
+    const base = 'transition-opacity duration-300'
+
+    const fitClasses = {
+      cover: 'object-cover',
+      contain: 'object-contain',
+      fill: 'object-fill',
+      'scale-down': 'object-scale-down',
+      none: 'object-none',
+    }
+
+    const sizeClasses = hasSize ? '' : 'w-full h-full'
+    const opacityClass = !loading ? 'opacity-100' : 'opacity-0'
+
+    return composeClasses(base, fitClasses[fit], sizeClasses, opacityClass)
+  }
 
   let containerClasses = $derived(
     createMediaContainerStyles({

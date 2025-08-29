@@ -1,7 +1,7 @@
 <script lang="ts">
   import { InfoIcon, CheckIcon, WarningIcon, CloseIcon } from '@ui/icons'
   import type { BaseProps, VariantComponent } from '@ui/type/component'
-  import { createToastStyles } from '@ui/utils/styles'
+  import { composeClasses } from '@ui/utils/styles'
 
   /**
    * Toast component props interface
@@ -53,6 +53,30 @@
 
   // For single line content, use center alignment
   let singleLine = $derived(!hasBothTitleAndDescription)
+
+  function createToastStyles(options: {
+    variant: 'info' | 'success' | 'warning' | 'error'
+    dismissible?: boolean
+    showBorder?: boolean
+    singleLine?: boolean
+    className?: string
+  }): string {
+    const { variant, dismissible = true, showBorder = false, singleLine = false, className = '' } = options
+
+    const alignment = singleLine ? 'items-center' : 'items-start'
+    const base = `flex ${alignment} gap-3 p-4 rounded-xl transition-all duration-300`
+
+    const variants = {
+      info: showBorder ? 'bg-highlight-50 border border-highlight-200' : 'bg-highlight-50',
+      success: showBorder ? 'bg-success-50 border border-success-200' : 'bg-success-50',
+      warning: showBorder ? 'bg-warning-50 border border-warning-200' : 'bg-warning-50',
+      error: showBorder ? 'bg-error-50 border border-error-200' : 'bg-error-50',
+    }
+
+    const dismissibleStyles = dismissible ? 'cursor-default' : ''
+
+    return composeClasses(base, variants[variant], dismissibleStyles, className)
+  }
 
   let toastClasses = $derived(
     createToastStyles({

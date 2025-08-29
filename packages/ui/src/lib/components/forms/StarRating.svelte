@@ -3,7 +3,7 @@
   import type { BaseProps, ExtendedSizedComponent, ChangeHandler, InteractiveHandlers } from '@ui/type/component'
   import { useControlledState } from '@ui/utils/state.svelte'
   import { useFocusVisible } from '@ui/utils/focus.svelte'
-  import { createStarRatingStyles } from '@ui/utils/styles'
+  import { createStyleComposer } from '@ui/utils/styles'
 
   interface Props extends BaseProps, ExtendedSizedComponent, ChangeHandler<number>, InteractiveHandlers {
     /** Current rating value (0-5) */
@@ -42,6 +42,20 @@
   // Use controlled state utility
   const ratingState = useControlledState(rating ?? 0, rating, onchange)
   const focusVisible = useFocusVisible()
+
+  const createStarRatingStyles = createStyleComposer({
+    base: 'inline-flex items-center',
+    variants: {
+      default: '',
+      focused: 'ring-2 ring-highlight-200 ring-offset-2 rounded-lg',
+    },
+    sizes: {
+      xs: 'gap-0.5',
+      small: 'gap-0.5',
+      medium: 'gap-1',
+      large: 'gap-1.5',
+    },
+  })
 
   // Track hover state for preview
   let hoveredIndex = $state(-1)

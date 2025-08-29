@@ -1,7 +1,7 @@
 <script lang="ts">
   import { CloseIcon } from '@ui/icons'
   import type { BaseProps } from '@ui/type/component'
-  import { createDialogStyles } from '@ui/utils/styles'
+  import { composeClasses } from '@ui/utils/styles'
   import Button from '@ui/components/core/Button.svelte'
   import IconButton from '@ui/components/core/IconButton.svelte'
 
@@ -84,6 +84,53 @@
     children,
     ...restProps
   }: Props = $props()
+
+  function createDialogStyles(options: { disabled?: boolean; className?: string }): {
+    backdrop: string
+    container: string
+    closeButton: string
+    content: string
+    title: string
+    description: string
+    actions: string
+  } {
+    const { disabled = false, className = '' } = options
+
+    // Backdrop/overlay styles
+    const backdrop = 'fixed inset-0 z-50 flex items-center justify-center bg-neutral-900/50 backdrop-blur-sm'
+
+    // Dialog container styles
+    const containerBase =
+      'relative bg-background border border-neutral-200 rounded-2xl shadow-2xl max-w-md w-full mx-4 max-h-[90vh] overflow-hidden'
+    const disabledStyles = disabled ? 'opacity-50' : ''
+    const container = composeClasses(containerBase, disabledStyles, className)
+
+    // Close button styles
+    const closeButton =
+      'absolute top-2 right-2 p-1 text-neutral-500 hover:text-neutral-700 transition-colors duration-200'
+
+    // Content area styles
+    const content = 'p-6 pr-12'
+
+    // Title styles
+    const title = 'text-h3 font-semibold text-neutral-900 mb-3'
+
+    // Description styles
+    const description = 'text-body-m text-neutral-700 leading-relaxed'
+
+    // Actions/buttons area styles
+    const actions = 'flex gap-3 p-6 pt-0 border-neutral-100'
+
+    return {
+      backdrop,
+      container,
+      closeButton,
+      content,
+      title,
+      description,
+      actions,
+    }
+  }
 
   let dialogClasses = $derived(
     createDialogStyles({

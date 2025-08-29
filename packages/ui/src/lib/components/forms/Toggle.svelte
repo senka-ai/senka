@@ -3,7 +3,7 @@
   import { useToggleState } from '@ui/utils/state.svelte'
   import { useFocusVisible } from '@ui/utils/focus.svelte'
   import { createKeyboardHandler, createClickHandler, KeySets } from '@ui/utils/events'
-  import { createToggleStyles } from '@ui/utils/styles'
+  import { createStyleComposer } from '@ui/utils/styles'
 
   interface Props extends BaseProps, ExtendedSizedComponent, ChangeHandler<boolean>, InteractiveHandlers {
     checked?: boolean
@@ -28,6 +28,20 @@
   // Always start uncontrolled for simpler behavior in Storybook
   const toggleState = useToggleState(checked ?? false, undefined, onchange)
   const focusVisible = useFocusVisible()
+
+  const createToggleStyles = createStyleComposer({
+    base: 'relative inline-flex items-center cursor-pointer transition-all duration-200 rounded-full',
+    variants: {
+      unchecked: 'bg-neutral-300',
+      checked: 'bg-highlight',
+    },
+    sizes: {
+      xs: 'h-4 w-7',
+      small: 'h-5 w-9',
+      medium: 'h-7 w-12',
+      large: 'h-8 w-14',
+    },
+  })
 
   function handleToggle() {
     toggleState.toggle()

@@ -2,7 +2,8 @@
   import { VideoIcon } from '@ui/icons'
   import VideoPlaceholder from '@ui/components/media/VideoPlaceholder.svelte'
   import { useLoadingState } from '@ui/utils/state.svelte'
-  import { createMediaContainerStyles, createVideoStyles } from '@ui/utils/styles'
+  import { createMediaContainerStyles } from '@ui/shared-styles/media-styles'
+  import { composeClasses } from '@ui/utils/styles'
   import type { BaseProps } from '@ui/type/component'
 
   interface Props extends BaseProps {
@@ -51,6 +52,15 @@
   const loadingState = useLoadingState(true) // Start with loading state
   let isPlaying = $state(false)
   let currentSrc = $state(src)
+
+  function createVideoStyles(options: { loading: boolean }): string {
+    const { loading } = options
+
+    const base = 'w-full h-full object-cover transition-opacity duration-300'
+    const opacityClass = !loading ? 'opacity-100' : 'opacity-0'
+
+    return composeClasses(base, opacityClass)
+  }
 
   let containerClasses = $derived(
     createMediaContainerStyles({

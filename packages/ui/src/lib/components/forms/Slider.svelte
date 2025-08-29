@@ -2,7 +2,7 @@
   import type { FormInputComponent } from '@ui/type/component'
   import { useFocusState } from '@ui/utils/state.svelte'
   import { validateValue, type ValidationRule } from '@ui/utils/validation.svelte'
-  import { createSliderStyles } from '@ui/utils/styles'
+  import { composeClasses } from '@ui/utils/styles'
   import FormField from '@ui/components/forms/FormField.svelte'
 
   interface Props extends Omit<FormInputComponent, 'value'> {
@@ -59,6 +59,38 @@
   }: Props = $props()
 
   const focusState = useFocusState()
+
+  function createSliderStyles(options: { focused?: boolean; disabled?: boolean; className?: string }): {
+    track: string
+    fill: string
+    thumb: string
+  } {
+    const { focused = false, disabled = false, className = '' } = options
+
+    // Track styles
+    const trackBase = 'relative h-2 bg-neutral-200 rounded-full'
+    const trackState = disabled ? 'cursor-not-allowed opacity-50' : 'cursor-pointer'
+    const track = composeClasses(trackBase, trackState, className)
+
+    // Fill styles (progress bar)
+    const fillBase = 'absolute top-0 left-0 h-full bg-highlight rounded-full'
+    const fill = fillBase
+
+    // Thumb styles (draggable handle)
+    const thumbBase =
+      'absolute top-1/2 -translate-y-1/2 w-6 h-6 rounded-full border-6 border-white shadow-[0_0_8px_rgba(0,0,0,0.15)]'
+    const thumbColor = disabled ? 'bg-neutral-300' : 'bg-highlight'
+    const thumbFocus = focused ? '' : ''
+    const thumbHover = !disabled ? 'hover:scale-110' : ''
+    const thumbState = disabled ? 'cursor-not-allowed' : 'cursor-grab active:cursor-grabbing'
+    const thumb = composeClasses(thumbBase, thumbColor, thumbFocus, thumbHover, thumbState)
+
+    return {
+      track,
+      fill,
+      thumb,
+    }
+  }
 
   // Initialize validation state
   let validationState = $state({ error: '', isValid: true })

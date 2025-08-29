@@ -1,7 +1,7 @@
 <script lang="ts">
   import AvatarPlaceholder from '@ui/components/media/AvatarPlaceholder.svelte'
   import type { BaseProps, ExtendedSizedComponent, StatusComponent } from '@ui/type/component'
-  import { createAvatarStyles } from '@ui/utils/styles'
+  import { createStyleComposer } from '@ui/utils/styles'
   import { AvatarRenderer } from '@ui/utils/rendering'
 
   interface Props extends BaseProps, ExtendedSizedComponent, StatusComponent {
@@ -11,6 +11,20 @@
   }
 
   let { src, alt = '', size = 'medium', initials, status, class: className = '' }: Props = $props()
+
+  const createAvatarStyles = createStyleComposer({
+    base: 'relative inline-flex items-center justify-center bg-highlight-50 text-neutral-600 font-medium',
+    variants: {
+      default: '',
+      bordered: 'ring-2 ring-white shadow-sm',
+    },
+    sizes: {
+      xs: 'h-8 w-8 text-body-s rounded-xl',
+      small: 'h-10 w-10 text-body-s rounded-2xl',
+      medium: 'h-14 w-14 text-body-m rounded-2xl',
+      large: 'h-20 w-20 text-body-l rounded-3xl',
+    },
+  })
 
   // Use style composition utility for consistent avatar styling
   let avatarClasses = $derived(

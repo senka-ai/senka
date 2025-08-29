@@ -4,7 +4,7 @@
   import ImagePlaceholder from '@ui/components/media/ImagePlaceholder.svelte'
   import { ArrowRightIcon } from '@ui/icons'
   import type { CardComponent } from '@ui/type/component'
-  import { createCardStyles, createCardContentStyles } from '@ui/utils/styles'
+  import { composeClasses } from '@ui/utils/styles'
 
   interface Props extends CardComponent {
     image?: string
@@ -41,6 +41,36 @@
     onFavoriteClick,
     ...restProps
   }: Props = $props()
+
+  function createCardStyles(options: {
+    variant: 'default' | 'compact'
+    interactive?: boolean
+    disabled?: boolean
+    className?: string
+  }): string {
+    const { variant, interactive = false, disabled = false, className = '' } = options
+
+    const base = 'overflow-hidden transition-all duration-200'
+    const interactiveStyle = interactive && !disabled ? 'cursor-pointer hover:shadow-md' : ''
+    const disabledStyles = disabled ? 'opacity-50 cursor-not-allowed' : ''
+
+    const variants = {
+      default: 'rounded-2xl',
+      compact: 'rounded-xl',
+    }
+
+    return composeClasses(base, variants[variant], interactiveStyle, disabledStyles, className)
+  }
+
+  function createCardContentStyles(options: { variant: 'default' | 'compact' }): string {
+    const { variant } = options
+
+    const base = 'bg-neutral-100 flex-1'
+    const padding = variant === 'default' ? 'p-6' : 'p-4'
+    const rounding = variant === 'default' ? 'rounded-b-2xl' : 'rounded-b-xl'
+
+    return composeClasses(base, padding, rounding)
+  }
 
   let cardClasses = $derived(
     createCardStyles({

@@ -9,7 +9,7 @@
   } from '@ui/type/component'
   import { useControlledState } from '@ui/utils/state.svelte'
   import { createKeyboardHandler, createSafeClickHandler, KeySets } from '@ui/utils/events'
-  import { createCheckboxStyles, composeClasses } from '@ui/utils/styles'
+  import { createStyleComposer, composeClasses } from '@ui/utils/styles'
 
   interface Props extends BaseProps, SizedComponent, ChangeHandler<boolean>, ChildrenComponent, InteractiveHandlers {
     checked?: boolean
@@ -37,6 +37,19 @@
   }: Props = $props()
 
   const checkedState = useControlledState(checked, undefined, onchange)
+
+  const createCheckboxStyles = createStyleComposer({
+    base: 'relative inline-flex items-center justify-center cursor-pointer transition-all duration-200',
+    variants: {
+      unchecked: 'bg-surface border-2 border-neutral-300 hover:border-neutral-400',
+      checked: 'bg-highlight border-2 border-highlight',
+    },
+    sizes: {
+      small: 'h-4 w-4 rounded',
+      medium: 'h-6 w-6 rounded-md',
+      large: 'h-8 w-8 rounded-lg',
+    },
+  })
 
   function handleToggle() {
     checkedState.setValue(!checkedState.value())
