@@ -39,9 +39,9 @@
   const checkedState = useControlledState(checked, undefined, onchange)
 
   const createCheckboxStyles = createStyleComposer({
-    base: 'relative inline-flex items-center justify-center cursor-pointer transition-all duration-200',
+    base: 'relative inline-flex items-center justify-center transition-all duration-200',
     variants: {
-      unchecked: 'bg-surface border-2 border-neutral-300 hover:border-neutral-400',
+      unchecked: 'bg-surface border-2 border-neutral-300',
       checked: 'bg-highlight border-2 border-highlight',
     },
     sizes: {
@@ -78,7 +78,9 @@
       size,
       disabled,
       modifiers: {
-        'opacity-50 cursor-not-allowed hover:border-neutral-300': disabled,
+        'opacity-50 cursor-not-allowed': disabled,
+        'cursor-pointer hover:border-neutral-400': !disabled && !checkedState.value(),
+        'cursor-pointer': !disabled && !!checkedState.value(),
       },
     })
   )
